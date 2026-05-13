@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- SubestacaoAereaPage -->
+
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes/engenharia" style="color: inherit; text-decoration: none;">Engenharia Elétrica</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);">Subestação Aérea</span>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+            <div class="container fade-in">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA DE ALTA TENSÃO</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Projeto de Subestação Aérea até 500kVA em<br><span style="color:var(--accent-primary)">Campina Grande e Paraíba.</span></h1>
+                <p style="color:var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 1.5rem 0;">
+                    A Klyfe Electric é especialista em projetos de subestação aérea até 500kVA para indústrias, comércios, condomínios, prédios e propriedades rurais. Elaboramos projetos elétricos de média tensão completos, com ART, memorial descritivo e aprovação junto à Energisa, em conformidade com a NBR 14039 e a NR-10.
+                </p>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                    <a href="#aplicacoes" class="btn btn-ghost">Nossos Serviços</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+        <section style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color); padding: 2rem 0;">
+            <div class="container">
+                <div class="grid grid-cols-4" style="gap: 1rem;">
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ NBR 14039 e NR-10</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ ART inclusa</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Aprovação na Energisa</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Industrial, Comercial e Rural</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ O QUE ESTÁ INCLUSO ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                    <div class="fade-in">
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>ESCOPO TÉCNICO</span></div>
+                        <h2 style="margin-bottom: 2rem;">O Que Está Incluso no Projeto de <br><span style="color:var(--accent-primary)">Subestação da Klyfe Electric</span></h2>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Projeto de Subestação Aérea até 500kVA
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Aprovação junto à concessionária (Energisa)
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Laudos técnicos e ART
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Memorial descritivo e de cálculo
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Instalação e manutenção elétrica industrial e predial
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fade-in" style="position: relative;">
+                        <div style="width: 100%; height: 350px; background: linear-gradient(45deg, var(--bg-secondary), var(--border-color)); border-radius: 8px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;">
+                             <i class="fas fa-bolt" style="font-size: 5rem; color: var(--accent-primary); opacity: 0.2;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ APLICAÇÕES ═══ -->
+        <section class="section-padding" id="aplicacoes" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>SETORES ATENDIDOS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 4rem;">Onde Aplicamos Projetos de <br><span style="color:var(--accent-primary)">Subestação Aérea</span></h2>
+                
+                <div class="grid grid-cols-2" style="gap: 2rem;">
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Indústrias</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Ambientes industriais com alta demanda de energia exigem subestações dimensionadas com precisão. Elaboramos projetos em conformidade com a NBR 14039, NR-10 e, onde aplicável, com a NR-12 para instalações que alimentam máquinas e equipamentos.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Comércios e Escritórios</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Grandes comércios, supermercados e centros empresariais que ultrapassam os limites de atendimento em baixa tensão necessitam de subestação própria. A Klyfe Electric projeta e aprova a solução adequada para cada demanda.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Condomínios e Prédios</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Condomínios residenciais e edifícios comerciais de maior porte frequentemente exigem subestação aérea para garantir estabilidade e segurança no fornecimento de energia para todas as unidades.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Propriedades Rurais</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Fazendas, sítios e propriedades rurais com demanda elevada — sistemas de irrigação, câmaras frias, agroindústrias — necessitam de subestação para conexão eficiente à rede de média tensão.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ POR QUE CONTRATAR ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DIFERENCIAIS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 4rem;">Por Que o Projeto Técnico de <br><span style="color:var(--accent-primary)">Subestação é Indispensável?</span></h2>
+                
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 1rem;">Exigência Legal e Normativa</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                            A NBR 14039 e as normas da Energisa exigem projeto elaborado por engenheiro eletricista habilitado com ART recolhida. Evite embargos e interrupção do fornecimento.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 1rem;">Segurança das Instalações</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                            Instalações de média tensão operam em faixas de risco grave. Um projeto técnico correto dimensiona proteções e aterramento conforme a NR-10, protegendo pessoas e patrimônio.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 1rem;">Eficiência Energética</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                            O dimensionamento correto do transformador e dos equipamentos de proteção garante que a subestação opere dentro dos parâmetros ideais, evitando perdas e sobrecargas.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROCESSO DE TRABALHO ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ETAPAS</span></div>
+                <h2 class="fade-in" style="margin-bottom: 3rem;">Como Funciona o Projeto de <br><span style="color:var(--accent-primary)">Subestação Aérea</span></h2>
+                
+                <div class="timeline" style="max-width: 900px; margin: 0 auto;">
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">1. Levantamento de Demanda</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Análise das cargas instaladas e da demanda da instalação para definir a potência correta do transformador e dos equipamentos de proteção.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">2. Elaboração do Projeto Técnico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Desenvolvimento do projeto de média tensão com diagramas, memorial descritivo, memorial de cálculo e especificação técnica, conforme a NBR 14039.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">3. Emissão da ART</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Registro da Anotação de Responsabilidade Técnica junto ao CREA, com responsabilidade técnica do engenheiro eletricista da Klyfe Electric.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">4. Aprovação na Energisa</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Protocolo da documentação técnica junto à Energisa e acompanhamento ativo do processo até a aprovação final do projeto.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">5. Suporte Técnico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Apoio técnico durante a execução da instalação e, se necessário, suporte em vistorias solicitadas pela concessionária.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ ABRANGÊNCIA ═══ -->
+        <section style="padding: 4rem 0;">
+            <div class="container">
+                <div class="bracket-box fade-in" style="background: rgba(var(--accent-primary-rgb), 0.05); border: 1px solid var(--accent-primary); text-align: center; padding: 2.5rem;">
+                    <p style="font-size: 1.25rem; color: var(--text-main); margin: 0; font-weight: 500;">
+                        📍 Atendemos Campina Grande, toda a Paraíba e regiões vizinhas. 
+                        <br><span style="color: var(--accent-primary); font-size: 1rem; display: block; margin-top: 0.5rem;">Entre em contato para verificar disponibilidade para a sua localidade.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FAQ ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Perguntas Frequentes sobre <br><span style="color:var(--accent-primary)">Subestação Aérea</span></h2>
+                
+                <div class="faq-accordion fade-in">
+                    <!-- Q1 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            O que é uma subestação aérea e quando ela é necessária?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Uma subestação aérea é uma instalação de média tensão instalada em estrutura elevada (poste ou torre), responsável por receber energia da concessionária em média tensão e transformá-la para baixa tensão. É necessária quando a demanda de energia de uma instalação industrial, comercial, predial ou rural ultrapassa os limites de atendimento em baixa tensão pela concessionária.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Qual norma regulamenta projetos de subestação elétrica no Brasil?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Projetos de subestações de média tensão são regulamentados pela NBR 14039 da ABNT, que estabelece os requisitos para instalações elétricas de média tensão entre 1 kV e 36 kV. Além disso, a NR-10 do Ministério do Trabalho regula a segurança em instalações e serviços em eletricidade, sendo obrigatória em ambientes com risco elétrico.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            O projeto de subestação precisa de aprovação na Energisa?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Sim. Todo projeto de subestação que se conecta à rede da concessionária precisa ser aprovado pela Energisa antes da execução. A aprovação exige projeto técnico elaborado por engenheiro eletricista habilitado, ART recolhida junto ao CREA, memorial descritivo e demais documentos definidos nas normas de acesso da concessionária.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Qual a diferença entre subestação aérea e subestação abrigada?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                A subestação aérea é instalada em estrutura elevada a céu aberto, geralmente em poste ou cavalete, sendo mais comum em projetos de até 500kVA pela sua relação de custo-benefício. A subestação abrigada é instalada em edificação fechada (cabine), oferecendo maior proteção aos equipamentos e é mais utilizada em instalações de maior porte ou em ambientes que exigem restrições de acesso mais rígidas.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="faq-item" style="padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            A Klyfe Electric atende projetos de subestação fora de Campina Grande?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Sim. A Klyfe Electric atende projetos de subestação aérea em Campina Grande, em toda a Paraíba e em regiões vizinhas. Entre em contato para verificar a disponibilidade de atendimento para a sua localidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LINKS RELACIONADOS (SEO MESH) ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>CONTINUE EXPLORANDO</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-4" style="gap: 1.5rem;">
+                    <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Projeto Elétrico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Residencial, Predial e Industrial.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Laudos Elétricos</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">NR-10, SPDA, Termografia.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Fator de Potência</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Elimine multas na fatura.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Instalações Industriais</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Infraestrutura e Manutenção.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container" style="text-align: center;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
+                <h2 style="margin-bottom: 2rem;">Solicite Seu Projeto de Subestação Aérea em <br><span style="color:var(--accent-primary)">Campina Grande</span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite um orçamento para o projeto de subestação aérea da sua empresa, condomínio ou propriedade. Atendemos Campina Grande, toda a Paraíba e regiões vizinhas.</p>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/footer') %>
+    <%- include('partials/whatsapp') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

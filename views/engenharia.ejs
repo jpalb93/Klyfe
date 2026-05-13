@@ -8,15 +8,29 @@
 <!-- HERO -->
 <section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:4rem">
     <div class="container fade-in">
-        <div class="breadcrumb"><a href="/">Home</a> > <a href="#">Soluções</a> > Engenharia Elétrica</div>
-        <h1 style="color:var(--text-main)">Engenharia de<br><span style="color:var(--accent-primary)">Precisão & Projetos</span></h1>
-        <p style="color:var(--text-muted);font-size:1.15rem;max-width:600px;margin:1.5rem 0">Consultoria técnica, projetos com ART, subestações e adequação normativa para indústrias e grandes empreendimentos em Campina Grande.</p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="/contato" class="btn btn-primary">Solicitar Consultoria Técnica</a>
-            <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
+    <!-- ═══ BREADCRUMB VISUAL ═══ -->
+    <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+        <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+            <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+            <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+            <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+            <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+            <span style="color: var(--text-main);">Engenharia Elétrica</span>
         </div>
-    </div>
-</section>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+        <div class="container fade-in">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA DE PRECISÃO</span></div>
+            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Engenharia Elétrica em<br><span style="color:var(--accent-primary)">Campina Grande e Paraíba.</span></h1>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Consultoria técnica, projetos com ART, subestações e adequação normativa para indústrias, hospitais e grandes empreendimentos na Paraíba.</p>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+                <a href="/contato" class="btn btn-primary">Solicitar Consultoria Técnica</a>
+                <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
+            </div>
+        </div>
+    </section>
 
 <!-- ═══ ESPECIALIDADES (Cards de Navegação) ═══ -->
 <section class="section-padding" id="especialidades" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
@@ -24,20 +38,41 @@
         <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ÁREAS DE ATUAÇÃO</span></div>
         <h2 class="fade-in" style="margin-bottom: 3rem;">Engenharia<br><span style="color:var(--accent-primary)">especializada.</span></h2>
         
-        <div class="grid grid-cols-2" style="gap: 2rem;">
+        <div class="grid grid-cols-3" style="gap: 2rem;">
             <!-- Laudos Elétricos -->
-            <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s;">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem;">Laudos Elétricos & Inspeções <i class="fas fa-arrow-right" style="font-size: 0.9rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Emissão de laudos com ART: NBR 5410, SPDA, NR-10 e aterramento em toda a Paraíba.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Explorar Laudos Técnicos →</span>
+            <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Laudos Elétricos & Inspeções <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Emissão de laudos técnicos com ART: NBR 5410, SPDA, NR-10 e aterramento.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Explorar Laudos →</span>
             </a>
 
-            <!-- Projetos Elétricos (Placeholder) -->
-            <div class="bracket-box fade-in" style="opacity: 0.8; border-left: 4px solid var(--text-muted);">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem;">Projetos & Subestações</h3>
-                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Projetos de alta performance, cabines primárias e estudos de seletividade para indústrias.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Em breve detalhamento técnico</span>
-            </div>
+            <!-- Projetos Elétricos -->
+            <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Projetos Elétricos <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Projetos residenciais, prediais e industriais, cabines primárias e estudos de seletividade.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Ver Projetos →</span>
+            </a>
+
+            <!-- Aprovação Energisa -->
+            <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Aprovação na Energisa <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Gestão completa de processos, documentação e aprovação junto à concessionária.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Ver Processo →</span>
+            </a>
+
+            <!-- Subestação Aérea -->
+            <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Subestação Aérea <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Projetos de média tensão para indústrias e condomínios com aprovação técnica total.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Ver Detalhes →</span>
+            </a>
+
+            <!-- Correção de Fator de Potência -->
+            <a href="/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Fator de Potência <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Estudo e instalação de bancos de capacitores para eliminar multas e reduzir encargos.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Ver Benefícios →</span>
+            </a>
         </div>
     </div>
 </section>

@@ -2,311 +2,225 @@
 <html lang="pt-BR">
 <head>
     <%- include('partials/head') %>
-    
-    <!-- Schema.org JSON-LD Específico -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [{
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://www.klyfeelectric.com.br/"
-      },{
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Soluções",
-        "item": "https://www.klyfeelectric.com.br/solucoes/automacao"
-      },{
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Automação Residencial",
-        "item": "https://www.klyfeelectric.com.br/solucoes/automacao/automacao-residencial"
-      }]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "serviceType": "Automação Residencial",
-      "provider": {
-        "@type": "LocalBusiness",
-        "name": "Klyfe Electric"
-      },
-      "areaServed": [
-        { "@type": "City", "name": "Campina Grande" },
-        { "@type": "City", "name": "João Pessoa" }
-      ],
-      "description": "Transforme sua casa em uma casa inteligente com a Klyfe Electric. Controle iluminação, climatização e segurança."
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "É possível automatizar uma casa já construída?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim. Em muitos casos é possível implementar automação em casas e apartamentos já prontos, utilizando soluções sem fio (wireless) e aproveitando a infraestrutura elétrica existente."
-        }
-      }, {
-        "@type": "Question",
-        "name": "A automação residencial consome muita energia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Não. Quando bem planejada, a automação ajuda a reduzir o consumo, evitando que luzes, ar-condicionado e equipamentos fiquem ligados sem necessidade."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Posso começar pequeno e expandir depois?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim. É comum começar automatizando apenas iluminação, climatização ou segurança, e depois evoluir para som ambiente, cortinas, portões e outros recursos."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Funciona com Alexa, Google Assistente e Siri?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Sim. Os projetos da Klyfe Electric podem ser integrados aos principais assistentes de voz do mercado."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Como solicitar um orçamento de automação residencial?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Você pode entrar em contato com a Klyfe Electric para agendar uma visita técnica em Campina Grande, João Pessoa ou qualquer cidade da Paraíba."
-        }
-      }]
-    }
-    </script>
 </head>
 <body>
     <%- include('partials/navbar') %>
 
-    <!-- ═══ HERO INTERNO ═══ -->
-    <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.8), rgba(10,13,16,0.8)), url('/img/hero-klyfe.webp') center/cover;">
-        <div class="container">
-            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>AUTOMAÇÃO NA PARAÍBA</span></div>
-            <h1 class="fade-in">Automação Residencial em Campina Grande: <br><span style="color:var(--accent-primary)">sua Smart Home em alto padrão.</span></h1>
-            <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
-                A Klyfe Electric traz para <strong>Campina Grande e João Pessoa</strong> o que há de mais moderno em Automação Residencial. Integramos tecnologia, segurança e eficiência para criar experiências de smart home exclusivas na Paraíba.
-            </p>
-        </div>
-    </section>
+    <main>
+        <!-- AutomacaoResidencialPage -->
 
-    <!-- ═══ INTRODUÇÃO ═══ -->
-    <section class="section-padding">
-        <div class="container grid grid-cols-2" style="align-items: center; gap: 4rem;">
-            <div class="fade-in">
-                <div class="section-separator"><%- include('partials/symbol') %> <span>TECNOLOGIA LOCAL</span></div>
-                <h2>Casa Inteligente em<br>Campina Grande e JP</h2>
-                <p style="margin: 1.5rem 0; color: var(--text-muted); line-height: 1.8;">
-                    Ter uma <strong>automação residencial em Campina Grande</strong> significa unir o conforto da tecnologia à segurança que sua família merece. A Klyfe Electric utiliza sistemas centralizados que permitem o controle total da sua residência por aplicativo ou voz, adaptados à realidade das instalações elétricas da nossa região.
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes/automacao" style="color: inherit; text-decoration: none;">Automação</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);">Automação Residencial</span>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+            <div class="container fade-in">
+                <div class="section-separator"><%- include('partials/symbol') %> <span>SMART HOME LUXO</span></div>
+                <h1 style="font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-top: 1.5rem; font-weight: 800;">
+                    Automação Residencial <br>
+                    <span class="text-gradient">e Casas Inteligentes.</span>
+                </h1>
+                <p style="color: var(--text-muted); font-size: 1.25rem; max-width: 800px; margin: 2rem 0; line-height: 1.6;">
+                    Eleve o padrão de conforto da sua casa com tecnologia de ponta. Integramos iluminação, som, segurança e climatização em um sistema único e intuitivo.
                 </p>
-                <p style="color: var(--text-muted); line-height: 1.8;">
-                    Seja em um apartamento em João Pessoa ou em uma casa em Campina Grande, transformamos tarefas comuns em rotinas inteligentes, aumentando a valorização do seu imóvel no mercado paraibano.
-                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Consultoria</a>
+                    <a href="#solucoes" class="btn btn-ghost">Ver Diferenciais →</a>
+                </div>
             </div>
-            <div class="fade-in" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 3rem; display: flex; flex-direction: column; justify-content: center;">
-                <h4 style="color: var(--accent-primary); margin-bottom: 1rem;"><i class="fas fa-lightbulb"></i> Tecnologia de Ponta</h4>
-                <p style="font-size: 0.95rem; color: var(--text-muted);">Integramos os melhores dispositivos do mercado com a robustez da engenharia elétrica Klyfe.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ═══ BENEFÍCIOS ═══ -->
-    <section class="section-padding" style="background: var(--bg-secondary);">
-        <div class="container">
-            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>VANTAGENS</span></div>
-            <h2 class="fade-in" style="margin-bottom: 3rem;">Por que automatizar<br><span style="color:var(--accent-primary)">a sua casa?</span></h2>
-            
-            <div class="grid grid-cols-3">
-                <div class="bracket-box fade-in">
-                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-couch" style="color: var(--accent-primary);"></i> Mais conforto</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Crie cenas como “Chegada em casa”, “Cinema” ou “Boa noite” que ajustam tudo com um toque.</p>
-                </div>
-                <div class="bracket-box fade-in">
-                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-shield-alt" style="color: var(--accent-primary);"></i> Segurança reforçada</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Monitore câmeras, fechaduras e alarmes em tempo real pelo celular com notificações inteligentes.</p>
-                </div>
-                <div class="bracket-box fade-in">
-                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-leaf" style="color: var(--accent-primary);"></i> Economia de energia</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Reduza o custo da conta na <strong>Energisa PB</strong> ligando apenas o necessário através de programações inteligentes.</p>
-                </div>
-                <div class="bracket-box fade-in">
-                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-wheelchair" style="color: var(--accent-primary);"></i> Acessibilidade</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Mais autonomia para idosos ou pessoas com mobilidade reduzida através de comandos simples.</p>
-                </div>
-                <div class="bracket-box fade-in">
-                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-chart-line" style="color: var(--accent-primary);"></i> Valorização</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Imóveis com infraestrutura inteligente são mais valorizados e atrativos no mercado.</p>
-                </div>
-                <div class="bracket-box fade-in">
-                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-mobile-alt" style="color: var(--accent-primary);"></i> Controle Total</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Toda a sua casa na palma da mão, esteja você onde estiver.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ SOLUÇÕES DETALHADAS ═══ -->
-    <section class="section-padding">
-        <div class="container">
-            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>NOSSAS SOLUÇÕES</span></div>
-            <h2 class="fade-in" style="margin-bottom: 3rem;">O que podemos<br><span style="color:var(--accent-primary)">fazer por você?</span></h2>
-            
-            <div class="grid grid-cols-2" style="gap: 2rem;">
-                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
-                    <div class="icon" style="background: rgba(245,200,66,0.1); color: var(--accent-primary);"><i class="fas fa-bolt"></i></div>
-                    <h4>Iluminação e Circuitos</h4>
-                    <p>Controle total de lâmpadas, tomadas e circuitos. Crie cenários para jantar, leitura ou festas com dimerização suave.</p>
-                </div>
-                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
-                    <div class="icon" style="background: rgba(245,200,66,0.1); color: var(--accent-primary);"><i class="fas fa-window-maximize"></i></div>
-                    <h4>Persianas e Portões</h4>
-                    <p>Abertura e fechamento automáticos por horário ou luz natural. Controle portões de acesso remotamente com total segurança.</p>
-                </div>
-                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
-                    <div class="icon" style="background: rgba(245,200,66,0.1); color: var(--accent-primary);"><i class="fas fa-thermometer-half"></i></div>
-                    <h4>Climatização</h4>
-                    <p>Programe a temperatura ideal. Ligue o ar-condicionado antes de chegar em casa e evite desperdícios com sensores de presença.</p>
-                </div>
-                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
-                    <div class="icon" style="background: rgba(245,200,66,0.1); color: var(--accent-primary);"><i class="fas fa-music"></i></div>
-                    <h4>Som Ambiente</h4>
-                    <p>Música em todos os cômodos com controle independente. Integração total com Spotify e outras plataformas de streaming.</p>
-                </div>
-                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
-                    <div class="icon" style="background: rgba(245,200,66,0.1); color: var(--accent-primary);"><i class="fas fa-video"></i></div>
-                    <h4>Segurança Inteligente</h4>
-                    <p>Câmeras 4K, sensores de fumaça, vazamento e invasão. Sua casa te avisa de qualquer imprevisto em tempo real.</p>
-                </div>
-                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
-                    <div class="icon" style="background: rgba(245,200,66,0.1); color: var(--accent-primary);"><i class="fab fa-amazon-alexa"></i></div>
-                    <h4>Controle por Voz</h4>
-                    <p>Integração total com Alexa, Google Assistente e Siri. Controle tudo com comandos simples de voz.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ METODOLOGIA ═══ -->
-    <section class="section-padding bg-blueprint">
-        <div class="container">
-            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>METODOLOGIA KLYFE</span></div>
-            <h2 class="fade-in" style="margin-bottom: 3rem; text-align: center;">Como funciona o projeto?</h2>
-            
-            <div class="timeline" style="max-width: 900px; margin: 0 auto;">
-                <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
-                    <h4 style="color: var(--accent-primary);">01. Diagnóstico e Briefing</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Entendemos sua rotina, necessidades e o nível de automação desejado para o seu imóvel.</p>
-                </div>
-                <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
-                    <h4 style="color: var(--accent-primary);">02. Projeto de Engenharia</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Elaboração de projeto técnico integrando automação e elétrica, com emissão de ART.</p>
-                </div>
-                <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
-                    <h4 style="color: var(--accent-primary);">03. Instalação e Configuração</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Execução profissional com integração entre iluminação, som, segurança e climatização.</p>
-                </div>
-                <div class="bracket-box fade-in">
-                    <h4 style="color: var(--accent-primary);">04. Treinamento e Suporte</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Entrega de manuais, treinamento dos moradores e suporte pós-obra contínuo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══ DIFERENCIAIS ═══ -->
-    <section class="section-padding">
-        <div class="container grid grid-cols-2" style="gap: 4rem; align-items: center;">
-            <div class="fade-in">
-                <div class="section-separator"><%- include('partials/symbol') %> <span>DIFERENCIAIS</span></div>
-                <h2>Por que a<br><span style="color:var(--accent-primary)">Klyfe Electric?</span></h2>
-                <ul style="list-style: none; padding: 0; margin-top: 2rem;">
-                    <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
-                        <div>
-                            <strong style="display: block; color: var(--text-main);">Rigor de Engenharia</strong>
-                            <span style="color: var(--text-muted); font-size: 0.95rem;">Projetos assinados por engenheiros com conformidade total às normas ABNT.</span>
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
-                        <div>
-                            <strong style="display: block; color: var(--text-main);">Visão 360º de Infraestrutura</strong>
-                            <span style="color: var(--text-muted); font-size: 0.95rem;">Integração com subestações, quadros elétricos e energia solar.</span>
-                        </div>
-                    </li>
-                    <li style="margin-bottom: 1.5rem; display: flex; gap: 1rem;">
-                        <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
-                        <div>
-                            <strong style="display: block; color: var(--text-main);">Suporte Regional Ágil</strong>
-                            <span style="color: var(--text-muted); font-size: 0.95rem;">Equipe local preparada para suporte presencial em CG e JP.</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="fade-in" style="position: relative;">
-                <div style="background: linear-gradient(135deg, var(--border-color), var(--bg-primary)); border-radius: 12px; height: 450px; display: flex; align-items: center; justify-content: center; padding: 4rem;">
-                    <div style="opacity: 0.15; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
-                        <%- include('partials/symbol') %>
+        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+        <section style="padding: 4rem 0; background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="grid grid-cols-4">
+                    <div class="feature-card-simple">
+                        <div class="icon-wrap"><i class="fas fa-magic"></i></div>
+                        <h4>Cenas Personalizadas</h4>
+                        <p>Ajuste luz, som e clima para "Cinema", "Jantar" ou "Relax" com um toque.</p>
+                    </div>
+                    <div class="feature-card-simple">
+                        <div class="icon-wrap"><i class="fab fa-amazon-alexa"></i></div>
+                        <h4>Comando de Voz</h4>
+                        <p>Integração total com Alexa, Google Home e Apple HomeKit.</p>
+                    </div>
+                    <div class="feature-card-simple">
+                        <div class="icon-wrap"><i class="fas fa-eye"></i></div>
+                        <h4>Monitoramento 24h</h4>
+                        <p>Veja e controle sua casa de qualquer lugar do mundo pelo celular.</p>
+                    </div>
+                    <div class="feature-card-simple">
+                        <div class="icon-wrap"><i class="fas fa-gem"></i></div>
+                        <h4>Valorização do Imóvel</h4>
+                        <p>Imóveis inteligentes têm maior liquidez e valor de mercado.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ═══ FAQ ═══ -->
-    <section class="section-padding" style="background: var(--bg-secondary);">
-        <div class="container" style="max-width: 800px;">
-            <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
-            <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Perguntas Frequentes</h2>
-            
-            <div class="faq-list">
-                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
-                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">1. É possível automatizar uma casa já construída?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Sim. Em muitos casos é possível implementar automação em casas e apartamentos já prontos, utilizando soluções sem fio (wireless) e aproveitando a infraestrutura elétrica existente.</p>
-                </div>
-                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
-                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">2. A automação residencial consome muita energia?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Não. Quando bem planejada, a automação ajuda a reduzir o consumo, evitando que luzes, ar-condicionado e equipamentos fiquem ligados sem necessidade.</p>
-                </div>
-                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
-                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">3. Posso começar pequeno e expandir depois?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Sim. É comum começar automatizando apenas iluminação, climatização ou segurança, e depois evoluir para som ambiente, cortinas, portões e outros recursos.</p>
-                </div>
-                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
-                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">4. Funciona com Alexa, Google Assistente e Siri?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Sim. Os projetos da Klyfe Electric podem ser integrados aos principais assistentes de voz do mercado, permitindo controle total por voz.</p>
-                </div>
-                <div class="faq-item fade-in">
-                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">5. Como solicitar um orçamento na Paraíba?</h4>
-                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Você pode entrar em contato conosco para agendar uma visita técnica em <strong>Campina Grande, João Pessoa</strong> ou cidades vizinhas. A partir do diagnóstico regional, nossa equipe propõe o projeto ideal.</p>
+        <!-- ═══ DETALHES / ESCOPO ═══ -->
+        <section id="solucoes" class="section-padding">
+            <div class="container">
+                <div class="grid grid-cols-2 gap-xl align-center">
+                    <div>
+                        <h2 style="margin-bottom: 2rem;">Sua casa, suas regras, <em class="text-gradient">na palma da mão.</em></h2>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7;">
+                            A verdadeira automação é aquela que acontece de forma invisível, antecipando suas necessidades. Persinas que se abrem com o sol, luzes que se apagam ao sair de um cômodo e o café pronto ao despertar.
+                        </p>
+                        <ul class="checklist-modern">
+                            <li>Iluminação Inteligente e Dimerizável</li>
+                            <li>Automação de Persianas e Cortinas</li>
+                            <li>Som Ambiente Multizona (Spotify/AirPlay)</li>
+                            <li>Fechaduras Biométricas e Controle de Acesso</li>
+                            <li>Sensores de Fumaça, Gás e Inundação</li>
+                        </ul>
+                    </div>
+                    <div class="bracket-box">
+                        <h3 style="margin-bottom: 1.5rem; font-family: var(--font-mono); color: var(--accent-primary);">// ÁREAS DE INTEGRAÇÃO</h3>
+                        <div class="spec-item"><strong>Living & Home:</strong> Cinema em casa com um comando.</div>
+                        <div class="spec-item"><strong>Suítes:</strong> Despertar suave com luz e cortinas.</div>
+                        <div class="spec-item"><strong>Área Gourmet:</strong> Som e luz para receber convidados.</div>
+                        <div class="spec-item"><strong>Área Externa:</strong> Irrigação e iluminação de jardim.</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ═══ CTA FINAL ═══ -->
-    <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
-        <div class="container" style="text-align: center;">
-            <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS COMEÇAR?</span></div>
-            <h2 style="margin-bottom: 2rem;">Pronto para ter a melhor casa<br><span style="color:var(--accent-primary)">inteligente da Paraíba?</span></h2>
-            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto;">Fale com a Klyfe Electric agora e descubra como elevar o nível de conforto e segurança da sua residência em Campina Grande ou João Pessoa.</p>
-            <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Visita Técnica na Região</a>
-        </div>
-    </section>
+        <!-- ═══ PROCESSO ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;">
+                    <h2 class="fade-in">Como Criamos Sua <br><span class="text-gradient">Smart Home</span></h2>
+                </div>
+                <div class="zigzag-timeline">
+                    <div class="zigzag-step">
+                        <div class="step-content">
+                            <h3>01. Briefing de Estilo</h3>
+                            <p>Entendemos como você vive e quais facilidades são prioridade para sua família.</p>
+                        </div>
+                        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+                        <div class="step-content"></div>
+                    </div>
+                    <div class="zigzag-step">
+                        <div class="step-content"></div>
+                        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+                        <div class="step-content">
+                            <h3>02. Projeto Técnico</h3>
+                            <p>Definição da infraestrutura, protocolos e escolha dos melhores hardwares.</p>
+                        </div>
+                    </div>
+                    <div class="zigzag-step">
+                        <div class="step-content">
+                            <h3>03. Implantação</h3>
+                            <p>Instalação cuidadosa, sem sujeira e com configuração detalhada dos aplicativos.</p>
+                        </div>
+                        <div class="step-line"><div class="step-dot"></div><div class="step-connector"></div></div>
+                        <div class="step-content"></div>
+                    </div>
+                    <div class="zigzag-step">
+                        <div class="step-content"></div>
+                        <div class="step-line"><div class="step-dot"></div></div>
+                        <div class="step-content">
+                            <h3>04. Entrega e Treinamento</h3>
+                            <p>Ensinamos todos os moradores a usarem o sistema com facilidade máxima.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <%- include('partials/footer') %>
+        <!-- ═══ FAQ ACCORDION ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container" style="max-width: 900px;">
+                <h2 style="text-align: center; margin-bottom: 3rem;">Dúvidas Frequentes sobre <br><span class="text-gradient">Automação Residencial</span></h2>
+                
+                <div class="faq-accordion">
+                    <div class="faq-item active">
+                        <div class="faq-question">É caro automatizar uma residência? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                O investimento é modular. Você pode começar pela iluminação e segurança de uma sala e ir expandindo para o restante da casa conforme desejar, tornando o projeto acessível.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">Preciso quebrar paredes para instalar? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Não necessariamente. Atualmente utilizamos soluções wireless de alta confiabilidade que se encaixam nas caixas de passagem existentes, sem necessidade de obra civil.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">O sistema é seguro contra hackers? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Utilizamos protocolos de criptografia de nível bancário e roteadores seguros. A segurança digital é um pilar fundamental em todos os nossos projetos de smart home.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">O que acontece se eu perder o celular? <i class="fas fa-plus"></i></div>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                Todos os interruptores físicos continuam funcionando normalmente. Além disso, você pode acessar sua conta de outro dispositivo ou desativar o acesso do celular perdido remotamente.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LINKS RELACIONADOS ═══ -->
+        <section style="padding: 4rem 0; border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <h3 style="margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 2px;">// SOLUÇÕES RELACIONADAS</h3>
+                <div class="grid grid-cols-4">
+                    <a href="/solucoes/eletrica/projeto-rede-telefonia-antena" class="related-card">
+                        <h4>Projeto de Rede</h4>
+                        <span>Ver solução →</span>
+                    </a>
+                    <a href="/solucoes/servicos-eletricos/montagem-carregador-veicular" class="related-card">
+                        <h4>Carregador Veicular</h4>
+                        <span>Ver solução →</span>
+                    </a>
+                    <a href="/solucoes/energia-solar" class="related-card">
+                        <h4>Energia Solar</h4>
+                        <span>Ver solução →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/projeto-eletrico" class="related-card">
+                        <h4>Projeto Elétrico</h4>
+                        <span>Ver solução →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="cta-banner" style="margin: 4rem 0;">
+            <div class="container fade-in" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <h2 style="color: var(--bg-primary);">Transforme sua casa na melhor <br>experiência de morar.</h2>
+                    <p style="color: rgba(255,255,255,0.8);">Tecnologia, conforto e sofisticação para sua família.</p>
+                </div>
+                <a href="https://wa.me/5583991330972" class="btn btn-dark">Solicitar Orçamento de Smart Home</a>
+            </div>
+        </section>
+
+    </main>
+
     <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
 
     <script src="/js/main.js"></script>
 </body>

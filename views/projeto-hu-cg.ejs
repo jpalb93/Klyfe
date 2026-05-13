@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main style="padding-top: 80px;">
+        <!-- Header do Projeto -->
+        <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
+            <div class="container fade-in">
+                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                    <a href="/projetos" style="color: var(--text-muted); text-decoration: none;">Projetos</a> > Hospital Universitário (HU)
+                </div>
+                <h1 style="max-width: 900px;"><%= title.split('|')[0].trim() %></h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin-top: 1rem;">
+                    Avaliação técnica de alta precisão para garantir a segurança e continuidade operacional de um dos principais complexos hospitalares da Paraíba.
+                </p>
+            </div>
+        </section>
+
+        <!-- Bloco Visual Snapshot (Recomendação do Usuário) -->
+        <section style="padding: 2rem 0; background-color: var(--bg-secondary); border-bottom: 1px solid var(--border-color);">
+            <div class="container fade-in">
+                <div class="grid grid-cols-4" style="gap: 2rem;">
+                    <div class="bracket-box" style="padding: 1.5rem; border-color: rgba(255,255,255,0.05);">
+                        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Cliente / Local</span>
+                        <p style="font-weight: 600; margin-top: 0.5rem;">Hospital Universitário (HU), Campina Grande – PB</p>
+                    </div>
+                    <div class="bracket-box" style="padding: 1.5rem; border-color: rgba(255,255,255,0.05);">
+                        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Segmento</span>
+                        <p style="font-weight: 600; margin-top: 0.5rem;">Hospitalar / Saúde</p>
+                    </div>
+                    <div class="bracket-box" style="padding: 1.5rem; border-color: rgba(255,255,255,0.05);">
+                        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Data do Projeto</span>
+                        <p style="font-weight: 600; margin-top: 0.5rem;">Fevereiro de 2026</p>
+                    </div>
+                    <div class="bracket-box" style="padding: 1.5rem; border-color: rgba(255,255,255,0.05);">
+                        <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px;">Escopo</span>
+                        <p style="font-weight: 600; margin-top: 0.5rem;">Avaliação Técnica e Inspeção Elétrica</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conteúdo do Projeto -->
+        <section class="section-padding">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 4rem;">
+                    
+                    <div class="fade-in">
+                        <h2 style="margin-bottom: 1.5rem;">Resumo Executivo</h2>
+                        <p style="margin-bottom: 2rem;">
+                            Em fevereiro de 2026, a Klyfe Electric realizou a avaliação técnica das instalações elétricas do Hospital Universitário (HU), em Campina Grande, com foco em confiabilidade operacional, segurança e conformidade em um ambiente de alta criticidade. Em estruturas hospitalares, a performance do sistema elétrico é essencial para a continuidade dos serviços e para a mitigação de riscos operacionais.
+                        </p>
+
+                        <h3 style="margin-bottom: 1rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 1rem;">[01] Contexto do Projeto</h3>
+                        <p style="margin-bottom: 2rem;">
+                            Ambientes hospitalares exigem um padrão técnico elevado, porque qualquer falha elétrica pode comprometer operações sensíveis, equipamentos essenciais e a segurança da edificação. Por isso, a atuação da Klyfe Electric foi direcionada para uma leitura ampla e preventiva da infraestrutura elétrica existente, com análise criteriosa dos principais pontos de risco.
+                        </p>
+
+                        <h3 style="margin-bottom: 1rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 1rem;">[02] Escopo da Avaliação</h3>
+                        <p style="margin-bottom: 2rem;">
+                            A avaliação contemplou uma verificação técnica aprofundada das instalações elétricas da unidade, considerando aspectos estruturais, operacionais e normativos. O trabalho incluiu a inspeção dos quadros de distribuição, estudo de carregamento, balanceamento de fases, análise do aterramento, equipotencialização, termografia preventiva e conferência das proteções elétricas.
+                        </p>
+
+                        <h3 style="margin-bottom: 1rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 1rem;">[03] Metodologia Aplicada</h3>
+                        <p style="margin-bottom: 2rem;">
+                            A Klyfe Electric conduziu o projeto com protocolo técnico rigoroso, adequado à criticidade do ambiente hospitalar. A metodologia adotada priorizou uma abordagem preventiva, com foco em identificar não apenas falhas aparentes, mas também indícios de sobrecarga, aquecimento anormal, inadequações de proteção e vulnerabilidades capazes de comprometer a confiabilidade do sistema ao longo do tempo.
+                        </p>
+                    </div>
+
+                    <div class="fade-in">
+                        <div class="bracket-box" style="padding: 2rem; background: rgba(255,255,255,0.02);">
+                            <h3 style="margin-bottom: 1.5rem;">Principais Verificações</h3>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                    <span style="color: var(--accent-primary);">✓</span> Verificação estrutural dos quadros de distribuição.
+                                </li>
+                                <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                    <span style="color: var(--accent-primary);">✓</span> Estudo de carregamento e balanceamento de fases.
+                                </li>
+                                <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                    <span style="color: var(--accent-primary);">✓</span> Avaliação do sistema de aterramento e equipotencialização.
+                                </li>
+                                <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                    <span style="color: var(--accent-primary);">✓</span> Análise termográfica preventiva.
+                                </li>
+                                <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                    <span style="color: var(--accent-primary);">✓</span> Conferência das proteções elétricas e da seletividade.
+                                </li>
+                                <li style="margin-bottom: 1rem; display: flex; gap: 0.5rem;">
+                                    <span style="color: var(--accent-primary);">✓</span> Verificação de conformidade com normas técnicas e padrões de excelência.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="fade-in" style="margin-top: 4rem; padding: 3rem; border: 1px solid var(--accent-primary); background: rgba(var(--accent-rgb), 0.05);">
+                    <h2 style="margin-bottom: 1.5rem;">Valor Técnico Entregue</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        Mais do que uma inspeção pontual, o projeto teve como objetivo elevar o nível de confiabilidade das instalações e apoiar uma visão preventiva da operação elétrica da unidade. A análise permitiu identificar condições relevantes para antecipação de falhas, mitigação de riscos e fortalecimento da segurança operacional em uma estrutura onde a energia elétrica deve funcionar com estabilidade e previsibilidade.
+                    </p>
+                </div>
+
+                <div class="fade-in" style="margin-top: 4rem;">
+                    <h2 style="margin-bottom: 1.5rem;">Resultado do Projeto</h2>
+                    <p>
+                        A atuação da Klyfe Electric reforçou a importância de avaliações técnicas periódicas em ambientes de alta responsabilidade. Em instalações hospitalares, excelência elétrica não é apenas um diferencial competitivo, mas um requisito essencial para a continuidade das atividades e para a proteção de pessoas, equipamentos e processos críticos.
+                    </p>
+                </div>
+
+                <!-- Galeria de Fotos do Projeto -->
+                <div class="fade-in" style="margin-top: 4rem;">
+                    <h2 style="margin-bottom: 2rem;">Galeria do Case</h2>
+                    <div class="grid grid-cols-3" style="gap: 1.5rem;">
+                        <div class="bracket-box" style="padding: 0.5rem; background: rgba(255,255,255,0.02); overflow: hidden;">
+                            <img src="/img/projetos/projeto-hu-2026-1.webp" alt="Inspeção Elétrica HU" style="width: 100%; border-radius: 4px; display: block; filter: grayscale(0.2) contrast(1.1);">
+                        </div>
+                        <div class="bracket-box" style="padding: 0.5rem; background: rgba(255,255,255,0.02); overflow: hidden;">
+                            <img src="/img/projetos/projeto-hu-2026-2.webp" alt="Análise Termográfica HU" style="width: 100%; border-radius: 4px; display: block; filter: grayscale(0.2) contrast(1.1);">
+                        </div>
+                        <div class="bracket-box" style="padding: 0.5rem; background: rgba(255,255,255,0.02); overflow: hidden;">
+                            <img src="/img/projetos/projeto-hu-2026-3.webp" alt="Quadros de Distribuição HU" style="width: 100%; border-radius: 4px; display: block; filter: grayscale(0.2) contrast(1.1);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section class="section-padding" style="background-color: var(--bg-secondary);">
+            <div class="container text-center fade-in">
+                <h2>Precisa de uma avaliação técnica similar?</h2>
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">Garantimos a segurança e conformidade da sua infraestrutura elétrica com engenharia de precisão.</p>
+                <a href="/contato" class="btn btn-primary">Solicitar Consultoria Técnica</a>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>

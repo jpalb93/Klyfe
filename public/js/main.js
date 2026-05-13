@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Klyfe Main JS Loaded');
     // ═══ Intersection Observer (Fade-in) ═══
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -53,20 +54,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ═══ Solutions Accordion (Home) ═══
     document.querySelectorAll('.accordion-item').forEach(item => {
-        item.querySelector('.accordion-header').addEventListener('click', () => {
-            const wasActive = item.classList.contains('active');
-            item.closest('.accordion-list').querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
-            if (!wasActive) item.classList.add('active');
-        });
+        const header = item.querySelector('.accordion-header');
+        if (header) {
+            header.addEventListener('click', () => {
+                const wasActive = item.classList.contains('active');
+                const list = item.closest('.accordion-list');
+                if (list) {
+                    list.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('active'));
+                }
+                if (!wasActive) item.classList.add('active');
+            });
+        }
     });
 
     // ═══ FAQ Accordion ═══
     document.querySelectorAll('.faq-item').forEach(item => {
-        item.querySelector('.faq-question').addEventListener('click', () => {
-            const wasActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-            if (!wasActive) item.classList.add('active');
-        });
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        
+        if (question && answer) {
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                // Fecha todos os outros
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                        const otherAnswer = otherItem.querySelector('.faq-answer');
+                        if (otherAnswer) otherAnswer.style.maxHeight = null;
+                    }
+                });
+
+                // Toggle atual
+                item.classList.toggle('active');
+                if (item.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    answer.style.maxHeight = null;
+                }
+            });
+        }
     });
 
     // ═══ Solar Calculator (Slider) ═══

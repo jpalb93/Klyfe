@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- InstalacoesIndustriaisPage -->
+
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes/eletrica" style="color: inherit; text-decoration: none;">Serviços Elétricos</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);">Instalações Elétricas Industriais</span>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+            <div class="container fade-in">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFRAESTRUTURA FABRIL</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Instalações Elétricas Industriais em<br><span style="color:var(--accent-primary)">Campina Grande e Região.</span></h1>
+                <p style="color:var(--text-muted); font-size: 1.15rem; max-width: 850px; margin: 1.5rem 0;">
+                    A Klyfe Electric realiza instalações elétricas industriais completas, manutenção preventiva e corretiva e montagem de quadros elétricos em Campina Grande e região. Atendemos às normas técnicas vigentes — NR-10, NBR 5410 e NR-12 — com foco em segurança, eficiência e alta performance para a sua indústria.
+                </p>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                    <a href="#servicos" class="btn btn-ghost">Nossos Serviços →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+        <section style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color); padding: 2rem 0;">
+            <div class="container">
+                <div class="grid grid-cols-4" style="gap: 1rem;">
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ NR-10, NBR 5410 e NR-12</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Manutenção Preventiva e Corretiva</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Montagem de Quadros Elétricos</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Campina Grande e Região</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SERVIÇOS INDUSTRIAIS ═══ -->
+        <section class="section-padding" id="servicos">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>SOLUÇÕES TÉCNICAS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 4rem;">Serviços Elétricos Industriais da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-2" style="gap: 2rem;">
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Instalações Elétricas Industriais</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Executamos instalações elétricas industriais completas — desde a entrada de energia até os pontos de consumo — com dimensionamento correto de condutores, eletrodutos, proteções e aterramento, em conformidade com a NBR 5410 e a NR-10.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Manutenção Elétrica Preventiva</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Realizamos manutenção preventiva programada em instalações industriais, inspecionando quadros, conexões, proteções e condutores para identificar e corrigir não-conformidades antes que se tornem falhas. Uma manutenção bem planejada reduz paradas não programadas e aumenta a vida útil das instalações.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Manutenção Elétrica Corretiva</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Na ocorrência de falhas ou defeitos nas instalações elétricas, a Klyfe Electric atua com agilidade para restabelecer a operação com segurança e dentro das normas técnicas, minimizando o impacto na produtividade.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Montagem de Quadros Elétricos Industriais</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Projetamos e montamos quadros elétricos industriais com dimensionamento adequado à demanda de cada instalação, utilizando componentes de qualidade e respeitando os requisitos técnicos da NR-10 e NBR 5410.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONFORMIDADE ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DIFERENCIAL NORMATIVO</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 4rem;">Por Que Seguir as Normas Técnicas em <br><span style="color:var(--accent-primary)">Instalações Industriais?</span></h2>
+                
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <div class="bracket-box fade-in" style="text-align: center;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Segurança Operacional</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            A NR-10 estabelece requisitos obrigatórios para proteger trabalhadores que atuam em instalações elétricas. Instalações fora de conformidade representam risco grave de acidente com eletricidade — uma das principais causas de acidentes fatais em ambientes industriais.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="text-align: center;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Continuidade da Produção</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Instalações dimensionadas corretamente e com manutenção preventiva em dia reduzem falhas inesperadas, evitando paradas não programadas que comprometem a produtividade e geram custos elevados.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="text-align: center;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Eficiência Energética</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            O dimensionamento adequado de condutores, proteções e quadros elétricos reduz perdas por efeito Joule e sobrecargas, resultando em menor consumo de energia e redução de custos operacionais.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROCESSO DE ATENDIMENTO ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>METODOLOGIA</span></div>
+                <h2 class="fade-in" style="margin-bottom: 3rem;">Como a Klyfe Electric <br><span style="color:var(--accent-primary)">Atende Sua Indústria</span></h2>
+                
+                <div class="timeline" style="max-width: 900px; margin: 0 auto;">
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">1. Diagnóstico da Instalação</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Avaliação técnica das instalações elétricas existentes, identificando não-conformidades, pontos de risco e oportunidades de melhoria.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">2. Proposta Técnica</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Elaboração de proposta detalhada com escopo dos serviços, especificação de materiais e plano de execução, adequado à realidade operacional da sua indústria.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">3. Execução com Segurança</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Execução dos serviços por equipe qualificada, com materiais de qualidade e em conformidade com as normas técnicas aplicáveis — NR-10, NBR 5410 e NR-12.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">4. Entrega e Documentação</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Entrega do serviço concluído com documentação técnica, garantindo rastreabilidade e conformidade legal das instalações.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LINKS RELACIONADOS (SEO MESH) ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>CONTINUE EXPLORANDO</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-4" style="gap: 1.5rem;">
+                    <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Projeto Elétrico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Residencial, Predial e Industrial.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Laudos Elétricos</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">NR-10, SPDA, Termografia.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Subestação Aérea</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Média Tensão até 500kVA.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Fator de Potência</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Elimine multas na fatura.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FAQ ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Perguntas Frequentes sobre <br><span style="color:var(--accent-primary)">Instalações Elétricas Industriais</span></h2>
+                
+                <div class="faq-accordion fade-in">
+                    <!-- Q1 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Quais normas regulamentam instalações elétricas industriais no Brasil?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                As principais normas são: NR-10, que regulamenta segurança em instalações e serviços em eletricidade; NBR 5410, que estabelece requisitos para instalações elétricas de baixa tensão; e NR-12, que regula segurança em máquinas e equipamentos, sendo aplicável em ambientes industriais onde as instalações elétricas alimentam equipamentos de produção.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Qual a diferença entre manutenção elétrica preventiva e corretiva?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                A manutenção preventiva é realizada em intervalos programados para evitar falhas, inspecionando e substituindo componentes antes que apresentem defeito. A manutenção corretiva é executada após a identificação de uma falha ou defeito, com o objetivo de restabelecer o funcionamento normal da instalação. Ambas são essenciais para garantir a continuidade operacional e a segurança do ambiente industrial.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Por que a montagem de quadros elétricos exige profissional habilitado?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Quadros elétricos industriais operam com cargas elevadas e exigem dimensionamento preciso de disjuntores, fusíveis, barramentos e cabos. Um dimensionamento incorreto pode resultar em sobrecargas, curtos-circuitos, incêndios e risco de vida. A NR-10 exige que serviços em instalações elétricas sejam realizados por profissionais habilitados e capacitados.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Com que frequência deve ser realizada a manutenção elétrica preventiva em indústrias?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                A frequência ideal varia conforme o porte da instalação, o regime de operação e as exigências das normas internas da empresa. Em geral, recomenda-se inspeções periódicas a cada seis meses a um ano para instalações industriais. A Klyfe Electric avalia cada caso e indica o plano de manutenção mais adequado para a sua operação.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="faq-item" style="padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            A Klyfe Electric atende indústrias fora de Campina Grande?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Sim. A Klyfe Electric atende instalações industriais em Campina Grande e na região. Entre em contato para verificar a disponibilidade de atendimento para a sua localidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container" style="text-align: center;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
+                <h2 style="margin-bottom: 2rem;">Solicite um Orçamento para Sua Indústria em <br><span style="color:var(--accent-primary)">Campina Grande</span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e fale com nossa equipe técnica sobre as necessidades elétricas da sua indústria. Atendemos Campina Grande e região com foco em segurança, eficiência e conformidade com as normas técnicas.</p>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

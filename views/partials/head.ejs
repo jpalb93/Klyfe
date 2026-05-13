@@ -3,6 +3,8 @@
 <title><%= title %></title>
 <meta name="description" content="<%= description %>">
 <link rel="canonical" href="<%= canonical %>">
+<meta name="robots" content="<%= locals.robots || 'index, follow' %>">
+
 <link rel="icon" type="image/svg+xml" href="/img/Assinatura Símbolo - Amarelo - Klyfe.svg">
 <link rel="shortcut icon" href="/img/Assinatura Símbolo - Amarelo - Klyfe.png">
 
@@ -50,3 +52,6 @@
   "serviceType": ["Instalação Elétrica", "Automação", "Energia Solar"]
 }
 </script>
+<% if (locals.jsonLd) { %>
+    <%- jsonLd %>
+<% } %>

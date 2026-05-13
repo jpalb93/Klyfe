@@ -293,6 +293,7 @@ ul { list-style: none; }
 .faq-item.active .faq-question { background: var(--border-color); }
 .faq-item.active .faq-question i { transform: rotate(45deg); color: var(--accent-primary); }
 .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+.faq-item.active .faq-answer { max-height: 1000px; }
 .faq-answer-inner { padding: 1.2rem 1.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; border-top: 1px solid var(--border-color); }
 
 /* ═══ PROJECT CARDS (overlapping) ═══ */

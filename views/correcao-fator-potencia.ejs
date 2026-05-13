@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- CorrecaoFatorPotenciaPage -->
+
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes/engenharia" style="color: inherit; text-decoration: none;">Engenharia Elétrica</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);">Correção de Fator de Potência</span>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+            <div class="container fade-in">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>EFICIÊNCIA ENERGÉTICA</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Correção de Fator de Potência em<br><span style="color:var(--accent-primary)">Campina Grande e Paraíba.</span></h1>
+                <p style="color:var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 1.5rem 0;">
+                    Sua indústria ou comércio está pagando multas por fator de potência na conta de energia? A Klyfe Electric realiza o estudo técnico, o dimensionamento e a instalação do banco de capacitores ideal para o seu sistema elétrico, eliminando encargos, reduzindo perdas e aumentando a eficiência energética da sua instalação.
+                </p>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                    <a href="#servicos" class="btn btn-ghost">Entenda o Serviço</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+        <section style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color); padding: 2rem 0;">
+            <div class="container">
+                <div class="grid grid-cols-4" style="gap: 1rem;">
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Eliminação de Multas ANEEL</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Estudo + Dimensionamento + Instalação</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Banco Fixo ou Automático</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Campina Grande e Paraíba</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ O QUE FAZEMOS ═══ -->
+        <section class="section-padding" id="servicos">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                    <div class="fade-in">
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>SOLUÇÕES TÉCNICAS</span></div>
+                        <h2 style="margin-bottom: 2rem;">O Que a Klyfe Electric Faz na<br><span style="color:var(--accent-primary)">Correção de Fator de Potência</span></h2>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Estudo e análise de fator de potência da instalação
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Dimensionamento do banco de capacitores adequado
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Instalação de banco de capacitores fixo ou automático
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Eliminação de multas e encargos na conta de energia
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Aumento da eficiência energética do sistema elétrico
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fade-in" style="position: relative;">
+                        <div style="width: 100%; height: 350px; background: linear-gradient(45deg, var(--bg-secondary), var(--border-color)); border-radius: 8px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;">
+                             <i class="fas fa-microchip" style="font-size: 5rem; color: var(--accent-primary); opacity: 0.2;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ BENEFÍCIOS ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>VANTAGENS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 4rem;">Benefícios da Correção de<br><span style="color:var(--accent-primary)">Fator de Potência</span></h2>
+                
+                <div class="grid grid-cols-2" style="gap: 2rem;">
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Economia Direta na Conta de Energia</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            A correção elimina os encargos cobrados pela concessionária quando o fator de potência está abaixo do limite de 0,92 exigido pela ANEEL, resultando em redução imediata na fatura de energia elétrica.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Redução de Multas e Encargos</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            A Resolução ANEEL nº 414/2010 prevê cobranças adicionais para instalações com fator de potência fora do limite. Com a correção, sua instalação passa a operar dentro da faixa exigida e essas cobranças são eliminadas.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Maior Vida Útil dos Equipamentos</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Com o fator de potência corrigido, a corrente elétrica circulante nos condutores e equipamentos é reduzida. Isso diminui o aquecimento dos cabos e da rede, aumentando a vida útil dos equipamentos elétricos da instalação.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Sustentabilidade e Menor Desperdício</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            A redução das perdas por energia reativa representa menor consumo de recursos do sistema elétrico, contribuindo para uma operação mais eficiente e sustentável.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROCESSO DE TRABALHO ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ETAPAS</span></div>
+                <h2 class="fade-in" style="margin-bottom: 3rem;">Como Funciona o Serviço de<br><span style="color:var(--accent-primary)">Correção de Fator de Potência</span></h2>
+                
+                <div class="timeline" style="max-width: 900px; margin: 0 auto;">
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">1. Análise da Instalação</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Realizamos o estudo técnico das cargas da instalação para identificar o perfil de consumo de energia reativa e verificar o fator de potência atual do sistema.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">2. Dimensionamento do Banco de Capacitores</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Com base no estudo, dimensionamos o banco de capacitores — fixo ou automático — com a potência reativa necessária para trazer o fator de potência para a faixa exigida pela ANEEL (entre 0,92 e 1,00).</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">3. Instalação</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Instalamos o banco de capacitores na instalação elétrica, de acordo com as normas técnicas aplicáveis e com os requisitos de segurança da NR-10.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">4. Verificação e Entrega</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Após a instalação, verificamos o funcionamento do sistema e entregamos a documentação técnica referente ao serviço executado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ BANCO FIXO vs AUTOMÁTICO ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>COMPARAÇÃO</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Banco de Capacitores Fixo ou Automático:<br><span style="color:var(--accent-primary)">Qual o Correto para Sua Instalação?</span></h2>
+                
+                <div class="grid grid-cols-2" style="gap: 2rem;">
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Banco Fixo</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Potência reativa constante. Indicado para instalações com perfil de carga estável ao longo do dia — onde a demanda reativa não varia significativamente entre períodos de operação.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Banco Automático</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Controlador ajusta a compensação conforme a variação da demanda reativa. Indicado para instalações com cargas variáveis — onde ligar e desligar equipamentos altera significativamente o fator de potência ao longo do dia.
+                        </p>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 3rem; color: var(--text-muted); font-size: 1rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                    A escolha entre banco fixo e automático é definida no estudo técnico da instalação. A Klyfe Electric analisa o perfil de carga e indica a solução mais adequada para cada caso.
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══ FAQ ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Perguntas Frequentes sobre<br><span style="color:var(--accent-primary)">Correção de Fator de Potência</span></h2>
+                
+                <div class="faq-accordion fade-in">
+                    <!-- Q1 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            O que é fator de potência e por que ele importa?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Fator de potência é a relação entre a potência ativa (kW), que realiza trabalho útil, e a potência aparente (kVA), que é efetivamente demandada do sistema elétrico. Um fator de potência baixo indica que a instalação consome mais corrente do que o necessário para realizar o mesmo trabalho, sobrecarregando condutores, transformadores e a rede da concessionária.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q2 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Quando a concessionária aplica multa por fator de potência?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                A Resolução ANEEL nº 414/2010 e o PRODIST estabelecem que o fator de potência das instalações deve ser mantido entre 0,92 indutivo e 1,00. Quando o fator de potência medido fica abaixo de 0,92, a concessionária aplica encargos adicionais na fatura de energia elétrica. A correção elimina essa cobrança.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q3 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Como é feita a correção de fator de potência?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                A correção é realizada por meio da instalação de banco de capacitores, que fornece energia reativa capacitiva para compensar a energia reativa indutiva consumida por cargas como motores, transformadores e reatores. O dimensionamento correto do banco exige um estudo prévio das cargas da instalação para definir a potência reativa a compensar.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q4 -->
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Qual a diferença entre banco de capacitores fixo e automático?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                O banco fixo possui potência reativa constante, sendo indicado para instalações com carga relativamente estável ao longo do dia. O banco automático possui controlador que conecta e desconecta bancos de capacitores conforme a variação da demanda reativa, sendo indicado para instalações com cargas variáveis. A escolha entre os dois depende do perfil de carga da instalação, definido no estudo técnico.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Q5 -->
+                    <div class="faq-item" style="padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Além de eliminar multas, quais outros benefícios a correção de fator de potência traz?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
+                                Além da eliminação de encargos na fatura, a correção de fator de potência reduz a corrente elétrica circulante nos condutores e equipamentos, o que diminui perdas por efeito Joule, reduz o aquecimento dos cabos e da rede, aumenta a vida útil dos equipamentos elétricos e pode liberar capacidade instalada no sistema elétrico da planta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LINKS RELACIONADOS (SEO MESH) ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>CONTINUE EXPLORANDO</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-4" style="gap: 1.5rem;">
+                    <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Projeto Elétrico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Residencial, Predial e Industrial.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Subestação Aérea</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Média Tensão até 500kVA.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Laudos Elétricos</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">NR-10, SPDA, Termografia.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                    <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                        <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Instalações Industriais</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Infraestrutura e Manutenção.</p>
+                        <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container" style="text-align: center;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
+                <h2 style="margin-bottom: 2rem;">Corrija o Fator de Potência da Sua<br><span style="color:var(--accent-primary)">Instalação em Campina Grande</span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite o estudo técnico para correção de fator de potência da sua indústria ou comércio. Atendemos Campina Grande e toda a Paraíba.</p>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/footer') %>
+    <%- include('partials/whatsapp') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
