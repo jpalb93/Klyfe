@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<!-- Scroll Spy Nav (lateral) -->
+<nav class="scroll-nav">
+    <div class="dot active" data-target="#hero" data-label="Início"></div>
+    <div class="dot" data-target="#solucoes" data-label="Soluções"></div>
+    <div class="dot" data-target="#empresa" data-label="A Empresa"></div>
+    <div class="dot" data-target="#diferenciais" data-label="Diferenciais"></div>
+    <div class="dot" data-target="#projetos" data-label="Projetos"></div>
+    <div class="dot" data-target="#blog" data-label="Blog"></div>
+    <div class="dot" data-target="#faq" data-label="FAQ"></div>
+</nav>
+
+<main>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero bg-blueprint" id="hero">
+    <div class="container" style="position:relative">
+        <div class="hero-content fade-in">
+            <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem">KLYFE ELECTRIC · CAMPINA GRANDE</div>
+            <h1 style="font-size:4.5rem;line-height:1.05">Engenharia &<br>
+                <span style="font-family:var(--font-heading);font-weight:400;font-style:italic;font-size:4rem">Energia em</span><br>
+                <span style="color:var(--accent-primary);font-size:5.5rem">Campina Grande.</span>
+            </h1>
+            <p class="hero-subtitle">Soluções elétricas, automação e energia solar em Campina Grande, João Pessoa e região. Projetos sob medida, execução de precisão.</p>
+            <div style="display:flex;gap:1rem;flex-wrap:wrap">
+                <a href="/contato" class="btn btn-primary">Solicitar Orçamento</a>
+                <a href="/projetos" class="btn btn-ghost"><i class="fas fa-play-circle"></i> Ver Projetos</a>
+            </div>
+        </div>
+    </div>
+        <!-- Stats removidos a pedido do usuário -->
+
+</section>
+
+
+<!-- ═══ MARQUEE TICKER ═══ -->
+<div class="marquee-wrap">
+    <div class="marquee-track">
+        <span>Soluções Elétricas</span><div class="dot">⚡</div>
+        <span>Automação Residencial</span><div class="dot">⚙️</div>
+        <span>Energia Solar</span><div class="dot">☀️</div>
+        <span>Projetos com ART</span><div class="dot">📐</div>
+        <span>NR-10 · SPDA</span><div class="dot">🛡️</div>
+        <span>Campina Grande</span><div class="dot">📍</div>
+        <!-- Duplicado para loop infinito -->
+        <span>Soluções Elétricas</span><div class="dot">⚡</div>
+        <span>Automação Residencial</span><div class="dot">⚙️</div>
+        <span>Energia Solar</span><div class="dot">☀️</div>
+        <span>Projetos com ART</span><div class="dot">📐</div>
+        <span>NR-10 · SPDA</span><div class="dot">🛡️</div>
+        <span>Campina Grande</span><div class="dot">📍</div>
+    </div>
+</div>
+
+
+<!-- Divisor de Identidade -->
+<div class="container" style="display:flex; justify-content:center; margin: 4rem 0 -2rem 0; opacity:0.3">
+    <div style="width:2px; height:60px; background:linear-gradient(transparent, var(--accent-solar), transparent)"></div>
+</div>
+
+<!-- ═══ SOLUÇÕES (Reveal Cards) ═══ -->
+<section class="section-padding" id="solucoes">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>01 SOLUÇÕES</span></div>
+        <h2 class="fade-in" style="margin-bottom:3rem">SOLUÇÕES DE<br><em style="color:var(--accent-primary);font-style:italic">ALTO IMPACTO.</em></h2>
+        <div class="grid grid-cols-3">
+            <a href="/solucoes/engenharia" class="reveal-card fade-in">
+                <div class="card-top">
+                    <div class="card-icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary)"><i class="fas fa-hard-hat"></i></div>
+                    <h3>ENGENHARIA ELÉTRICA</h3>
+                    <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.5rem">Projetos, laudos e consultoria com responsabilidade técnica.</p>
+                </div>
+                <div class="card-bottom"><div class="card-bottom-inner">
+                    <ul>
+                        <li>Projetos eletrotécnicos com ART</li>
+                        <li>Laudos NR-10 e inspeções técnicas</li>
+                        <li>Subestações e cabines primárias</li>
+                        <li>SPDA e aterramento estruturado</li>
+                    </ul>
+                </div></div>
+            </a>
+            <a href="/solucoes/solar" class="reveal-card fade-in">
+                <div class="card-top">
+                    <div class="card-icon" style="background:rgba(255,107,43,0.1);color:var(--accent-solar)"><i class="fas fa-sun"></i></div>
+                    <h3>ENERGIA SOLAR</h3>
+                    <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.5rem">Sistemas fotovoltaicos para redução de custos.</p>
+                </div>
+                <div class="card-bottom"><div class="card-bottom-inner">
+                    <ul>
+                        <li>Projetos on-grid, off-grid e híbridos</li>
+                        <li>Análise de viabilidade e simulação de ROI</li>
+                        <li>Instalação e homologação na Energisa</li>
+                        <li>Monitoramento remoto de geração</li>
+                    </ul>
+                </div></div>
+            </a>
+            <a href="/solucoes/automacao" class="reveal-card fade-in">
+                <div class="card-top">
+                    <div class="card-icon" style="background:rgba(42,245,160,0.1);color:var(--accent-secondary)"><i class="fas fa-cog"></i></div>
+                    <h3>AUTOMAÇÃO SMART</h3>
+                    <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.5rem">Controle e inteligência residencial e industrial.</p>
+                </div>
+                <div class="card-bottom"><div class="card-bottom-inner">
+                    <ul>
+                        <li>Projetos de casa inteligente (smart home)</li>
+                        <li>Automação de iluminação e segurança</li>
+                        <li>Programação de CLPs e sistemas SCADA</li>
+                        <li>Integração de sistemas e Indústria 4.0</li>
+                    </ul>
+                </div></div>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- ═══ SERVIÇOS DO DIA A DIA ═══ -->
+<section class="section-padding" style="background:var(--bg-secondary)">
+    <div class="container fade-in">
+        <div class="section-separator"><%- include('partials/symbol') %> <span>SERVIÇOS ELÉTRICOS</span></div>
+        <h2 style="margin-bottom:0.5rem">SERVIÇOS DO</h2>
+        <h2 style="margin-bottom:3rem;color:var(--accent-primary)"><em style="font-style:italic">DIA A DIA.</em></h2>
+        <div class="feature-grid">
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-plug"></i></div>
+                <h4>Tomadas e Interruptores</h4>
+                <p>Instalação, troca e realocação conforme NBR 14136.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-lightbulb"></i></div>
+                <h4>Iluminação</h4>
+                <p>Luminárias, iluminação externa, decorativa e LED.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-shower"></i></div>
+                <h4>Chuveiro Elétrico</h4>
+                <p>Instalação com circuito independente e DR.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-fan"></i></div>
+                <h4>Ventiladores</h4>
+                <p>Teto e parede com balanceamento profissional.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-th-large"></i></div>
+                <h4>Quadro de Distribuição</h4>
+                <p>Troca, upgrade e balanceamento de fases.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-project-diagram"></i></div>
+                <h4>Fiação e Cabeamento</h4>
+                <p>Instalação e reparo de fiação antichama NBR 5410.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-snowflake"></i></div>
+                <h4>Ar Condicionado</h4>
+                <p>Infraestrutura elétrica para climatização residencial.</p>
+            </div>
+            <div class="feature-card" style="text-align:left">
+                <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0"><i class="fas fa-charging-station"></i></div>
+                <h4>Carregador Veicular</h4>
+                <p>Wallboxes EVSE para carros elétricos e híbridos.</p>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem">
+            <a href="/solucoes/eletrica" class="btn btn-outline">Ver catálogo completo de serviços →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ SOBRE ═══ -->
+<section class="section-padding" style="background:var(--bg-secondary)" id="empresa">
+    <div class="container grid grid-cols-2" style="align-items:center;gap:4rem">
+        <div class="fade-in" style="background:linear-gradient(135deg,var(--border-color),var(--bg-primary));border-radius:12px;height:400px;display:flex;align-items:center;justify-content:center; padding: 4rem;">
+            <div style="opacity: 0.15; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                <%- include('partials/symbol') %>
+            </div>
+        </div>
+        <div class="fade-in">
+            <div class="section-separator"><%- include('partials/symbol') %> <span>02 A EMPRESA</span></div>
+            <h2>Sua empresa de<br>eletricidade em<br><span style="color:var(--accent-primary)">Campina Grande.</span></h2>
+            <p style="margin:1.5rem 0;color:var(--text-muted);line-height:1.8">A Klyfe Electric nasceu com o propósito de elevar o padrão da engenharia elétrica na Paraíba. Unimos técnica rigorosa, equipamentos de ponta e um compromisso inegociável com a segurança em cada projeto entregue.</p>
+            <a href="/quem-somos" class="btn btn-outline">Conheça nossa história →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ DIFERENCIAIS ═══ -->
+<section class="section-padding bg-blueprint" id="diferenciais">
+    <div class="container fade-in">
+        <h2 style="text-align:center;margin-bottom:0.5rem">DIFERENCIAIS</h2>
+        <h2 style="text-align:center;margin-bottom:3rem;color:var(--accent-primary)"><em style="font-style:italic">OPERACIONAIS.</em></h2>
+        <div class="grid grid-cols-3" style="gap:1.5rem">
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-file-signature" style="color:var(--accent-primary);margin-right:0.5rem"></i> ART em toda obra</h4><p style="color:var(--text-muted);font-size:0.9rem">Garantia de responsabilidade técnica em 100% dos serviços.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-tools" style="color:var(--accent-primary);margin-right:0.5rem"></i> Normas ABNT/NR-10</h4><p style="color:var(--text-muted);font-size:0.9rem">Projetos e execuções conforme todas as normas vigentes.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-shield-alt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Equipe certificada</h4><p style="color:var(--text-muted);font-size:0.9rem">Profissionais com certificações técnicas reconhecidas.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-headset" style="color:var(--accent-primary);margin-right:0.5rem"></i> Suporte pós-obra</h4><p style="color:var(--text-muted);font-size:0.9rem">Acompanhamento dedicado após a entrega do projeto.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-dollar-sign" style="color:var(--accent-primary);margin-right:0.5rem"></i> Projetos para financiamento</h4><p style="color:var(--text-muted);font-size:0.9rem">Documentação pronta para aprovação de crédito.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-map-marked-alt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Atendimento regional</h4><p style="color:var(--text-muted);font-size:0.9rem">CG, JP e toda a Paraíba com logística ágil.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section class="section-padding" style="background:var(--bg-secondary)">
+    <div class="container fade-in">
+        <h2 style="text-align:center;margin-bottom:0.5rem">O que dizem nossos clientes</h2>
+        <p style="text-align:center;color:var(--text-muted);margin-bottom:3rem">★★★★★ 5,0 · 120 avaliações no Google</p>
+        <div class="grid grid-cols-3">
+            <div class="testimonial-card"><div class="quote">"</div><p>Excelente atendimento, equipe profissional e obra entregue no prazo. Recomendo a todos em Campina Grande!</p><div class="author">Roberto M. — Campina Grande</div></div>
+            <div class="testimonial-card"><div class="quote">"</div><p>Instalaram meu sistema solar em tempo recorde. Já estou economizando 90% na conta de luz desde o primeiro mês.</p><div class="author">Ana Paula S. — João Pessoa</div></div>
+            <div class="testimonial-card"><div class="quote">"</div><p>A automação da minha casa ficou incrível. Controlo tudo pelo celular. Equipe técnica de primeiro mundo.</p><div class="author">Carlos H. — Campina Grande</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ PROJETOS BENTO GRID ═══ -->
+<section class="section-padding bg-blueprint" id="projetos">
+    <div class="container fade-in">
+        <div class="section-separator"> <%- include('partials/symbol') %> <span>05 PROJETOS</span></div>
+        <h2>ENGENHARIA EM<br><em style="color:var(--accent-primary);font-style:italic">MOVIMENTO.</em></h2>
+        <div class="bento-grid" style="margin-top:3rem">
+            <!-- Item 1 -->
+            <div class="bento-item span-2" style="background:linear-gradient(135deg,#15191f,#0d1015)">
+                <div class="bento-bg"><i class="fas fa-solar-panel"></i></div>
+                <div class="bento-info">
+                    <span class="badge-mono" style="background:var(--accent-solar);color:var(--bg-primary)">Energia Solar</span>
+                    <h3 style="margin-top:0.8rem;font-size:1.8rem">USINA SOLAR RESIDENCIAL</h3>
+                    <p style="color:var(--text-muted);font-size:0.9rem">15kW · Zona Sul, Campina Grande, 2024</p>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="bento-item" style="background:linear-gradient(135deg,#131720,#0d1015)">
+                <div class="bento-bg"><i class="fas fa-microchip"></i></div>
+                <div class="bento-info">
+                    <span class="badge-mono" style="background:var(--accent-secondary);color:var(--bg-primary)">Automação</span>
+                    <h3 style="margin-top:0.8rem">AUTOMAÇÃO CLP S7</h3>
+                    <p style="color:var(--text-muted);font-size:0.85rem">Indústria têxtil · CG, 2024</p>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="bento-item" style="background:linear-gradient(135deg,#131720,#0d1015)">
+                <div class="bento-bg"><i class="fas fa-bolt"></i></div>
+                <div class="bento-info">
+                    <span class="badge-mono" style="background:var(--accent-primary);color:var(--bg-primary)">Elétrica</span>
+                    <h3 style="margin-top:0.8rem">REFORMA ELÉTRICA PREDIAL</h3>
+                    <p style="color:var(--text-muted);font-size:0.85rem">NR-10 · João Pessoa, 2023</p>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div class="bento-item" style="background:linear-gradient(135deg,#131720,#0d1015)">
+                <div class="bento-bg"><i class="fas fa-home"></i></div>
+                <div class="bento-info">
+                    <span class="badge-mono" style="background:var(--accent-secondary);color:var(--bg-primary)">Smart Home</span>
+                    <h3 style="margin-top:0.8rem">CASA INTELIGENTE</h3>
+                    <p style="color:var(--text-muted);font-size:0.85rem">Alexa + KNX · CG, 2024</p>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem"><a href="/projetos" class="btn btn-outline">Ver portfólio completo →</a></div>
+    </div>
+</section>
+
+
+<!-- ═══ BLOG ═══ -->
+<section class="section-padding" style="background:var(--bg-secondary)" id="blog">
+    <div class="container fade-in">
+        <div class="section-separator"><%- include('partials/symbol') %> <span>06 BLOG TÉCNICO</span></div>
+        <h2>BLOG<br><em style="color:var(--accent-primary);font-style:italic">TÉCNICO.</em></h2>
+        <div class="grid grid-cols-2" style="margin-top:3rem">
+            <a href="/blog" class="bracket-box" style="display:flex;flex-direction:column">
+                <span class="badge-mono" style="background:var(--accent-solar);color:var(--bg-primary);align-self:flex-start;margin-bottom:1rem">Solar · 5 min</span>
+                <h3 style="flex-grow:1;margin-bottom:1rem">Energia Solar em Campina Grande: Por que a Klyfe Electric é referência na Paraíba em 2025</h3>
+                <span style="color:var(--accent-solar);font-family:var(--font-heading);text-transform:uppercase">Ler artigo →</span>
+            </a>
+            <a href="/blog" class="bracket-box" style="display:flex;flex-direction:column">
+                <span class="badge-mono" style="background:var(--accent-primary);color:var(--bg-primary);align-self:flex-start;margin-bottom:1rem">Elétrica · 4 min</span>
+                <h3 style="flex-grow:1;margin-bottom:1rem">Eletricista em Campina Grande: Riscos de Fiações Antigas e a Solução da Klyfe Electric</h3>
+                <span style="color:var(--accent-primary);font-family:var(--font-heading);text-transform:uppercase">Ler artigo →</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ CTA BANNER ═══ -->
+<section class="cta-banner">
+    <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
+        <div>
+            <h2>Pronto para reduzir sua<br>conta de energia?</h2>
+            <p>Solicite um orçamento grátis de energia solar, automação ou soluções elétricas. Atendemos Campina Grande, João Pessoa e toda a Paraíba.</p>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
+            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Ligue Agora</a>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section-padding" id="faq">
+    <div class="container fade-in" style="max-width:800px">
+        <h2 style="text-align:center;margin-bottom:3rem">Perguntas Frequentes</h2>
+        <div class="faq-item"><div class="faq-question">Quanto custa uma instalação elétrica? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">O custo varia conforme o tamanho e complexidade do projeto. Realizamos uma visita técnica para levantamento e apresentamos um orçamento detalhado sem compromisso.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Vocês atendem em João Pessoa? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Sim! Atendemos Campina Grande, João Pessoa, Patos, Caruaru e toda a região do Nordeste com logística ágil e equipe dedicada.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Qual o prazo médio de uma obra? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">O prazo depende da complexidade. Instalações residenciais simples levam 1-3 dias; projetos industriais e solares podem levar de 1 a 4 semanas.</div></div></div>
+        <div class="faq-item"><div class="faq-question">A energia solar realmente compensa? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Sim! Com o sol abundante do Nordeste, nossos clientes economizam até 95% na conta de luz. O retorno do investimento ocorre em média em 4-5 anos.</div></div></div>
+    </div>
+</section>
+
+</main>
+<%- include('partials/whatsapp') %>
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

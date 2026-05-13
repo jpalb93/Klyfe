@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main style="padding-top: 80px;">
+        <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
+            <div class="container fade-in">
+                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                    Home > Projetos
+                </div>
+                <h1>NOSSOS PROJETOS</h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 1rem;">
+                    Portfólio técnico completo de obras executadas em Campina Grande, João Pessoa e todo o Nordeste.
+                </p>
+            </div>
+        </section>
+
+        <!-- Filtros JS Estáticos -->
+        <section style="padding: 2rem 0; border-bottom: 1px solid var(--border-color); background-color: var(--bg-secondary);">
+            <div class="container fade-in">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <span class="badge-mono" style="cursor: pointer; background: var(--accent-primary); color: var(--bg-primary);">[Todos]</span>
+                    <span class="badge-mono" style="cursor: pointer;">[Soluções Elétricas]</span>
+                    <span class="badge-mono" style="cursor: pointer;">[Automação]</span>
+                    <span class="badge-mono" style="cursor: pointer;">[Energia Solar]</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grid Projetos -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="grid grid-cols-3">
+                    
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-solar); color: var(--bg-primary); margin-bottom: 1rem;">Energia Solar</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Usina Solar 80kW</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Indústria têxtil, Campina Grande, 2024</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Canadian Solar 550W</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-secondary); color: var(--bg-primary); margin-bottom: 1rem;">Automação</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Automação linha produção</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Fábrica de calçados, CG, 2024</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">CLP Siemens S7</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); margin-bottom: 1rem;">Elétrica</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Instalação elétrica MT/BT galpão 2.500m²</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Polo industrial, CG, 2023</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Subestação 500kVA</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-solar); color: var(--bg-primary); margin-bottom: 1rem;">Energia Solar</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Sistema fotovoltaico residencial 15kW</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Zona Sul, CG, 2024</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">WEG Microinversor</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-secondary); color: var(--bg-primary); margin-bottom: 1rem;">Automação</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Quadro de comando Siemens</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Frigorífico regional, PB, 2023</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Painel CCm</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); margin-bottom: 1rem;">Elétrica</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">SPDA + Aterramento</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Condomínio empresarial, CG, 2023</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">NBR 5419</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-solar); color: var(--bg-primary); margin-bottom: 1rem;">Energia Solar</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Sistema solar off-grid 12kW</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Sítio rural, interior PB, 2024</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Baterias Lítio</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-secondary); color: var(--bg-primary); margin-bottom: 1rem;">Automação</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Retrofit automação linha embalagem</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Indústria Alimentos, João Pessoa, 2024</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Allen-Bradley</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); margin-bottom: 1rem;">Elétrica</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Projeto elétrico NR-10</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Supermercado, João Pessoa, 2023</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Prontuário Elétrico</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-secondary); color: var(--bg-primary); margin-bottom: 1rem;">Automação</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">SCADA + HMI</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Fábrica de cerâmica, CG, 2022</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Controle Térmico</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-solar); color: var(--bg-primary); margin-bottom: 1rem;">Energia Solar</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Solar on-grid 30kW</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Clínica médica, João Pessoa, 2024</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Fronius Inversor</span>
+                    </div>
+
+                    <div class="bracket-box fade-in">
+                        <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); margin-bottom: 1rem;">Elétrica</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 0.5rem;">Cabeamento estruturado + elétrica</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">Escritório Corporativo, CG, 2023</p>
+                        <span class="badge-mono" style="background: transparent; border: 1px solid var(--text-muted);">Cat6A / Estabilizada</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>

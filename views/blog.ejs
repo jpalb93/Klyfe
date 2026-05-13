@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main style="padding-top: 80px;">
+        <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
+            <div class="container fade-in">
+                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                    Home > Blog
+                </div>
+                <h1>ARTIGOS TÉCNICOS</h1>
+                <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 1rem;">
+                    Conhecimento que gera valor: artigos sobre engenharia elétrica, automação residencial/industrial e energia solar.
+                </p>
+            </div>
+        </section>
+
+        <!-- Grid de Artigos -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="grid grid-cols-3">
+                    
+                    <div class="bracket-box fade-in" style="display: flex; flex-direction: column;">
+                        <span class="badge-mono" style="background: var(--accent-solar); color: var(--bg-primary); margin-bottom: 1rem; align-self: flex-start;">Solar | 5 min</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; flex-grow: 1;">Quanto custa instalar energia solar em Campina Grande em 2025?</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Descubra os valores médios, tempo de retorno e linhas de financiamento disponíveis no Nordeste atualizadas para este ano.</p>
+                        <a href="#" style="color: var(--accent-solar); font-family: var(--font-heading); text-transform: uppercase;">Ler artigo →</a>
+                    </div>
+
+                    <div class="bracket-box fade-in" style="display: flex; flex-direction: column;">
+                        <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); margin-bottom: 1rem; align-self: flex-start;">Elétrica | 4 min</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; flex-grow: 1;">NR-10: o que é e por que sua empresa precisa de laudo elétrico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Entenda as exigências do ministério do trabalho para garantir a segurança dos funcionários e evitar multas severas.</p>
+                        <a href="#" style="color: var(--accent-primary); font-family: var(--font-heading); text-transform: uppercase;">Ler artigo →</a>
+                    </div>
+
+                    <div class="bracket-box fade-in" style="display: flex; flex-direction: column;">
+                        <span class="badge-mono" style="background: var(--accent-secondary); color: var(--bg-primary); margin-bottom: 1rem; align-self: flex-start;">Automação | 6 min</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; flex-grow: 1;">Automação industrial: como a Indústria 4.0 chega ao Nordeste</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Como fábricas na Paraíba estão adotando CLPs e sistemas SCADA para aumentar produção e reduzir custos fixos.</p>
+                        <a href="#" style="color: var(--accent-secondary); font-family: var(--font-heading); text-transform: uppercase;">Ler artigo →</a>
+                    </div>
+
+                    <div class="bracket-box fade-in" style="display: flex; flex-direction: column;">
+                        <span class="badge-mono" style="background: var(--accent-solar); color: var(--bg-primary); margin-bottom: 1rem; align-self: flex-start;">Solar | 7 min</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; flex-grow: 1;">Quanto tempo leva para o painel solar se pagar? Simulação real</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Fizemos os cálculos com base nas tarifas da Energisa para mostrar o tempo exato de payback de um sistema residencial.</p>
+                        <a href="#" style="color: var(--accent-solar); font-family: var(--font-heading); text-transform: uppercase;">Ler artigo →</a>
+                    </div>
+
+                    <div class="bracket-box fade-in" style="display: flex; flex-direction: column;">
+                        <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); margin-bottom: 1rem; align-self: flex-start;">Elétrica | 4 min</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; flex-grow: 1;">SPDA: como funciona o para-raios e quando é obrigatório</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Tudo sobre o Sistema de Proteção contra Descargas Atmosféricas segundo a NBR 5419, e sua aplicação em edifícios.</p>
+                        <a href="#" style="color: var(--accent-primary); font-family: var(--font-heading); text-transform: uppercase;">Ler artigo →</a>
+                    </div>
+
+                    <div class="bracket-box fade-in" style="display: flex; flex-direction: column;">
+                        <span class="badge-mono" style="background: var(--accent-secondary); color: var(--bg-primary); margin-bottom: 1rem; align-self: flex-start;">Automação | 5 min</span>
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; flex-grow: 1;">CLP vs Relés: quando vale a pena automatizar seu processo?</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Um comparativo técnico sobre a transição de painéis a relé para Controladores Lógicos Programáveis.</p>
+                        <a href="#" style="color: var(--accent-secondary); font-family: var(--font-heading); text-transform: uppercase;">Ler artigo →</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>

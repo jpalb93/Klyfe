@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+    
+    <!-- Schema.org JSON-LD Específico -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.klyfeelectric.com.br/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Soluções",
+        "item": "https://www.klyfeelectric.com.br/solucoes/engenharia"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Laudos Elétricos",
+        "item": "https://www.klyfeelectric.com.br/solucoes/engenharia/laudos-eletricos"
+      }]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Laudos Elétricos e Inspeções",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Klyfe Electric"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Campina Grande" },
+        { "@type": "City", "name": "João Pessoa" },
+        { "@type": "City", "name": "Patos" },
+        { "@type": "City", "name": "Sousa" },
+        { "@type": "State", "name": "Paraíba" }
+      ],
+      "description": "Laudos elétricos completos (NBR 5410, NR-10, SPDA, aterramento) com inspeção, medições, termografia e ART em toda a Paraíba."
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Quanto tempo leva a emissão do laudo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O tempo varia conforme o tamanho da instalação; visitas duram de 2 a 8 horas e o laudo é entregue em 3-7 dias úteis após as medições."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Vocês emitem ART?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, todos os laudos são assinados por engenheiro eletricista e acompanham ART (Anotação de Responsabilidade Técnica)."
+        }
+      }, {
+        "@type": "Question",
+        "name": "O laudo serve para fins de financiamento ou seguro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, nossos relatórios seguem padrões técnicos exigidos por bancos, seguradoras, concessionárias e Corpo de Bombeiros."
+        }
+      }]
+    }
+    </script>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <!-- ═══ HERO INTERNO ═══ -->
+    <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.85), rgba(10,13,16,0.85)), url('/img/hero-klyfe.webp') center/cover;">
+        <div class="container">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA DIAGNÓSTICA</span></div>
+            <h1 class="fade-in">Laudos Elétricos em Campina Grande: <br><span style="color:var(--accent-primary)">segurança, conformidade e ART.</span></h1>
+            <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
+                A Klyfe Electric emite laudos elétricos completos para residências, comércios e indústrias na <strong>Paraíba</strong>. Garantimos conformidade com NBR 5410, NR-10 e exigências da Energisa.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══ INTRODUÇÃO ═══ -->
+    <section class="section-padding">
+        <div class="container grid grid-cols-2" style="align-items: center; gap: 4rem;">
+            <div class="fade-in">
+                <div class="section-separator"><%- include('partials/symbol') %> <span>CONFORMIDADE TÉCNICA</span></div>
+                <h2>Segurança e Responsabilidade<br>em Instalações Elétricas</h2>
+                <p style="margin: 1.5rem 0; color: var(--text-muted); line-height: 1.8;">
+                    Nossos laudos elétricos em <strong>Campina Grande e João Pessoa</strong> são elaborados por equipe de engenharia certificada. Garantimos que suas instalações cumpram as normas técnicas (NBR e NRs), reduzindo riscos de incêndio e multas.
+                </p>
+                <p style="color: var(--text-muted); line-height: 1.8;">
+                    Seja para regularização de condomínios, vistorias do Corpo de Bombeiros (AVCB) ou exigências da <strong>Energisa PB</strong>, entregamos documentação técnica robusta e pronta para aprovação.
+                </p>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Orçamento Técnico</a>
+                </div>
+            </div>
+            <div class="fade-in" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 3rem; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -20px; right: -20px; opacity: 0.05; font-size: 10rem;">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h4 style="color: var(--accent-primary); margin-bottom: 1rem;"><i class="fas fa-check-double"></i> Entrega Profissional</h4>
+                <ul style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem;">
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 0.5rem;"></i> Relatório Fotográfico Detalhado</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 0.5rem;"></i> Medições com Equipamentos Calibrados</li>
+                    <li style="margin-bottom: 0.8rem;"><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 0.5rem;"></i> Análise de Termografia</li>
+                    <li><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 0.5rem;"></i> Emissão de ART Imediata</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ TIPOS DE LAUDOS ═══ -->
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>NOSSOS LAUDOS</span></div>
+            <h2 class="fade-in" style="margin-bottom: 3rem;">Especialidades em<br><span style="color:var(--accent-primary)">inspeção e diagnóstico.</span></h2>
+            
+            <div class="grid grid-cols-3">
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;">Laudo de Instalações (NBR 5410)</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Avaliação de quadros, condutores e proteções para garantir a segurança dos usuários e do patrimônio.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;">Laudo de SPDA (Para-raios)</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Inspeção completa conforme NBR 5419, verificando captação, descidas e malhas de aterramento.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;">Laudo de Aterramento</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Testes de resistência e continuidade para garantir o escoamento seguro de falhas elétricas.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;">Laudo para Energisa PB</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Documentação exigida para novas ligações, aumentos de carga ou regularização de padrões.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;">Laudo AVCB (Bombeiros)</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Relatórios técnicos obrigatórios para obtenção ou renovação do licenciamento do Corpo de Bombeiros.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;">Laudo de Subestação</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Análise técnica de transformadores, isoladores e coordenação de proteção em cabines primárias.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ METODOLOGIA ═══ -->
+    <section class="section-padding bg-blueprint">
+        <div class="container">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>FLUXO DE TRABALHO</span></div>
+            <h2 class="fade-in" style="margin-bottom: 3rem; text-align: center;">Como realizamos sua inspeção</h2>
+            
+            <div class="timeline" style="max-width: 900px; margin: 0 auto;">
+                <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--accent-primary);">01. Visita e Medições em Campo</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Utilizamos terrômetros, megôhmetros e câmeras térmicas calibradas para coletar dados precisos.</p>
+                </div>
+                <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
+                    <h4 style="color: var(--accent-primary);">02. Análise de Conformidade</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Cruzamos os dados coletados com as normas NBR 5410, 5419 e NR-10 para identificar riscos.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="color: var(--accent-primary);">03. Emissão de Laudo e ART</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Entrega do relatório final assinado por engenheiro habilitado, com validade legal e técnica.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+            <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Perguntas Frequentes</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">1. Quanto tempo leva a emissão do laudo?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">O tempo varia conforme o tamanho da instalação. Visitas técnicas duram de 2 a 8 horas e o laudo é entregue em média em 5 dias úteis.</p>
+                </div>
+                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">2. Vocês emitem ART?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Sim. Todos os laudos da Klyfe Electric são assinados por engenheiro eletricista registrado no CREA-PB com emissão de ART.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">3. O laudo serve para seguradoras?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Sim. Nossos laudos atendem todos os requisitos técnicos exigidos por seguradoras e bancos para fins de apólices e financiamentos na Paraíba.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA FINAL ═══ -->
+    <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+        <div class="container" style="text-align: center;">
+            <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS REGULARIZAR?</span></div>
+            <h2 style="margin-bottom: 2rem;">Sua instalação está segura?<br><span style="color:var(--accent-primary)">Peça seu laudo com ART hoje.</span></h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto;">Atendimento especializado em Campina Grande, João Pessoa e todo o estado da Paraíba por equipe de engenharia local.</p>
+            <a href="https://wa.me/5583991330972" class="btn btn-primary">Agendar Visita Técnica Imediata</a>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+    <%- include('partials/whatsapp') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

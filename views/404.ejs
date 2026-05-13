@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body style="height: 100vh; display: flex; flex-direction: column;">
+    <%- include('partials/navbar') %>
+
+    <main style="flex-grow: 1; display: flex; align-items: center; justify-content: center; padding-top: 80px;" class="bg-blueprint">
+        <div class="container text-center fade-in" style="max-width: 600px; text-align: center;">
+            <h1 style="font-size: 8rem; color: var(--accent-primary); margin-bottom: 0;">404</h1>
+            <h2 style="margin-bottom: 1rem; color: var(--text-main);">Circuito Interrompido</h2>
+            <p style="color: var(--text-muted); font-size: 1.2rem; margin-bottom: 2rem;">
+                A página que você tentou acessar não existe, foi movida ou está temporariamente indisponível.
+            </p>
+            <a href="/" class="btn btn-outline" style="border-color: var(--accent-primary); color: var(--accent-primary);">[ Voltar para a Home ]</a>
+        </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>

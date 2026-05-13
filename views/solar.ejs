@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+<main>
+
+<!-- HERO -->
+<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:4rem">
+    <div class="container fade-in">
+        <div class="breadcrumb"><a href="/">Home</a> > <a href="#">Soluções</a> > Energia Solar</div>
+        <h1 style="color:var(--accent-solar)">Energia Solar em<br><span style="color:var(--text-main)">Campina Grande</span></h1>
+        <p style="color:var(--text-muted);font-size:1.15rem;max-width:550px;margin:1.5rem 0">Economize até 95% na conta de luz. Projetos residenciais, comerciais e industriais em Campina Grande e João Pessoa.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/contato" class="btn btn-primary" style="background:var(--accent-solar);border-color:var(--accent-solar)">Solicitar Orçamento Grátis</a>
+            <a href="#calculadora" class="btn btn-ghost">Ver Preços Reais →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Por que CG é ideal -->
+<section class="section-padding" style="background:var(--bg-secondary)">
+    <div class="container fade-in" style="text-align:center">
+        <h2>Campina Grande: o lugar ideal<br>para <span style="color:var(--accent-solar)">Energia Solar</span></h2>
+        <p style="color:var(--text-muted);max-width:600px;margin:1rem auto 3rem">Com mais de 2.800 horas de sol por ano, o Nordeste brasileiro oferece uma das maiores incidências solares do planeta.</p>
+        <div class="grid grid-cols-4">
+            <div class="feature-card" style="--accent:var(--accent-solar)"><div class="icon" style="background:rgba(255,107,43,0.1);color:var(--accent-solar)"><i class="fas fa-sun"></i></div><h4>+ de Irradiação</h4><p>Região com altíssima incidência solar durante todo o ano.</p></div>
+            <div class="feature-card" style="--accent:var(--accent-solar)"><div class="icon" style="background:rgba(255,107,43,0.1);color:var(--accent-solar)"><i class="fas fa-dollar-sign"></i></div><h4>Economia Garantida</h4><p>Reduza até 95% da sua conta de luz em 30 dias.</p></div>
+            <div class="feature-card" style="--accent:var(--accent-solar)"><div class="icon" style="background:rgba(255,107,43,0.1);color:var(--accent-solar)"><i class="fas fa-home"></i></div><h4>Imóvel Valorizado</h4><p>Valorização de até 8% no valor do seu imóvel.</p></div>
+            <div class="feature-card" style="--accent:var(--accent-solar)"><div class="icon" style="background:rgba(255,107,43,0.1);color:var(--accent-solar)"><i class="fas fa-leaf"></i></div><h4>Sustentabilidade</h4><p>Energia limpa e renovável, redução da pegada de carbono.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Equipamentos -->
+<section class="section-padding bg-blueprint">
+    <div class="container fade-in">
+        <h2 style="text-align:center;margin-bottom:3rem">Equipamentos de alta performance</h2>
+        <div class="grid grid-cols-2">
+            <div class="bracket-box"><h3 style="margin-bottom:1.5rem">Painéis Solares</h3>
+                <ul style="color:var(--text-muted)">
+                    <li style="margin-bottom:0.8rem">Consultoria e planejamento de projetos fotovoltaicos</li>
+                    <li style="margin-bottom:0.8rem">Análise de viabilidade técnica e financeira</li>
+                    <li style="margin-bottom:0.8rem">Simulação de economia de energia e cálculo de ROI</li>
+                    <li style="margin-bottom:0.8rem">Projetos customizados: residencial, comercial, industrial e agronegócio</li>
+                    <li>Implementação de micro e minigeração distribuída</li>
+                </ul>
+                <div style="margin-top:1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap"><span class="badge-mono">Canadian Solar</span><span class="badge-mono">Risen</span><span class="badge-mono">JA Solar</span></div>
+            </div>
+            <div class="bracket-box"><h3 style="margin-bottom:1.5rem">Inversores</h3>
+                <ul style="color:var(--text-muted)">
+                    <li style="margin-bottom:0.8rem">Instalação de inversores e estruturas de suporte</li>
+                    <li style="margin-bottom:0.8rem">Instalação de cabeamento e quadros específicos</li>
+                    <li style="margin-bottom:0.8rem">Instalação de baterias (sistemas off-grid e híbridos)</li>
+                    <li style="margin-bottom:0.8rem">Sistemas on-grid, off-grid e híbridos</li>
+                    <li>Monitoramento remoto do sistema</li>
+                </ul>
+                <div style="margin-top:1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap"><span class="badge-mono">WEG</span><span class="badge-mono">Fronius</span><span class="badge-mono">Growatt</span><span class="badge-mono">SMA</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CALCULADORA SOLAR INTERATIVA -->
+<section class="section-padding" style="background:var(--bg-primary); border-top: 1px solid var(--border-color);" id="calculadora">
+    <div class="container fade-in">
+        <div class="section-separator"><%- include('partials/symbol') %> <span>SIMULADOR DE ECONOMIA</span></div>
+        <h2 style="margin-bottom:3rem">Quanto você vai<br><em style="color:var(--accent-solar);font-style:italic">economizar?</em></h2>
+        
+        <div class="calc-container">
+            <div class="calc-input-group">
+                <p style="color:var(--text-muted);line-height:1.6">Arraste o slider abaixo com o valor médio da sua conta de luz mensal para ver o potencial de economia real com nossos sistemas fotovoltaicos.</p>
+                <div class="calc-slider-wrap">
+                    <div class="calc-label">
+                        <span>Valor da Conta Mensal</span>
+                        <span id="bill-value">R$ 500</span>
+                    </div>
+                    <input type="range" id="bill-range" min="200" max="10000" step="50" value="500">
+                </div>
+                <div style="padding:1.5rem; background:rgba(255,107,43,0.05); border-left:3px solid var(--accent-solar); border-radius:4px">
+                    <p style="font-size:0.85rem; color:var(--text-muted)">* Estimativas baseadas na tarifa média da Energisa PB e incidência solar de Campina Grande e João Pessoa.</p>
+                </div>
+            </div>
+            
+            <div class="calc-results">
+                <div class="result-card">
+                    <h4>Economia Mensal</h4>
+                    <div class="value" id="result-monthly">R$ 475</div>
+                    <div class="unit">aproximado</div>
+                </div>
+                <div class="result-card">
+                    <h4>Economia Anual</h4>
+                    <div class="value" id="result-yearly">R$ 5.700</div>
+                    <div class="unit">garantido</div>
+                </div>
+                <div class="result-card">
+                    <h4>Nº de Painéis</h4>
+                    <div class="value" id="result-panels">6</div>
+                    <div class="unit">módulos</div>
+                </div>
+                <div class="result-card">
+                    <h4>Payback (ROI)</h4>
+                    <div class="value" id="result-roi">2.8</div>
+                    <div class="unit">anos</div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:3rem; display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary" style="background:var(--accent-solar); border-color:var(--accent-solar)">Solicitar Estudo Gratuito</a>
+            <a href="/contato" class="btn btn-ghost">Falar com Engenheiro</a>
+        </div>
+    </div>
+</section>
+
+<!-- COMO FUNCIONA (Zigzag) -->
+<section class="section-padding bg-blueprint">
+    <div class="container fade-in">
+        <h2 style="text-align:center;margin-bottom:3rem">Como funciona o processo</h2>
+        <div class="zigzag-timeline" style="max-width:800px;margin:0 auto">
+            <div class="zigzag-step"><div class="step-content"><h3>Visita Técnica</h3><p style="color:var(--text-muted);margin-top:0.5rem">Avaliação in loco do local de instalação, medições e análise de consumo.</p></div><div class="step-line"><div class="step-dot">1</div><div class="step-connector"></div></div><div class="step-content"></div></div>
+            <div class="zigzag-step"><div class="step-content"></div><div class="step-line"><div class="step-dot">2</div><div class="step-connector"></div></div><div class="step-content"><h3>Projeto Fotovoltaico</h3><p style="color:var(--text-muted);margin-top:0.5rem">Dimensionamento do sistema ideal, simulação de economia e proposta comercial.</p></div></div>
+            <div class="zigzag-step"><div class="step-content"><h3>Aprovação na Energisa</h3><p style="color:var(--text-muted);margin-top:0.5rem">Documentação e adequação às normas da ANEEL para conexão à rede.</p></div><div class="step-line"><div class="step-dot">3</div><div class="step-connector"></div></div><div class="step-content"></div></div>
+            <div class="zigzag-step"><div class="step-content"></div><div class="step-line"><div class="step-dot">4</div><div class="step-connector"></div></div><div class="step-content"><h3>Instalação Ágil</h3><p style="color:var(--text-muted);margin-top:0.5rem">Montagem dos painéis, inversores e cabeamento por equipe certificada.</p></div></div>
+            <div class="zigzag-step"><div class="step-content"><h3>Homologação junto à Energisa</h3><p style="color:var(--text-muted);margin-top:0.5rem">Conexão do sistema à rede e início da geração de créditos solares.</p></div><div class="step-line"><div class="step-dot">5</div><div class="step-connector"></div></div><div class="step-content"></div></div>
+            <div class="zigzag-step"><div class="step-content"></div><div class="step-line"><div class="step-dot">6</div></div><div class="step-content"><h3>Monitoramento</h3><p style="color:var(--text-muted);margin-top:0.5rem">Acompanhamento remoto do desempenho e manutenção preventiva.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-padding" style="background:var(--bg-secondary)">
+    <div class="container fade-in" style="max-width:800px">
+        <h2 style="text-align:center;margin-bottom:0.5rem">Dúvidas sobre Energia Solar</h2>
+        <h3 style="text-align:center;margin-bottom:3rem;color:var(--text-muted)">Perguntas Frequentes</h3>
+        <div class="faq-item active"><div class="faq-question">Qual o retorno financeiro do sistema solar? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">O retorno médio ocorre em 4-5 anos. A partir daí, a economia é pura. Os painéis possuem vida útil de 25+ anos com garantia de eficiência.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Posso financiar o sistema solar? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Sim! Oferecemos auxílio para obtenção de financiamento via BNDES, Banco do Brasil e outras linhas de crédito sustentáveis, além de orientação sobre incentivos fiscais.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Como funciona nos dias nublados? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Os painéis continuam gerando energia mesmo em dias nublados, com eficiência reduzida. No sistema on-grid, os créditos acumulados em dias de sol compensam a diferença.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Qual o custo de manutenção? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">O custo é muito baixo. Recomendamos limpeza dos painéis a cada 6 meses e verificação anual do sistema. Oferecemos planos de manutenção preventiva e monitoramento remoto.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Vocês atendem empresas/indústrias? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Sim! Atendemos projetos residenciais, comerciais, industriais e agronegócio. Já instalamos usinas de até 80kW para indústrias na região de Campina Grande.</div></div></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+    <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
+        <div><h2>Pronto para reduzir sua<br>conta de energia?</h2><p>Solicite um orçamento grátis de energia solar. Atendemos Campina Grande, João Pessoa e toda a Paraíba.</p></div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
+            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Ligue Agora</a>
+        </div>
+    </div>
+</section>
+
+</main>
+<%- include('partials/whatsapp') %>
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+<main>
+
+<!-- HERO -->
+<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:4rem">
+    <div class="container">
+        <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
+            <div class="fade-in">
+                <div class="breadcrumb"><a href="/">Home</a> > <a href="#">Soluções</a> > Automação</div>
+                <h1>Automação<br>Residencial em<br><span style="color:var(--accent-secondary)">Campina Grande</span></h1>
+                <p style="color:var(--text-muted);font-size:1.1rem;max-width:500px;margin:1.5rem 0">Transforme sua casa em um lar inteligente. Controle iluminação, climatização, segurança e som através do celular ou comando de voz.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap">
+                    <a href="/contato" class="btn btn-primary" style="background:var(--accent-secondary);border-color:var(--accent-secondary);color:var(--bg-primary)">Solicitar Orçamento</a>
+                    <a href="#especialidades" class="btn btn-ghost">Conhecer Áreas</a>
+                </div>
+                <div class="hero-stats" style="margin-top:2rem;gap:2rem">
+                    <div class="stat-item"><h4>II</h4><p>24 Horas</p></div>
+                    <div class="stat-item"><h4><i class="fas fa-mobile-alt"></i></h4><p>Monitoramento Remoto</p></div>
+                    <div class="stat-item"><h4><i class="fas fa-microchip"></i></h4><p>CLPs Industriais</p></div>
+                </div>
+            </div>
+            <div class="fade-in" style="display:flex;justify-content:center">
+                <div style="background:linear-gradient(135deg,var(--border-color),var(--bg-primary));border-radius:12px;width:100%;max-width:400px;height:450px;display:flex;align-items:center;justify-content:center">
+                    <i class="fas fa-mobile-alt" style="font-size:6rem;color:var(--accent-secondary);opacity:0.2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ═══ ESPECIALIDADES (Cards de Navegação) ═══ -->
+<section class="section-padding" id="especialidades" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ÁREAS DE ATUAÇÃO</span></div>
+        <h2 class="fade-in" style="margin-bottom: 3rem;">Escolha sua<br><span style="color:var(--accent-secondary)">especialidade.</span></h2>
+        
+        <div class="grid grid-cols-2" style="gap: 2rem;">
+            <!-- Residencial -->
+            <a href="/solucoes/automacao/automacao-residencial" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-secondary); transition: transform 0.3s;">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem;">Automação Residencial <i class="fas fa-arrow-right" style="font-size: 0.9rem; margin-left: 0.5rem; color: var(--accent-secondary);"></i></h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Projetos exclusivos de Smart Home em Campina Grande e João Pessoa. Controle total de iluminação, som e segurança.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-secondary); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Explorar Soluções Residenciais →</span>
+            </a>
+
+            <!-- Industrial (Placeholder para o futuro) -->
+            <div class="bracket-box fade-in" style="opacity: 0.8; border-left: 4px solid var(--text-muted);">
+                <h3 style="color: var(--text-main); margin-bottom: 1rem;">Automação Industrial</h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Programação de CLPs, sistemas SCADA e Indústria 4.0 para otimização de processos fabris na Paraíba.</p>
+                <span style="display: inline-block; margin-top: 1.5rem; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase;">Em breve detalhamento técnico</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature Grid -->
+<section class="section-padding" style="background:var(--bg-secondary)" id="servicos">
+    <div class="container fade-in">
+        <h2 style="text-align:center;margin-bottom:0.5rem">O que sua casa pode fazer por você</h2>
+        <p style="text-align:center;color:var(--text-muted);max-width:600px;margin:0 auto 3rem">Tecnologia que se adapta ao seu estilo de vida, proporcionando conforto e segurança inteligente.</p>
+        <div class="feature-grid">
+            <div class="feature-card"><div class="icon"><i class="fas fa-lightbulb"></i></div><h4>Iluminação</h4><p>Sensores, apps, ajuste de intensidade e cor automatizado.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-snowflake"></i></div><h4>Climatização</h4><p>Controle de temperatura inteligente por ambiente.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-lock"></i></div><h4>Fechaduras</h4><p>Fechaduras inteligentes com monitoramento de entrada/saída.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-shield-alt"></i></div><h4>Segurança</h4><p>Câmeras, alarmes e sensores integrados.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-music"></i></div><h4>Som Ambiente</h4><p>Automação de áudio, vídeo e iluminação cênica.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-blinds"></i></div><h4>Cortinas</h4><p>Cortinas automatizadas com programação de horário.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-plug"></i></div><h4>Tomadas</h4><p>Controle remoto e programação de eletrodomésticos.</p></div>
+            <div class="feature-card"><div class="icon"><i class="fas fa-tint"></i></div><h4>Irrigação</h4><p>Otimização de rotinas de irrigação e jardinagem.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- Controle Inteligente + Stats -->
+<section class="section-padding bg-blueprint">
+    <div class="container">
+        <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
+            <div class="bracket-box fade-in" style="padding:3rem;border-left:4px solid var(--accent-secondary)">
+                <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.8rem;margin-bottom:1rem">AUTOMAÇÃO · SMART HOME</div>
+                <h2 style="margin-bottom:1rem">Controle inteligente do seu<br>consumo energético</h2>
+                <p style="color:var(--text-muted);margin-bottom:1.5rem;line-height:1.8">A Klyfe é a líder em automação residencial e industrial em Campina Grande. Projetamos sistemas que aprendem suas rotinas e otimizam o consumo automaticamente, garantindo a máxima eficiência do seu lar.</p>
+                <a href="/solucoes/automacao/automacao-residencial" style="color:var(--accent-secondary);font-family:var(--font-heading);text-transform:uppercase">Ver detalhes da Automação Residencial →</a>
+            </div>
+            <div class="fade-in" style="display:flex;gap:3rem;justify-content:center;align-items:center">
+                <div class="stat-circle"><h4>38%</h4><p>economia</p></div>
+                <div class="stat-circle"><h4>100%</h4><p>controle</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Automação Industrial -->
+<section class="section-padding" style="background:var(--bg-secondary)">
+    <div class="container fade-in">
+        <div class="section-separator"><span>— AUTOMAÇÃO INDUSTRIAL —</span></div>
+        <div class="grid grid-cols-2" style="gap:2rem">
+            <div class="bracket-box" style="border-left:4px solid var(--accent-secondary)">
+                <h3 style="margin-bottom:1.5rem">Automação Industrial <span class="badge-mono" style="background:var(--bg-primary);border:1px solid var(--accent-secondary);color:var(--accent-secondary)">Indústria 4.0</span></h3>
+                <ul style="color:var(--text-muted);font-size:0.95rem">
+                    <li style="margin-bottom:1rem"><strong>Automação de processos industriais</strong> — Eficiência e redução de falhas.</li>
+                    <li style="margin-bottom:1rem"><strong>Programação de CLPs</strong> — <span class="badge-mono">Siemens S7</span> <span class="badge-mono">Allen-Bradley</span> <span class="badge-mono">WEG</span> <span class="badge-mono">Schneider</span></li>
+                    <li style="margin-bottom:1rem"><strong>Sistemas supervisórios SCADA / HMI</strong> — Controle visual <span class="badge-mono">Modbus</span></li>
+                    <li style="margin-bottom:1rem"><strong>Quadros de comando e controle</strong> — Montagem de painéis CCm.</li>
+                    <li style="margin-bottom:1rem"><strong>Retrofitting e modernização de máquinas</strong></li>
+                    <li><strong>Integração de sistemas e painéis inteligentes</strong></li>
+                </ul>
+            </div>
+            <div class="bracket-box" style="border-left:4px solid var(--accent-secondary)">
+                <h3 style="margin-bottom:1.5rem">Projetos e Consultoria</h3>
+                <ul style="color:var(--text-muted);font-size:0.95rem">
+                    <li style="margin-bottom:1rem"><strong>Projeto de automação residencial e comercial</strong> — Arquitetura de rede.</li>
+                    <li style="margin-bottom:1rem"><strong>Gerenciamento de projetos de automação</strong> — Do levantamento ao startup.</li>
+                    <li style="margin-bottom:1rem"><strong>Engenharia elétrica aplicada à automação</strong> — Compatibilização de disciplinas.</li>
+                    <li><strong>Consultoria para escolha de sistemas e tecnologias</strong> — Especificação técnica.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Integrações -->
+<section class="section-padding bg-blueprint">
+    <div class="container fade-in" style="text-align:center">
+        <p style="color:var(--text-muted);margin-bottom:2rem">Integra com o que você já usa</p>
+        <div class="brands-row">
+            <span>Amazon Alexa</span><span>Google Home</span><span>Apple HomeKit</span>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="section-padding" style="background:var(--bg-secondary)">
+    <div class="container fade-in" style="max-width:800px">
+        <h2 style="text-align:center;margin-bottom:0.5rem">Perguntas sobre Automação</h2>
+        <h3 style="text-align:center;margin-bottom:3rem;color:var(--text-muted)">Perguntas Frequentes</h3>
+        <div class="faq-item active"><div class="faq-question">Quais serviços a Klyfe Electric oferece em Campina Grande? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Oferecemos automação residencial completa (iluminação, segurança, entretenimento), automação industrial (CLPs, SCADA) e projetos personalizados para empresas e residências na Paraíba.</div></div></div>
+        <div class="faq-item"><div class="faq-question">Como solicitar um orçamento? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner">Basta entrar em contato pelo WhatsApp (83) 99133-0972 ou preencher o formulário na página de contato. Realizamos visita técnica para avaliação personalizada.</div></div></div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+    <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
+        <div><h2>Pronto para reduzir sua<br>conta de energia?</h2><p>Solicite um orçamento grátis de automação. Atendemos Campina Grande, João Pessoa e toda a Paraíba.</p></div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
+            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Ligue Agora</a>
+        </div>
+    </div>
+</section>
+
+</main>
+<%- include('partials/whatsapp') %>
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

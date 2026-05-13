@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+    
+    <!-- Schema.org JSON-LD Específico -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.klyfeelectric.com.br/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Soluções",
+        "item": "https://www.klyfeelectric.com.br/solucoes/eletrica"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Montagem de Carregador Veicular",
+        "item": "https://www.klyfeelectric.com.br/solucoes/servicos-eletricos/montagem-carregador-veicular"
+      }]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Instalação de Carregador Veicular Elétrico (EV)",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Klyfe Electric"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Campina Grande" },
+        { "@type": "City", "name": "João Pessoa" },
+        { "@type": "State", "name": "Paraíba" }
+      ],
+      "description": "Montagem segura de carregadores veiculares (EV) em residências e empresas em Campina Grande. Integração com rede e sistemas solares com ART."
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Preciso trocar o quadro elétrico para instalar um carregador?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Depende da capacidade atual; muitas residências suportam wallboxes monofásicos sem alterações, mas carregadores potentes podem exigir reforço do quadro."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Vocês instalam carregadores solares?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim, fazemos a integração com sistemas fotovoltaicos existentes para priorizar o uso de energia limpa no carregamento do seu veículo."
+        }
+      }, {
+        "@type": "Question",
+        "name": "Quanto tempo dura a instalação?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Uma instalação residencial padrão costuma ser concluída em apenas um dia de trabalho."
+        }
+      }]
+    }
+    </script>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <!-- ═══ HERO INTERNO ═══ -->
+    <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.8), rgba(10,13,16,0.8)), url('/img/hero-klyfe.webp') center/cover;">
+        <div class="container">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>MOBILIDADE ELÉTRICA</span></div>
+            <h1 class="fade-in">Montagem de Carregador Veicular em Campina Grande: <br><span style="color:var(--accent-primary)">instalação segura e integrada.</span></h1>
+            <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
+                A Klyfe Electric instala carregadores veiculares (EV chargers) com foco em segurança e eficiência em <strong>Campina Grande e João Pessoa</strong>. Soluções para residências, condomínios e empresas.
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══ INTRODUÇÃO ═══ -->
+    <section class="section-padding">
+        <div class="container grid grid-cols-2" style="align-items: center; gap: 4rem;">
+            <div class="fade-in">
+                <div class="section-separator"><%- include('partials/symbol') %> <span>INFRAESTRUTURA EV</span></div>
+                <h2>Carregue seu Veículo Elétrico<br>com Segurança em Casa</h2>
+                <p style="margin: 1.5rem 0; color: var(--text-muted); line-height: 1.8;">
+                    Ter um <strong>carregador veicular em Campina Grande</strong> exige uma instalação elétrica robusta. A Klyfe Electric realiza o dimensionamento correto de circuitos, proteção DR e aterramento, garantindo que o carregamento do seu carro não comprometa a rede da sua casa.
+                </p>
+                <p style="color: var(--text-muted); line-height: 1.8;">
+                    Integramos seu wallbox ao sistema de <strong>Energia Solar</strong>, permitindo que você abasteça seu veículo com energia limpa e gratuita, maximizando seu investimento sustentável na Paraíba.
+                </p>
+                <div style="margin-top: 2rem; display: flex; gap: 1rem;">
+                    <a href="https://wa.me/5583991330972" class="btn btn-primary">Agendar Vistoria Técnica</a>
+                </div>
+            </div>
+            <div class="fade-in" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 3rem; display: flex; flex-direction: column; justify-content: center; position: relative;">
+                <div style="position: absolute; bottom: 20px; right: 20px; opacity: 0.1; font-size: 8rem;">
+                    <i class="fas fa-charging-station"></i>
+                </div>
+                <h4 style="color: var(--accent-primary); margin-bottom: 1rem;"><i class="fas fa-shield-alt"></i> Proteção Completa</h4>
+                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Nossa instalação inclui Disjuntores Curva C, Proteção DR (Diferencial Residual) e DPS, seguindo rigorosamente as normas de segurança elétrica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SOLUÇÕES ═══ -->
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ONDE ATUAMOS</span></div>
+            <h2 class="fade-in" style="margin-bottom: 3rem;">Soluções de montagem de<br><span style="color:var(--accent-primary)">carregadores veiculares.</span></h2>
+            
+            <div class="grid grid-cols-3">
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-home" style="color: var(--accent-primary);"></i> Instalação Residencial</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Montagem de Wallbox em garagens privativas com cabeamento dedicado e proteção total.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-building" style="color: var(--accent-primary);"></i> Condomínios</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Projetos de infraestrutura para vagas compartilhadas e controle individual de consumo.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-industry" style="color: var(--accent-primary);"></i> Empresas e Frotas</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Pontos de carga para frotas leves com gerenciamento inteligente de carga (Load Management).</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-parking" style="color: var(--accent-primary);"></i> Estacionamentos</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Infraestrutura para múltiplos pontos de carga em locais públicos ou privados com sinalização.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-sun" style="color: var(--accent-primary);"></i> Integração Solar</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Priorize o uso da sua energia fotovoltaica para carregar seu carro, reduzindo custos.</p>
+                </div>
+                <div class="bracket-box fade-in">
+                    <h4 style="margin-bottom: 1rem;"><i class="fas fa-file-signature" style="color: var(--accent-primary);"></i> Projetos com ART</h4>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Documentação técnica completa e responsabilidade assinada por engenheiro eletricista.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ O QUE INCLUI ═══ -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENTREGÁVEIS</span></div>
+            <h2 class="fade-in" style="margin-bottom: 3rem; text-align: center;">O que está incluso na instalação?</h2>
+            
+            <div class="grid grid-cols-2" style="gap: 2rem;">
+                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
+                    <h4>Vistoria Técnica</h4>
+                    <p>Diagnóstico da capacidade elétrica do seu quadro e definição da melhor rota de cabeamento.</p>
+                </div>
+                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
+                    <h4>Projeto Executivo</h4>
+                    <p>Dimensionamento de cabos e proteções específicas para a potência do seu carregador (7.4kW a 22kW).</p>
+                </div>
+                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
+                    <h4>Instalação Física</h4>
+                    <p>Fixação do carregador, montagem de eletrodutos e passagem de cabos com acabamento profissional.</p>
+                </div>
+                <div class="feature-card fade-in" style="text-align: left; background: var(--bg-secondary);">
+                    <h4>Testes de Segurança</h4>
+                    <p>Medição de aterramento e testes funcionais para garantir que o sistema opere sem riscos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+            <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Perguntas Frequentes</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">1. Preciso trocar o quadro elétrico para instalar um carregador?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Depende da capacidade atual. Muitas residências suportam wallboxes monofásicos sem alterações, mas carregadores trifásicos podem exigir reforço no quadro.</p>
+                </div>
+                <div class="faq-item fade-in" style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">2. Vocês instalam carregadores solares?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">Sim. Fazemos a integração com sistemas fotovoltaicos existentes, priorizando o uso de energia limpa sempre que possível.</p>
+                </div>
+                <div class="faq-item fade-in">
+                    <h4 style="margin-bottom: 1rem; color: var(--accent-primary);">3. Quanto tempo dura a instalação?</h4>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">A instalação residencial padrão costuma ser concluída em um único dia de trabalho.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA FINAL ═══ -->
+    <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+        <div class="container" style="text-align: center;">
+            <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS INSTALAR?</span></div>
+            <h2 style="margin-bottom: 2rem;">Quer instalar seu carregador<br><span style="color:var(--accent-primary)">com segurança em Campina Grande?</span></h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto;">Fale com a Klyfe Electric hoje mesmo e agende sua vistoria técnica para mobilidade elétrica.</p>
+            <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Orçamento de Instalação</a>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
+    <%- include('partials/whatsapp') %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

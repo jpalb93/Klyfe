@@ -1,0 +1,21 @@
+{
+  "name": "klyfe",
+  "version": "1.0.0",
+  "description": "Site Institucional Klyfe Electric",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14",
+    "sharp": "^0.34.5"
+  }
+}

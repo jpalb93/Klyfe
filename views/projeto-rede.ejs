@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+    
+    <!-- Schema.org JSON-LD Específico -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.klyfeelectric.com.br/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Soluções",
+        "item": "https://www.klyfeelectric.com.br/solucoes/eletrica"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Projeto de Rede, Telefonia e Antena",
+        "item": "https://www.klyfeelectric.com.br/solucoes/eletrica/projeto-rede-telefonia-antena"
+      }]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Projeto de Rede Estruturada e Telefonia",
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Klyfe Electric"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Campina Grande" },
+        { "@type": "City", "name": "João Pessoa" },
+        { "@type": "State", "name": "Paraíba" }
+      ],
+      "description": "Projetos de rede estruturada, telefonia e sistemas de antena com ART em Campina Grande e Paraíba. Infraestrutura profissional para residências e empresas."
+    }
+    </script>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <!-- ═══ HERO INTERNO ═══ -->
+        <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.85), rgba(10,13,16,0.85)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFRAESTRUTURA DE DADOS</span></div>
+                <h1 class="fade-in">Projeto de Rede, Telefonia e Antena em Campina Grande</h1>
+                <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
+                    Desenvolvemos projetos completos de rede estruturada e comunicação para <strong>residências, condomínios e indústrias</strong> na Paraíba. Conectividade estável e organização técnica.
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══ POR QUE INVESTIR ═══ -->
+        <section class="section-padding">
+            <div class="container grid grid-cols-2" style="align-items: center; gap: 4rem;">
+                <div class="fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>PLANEJAMENTO</span></div>
+                    <h2>Por que investir em um<br><span style="color:var(--accent-primary)">projeto técnico?</span></h2>
+                    <p style="margin: 1.5rem 0; color: var(--text-muted); line-height: 1.8;">
+                        Uma rede mal planejada gera lentidão, falhas de sinal, retrabalho e dificuldade de manutenção. Quando o projeto é feito de forma técnica, você ganha previsibilidade, facilidade de expansão e uma infraestrutura preparada para crescer junto com a operação.
+                    </p>
+                    <p style="color: var(--text-muted); line-height: 1.8;">
+                        Com a Klyfe Electric, cada ponto de rede, ramal de telefonia e sistema de antena é pensado para funcionar com eficiência, organização e segurança em <strong>Campina Grande e João Pessoa</strong>.
+                    </p>
+                </div>
+                <div class="fade-in" style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 3rem; position: relative;">
+                    <div style="position: absolute; top: 20px; right: 20px; opacity: 0.1; font-size: 6rem;"><i class="fas fa-network-wired"></i></div>
+                    <h4 style="color: var(--accent-primary); margin-bottom: 1rem;"><i class="fas fa-check-circle"></i> Vantagens do Projeto:</h4>
+                    <ul style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 2;">
+                        <li>• Estabilidade de conexão</li>
+                        <li>• Redução de zonas mortas de Wi-Fi</li>
+                        <li>• Facilidade de manutenção futura</li>
+                        <li>• Valorização patrimonial do imóvel</li>
+                        <li>• Organização estética e funcional</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ O QUE FAZEMOS ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>NOSSAS SOLUÇÕES</span></div>
+                <h2 class="fade-in" style="margin-bottom: 3rem;">O que desenvolvemos para sua<br><span style="color:var(--accent-primary)">infraestrutura de comunicação.</span></h2>
+                
+                <div class="grid grid-cols-3">
+                    <div class="bracket-box fade-in">
+                        <h4 style="margin-bottom: 1rem;"><i class="fas fa-project-diagram" style="color: var(--accent-primary);"></i> Rede Estruturada</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Levantamento de necessidades de dados, voz e posicionamento de racks e switches.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h4 style="margin-bottom: 1rem;"><i class="fas fa-wifi" style="color: var(--accent-primary);"></i> Cobertura Wi-Fi</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Posicionamento estratégico de Access Points para eliminar zonas de sombra de sinal.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h4 style="margin-bottom: 1rem;"><i class="fas fa-ethernet" style="color: var(--accent-primary);"></i> Cabeamento Estruturado</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Projetos com CAT6, CAT6A e fibra óptica, garantindo redes de alta velocidade.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h4 style="margin-bottom: 1rem;"><i class="fas fa-phone-alt" style="color: var(--accent-primary);"></i> Telefonia / VoIP</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Soluções modernas com PABX e ramais internos para empresas e condomínios.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h4 style="margin-bottom: 1rem;"><i class="fas fa-satellite-dish" style="color: var(--accent-primary);"></i> Sistemas de Antena</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Projeto de antenas coletivas e individuais para sinal digital com máxima qualidade.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h4 style="margin-bottom: 1rem;"><i class="fas fa-file-invoice" style="color: var(--accent-primary);"></i> Projetos com ART</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Documentação técnica completa assinada por engenheiro responsável.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PARA QUEM É INDICADO ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                    <div class="fade-in">
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>PÚBLICO-ALVO</span></div>
+                        <h2>Para quem é<br><span style="color:var(--accent-primary)">indicado?</span></h2>
+                        <p style="color: var(--text-muted); margin-top: 1.5rem; line-height: 1.8;">
+                            Cada ambiente exige uma lógica diferente de distribuição e capacidade. Por isso, a Klyfe Electric entrega projetos dimensionados para a realidade de cada cliente na <strong>Paraíba</strong>.
+                        </p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem;">
+                            <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--accent-primary);">Residências</div>
+                            <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--accent-primary);">Condomínios</div>
+                            <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--accent-primary);">Empresas</div>
+                            <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: 8px; border-left: 3px solid var(--accent-primary);">Indústrias</div>
+                        </div>
+                    </div>
+                    <div class="fade-in">
+                        <div class="bracket-box" style="padding: 3rem;">
+                            <h3 style="margin-bottom: 1.5rem;">O que entregamos:</h3>
+                            <ul style="color: var(--text-muted); font-size: 0.95rem; line-height: 2;">
+                                <li><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 10px;"></i> Memorial Descritivo Completo</li>
+                                <li><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 10px;"></i> Diagramas Técnicos de Rede</li>
+                                <li><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 10px;"></i> Definição de Pontos e Racks</li>
+                                <li><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 10px;"></i> Emissão de ART (Engenheiro)</li>
+                                <li><i class="fas fa-check" style="color: var(--accent-primary); margin-right: 10px;"></i> Guia de Expansão Futura</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ METODOLOGIA ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>FLUXO DE TRABALHO</span></div>
+                <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Como trabalhamos</h2>
+                
+                <div class="timeline" style="max-width: 800px; margin: 0 auto;">
+                    <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--accent-primary);">01. Vistoria e Diagnóstico</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Análise técnica do ambiente e levantamento das necessidades de comunicação.</p>
+                    </div>
+                    <div class="bracket-box fade-in" style="margin-bottom: 1.5rem;">
+                        <h4 style="color: var(--accent-primary);">02. Desenvolvimento do Projeto</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Criação da documentação técnica, diagramas e dimensionamento da infraestrutura.</p>
+                    </div>
+                    <div class="bracket-box fade-in">
+                        <h4 style="color: var(--accent-primary);">03. Entrega e Suporte</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Apresentação do projeto final com ART e suporte para a equipe de implantação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container" style="text-align: center;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>CONECTIVIDADE TOTAL</span></div>
+                <h2 style="margin-bottom: 2rem;">Sua rede está pronta para o futuro?<br><span style="color:var(--accent-primary)">Solicite seu projeto técnico agora.</span></h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto;">Atendimento profissional em Campina Grande, João Pessoa e Paraíba para residências, condomínios e empresas.</p>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Orçamento de Projeto</a>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/footer') %>
+    <%- include('partials/whatsapp') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+    
+    <!-- Schema.org JSON-LD Específico -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Soluções Klyfe Electric",
+      "description": "Ecossistema completo de engenharia elétrica, automação e energia solar na Paraíba.",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "https://www.klyfeelectric.com.br/solucoes/engenharia"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "url": "https://www.klyfeelectric.com.br/solucoes/eletrica"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "url": "https://www.klyfeelectric.com.br/solucoes/automacao"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "url": "https://www.klyfeelectric.com.br/solucoes/solar"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <main>
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ECOSSISTEMA TÉCNICO</span></div>
+                <h1 class="fade-in">Nossas Soluções em Engenharia,<br><span style="color:var(--accent-primary)">Elétrica e Automação.</span></h1>
+                <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
+                    Da infraestrutura pesada à inteligência da sua casa. A Klyfe Electric integra tecnologia e engenharia de precisão para transformar a forma como você consome energia em <strong>Campina Grande e João Pessoa</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══ PORTAL DE SOLUÇÕES ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 3rem;">
+                    
+                    <!-- Engenharia Elétrica -->
+                    <div class="fade-in">
+                        <a href="/solucoes/engenharia" style="text-decoration: none; display: block;">
+                            <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-primary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-hard-hat"></i></div>
+                                <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                    Engenharia Elétrica <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-primary);"></i>
+                                </h3>
+                                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Projetos de alta performance, consultoria técnica e adequação normativa para indústrias e grandes empreendimentos.</p>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;"><a href="/solucoes/engenharia/laudos-eletricos" style="color: inherit;">• Laudos Técnicos & ART</a></li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Subestações</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Projetos Industriais</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Eficiência Energética</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Automação -->
+                    <div class="fade-in">
+                        <a href="/solucoes/automacao" style="text-decoration: none; display: block;">
+                            <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-secondary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-microchip"></i></div>
+                                <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                    Automação <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-secondary);"></i>
+                                </h3>
+                                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Integração tecnológica para smart homes e processos industriais inteligentes através de sistemas de controle avançados.</p>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;"><a href="/solucoes/automacao/automacao-residencial" style="color: inherit;">• Smart Home (Residencial)</a></li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Controle por Voz</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Programação de CLPs</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Indústria 4.0</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Energia Solar -->
+                    <div class="fade-in">
+                        <a href="/solucoes/solar" style="text-decoration: none; display: block;">
+                            <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-solar); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-sun"></i></div>
+                                <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                    Energia Solar <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-solar);"></i>
+                                </h3>
+                                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Sistemas fotovoltaicos para redução imediata de custos, com monitoramento em tempo real e foco em sustentabilidade.</p>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Sistemas On-Grid</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Sistemas Híbridos</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Manutenção Solar</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Consultoria Tarifária</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Serviços Elétricos -->
+                    <div class="fade-in">
+                        <a href="/solucoes/eletrica" style="text-decoration: none; display: block;">
+                            <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-primary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
+                                <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-bolt"></i></div>
+                                <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
+                                    Serviços Elétricos <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-primary);"></i>
+                                </h3>
+                                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Instalações profissionais e manutenções preventivas com garantia técnica de engenharia para sua segurança.</p>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;"><a href="/solucoes/servicos-eletricos/montagem-carregador-veicular" style="color: inherit;">• Carregadores EV</a></li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Montagem de Quadros</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Reparos & Emergências</li>
+                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Iluminação Técnica</li>
+                                </ul>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container" style="text-align: center;">
+                <h2 style="margin-bottom: 2rem;">Não encontrou o que procurava?</h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto;">Nossa equipe de engenheiros está pronta para desenvolver soluções personalizadas para o seu desafio técnico.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="/contato" class="btn btn-primary">Falar com Consultor Especialista</a>
+                    <a href="https://wa.me/5583991330972" class="btn btn-ghost">Conversar via WhatsApp</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('partials/footer') %>
+    <%- include('partials/whatsapp') %>
+    <script src="/js/main.js"></script>
+</body>
+</html>
