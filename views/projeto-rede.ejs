@@ -143,19 +143,19 @@
             <div class="container">
                 <h3 style="margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 2px;">// SOLUÇÕES RELACIONADAS</h3>
                 <div class="grid grid-cols-4">
-                    <a href="/solucoes/automacao-residencial" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/automacao/automacao-residencial" class="related-card">
                         <h4>Automação</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="/solucoes/eletrica" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica" class="related-card">
                         <h4>Serviços Elétricos</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="/solucoes/engenharia/projeto-eletrico" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="related-card">
                         <h4>Projeto Elétrico</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="/solucoes/engenharia/laudos-eletricos" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/laudos-eletricos" class="related-card">
                         <h4>Laudos Técnicos</h4>
                         <span>Ver solução →</span>
                     </a>
@@ -178,6 +178,56 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
+
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre CAT5e e CAT6?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O CAT6 possui maior largura de banda e suporta velocidades de até 10Gbps em distâncias curtas, além de ter menos interferência. É o padrão recomendado para novas instalações que buscam durabilidade tecnológica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que o Wi-Fi da minha casa é lento em alguns cômodos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Isso ocorre devido a barreiras físicas (paredes) e interferências. Um projeto de rede posiciona estrategicamente Access Points cabeados para garantir sinal estável em 100% da área, sem perdas de velocidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês fazem apenas o projeto ou a instalação também?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Realizamos ambos. Entregamos o projeto técnico detalhado e possuímos equipe própria para a passagem de cabos, montagem de racks e configuração dos equipamentos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "É possível unificar internet, telefone e TV no mesmo projeto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O conceito de cabeamento estruturado permite gerenciar todos os sistemas de comunicação de forma centralizada e organizada, facilitando manutenções futuras."
+          }
+        }<% if (typeof cityData !== 'undefined' && cityData.faqExtra) { %>,
+        {
+          "@type": "Question",
+          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+          }
+        }<% } %>
+      ]
+    }
+    </script>
 
     <script src="/js/main.js"></script>
 </body>

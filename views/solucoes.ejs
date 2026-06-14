@@ -39,14 +39,25 @@
     <%- include('partials/navbar') %>
 
     <main>
+        <% const cityPrefix = getHomePrefix(); %>
+
+
         <!-- ═══ HERO ═══ -->
         <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container">
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ECOSSISTEMA TÉCNICO</span></div>
-                <h1 class="fade-in">Nossas Soluções em Engenharia,<br><span style="color:var(--accent-primary)">Elétrica e Automação.</span></h1>
-                <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted);">
-                    Da infraestrutura pesada à inteligência da sua casa. A Klyfe Electric integra tecnologia e engenharia de precisão para transformar a forma como você consome energia em <strong>Campina Grande e João Pessoa</strong>.
+                <h1 class="fade-in">Soluções em Engenharia, Elétrica<br>e Solar em <span style="color:var(--accent-primary)"><%= cityData.name %>.</span></h1>
+                <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted); margin-bottom: 2rem;">
+                    Da infraestrutura pesada à inteligência da sua casa. A Klyfe Electric integra tecnologia e engenharia de precisão para transformar a forma como você consome energia em <strong><%= cityData.name %></strong> e em toda a <strong><%= cityData.region %></strong>.
                 </p>
+                <div class="fade-in" style="max-width: 800px; line-height: 1.8; color: var(--text-muted); font-size: 1rem; display: grid; gap: 1rem;">
+                    <p>
+                        Nosso compromisso é estruturar soluções elétricas completas que garantem alto retorno financeiro e segurança jurídica total. Por meio de uma engenharia consultiva, analisamos a infraestrutura existente, identificamos desperdícios de energia elétrica e propomos melhorias sob medida baseadas em normas vigentes como a NBR 5410 para baixa tensão e NBR 14039 para média tensão. Seja na adequação de cabines primárias ou no retrofit de redes de fiação complexas, asseguramos o acompanhamento completo em todas as etapas.
+                    </p>
+                    <p>
+                        Combinamos equipamentos premium de fabricantes reconhecidos internacionalmente com a expertise de profissionais certificados. Isso nos permite entregar projetos de automação residencial e industrial inovadores e sistemas de geração solar fotovoltaica com máxima durabilidade. Confie na Klyfe Electric para gerenciar sua energia com o máximo padrão de conformidade e excelência técnica do mercado.
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -56,80 +67,111 @@
                 <div class="grid grid-cols-2" style="gap: 3rem;">
                     
                     <!-- Engenharia Elétrica -->
+                    <% if (isServiceEnabled('engenharia')) { %>
                     <div class="fade-in">
-                        <a href="/solucoes/engenharia" style="text-decoration: none; display: block;">
+
+                        <a href="<%= cityPrefix %>/solucoes/engenharia" style="text-decoration: none; display: block;">
                             <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-primary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
                                 <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-hard-hat"></i></div>
                                 <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                                     Engenharia Elétrica <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-primary);"></i>
                                 </h3>
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Projetos de alta performance, consultoria técnica e adequação normativa para indústrias e grandes empreendimentos.</p>
-                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;"><a href="/solucoes/engenharia/laudos-eletricos" style="color: inherit;">• Laudos Técnicos & ART</a></li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Subestações</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Projetos Industriais</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Eficiência Energética</li>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <% getServicesByCategory('engenharia').forEach(key => { 
+                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                    %>
+                                       <li style="color: var(--text-muted); font-size: 0.85rem;">
+                                           <a href="<%= cityPrefix %>/solucoes/engenharia/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
+                                       </li>
+                                    <% }) %>
                                 </ul>
+
                             </div>
                         </a>
                     </div>
+                    <% } %>
+
 
                     <!-- Automação -->
+                    <% if (isServiceEnabled('automacao')) { %>
                     <div class="fade-in">
-                        <a href="/solucoes/automacao" style="text-decoration: none; display: block;">
+
+                        <a href="<%= cityPrefix %>/solucoes/automacao" style="text-decoration: none; display: block;">
                             <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-secondary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
                                 <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-microchip"></i></div>
                                 <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                                     Automação <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-secondary);"></i>
                                 </h3>
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Integração tecnológica para smart homes e processos industriais inteligentes através de sistemas de controle avançados.</p>
-                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;"><a href="/solucoes/automacao/automacao-residencial" style="color: inherit;">• Smart Home (Residencial)</a></li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Controle por Voz</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Programação de CLPs</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Indústria 4.0</li>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <% getServicesByCategory('automacao').forEach(key => { 
+                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                    %>
+                                       <li style="color: var(--text-muted); font-size: 0.85rem;">
+                                           <a href="<%= cityPrefix %>/solucoes/automacao/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
+                                       </li>
+                                    <% }) %>
                                 </ul>
+
+
                             </div>
                         </a>
                     </div>
+                    <% } %>
+
 
                     <!-- Energia Solar -->
+                    <% if (isServiceEnabled('solar')) { %>
                     <div class="fade-in">
-                        <a href="/solucoes/solar" style="text-decoration: none; display: block;">
+
+                        <a href="<%= cityPrefix %>/solucoes/solar" style="text-decoration: none; display: block;">
                             <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-solar); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
                                 <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-sun"></i></div>
                                 <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
                                     Energia Solar <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-solar);"></i>
                                 </h3>
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Sistemas fotovoltaicos para redução imediata de custos, com monitoramento em tempo real e foco em sustentabilidade.</p>
-                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Sistemas On-Grid</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Sistemas Híbridos</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Manutenção Solar</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Consultoria Tarifária</li>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <% getServicesByCategory('solar').forEach(key => { 
+                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                    %>
+                                       <li style="color: var(--text-muted); font-size: 0.85rem;">
+                                           <a href="<%= cityPrefix %>/solucoes/solar/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
+                                       </li>
+                                    <% }) %>
                                 </ul>
                             </div>
                         </a>
                     </div>
+                    <% } %>
+
 
                     <!-- Serviços Elétricos -->
+                    <% if (isServiceEnabled('eletrica')) { %>
                     <div class="fade-in">
-                        <a href="/solucoes/eletrica" style="text-decoration: none; display: block;">
-                            <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-primary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
+
+                        <a href="<%= cityPrefix %>/solucoes/eletrica" style="text-decoration: none; display: block;">
+                            <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-secondary); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
                                 <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-bolt"></i></div>
                                 <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
-                                    Serviços Elétricos <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-primary);"></i>
+                                    Serviços Elétricos <i class="fas fa-arrow-right" style="font-size: 0.9rem; color: var(--accent-secondary);"></i>
                                 </h3>
-                                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Instalações profissionais e manutenções preventivas com garantia técnica de engenharia para sua segurança.</p>
-                                <ul style="list-style: none; padding: 0; display: grid; grid-template-cols: 1fr 1fr; gap: 1rem;">
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;"><a href="/solucoes/servicos-eletricos/montagem-carregador-veicular" style="color: inherit;">• Carregadores EV</a></li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Montagem de Quadros</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Reparos & Emergências</li>
-                                    <li style="color: var(--text-muted); font-size: 0.85rem;">• Iluminação Técnica</li>
+                                <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Infraestrutura robusta e suporte técnico especializado para manter seu negócio ou indústria operando com máxima eficiência.</p>
+                                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <% getServicesByCategory('eletrica').forEach(key => { 
+                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                    %>
+                                       <li style="color: var(--text-muted); font-size: 0.85rem;">
+                                           <a href="<%= cityPrefix %>/solucoes/eletrica/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
+                                       </li>
+                                    <% }) %>
                                 </ul>
                             </div>
                         </a>
                     </div>
+                    <% } %>
+
 
                 </div>
             </div>

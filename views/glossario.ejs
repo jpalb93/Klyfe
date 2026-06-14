@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head', { 
+        title: 'Glossário Técnico de Engenharia Elétrica e Automação | Klyfe Electric', 
+        description: 'Tire suas dúvidas com o nosso glossário técnico. Entenda termos como SPDA, NR-10, Fator de Potência e muito mais com especialistas.',
+        canonical: canonical,
+        jsonLd: jsonLd
+    }) %>
+    <style>
+        .glossary-hero {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+            padding: 80px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .glossary-nav {
+            position: sticky;
+            top: 80px;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 40px;
+        }
+        .az-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .az-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .az-link:hover, .az-link.active {
+            background: var(--accent-primary);
+            color: var(--bg-dark);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .glossary-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 160px;
+        }
+        .letter-header {
+            font-size: 3rem;
+            color: var(--accent-primary);
+            font-family: var(--font-heading);
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--accent-primary);
+            display: inline-block;
+            padding-right: 20px;
+        }
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .term-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .term-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .term-card h3 {
+            color: var(--accent-primary);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
+        }
+        .term-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .terms-grid { grid-template-columns: 1fr; }
+            .glossary-hero { padding: 60px 20px; }
+            .az-link { width: 35px; height: 35px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar') %>
+
+    <header class="glossary-hero">
+        <div class="container">
+            <span class="badge">Conhecimento Técnico</span>
+            <h1>Glossário de Engenharia e Elétrica</h1>
+            <p class="subtitle">Entenda os termos fundamentais que regem a alta performance elétrica e automação industrial.</p>
+        </div>
+    </header>
+
+    <nav class="glossary-nav">
+        <div class="container">
+            <div class="az-nav">
+                <% Object.keys(glossario).sort().forEach(letter => { %>
+                    <a href="#letter-<%= letter %>" class="az-link"><%= letter %></a>
+                <% }); %>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <% Object.keys(glossario).sort().forEach(letter => { %>
+            <section id="letter-<%= letter %>" class="glossary-section">
+                <h2 class="letter-header"><%= letter %></h2>
+                <div class="terms-grid">
+                    <% glossario[letter].forEach(item => { %>
+                        <div class="term-card" id="<%= item.term.toLowerCase().replace(/\s+/g, '-') %>">
+                            <h3><%= item.term %></h3>
+                            <p><%= item.definition %></p>
+                            <% if (item.linkHtml) { %>
+                                <%- item.linkHtml %>
+                            <% } %>
+                        </div>
+                    <% }); %>
+                </div>
+            </section>
+        <% }); %>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script>
+        // Smooth scroll for AZ links
+        document.querySelectorAll('.az-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                window.scrollTo({
+                    top: target.offsetTop - 150,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

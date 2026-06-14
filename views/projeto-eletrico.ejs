@@ -301,6 +301,56 @@
     <%- include('partials/footer') %>
     <%- include('partials/whatsapp') %>
 
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O projeto elétrico é obrigatório para obras residenciais?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. A NBR 5410 exige que instalações elétricas residenciais sigam projeto elaborado por profissional habilitado. Além disso, a concessionária (Energisa) exige o projeto para aprovação da ligação elétrica em obras acima de determinada carga instalada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é ART e por que ela é necessária no projeto elétrico?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ART é a Anotação de Responsabilidade Técnica emitida pelo CREA. Ela atesta que um engenheiro eletricista habilitado é responsável técnico pelo projeto, garantindo validade legal, segurança e conformidade com as normas vigentes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual norma rege os projetos elétricos residenciais no Brasil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A NBR 5410 da ABNT é a norma brasileira que regulamenta as instalações elétricas de baixa tensão, sendo aplicada em projetos residenciais e comerciais. Projetos industriais seguem complementarmente a NR-10 e normas específicas do setor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A Klyfe Electric realiza a aprovação do projeto na Energisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. A Klyfe Electric acompanha todo o processo de aprovação junto à Energisa, desde a elaboração da documentação técnica exigida até o protocolo e acompanhamento da aprovação da ligação elétrica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Projetos elétricos industriais seguem normas diferentes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Projetos elétricos industriais exigem atenção a aspectos como alta demanda, fator de potência, proteção contra surtos, aterramento e conformidade com a NR-10 (Segurança em Installations e Serviços em Eletricidade), além das normas ABNT aplicáveis ao setor."
+          }
+        }
+      ]
+    }
+    </script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

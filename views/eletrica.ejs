@@ -11,11 +11,11 @@
     <!-- ═══ BREADCRUMB VISUAL ═══ -->
     <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
         <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-            <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+            <a href="<%= getHomePrefix() || '/' %>" style="color: inherit; text-decoration: none;">Home</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+            <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <span style="color: var(--text-main);">Serviços Elétricos</span>
+            <span style="color: var(--text-main);">Serviços Elétricos <%= cityData.preposition %> <%= cityData.name %></span>
         </div>
     </nav>
 
@@ -23,48 +23,85 @@
     <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
         <div class="container fade-in">
             <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INSTALAÇÕES & MANUTENÇÃO</span></div>
-            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos em<br><span style="color:var(--accent-primary)">Campina Grande e Paraíba.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias. Manutenção preventiva, reparos urgentes e novas instalações com garantia e supervisão de engenharia.</p>
+            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias em <%= cityData.name %>. Manutenção preventiva, reparos urgentes e novas instalações com garantia técnica.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-                <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Chamar no WhatsApp</a>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta || 'Chamar no WhatsApp' %></a>
                 <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
             </div>
         </div>
     </section>
 
 <!-- ═══ ESPECIALIDADES (Cards de Navegação) ═══ -->
-<section class="section-padding" id="especialidades" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
-    <div class="container">
-        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ÁREAS DE ATUAÇÃO</span></div>
-        <h2 class="fade-in" style="margin-bottom: 3rem;">Nossas Áreas de<br><span style="color:var(--accent-primary)">Atuação Especializada.</span></h2>
-        
-        <div class="grid grid-cols-3" style="gap: 2rem;">
-            <!-- Instalações Industriais -->
-            <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Instalações Industriais <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Montagem de painéis, infraestrutura robusta e manutenção fabril com foco em produtividade.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Explorar →</span>
-            </a>
+        <% 
+           const eleServices = Object.keys(locations.default.services).filter(key => {
+             const svc = locations.default.services[key];
+             return svc.category === 'eletrica' && isServiceEnabled(key) && key !== 'eletrica';
+           });
+        %>
 
-            <!-- Mobilidade Elétrica -->
-            <a href="/solucoes/servicos-eletricos/montagem-carregador-veicular" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Mobilidade Elétrica <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Instalação técnica de carregadores Wallbox para veículos elétricos em casas e empresas.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Ver Detalhes →</span>
-            </a>
+        <% if (eleServices.length > 0) { %>
+        <section class="section-padding" id="especialidades" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ÁREAS DE ATUAÇÃO</span></div>
+                <h2 class="fade-in" style="margin-bottom: 3rem;">Nossas Áreas de<br><span style="color:var(--accent-primary)">Atuação Especializada.</span></h2>
+                
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <% eleServices.forEach(key => { 
+                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                       const isGeneric = svc.template === 'eletrica';
+                       const cardUrl = isGeneric 
+                         ? `https://wa.me/5583991330972?text=${encodeURIComponent('Olá! Vi o site da Klyfe e gostaria de solicitar um orçamento para o serviço de ' + svc.label + ' em ' + cityData.name + '.')}`
+                         : `${getHomePrefix()}/solucoes/eletrica/${key}`;
+                    %>
+                    <a href="<%= cardUrl %>" <%= isGeneric ? 'target="_blank" rel="noopener"' : '' %> class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;"><%= svc.label %> <i class="fas <%= isGeneric ? 'fa-whatsapp' : 'fa-arrow-right' %>" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= svc.summary || svc.painPoint || 'Serviços elétricos de alto padrão com garantia técnica.' %></p>
+                        <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">
+                            <%= isGeneric ? 'Orçamento Rápido →' : 'Explorar →' %>
+                        </span>
+                    </a>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+        <% } else { %>
+        <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+            <div class="container" style="text-align: center; padding: 4rem 0;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>EXPANSÃO EM CURSO</span></div>
+                <h2 style="margin-bottom: 1.5rem;">Serviços Elétricos em <%= cityData.name %>.</h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Nossa equipe técnica está expandindo o atendimento de instalações elétricas e infraestrutura para esta região. Em breve, todos os serviços estarão disponíveis aqui.</p>
+                <a href="/contato" class="btn btn-primary">Fale com nossa Engenharia</a>
+            </div>
+        </section>
+        <% } %>
 
-            <!-- Infraestrutura de Rede -->
-            <a href="/solucoes/eletrica/projeto-rede-telefonia-antena" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Infraestrutura de Rede <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Cabeamento estruturado, telefonia e sistemas de antena coletiva para condomínios.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Explorar →</span>
-            </a>
+<!-- ═══ CONTEXTO TÉCNICO LOCAL ═══ -->
+<% if (cityData.serviceContext) { %>
+    <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                <div class="fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>ATENDIMENTO REGIONAL</span></div>
+                    <h2 style="margin-bottom: 2rem;">Eletricistas Profissionais em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Foco na Qualidade</span></h2>
+                    <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
+                        <%- cityData.serviceContext %>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos em <%= cityData.name %> incluindo <%= cityData.bairros %>.</p>
+                    </div>
+                </div>
+                <div class="fade-in" style="position: relative;">
+                     <div class="bracket-box" style="padding: 2rem; background: var(--bg-primary); border-color: var(--accent-primary);">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">SUPORTE TÉCNICO</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Nossa equipe atua em <strong><%= cityData.name %></strong> e <strong><%= cityData.region %></strong> para garantir que problemas elétricos, seja no comércio ou residência, sejam resolvidos com agilidade e total segurança técnica.</p>
+                     </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+<% } %>
 
 <!-- Especialidades de Elétrica -->
-<section class="section-padding" style="background:var(--bg-secondary)">
+<section class="section-padding" style="background:var(--bg-primary)">
     <div class="container fade-in">
         <div class="section-separator"><span>— SERVIÇOS TÉCNICOS —</span></div>
         <div class="grid grid-cols-2" style="gap:2rem">
@@ -74,7 +111,7 @@
                     <li style="margin-bottom:1rem"><strong>Fiação Completa</strong> — Para novas edificações residenciais e comerciais.</li>
                     <li style="margin-bottom:1rem"><strong>Quadros de Distribuição</strong> — Montagem e organização técnica de QDCs.</li>
                     <li style="margin-bottom:1rem"><strong>Iluminação Especializada</strong> — LED, trilhos eletrificados e spots.</li>
-                    <li style="margin-bottom:1rem"><strong>Padrão de Entrada</strong> — Homologação e instalação conforme normas Energisa.</li>
+                    <li style="margin-bottom:1rem"><strong>Padrão de Entrada</strong> — Homologação e instalação conforme normas <%= cityData.concessionaria || 'Energisa' %>.</li>
                     <li><strong>Infraestrutura Geral</strong> — Eletrocalhas, perfilados e tubulação seca.</li>
                 </ul>
             </div>
@@ -98,74 +135,86 @@
         <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
             <div class="fade-in">
                 <h2 style="margin-bottom:1.5rem">Segurança em primeiro lugar,<br>disponibilidade sempre.</h2>
-                <p style="color:var(--text-muted);line-height:1.8">Nossa equipe de eletricistas em Campina Grande opera sob rigorosa supervisão de engenharia. Utilizamos apenas materiais Tier 1 e seguimos as normas NR-10 e NBR 5410 para garantir que sua rede elétrica nunca seja uma preocupação.</p>
+                <p style="color:var(--text-muted);line-height:1.8">Não arrisque seu patrimônio com instalações improvisadas. Nossos eletricistas são capacitados e supervisionados por engenheiros, utilizando sempre materiais de primeira linha e seguindo a NBR 5410 à risca.</p>
                 <div style="margin-top:2rem;display:flex;gap:2rem">
-                    <div><h4 style="color:var(--accent-primary)">100%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Equipe NR-10</p></div>
-                    <div><h4 style="color:var(--accent-primary)">24h</h4><p style="font-size:0.8rem;color:var(--text-muted)">Suporte Técnico</p></div>
+                    <div><h4 style="color:var(--accent-primary)">24/7</h4><p style="font-size:0.8rem;color:var(--text-muted)">Pronto Atendimento</p></div>
+                    <div><h4 style="color:var(--accent-primary)">100%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Garantia de Serviço</p></div>
                 </div>
             </div>
             <div class="bracket-box fade-in" style="padding:3rem">
-                <h3>Por que escolher a Klyfe:</h3>
+                <h3>Vantagens Klyfe Electric:</h3>
                 <ul style="margin-top:1.5rem;color:var(--text-muted)">
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Materiais Schneider, Weg e Prysmian</li>
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Garantia de 90 dias em mão de obra</li>
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Registro fotográfico de cada etapa</li>
-                    <li><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Limpeza pós-obra impecável</li>
+                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Profissionais qualificados (NR-10)</li>
+                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Ferramental adequado e aferido</li>
+                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Limpeza e organização pós-obra</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Orçamento transparente e sem surpresas</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ -->
-<section class="section-padding" style="background: var(--bg-secondary);">
-    <div class="container" style="max-width: 900px;">
-        <h2 style="text-align: center; margin-bottom: 3rem;">Dúvidas Frequentes sobre<br><span style="color:var(--accent-primary)">Serviços Elétricos.</span></h2>
-        
-        <div class="faq-accordion">
-            <div class="faq-item active">
-                <div class="faq-question">Vocês cobram orçamento ou visita técnica? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Para orçamentos simples baseados em fotos/vídeos pelo WhatsApp, não há custo. Para diagnósticos complexos que exigem visita técnica e medições, cobramos uma taxa de deslocamento que é abatida no valor do serviço se aprovado.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Meus disjuntores caem quando ligo o chuveiro. O que pode ser? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Isso geralmente indica uma sobrecarga no circuito ou um disjuntor mal dimensionado. É perigoso apenas "trocar o disjuntor por um maior", pois o fio pode derreter e causar um incêndio. Recomendamos uma revisão imediata.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Qual a garantia dos serviços prestados? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Oferecemos garantia de 90 dias para mão de obra, além da garantia de fábrica dos materiais que instalamos. Todos os serviços são registrados e acompanhados de nota técnica.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Vocês atendem em prédios e condomínios? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Sim. Atendemos condomínios em Campina Grande e João Pessoa para manutenções preventivas em áreas comuns, quadros gerais e infraestrutura elétrica coletiva.
+<!-- ═══ FAQ ═══ -->
+<% if (cityData.faqExtra) { %>
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+            <h2 style="text-align: center; margin-bottom: 4rem;">Perguntas Frequentes sobre Serviços Elétricos em <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+            
+            <div class="faq-accordion fade-in">
+                <div class="faq-item" style="padding: 1.5rem 0; border-bottom: 1px solid var(--border-color);">
+                    <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                        <%= cityData.faqExtra.question %>
+                        <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+<% } %>
+
+<!-- CONCEITOS TÉCNICOS -->
+<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container" style="max-width: 900px; text-align: center;">
+        <div class="glossario-links">
+            <h3 style="color:var(--text-main); margin-bottom: 1.5rem; font-size: 1.25rem;">Conceitos técnicos relacionados</h3>
+            <ul style="list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                <li><a href="/glossario#nbr-5410" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">NBR 5410</a></li>
+                <li><a href="/glossario#prumada-elétrica" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Prumada Elétrica</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
+<section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="text-align: center;">
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+            <% if (cityKey === 'default') { %>
+                A Klyfe Electric possui forte atuação regional com equipes dedicadas em 
+                <a href="/campina-grande/solucoes/eletrica" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Campina Grande</a> e 
+                <a href="/joao-pessoa/solucoes/eletrica" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">João Pessoa</a>.
+            <% } else { %>
+                Nossa equipe técnica também atende a região de 
+                <a href="<%= alternateUrl %>" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">
+                    <%= alternateCityName %>
+                </a>.
+            <% } %>
+        </p>
     </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2 style="color:var(--bg-primary)">Problemas elétricos não podem esperar.</h2><p style="color:var(--bg-primary)">Segurança e rapidez para sua casa ou empresa na Paraíba.</p></div>
+        <div><h2>Precisa de um eletricista<br>de confiança?</h2><p>Atendimento rápido e profissional em <%= cityData.name %> e região.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="https://wa.me/5583991330972" class="btn-dark" style="background: #25D366; border-color: #25D366;"><i class="fab fa-whatsapp"></i> Chamar Agora</a>
             <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
+            <% const waHubMsgEl = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
+            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waHubMsgEl) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> <%= cityData.cta || '(83) 99133-0972' %></a>
         </div>
     </div>
 </section>

@@ -11,11 +11,11 @@
     <!-- ═══ BREADCRUMB VISUAL ═══ -->
     <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
         <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-            <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+            <a href="<%= getHomePrefix() || '/' %>" style="color: inherit; text-decoration: none;">Home</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+            <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <span style="color: var(--text-main);">Energia Solar</span>
+            <span style="color: var(--text-main);">Energia Solar <%= cityData.preposition %> <%= cityData.name %></span>
         </div>
     </nav>
 
@@ -23,8 +23,8 @@
     <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
         <div class="container fade-in">
             <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENERGIA SUSTENTÁVEL</span></div>
-            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Energia Solar e<br><span style="color:var(--accent-primary)">Independência Energética.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Economize até 95% na conta de luz com sistemas fotovoltaicos de alta performance. Projetos residenciais e industriais em Campina Grande e toda a Paraíba.</p>
+            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Energia Solar e Independência Energética <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Economize até 95% na conta de luz com sistemas fotovoltaicos de alta performance. Projetos residenciais e industriais em <%= cityData.name %> e toda a <%= cityData.region %>.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
                 <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Orçamento Grátis</a>
                 <a href="#calculadora" class="btn btn-ghost">Simular Economia</a>
@@ -32,100 +32,162 @@
         </div>
     </section>
 
-<!-- ═══ SNAPSHOT DE VALOR ═══ -->
-<section style="padding: 4rem 0; background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
-    <div class="container">
-        <div class="grid grid-cols-4">
-            <div class="feature-card-simple">
-                <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-sun"></i></div>
-                <h4 style="font-size:1rem;margin-bottom:0.5rem">Irradiação Máxima</h4>
-                <p style="font-size:0.85rem;color:var(--text-muted)">O Nordeste possui a melhor incidência solar do mundo para geração.</p>
-            </div>
-            <div class="feature-card-simple">
-                <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-wallet"></i></div>
-                <h4 style="font-size:1rem;margin-bottom:0.5rem">Payback Rápido</h4>
-                <p style="font-size:0.85rem;color:var(--text-muted)">Retorno do investimento entre 2.5 e 4 anos na maioria dos casos.</p>
-            </div>
-            <div class="feature-card-simple">
-                <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-certificate"></i></div>
-                <h4 style="font-size:1rem;margin-bottom:0.5rem">25 Anos de Garantia</h4>
-                <p style="font-size:0.85rem;color:var(--text-muted)">Eficiência linear garantida por décadas com manutenção mínima.</p>
-            </div>
-            <div class="feature-card-simple">
-                <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-chart-line"></i></div>
-                <h4 style="font-size:1rem;margin-bottom:0.5rem">Valorização de 10%</h4>
-                <p style="font-size:0.85rem;color:var(--text-muted)">Aumento imediato no valor venal do seu imóvel residencial ou comercial.</p>
-            </div>
-        </div>
-    </div>
-</section>
+<% 
+   const solarServices = Object.keys(locations.default.services).filter(key => {
+     const svc = locations.default.services[key];
+     return svc.category === 'solar' && isServiceEnabled(key) && key !== 'solar';
+   });
+   
+   // No hub de Solar, consideramos habilitado se o serviço principal 'solar' ou qualquer sub-serviço estiver ativo
+   const hasSolar = isServiceEnabled('solar') || solarServices.length > 0;
+%>
 
-<!-- ═══ CALCULADORA SOLAR ═══ -->
-<section id="calculadora" class="section-padding" style="background: var(--bg-secondary);">
-    <div class="container">
-        <div class="section-separator fade-in"><span>— SIMULADOR TÉCNICO —</span></div>
-        <h2 class="fade-in" style="margin-bottom: 3rem;">Quanto você vai<br><span style="color:var(--accent-primary)">economizar?</span></h2>
-        
-        <div class="calc-container" style="background:var(--bg-primary); padding:3rem; border: 1px solid var(--border-color); display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:center;">
-            <div class="calc-input-group">
-                <p style="color: var(--text-muted); margin-bottom: 2rem;">Arraste o slider com o valor médio da sua conta de luz para ver o potencial de economia real.</p>
-                <div class="calc-slider-wrap">
-                    <div class="calc-label" style="display:flex; justify-content:space-between; margin-bottom:1rem">
-                        <span style="font-family:var(--font-mono); font-size:0.8rem">VALOR DA CONTA MENSAL</span>
-                        <span id="bill-value" style="color: var(--accent-primary); font-weight: 700; font-size:1.2rem">R$ 500</span>
+<% if (hasSolar) { %>
+    <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+    <section style="padding: 4rem 0; background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="grid grid-cols-4">
+                <div class="feature-card-simple">
+                    <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-sun"></i></div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem">Irradiação Máxima</h4>
+                    <p style="font-size:0.85rem;color:var(--text-muted)">O Nordeste possui a melhor incidência solar do mundo para geração.</p>
+                </div>
+                <div class="feature-card-simple">
+                    <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-wallet"></i></div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem">Payback Rápido</h4>
+                    <p style="font-size:0.85rem;color:var(--text-muted)">Retorno do investimento entre 2.5 e 4 anos na maioria dos casos.</p>
+                </div>
+                <div class="feature-card-simple">
+                    <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-certificate"></i></div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem">25 Anos de Garantia</h4>
+                    <p style="font-size:0.85rem;color:var(--text-muted)">Eficiência linear garantida por décadas com manutenção mínima.</p>
+                </div>
+                <div class="feature-card-simple">
+                    <div class="icon-wrap" style="color:var(--accent-primary);font-size:1.5rem;margin-bottom:1rem"><i class="fas fa-chart-line"></i></div>
+                    <h4 style="font-size:1rem;margin-bottom:0.5rem">Valorização de 10%</h4>
+                    <p style="font-size:0.85rem;color:var(--text-muted)">Aumento imediato no valor venal do seu imóvel residencial ou comercial.</p>
+                </div>
+            </div>
+            
+            <% if (solarServices.length > 0) { %>
+                <div class="grid grid-cols-3" style="gap: 2rem; margin-top: 4rem;">
+                    <% solarServices.forEach(key => { 
+                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                    %>
+                    <a href="<%= getHomePrefix() %>/solucoes/solar/<%= key %>" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-solar); transition: transform 0.3s; padding: 2.5rem;">
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;"><%= svc.label %> <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-solar);"></i></h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= svc.summary || svc.painPoint || 'Energia limpa e economia garantida.' %></p>
+                    </a>
+                    <% }) %>
+                </div>
+            <% } %>
+        </div>
+    </section>
+<% } else { %>
+    <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+        <div class="container" style="text-align: center; padding: 4rem 0;">
+            <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>NOVAS SOLUÇÕES</span></div>
+            <h2 style="margin-bottom: 1.5rem;">Energia Solar em <%= cityData.name %>.</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">A Klyfe Electric está preparando projetos fotovoltaicos otimizados para esta região. Em breve, nossa calculadora solar e planos de investimento estarão disponíveis para <%= cityData.name %>.</p>
+            <a href="/contato" class="btn btn-primary">Solicitar Estudo Prévio</a>
+        </div>
+    </section>
+<% } %>
+
+
+<!-- ═══ CONTEXTO TÉCNICO LOCAL ═══ -->
+<% if (cityData.serviceContext) { %>
+    <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                <div class="fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>ENERGIA LOCAL</span></div>
+                    <h2 style="margin-bottom: 2rem;">Energia Solar em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Projetos Otimizados</span></h2>
+                    <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
+                        <%- cityData.serviceContext %>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Instalamos sistemas fotovoltaicos nos principais bairros como <%= cityData.bairros %>.</p>
                     </div>
-                    <input type="range" id="bill-range" min="200" max="10000" step="50" value="500" style="width:100%; height:8px; border-radius:5px; background:var(--bg-secondary); cursor:pointer;">
                 </div>
-                <div style="margin-top: 2rem; padding: 1rem; border-left: 2px solid var(--accent-primary); font-size: 0.85rem; color: var(--text-muted); font-family:var(--font-mono)">
-                    * ESTIMATIVAS BASEADAS NA TARIFA ENERGISA PB (B1 RESIDENCIAL).
-                </div>
-            </div>
-            <div class="calc-results grid grid-cols-2" style="gap:1.5rem">
-                <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary)">
-                    <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Economia Mensal</h4>
-                    <div class="value" id="result-monthly" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">R$ 475</div>
-                </div>
-                <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary)">
-                    <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Economia Anual</h4>
-                    <div class="value" id="result-yearly" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">R$ 5.700</div>
-                </div>
-                <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary)">
-                    <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Nº de Painéis</h4>
-                    <div class="value" id="result-panels" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">6</div>
-                </div>
-                <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary)">
-                    <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Payback (ROI)</h4>
-                    <div class="value" id="result-roi" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">2.8 <small style="font-size:0.7rem">anos</small></div>
+                <div class="fade-in" style="position: relative;">
+                     <div class="bracket-box" style="padding: 2rem; background: var(--bg-primary); border-color: var(--accent-primary);">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">HOMOLOGAÇÃO <%= (cityData.concessionaria || 'ENERGISA').toUpperCase() %></h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Atuamos em toda <strong><%= cityData.name %></strong> e <strong><%= cityData.region %></strong>. Cuidamos de todo o processo burocrático de aprovação e homologação do seu sistema de energia solar junto à <%= cityData.concessionaria || 'Energisa' %>, sem dores de cabeça para você.</p>
+                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<% } %>
 
-<!-- Diferencial Técnico -->
-<section class="section-padding bg-blueprint">
-    <div class="container">
-        <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
-            <div class="fade-in">
-                <h2 style="margin-bottom:1.5rem">Tecnologia que gera<br><span style="color:var(--accent-primary)">lucro real.</span></h2>
-                <p style="color:var(--text-muted);line-height:1.8">Na Klyfe Electric, não apenas instalamos painéis. Entregamos uma usina de geração de renda. Com o monitoramento em tempo real via app, você acompanha cada watt gerado e garante que seu investimento esteja performando no máximo.</p>
-                <div style="margin-top:2rem;display:flex;gap:2rem">
-                    <div><h4 style="color:var(--accent-primary)">Tier 1</h4><p style="font-size:0.8rem;color:var(--text-muted)">Módulos de Alta Performance</p></div>
-                    <div><h4 style="color:var(--accent-primary)">APP</h4><p style="font-size:0.8rem;color:var(--text-muted)">Monitoramento Grátis</p></div>
+<% if (isServiceEnabled('solar-residencial') || isServiceEnabled('solar-industrial')) { %>
+    <!-- ═══ CALCULADORA SOLAR ═══ -->
+    <section id="calculadora" class="section-padding" style="background: var(--bg-primary);">
+        <div class="container">
+            <div class="section-separator fade-in"><span>— SIMULADOR TÉCNICO —</span></div>
+            <h2 class="fade-in" style="margin-bottom: 3rem;">Quanto você vai<br><span style="color:var(--accent-primary)">economizar?</span></h2>
+            
+            <div class="calc-container" style="background:var(--bg-secondary); padding:3rem; border: 1px solid var(--border-color); display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:center;">
+                <div class="calc-input-group">
+                    <p style="color: var(--text-muted); margin-bottom: 2rem;">Arraste o slider com o valor médio da sua conta de luz para ver o potencial de economia real em <%= cityData.name %>.</p>
+                    <div class="calc-slider-wrap">
+                        <div class="calc-label" style="display:flex; justify-content:space-between; margin-bottom:1rem">
+                            <span style="font-family:var(--font-mono); font-size:0.8rem">VALOR DA CONTA MENSAL</span>
+                            <span id="bill-value" style="color: var(--accent-primary); font-weight: 700; font-size:1.2rem">R$ 500</span>
+                        </div>
+                        <input type="range" id="bill-range" min="200" max="10000" step="50" value="500" style="width:100%; height:8px; border-radius:5px; background:var(--bg-primary); cursor:pointer;">
+                    </div>
+                    <div style="margin-top: 2rem; padding: 1rem; border-left: 2px solid var(--accent-primary); font-size: 0.85rem; color: var(--text-muted); font-family:var(--font-mono)">
+                        * ESTIMATIVAS BASEADAS NA TARIFA <%= (cityData.concessionaria || 'ENERGISA PB').toUpperCase() %> (B1 RESIDENCIAL).
+                    </div>
+                </div>
+                <div class="calc-results grid grid-cols-2" style="gap:1.5rem">
+                    <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary); background: var(--bg-primary)">
+                        <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Economia Mensal</h4>
+                        <div class="value" id="result-monthly" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">R$ 475</div>
+                    </div>
+                    <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary); background: var(--bg-primary)">
+                        <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Economia Anual</h4>
+                        <div class="value" id="result-yearly" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">R$ 5.700</div>
+                    </div>
+                    <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary); background: var(--bg-primary)">
+                        <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Nº de Painéis</h4>
+                        <div class="value" id="result-panels" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">6</div>
+                    </div>
+                    <div class="bracket-box" style="padding:1.5rem; border-left:3px solid var(--accent-primary); background: var(--bg-primary)">
+                        <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; margin-bottom:0.5rem">Payback (ROI)</h4>
+                        <div class="value" id="result-roi" style="font-size:1.5rem; font-weight:700; color:var(--text-main)">2.8 <small style="font-size:0.7rem">anos</small></div>
+                    </div>
                 </div>
             </div>
-            <div class="bracket-box fade-in" style="padding:3rem">
-                <h3>Equipamentos Premium:</h3>
-                <ul style="margin-top:1.5rem;color:var(--text-muted)">
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Inversores WEG, Fronius ou Growatt</li>
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Estruturas em Alumínio Anodizado</li>
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Proteção String Box Completa (CC e CA)</li>
-                    <li><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Homologação Completa na Energisa inclusa</li>
-                </ul>
+        </div>
+    </section>
+
+    <!-- Diferencial Técnico -->
+    <section class="section-padding bg-blueprint">
+        <div class="container">
+            <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
+                <div class="fade-in">
+                    <h2 style="margin-bottom:1.5rem">Tecnologia que gera<br><span style="color:var(--accent-primary)">lucro real.</span></h2>
+                    <p style="color:var(--text-muted);line-height:1.8">Na Klyfe Electric, não apenas instalamos painéis. Entregamos uma usina de geração de renda. Com o monitoramento em tempo real via app, você acompanha cada watt gerado e garante que seu investimento esteja performando no máximo.</p>
+                    <div style="margin-top:2rem;display:flex;gap:2rem">
+                        <div><h4 style="color:var(--accent-primary)">Tier 1</h4><p style="font-size:0.8rem;color:var(--text-muted)">Módulos de Alta Performance</p></div>
+                        <div><h4 style="color:var(--accent-primary)">APP</h4><p style="font-size:0.8rem;color:var(--text-muted)">Monitoramento Grátis</p></div>
+                    </div>
+                </div>
+                <div class="bracket-box fade-in" style="padding:3rem">
+                    <h3>Equipamentos Premium:</h3>
+                    <ul style="margin-top:1.5rem;color:var(--text-muted)">
+                        <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Inversores WEG, Fronius ou Growatt</li>
+                        <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Estruturas em Alumínio Anodizado</li>
+                        <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Proteção String Box Completa (CC e CA)</li>
+                        <li><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Homologação Completa na <%= cityData.concessionaria || 'Energisa' %> inclusa</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+<% } %>
+
 
 <!-- FAQ -->
 <section class="section-padding" style="background: var(--bg-secondary);">
@@ -133,38 +195,117 @@
         <h2 style="text-align: center; margin-bottom: 3rem;">Dúvidas Frequentes sobre<br><span style="color:var(--accent-primary)">Energia Fotovoltaica.</span></h2>
         
         <div class="faq-accordion">
-            <div class="faq-item active">
-                <div class="faq-question">O que acontece se eu produzir mais energia do que consumo? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        O excesso vira créditos na Energisa, que podem ser usados em até 60 meses ou transferidos para outros imóveis do mesmo titular (CPF/CNPJ) dentro da Paraíba.
-                    </div>
+            <div class="faq-item">
+                <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    O que acontece se eu produzir mais energia do que consumo? 
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">O excesso vira créditos na <%= cityData.concessionaria || 'Energisa' %>, que podem ser usados em até 60 meses ou transferidos para outros imóveis do mesmo titular (CPF/CNPJ) dentro da Paraíba.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">O sistema funciona em dias nublados ou chuvosos? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Sim, mas com eficiência reduzida. Os painéis precisam de luz (irradiância), não necessariamente de calor. Mesmo em dias de chuva, há geração de energia.
-                    </div>
+                <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    O sistema funciona em dias nublados ou chuvosos? 
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">Sim, mas com eficiência reduzida. Os painéis precisam de luz (irradiância), não necessariamente de calor. Mesmo em dias de chuva, há geração de energia.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Qual a manutenção necessária? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        A manutenção é mínima. Basicamente a limpeza periódica dos painéis (para remover poeira) e uma revisão elétrica anual para garantir que todas as conexões estão perfeitas.
-                    </div>
+                <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    Qual a manutenção necessária? 
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">A manutenção é mínima. Basicamente a limpeza periódica dos painéis (para remover poeira) e uma revisão elétrica anual para garantir que todas as conexões estão perfeitas.</p>
                 </div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Posso financiar 100% do projeto? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Sim! Existem linhas de crédito específicas para energia solar onde a parcela do financiamento muitas vezes é menor do que a economia gerada na conta de luz.
-                    </div>
+                <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    Posso financiar 100% do projeto? 
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">Sim! Existem linhas de crédito específicas para energia solar onde a parcela do financiamento muitas vezes é menor do que a economia gerada na conta de luz.</p>
                 </div>
             </div>
+            <% if (cityData.faqExtra) { %>
+            <div class="faq-item">
+                <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    <%= cityData.faqExtra.question %>
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<% if (cityData.solarContent) { %>
+<!-- ═══ CONTEÚDO ESPECÍFICO POR CIDADE ═══ -->
+<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFORMAÇÕES LOCAIS</span></div>
+        <h2 class="fade-in" style="margin-bottom: 3rem;">Energia Solar em <%= cityData.name %>: <span style="color:var(--accent-primary)">o que você precisa saber</span></h2>
+        
+        <div class="grid grid-cols-2" style="gap: 4rem;">
+            <div class="fade-in">
+                <h3 style="margin-bottom: 1rem; color: var(--text-main);">Irradiação e Contexto Regional</h3>
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                    <strong>Irradiação média em <%= cityData.name %>:</strong> <span style="color: var(--accent-primary); font-weight: 600;"><%= cityData.solarContent.irradiacao %></span>
+                </p>
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                    <%= cityData.solarContent.contextoRegional %>
+                </p>
+                <h3 style="margin-bottom: 1rem; color: var(--text-main); margin-top: 2rem;">Mercado-Alvo</h3>
+                <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
+                    <%= cityData.solarContent.mercadoAlvo %>
+                </p>
+            </div>
+            <div class="fade-in">
+                <div class="bracket-box" style="padding: 2.5rem; background: var(--bg-secondary); border-color: var(--accent-primary);">
+                    <h3 style="color: var(--text-main); margin-bottom: 1rem;">Processo de Homologação</h3>
+                    <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7;">
+                        <%- cityData.solarContent.homologacao.replace(new RegExp(cityData.solarContent.distribuidora, 'g'), `<a href="https://www.${cityData.solarContent.distribuidoraSlug}.com.br" style="color: var(--accent-primary); text-decoration: underline; font-weight: 600;" target="_blank" rel="noopener">${cityData.solarContent.distribuidora}</a>`) %>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
+<section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="text-align: center;">
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+            <% if (cityKey === 'default') { %>
+                A Klyfe Electric possui forte atuação regional com equipes dedicadas em 
+                <a href="/campina-grande/solucoes/solar" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Campina Grande</a> e 
+                <a href="/joao-pessoa/solucoes/solar" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">João Pessoa</a>.
+            <% } else { %>
+                Nossa equipe técnica também atende a região de 
+                <a href="<%= alternateUrl %>" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">
+                    <%= alternateCityName %>
+                </a>.
+            <% } %>
+        </p>
+    </div>
+</section>
+
+<!-- CONCEITOS TÉCNICOS -->
+<section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <div class="container" style="max-width: 900px; text-align: center;">
+        <div class="glossario-links">
+            <h3 style="color:var(--text-main); margin-bottom: 1.5rem; font-size: 1.25rem;">Conceitos técnicos relacionados</h3>
+            <ul style="list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                <li><a href="/glossario#energia-fotovoltaica" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Energia Fotovoltaica</a></li>
+            </ul>
         </div>
     </div>
 </section>
@@ -172,9 +313,11 @@
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2 style="color:var(--bg-primary)">Pare de pagar aluguel para a concessionária.</h2><p style="color:var(--bg-primary)">Seja dono da sua própria energia agora mesmo na Paraíba.</p></div>
+        <div><h2 style="color:var(--bg-primary)">Pare de pagar aluguel para a concessionária.</h2><p style="color:var(--bg-primary)">Seja dono da sua própria energia agora mesmo em <%= cityData.name %>.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="https://wa.me/5583991330972" class="btn-dark" style="background: #25D366; border-color: #25D366;"><i class="fab fa-whatsapp"></i> Falar com Consultor</a>
+            <a href="/contato" class="btn-dark">Solicitar Estudo Solar</a>
+            <% const waHubMsgSol = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
+            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waHubMsgSol) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> <%= cityData.cta || '(83) 99133-0972' %></a>
         </div>
     </div>
 </section>
@@ -182,6 +325,57 @@
 </main>
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
+
+<!-- Schema.org FAQPage JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O que acontece se eu produzir mais energia do que consumo?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O excesso vira créditos na <%= cityData.concessionaria || 'Energisa' %>, que podem ser usados em até 60 meses ou transferidos para outros imóveis do mesmo titular (CPF/CNPJ) dentro da Paraíba."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O sistema funciona em dias nublados ou chuvosos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim, mas com eficiência reduzida. Os painéis precisam de luz (irradiância), não necessariamente de calor. Mesmo em dias de chuva, há geração de energia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual a manutenção necessária?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A manutenção é mínima. Basicamente a limpeza periódica dos painéis (para remover poeira) e uma revisão elétrica anual para garantir que todas as conexões estão perfeitas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso financiar 100% do projeto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim! Existem linhas de crédito específicas para energia solar onde a parcela do financiamento muitas vezes é menor do que a economia gerada na conta de luz."
+      }
+    }<% if (cityData.faqExtra) { %>,
+    {
+      "@type": "Question",
+      "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+      }
+    }<% } %>
+  ]
+}
+</script>
+
 <script src="/js/main.js"></script>
 </body>
 </html>

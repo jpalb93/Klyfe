@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('../partials/head', { title: pageTitle, description: metaDesc, canonical: canonical, jsonLd: jsonLd }) %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <main>
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes/engenharia" style="color: inherit; text-decoration: none;">Engenharia Elétrica</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);">Manutenção de Subestação em <%= cityData.name %></span>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+            <div class="container fade-in">
+                <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>ENGENHARIA DE MANUTENÇÃO</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Manutenção de Subestação <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
+                <p style="color:var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 1.5rem 0;">
+                    A Klyfe Electric realiza manutenção completa de subestações aéreas e abrigadas até 500kVA em <%= cityData.name %> e <%= cityData.region %>. Atuamos com conformidade à NR-10, NBR 14039 e NBR 5419, com emissão de relatório técnico, laudo e ART em cada intervenção.
+                </p>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta %></a>
+                    <a href="#especialidades" class="btn btn-ghost">Ver Serviços →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+        <section style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color); padding: 2rem 0;">
+            <div class="container">
+                <div class="grid grid-cols-4" style="gap: 1rem;">
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Preventiva, Corretiva e Preditiva</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ NR-10, NBR 14039 e NBR 5419</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Relatório Técnico, Laudo e ART</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ <%= cityData.name %> e Região</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ O QUE ESTÁ INCLUSO ═══ -->
+        <section class="section-padding" id="especialidades">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>CHECKLIST TÉCNICO</span></div>
+                <h2 style="text-align: center; margin-bottom: 4rem;">O Que Está Incluso na Manutenção de <br><span style="color:var(--accent-primary)">Subestação da Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-2" style="gap: 2rem;">
+                    <div class="fade-in">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Inspeção visual e termográfica</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Limpeza geral da subestação (componentes e ferragens)</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Verificação e reaperto de conexões elétricas</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Análise de óleo do transformador (se aplicável)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="fade-in">
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Testes de resistência de isolação e aterramento</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Verificação de disjuntores, chaves seccionadoras, para-raios e DPS</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Substituição de componentes danificados</span>
+                            </li>
+                            <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;">
+                                <i class="fas fa-check-circle" style="color: var(--accent-primary); margin-top: 0.3rem;"></i>
+                                <span style="color: var(--text-main); font-size: 1.1rem;">Emissão de relatório técnico, laudo e ART</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ TIPOS DE MANUTENÇÃO ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>CATEGORIAS</span></div>
+                <h2 style="text-align: center; margin-bottom: 4rem;">Tipos de Manutenção de Subestação</h2>
+                
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <div class="bracket-box fade-in" style="background: var(--bg-primary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Manutenção Preventiva</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Realizada em intervalos programados, independentemente do estado aparente dos componentes. Inclui limpeza, reaperto de conexões, verificação de proteções e inspeção termográfica. Objetivo: evitar falhas antes que ocorram, garantindo continuidade operacional e segurança da instalação.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-primary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Manutenção Corretiva</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Executada após a identificação de falha ou defeito em componente da subestação. A Klyfe Electric atua com agilidade para restaurar o funcionamento seguro da instalação, com substituição de componentes danificados e emissão de relatório técnico da intervenção realizada.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-primary);">
+                        <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Manutenção Preditiva</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6;">
+                            Utiliza técnicas de diagnóstico — termografia infravermelha e análise de óleo do transformador — para avaliar o estado real dos componentes e prever falhas antes que ocorram. Permite planejar intervenções no momento certo, sem aguardar a falha e sem trocar componentes ainda em condição de uso.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONTEXTO TÉCNICO LOCAL ═══ -->
+        <% if (cityData.serviceContext) { %>
+            <section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                <div class="container">
+                    <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                        <div class="fade-in">
+                            <div class="section-separator"><%- include('../partials/symbol') %> <span>FOCO REGIONAL</span></div>
+                            <h2 style="margin-bottom: 2rem;">Manutenção de Subestação em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atenção Técnica Local</span></h2>
+                            <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
+                                <%- cityData.serviceContext %>
+                                <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos <%= cityData.bairros %> e toda a região de <%= cityData.region %>.</p>
+                            </div>
+                        </div>
+                        <div class="fade-in" style="position: relative;">
+                             <div class="bracket-box" style="padding: 2rem; background: var(--bg-secondary); border-color: var(--accent-primary);">
+                                <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">COBERTURA REGIONAL</h4>
+                                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">A Klyfe Electric mantém equipes técnicas especializadas para pronto atendimento em <strong><%= cityData.name %></strong> e municípios da <strong><%= cityData.region %></strong>, garantindo agilidade técnica e conformidade normativa rigorosa.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- ═══ BENEFÍCIOS ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>VANTAGENS</span></div>
+                <h2 style="text-align: center; margin-bottom: 4rem;">Benefícios da Manutenção Preventiva <br><span style="color:var(--accent-primary)">de Subestação</span></h2>
+                
+                <div class="grid grid-cols-3" style="gap: 2rem;">
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: block;"></i>
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Redução de Riscos de Falhas e Acidentes</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Subestações com manutenção em dia têm menor probabilidade de falhas que resultem em acidentes elétricos, incêndios ou interrupção do fornecimento de energia. A NR-10 exige que instalações elétricas de risco sejam mantidas em condições seguras de operação.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <i class="fas fa-fire-extinguisher" style="font-size: 2rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: block;"></i>
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Prevenção de Queima de Equipamentos</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Conexões frouxas, isolamentos degradados e componentes de proteção com defeito são as principais causas de queima de transformadores e equipamentos de subestação. A manutenção preventiva identifica e corrige essas condições antes que evoluam para dano de equipamento.
+                        </p>
+                    </div>
+                    <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                        <i class="fas fa-history" style="font-size: 2rem; color: var(--accent-primary); margin-bottom: 1.5rem; display: block;"></i>
+                        <h3 style="font-size: 1.25rem; margin-bottom: 1rem;">Aumento da Vida Útil dos Componentes</h3>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Transformadores, chaves seccionadoras, disjuntores e para-raios operam por décadas quando mantidos corretamente. A manutenção periódica preserva as características técnicas dos componentes e posterga a necessidade de substituição.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ PROCESSO ═══ -->
+        <section class="section-padding bg-blueprint">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>FLUXO DE TRABALHO</span></div>
+                <h2 style="margin-bottom: 4rem;">Como Funciona a Manutenção de Subestação <br><span style="color:var(--accent-primary)">com a Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-4" style="gap: 1.5rem;">
+                    <div class="fade-in">
+                        <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.25rem;">1. Agendamento</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Definição da data e horário da intervenção conforme a disponibilidade operacional da instalação, minimizando o impacto na operação do cliente.</p>
+                    </div>
+                    <div class="fade-in">
+                        <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.25rem;">2. Inspeção</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Inspeção visual e termográfica completa da subestação, com registro fotográfico e identificação de não-conformidades e pontos de aquecimento.</p>
+                    </div>
+                    <div class="fade-in">
+                        <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.25rem;">3. Execução</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Limpeza, reaperto, testes elétricos e substituição de componentes danificados, executadas por equipe habilitada conforme a NR-10.</p>
+                    </div>
+                    <div class="fade-in">
+                        <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.25rem;">4. Relatório e ART</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Entrega de relatório técnico completo com recomendações, acompanhado de laudo e ART assinada pelo engenheiro eletricista responsável.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
+        <% if (cityKey !== 'default') { %>
+            <section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                <div class="container" style="text-align: center;">
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Este serviço também está disponível em 
+                        <a href="<%= alternateUrl %>" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s;" onmouseover="this.style.borderBottomColor='var(--accent-primary)'" onmouseout="this.style.borderBottomColor='transparent'">
+                            <%= alternateCityName %>
+                        </a>.
+                    </p>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- ═══ FAQ ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary);">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+                <h2 style="text-align: center; margin-bottom: 4rem;">Perguntas Frequentes sobre Manutenção de <br><span style="color:var(--accent-primary)">Subestação em <%= cityData.name %></span></h2>
+                
+                <div class="faq-accordion fade-in">
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Quais normas regulamentam a manutenção de subestações elétricas?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">A manutenção de subestações é regulamentada principalmente pela NBR 14039 (instalações elétricas de média tensão), pela NBR 5419 (proteção contra descargas atmosféricas) e pela NR-10 (segurança em instalações e serviços em eletricidade). Toda intervenção deve ser realizada por engenheiro eletricista habilitado com ART recolhida junto ao CREA.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            Qual a diferença entre manutenção preventiva, corretiva e preditiva em subestações?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">A manutenção preventiva é realizada em intervalos programados para evitar falhas, independentemente do estado atual dos componentes. A manutenção corretiva é executada após a identificação de uma falha para restaurar o funcionamento normal. A manutenção preditiva utiliza técnicas como termografia infravermelha e análise de óleo do transformador para prever falhas antes que ocorram, com base no estado real dos componentes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            O que é análise de óleo do transformador e quando é necessária?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">A análise de óleo do transformador é um ensaio laboratorial que avalia as propriedades dielétricas e físico-químicas do óleo isolante, identificando contaminações, umidade e produtos de degradação que indicam desgaste interno do equipamento. É recomendada em transformadores a óleo como parte da manutenção preditiva, com periodicidade definida pelo engenheiro responsável conforme o histórico e a criticidade da instalação.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                            O que é verificado na manutenção de uma subestação aérea até 500kVA?
+                            <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                        </button>
+                        <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                            <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">A manutenção inclui inspeção visual e termográfica, limpeza geral de componentes e ferragens, verificação e reaperto de conexões elétricas, análise de óleo do transformador quando aplicável, testes de resistência de isolação e aterramento, verificação de disjuntores, chaves seccionadoras, para-raios e DPS, substituição de componentes danificados e emissão de relatório técnico com laudo e ART.</p>
+                        </div>
+                    </div>
+
+                    <% if (cityData.faqExtra) { %>
+                        <div class="faq-item" style="padding: 1.5rem 0;">
+                            <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                                <%= cityData.faqExtra.question %>
+                                <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                            </button>
+                            <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                                <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ LINKS RELACIONADOS ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>ENGENHARIA ELÉTRICA</span></div>
+                <h2 style="text-align: center; margin-bottom: 4rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-4" style="gap: 1rem;">
+                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Projeto de Subestação</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Aérea até 500kVA.</p>
+                    </a>
+                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Laudos Elétricos</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">NR-10, SPDA e Termografia.</p>
+                    </a>
+                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Aprovação Energisa</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Protocolo e Acompanhamento.</p>
+                    </a>
+                    <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Elétrica Industrial</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Infraestrutura e Montagem.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONCEITOS TÉCNICOS -->
+        <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+            <div class="container" style="max-width: 900px; text-align: center;">
+                <div class="glossario-links">
+                    <h3 style="color:var(--text-main); margin-bottom: 1.5rem; font-size: 1.25rem;">Conceitos técnicos relacionados</h3>
+                    <ul style="list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                        <li><a href="/glossario#subestação" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Subestação</a></li>
+                        <li><a href="/glossario#cabine-primária" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Cabine Primária</a></li>
+                        <li><a href="/glossario#termografia-elétrica" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Termografia Elétrica</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container" style="text-align: center;">
+                <div class="section-separator" style="justify-content: center;"><%- include('../partials/symbol') %> <span>CONTATO</span></div>
+                <h2 style="margin-bottom: 2rem;">Solicite a Manutenção da Sua Subestação em <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e agende a manutenção preventiva, corretiva ou preditiva da sua subestação em <%= cityData.name %> e <%= cityData.region %>.</p>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> <%= cityData.cta %></a>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('../partials/whatsapp') %>
+    <%- include('../partials/footer') %>
+
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quais normas regulamentam a manutenção de subestações elétricas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A manutenção de subestações é regulamentada principalmente pela NBR 14039 (instalações elétricas de média tensão), pela NBR 5419 (proteção contra descargas atmosféricas) e pela NR-10 (segurança em instalações e serviços em eletricidade). Toda intervenção deve ser realizada por engenheiro eletricista habilitado com ART recolhida junto ao CREA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre manutenção preventiva, corretiva e preditiva em subestações?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A manutenção preventiva é realizada em intervalos programados para evitar falhas, independentemente do estado atual dos componentes. A manutenção corretiva é executada após a identificação de uma falha para restaurar o funcionamento normal. A manutenção preditiva utiliza técnicas como termografia infravermelha e análise de óleo do transformador para prever falhas antes que ocorram, com base no estado real dos componentes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é análise de óleo do transformador e quando é necessária?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A análise de óleo do transformador é um ensaio laboratorial que avalia as propriedades dielétricas e físico-químicas do óleo isolante, identificando contaminações, umidade e produtos de degradação que indicam desgaste interno do equipamento. É recomendada em transformadores a óleo como parte da manutenção preditiva, com periodicidade definida pelo engenheiro responsável conforme o histórico e a criticidade da instalação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é verificado na manutenção de uma subestação aérea até 500kVA?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A manutenção inclui inspeção visual e termográfica, limpeza geral de componentes e ferragens, verificação e reaperto de conexões elétricas, análise de óleo do transformador quando aplicável, testes de resistência de isolação e aterramento, verificação de disjuntores, chaves seccionadoras, para-raios e DPS, substituição de componentes danificados e emissão de relatório técnico com laudo e ART."
+          }
+        }<% if (cityData.faqExtra) { %>,
+        {
+          "@type": "Question",
+          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+          }
+        }<% } %>
+      ]
+    }
+    </script>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

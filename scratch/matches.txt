@@ -1,0 +1,35 @@
+e-item warning"><span class="issue-badge">WARNING</span> ⚠️ 33.1% complex words (3+ syllables) — consider simplifying</div>
+<div class="issue-item warning"><span class="issue-badge">WARNING</span> ⚠️ Thin content (239 words) — may rank poorly</div>
+<div class="issue-item info"><span class="issue-badge">INFO</span> No Wikidata entry found for 'Klyfe Electric'. — Fix: If the entity meets Wikidata notability guidelines, create or improve an item with accurate third-party references. Do not create one solely for SEO.</div>
+<div class="issue-item info"><span class="issue-badge">INFO</span> No Wikip
+===
+div class="issue-item info"><span class="issue-badge">FIX</span> ⚠️ 33.1% complex words (3+ syllables) — consider simplifying</div><div class="issue-item info"><span class="issue-badge">FIX</span> ⚠️ Thin content (239 words) — may rank poorly</div></div>
+            <div style="margin-top:16px"><h3 style="font-size:0.95rem;margin-bottom:8px;">✍️ What To Replace (Before/After)</h3><div class="issue-item warning"><span class="issue-badge">SENTENCE (template)</span><div><div><strong>Current:</strong> Homepage hero intro block is broad and hard to scan.</div><div style="margin-top:6px;"><strong>Re
+===
+section" id="section-duplicate_content">
+        <div class="section-header" onclick="toggleSection('duplicate_content')">
+            <h2>📋 Content Uniqueness <span class="badge warning">2 dupes / 0 thin</span></h2>
+            <span class="chevron" id="chevron-duplicate_content">▼</span>
+        </div>
+        <div class="section-body" id="body-duplicate_content">
+            <div class="summary-row">
+                <div class="summary-item"><div class="val">50</div><div class="lbl">Pages Analyzed</div></div>
+                <div class="summary-item"><div class="val">2</div><div class="lbl"
+===
+/div>
+                <div class="summary-item"><div class="val">2</div><div class="lbl">Near Duplicates</div></div>
+                <div class="summary-item"><div class="val">0</div><div class="lbl">Thin Pages</div></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Recommendations Summary -->
+    <div class="section" id="section-recs">
+        <div class="section-header" onclick="toggleSection('recs')">
+            <h2>💡 All Recommendations</h2>
+            <span class="chevron" id="chevron-recs">▼</span>
+        </div>
+        <div class="section-body" id="body-recs">
+===
+div class="issue-item info"><span class="issue-badge">FIX</span> ⚠️ 33.1% complex words (3+ syllables) — consider simplifying</div><div class="issue-item info"><span class="issue-badge">FIX</span> ⚠️ Thin content (239 words) — may rank poorly</div><div class="issue-item info"><span class="issue-badge">FIX</span> Rewrite: Homepage hero intro block is broad and hard to scan. → Use a 2-3 sentence hero: who you help, what users can do here, and where to start. Example: &quot;Learn practical ethical hacking with step-by-step guides. Start with Wi-Fi security, Ac</div><div class="issue-item info"><s

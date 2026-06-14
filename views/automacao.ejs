@@ -11,11 +11,11 @@
     <!-- ═══ BREADCRUMB VISUAL ═══ -->
     <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
         <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-            <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+            <a href="<%= getHomePrefix() || '/' %>" style="color: inherit; text-decoration: none;">Home</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+            <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <span style="color: var(--text-main);">Automação Inteligente</span>
+            <span style="color: var(--text-main);">Automação Inteligente em <%= cityData.name %></span>
         </div>
     </nav>
 
@@ -23,41 +23,85 @@
     <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
         <div class="container fade-in">
             <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>TECNOLOGIA & CONFORTO</span></div>
-            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Automação Inteligente em<br><span style="color:var(--accent-primary)">Campina Grande e Paraíba.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Controle total do seu ambiente na palma da mão. Soluções de automação residencial e industrial que unem conforto, economia de energia e segurança de última geração.</p>
+            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Automação Inteligente <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Controle total do seu ambiente na palma da mão. Soluções de automação residencial e industrial em <%= cityData.name %> que unem conforto, economia de energia e segurança de última geração.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-                <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Projeto Personalizado</a>
+                <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta || 'Solicitar Orçamento' %></a>
                 <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
             </div>
         </div>
     </section>
 
-<!-- ═══ ESPECIALIDADES (Cards de Navegação) ═══ -->
-<section class="section-padding" id="especialidades" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
-    <div class="container">
-        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ÁREAS DE ATUAÇÃO</span></div>
-        <h2 class="fade-in" style="margin-bottom: 3rem;">Sistemas de<br><span style="color:var(--accent-primary)">Controle Inteligente.</span></h2>
-        
-        <div class="grid grid-cols-2" style="gap: 2rem;">
-            <!-- Automação Residencial -->
-            <a href="/solucoes/automacao/automacao-residencial" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Automação Residencial <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Smart Homes completas: controle de iluminação, som ambiente, persianas e segurança por voz ou app.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Explorar Soluções →</span>
-            </a>
+    <% const homePrefix = getHomePrefix(); %>
 
-            <!-- Automação Industrial -->
-            <div class="bracket-box fade-in" style="border-left: 4px solid var(--text-muted); padding: 2.5rem; opacity: 0.8;">
-                <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;">Automação Industrial</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Programação de CLPs, sistemas SCADA e Indústria 4.0 para otimização de processos fabris complexos.</p>
-                <span style="display: inline-block; margin-top: 1.5rem; color: var(--text-muted); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Em breve detalhamento técnico</span>
+<!-- ═══ ESPECIALIDADES (Cards de Navegação) ═══ -->
+        <% 
+           const autServices = Object.keys(locations.default.services).filter(key => {
+             const svc = locations.default.services[key];
+             return svc.category === 'automacao' && isServiceEnabled(key) && key !== 'automacao';
+           });
+        %>
+
+        <% if (autServices.length > 0) { %>
+        <section class="section-padding" id="especialidades" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ÁREAS DE ATUAÇÃO</span></div>
+                <h2 class="fade-in" style="margin-bottom: 3rem;">Sistemas de<br><span style="color:var(--accent-primary)">Controle Inteligente.</span></h2>
+                
+                <div class="grid grid-cols-2" style="gap: 2rem;">
+                    <% autServices.forEach(key => { 
+                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                    %>
+                    <a href="<%= getHomePrefix() %>/solucoes/automacao/<%= key %>" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-secondary); transition: transform 0.3s; padding: 2.5rem;">
+                        <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;"><%= svc.label %> <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-secondary);"></i></h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= svc.summary || svc.painPoint || 'Integração tecnológica para smart homes e processos industriais.' %></p>
+                        <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-secondary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">Explorar Soluções →</span>
+                    </a>
+                    <% }) %>
+                </div>
             </div>
-        </div>
+        </section>
+        <% } else { %>
+        <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+            <div class="container" style="text-align: center; padding: 4rem 0;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>EM BREVE</span></div>
+                <h2 style="margin-bottom: 1.5rem;">Soluções de Automação em <%= cityData.name %>.</h2>
+                <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Estamos preparando conteúdos e soluções exclusivas de Smart Home e Automação Industrial para esta região. Em breve, você poderá conferir nossos projetos detalhados aqui.</p>
+                <a href="/contato" class="btn btn-primary">Fale com um consultor técnico</a>
+            </div>
+        </section>
+        <% } %>
+
     </div>
 </section>
 
+<!-- ═══ CONTEXTO TÉCNICO LOCAL ═══ -->
+<% if (cityData.serviceContext) { %>
+    <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                <div class="fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>TECNOLOGIA NA PRÁTICA</span></div>
+                    <h2 style="margin-bottom: 2rem;">Automação Smart Home em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Projetos Exclusivos</span></h2>
+                    <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
+                        <%- cityData.serviceContext %>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Projetos executados nos principais bairros como <%= cityData.bairros %>.</p>
+                    </div>
+                </div>
+                <div class="fade-in" style="position: relative;">
+                     <div class="bracket-box" style="padding: 2rem; background: var(--bg-primary); border-color: var(--accent-primary);">
+                        <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">DESIGN E INTEGRAÇÃO</h4>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Atendemos toda <strong><%= cityData.name %></strong> e <strong><%= cityData.region %></strong>. Nossos projetos de automação não apenas conectam equipamentos, mas se integram perfeitamente à arquitetura e ao design de interiores, sem cabos expostos.</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<% } %>
+
+<% if (isServiceEnabled('automacao-residencial')) { %>
 <!-- Especialidades de Automação -->
-<section class="section-padding" style="background:var(--bg-secondary)">
+<section class="section-padding" style="background:var(--bg-primary)">
     <div class="container fade-in">
         <div class="section-separator"><span>— FUNCIONALIDADES SMART —</span></div>
         <div class="grid grid-cols-2" style="gap:2rem">
@@ -78,86 +122,118 @@
                     <li style="margin-bottom:1rem"><strong>Fechaduras Biométricas</strong> — Controle de acesso inteligente e sem chaves.</li>
                     <li style="margin-bottom:1rem"><strong>Gestão de Energia</strong> — Sensores de presença para evitar desperdícios.</li>
                     <li style="margin-bottom:1rem"><strong>Alertas em Tempo Real</strong> — Notificações de intrusão, vazamentos ou fumaça.</li>
-                    <li><strong>Comando de Voz</strong> — Integração total com Alexa e Google Home.</li>
+                    <li><strong>Controle de Acesso Integrado</strong> — Integração com sistemas de portaria.</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
+<% } %>
+
 
 <!-- Diferencial Técnico -->
 <section class="section-padding bg-blueprint">
     <div class="container">
         <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
             <div class="fade-in">
-                <h2 style="margin-bottom:1.5rem">Tecnologia invisível,<br>resultado extraordinário.</h2>
-                <p style="color:var(--text-muted);line-height:1.8">Nossos projetos de automação em Campina Grande focam na simplicidade de uso. Não instalamos apenas gadgets; criamos um ecossistema fluido onde a tecnologia trabalha para você, garantindo até 30% de economia de energia através da gestão inteligente.</p>
+                <h2 style="margin-bottom:1.5rem">Tecnologia invisível,<br>resultados tangíveis.</h2>
+                <p style="color:var(--text-muted);line-height:1.8">Nossos projetos de automação visam simplificar sua rotina sem complicar a operação. Utilizamos as tecnologias sem fio mais avançadas e robustas do mercado para garantir estabilidade e resposta imediata.</p>
                 <div style="margin-top:2rem;display:flex;gap:2rem">
-                    <div><h4 style="color:var(--accent-primary)">-30%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Consumo de Energia</p></div>
-                    <div><h4 style="color:var(--accent-primary)">Hi-Fi</h4><p style="font-size:0.8rem;color:var(--text-muted)">Qualidade de Áudio</p></div>
+                    <div><h4 style="color:var(--accent-primary)">IoT</h4><p style="font-size:0.8rem;color:var(--text-muted)">Integração Nativa</p></div>
+                    <div><h4 style="color:var(--accent-primary)">100%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Estabilidade de Rede</p></div>
                 </div>
             </div>
             <div class="bracket-box fade-in" style="padding:3rem">
-                <h3>Ecossistema Integrado:</h3>
+                <h3>Vantagens Klyfe Electric:</h3>
                 <ul style="margin-top:1.5rem;color:var(--text-muted)">
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-microchip" style="color:var(--accent-primary);margin-right:10px"></i> Protocolos abertos (Zigbee, Z-Wave, KNX)</li>
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-shield-alt" style="color:var(--accent-primary);margin-right:10px"></i> Backup local (Funciona sem internet)</li>
-                    <li style="margin-bottom:0.8rem"><i class="fas fa-expand-arrows-alt" style="color:var(--accent-primary);margin-right:10px"></i> Escalabilidade (Comece pequeno, cresça sempre)</li>
-                    <li><i class="fas fa-headset" style="color:var(--accent-primary);margin-right:10px"></i> Suporte técnico especializado na Paraíba</li>
+                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Integração com Alexa, Google Home e Apple HomeKit</li>
+                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Sem quebra-quebra em imóveis prontos</li>
+                    <li style="margin-bottom:0.8rem"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Escalabilidade: adicione recursos quando quiser</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i> Suporte técnico local e especializado</li>
                 </ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ -->
-<section class="section-padding" style="background: var(--bg-secondary);">
-    <div class="container" style="max-width: 900px;">
-        <h2 style="text-align: center; margin-bottom: 3rem;">Dúvidas Frequentes sobre<br><span style="color:var(--accent-primary)">Automação Inteligente.</span></h2>
-        
-        <div class="faq-accordion">
-            <div class="faq-item active">
-                <div class="faq-question">Preciso de uma reforma grande para automatizar minha casa? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Não necessariamente. Hoje existem soluções híbridas e sem fio que podem ser instaladas sem quebra de paredes, aproveitando a infraestrutura elétrica existente.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">A automação funciona se a internet cair? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Sim. Nossos sistemas são projetados para manter o funcionamento local (interruptores e controles físicos) mesmo sem internet. A conexão externa é necessária apenas para controle remoto via app.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">A Klyfe trabalha com quais marcas? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Trabalhamos com protocolos abertos e as melhores marcas do mercado mundial, garantindo que seu sistema não fique preso a um único fabricante e possa ser expandido no futuro.
-                    </div>
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">Como a automação ajuda a economizar energia? <i class="fas fa-plus"></i></div>
-                <div class="faq-answer">
-                    <div class="faq-answer-inner">
-                        Através de sensores de presença que apagam luzes esquecidas, desligamento automático de ar-condicionado e programação de persianas para reduzir o calor solar, diminuindo o uso do clima.
+<!-- ═══ FAQ ═══ -->
+<% if (cityData.faqExtra) { %>
+    <section class="section-padding" style="background: var(--bg-secondary);">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+            <h2 style="text-align: center; margin-bottom: 4rem;">Perguntas Frequentes sobre Automação em <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+            
+            <div class="faq-accordion fade-in">
+                <div class="faq-item" style="padding: 1.5rem 0; border-bottom: 1px solid var(--border-color);">
+                    <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                        <%= cityData.faqExtra.question %>
+                        <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                    </button>
+                    <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+<% } %>
+
+        <% if (cityData.industrialContent && cityData.industrialContent.automacaoContexto) { %>
+        <!-- ═══ CONTEÚDO ESPECÍFICO POR CIDADE ═══ -->
+        <section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFORMAÇÕES LOCAIS</span></div>
+                <h2 class="fade-in" style="margin-bottom: 2rem;">Automação em <%= cityData.name %>: <span style="color:var(--accent-primary)">o que você precisa saber</span></h2>
+                
+                <div class="grid grid-cols-1" style="gap: 4rem;">
+                    <div class="fade-in">
+                        <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                            <%= cityData.industrialContent.automacaoContexto %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <% } %>
+
+<!-- CONCEITOS TÉCNICOS -->
+<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container" style="max-width: 900px; text-align: center;">
+        <div class="glossario-links">
+            <h3 style="color:var(--text-main); margin-bottom: 1.5rem; font-size: 1.25rem;">Conceitos técnicos relacionados</h3>
+            <ul style="list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                <li><a href="/glossario#automação-residencial" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Automação Residencial</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
+<section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container" style="text-align: center;">
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+            <% if (cityKey === 'default') { %>
+                A Klyfe Electric possui forte atuação regional com equipes dedicadas em 
+                <a href="/campina-grande/solucoes/automacao" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">Campina Grande</a> e 
+                <a href="/joao-pessoa/solucoes/automacao" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">João Pessoa</a>.
+            <% } else { %>
+                Nossa equipe técnica também atende a região de 
+                <a href="<%= alternateUrl %>" style="color: var(--accent-primary); text-decoration: none; font-weight: 600;">
+                    <%= alternateCityName %>
+                </a>.
+            <% } %>
+        </p>
     </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2 style="color:var(--bg-primary)">Transforme seu estilo de vida hoje.</h2><p style="color:var(--bg-primary)">Projetos personalizados que unem conforto e sofisticação.</p></div>
+        <div><h2>Pronto para viver o futuro<br>na sua casa?</h2><p>Agende uma demonstração em <%= cityData.name %> e região.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="https://wa.me/5583991330972" class="btn-dark" style="background: var(--bg-primary); color: var(--text-main); border: none;">Solicitar Orçamento de Automação</a>
+            <a href="/contato" class="btn-dark">Consultoria Gratuita</a>
+            <% const waHubMsgAut = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
+            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waHubMsgAut) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> <%= cityData.cta || '(83) 99133-0972' %></a>
         </div>
     </div>
 </section>

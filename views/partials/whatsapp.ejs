@@ -1,3 +1,9 @@
-<a href="https://wa.me/5583991330972" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+<% 
+   const waMsgFloat = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.';
+   const waUrlFloat = `https://wa.me/5583991330972?text=${encodeURIComponent(waMsgFloat)}`;
+%>
+<a href="<%= waUrlFloat %>" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Falar no WhatsApp</span>
     <i class="fab fa-whatsapp"></i>
 </a>
+

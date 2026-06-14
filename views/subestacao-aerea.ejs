@@ -320,6 +320,56 @@
     <%- include('partials/footer') %>
     <%- include('partials/whatsapp') %>
 
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é uma subestação aérea e quando ela é necessária?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uma subestação aérea é uma instalação de média tensão instalada em estrutura elevada (poste ou torre), responsável por receber energia da concessionária em média tensão e transformá-la para baixa tensão. É necessária quando a demanda de energia de uma instalação industrial, comercial, predial ou rural ultrapassa os limites de atendimento em baixa tensão pela concessionária."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual norma regulamenta projetos de subestação elétrica no Brasil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Projetos de subestações de média tensão são regulamentados pela NBR 14039 da ABNT, que estabelece os requisitos para instalações elétricas de média tensão entre 1 kV e 36 kV. Além disso, a NR-10 do Ministério do Trabalho regula a segurança em instalações e serviços em eletricidade, sendo obrigatória em ambientes com risco elétrico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O projeto de subestação precisa de aprovação na Energisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Todo projeto de subestação que se conecta à rede da concessionária precisa ser aprovado pela Energisa antes da execução. A aprovação exige projeto técnico elaborado por engenheiro eletricista habilitado, ART recolhida junto ao CREA, memorial descritivo e demais documentos definidos nas normas de acesso da concessionária."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre subestação aérea e subestação abrigada?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A subestação aérea é instalada em estrutura elevada a céu aberto, geralmente em poste ou cavalete, sendo mais comum em projetos de até 500kVA pela sua relação de custo-benefício. A subestação abrigada é instalada em edificação fechada (cabine), oferecendo maior proteção aos equipamentos e é mais utilizada em instalações de maior porte ou em ambientes que exigem restrições de acesso mais rígidas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A Klyfe Electric atende projetos de subestação fora de Campina Grande?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. A Klyfe Electric atende projetos de subestação aérea em Campina Grande, em toda a Paraíba e em regiões vizinhas. Entre em contato para verificar a disponibilidade de atendimento para a sua localidade."
+          }
+        }
+      ]
+    }
+    </script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

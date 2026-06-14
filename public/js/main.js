@@ -121,15 +121,48 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            
+            // Honeypot check: Se o campo 'website_url' estiver preenchido, é um bot.
+            const formData = new FormData(contactForm);
+            const honeypot = formData.get('website_url');
+            
+            if (honeypot) {
+                console.warn('Bot detectado via Honeypot.');
+                return; // Descarta silenciosamente para não dar pistas ao bot
+            }
+
             const btn = contactForm.querySelector('button[type="submit"]');
-            btn.innerHTML = 'Enviando...'; btn.disabled = true;
-            const data = Object.fromEntries(new FormData(contactForm).entries());
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...'; 
+            btn.disabled = true;
+            
+            const data = Object.fromEntries(formData.entries());
+            // Remove o campo honeypot antes de enviar para o servidor
+            delete data.website_url;
+
             try {
-                const res = await fetch('/contato', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+                const res = await fetch('/contato', { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify(data) 
+                });
+                
+                if (!res.ok) throw new Error('Falha no servidor');
+                
                 const json = await res.json();
-                if (json.success) { alert(json.message); contactForm.reset(); }
-            } catch (err) { alert('Erro ao enviar.'); }
-            finally { btn.innerHTML = 'ENVIAR SOLICITAÇÃO'; btn.disabled = false; }
+                if (json.success) { 
+                    alert('✓ ' + json.message); 
+                    contactForm.reset(); 
+                }
+            } catch (err) { 
+                alert('⚠️ Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.'); 
+                console.error('Erro no envio do form:', err);
+            }
+            finally { 
+                btn.innerHTML = originalText; 
+                btn.disabled = false; 
+            }
         });
     }
 

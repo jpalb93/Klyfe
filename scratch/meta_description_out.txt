@@ -1,0 +1,11 @@
+Searching for meta description issues...
+
+Issue #0: WARNINGMeta description is missing or out of rangeThis can reduce SERP CTR and snippet quality.Fix: Update page templates to set complete title/meta/OG/Twitter tags.
+Issue #14: TIP Add a description: > Brief site description
+Issue #21: SENTENCE (template)Current: Section descriptions mix too many topics in one long paragraph.Replace with: Replace with short blurbs per section (1 sentence each) and add a clear CTA link: "Start Wi-Fi Security", "Explore AD Attack Paths", "View Red-Team Cheat Sheets".
+Issue #28: FIX Meta description is missing or out of range: Update page templates to set complete title/meta/OG/Twitter tags.
+Issue #41: FIX Rewrite: Section descriptions mix too many topics in one long paragraph. → Replace with short blurbs per section (1 sentence each) and add a clear CTA link: "Start Wi-Fi Security", "Explore AD Attack Paths", "View Red-Team Cheat Sheets".
+Table 0 Row 0: ['Header', 'Status', 'Value / Description']
+Table 1 Row 2: ['og:description', '✅', 'Especialistas em projetos elétricos, automação e energia sol']
+Table 1 Row 9: ['twitter:description', '✅', 'Especialistas em projetos elétricos, automação e energia sol']
+Table 5 Row 2: ['Meta Description', 'Especialistas em projetos elétricos, automação e energia solar na Paraíba e região. 5★ no Google.', '97']

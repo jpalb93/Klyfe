@@ -1,0 +1,548 @@
+Links and their details:
+
+Link #0:
+  Href: /
+  Text: ''
+  Aria-Label: 'Klyfe Electric - Voltar para a Home'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #1:
+  Href: /
+  Text: 'Home'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #2:
+  Href: /solucoes
+  Text: 'Soluções'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #3:
+  Href: /solucoes/engenharia
+  Text: 'Engenharia Elétrica'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #4:
+  Href: /solucoes/eletrica
+  Text: 'Serviços Elétricos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #5:
+  Href: /solucoes/automacao
+  Text: 'Automação'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #6:
+  Href: /solucoes/solar
+  Text: 'Energia Solar'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #7:
+  Href: /quem-somos
+  Text: 'Quem Somos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #8:
+  Href: /projetos
+  Text: 'Projetos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #9:
+  Href: /blog
+  Text: 'Blog'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #10:
+  Href: /contato
+  Text: 'Contato'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #11:
+  Href: #
+  Text: 'Paraíba'
+  Aria-Label: 'Selecionar região de atendimento - Cidade atual: Paraíba'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #12:
+  Href: /solucoes
+  Text: 'Estado da Paraíba'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #13:
+  Href: /campina-grande/solucoes
+  Text: 'Campina Grande'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #14:
+  Href: /joao-pessoa/solucoes
+  Text: 'João Pessoa'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #15:
+  Href: /contato
+  Text: 'Solicitar Orçamento'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #16:
+  Href: /solucoes
+  Text: 'Paraíba (Geral)'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #17:
+  Href: /campina-grande/solucoes
+  Text: 'Campina Grande'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #18:
+  Href: /joao-pessoa/solucoes
+  Text: 'João Pessoa'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #19:
+  Href: /
+  Text: 'Home'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #20:
+  Href: /solucoes/engenharia
+  Text: 'Engenharia Elétrica'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #21:
+  Href: /solucoes/eletrica
+  Text: 'Serviços Elétricos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #22:
+  Href: /solucoes/automacao
+  Text: 'Automação'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #23:
+  Href: /solucoes/solar
+  Text: 'Energia Solar'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #24:
+  Href: /quem-somos
+  Text: 'Quem Somos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #25:
+  Href: /projetos
+  Text: 'Projetos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #26:
+  Href: /blog
+  Text: 'Blog'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #27:
+  Href: /contato
+  Text: 'Contato'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #28:
+  Href: /solucoes
+  Text: 'Paraíba (Geral)'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #29:
+  Href: /campina-grande/solucoes
+  Text: 'Campina Grande'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #30:
+  Href: /joao-pessoa/solucoes
+  Text: 'João Pessoa'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #31:
+  Href: https://wa.me/5583991330972?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Klyfe%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20regi%C3%A3o.
+  Text: '(83) 99133-0972'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #32:
+  Href: /contato
+  Text: 'Solicitar Orçamento'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #33:
+  Href: /projetos
+  Text: 'Ver Projetos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #34:
+  Href: /solucoes/engenharia
+  Text: 'ENGENHARIA ELÉTRICAProjetos, laudos e consultoria com responsabilidade técnica.'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #35:
+  Href: /solucoes/engenharia/projeto-eletrico
+  Text: 'Projeto Elétrico (BIM 3D)'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #36:
+  Href: /solucoes/engenharia/laudos-eletricos
+  Text: 'Laudo de NR-10 e SPDA'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #37:
+  Href: /solucoes/engenharia/projeto-subestacao
+  Text: 'Projeto de Subestações'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #38:
+  Href: /solucoes/engenharia/pericia-furto-energia
+  Text: 'Perícias de TOI e Danos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #39:
+  Href: /solucoes/engenharia/viabilidade-carregador-veicular
+  Text: 'Viabilidade de Recarga EV'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #40:
+  Href: /solucoes/engenharia
+  Text: 'Ver todas as soluções'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #41:
+  Href: /solucoes/solar
+  Text: 'ENERGIA SOLARSistemas fotovoltaicos para redução de custos.'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #42:
+  Href: /solucoes/solar#residencial
+  Text: 'Projetos Solares Residenciais'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #43:
+  Href: /solucoes/solar#comercial
+  Text: 'Sistemas Fotovoltaicos Comerciais'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #44:
+  Href: /solucoes/solar#homologacao
+  Text: 'Homologação na Energisa'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #45:
+  Href: /solucoes/solar#roi
+  Text: 'Estudo de Viabilidade & ROI'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #46:
+  Href: /solucoes/solar#manutencao
+  Text: 'Manutenção de Painéis'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #47:
+  Href: /solucoes/solar
+  Text: 'Ver todas as soluções'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #48:
+  Href: /solucoes/automacao
+  Text: 'AUTOMAÇÃO SMARTControle e inteligência residencial e industrial.'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #49:
+  Href: /solucoes/automacao/automacao-residencial
+  Text: 'Automação Residencial (Smart Home)'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #50:
+  Href: /solucoes/automacao#clima
+  Text: 'Controle de Climatização e Luzes'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #51:
+  Href: /solucoes/automacao#audio
+  Text: 'Integração de Áudio e Home Theater'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #52:
+  Href: /solucoes/eletrica/projeto-rede
+  Text: 'Infraestrutura de Redes e Wi-Fi'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #53:
+  Href: /solucoes/automacao#processos
+  Text: 'Automação de Processos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #54:
+  Href: /solucoes/automacao
+  Text: 'Ver todas as soluções'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #55:
+  Href: /solucoes/eletrica
+  Text: 'Ver catálogo completo de serviços →'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #56:
+  Href: /quem-somos
+  Text: 'Conheça nossa história →'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #57:
+  Href: /projetos/avaliacao-qualidade-instalacoes-eletricas-hu
+  Text: 'Engenharia & InspeçãoAVALIAÇÃO TÉCNICA HUHospital Universitário (HU), Campina Grande · 2026. Laudo completo de instalações, termografia e conformidade normativa.NR-10TermografiaNBR 5410'
+  Aria-Label: 'Ver detalhes do projeto de avaliação técnica no Hospital Universitário de Campina Grande'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #58:
+  Href: /projetos
+  Text: 'Ver portfólio completo →'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #59:
+  Href: /blog
+  Text: 'Solar · 5 minEnergia Solar na Paraíba: Por que a Klyfe Electric é referência na Paraíba em 2025Ler artigo →'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #60:
+  Href: /blog
+  Text: 'Elétrica · 4 minEletricista na Paraíba: Riscos de Fiações Antigas e a Solução da Klyfe ElectricLer artigo →'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #61:
+  Href: /contato
+  Text: 'Solicitar Orçamento'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #62:
+  Href: https://wa.me/5583991330972?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Klyfe%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20regi%C3%A3o.
+  Text: 'Ligue Agora'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #63:
+  Href: https://wa.me/5583991330972?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Klyfe%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20regi%C3%A3o.
+  Text: ''
+  Aria-Label: 'Falar no WhatsApp'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #64:
+  Href: /
+  Text: ''
+  Aria-Label: 'Klyfe Electric - Voltar para a Home'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #65:
+  Href: /solucoes/engenharia
+  Text: 'Engenharia Elétrica'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #66:
+  Href: /solucoes/engenharia/laudos-eletricos
+  Text: 'Laudos & Inspeções'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #67:
+  Href: /solucoes/automacao
+  Text: 'Automação Residencial'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #68:
+  Href: /solucoes/solar
+  Text: 'Energia Solar'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #69:
+  Href: /solucoes/eletrica
+  Text: 'Serviços de Eletricista'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #70:
+  Href: /quem-somos
+  Text: 'Quem Somos'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #71:
+  Href: /projetos
+  Text: 'Casos de Sucesso'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #72:
+  Href: /blog
+  Text: 'Blog Técnico'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #73:
+  Href: /contato
+  Text: 'Falar com Consultor'
+  Aria-Label: 'None'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #74:
+  Href: https://www.instagram.com/klyfeelectric
+  Text: ''
+  Aria-Label: 'Instagram'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #75:
+  Href: https://www.linkedin.com/company/klyfeelectric
+  Text: ''
+  Aria-Label: 'LinkedIn'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #76:
+  Href: https://wa.me/5583991330972?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Klyfe%20e%20gostaria%20de%20um%20or%C3%A7amento%20para%20minha%20regi%C3%A3o.
+  Text: ''
+  Aria-Label: 'WhatsApp'
+  Img Alts: []
+  Is Empty: False
+----------------------------------------
+Link #77:
+  Href: https://eximusdigital.com.br/
+  Text: ''
+  Aria-Label: 'Desenvolvido por Eximus Digital - Ir para o site oficial do desenvolvedor'
+  Img Alts: ['Eximus Digital']
+  Is Empty: False
+----------------------------------------

@@ -318,6 +318,64 @@
     <%- include('partials/footer') %>
     <%- include('partials/whatsapp') %>
 
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quando é obrigatória a aprovação do projeto elétrico na Energisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A aprovação do projeto elétrico na Energisa é exigida para novas ligações, ampliações de carga, regularizações e instalações que atingem os limites definidos pela concessionária. Projetos comerciais, industriais e de subestações geralmente são enquadrados nessa exigência independentemente do porte."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais normas a Energisa exige para aprovação de projetos elétricos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Energisa exige conformidade com as normas técnicas da ABNT, em especial a NBR 5410 para instalações de baixa tensão e a NBR 14039 para instalações de média tensão (subestações). Além disso, exige ART (Anotação de Responsabilidade Técnica) emitida por engenheiro eletricista registrado no CREA."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é necessário para aprovar um projeto elétrico na Energisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Em geral, a Energisa exige: projeto elétrico elaborado por engenheiro eletricista habilitado, diagrama unifilar, memorial descritivo e de cálculo, ART recolhida e documentação do imóvel. A Klyfe Electric elabora e protocola toda essa documentação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual o prazo médio para aprovação de um projeto na Energisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo varia conforme o tipo e a complexidade do projeto, além do fluxo interno da concessionária. A Klyfe Electric acompanha ativamente o processo para identificar pendências e agilizar a aprovação, evitando atrasos desnecessários na obra."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A Klyfe Electric atende projetos de subestação para aprovação na Energisa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. A Klyfe Electric atua na elaboração e aprovação de projetos de subestações junto à Energisa, com conformidade à NBR 14039 e demais requisitos técnicos exigidos para instalações de média tensão na Paraíba."
+          }
+        }<% if (typeof cityData !== 'undefined' && cityData.faqExtra) { %>,
+        {
+          "@type": "Question",
+          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+          }
+        }<% } %>
+      ]
+    }
+    </script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

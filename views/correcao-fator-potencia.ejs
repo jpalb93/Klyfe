@@ -301,6 +301,64 @@
     <%- include('partials/footer') %>
     <%- include('partials/whatsapp') %>
 
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é fator de potência e por que ele importa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fator de potência é a relação entre a potência ativa (kW), que realiza trabalho útil, e a potência aparente (kVA), que é efetivamente demandada do sistema elétrico. Um fator de potência baixo indica que a instalação consome mais corrente do que o necessário para realizar o mesmo trabalho, sobrecarregando condutores, transformadores e a rede da concessionária."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quando a concessionária aplica multa por fator de potência?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Resolução ANEEL nº 414/2010 e o PRODIST estabelecem que o fator de potência das instalações deve ser mantido entre 0,92 indutivo e 1,00. Quando o fator de potência medido fica abaixo de 0,92, a concessionária aplica encargos adicionais na fatura de energia elétrica. A correção elimina essa cobrança."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como é feita a correção de fator de potência?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A correção é realizada por meio da instalação de banco de capacitores, que fornece energia reativa capacitiva para compensar a energia reativa indutiva consumida por cargas como motores, transformadores e reatores. O dimensionamento correto do banco exige um estudo prévio das cargas da instalação para definir a potência reativa a compensar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre banco de capacitores fixo e automático?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O banco fixo possui potência reativa constante, sendo indicado para instalações com carga relativamente estável ao longo do dia. O banco automático possui controlador que conecta e desconecta bancos de capacitores conforme a variação da demanda reativa, sendo indicado para instalações com cargas variáveis. A escolha entre os dois depende do perfil de carga da instalação, definido no estudo técnico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Além de eliminar multas, quais outros benefícios a correção de fator de potência traz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Além da eliminação de encargos na fatura, a correção de fator de potência reduz a corrente elétrica circulante nos condutores e equipamentos, o que diminui perdas por efeito Joule, reduz o aquecimento dos cabos e da rede, aumenta a vida útil dos equipamentos elétricos e pode liberar capacidade instalada no sistema elétrico da planta."
+          }
+        }<% if (typeof cityData !== 'undefined' && cityData.faqExtra) { %>,
+        {
+          "@type": "Question",
+          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+          }
+        }<% } %>
+      ]
+    }
+    </script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

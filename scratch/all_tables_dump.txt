@@ -1,0 +1,93 @@
+Found 7 tables:
+
+Table #0:
+  Headers: ['Header', 'Status', 'Value / Description']
+  Rows count: 7
+    Row #1: ['HSTS (Strict-Transport-Security)', 'Present', 'max-age=31536000; includeSubDomains']
+    Row #2: ['X-Frame-Options', 'Present', 'SAMEORIGIN']
+    Row #3: ['X-Content-Type-Options', 'Present', 'nosniff']
+    Row #4: ['Referrer-Policy', 'Present', 'no-referrer']
+    Row #5: ['Content-Security-Policy (CSP)', 'Missing', 'Prevents XSS, clickjacking, and code injection.']
+    Row #6: ['Permissions-Policy', 'Missing', 'Controls browser feature access (camera, microphone, geolocation).']
+
+================================================================================
+
+Table #1:
+  Headers: ['Tag', 'Status', 'Value']
+  Rows count: 12
+    Row #1: ['og:title', '✅', 'Klyfe Electric | Engenharia, Elétrica e Solar na Paraíba']
+    Row #2: ['og:description', '✅', 'Especialistas em projetos elétricos, automação e energia sol']
+    Row #3: ['og:image', '✅', 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp']
+    Row #4: ['og:url', '✅', 'https://www.klyfeelectric.com.br/']
+    Row #5: ['og:type', '✅', 'website']
+    Row #6: ['og:site_name', 'Missing', '—']
+    Row #7: ['twitter:card', '✅', 'summary_large_image']
+    Row #8: ['twitter:title', '✅', 'Klyfe Electric | Engenharia, Elétrica e Solar na Paraíba']
+    Row #9: ['twitter:description', '✅', 'Especialistas em projetos elétricos, automação e energia sol']
+    Row #10: ['twitter:image', '✅', 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp']
+    Row #11: ['twitter:site', 'Missing', '—']
+
+================================================================================
+
+Table #2:
+  Headers: ['Crawler', 'Status', 'Details']
+  Rows count: 12
+    Row #1: ['GPTBot', 'Info', 'explicitly allowed']
+    Row #2: ['ChatGPT-User', 'Info', 'explicitly allowed']
+    Row #3: ['ClaudeBot', 'Info', 'explicitly allowed']
+    Row #4: ['PerplexityBot', 'Info', 'explicitly allowed']
+    Row #5: ['Google-Extended', 'Info', 'explicitly allowed']
+    Row #6: ['Applebot-Extended', 'Info', 'explicitly allowed']
+    Row #7: ['Bytespider', 'Info', 'explicitly allowed']
+    Row #8: ['CCBot', 'Info', 'explicitly allowed']
+    Row #9: ['anthropic-ai', 'Info', 'explicitly allowed']
+    Row #10: ['FacebookBot', 'Info', 'explicitly allowed']
+    Row #11: ['Amazonbot', 'Info', 'explicitly allowed']
+
+================================================================================
+
+Table #3:
+  Headers: ['URL', 'Incoming Links']
+  Rows count: 16
+    Row #1: ['https://www.klyfeelectric.com.br/solucoes/eletrica/tomadas-interruptores', '1']
+    Row #2: ['https://www.klyfeelectric.com.br/solucoes/eletrica/iluminacao', '1']
+    Row #3: ['https://www.klyfeelectric.com.br/solucoes/eletrica/chuveiro-eletrico', '1']
+    Row #4: ['https://www.klyfeelectric.com.br/solucoes/eletrica/ventiladores', '1']
+    Row #5: ['https://www.klyfeelectric.com.br/solucoes/eletrica/quadro-distribuicao', '1']
+    Row #6: ['https://www.klyfeelectric.com.br/solucoes/eletrica/fiacao-cabeamento', '1']
+    Row #7: ['https://www.klyfeelectric.com.br/solucoes/eletrica/ar-condicionado', '1']
+    Row #8: ['https://www.klyfeelectric.com.br/blog/quanto-custa-energia-solar-2026', '1']
+    Row #9: ['https://www.klyfeelectric.com.br/blog/nr10-laudo-eletrico-empresa', '1']
+    Row #10: ['https://www.klyfeelectric.com.br/blog/automacao-industrial-nordeste', '1']
+    Row #11: ['https://www.klyfeelectric.com.br/blog/payback-painel-solar-simulacao', '1']
+    Row #12: ['https://www.klyfeelectric.com.br/blog/spda-para-raios-obrigatorio', '1']
+    Row #13: ['https://www.klyfeelectric.com.br/blog/clp-vs-reles-paineis', '1']
+    Row #14: ['https://www.klyfeelectric.com.br/joao-pessoa', '1']
+    Row #15: ['https://www.klyfeelectric.com.br/joao-pessoa/quem-somos', '1']
+
+================================================================================
+
+Table #4:
+  Headers: ['#', 'Status', 'URL', 'Time', 'Type']
+  Rows count: 2
+    Row #1: ['1', '200', 'https://www.klyfeelectric.com.br', '516ms', 'FINAL']
+
+================================================================================
+
+Table #5:
+  Headers: ['Element', 'Value', 'Length']
+  Rows count: 5
+    Row #1: ['Title', 'Klyfe Electric | Engenharia, Elétrica e Solar na Paraíba', '56']
+    Row #2: ['Meta Description', 'Especialistas em projetos elétricos, automação e energia solar na Paraíba e região. 5★ no Google.', '97']
+    Row #3: ['H1', 'Engenharia &Energia naParaíba.', '—']
+    Row #4: ['Canonical', 'https://www.klyfeelectric.com.br/', '—']
+
+================================================================================
+
+Table #6:
+  Headers: ['Target Keyword', 'LSI / Related Keywords']
+  Rows count: 2
+    Row #1: ['energia solar', '—']
+
+================================================================================
+

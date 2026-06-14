@@ -1,0 +1,59 @@
+Searching for link profile details...
+
+Section Header: 🔗 Link Profile 80/100
+▼
+<div class="section-body" id="body-link_profile">
+ <div class="summary-row">
+  <div class="summary-item">
+   <div class="val">
+    20
+   </div>
+   <div class="lbl">
+    Pages Crawled
+   </div>
+  </div>
+  <div class="summary-item">
+   <div class="val">
+    52.8
+   </div>
+   <div class="lbl">
+    Avg Links/Page
+   </div>
+  </div>
+  <div class="summary-item">
+   <div class="val">
+    1
+   </div>
+   <div class="lbl">
+    Orphan Pages
+   </div>
+  </div>
+  <div class="summary-item">
+   <div class="val">
+    0
+   </div>
+   <div class="lbl">
+    Dead Ends
+   </div>
+  </div>
+ </div>
+ <div style="margin-top:16px">
+  <h3 style="font-size:0.95rem;margin-bottom:8px;">
+   🔍 Issues Found
+  </h3>
+  <div class="issue-item critical">
+   <span class="issue-badge">
+    HIGH
+   </span>
+   <div>
+    <strong>
+     1 orphan page(s) with zero inbound internal links.
+    </strong>
+    <br/>
+    <span style='"color:var(--text-muted)"'>
+     Fix: Add internal links from relevant content pages to these orphan pages.
+    </span>
+   </div>
+  </div>
+ </div>
+</div>

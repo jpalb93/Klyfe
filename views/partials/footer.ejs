@@ -1,9 +1,25 @@
+<% 
+  const currentCityKey = (typeof cityKey !== 'undefined') ? cityKey : 'default';
+  const prefix = (currentCityKey !== 'default') ? '/' + currentCityKey : '';
+
+  const displayAddress = (typeof cityData !== 'undefined' && cityData.address) ? cityData.address : 'Atendimento Consultivo em toda a Paraíba';
+  const displayPhone = (typeof cityData !== 'undefined' && cityData.phone) ? cityData.phone : '(83) 99133-0972';
+  const waMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.';
+  const waUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(waMsg)}`;
+
+  // Filtro de Serviços Disponíveis
+  const isAllEnabled = (typeof cityData !== 'undefined' && cityData.allServices === true);
+  const availableServices = (typeof cityData !== 'undefined' && cityData.services) ? Object.keys(cityData.services) : [];
+  const isServiceEnabled = (key) => isAllEnabled || availableServices.includes(key);
+%>
+
 <footer class="main-footer">
     <div class="container">
         <div class="footer-grid">
             <!-- Branding Column -->
             <div class="footer-col branding">
-                <a href="/" class="footer-logo">
+                <a href="<%= prefix || '/' %>" class="footer-logo" aria-label="Klyfe Electric - Voltar para a Home">
+                    <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Klyfe Electric</span>
                     <%- include('logo') %>
                 </a>
                 <p class="footer-tagline">Alta performance em Engenharia Elétrica, Automação e Energia Solar.</p>
@@ -23,46 +39,60 @@
             <div class="footer-col">
                 <h4>Nossas Soluções</h4>
                 <ul class="footer-links">
-                    <li><a href="/solucoes/engenharia">Engenharia Elétrica</a></li>
-                    <li><a href="/solucoes/engenharia/laudos-eletricos">Laudos & Inspeções</a></li>
-                    <li><a href="/solucoes/automacao">Automação Residencial</a></li>
-                    <li><a href="/solucoes/solar">Energia Solar</a></li>
-                    <li><a href="/solucoes/eletrica">Serviços de Eletricista</a></li>
+                    <% if (isServiceEnabled('engenharia')) { %>
+                        <li><a href="<%= prefix %>/solucoes/engenharia">Engenharia Elétrica</a></li>
+                    <% } %>
+                    <% if (isServiceEnabled('laudos-eletricos')) { %>
+                        <li><a href="<%= prefix %>/solucoes/engenharia/laudos-eletricos">Laudos & Inspeções</a></li>
+                    <% } %>
+                    <% if (isServiceEnabled('automacao')) { %>
+                        <li><a href="<%= prefix %>/solucoes/automacao">Automação Residencial</a></li>
+                    <% } %>
+                    <% if (isServiceEnabled('solar')) { %>
+                        <li><a href="<%= prefix %>/solucoes/solar">Energia Solar</a></li>
+                    <% } %>
+                    <% if (isServiceEnabled('eletrica')) { %>
+                        <li><a href="<%= prefix %>/solucoes/eletrica">Serviços de Eletricista</a></li>
+                    <% } %>
                 </ul>
+
             </div>
 
             <!-- Institutional -->
             <div class="footer-col">
                 <h4>Institucional</h4>
                 <ul class="footer-links">
-                    <li><a href="/quem-somos">Quem Somos</a></li>
-                    <li><a href="/projetos">Casos de Sucesso</a></li>
-                    <li><a href="/blog">Blog Técnico</a></li>
-                    <li><a href="/contato">Falar com Consultor</a></li>
+                    <li><a href="<%= prefix %>/quem-somos">Quem Somos</a></li>
+                    <li><a href="<%= prefix %>/projetos">Casos de Sucesso</a></li>
+                    <li><a href="<%= prefix %>/blog">Blog Técnico</a></li>
+                    <li><a href="<%= prefix %>/glossario">Glossário Técnico</a></li>
+                    <li><a href="<%= prefix %>/contato">Falar com Consultor</a></li>
                 </ul>
             </div>
 
             <!-- Contact & Local -->
             <div class="footer-col">
                 <h4>Onde Estamos</h4>
-                <p class="contact-info"><i class="fas fa-map-marker-alt"></i> R. da Cerâmica, 34 - Santa Rosa<br>Campina Grande, PB</p>
-                <p class="contact-info"><i class="fas fa-phone-alt"></i> (83) 99133-0972</p>
+                <p class="contact-info"><i class="fas fa-map-marker-alt"></i> <%= displayAddress %></p>
+                <p class="contact-info"><i class="fas fa-phone-alt"></i> <%= displayPhone %></p>
                 <div class="footer-social">
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/klyfeelectric" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/klyfeelectric" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="<%= waUrl %>" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
+
         </div>
 
         <div class="footer-bottom">
             <div class="copyright">
-                <p>&copy; 2025 Klyfe Electric. Todos os direitos reservados.</p>
+                <p>&copy; <%= new Date().getFullYear() %> Klyfe Electric. Todos os direitos reservados.</p>
+
             </div>
             <div class="developer">
                 <span>Desenvolvido por:</span>
-                <a href="https://eximusdigital.com.br/" target="_blank" rel="noopener">
-                    <img src="/img/logo-eximus-branco.webp" alt="Eximus Digital" loading="lazy">
+                <a href="https://eximusdigital.com.br/" target="_blank" rel="noopener" aria-label="Desenvolvido por Eximus Digital - Ir para o site oficial do desenvolvedor">
+                    <img src="/img/logo-eximus-branco.webp" alt="Eximus Digital" loading="lazy" width="120" height="30">
                 </a>
             </div>
         </div>

@@ -255,6 +255,24 @@
             </div>
         </section>
 
+        <% if (cityData.industrialContent && cityData.industrialContent.polosIndustriais) { %>
+        <!-- ═══ CONTEÚDO ESPECÍFICO POR CIDADE ═══ -->
+        <section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFORMAÇÕES LOCAIS</span></div>
+                <h2 class="fade-in" style="margin-bottom: 2rem;">O Setor Industrial em <%= cityData.name %>: <span style="color:var(--accent-primary)">o que você precisa saber</span></h2>
+                
+                <div class="grid grid-cols-1" style="gap: 4rem;">
+                    <div class="fade-in">
+                        <p style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1.5rem;">
+                            <%= cityData.industrialContent.polosIndustriais %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <% } %>
+
         <!-- ═══ CTA FINAL ═══ -->
         <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container" style="text-align: center;">
@@ -269,6 +287,64 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
+
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quais normas regulamentam instalações elétricas industriais no Brasil?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As principais normas são: NR-10, que regulamenta segurança em instalações e serviços em eletricidade; NBR 5410, que estabelece requisitos para instalações elétricas de baixa tensão; e NR-12, que regula segurança em máquinas e equipamentos, sendo aplicável em ambientes industriais onde as instalações elétricas alimentam equipamentos de produção."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre manutenção elétrica preventiva e corretiva?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A manutenção preventiva é realizada em intervals programados para evitar falhas, inspecionando e substituindo componentes antes que apresentem defeito. A manutenção corretiva é executada após a identificação de uma falha ou defeito, com o objetivo de restabelecer o funcionamento normal da instalação. Ambas são essenciais para garantir a continuidade operacional e a segurança do ambiente industrial."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Por que a montagem de quadros elétricos exige profissional habilitado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Quadros elétricos industriais operam com cargas elevadas e exigem dimensionamento preciso de disjuntores, fusíveis, barramentos e cabos. Um dimensionamento incorreto pode resultar em sobrecargas, curtos-circuitos, incêndios e risco de vida. A NR-10 exige que serviços em instalações elétricas sejam realizados por profissionais habilitados e capacitados."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Com que frequência deve ser realizada a manutenção elétrica preventiva em indústrias?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A frequência ideal varia conforme o porte da instalação, o regime de operação e as exigências das normas internas da empresa. Em geral, recomenda-se inspeções periódicas a cada seis meses a um ano para instalações industriais. A Klyfe Electric avalia cada caso e indica o plano de manutenção mais adequado para a sua operação."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A Klyfe Electric atende indústrias fora de Campina Grande?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. A Klyfe Electric atende instalações industriais em Campina Grande e na região. Entre em contato para verificar a disponibilidade de atendimento para a sua localidade."
+          }
+        }<% if (typeof cityData !== 'undefined' && cityData.faqExtra) { %>,
+        {
+          "@type": "Question",
+          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+          }
+        }<% } %>
+      ]
+    }
+    </script>
 
     <script src="/js/main.js"></script>
 </body>

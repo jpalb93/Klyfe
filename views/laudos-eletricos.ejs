@@ -266,6 +266,48 @@
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
 
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual a validade de um laudo elétrico?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A validade varia conforme o tipo de laudo e a exigência do órgão solicitante. Em geral, laudos de SPDA e instalações industriais são renovados anualmente para garantir a continuidade da segurança e conformidade normativa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O laudo técnico substitui a manutenção?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. O laudo é um diagnóstico que aponta o que precisa ser mantido ou corrigido. Ele serve como roteiro técnico para que as manutenções sejam feitas com foco nos riscos identificados, otimizando investimentos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês atendem condomínios residenciais?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Realizamos vistorias completas em condomínios para fins de renovação de AVCB, seguro predial e segurança das áreas comuns, incluindo medição de aterramento e laudo de para-raios (SPDA)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais cidades da Paraíba a Klyfe Electric atende?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Temos sede em Campina Grande e atendemos João Pessoa, Guarabira, Patos e todas as principais regiões da Paraíba com equipe técnica local pronta para realizar vistorias e diagnósticos."
+          }
+        }
+      ]
+    }
+    </script>
+
     <script src="/js/main.js"></script>
 </body>
 </html>

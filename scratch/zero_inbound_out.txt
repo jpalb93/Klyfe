@@ -1,0 +1,32 @@
+Searching for zero inbound link pages in text/tables...
+
+Issue: WARNINGContent readability is difficultLong, complex text can reduce engagement and comprehension.Fix: Rewrite key sections with shorter sentences (15-20 words), shorter paragraphs (2-4 sentences), and clearer subheadings.
+Issue: CRITICAL 1 orphan page(s) with zero inbound internal links. — Fix: Add internal links from relevant content pages to these orphan pages.
+Issue: WARNING ⚠️ 67 potential orphan page(s) (≤1 internal link pointing to them)
+Issue: HIGH1 orphan page(s) with zero inbound internal links.Fix: Add internal links from relevant content pages to these orphan pages.
+Issue: FIX Content readability is difficult: Rewrite key sections with shorter sentences (15-20 words), shorter paragraphs (2-4 sentences), and clearer subheadings.
+Issue: FIX Add og:image:width and og:image:height for optimal rendering (1200×630 recommended)
+Issue: FIX Add internal links pointing to orphan pages from related content
+Section: 🔗 Broken Links 0 broken / 32 total
+▼
+Section: 🕸️ Internal Link Structure 80/100
+▼
+  Table 0 (rows: 16)
+    Row 0: ['URL', 'Incoming Links']
+    Row 1: ['https://www.klyfeelectric.com.br/solucoes/eletrica/tomadas-interruptores', '1']
+    Row 2: ['https://www.klyfeelectric.com.br/solucoes/eletrica/iluminacao', '1']
+    Row 3: ['https://www.klyfeelectric.com.br/solucoes/eletrica/chuveiro-eletrico', '1']
+    Row 4: ['https://www.klyfeelectric.com.br/solucoes/eletrica/ventiladores', '1']
+    Row 5: ['https://www.klyfeelectric.com.br/solucoes/eletrica/quadro-distribuicao', '1']
+    Row 6: ['https://www.klyfeelectric.com.br/solucoes/eletrica/fiacao-cabeamento', '1']
+    Row 7: ['https://www.klyfeelectric.com.br/solucoes/eletrica/ar-condicionado', '1']
+    Row 8: ['https://www.klyfeelectric.com.br/blog/quanto-custa-energia-solar-2026', '1']
+    Row 9: ['https://www.klyfeelectric.com.br/blog/nr10-laudo-eletrico-empresa', '1']
+    Row 10: ['https://www.klyfeelectric.com.br/blog/automacao-industrial-nordeste', '1']
+    Row 11: ['https://www.klyfeelectric.com.br/blog/payback-painel-solar-simulacao', '1']
+    Row 12: ['https://www.klyfeelectric.com.br/blog/spda-para-raios-obrigatorio', '1']
+    Row 13: ['https://www.klyfeelectric.com.br/blog/clp-vs-reles-paineis', '1']
+    Row 14: ['https://www.klyfeelectric.com.br/campina-grande', '1']
+    Row 15: ['https://www.klyfeelectric.com.br/campina-grande/quem-somos', '1']
+Section: 🔗 Link Profile 80/100
+▼

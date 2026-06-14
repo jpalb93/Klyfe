@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('../partials/head', { title: title, description: description, canonical: canonical, jsonLd: jsonLd }) %>
+</head>
+<body>
+    <%- include('../partials/navbar') %>
+
+    <main>
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/solucoes/engenharia" style="color: inherit; text-decoration: none;">Engenharia Elétrica</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);"><%= serviceData.label %></span>
+            </div>
+        </nav>
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+            <div class="container fade-in">
+                <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span><%= serviceData.subtitle || 'ENGENHARIA ELÉTRICA' %></span></div>
+                <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                    <div>
+                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">
+                            <%= serviceData.label %> <br>
+                            <span class="text-gradient"><%= cityData.preposition %> <%= cityData.name %></span>
+                        </h1>
+                        <p style="color:var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
+                            <%= serviceData.introText %>
+                        </p>
+                        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
+                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" target="_blank" rel="noopener" class="btn btn-primary">
+                                <i class="fab fa-whatsapp"></i> Solicitar Orçamento
+                            </a>
+                            <a href="#detalhes" class="btn btn-ghost">Ver Detalhes do Serviço →</a>
+                        </div>
+                    </div>
+                    <% if (serviceData.heroImage) { %>
+                        <div style="position: relative;">
+                            <div style="width: 100%; overflow: hidden; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                                <img src="<%= serviceData.heroImage %>" alt="<%= serviceData.label %> <%= cityData.preposition %> <%= cityData.name %>" style="width: 100%; height: auto; display: block; filter: brightness(0.9) contrast(1.1); transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
+        <section style="background: var(--bg-primary); border-bottom: 1px solid var(--border-color); padding: 2rem 0;">
+            <div class="container">
+                <div class="grid grid-cols-4" style="gap: 1rem;">
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Projetos em BIM 3D</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ ART e CREA inclusos</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Normas ABNT e NR-10</span>
+                    </div>
+                    <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Homologação Energisa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ O QUE ESTÁ INCLUSO / ESCOPO ═══ -->
+        <section class="section-padding" id="detalhes">
+            <div class="container">
+                <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>DETALHES DO PROJETO</span></div>
+                <div class="grid grid-cols-2 gap-xl align-center">
+                    <div>
+                        <h2 style="margin-bottom: 2rem;">Entrega de Engenharia Técnica de <br><span class="text-gradient">Alta Performance.</span></h2>
+                        <p style="color: var(--text-muted); margin-bottom: 2rem; line-height: 1.7; font-size: 1.05rem;">
+                            Projetamos infraestruturas robustas, focando no custo-benefício dos materiais e na total segurança contra curto-circuitos e choques elétricos. Cada etapa do projeto é dimensionada com exatidão matemática para evitar desperdício de condutores e eletrodutos.
+                        </p>
+                        
+                        <% if (serviceData.whatsIncluded && serviceData.whatsIncluded.length > 0) { %>
+                            <ul style="list-style: none; padding: 0;">
+                                <% serviceData.whatsIncluded.forEach(item => { %>
+                                    <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; color: var(--text-main); font-size: 1.05rem;">
+                                        <i class="fas fa-check-circle" style="color: var(--accent-primary);"></i> <%= item %>
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        <% } %>
+                    </div>
+                    
+                    <% if (serviceData.benefits && serviceData.benefits.length > 0) { %>
+                        <div class="bracket-box" style="padding: 3rem; background: var(--bg-secondary);">
+                            <h3 style="margin-bottom: 2rem; font-family: var(--font-mono); color: var(--accent-primary);">// DIFERENCIAIS DA KLYFE</h3>
+                            <% serviceData.benefits.forEach((benefit, idx) => { %>
+                                <div style="margin-bottom: <%= idx === serviceData.benefits.length - 1 ? '0' : '2rem' %>;">
+                                    <h4 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px;">
+                                        <i class="<%= benefit.icon || 'fas fa-shield-alt' %>" style="color: var(--accent-primary);"></i>
+                                        <%= benefit.title %>
+                                    </h4>
+                                    <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+                                        <%= benefit.description %>
+                                    </p>
+                                </div>
+                            <% }) %>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CONTEXTO TÉCNICO LOCAL (Anti-Doorway Pages) ═══ -->
+        <% if (serviceData.serviceContext) { %>
+            <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                <div class="container">
+                    <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
+                        <div class="fade-in">
+                            <div class="section-separator"><%- include('../partials/symbol') %> <span>ATENDIMENTO REGIONAL</span></div>
+                            <h2 style="margin-bottom: 2rem;">Foco Técnico <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atuação Direcionada</span></h2>
+                            <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
+                                <%- serviceData.serviceContext %>
+                                <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos condomínios, construtoras e indústrias em <%= cityData.bairros %> e toda a região.</p>
+                            </div>
+                        </div>
+                        <div class="fade-in" style="position: relative;">
+                             <div class="bracket-box" style="padding: 2.5rem; background: var(--bg-primary); border-color: var(--accent-primary);">
+                                <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">CREA E CONCORDÂNCIA TÉCNICA</h4>
+                                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
+                                    Tanto em <strong><%= cityData.name %></strong> quanto no entorno metropolitano, nossos projetos de engenharia cumprem integralmente as diretrizes da <strong><%= cityData.concessionaria %></strong>. Isso garante homologação sem atrasos burocráticos e conexões robustas à rede.
+                                </p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- ═══ PROCESSO DE TRABALHO ═══ -->
+        <% if (serviceData.process && serviceData.process.length > 0) { %>
+            <section class="section-padding bg-blueprint">
+                <div class="container">
+                    <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>FLUXO DE TRABALHO</span></div>
+                    <h2 style="margin-bottom: 4rem;">Fases do Nosso Processo de <br><span class="text-gradient">Desenvolvimento.</span></h2>
+                    
+                    <div class="grid grid-cols-4" style="gap: 1.5rem;">
+                        <% serviceData.process.forEach((step, idx) => { %>
+                            <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
+                                <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-size: 1.25rem;"><%= idx + 1 %>. <%= step.title %></h3>
+                                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= step.description %></p>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
+        <% if (cityKey !== 'default') { %>
+            <section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+                <div class="container" style="text-align: center;">
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Este serviço também é prestado em 
+                        <a href="<%= alternateUrl %>" style="color: var(--accent-primary); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s;" onmouseover="this.style.borderBottomColor='var(--accent-primary)'" onmouseout="this.style.borderBottomColor='transparent'">
+                            <%= alternateCityName %>
+                        </a>.
+                    </p>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- ═══ FAQ ═══ -->
+        <% if (serviceData.faq && serviceData.faq.length > 0) { %>
+            <section class="section-padding" style="background: var(--bg-secondary);">
+                <div class="container" style="max-width: 800px;">
+                    <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+                    <h2 style="text-align: center; margin-bottom: 4rem;">Dúvidas Comuns sobre o <br><span style="color:var(--accent-primary)">Serviço</span></h2>
+                    
+                    <div class="faq-accordion fade-in">
+                        <% serviceData.faq.forEach(item => { %>
+                            <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                                <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                                    <%= item.question %>
+                                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                                </button>
+                                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= item.answer %></p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </section>
+        <% } %>
+
+        <!-- ═══ LINKS RELACIONADOS (SEO MESH) ═══ -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>ENGENHARIA ELÉTRICA</span></div>
+                <h2 style="text-align: center; margin-bottom: 4rem;">Outras Soluções de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
+                
+                <div class="grid grid-cols-4" style="gap: 1.5rem;">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Projeto Elétrico</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Residencial, Predial e Comercial.</p>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Subestação Aérea</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Média Tensão até 500kVA.</p>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Laudos Técnicos</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Laudo de SPDA, NR-10 e PIE.</p>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/manutencao-subestacao" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.5rem;">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.5rem; color: var(--text-main);">Manutenção Subestação</h3>
+                        <p style="color: var(--text-muted); font-size: 0.8rem;">Preventiva, Corretiva e Preditiva.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA FINAL ═══ -->
+        <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+            <div class="container" style="text-align: center;">
+                <div class="section-separator" style="justify-content: center;"><%- include('../partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
+                <h2 style="margin-bottom: 2rem;">Inicie Seu Projeto Técnico <%= cityData.preposition %> <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Fale diretamente com nossa equipe de engenheiros eletricistas e solicite um orçamento rápido e detalhado para a sua necessidade técnica.</p>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Falar com Engenheiro no WhatsApp</a>
+            </div>
+        </section>
+
+    </main>
+
+    <%- include('../partials/whatsapp') %>
+    <%- include('../partials/footer') %>
+
+    <!-- Schema.org FAQPage JSON-LD -->
+    <% if (serviceData.faq && serviceData.faq.length > 0) { %>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            <% serviceData.faq.forEach((item, idx) => { %>
+                {
+                  "@type": "Question",
+                  "name": "<%= item.question.replace(/"/g, '\\"') %>",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "<%= item.answer.replace(/"/g, '\\"') %>"
+                  }
+                }<%= idx === serviceData.faq.length - 1 ? '' : ',' %>
+            <% }) %>
+          ]
+        }
+        </script>
+    <% } %>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

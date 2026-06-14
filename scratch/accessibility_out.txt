@@ -1,0 +1,145 @@
+Searching report sections and tables...
+
+Header: SEO Analysis Report
+Header: 🧭 Environment Detection (LLM-Inferred)
+Header: Detection Signals
+Header: 🛠️ Environment-Specific Fix Plan
+Header: 🚨 All Issues (11)
+Header: 🔒 Security Headers 75/100
+Header: 📱 Social Meta Tags 77/100
+Header: 🤖 Robots & AI Crawlers 100/100
+Header: AI Crawler Management
+Header: 🔗 Broken Links 0 broken / 32 total
+Header: 🕸️ Internal Link Structure 60/100
+Header: Top Anchor Texts
+Header: Potential Orphan Pages
+Header: ↪️ Redirect Chain 0 hops
+Header: 🧠 AI Search Readiness (llms.txt) Found
+Header: ⚡ Performance & Core Web Vitals 0/100
+Header: 📝 On-Page SEO 100/100
+Header: 📖 Readability 30/100
+Header: 💡 Recommendations
+Header: ✍️ What To Replace (Before/After)
+Header: 📄 Article Info & Keywords 75/100
+Header: Extracted Keywords
+Header: 🏛️ Entity SEO 0/100
+Header: 🔍 Issues Found
+Header: 🔗 Link Profile 80/100
+Header: 🔍 Issues Found
+Header: 🌍 Hreflang / International SEO 0 tags
+Header: 📋 Content Uniqueness 2 dupes / 0 thin
+Header: 💡 All Recommendations
+Header: 🛠️ Environment-Specific Fixes
+Header: 🔒 Security
+Header: 📱 Social Meta
+Header: 🕸️ Internal Links
+Header: 📖 Readability
+
+================================================================================
+Searching all tables in the document:
+Found 7 tables total.
+
+Table #0 headers: ['Header', 'Status', 'Value / Description']
+  Rows count: 7
+    Row #0: ['Header', 'Status', 'Value / Description']
+    Row #1: ['HSTS (Strict-Transport-Security)', 'Present', 'max-age=31536000; includeSubDomains']
+    Row #2: ['X-Frame-Options', 'Present', 'SAMEORIGIN']
+    Row #3: ['X-Content-Type-Options', 'Present', 'nosniff']
+    Row #4: ['Referrer-Policy', 'Present', 'no-referrer']
+    Row #5: ['Content-Security-Policy (CSP)', 'Missing', 'Prevents XSS, clickjacking, and code injection.']
+    Row #6: ['Permissions-Policy', 'Missing', 'Controls browser feature access (camera, microphone, geolocation).']
+
+----------------------------------------
+Table #1 headers: ['Tag', 'Status', 'Value']
+  Rows count: 12
+    Row #0: ['Tag', 'Status', 'Value']
+    Row #1: ['og:title', '✅', 'Klyfe Electric | Engenharia, Elétrica e Solar na Paraíba']
+    Row #2: ['og:description', '✅', 'Especialistas em projetos elétricos, automação e energia sol']
+    Row #3: ['og:image', '✅', 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp']
+    Row #4: ['og:url', '✅', 'https://www.klyfeelectric.com.br/']
+    Row #5: ['og:type', '✅', 'website']
+    Row #6: ['og:site_name', 'Missing', '—']
+    Row #7: ['twitter:card', '✅', 'summary_large_image']
+    Row #8: ['twitter:title', '✅', 'Klyfe Electric | Engenharia, Elétrica e Solar na Paraíba']
+    Row #9: ['twitter:description', '✅', 'Especialistas em projetos elétricos, automação e energia sol']
+    Row #10: ['twitter:image', '✅', 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp']
+    Row #11: ['twitter:site', 'Missing', '—']
+
+----------------------------------------
+Table #2 headers: ['Crawler', 'Status', 'Details']
+  Rows count: 12
+    Row #0: ['Crawler', 'Status', 'Details']
+    Row #1: ['GPTBot', 'Info', 'explicitly allowed']
+    Row #2: ['ChatGPT-User', 'Info', 'explicitly allowed']
+    Row #3: ['ClaudeBot', 'Info', 'explicitly allowed']
+    Row #4: ['PerplexityBot', 'Info', 'explicitly allowed']
+    Row #5: ['Google-Extended', 'Info', 'explicitly allowed']
+    Row #6: ['Applebot-Extended', 'Info', 'explicitly allowed']
+    Row #7: ['Bytespider', 'Info', 'explicitly allowed']
+    Row #8: ['CCBot', 'Info', 'explicitly allowed']
+    Row #9: ['anthropic-ai', 'Info', 'explicitly allowed']
+    Row #10: ['FacebookBot', 'Info', 'explicitly allowed']
+    Row #11: ['Amazonbot', 'Info', 'explicitly allowed']
+
+----------------------------------------
+Table #3 headers: ['URL', 'Incoming Links']
+  Rows count: 16
+    Row #0: ['URL', 'Incoming Links']
+    Row #1: ['https://www.klyfeelectric.com.br/solucoes/eletrica/tomadas-interruptores', '1']
+    Row #2: ['https://www.klyfeelectric.com.br/solucoes/eletrica/iluminacao', '1']
+    Row #3: ['https://www.klyfeelectric.com.br/solucoes/eletrica/chuveiro-eletrico', '1']
+    Row #4: ['https://www.klyfeelectric.com.br/solucoes/eletrica/ventiladores', '1']
+    Row #5: ['https://www.klyfeelectric.com.br/solucoes/eletrica/quadro-distribuicao', '1']
+    Row #6: ['https://www.klyfeelectric.com.br/solucoes/eletrica/fiacao-cabeamento', '1']
+    Row #7: ['https://www.klyfeelectric.com.br/solucoes/eletrica/ar-condicionado', '1']
+    Row #8: ['https://www.klyfeelectric.com.br/blog/quanto-custa-energia-solar-2026', '1']
+    Row #9: ['https://www.klyfeelectric.com.br/blog/nr10-laudo-eletrico-empresa', '1']
+    Row #10: ['https://www.klyfeelectric.com.br/blog/automacao-industrial-nordeste', '1']
+    Row #11: ['https://www.klyfeelectric.com.br/blog/payback-painel-solar-simulacao', '1']
+    Row #12: ['https://www.klyfeelectric.com.br/blog/spda-para-raios-obrigatorio', '1']
+    Row #13: ['https://www.klyfeelectric.com.br/blog/clp-vs-reles-paineis', '1']
+    Row #14: ['https://www.klyfeelectric.com.br/joao-pessoa', '1']
+    Row #15: ['https://www.klyfeelectric.com.br/joao-pessoa/quem-somos', '1']
+
+----------------------------------------
+Table #4 headers: ['#', 'Status', 'URL', 'Time', 'Type']
+  Rows count: 2
+    Row #0: ['#', 'Status', 'URL', 'Time', 'Type']
+    Row #1: ['1', '200', 'https://www.klyfeelectric.com.br', '516ms', 'FINAL']
+
+----------------------------------------
+Table #5 headers: ['Element', 'Value', 'Length']
+  Rows count: 5
+    Row #0: ['Element', 'Value', 'Length']
+    Row #1: ['Title', 'Klyfe Electric | Engenharia, Elétrica e Solar na Paraíba', '56']
+    Row #2: ['Meta Description', 'Especialistas em projetos elétricos, automação e energia solar na Paraíba e região. 5★ no Google.', '97']
+    Row #3: ['H1', 'Engenharia &Energia naParaíba.', '—']
+    Row #4: ['Canonical', 'https://www.klyfeelectric.com.br/', '—']
+
+----------------------------------------
+Table #6 headers: ['Target Keyword', 'LSI / Related Keywords']
+  Rows count: 2
+    Row #0: ['Target Keyword', 'LSI / Related Keywords']
+    Row #1: ['energia solar', '—']
+
+----------------------------------------
+
+================================================================================
+Searching for issue messages containing 'anchor' or 'link':
+Issue #12 [['issue-item', 'critical']]: CRITICAL 1 orphan page(s) with zero inbound internal links. — Fix: Add internal links from relevant content pages to these orphan pages.
+Issue #16 [['issue-item', 'warning']]: WARNING ⚠️ 67 potential orphan page(s) (≤1 internal link pointing to them)
+Issue #18 [['issue-item', 'warning']]: WARNING ⚠️ 16 link(s) have no anchor text
+Issue #28 [['issue-item', 'info']]: INFO Missing sameAs link to Wikipedia (Primary KG signal). — Fix: Add the existing official 'wikipedia.org' URL to sameAs; do not create this profile solely for SEO.
+Issue #30 [['issue-item', 'info']]: INFO Missing sameAs link to Wikidata (Primary KG signal). — Fix: Add the existing official 'wikidata.org' URL to sameAs; do not create this profile solely for SEO.
+Issue #32 [['issue-item', 'info']]: INFO Missing sameAs link to Twitter/X (Strong KG signal). — Fix: Add 'x.com' profile URL to sameAs array in your entity schema.
+Issue #45 [['summary-item']]: 334Internal Links
+Issue #46 [['summary-item']]: 20.9Avg Links/Page
+Issue #77 [['issue-item', 'warning']]: SENTENCE (template)Current: Section descriptions mix too many topics in one long paragraph.Replace with: Replace with short blurbs per section (1 sentence each) and add a clear CTA link: "Start Wi-Fi Security", "Explore AD Attack Paths", "View Red-Team Cheat Sheets".
+Issue #84 [['summary-item']]: 2sameAs Links
+Issue #90 [['issue-item', 'info']]: INFOMissing sameAs link to Wikipedia (Primary KG signal).Fix: Add the existing official 'wikipedia.org' URL to sameAs; do not create this profile solely for SEO.
+Issue #92 [['issue-item', 'info']]: INFOMissing sameAs link to Wikidata (Primary KG signal).Fix: Add the existing official 'wikidata.org' URL to sameAs; do not create this profile solely for SEO.
+Issue #94 [['issue-item', 'info']]: INFOMissing sameAs link to Twitter/X (Strong KG signal).Fix: Add 'x.com' profile URL to sameAs array in your entity schema.
+Issue #97 [['summary-item']]: 52.8Avg Links/Page
+Issue #100 [['issue-item', 'critical']]: HIGH1 orphan page(s) with zero inbound internal links.Fix: Add internal links from relevant content pages to these orphan pages.
+Issue #121 [['issue-item', 'info']]: FIX Add internal links pointing to orphan pages from related content
+Issue #133 [['issue-item', 'info']]: FIX Rewrite: Section descriptions mix too many topics in one long paragraph. → Replace with short blurbs per section (1 sentence each) and add a clear CTA link: "Start Wi-Fi Security", "Explore AD Attack Paths", "View Red-Team Cheat Sheets".

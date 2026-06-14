@@ -1,0 +1,54 @@
+Found 5 occurrences of 'words':
+
+Match: 20 words
+Context:
+d)">Long, complex text can reduce engagement and comprehension.</span><br><span><strong>Fix:</strong> Rewrite key sections with shorter sentences (15-20 words), shorter paragraphs (2-4 sentences), and clearer subheadings.</span></div></div><div class="issue-item info"><span class="issue-badge">INFO</span><div><strong>Performance measurement incomplete</strong><br><span style="color:var(--text-muted)">Page
+
+====================
+
+Match: 239 words
+Context:
+% complex words (3+ syllables) — consider simplifying</div>
+<div class="issue-item warning"><span class="issue-badge">WARNING</span> ⚠️ Thin content (239 words) — may rank poorly</div>
+<div class="issue-item info"><span class="issue-badge">INFO</span> No Wikidata entry found for 'Klyfe Electric'. — Fix: If the entity meets Wikidata notability guidelines, create or improve an item with accurate third-party 
+
+====================
+
+Match: 239 words
+Context:
+ ⚠️ 33.1% complex words (3+ syllables) — consider simplifying</div><div class="issue-item info"><span class="issue-badge">FIX</span> ⚠️ Thin content (239 words) — may rank poorly</div></div>
+            <div style="margin-top:16px"><h3 style="font-size:0.95rem;margin-bottom:8px;">✍️ What To Replace (Before/After)</h3><div class="issue-item warning"><span class="issue-badge">SENTENCE (template)</span><div><
+
+====================
+
+Match: 20 words
+Context:
+ue-item info"><span class="issue-badge">FIX</span> <strong>Content readability is difficult</strong>: Rewrite key sections with shorter sentences (15-20 words), shorter paragraphs (2-4 sentences), and clearer subheadings.</div><h3 style="font-size:0.95rem;margin:16px 0 8px;">🔒 Security</h3><div class="issue-item info"><span class="issue-badge">FIX</span> Content-Security-Policy (CSP): Add a Content-Securi
+
+====================
+
+Match: 239 words
+Context:
+ ⚠️ 33.1% complex words (3+ syllables) — consider simplifying</div><div class="issue-item info"><span class="issue-badge">FIX</span> ⚠️ Thin content (239 words) — may rank poorly</div><div class="issue-item info"><span class="issue-badge">FIX</span> Rewrite: Homepage hero intro block is broad and hard to scan. → Use a 2-3 sentence hero: who you help, what users can do here, and where to start. Example: &qu
+
+====================
+
+
+
+Found 2 occurrences of 'anchor':
+
+Context:
+phan page(s) (≤1 internal link pointing to them)</div>
+<div class="issue-item warning"><span class="issue-badge">WARNING</span> ⚠️ 16 link(s) have no anchor text</div>
+<div class="issue-item warning"><span class="issue-badge">WARNING</span> ⚠️ Content is difficult to read (Flesch: 21.2) — may reduce engagement</div>
+<div class="issue-item warning"><span class="issue-badge">WARNING</span> ⚠️ 33.1% comple
+
+====================
+
+Context:
+div class="val">67</div><div class="lbl">Orphan Pages</div></div>
+            </div>
+            <h3 style="margin:16px 0 8px;font-size:0.95rem;">Top Anchor Texts</h3><div class="bar-row"><span class="bar-label">•</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-value">22</span></div><div class="bar-row"><span class="bar-label">Soluções</span><div class=
+
+====================
+

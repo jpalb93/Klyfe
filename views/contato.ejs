@@ -58,81 +58,139 @@
             <div class="container grid grid-cols-2" style="gap: 4rem;">
                 <!-- ESQUERDA: Formulário -->
                 <div class="fade-in">
-                    <form id="contact-form" class="bracket-box" style="padding: 3rem;">
+                    <form id="contact-form" class="bracket-box" style="padding: 2.5rem; background: rgba(255,255,255,0.01);">
                         <div class="form-group">
                             <label for="nome">Nome completo *</label>
-                            <input type="text" id="nome" name="nome" class="form-control" required>
+                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Ex: João Silva" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">E-mail *</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
+                            <label for="email">E-mail corporativo *</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="contato@empresa.com.br" required>
                         </div>
-
+ 
                         <div class="form-group">
                             <label for="telefone">Telefone / WhatsApp *</label>
-                            <input type="tel" id="telefone" name="telefone" class="form-control" required>
+                            <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(83) 99999-9999" required>
                         </div>
-
+ 
                         <div class="form-group">
-                            <label for="cidade">Cidade *</label>
-                            <input type="text" id="cidade" name="cidade" class="form-control" required>
+                            <label for="cidade">Cidade / Localidade *</label>
+                            <input type="text" id="cidade" name="cidade" class="form-control" placeholder="João Pessoa, Campina Grande..." required>
                         </div>
-
+ 
                         <div class="form-group">
                             <label for="servico">Serviço de interesse:</label>
-                            <select id="servico" name="servico" class="form-control" required style="appearance: none;">
-                                <option value="">Selecione uma opção...</option>
-                                <option value="Soluções Elétricas">Soluções Elétricas</option>
-                                <option value="Automação">Automação</option>
-                                <option value="Energia Solar">Energia Solar</option>
-                                <option value="Manutenção">Manutenção</option>
-                                <option value="Outro">Outro</option>
-                            </select>
+                            <div style="position: relative;">
+                                <select id="servico" name="servico" class="form-control" required style="appearance: none; cursor: pointer;">
+                                    <option value="">Selecione uma opção...</option>
+                                    <option value="Engenharia e Projetos">Engenharia e Projetos</option>
+                                    <option value="Manutenção de Subestações">Manutenção de Subestações</option>
+                                    <option value="Instalações Industriais">Instalações Industriais</option>
+                                    <option value="Laudos e Termografia">Laudos e Termografia</option>
+                                    <option value="Automação Predial/Industrial">Automação Predial/Industrial</option>
+                                    <option value="Energia Solar Fotovoltaica">Energia Solar Fotovoltaica</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                                <i class="fas fa-chevron-down" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; font-size: 0.8rem;"></i>
+                            </div>
                         </div>
-
+ 
                         <div class="form-group">
-                            <label for="mensagem">Descreva seu projeto</label>
-                            <textarea id="mensagem" name="mensagem" class="form-control" rows="4"></textarea>
+                            <label for="mensagem">Breve descrição do projeto</label>
+                            <textarea id="mensagem" name="mensagem" class="form-control" rows="4" placeholder="Como podemos ajudar você hoje?"></textarea>
+                        </div>
+ 
+                        <!-- Honeypot Field (Anti-Spam) -->
+                        <div style="display:none;">
+                            <label for="website_url">Não preencha este campo se você for humano</label>
+                            <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off">
                         </div>
 
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">ENVIAR SOLICITAÇÃO</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1rem; letter-spacing: 2px; font-weight: bold;">
+                            SOLICITAR ORÇAMENTO AGORA
+                        </button>
+
                     </form>
                 </div>
 
                 <!-- DIREITA: Informações e Mapa -->
                 <div class="fade-in">
-                    <div class="contact-info" style="margin-bottom: 3rem;">
-                        <p><i class="fas fa-map-marker-alt"></i> <span>R. da Cerâmica, 34 - Santa Rosa<br>Campina Grande - PB, CEP 58416-480</span></p>
-                        <p><i class="fas fa-phone"></i> <span>(83) 99133-0972</span></p>
-                        <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" style="color: var(--accent-secondary)">wa.me/5583991330972</a></p>
-                        <p><i class="fas fa-envelope"></i> <span>contato@klyfeelectric.com.br</span></p>
-                        <p><i class="fas fa-clock"></i> <span>Seg–Sex: 08h–18h | Sáb: 08h–12h</span></p>
-                        <p><i class="fas fa-star" style="color: var(--accent-primary)"></i> <span style="font-weight: bold; color: var(--accent-primary)">5,0 — 120 avaliações no Google</span></p>
+                    <!-- Cards de Contato -->
+                    <div class="grid grid-cols-2" style="gap: 1rem; margin-bottom: 2rem;">
+                        <div class="bracket-box" style="padding: 1.5rem; grid-column: span 2; border-color: var(--accent-primary); background: rgba(0, 255, 157, 0.02);">
+                            <i class="fas fa-shipping-fast" style="color: var(--accent-primary); margin-bottom: 0.5rem; display: block;"></i>
+                            <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Atendimento Local</h4>
+                            <p style="font-size: 0.9rem; line-height: 1.4;">Realizamos consultoria técnica e vistorias diretamente no local da sua obra ou empresa em toda a Paraíba.</p>
+                        </div>
+                        <div class="bracket-box" style="padding: 1.5rem;">
+                            <i class="fab fa-whatsapp" style="color: var(--accent-secondary); margin-bottom: 0.5rem; display: block;"></i>
+                            <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">WhatsApp</h4>
+                            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" style="color: var(--text-main); font-size: 0.9rem; text-decoration: none;">(83) 99133-0972</a>
+                        </div>
+                        <div class="bracket-box" style="padding: 1.5rem;">
+                            <i class="fas fa-envelope" style="color: var(--accent-primary); margin-bottom: 0.5rem; display: block;"></i>
+                            <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">E-mail</h4>
+                            <p style="font-size: 0.9rem; word-break: break-all;">contato@klyfeelectric.com.br</p>
+                        </div>
+                        <div class="bracket-box" style="padding: 1.5rem; grid-column: span 2;">
+                            <i class="fas fa-clock" style="color: var(--text-muted); margin-bottom: 0.5rem; display: block;"></i>
+                            <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Horário de Atendimento Técnico</h4>
+                            <p style="font-size: 0.85rem;">Segunda a Sexta: 08h às 18h | Sábado: 08h às 12h</p>
+                        </div>
+                    </div>
+
+                    <!-- Selo Google -->
+                    <div class="bracket-box" style="margin-bottom: 2rem; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; border-color: rgba(255, 185, 0, 0.3);">
+                        <div style="font-size: 2rem; color: #FFB900;">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold; font-size: 1.1rem; color: var(--text-main);">5,0 de Excelência</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">+120 avaliações positivas no Google</div>
+                        </div>
                     </div>
 
                     <!-- Chips Atendimento -->
                     <div style="margin-bottom: 2rem;">
-                        <h4 style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase;">Nossa área de atuação:</h4>
+                        <h4 style="font-family: var(--font-heading); color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">Áreas de Atendimento:</h4>
                         <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                            <span class="badge-mono">[Campina Grande]</span>
-                            <span class="badge-mono">[João Pessoa]</span>
-                            <span class="badge-mono">[Patos]</span>
-                            <span class="badge-mono">[Lagoa Seca]</span>
-                            <span class="badge-mono">[Queimadas]</span>
-                            <span class="badge-mono">[Boa Vista]</span>
-                            <span class="badge-mono">[Caruaru]</span>
-                            <span class="badge-mono">[e toda a Paraíba]</span>
+                            <span class="badge-mono" style="background: rgba(255,255,255,0.03);">Campina Grande</span>
+                            <span class="badge-mono" style="background: rgba(255,255,255,0.03);">João Pessoa</span>
+                            <span class="badge-mono" style="background: rgba(255,255,255,0.03);">Patos</span>
+                            <span class="badge-mono" style="background: rgba(255,255,255,0.03);">Sertão e Litoral</span>
+                            <span class="badge-mono" style="color: var(--accent-primary); border-color: var(--accent-primary);">Toda a Paraíba</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- Mapa Fallback Estilizado -->
-                    <div class="bracket-box" style="background-color: var(--bg-primary); text-align: center; padding: 3rem 1rem;">
-                        <i class="fas fa-map" style="font-size: 3rem; color: var(--border-color); margin-bottom: 1rem;"></i>
-                        <h3 style="margin-bottom: 1rem;">Klyfe Electric (Sede)</h3>
-                        <a href="https://maps.google.com/?q=R.+da+Ceramica,+34+-+Santa+Rosa,+Campina+Grande+-+PB" target="_blank" rel="noopener" class="btn btn-outline" style="font-size: 0.9rem;">Ver no Google Maps →</a>
+        <!-- Seção de FAQ Rápida no Contato -->
+        <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+            <div class="container" style="max-width: 800px;">
+                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES DO ATENDIMENTO</span></div>
+                <h3 style="text-align: center; margin-bottom: 3rem; font-family: var(--font-heading); color: var(--text-main);">Como Funciona a Consultoria Técnica da Klyfe?</h3>
+                
+                <div class="faq-accordion">
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <h4 style="color: var(--text-main); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem;">Qual o prazo de retorno para solicitações de orçamento?</h4>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Nossa equipe técnica analisa sua solicitação e responde em até 24 horas úteis. Para projetos industriais ou comerciais de alta complexidade, agendamos uma reunião inicial de alinhamento técnico para dimensionar o escopo com exatidão.
+                        </p>
                     </div>
-
+                    <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
+                        <h4 style="color: var(--text-main); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem;">Vocês realizam visitas técnicas em outras cidades da Paraíba?</h4>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Sim. Possuímos logística própria para realizar vistorias técnicas, perícias de TOI e termografia em indústrias, comércios e residências em todos os municípios do estado da Paraíba, garantindo o mesmo padrão de atendimento.
+                        </p>
+                    </div>
+                    <div class="faq-item" style="padding: 1.5rem 0;">
+                        <h4 style="color: var(--text-main); font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem;">É cobrado algum valor pela visita técnica inicial de diagnóstico?</h4>
+                        <p style="color: var(--text-muted); line-height: 1.6; font-size: 0.95rem;">
+                            Para orçamentos de instalações fotovoltaicas residenciais ou serviços simples, a análise inicial pode ser feita de forma digital e gratuita. Para vistorias diagnósticas complexas, laudos estruturados de SPDA ou perícias judiciais, cobramos uma taxa de visita técnica que é abatida do valor final do projeto caso contratado.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>

@@ -143,19 +143,19 @@
             <div class="container">
                 <h3 style="margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 2px;">// SOLUÇÕES RELACIONADAS</h3>
                 <div class="grid grid-cols-4">
-                    <a href="/solucoes/energia-solar" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/solar" class="related-card">
                         <h4>Energia Solar</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="/solucoes/eletrica/instalacoes-industriais" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/instalacoes-industriais" class="related-card">
                         <h4>Instalações Elétricas</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="/solucoes/engenharia/projeto-eletrico" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="related-card">
                         <h4>Projeto Elétrico</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="/solucoes/automacao-residencial" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/automacao/automacao-residencial" class="related-card">
                         <h4>Automação</h4>
                         <span>Ver solução →</span>
                     </a>
@@ -178,6 +178,56 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
+
+    <!-- Schema.org FAQPage JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Posso usar uma tomada comum para carregar meu carro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tomadas comuns não foram projetadas para suportar altas correntes por longos períodos. Isso pode causar derretimento da fiação e incêndios. O uso de um Wallbox com circuito dedicado é a única forma segura de carregamento doméstico."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quanto tempo leva para carregar um carro em casa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Com um carregador de 7.4kW (padrão residencial), um carro com bateria média leva de 6 a 8 horas para carga total. Carregadores de 22kW (trifásicos) podem reduzir esse tempo drasticamente se o carro suportar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Moro em prédio, posso instalar um carregador?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Realizamos projetos que conectam o carregador diretamente ao seu medidor individual ou sistemas com medição inteligente para áreas comuns, respeitando as normas do condomínio."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vocês vendem o carregador ou apenas instalam?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Atuamos principalmente na instalação técnica. Podemos indicar as melhores marcas e modelos para sua necessidade ou instalar o equipamento que você já adquiriu."
+          }
+        }<% if (typeof cityData !== 'undefined' && cityData.faqExtra) { %>,
+        {
+          "@type": "Question",
+          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
+          }
+        }<% } %>
+      ]
+    }
+    </script>
 
     <script src="/js/main.js"></script>
 </body>

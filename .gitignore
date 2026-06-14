@@ -8,3 +8,5 @@ yarn-error.log*
 .vscode/
 build/
 dist/
+
+.vercel

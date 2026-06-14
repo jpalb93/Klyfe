@@ -1,0 +1,71 @@
+Flesch matches:
+TAG: Readability
+  P0: div attrs={'class': ['category-name']}
+  P1: div attrs={'class': ['category-card'], 'onclick': "scrollToSection('readability')"}
+  P2: div attrs={'class': ['categories']}
+------------------------------
+TAG: Content readability is difficult
+  P0: strong attrs={}
+  P1: div attrs={}
+  P2: div attrs={'class': ['issue-item', 'warning']}
+------------------------------
+TAG:  ⚠️ Content is difficult to read (Flesch: 19.0) — may reduce engagement
+  P0: div attrs={'class': ['issue-item', 'warning']}
+  P1: div attrs={'class': ['section-body'], 'id': 'body-issues'}
+  P2: div attrs={'class': ['section'], 'id': 'section-issues'}
+------------------------------
+TAG:  ⚠️ Thin content (229 words) — may rank poorly
+  P0: div attrs={'class': ['issue-item', 'warning']}
+  P1: div attrs={'class': ['section-body'], 'id': 'body-issues'}
+  P2: div attrs={'class': ['section'], 'id': 'section-issues'}
+------------------------------
+TAG:  Readability 
+  P0: div attrs={'class': ['container']}
+  P1: body attrs={}
+  P2: html attrs={'lang': 'en'}
+------------------------------
+TAG: 📖 Readability 
+  P0: h2 attrs={}
+  P1: div attrs={'class': ['section-header'], 'onclick': "toggleSection('readability')"}
+  P2: div attrs={'class': ['section'], 'id': 'section-readability'}
+------------------------------
+TAG: 19.0
+  P0: div attrs={'class': ['val']}
+  P1: div attrs={'class': ['summary-item']}
+  P2: div attrs={'class': ['summary-row']}
+------------------------------
+TAG: 229
+  P0: div attrs={'class': ['val']}
+  P1: div attrs={'class': ['summary-item']}
+  P2: div attrs={'class': ['summary-row']}
+------------------------------
+TAG:  ⚠️ Content is difficult to read (Flesch: 19.0) — may reduce engagement
+  P0: div attrs={'class': ['issue-item', 'info']}
+  P1: div attrs={'style': 'margin-top:16px'}
+  P2: div attrs={'class': ['section-body'], 'id': 'body-readability'}
+------------------------------
+TAG:  ⚠️ Thin content (229 words) — may rank poorly
+  P0: div attrs={'class': ['issue-item', 'info']}
+  P1: div attrs={'style': 'margin-top:16px'}
+  P2: div attrs={'class': ['section-body'], 'id': 'body-readability'}
+------------------------------
+TAG: Content readability is difficult
+  P0: strong attrs={}
+  P1: div attrs={'class': ['issue-item', 'info']}
+  P2: div attrs={'class': ['section-body'], 'id': 'body-recs'}
+------------------------------
+TAG: 📖 Readability
+  P0: h3 attrs={'style': 'font-size:0.95rem;margin:16px 0 8px;'}
+  P1: div attrs={'class': ['section-body'], 'id': 'body-recs'}
+  P2: div attrs={'class': ['section'], 'id': 'section-recs'}
+------------------------------
+TAG:  ⚠️ Content is difficult to read (Flesch: 19.0) — may reduce engagement
+  P0: div attrs={'class': ['issue-item', 'info']}
+  P1: div attrs={'class': ['section-body'], 'id': 'body-recs'}
+  P2: div attrs={'class': ['section'], 'id': 'section-recs'}
+------------------------------
+TAG:  ⚠️ Thin content (229 words) — may rank poorly
+  P0: div attrs={'class': ['issue-item', 'info']}
+  P1: div attrs={'class': ['section-body'], 'id': 'body-recs'}
+  P2: div attrs={'class': ['section'], 'id': 'section-recs'}
+------------------------------

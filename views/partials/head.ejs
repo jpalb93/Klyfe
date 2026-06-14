@@ -4,9 +4,13 @@
 <meta name="description" content="<%= description %>">
 <link rel="canonical" href="<%= canonical %>">
 <meta name="robots" content="<%= locals.robots || 'index, follow' %>">
+<meta name="google-site-verification" content="VN7ObKFVGeA9nxcdp6P2VYnHDmbp5iKerV289RTjdrc" />
 
-<link rel="icon" type="image/svg+xml" href="/img/Assinatura Símbolo - Amarelo - Klyfe.svg">
-<link rel="shortcut icon" href="/img/Assinatura Símbolo - Amarelo - Klyfe.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="shortcut icon" href="/favicon.ico">
 
 <!-- Open Graph -->
 <meta property="og:title" content="<%= title %>">
@@ -14,6 +18,18 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="<%= canonical %>">
+<meta property="og:image" content="https://www.klyfeelectric.com.br/img/logo-klyfe.webp">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Klyfe Electric">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= title %>">
+<meta name="twitter:description" content="<%= description %>">
+<meta name="twitter:image" content="https://www.klyfeelectric.com.br/img/logo-klyfe.webp">
+<meta name="twitter:site" content="@klyfeelectric">
+<meta name="twitter:creator" content="@klyfeelectric">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,26 +46,30 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Klyfe Electric",
-  "description": "Empresa de engenharia elétrica, automação e energia solar fotovoltaica",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "R. da Cerâmica, 34 - Santa Rosa",
-    "addressLocality": "Campina Grande",
-    "addressRegion": "PB",
-    "postalCode": "58416-480",
-    "addressCountry": "BR"
-  },
-  "telephone": "+5583991330972",
-  "url": "https://www.klyfeelectric.com.br",
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "5.0",
-    "reviewCount": "120"
-  },
-  "areaServed": ["Campina Grande", "João Pessoa", "Paraíba"],
-  "serviceType": ["Instalação Elétrica", "Automação", "Energia Solar"]
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "Klyfe Electric",
+      "image": "https://www.klyfeelectric.com.br/img/hero-klyfe.webp",
+      "logo": "https://www.klyfeelectric.com.br/img/Assinatura%20Completa%20-%20AmareloB%20-%20Klyfe.webp",
+      "description": "Empresa de engenharia elétrica, automação e energia solar fotovoltaica em <%= cityData.name %> e região.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "<%= cityData.address %>",
+        "addressLocality": "<%= cityData.name %>",
+        "addressRegion": "PB",
+        "addressCountry": "BR"
+      },
+      "telephone": "+5583991330972",
+      "url": "https://www.klyfeelectric.com.br",
+      "sameAs": [
+        "https://www.linkedin.com/company/klyfeelectric",
+        "https://www.instagram.com/klyfeelectric"
+      ],
+      "areaServed": ["<%= cityData.name %>", "Paraíba"],
+      "serviceType": ["Instalação Elétrica", "Automação", "Energia Solar"]
+    }
+  ]
 }
 </script>
 <% if (locals.jsonLd) { %>
