@@ -44,7 +44,7 @@
                });
                
                engServices.forEach(key => { 
-                 const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                 const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
             %>
             <a href="<%= cityPrefix %>/solucoes/engenharia/<%= key %>" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
                 <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;"><%= svc.label %> <i class="fas fa-arrow-right" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>

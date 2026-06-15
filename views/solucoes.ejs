@@ -79,7 +79,7 @@
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Projetos de alta performance, consultoria técnica e adequação normativa para indústrias e grandes empreendimentos.</p>
                                 <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                     <% getServicesByCategory('engenharia').forEach(key => { 
-                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                       const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                                     %>
                                        <li style="color: var(--text-muted); font-size: 0.85rem;">
                                            <a href="<%= cityPrefix %>/solucoes/engenharia/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
@@ -106,7 +106,7 @@
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Integração tecnológica para smart homes e processos industriais inteligentes através de sistemas de controle avançados.</p>
                                 <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                     <% getServicesByCategory('automacao').forEach(key => { 
-                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                       const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                                     %>
                                        <li style="color: var(--text-muted); font-size: 0.85rem;">
                                            <a href="<%= cityPrefix %>/solucoes/automacao/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
@@ -134,7 +134,7 @@
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Sistemas fotovoltaicos para redução imediata de custos, com monitoramento em tempo real e foco em sustentabilidade.</p>
                                 <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                     <% getServicesByCategory('solar').forEach(key => { 
-                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                       const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                                     %>
                                        <li style="color: var(--text-muted); font-size: 0.85rem;">
                                            <a href="<%= cityPrefix %>/solucoes/solar/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
@@ -160,7 +160,7 @@
                                 <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem;">Infraestrutura robusta e suporte técnico especializado para manter seu negócio ou indústria operando com máxima eficiência.</p>
                                 <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                     <% getServicesByCategory('eletrica').forEach(key => { 
-                                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                                       const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                                     %>
                                        <li style="color: var(--text-muted); font-size: 0.85rem;">
                                            <a href="<%= cityPrefix %>/solucoes/eletrica/<%= key %>" style="color: inherit;">• <%= svc.label %></a>

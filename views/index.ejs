@@ -190,7 +190,7 @@
                ];
                const activeDailyServices = dailyKeys.filter(key => isServiceEnabled(key));
                activeDailyServices.forEach(key => {
-                 const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                 const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
             %>
                 <div class="feature-card" style="text-align:left">
                     <div class="icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary);margin:0 0 1rem 0">

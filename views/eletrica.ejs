@@ -48,7 +48,7 @@
                 
                 <div class="grid grid-cols-3" style="gap: 2rem;">
                     <% eleServices.forEach(key => { 
-                       const svc = (cityData.services && cityData.services[key]) || locations.default.services[key];
+                       const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                        const isGeneric = svc.template === 'eletrica';
                        const cardUrl = isGeneric 
                          ? `https://wa.me/5583991330972?text=${encodeURIComponent('Olá! Vi o site da Klyfe e gostaria de solicitar um orçamento para o serviço de ' + svc.label + ' em ' + cityData.name + '.')}`
