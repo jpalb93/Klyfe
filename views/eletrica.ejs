@@ -24,7 +24,7 @@
         <div class="container fade-in">
             <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INSTALAÇÕES & MANUTENÇÃO</span></div>
             <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias em <%= cityData.name %>. Manutenção preventiva, reparos urgentes e novas instalações com garantia técnica.</p>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias <%= cityData.preposition %> <%= cityData.name %>. Manutenção preventiva, reparos urgentes e novas instalações com garantia técnica.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
                 <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta || 'Chamar no WhatsApp' %></a>
                 <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
@@ -69,7 +69,7 @@
         <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
             <div class="container" style="text-align: center; padding: 4rem 0;">
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>EXPANSÃO EM CURSO</span></div>
-                <h2 style="margin-bottom: 1.5rem;">Serviços Elétricos em <%= cityData.name %>.</h2>
+                <h2 style="margin-bottom: 1.5rem;">Serviços Elétricos <%= cityData.preposition %> <%= cityData.name %>.</h2>
                 <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Nossa equipe técnica está expandindo o atendimento de instalações elétricas e infraestrutura para esta região. Em breve, todos os serviços estarão disponíveis aqui.</p>
                 <a href="/contato" class="btn btn-primary">Fale com nossa Engenharia</a>
             </div>
@@ -83,10 +83,10 @@
             <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
                 <div class="fade-in">
                     <div class="section-separator"><%- include('partials/symbol') %> <span>ATENDIMENTO REGIONAL</span></div>
-                    <h2 style="margin-bottom: 2rem;">Eletricistas Profissionais em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Foco na Qualidade</span></h2>
+                    <h2 style="margin-bottom: 2rem;">Eletricistas Profissionais <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Foco na Qualidade</span></h2>
                     <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
                         <%- cityData.serviceContext %>
-                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos em <%= cityData.name %> incluindo <%= cityData.bairros %>.</p>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos <%= cityData.preposition %> <%= cityData.name %> incluindo <%= cityData.bairros %>.</p>
                     </div>
                 </div>
                 <div class="fade-in" style="position: relative;">
@@ -210,7 +210,7 @@
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2>Precisa de um eletricista<br>de confiança?</h2><p>Atendimento rápido e profissional em <%= cityData.name %> e região.</p></div>
+        <div><h2>Precisa de um eletricista<br>de confiança?</h2><p>Atendimento rápido e profissional <%= cityData.preposition %> <%= cityData.name %> e região.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
             <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
             <% const waHubMsgEl = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>

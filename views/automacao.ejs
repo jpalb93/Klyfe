@@ -15,7 +15,7 @@
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
             <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
             <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <span style="color: var(--text-main);">Automação Inteligente em <%= cityData.name %></span>
+            <span style="color: var(--text-main);">Automação Inteligente <%= cityData.preposition %> <%= cityData.name %></span>
         </div>
     </nav>
 
@@ -24,7 +24,7 @@
         <div class="container fade-in">
             <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>TECNOLOGIA & CONFORTO</span></div>
             <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Automação Inteligente <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Controle total do seu ambiente na palma da mão. Soluções de automação residencial e industrial em <%= cityData.name %> que unem conforto, economia de energia e segurança de última geração.</p>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Controle total do seu ambiente na palma da mão. Soluções de automação residencial e industrial <%= cityData.preposition %> <%= cityData.name %> que unem conforto, economia de energia e segurança de última geração.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
                 <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta || 'Solicitar Orçamento' %></a>
                 <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
@@ -65,7 +65,7 @@
         <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
             <div class="container" style="text-align: center; padding: 4rem 0;">
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>EM BREVE</span></div>
-                <h2 style="margin-bottom: 1.5rem;">Soluções de Automação em <%= cityData.name %>.</h2>
+                <h2 style="margin-bottom: 1.5rem;">Soluções de Automação <%= cityData.preposition %> <%= cityData.name %>.</h2>
                 <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Estamos preparando conteúdos e soluções exclusivas de Smart Home e Automação Industrial para esta região. Em breve, você poderá conferir nossos projetos detalhados aqui.</p>
                 <a href="/contato" class="btn btn-primary">Fale com um consultor técnico</a>
             </div>
@@ -82,7 +82,7 @@
             <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
                 <div class="fade-in">
                     <div class="section-separator"><%- include('partials/symbol') %> <span>TECNOLOGIA NA PRÁTICA</span></div>
-                    <h2 style="margin-bottom: 2rem;">Automação Smart Home em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Projetos Exclusivos</span></h2>
+                    <h2 style="margin-bottom: 2rem;">Automação Smart Home <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Projetos Exclusivos</span></h2>
                     <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
                         <%- cityData.serviceContext %>
                         <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Projetos executados nos principais bairros como <%= cityData.bairros %>.</p>
@@ -183,7 +183,7 @@
         <section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
             <div class="container">
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFORMAÇÕES LOCAIS</span></div>
-                <h2 class="fade-in" style="margin-bottom: 2rem;">Automação em <%= cityData.name %>: <span style="color:var(--accent-primary)">o que você precisa saber</span></h2>
+                <h2 class="fade-in" style="margin-bottom: 2rem;">Automação <%= cityData.preposition %> <%= cityData.name %>: <span style="color:var(--accent-primary)">o que você precisa saber</span></h2>
                 
                 <div class="grid grid-cols-1" style="gap: 4rem;">
                     <div class="fade-in">
@@ -229,7 +229,7 @@
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2>Pronto para viver o futuro<br>na sua casa?</h2><p>Agende uma demonstração em <%= cityData.name %> e região.</p></div>
+        <div><h2>Pronto para viver o futuro<br>na sua casa?</h2><p>Agende uma demonstração <%= cityData.preposition %> <%= cityData.name %> e região.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
             <a href="/contato" class="btn-dark">Consultoria Gratuita</a>
             <% const waHubMsgAut = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>

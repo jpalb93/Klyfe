@@ -63,7 +63,7 @@
             <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
                 <div class="fade-in">
                     <div class="section-separator"><%- include('partials/symbol') %> <span>FOCO REGIONAL</span></div>
-                    <h2 style="margin-bottom: 2rem;">Engenharia Elétrica em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atuação Direcionada</span></h2>
+                    <h2 style="margin-bottom: 2rem;">Engenharia Elétrica <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atuação Direcionada</span></h2>
                     <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
                         <%- cityData.serviceContext %>
                         <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos os principais bairros como <%= cityData.bairros %>.</p>
@@ -178,7 +178,7 @@
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2>Inicie seu projeto de<br>Engenharia hoje.</h2><p>Fale diretamente com nossa equipe de engenheiros em <%= cityData.name %>.</p></div>
+        <div><h2>Inicie seu projeto de<br>Engenharia hoje.</h2><p>Fale diretamente com nossa equipe de engenheiros <%= cityData.preposition %> <%= cityData.name %>.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
             <a href="/contato" class="btn-dark">Agendar Consultoria</a>
             <% const waHubMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>

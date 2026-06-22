@@ -16,7 +16,7 @@
                 <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
                 <a href="/solucoes/engenharia" style="color: inherit; text-decoration: none;">Engenharia Elétrica</a>
                 <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-                <span style="color: var(--text-main);">Laudos Elétricos em <%= cityData.name %></span>
+                <span style="color: var(--text-main);">Laudos Elétricos <%= cityData.preposition %> <%= cityData.name %></span>
             </div>
         </nav>
 
@@ -26,7 +26,7 @@
                 <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>ENGENHARIA DIAGNÓSTICA</span></div>
                 <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Laudos Elétricos e Inspeções <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
                 <p style="color:var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 1.5rem 0;">
-                    A Klyfe Electric emite laudos elétricos em <%= cityData.name %> e <%= cityData.region %> para instalações residenciais, comerciais e industriais. Conformidade com NR-10, NBR 5419 e aprovação junto à <%= cityData.concessionaria %>.
+                    A Klyfe Electric emite laudos elétricos <%= cityData.preposition %> <%= cityData.name %> e <%= cityData.region %> para instalações residenciais, comerciais e industriais. Conformidade com NR-10, NBR 5419 e aprovação junto à <%= cityData.concessionaria %>.
                 </p>
                 <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
                     <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta %></a>
@@ -91,7 +91,7 @@
                     <div class="grid grid-cols-2" style="gap: 4rem; align-items: center;">
                         <div class="fade-in">
                             <div class="section-separator"><%- include('../partials/symbol') %> <span>FOCO REGIONAL</span></div>
-                            <h2 style="margin-bottom: 2rem;">Laudos Elétricos em <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atenção Técnica Local</span></h2>
+                            <h2 style="margin-bottom: 2rem;">Laudos Elétricos <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atenção Técnica Local</span></h2>
                             <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
                                 <%- cityData.serviceContext %>
                                 <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos <%= cityData.bairros %> e toda a região de <%= cityData.region %>.</p>
@@ -181,7 +181,7 @@
         <section class="section-padding" style="background: var(--bg-secondary);">
             <div class="container" style="max-width: 800px;">
                 <div class="section-separator fade-in" style="justify-content: center;"><%- include('../partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
-                <h2 style="text-align: center; margin-bottom: 4rem;">Perguntas Frequentes sobre Laudos Elétricos em <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+                <h2 style="text-align: center; margin-bottom: 4rem;">Perguntas Frequentes sobre Laudos Elétricos <%= cityData.preposition %> <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
                 
                 <div class="faq-accordion fade-in">
                     <div class="faq-item" style="border-bottom: 1px solid var(--border-color); padding: 1.5rem 0;">
@@ -279,8 +279,8 @@
         <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container" style="text-align: center;">
                 <div class="section-separator" style="justify-content: center;"><%- include('../partials/symbol') %> <span>CONTATO</span></div>
-                <h2 style="margin-bottom: 2rem;">Solicite seu Laudo Elétrico em <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
-                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite a vistoria técnica para emissão do seu laudo elétrico em <%= cityData.name %> e <%= cityData.region %>.</p>
+                <h2 style="margin-bottom: 2rem;">Solicite seu Laudo Elétrico <%= cityData.preposition %> <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite a vistoria técnica para emissão do seu laudo elétrico <%= cityData.preposition %> <%= cityData.name %> e <%= cityData.region %>.</p>
                 <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> <%= cityData.cta %></a>
             </div>
         </section>
