@@ -167,6 +167,20 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
     const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
     const canonical = cityKey === 'default' ? `${baseUrl}/` : `${baseUrl}/${cityKey}`;
     
+    // Render posts dynamic values with cityData context
+    const evaluatedPosts = posts.slice(0, 2).map(post => {
+        const locals = {
+            cityKey,
+            cityData: cityBase,
+            getHomePrefix: () => cityKey !== 'default' ? '/' + cityKey : ''
+        };
+        return {
+            ...post,
+            title: ejs.render(post.title, locals),
+            summary: ejs.render(post.summary, locals)
+        };
+    });
+
     // WebSite Schema para ajudar o Google a gerar sitelinks ricos na busca da marca
     const jsonLd = `
     <script type="application/ld+json">
@@ -187,6 +201,7 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
         cityKey,
         cityData: cityBase,
         page: 'home',
+        posts: evaluatedPosts,
         jsonLd
     });
 });

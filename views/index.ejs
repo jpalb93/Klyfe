@@ -290,19 +290,19 @@
         <div class="section-separator"><%- include('partials/symbol') %> <span>06 BLOG TÉCNICO</span></div>
         <h2>BLOG<br><em style="color:var(--accent-primary);font-style:italic">TÉCNICO.</em></h2>
         <div class="grid grid-cols-2" style="margin-top:3rem">
-            <a href="<%= homePrefix %>/blog" class="bracket-box" style="display:flex;flex-direction:column">
+            <% posts.forEach(post => { 
+                let categoryColor = 'var(--accent-primary)';
+                if (post.category === 'solar') categoryColor = 'var(--accent-solar)';
+                if (post.category === 'automacao') categoryColor = 'var(--accent-secondary)';
+            %>
+            <a href="<%= homePrefix %>/blog/<%= post.slug %>" class="bracket-box" style="display:flex;flex-direction:column">
 
-                <span class="badge-mono" style="background:var(--accent-solar);color:var(--bg-primary);align-self:flex-start;margin-bottom:1rem">Solar · 5 min</span>
-                <h3 style="flex-grow:1;margin-bottom:1rem">Energia Solar <%= cityData.preposition %> <%= cityData.name %>: Por que a Klyfe Electric é referência na Paraíba em 2025</h3>
+                <span class="badge-mono" style="background:<%= categoryColor %>;color:var(--bg-primary);align-self:flex-start;margin-bottom:1rem"><%= post.categoryLabel %> · <%= post.readTime %></span>
+                <h3 style="flex-grow:1;margin-bottom:1rem"><%= post.title %></h3>
 
-                <span style="color:var(--accent-solar);font-family:var(--font-heading);text-transform:uppercase">Ler artigo →</span>
+                <span style="color:<%= categoryColor %>;font-family:var(--font-heading);text-transform:uppercase">Ler artigo →</span>
             </a>
-            <a href="<%= homePrefix %>/blog" class="bracket-box" style="display:flex;flex-direction:column">
-                <span class="badge-mono" style="background:var(--accent-primary);color:var(--bg-primary);align-self:flex-start;margin-bottom:1rem">Elétrica · 4 min</span>
-                <h3 style="flex-grow:1;margin-bottom:1rem">Eletricista <%= cityData.preposition %> <%= cityData.name %>: Riscos de Fiações Antigas e a Solução da Klyfe Electric</h3>
-
-                <span style="color:var(--accent-primary);font-family:var(--font-heading);text-transform:uppercase">Ler artigo →</span>
-            </a>
+            <% }) %>
         </div>
 
     </div>
