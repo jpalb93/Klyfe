@@ -8,14 +8,15 @@ module.exports = {
   phone: '(83) 99133-0972',
   whatsappMessage: 'Olá! Vi o site da Klyfe em João Pessoa e gostaria de um orçamento.',
   cta: 'Fale com nosso consultor técnico em João Pessoa.',
+  allServices: true,
 
   solarContent: {
     distribuidora: "Energisa Paraíba",
     distribuidoraSlug: "energisa-paraiba",
     irradiacao: "5,6 kWh/m²/dia",
-    contextoRegional: "João Pessoa, no litoral paraibano, apresenta média de irradiação solar de 5,6 kWh/m²/dia — ligeiramente inferior ao interior do estado devido à maior umidade e nebulosidade costeira, mas ainda acima da média nacional. Um sistema de 5 kWp em João Pessoa produz em média 590 kWh/mês, suficiente para eliminar ou reduzir drasticamente a conta de energia em residências e comércios com consumo até 600 kWh/mês.",
-    homologacao: "Em João Pessoa, a distribuidora responsável é a Energisa Paraíba. O processo de homologação segue o mesmo marco regulatório (ANEEL/PRODIST Módulo 3), com prazo médio de conexão de 30 a 60 dias após entrega da documentação completa. A Klyfe Electric realiza o projeto elétrico, a instalação certificada e todo o acompanhamento junto à Energisa Paraíba, incluindo a solicitação de troca do medidor bidirecional.",
-    mercadoAlvo: "A capital concentra grande demanda em condomínios residenciais de médio e alto padrão nos bairros do Altiplano, Bessa e Cabo Branco, além de estabelecimentos comerciais na orla e no Centro Histórico."
+    contextoRegional: "A instalação de placa solar em João Pessoa e região metropolitana aproveita uma média excepcional de irradiação solar de 5,6 kWh/m²/dia. Embora a nebulosidade costeira seja ligeiramente maior que no sertão, os índices estão muito acima da média nacional. Um projeto de energia solar de 5 kWp gera em média 590 kWh/mês na capital. A Klyfe Electric projeta sistemas sob medida para a orla marítima, garantindo que a instalação de painel solar em João Pessoa suporte a ação do tempo, transformando a abundante luz do litoral paraibano em economia imediata de até 95% na conta de luz.",
+    homologacao: "Para a instalação de placa solar em João Pessoa, cuidamos de todo o processo de homologação técnica junto à Energisa Paraíba. Nossa equipe cuida de toda a burocracia: da submissão do projeto elétrico predial ou residencial à distribuidora de acordo com o Módulo 3 do PRODIST até a vistoria de conformidade técnica e a instalação do medidor bidirecional, assegurando que o sistema seja ativado de forma rápida e segura.",
+    mercadoAlvo: "Atendemos a demandas residenciais de alto padrão nos bairros do Altiplano Nobre, Bessa, Cabo Branco, Tambaú e condomínios horizontais da Grande João Pessoa, além de hotéis, restaurantes e estabelecimentos comerciais na orla que buscam diminuir os custos operacionais fixos com energia solar."
   },
 
   industrialContent: {
@@ -129,8 +130,8 @@ module.exports = {
       template: 'solar',
       bairros: 'Bessa, Intermares, Cabedelo, Altiplano e João Pessoa',
       serviceContext: `
-        <p>João Pessoa possui um dos melhores índices de irradiação solar do país. A Klyfe Electric projeta e instala sistemas fotovoltaicos focados na máxima durabilidade litorânea.</p>
-        <p>Utilizamos suportes e proteções com tratamento anticorrosivo rigoroso, protegendo seu investimento contra a maresia e garantindo até 95% de economia na conta de energia solar.</p>
+        <p>Oferecemos o serviço especializado de <strong>instalação de placa solar em João Pessoa</strong> e em toda a faixa litorânea. Projetamos sistemas fotovoltaicos sob medida para aproveitar ao máximo a irradiação da capital paraibana com altíssima eficiência.</p>
+        <p>Nossa equipe utiliza suportes de alumínio e ferragens com tratamento anticorrosivo rigoroso para proteger a <strong>instalação de painel solar em João Pessoa</strong> contra a ação direta da maresia. Tenha até 95% de economia na fatura de energia com homologação inclusa na Energisa Paraíba.</p>
       `,
       painPoint: 'Altos custos de energia e necessidade de sistemas solares resistentes à corrosão litorânea.',
       cta: 'Simular economia solar em João Pessoa.'

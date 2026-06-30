@@ -6,31 +6,33 @@
 <main>
 
 <!-- HERO & BREADCRUMB -->
-<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:4rem">
+<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:1rem">
     <div class="container fade-in">
-    <!-- ═══ BREADCRUMB VISUAL ═══ -->
-    <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
-        <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-            <a href="<%= getHomePrefix() || '/' %>" style="color: inherit; text-decoration: none;">Home</a>
-            <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
-            <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <span style="color: var(--text-main);">Energia Solar <%= cityData.preposition %> <%= cityData.name %></span>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
-        <div class="container fade-in">
-            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENERGIA SUSTENTÁVEL</span></div>
-            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Energia Solar e Independência Energética <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Economize até 95% na conta de luz com sistemas fotovoltaicos de alta performance. Projetos residenciais e industriais <%= cityData.preposition %> <%= cityData.name %> e toda a <%= cityData.region %>.</p>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-                <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Orçamento Grátis</a>
-                <a href="#calculadora" class="btn btn-ghost">Simular Economia</a>
+        <!-- ═══ BREADCRUMB VISUAL ═══ -->
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="<%= getHomePrefix() || '/' %>" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);">Energia Solar <%= cityData.preposition %> <%= cityData.name %></span>
             </div>
+        </nav>
+    </div>
+</section>
+
+<!-- HERO -->
+<section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+    <div class="container fade-in">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENERGIA SUSTENTÁVEL</span></div>
+        <h1 class="hero-internal-title">Instalação de Placa Solar e Energia Solar <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
+        <p class="hero-internal-desc">Economize até 95% na conta de luz com a instalação de placa solar de alta performance. Realizamos o projeto completo de energia solar e a instalação de painel solar para residências, indústrias e comércios <%= cityData.preposition %> <%= cityData.name %> e toda a <%= cityData.region %>.</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+            <a href="https://wa.me/5583991330972" class="btn btn-primary">Solicitar Orçamento Grátis</a>
+            <a href="#calculadora" class="btn btn-ghost">Simular Economia</a>
         </div>
-    </section>
+    </div>
+</section>
 
 <% 
    const solarServices = Object.keys(locations.default.services).filter(key => {
@@ -126,7 +128,7 @@
             <div class="section-separator fade-in"><span>— SIMULADOR TÉCNICO —</span></div>
             <h2 class="fade-in" style="margin-bottom: 3rem;">Quanto você vai<br><span style="color:var(--accent-primary)">economizar?</span></h2>
             
-            <div class="calc-container" style="background:var(--bg-secondary); padding:3rem; border: 1px solid var(--border-color); display:grid; grid-template-columns: 1fr 1fr; gap:3rem; align-items:center;">
+            <div class="calc-container">
                 <div class="calc-input-group">
                     <p style="color: var(--text-muted); margin-bottom: 2rem;">Arraste o slider com o valor médio da sua conta de luz para ver o potencial de economia real <%= cityData.preposition %> <%= cityData.name %>.</p>
                     <div class="calc-slider-wrap">
@@ -325,56 +327,6 @@
 </main>
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
-
-<!-- Schema.org FAQPage JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "O que acontece se eu produzir mais energia do que consumo?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "O excesso vira créditos na <%= cityData.concessionaria || 'Energisa' %>, que podem ser usados em até 60 meses ou transferidos para outros imóveis do mesmo titular (CPF/CNPJ) dentro da Paraíba."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "O sistema funciona em dias nublados ou chuvosos?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sim, mas com eficiência reduzida. Os painéis precisam de luz (irradiância), não necessariamente de calor. Mesmo em dias de chuva, há geração de energia."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Qual a manutenção necessária?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A manutenção é mínima. Basicamente a limpeza periódica dos painéis (para remover poeira) e uma revisão elétrica anual para garantir que todas as conexões estão perfeitas."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Posso financiar 100% do projeto?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Sim! Existem linhas de crédito específicas para energia solar onde a parcela do financiamento muitas vezes é menor do que a economia gerada na conta de luz."
-      }
-    }<% if (cityData.faqExtra) { %>,
-    {
-      "@type": "Question",
-      "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
-      }
-    }<% } %>
-  ]
-}
-</script>
 
 <script src="/js/main.js"></script>
 </body>

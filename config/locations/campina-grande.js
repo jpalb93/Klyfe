@@ -14,9 +14,9 @@ module.exports = {
     distribuidora: "Energisa Borborema",
     distribuidoraSlug: "energisa-borborema",
     irradiacao: "5,9 kWh/m²/dia",
-    contextoRegional: "Campina Grande, inserida no Agreste paraibano, apresenta uma das maiores médias de irradiação solar do Brasil — cerca de 5,9 kWh/m²/dia — superando a média de capitais como São Paulo (4,5 kWh/m²/dia) e Curitiba (4,3 kWh/m²/dia). Isso significa que um sistema de 5 kWp instalado em Campina Grande produz em média 620 kWh/mês, reduzindo a conta de energia em até 95% para residências com consumo típico de 400–600 kWh/mês.",
-    homologacao: "A homologação do sistema junto à Energisa Borborema (distribuidora responsável pela região de Campina Grande) segue as normas da ANEEL e do PRODIST Módulo 3. O prazo médio para conexão à rede após solicitação à Energisa Borborema é de 30 a 60 dias. A Klyfe Electric acompanha todo o processo: desde o projeto elétrico assinado pelo engenheiro responsável (CREA-PB) até a vistoria final e emissão do parecer de acesso.",
-    mercadoAlvo: "A região conta com forte demanda industrial no Distrito Industrial de Campina Grande, onde empresas do setor têxtil, cerâmico e tecnológico têm migrado para energia solar como forma de reduzir custos operacionais."
+    contextoRegional: "A instalação de placa solar em Campina Grande é uma das decisões financeiras mais inteligentes para empresas e proprietários residenciais. Inserida no Agreste paraibano, a cidade apresenta uma das maiores médias de irradiação solar do Brasil — cerca de 5,9 kWh/m²/dia — superando com folga capitais do Sul e Sudeste. Um sistema de 5 kWp com instalação de painel solar em Campina Grande gera cerca de 620 kWh mensais. Esse alto rendimento, aliado aos ventos constantes da região que ajudam no resfriamento natural dos módulos fotovoltaicos, garante o máximo aproveitamento térmico e durabilidade dos equipamentos.",
+    homologacao: "A homologação para instalação de placa solar junto à Energisa Borborema (distribuidora responsável por Campina Grande) é integralmente gerenciada pela Klyfe Electric. Seguimos as normas de microgeração da ANEEL e do PRODIST Módulo 3. Elaboramos o projeto elétrico assinado por engenheiro credenciado no CREA-PB e realizamos a vistoria física para ativação do medidor bidirecional de energia solar em Campina Grande.",
+    mercadoAlvo: "Nosso foco abrange desde indústrias no Distrito Industrial de Campina Grande (setores têxtil, cerâmico e tecnológico) que buscam reduzir custos operacionais com sistemas de grande porte, até residências de alto padrão nos condomínios Serraville, Alphaville, Monte Ville e Privilege, onde o telhado solar valoriza o imóvel e zera a conta de luz."
   },
 
   industrialContent: {
@@ -143,8 +143,8 @@ module.exports = {
       template: 'solar',
       bairros: 'Catolé, Cruzeiro, Bodocongó, Alto Branco e Região Rural',
       serviceContext: `
-        <p>O Agreste Paraibano possui excelentes índices de irradiação solar. Projetamos e instalamos sistemas fotovoltaicos que transformam o forte sol de Campina Grande em até 95% de economia na sua fatura da Energisa.</p>
-        <p>Atendemos desde residências urbanas e condomínios fechados até propriedades rurais e galpões industriais, dimensionando os inversores para operar com máxima performance térmica no clima semiárido.</p>
+        <p>Somos especialistas na <strong>instalação de placa solar em Campina Grande</strong> e toda a região do Agreste. Desenvolvemos projetos inteligentes de energia solar fotovoltaica de alto rendimento para converter os excelentes níveis de irradiação local em economia real na sua fatura da Energisa Borborema.</p>
+        <p>Atendemos desde residências em condomínios fechados até indústrias no Distrito Industrial de Campina Grande, garantindo uma <strong>instalação de painel solar em Campina Grande</strong> com módulos fotovoltaicos de altíssima eficiência e inversores dimensionados para operar com máxima performance térmica no clima semiárido.</p>
       `,
       painPoint: 'Alto custo de energia elétrica e necessidade de sistemas solares eficientes no agreste.',
       cta: 'Simule sua economia solar em Campina Grande.',

@@ -9,6 +9,14 @@ module.exports = {
   whatsappMessage: 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.',
   cta: 'Solicite consultoria com nossa equipe técnica estadual.',
   allServices: true,
+  solarContent: {
+    distribuidora: "Energisa Paraíba e Energisa Borborema",
+    distribuidoraSlug: "energisa",
+    irradiacao: "5,5 a 6,0 kWh/m²/dia",
+    contextoRegional: "O estado da Paraíba possui um dos maiores potenciais de geração de energia fotovoltaica do Brasil. Com médias de irradiação solar que variam de 5,5 kWh/m²/dia no litoral a até 6,0 kWh/m²/dia no sertão, a instalação de placa solar na Paraíba é um investimento de alta rentabilidade. Um sistema de 5 kWp produz entre 580 e 640 kWh/mês no estado, garantindo retorno financeiro acelerado para residências, empresas e propriedades rurais.",
+    homologacao: "O processo de homologação técnica de microgeração distribuída é realizado junto às concessionárias locais (Energisa Paraíba ou Energisa Borborema), seguindo as diretrizes e prazos oficiais da ANEEL. A Klyfe Electric gerencia todas as etapas: desde a elaboração do projeto elétrico assinado por engenheiros especialistas até a vistoria de conexão e instalação do medidor bidirecional pela distribuidora.",
+    mercadoAlvo: "Atendemos a residências em áreas urbanas e litorâneas, indústrias de médio e grande porte, redes de comércio e supermercados, além de de sistemas de irrigação e bombeamento solar no semiárido paraibano."
+  },
 
   services: {
     'laudos-eletricos': {
@@ -599,8 +607,8 @@ module.exports = {
       template: 'solar',
       bairros: 'Litoral, Agreste, Sertão e Curimataú Paraibano',
       serviceContext: `
-        <p>Projetamos e instalamos sistemas de energia solar fotovoltaica em toda a Paraíba. O sol forte da nossa região garante excelente geração de energia durante o ano inteiro.</p>
-        <p>Economize até 95% na sua conta de luz mensal. Cuidamos de todo o processo de homologação técnica na Energisa de forma rápida e segura para sua empresa ou residência.</p>
+        <p>A Klyfe Electric é referência na <strong>instalação de placa solar na Paraíba</strong>. Projetamos e executamos a montagem de sistemas de energia solar fotovoltaica sob medida, aproveitando a alta incidência solar do nosso estado para proporcionar o máximo de eficiência energética.</p>
+        <p>Cuidamos de todas as etapas: desde o estudo de viabilidade, o projeto de engenharia, até a <strong>instalação de painel solar na Paraíba</strong> e a homologação completa na Energisa. Garanta até 95% de economia mensal na conta de energia da sua empresa ou residência.</p>
       `,
       painPoint: 'Necessidade de redução de custos com energia elétrica em todo o estado.',
       cta: 'Simular economia solar na Paraíba.',

@@ -276,13 +276,43 @@ router.get('/:city(campina-grande|joao-pessoa)?/solucoes/solar', (req, res) => {
     const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
     const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/solucoes/solar`;
 
+    const titleText = `Instalação de Placa Solar ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`;
+    const descText = `Instalação de placa solar e painel solar ${cityBase.preposition} ${cityBase.name}. Economize até 95% na conta de luz. Projetos residenciais e industriais com homologação Energisa.`;
+
+    const jsonLdData = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": `Instalação de Placa Solar ${cityBase.preposition} ${cityBase.name}`,
+        "serviceType": "Instalação de Energia Solar",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Klyfe Electric",
+            "telephone": "+5583991330972",
+            "image": "https://www.klyfeelectric.com.br/img/hero-klyfe.webp",
+            "url": "https://www.klyfeelectric.com.br"
+        },
+        "areaServed": [
+            {
+                "@type": "AdministrativeArea",
+                "name": cityBase.name
+            },
+            {
+                "@type": "AdministrativeArea",
+                "name": "Paraíba"
+            }
+        ],
+        "description": `Instalação de placa solar e painel solar de alta performance ${cityBase.preposition} ${cityBase.name}. Economize até 95% na conta de luz com homologação Energisa.`
+    };
+    
+    const jsonLd = `<script type="application/ld+json">${JSON.stringify(jsonLdData)}</script>`;
+
     res.render('solar', {
-        title: `Energia Solar ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        pageTitle: `Energia Solar ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        description: `Energia solar fotovoltaica para residências, comércios e indústrias ${cityBase.preposition} ${cityBase.name}. Economize até 95% com homologação rápida na Energisa.`,
-        metaDesc: `Energia solar fotovoltaica para residências, comércios e indústrias ${cityBase.preposition} ${cityBase.name}. Economize até 95% com homologação rápida na Energisa.`,
+        title: titleText,
+        pageTitle: titleText,
+        description: descText,
+        metaDesc: descText,
         canonical: cityKey === 'default' ? `${baseUrl}/solucoes/solar` : `${baseUrl}/${cityKey}/solucoes/solar`,
-        cityKey, cityData: cityBase, alternateCityName, alternateUrl, page: 'solar', jsonLd: ''
+        cityKey, cityData: cityBase, alternateCityName, alternateUrl, page: 'solar', jsonLd
     });
 });
 
