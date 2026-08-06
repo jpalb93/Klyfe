@@ -11,8 +11,8 @@
   let currentPage = (typeof page !== 'undefined') ? page : '';
   let servicePath = (['engenharia', 'eletrica', 'automacao', 'solar'].includes(currentPage)) ? `/solucoes/${currentPage}` : '/solucoes';
 
-  const waMenuMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.';
-  const waMenuUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(waMenuMsg)}`;
+  const waMenuMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.');
+  const waMenuUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(waMenuMsg)}`;
 
   // Filtro de Serviços Disponíveis
   const isAllEnabled = (typeof cityData !== 'undefined' && cityData.allServices === true);
@@ -145,7 +145,7 @@
         </div>
     </div>
 
-    <a href="<%= waMenuUrl %>" target="_blank" rel="noopener" style="color:var(--accent-secondary);margin-top:1.5rem;border-bottom:none"><i class="fab fa-whatsapp"></i> (83) 99133-0972</a>
+    <a href="<%= waMenuUrl %>" target="_blank" rel="noopener" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>" style="color:var(--accent-secondary);margin-top:1.5rem;border-bottom:none"><i class="fab fa-whatsapp"></i> (83) 99133-0972</a>
 
 </div>
 

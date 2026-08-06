@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const locations = require('./config/locations'); // Carregado uma única vez (Eficiência)
+const { resolveTrackingContext } = require('./lib/site-tracking');
 
 const app = express();
 
@@ -24,7 +25,10 @@ app.use(helmet({
                 "https://www.googleadservices.com",
                 "https://googleads.g.doubleclick.net",
                 "https://connect.facebook.net",
+                "https://*.facebook.net",
             ],
+            // Helmet default é 'none' e bloqueia onclick= inline do banner de cookies
+            scriptSrcAttr: ["'unsafe-inline'", "'unsafe-hashes'"],
             styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
             fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
             imgSrc: [
@@ -33,6 +37,9 @@ app.use(helmet({
                 "https://www.klyfeelectric.com.br",
                 "https://wa.me",
                 "https://www.facebook.com",
+                "https://*.facebook.com",
+                "https://*.facebook.net",
+                "https://*.fbcdn.net",
                 "https://www.google-analytics.com",
                 "https://www.googletagmanager.com",
                 "https://googleads.g.doubleclick.net",
@@ -44,13 +51,17 @@ app.use(helmet({
                 "https://analytics.google.com",
                 "https://www.googletagmanager.com",
                 "https://www.facebook.com",
+                "https://*.facebook.com",
                 "https://connect.facebook.net",
+                "https://*.facebook.net",
+                "https://*.fbcdn.net",
                 "https://googleads.g.doubleclick.net",
             ],
             frameSrc: [
                 "'self'",
                 "https://www.googletagmanager.com",
                 "https://www.facebook.com",
+                "https://*.facebook.com",
             ],
             upgradeInsecureRequests: []
         }
@@ -76,6 +87,11 @@ const limiter = rateLimit({
     message: 'Muitas requisições vindas deste IP, tente novamente mais tarde.'
 });
 app.use('/contato', limiter); // Aplica apenas na rota de contato para não afetar navegação
+app.use('/api/tracking', rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 200,
+    message: 'Muitas requisições de tracking deste IP.'
+}));
 
 // Configurações do Express e EJS
 app.set('view engine', 'ejs');
@@ -94,12 +110,29 @@ app.use((req, res, next) => {
     res.locals.cityData = locations['default'];
     res.locals.page = '';
     res.locals.theme = null;
+    const pixelViaGtm =
+        process.env.META_PIXEL_VIA_GTM === '1' ||
+        process.env.META_PIXEL_VIA_GTM === 'true';
+    const gtmId = process.env.GTM_ID || '';
+    // Evita Pixel hard-coded + Pixel no GTM ao mesmo tempo.
+    // META_PIXEL_VIA_GTM=true → só GTM injeta o Pixel.
     res.locals.tracking = {
-        gtmId: process.env.GTM_ID || '',
+        gtmId,
         metaPixelId: process.env.META_PIXEL_ID || '',
         googleAdsId: process.env.GOOGLE_ADS_ID || '',
-        googleAdsConversionLabel: process.env.GOOGLE_ADS_CONVERSION_LABEL || ''
+        googleAdsConversionLabel: process.env.GOOGLE_ADS_CONVERSION_LABEL || '',
+        pixelViaGtm: pixelViaGtm && !!gtmId,
+        capiEnabled: !!(process.env.META_PIXEL_ID && process.env.META_CAPI_ACCESS_TOKEN)
     };
+
+    // Pixel/WA context by route (solar vs engenharia vs geral…)
+    const ctx = resolveTrackingContext(req.path);
+    res.locals.contentCategory = ctx.contentCategory;
+    res.locals.fireViewContent = ctx.fireViewContent;
+    res.locals.contentName = req.path || '/';
+    res.locals.waPhone = ctx.waPhone;
+    res.locals.waMsg = ctx.waMsg;
+    res.locals.waUrl = ctx.waUrl;
     next();
 });
 

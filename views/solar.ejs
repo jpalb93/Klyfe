@@ -174,8 +174,9 @@
             <a href="#calculadora" class="btn btn-primary" style="background: #f59e0b; border-color: #f59e0b; color: #000; font-weight: 700; padding: 0.9rem 2rem;">
                 <i class="fas fa-calculator" style="margin-right: 8px;"></i> Simular Minha Economia Solar
             </a>
-            <% const waHeroMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de um orçamento para energia solar.'; %>
-            <a href="https://wa.me/5583991430929?text=<%= encodeURIComponent(waHeroMsg) %>" target="_blank" rel="noopener" class="btn btn-ghost" style="padding: 0.9rem 2rem; color: #ffffff; border-color: rgba(255,255,255,0.3);">
+            <% const waHeroMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento de ENERGIA SOLAR.'; %>
+            <% const waHeroUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991430929?text=${encodeURIComponent(waHeroMsg)}`; %>
+            <a href="<%= waHeroUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" style="padding: 0.9rem 2rem; color: #ffffff; border-color: rgba(255,255,255,0.3);">
                 <i class="fab fa-whatsapp" style="margin-right: 8px; color: #25d366;"></i> Falar com Engenheiro Eletricista
             </a>
         </div>
@@ -496,8 +497,9 @@
         </div>
         <div style="display:flex; gap:1.25rem; flex-wrap:wrap">
             <a href="/contato" class="btn" style="background: #f59e0b; color: #000; font-weight: 700; padding: 1rem 2rem;">Solicitar Estudo Solar Grátis</a>
-            <% const waCtaMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de um projeto de energia solar Klyfe.'; %>
-            <a href="https://wa.me/5583991430929?text=<%= encodeURIComponent(waCtaMsg) %>" target="_blank" rel="noopener" class="btn" style="background: transparent; border: 2px solid #25d366; color: #25d366; font-weight: 700; padding: 1rem 2rem;">
+            <% const waCtaMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento de ENERGIA SOLAR.'; %>
+            <% const waCtaUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991430929?text=${encodeURIComponent(waCtaMsg)}`; %>
+            <a href="<%= waCtaUrl %>" target="_blank" rel="noopener" class="btn" style="background: transparent; border: 2px solid #25d366; color: #25d366; font-weight: 700; padding: 1rem 2rem;">
                 <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> <%= cityData.cta || '(83) 99143-0929' %>
             </a>
         </div>

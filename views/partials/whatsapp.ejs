@@ -1,13 +1,9 @@
 <% 
-   const isSolarContext = (typeof category !== 'undefined' && category === 'solar') || 
-                          (typeof post !== 'undefined' && post.category === 'solar') || 
-                          (typeof currentPage !== 'undefined' && (currentPage === 'solar' || currentPage.includes('solar')));
-   const phoneFloat = isSolarContext ? '5583991430929' : '5583991330972';
-   const waMsgFloat = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.';
-   const waUrlFloat = `https://wa.me/${phoneFloat}?text=${encodeURIComponent(waMsgFloat)}`;
+   const phoneFloat = (typeof waPhone !== 'undefined' && waPhone) ? waPhone : '5583991330972';
+   const waMsgFloat = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.';
+   const waUrlFloat = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/${phoneFloat}?text=${encodeURIComponent(waMsgFloat)}`;
 %>
-<a href="<%= waUrlFloat %>" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+<a href="<%= waUrlFloat %>" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>">
     <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Falar no WhatsApp</span>
     <i class="fab fa-whatsapp"></i>
 </a>
-

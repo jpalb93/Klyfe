@@ -1,0 +1,61 @@
+<style>
+  #klyfe-cookie-banner {
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    pointer-events: none;
+  }
+  #klyfe-cookie-banner.is-hidden,
+  #klyfe-cookie-banner[hidden] {
+    display: none !important;
+  }
+  .klyfe-cookie-panel {
+    pointer-events: auto;
+    max-width: 720px;
+    margin: 0 auto;
+    background: #101318;
+    color: #f5f6f8;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+  .klyfe-cookie-panel p { margin: 0; flex: 1 1 280px; color: #d7dbe2; }
+  .klyfe-cookie-panel a { color: #f5c518; text-decoration: underline; }
+  .klyfe-cookie-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .klyfe-cookie-actions button {
+    appearance: none;
+    border: 0;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .klyfe-cookie-accept { background: #f5c518; color: #101318; }
+  .klyfe-cookie-deny { background: transparent; color: #f5f6f8; border: 1px solid rgba(255,255,255,0.25) !important; }
+</style>
+<div id="klyfe-cookie-banner" class="is-hidden" role="dialog" aria-live="polite" aria-label="Consentimento de cookies" hidden>
+  <div class="klyfe-cookie-panel">
+    <p>
+      Usamos cookies de marketing (Meta Pixel) e, se configurado, tags de anúncios para medir campanhas.
+      Essenciais do site continuam funcionando sem isso.
+      Veja a <a href="/politica-de-privacidade">Política de Privacidade</a>.
+    </p>
+    <div class="klyfe-cookie-actions">
+      <button type="button" class="klyfe-cookie-deny" data-klyfe-consent="deny">Recusar</button>
+      <button type="button" class="klyfe-cookie-accept" data-klyfe-consent="accept">Aceitar</button>
+    </div>
+  </div>
+</div>

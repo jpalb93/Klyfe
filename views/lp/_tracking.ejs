@@ -4,44 +4,33 @@
   const metaPixelId = tr.metaPixelId || '';
   const googleAdsId = tr.googleAdsId || '';
   const googleAdsConversionLabel = tr.googleAdsConversionLabel || '';
-  const fireLead = !!locals.fireLeadConversion;
+  const pixelViaGtm = !!tr.pixelViaGtm;
+  const capiEnabled = !!tr.capiEnabled;
+  const contentCategory = locals.contentCategory || 'geral';
+  const fireViewContent = !!locals.fireViewContent;
+  const contentName = (locals.contentName && String(locals.contentName))
+    || (locals.page && String(locals.page))
+    || contentCategory
+    || '';
+  const leadContentName = locals.leadContentName || 'lp-solar-empresas';
+  const leadContentCategory = locals.leadContentCategory || 'solar';
+  const expectLpLead = !!locals.expectLpLead;
 %>
-<script>window.dataLayer = window.dataLayer || [];</script>
-<% if (gtmId) { %>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','<%= gtmId %>');</script>
-<% } %>
-<% if (metaPixelId) { %>
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '<%= metaPixelId %>');
-fbq('track', 'PageView');
-<% if (fireLead) { %>fbq('track', 'Lead', { content_name: 'lp-solar-empresas' });<% } %>
-</script>
-<% } %>
-<% if (googleAdsId) { %>
-<script async src="https://www.googletagmanager.com/gtag/js?id=<%= googleAdsId %>"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '<%= googleAdsId %>');
-<% if (fireLead && googleAdsConversionLabel) { %>
-gtag('event', 'conversion', {
-  send_to: '<%= googleAdsId %>/<%= googleAdsConversionLabel %>'
-});
-<% } %>
+window.__KLYFE_TRACKING__ = {
+  gtmId: <%- JSON.stringify(gtmId) %>,
+  metaPixelId: <%- JSON.stringify(pixelViaGtm ? '' : metaPixelId) %>,
+  pixelViaGtm: <%= pixelViaGtm ? 'true' : 'false' %>,
+  capiEnabled: <%= capiEnabled ? 'true' : 'false' %>,
+  googleAdsId: <%- JSON.stringify(googleAdsId) %>,
+  googleAdsConversionLabel: <%- JSON.stringify(googleAdsConversionLabel) %>,
+  contentCategory: <%- JSON.stringify(contentCategory) %>,
+  contentName: <%- JSON.stringify(contentName) %>,
+  fireViewContent: <%= fireViewContent ? 'true' : 'false' %>,
+  leadContentName: <%- JSON.stringify(leadContentName) %>,
+  leadContentCategory: <%- JSON.stringify(leadContentCategory) %>,
+  expectLpLead: <%= expectLpLead ? 'true' : 'false' %>
+};
 </script>
-<% } %>
-<% if (fireLead) { %>
-<script>
-window.dataLayer.push({ event: 'generate_lead', lead_source: 'lp-solar-empresas', page: 'obrigado' });
-</script>
-<% } %>
+<script src="/js/tracking.js" defer></script>

@@ -388,9 +388,9 @@
         </a>
         <div class="topbar-right">
             <span class="pill"><i class="fas fa-bolt"></i> Estudo técnico em até 24h</span>
-            <a class="btn btn-wa btn-sm" href="<%= waUrl %>" target="_blank" rel="noopener">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </a>
+        <a class="btn btn-wa btn-sm" href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
         </div>
     </div>
 </header>
@@ -464,7 +464,7 @@
 
                     <button type="submit" class="btn btn-solar btn-block">Quero meu estudo gratuito</button>
                     <p class="form-note"><i class="fas fa-shield-alt"></i><span>Sem compromisso. Não enviamos spam. Dados só para o estudo técnico.</span></p>
-                    <p class="form-or">Ou <a href="<%= waUrl %>" target="_blank" rel="noopener">mande a fatura no WhatsApp</a></p>
+                    <p class="form-or">Ou <a href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar">mande a fatura no WhatsApp</a></p>
                 </form>
             </div>
         </div>
@@ -525,7 +525,7 @@
                     </div>
                     <div class="calc-actions">
                         <a href="#estudo" id="lp-calc-cta" class="btn btn-solar">Receber estudo completo</a>
-                        <a href="<%= waUrl %>" class="btn btn-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Enviar fatura</a>
+                        <a href="<%= waUrl %>" class="btn btn-wa" target="_blank" rel="noopener" data-content-category="solar"><i class="fab fa-whatsapp"></i> Enviar fatura</a>
                     </div>
                 </div>
                 <div class="calc-results">
@@ -644,7 +644,7 @@
             <p class="lead">Estudo gratuito, sem compromisso. Em até 24h você recebe o primeiro retorno técnico.</p>
             <div class="cta-actions">
                 <a href="#estudo" class="btn btn-solar">Pedir estudo de ROI</a>
-                <a href="<%= waUrl %>" class="btn btn-wa" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Falar agora</a>
+                <a href="<%= waUrl %>" class="btn btn-wa" target="_blank" rel="noopener" data-content-category="solar"><i class="fab fa-whatsapp"></i> Falar agora</a>
             </div>
             <div class="next-steps">
                 <div class="next-step"><strong>1. Você envia</strong> Dados da empresa e faixa da conta (ou a fatura no WhatsApp).</div>
@@ -664,7 +664,7 @@
 </footer>
 
 <div class="mobar" aria-label="Ações rápidas">
-    <a class="btn btn-wa" href="<%= waUrl %>" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a class="btn btn-wa" href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar"><i class="fab fa-whatsapp"></i> WhatsApp</a>
     <a class="btn btn-solar" href="#estudo">Pedir estudo</a>
 </div>
 
@@ -687,5 +687,6 @@
         });
     });
 </script>
+<%- include('../partials/cookie-banner') %>
 </body>
 </html>

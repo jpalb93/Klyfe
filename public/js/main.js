@@ -141,6 +141,27 @@ document.addEventListener('DOMContentLoaded', () => {
             // Remove o campo honeypot antes de enviar para o servidor
             delete data.website_url;
 
+            const servico = data.servico || '';
+            const categoryMap = {
+                'Energia Solar Fotovoltaica': 'solar',
+                'Engenharia e Projetos': 'engenharia',
+                'Manutenção de Subestações': 'engenharia',
+                'Instalações Industriais': 'eletrica',
+                'Laudos e Termografia': 'engenharia',
+                'Automação Predial/Industrial': 'automacao',
+                Outro: 'geral'
+            };
+            const contentCategory = categoryMap[servico] || 'geral';
+            const isSolarLead = contentCategory === 'solar';
+            const eventId = (window.KlyfeTracking && window.KlyfeTracking.newEventId)
+                ? window.KlyfeTracking.newEventId('lead')
+                : ('lead_' + Date.now());
+            data.event_id = eventId;
+            data.event_source_url = window.location.href;
+            if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
+                Object.assign(data, window.KlyfeTracking.getMetaCookies());
+            }
+
             try {
                 const res = await fetch('/contato', { 
                     method: 'POST', 
@@ -151,9 +172,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!res.ok) throw new Error('Falha no servidor');
                 
                 const json = await res.json();
-                if (json.success) { 
-                    alert('✓ ' + json.message); 
-                    contactForm.reset(); 
+                if (json.success) {
+                    // Lead padrão Meta somente no funil Solar (otimização de campanhas)
+                    if (isSolarLead && typeof window.fbq === 'function') {
+                        window.fbq('track', 'Lead', {
+                            content_name: 'contato',
+                            content_category: 'solar',
+                            content_category_label: servico
+                        }, { eventID: json.event_id || eventId });
+                    }
+                    if (window.dataLayer) {
+                        window.dataLayer.push({
+                            event: isSolarLead ? 'generate_lead' : 'generate_lead_other',
+                            lead_source: 'contato',
+                            content_category: contentCategory,
+                            servico: servico,
+                            event_id: json.event_id || eventId
+                        });
+                    }
+                    alert('✓ ' + json.message);
+                    contactForm.reset();
                 }
             } catch (err) { 
                 alert('⚠️ Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.'); 
@@ -251,6 +289,15 @@ document.addEventListener('DOMContentLoaded', () => {
             delete data.website_url;
             data.telefone = phoneDigits;
 
+            const eventId = (window.KlyfeTracking && window.KlyfeTracking.newEventId)
+                ? window.KlyfeTracking.newEventId('lead')
+                : ('lead_' + Date.now());
+            data.event_id = eventId;
+            data.event_source_url = window.location.href;
+            if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
+                Object.assign(data, window.KlyfeTracking.getMetaCookies());
+            }
+
             try {
                 const res = await fetch('/contato', {
                     method: 'POST',
@@ -260,12 +307,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!res.ok) throw new Error('Falha no servidor');
                 const json = await res.json();
                 if (json.success) {
-                    if (window.dataLayer) {
-                        window.dataLayer.push({
-                            event: 'generate_lead',
-                            lead_source: 'lp-solar-empresas',
-                            conta_media: data.conta_media || '',
-                        });
+                    const finalEventId = json.event_id || eventId;
+                    // Lead Pixel + dataLayer só na /obrigado (uma vez), com o mesmo event_id da CAPI
+                    if (window.KlyfeTracking && window.KlyfeTracking.markLpLeadPending) {
+                        window.KlyfeTracking.markLpLeadPending(finalEventId);
+                    } else {
+                        try {
+                            sessionStorage.setItem('klyfe_lp_solar_lead', JSON.stringify({
+                                event_id: finalEventId,
+                                browser_fired: false,
+                                ts: Date.now()
+                            }));
+                        } catch (_) { /* ignore */ }
                     }
                     window.location.href = '/lp/energia-solar-empresas/obrigado';
                     return;

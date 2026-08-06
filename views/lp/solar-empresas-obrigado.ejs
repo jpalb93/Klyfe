@@ -94,7 +94,7 @@
         <a href="/" aria-label="Klyfe Electric">
             <img class="topbar-logo" src="/img/Assinatura%20Completa%20-%20AmareloB%20-%20Klyfe.webp" alt="Klyfe Electric" width="160" height="28">
         </a>
-        <a class="btn btn-wa btn-sm" href="<%= waUrl %>" target="_blank" rel="noopener">
+        <a class="btn btn-wa btn-sm" href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar">
             <i class="fab fa-whatsapp"></i> WhatsApp
         </a>
     </div>
@@ -110,7 +110,7 @@
                 Para agilizar, envie a fatura de energia no WhatsApp agora.
             </p>
             <div class="actions">
-                <a class="btn btn-wa" href="<%= waUrl %>" target="_blank" rel="noopener">
+                <a class="btn btn-wa" href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar">
                     <i class="fab fa-whatsapp"></i> Enviar fatura no WhatsApp
                 </a>
                 <a class="btn btn-ghost" href="/lp/energia-solar-empresas">Voltar</a>
@@ -127,5 +127,6 @@
 <footer>
     Klyfe Electric · <a href="/">Site completo</a>
 </footer>
+<%- include('../partials/cookie-banner') %>
 </body>
 </html>

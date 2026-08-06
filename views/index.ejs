@@ -378,8 +378,9 @@
         </div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
             <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
-            <% const waMsgHome = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
-            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsgHome) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Ligue Agora</a>
+            <% const waMsgHome = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.'; %>
+            <% const waUrlHome = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(waMsgHome)}`; %>
+            <a href="<%= waUrlHome %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Ligue Agora</a>
         </div>
 
     </div>

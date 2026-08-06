@@ -1,13 +1,9 @@
 <% 
   const tr = typeof tracking !== 'undefined' && tracking ? tracking : {};
   const gtmId = tr.gtmId || '';
-  const metaPixelId = tr.metaPixelId || '';
 %>
 <% if (gtmId) { %>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=<%= gtmId %>"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <% } %>
-<% if (metaPixelId) { %>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=<%= metaPixelId %>&ev=PageView&noscript=1" alt=""/></noscript>
-<% } %>
+<%# Meta noscript PageView removido: cookies de marketing exigem consentimento (LGPD). %>

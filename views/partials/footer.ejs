@@ -4,8 +4,8 @@
 
   const displayAddress = (typeof cityData !== 'undefined' && cityData.address) ? cityData.address : 'Atendimento Consultivo em toda a Paraíba';
   const displayPhone = (typeof cityData !== 'undefined' && cityData.phone) ? cityData.phone : '(83) 99133-0972';
-  const waMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.';
-  const waUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(waMsg)}`;
+  const footerWaMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.');
+  const footerWaUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(footerWaMsg)}`;
 
   // Filtro de Serviços Disponíveis
   const isAllEnabled = (typeof cityData !== 'undefined' && cityData.allServices === true);
@@ -79,7 +79,7 @@
                 <div class="footer-social">
                     <a href="https://www.instagram.com/klyfeelectric" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/company/klyfeelectric" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="<%= waUrl %>" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="<%= footerWaUrl %>" target="_blank" rel="noopener" aria-label="WhatsApp" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -100,4 +100,5 @@
     </div>
 </footer>
 <%- include('../lp/_tracking-body') %>
+<%- include('cookie-banner') %>
 

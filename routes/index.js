@@ -7,8 +7,12 @@ const solarCapture = require('../config/solar-capture');
 const solarServices = require('../config/solar-services');
 const { getPublishedPosts, getPostBySlug } = require('../lib/blog-loader');
 const { evaluatePosts, evaluatePost, buildLocals } = require('../lib/blog-evaluator');
+const { resolveTrackingContext, PHONE_SOLAR, MESSAGES, buildWaUrl, categoryFromServico } = require('../lib/site-tracking');
+const { sendMetaCapiEvent, newEventId } = require('../lib/meta-capi');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
+
+const ALLOWED_CAPI_EVENTS = new Set(['PageView', 'ViewContent', 'Lead', 'Contact']);
 
 // ═══ REDIRECIONAMENTOS 301 (SEO Legacy Redirects) ═══
 router.use((req, res, next) => {
@@ -621,6 +625,11 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
     </script>
     `;
 
+    const solarish = /solar|fotovolta|painel|inversor|homologacao/i.test(postSlug + ' ' + (post.category || '') + ' ' + (post.title || ''));
+    const trackingExtras = solarish
+        ? resolveTrackingContext('/energia-solar/', { contentCategory: 'solar' })
+        : {};
+
     res.render('blog-post', {
         title: `${evaluatedPost.title} | Klyfe Electric`,
         description: evaluatedPost.summary,
@@ -632,7 +641,48 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
         alternateCityName,
         alternateUrl,
         page: 'blog',
-        jsonLd
+        jsonLd,
+        ...trackingExtras
+    });
+});
+
+// ═══ LP Ads: Energia Solar Empresas (noindex) ═══
+const lpSolarWaMsg = MESSAGES.solar;
+const lpSolarWaUrl = buildWaUrl(PHONE_SOLAR, lpSolarWaMsg);
+
+router.get('/lp/energia-solar-empresas', (req, res) => {
+    res.render('lp/solar-empresas', {
+        title: 'Energia Solar para Empresas | Reduza até 95% da conta | Klyfe',
+        description: 'Projeto, instalação e homologação de energia solar para empresas no Nordeste. Simule economia e fale com a Klyfe Electric.',
+        canonical: `${baseUrl}/lp/energia-solar-empresas`,
+        robots: 'noindex, nofollow',
+        page: 'lp-solar-empresas',
+        contentCategory: 'solar',
+        contentName: '/lp/energia-solar-empresas',
+        fireViewContent: true,
+        waUrl: lpSolarWaUrl,
+        waMsg: lpSolarWaMsg,
+        waPhone: PHONE_SOLAR,
+        expectLpLead: false
+    });
+});
+
+router.get('/lp/energia-solar-empresas/obrigado', (req, res) => {
+    res.render('lp/solar-empresas-obrigado', {
+        title: 'Solicitação recebida | Klyfe Electric',
+        description: 'Recebemos seu pedido de estudo solar. Em breve nossa equipe entra em contato.',
+        canonical: `${baseUrl}/lp/energia-solar-empresas/obrigado`,
+        robots: 'noindex, nofollow',
+        page: 'lp-solar-empresas-obrigado',
+        contentCategory: 'solar',
+        contentName: '/lp/energia-solar-empresas/obrigado',
+        fireViewContent: false,
+        leadContentName: 'lp-solar-empresas',
+        leadContentCategory: 'solar',
+        waUrl: lpSolarWaUrl,
+        waMsg: lpSolarWaMsg,
+        waPhone: PHONE_SOLAR,
+        expectLpLead: true
     });
 });
 
@@ -648,9 +698,93 @@ router.get('/:city(campina-grande|joao-pessoa)?/contato', (req, res) => {
     });
 });
 
-// POST Contato
-router.post('/contato', (req, res) => {
-    res.json({ success: true, message: 'Recebido!' });
+/**
+ * Meta CAPI (browser dedup via event_id).
+ * Aceita PageView | ViewContent | Lead | Contact.
+ */
+router.post('/api/tracking/event', async (req, res) => {
+    const body = req.body || {};
+    const eventName = String(body.event_name || '');
+    if (!ALLOWED_CAPI_EVENTS.has(eventName)) {
+        return res.status(400).json({ success: false, message: 'event_name inválido' });
+    }
+    const eventId = String(body.event_id || newEventId('capi'));
+    const user = body.user_data || {};
+    const customData = body.custom_data || {};
+
+    // Lead padrão Meta só no funil Solar
+    if (eventName === 'Lead' && customData.content_category && customData.content_category !== 'solar') {
+        return res.status(400).json({ success: false, message: 'Lead padrão restrito a solar' });
+    }
+
+    const sourceUrl =
+        body.event_source_url ||
+        req.get('referer') ||
+        baseUrl;
+
+    sendMetaCapiEvent({
+        eventName,
+        eventId,
+        eventSourceUrl: sourceUrl,
+        customData,
+        userData: {
+            email: user.email || user.em,
+            phone: user.phone || user.ph,
+            firstName: user.firstName || user.fn,
+            lastName: user.lastName || user.ln,
+            fbp: user.fbp,
+            fbc: user.fbc
+        },
+        clientIp: req.headers['x-forwarded-for']
+            ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
+            : req.ip,
+        userAgent: req.get('user-agent') || ''
+    }).catch(() => {});
+
+    res.json({ success: true, event_id: eventId });
+});
+
+// POST Contato (+ CAPI Lead solar com event_id para dedup com Pixel)
+router.post('/contato', async (req, res) => {
+    const body = req.body || {};
+    const category = categoryFromServico(body.servico);
+    const isLpSolar = body.source === 'lp-solar-empresas';
+    const isSolarLead = category === 'solar' || isLpSolar;
+    const eventId = String(body.event_id || newEventId('lead'));
+
+    if (isSolarLead) {
+        sendMetaCapiEvent({
+            eventName: 'Lead',
+            eventId,
+            eventSourceUrl: body.event_source_url || (isLpSolar
+                ? `${baseUrl}/lp/energia-solar-empresas`
+                : `${baseUrl}/contato`),
+            customData: {
+                content_name: isLpSolar ? 'lp-solar-empresas' : 'contato',
+                content_category: 'solar',
+                content_category_label: body.servico || 'Energia Solar Fotovoltaica'
+            },
+            userData: {
+                email: body.email,
+                phone: body.telefone,
+                firstName: (body.nome || '').split(/\s+/)[0],
+                lastName: (body.nome || '').split(/\s+/).slice(1).join(' '),
+                fbp: body.fbp,
+                fbc: body.fbc
+            },
+            clientIp: req.headers['x-forwarded-for']
+                ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
+                : req.ip,
+            userAgent: req.get('user-agent') || ''
+        }).catch(() => {});
+    }
+
+    res.json({
+        success: true,
+        message: 'Recebido!',
+        event_id: eventId,
+        content_category: isSolarLead ? 'solar' : category
+    });
 });
 
 // Sitemap XML
