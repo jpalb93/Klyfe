@@ -701,6 +701,7 @@ router.get('/:city(campina-grande|joao-pessoa)?/contato', (req, res) => {
 /**
  * Meta CAPI (browser dedup via event_id).
  * Aceita PageView | ViewContent | Lead | Contact.
+ * IMPORTANTE: await no Vercel — fire-and-forget após res.json é cortado.
  */
 router.post('/api/tracking/event', async (req, res) => {
     const body = req.body || {};
@@ -722,7 +723,11 @@ router.post('/api/tracking/event', async (req, res) => {
         req.get('referer') ||
         baseUrl;
 
-    sendMetaCapiEvent({
+    const clientIp = req.headers['x-forwarded-for']
+        ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
+        : (req.ip || '').replace(/^::ffff:/, '');
+
+    const capi = await sendMetaCapiEvent({
         eventName,
         eventId,
         eventSourceUrl: sourceUrl,
@@ -735,13 +740,16 @@ router.post('/api/tracking/event', async (req, res) => {
             fbp: user.fbp,
             fbc: user.fbc
         },
-        clientIp: req.headers['x-forwarded-for']
-            ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
-            : req.ip,
+        clientIp,
         userAgent: req.get('user-agent') || ''
-    }).catch(() => {});
+    });
 
-    res.json({ success: true, event_id: eventId });
+    res.json({
+        success: true,
+        event_id: eventId,
+        capi_ok: !!(capi && capi.ok),
+        capi_skipped: !!(capi && capi.skipped)
+    });
 });
 
 // POST Contato (+ CAPI Lead solar com event_id para dedup com Pixel)
@@ -752,8 +760,13 @@ router.post('/contato', async (req, res) => {
     const isSolarLead = category === 'solar' || isLpSolar;
     const eventId = String(body.event_id || newEventId('lead'));
 
+    let capi = null;
     if (isSolarLead) {
-        sendMetaCapiEvent({
+        const clientIp = req.headers['x-forwarded-for']
+            ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
+            : (req.ip || '').replace(/^::ffff:/, '');
+
+        capi = await sendMetaCapiEvent({
             eventName: 'Lead',
             eventId,
             eventSourceUrl: body.event_source_url || (isLpSolar
@@ -772,18 +785,17 @@ router.post('/contato', async (req, res) => {
                 fbp: body.fbp,
                 fbc: body.fbc
             },
-            clientIp: req.headers['x-forwarded-for']
-                ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
-                : req.ip,
+            clientIp,
             userAgent: req.get('user-agent') || ''
-        }).catch(() => {});
+        });
     }
 
     res.json({
         success: true,
         message: 'Recebido!',
         event_id: eventId,
-        content_category: isSolarLead ? 'solar' : category
+        content_category: isSolarLead ? 'solar' : category,
+        capi_ok: isSolarLead ? !!(capi && capi.ok) : undefined
     });
 });
 
