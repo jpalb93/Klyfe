@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv').config();
 const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
@@ -13,11 +14,44 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://cdnjs.cloudflare.com"],
+            scriptSrc: [
+                "'self'",
+                "'unsafe-inline'",
+                "'unsafe-eval'",
+                "https://cdnjs.cloudflare.com",
+                "https://www.googletagmanager.com",
+                "https://www.google-analytics.com",
+                "https://www.googleadservices.com",
+                "https://googleads.g.doubleclick.net",
+                "https://connect.facebook.net",
+            ],
             styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
             fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
-            imgSrc: ["'self'", "data:", "https://www.klyfeelectric.com.br", "https://wa.me"],
-            connectSrc: ["'self'"],
+            imgSrc: [
+                "'self'",
+                "data:",
+                "https://www.klyfeelectric.com.br",
+                "https://wa.me",
+                "https://www.facebook.com",
+                "https://www.google-analytics.com",
+                "https://www.googletagmanager.com",
+                "https://googleads.g.doubleclick.net",
+                "https://www.google.com",
+            ],
+            connectSrc: [
+                "'self'",
+                "https://www.google-analytics.com",
+                "https://analytics.google.com",
+                "https://www.googletagmanager.com",
+                "https://www.facebook.com",
+                "https://connect.facebook.net",
+                "https://googleads.g.doubleclick.net",
+            ],
+            frameSrc: [
+                "'self'",
+                "https://www.googletagmanager.com",
+                "https://www.facebook.com",
+            ],
             upgradeInsecureRequests: []
         }
     },
@@ -59,12 +93,21 @@ app.use((req, res, next) => {
     res.locals.cityKey = 'default';
     res.locals.cityData = locations['default'];
     res.locals.page = '';
+    res.locals.theme = null;
+    res.locals.tracking = {
+        gtmId: process.env.GTM_ID || '',
+        metaPixelId: process.env.META_PIXEL_ID || '',
+        googleAdsId: process.env.GOOGLE_ADS_ID || '',
+        googleAdsConversionLabel: process.env.GOOGLE_ADS_CONVERSION_LABEL || ''
+    };
     next();
 });
 
 // Importar rotas
 const indexRouter = require('./routes/index');
+const adminBlogRouter = require('./routes/admin-blog');
 app.use('/', indexRouter);
+app.use('/admin', adminBlogRouter);
 
 // ═══ TRATAMENTO DE ERROS (Fallback 404) ═══
 app.use((req, res) => {

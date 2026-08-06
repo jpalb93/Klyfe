@@ -18,7 +18,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="<%= canonical %>">
-<meta property="og:image" content="https://www.klyfeelectric.com.br/img/logo-klyfe.webp">
+<meta property="og:image" content="<%= locals.image ? (locals.image.startsWith('http') ? locals.image : 'https://www.klyfeelectric.com.br' + locals.image) : 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp' %>">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Klyfe Electric">
@@ -27,7 +27,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<%= title %>">
 <meta name="twitter:description" content="<%= description %>">
-<meta name="twitter:image" content="https://www.klyfeelectric.com.br/img/logo-klyfe.webp">
+<meta name="twitter:image" content="<%= locals.image ? (locals.image.startsWith('http') ? locals.image : 'https://www.klyfeelectric.com.br' + locals.image) : 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp' %>">
 <meta name="twitter:site" content="@klyfeelectric">
 <meta name="twitter:creator" content="@klyfeelectric">
 
@@ -75,3 +75,7 @@
 <% if (locals.jsonLd) { %>
     <%- jsonLd %>
 <% } %>
+
+<!-- Pixel / Analytics Tracking Scripts -->
+<%- include('../lp/_tracking') %>
+

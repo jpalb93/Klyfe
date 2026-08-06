@@ -1,0 +1,26 @@
+{
+  "slug": "automacao-industrial-nordeste",
+  "status": "published",
+  "publishAt": "2026-06-02",
+  "title": "Automação industrial: como a Indústria 4.0 chega ao Nordeste",
+  "category": "automacao",
+  "categoryLabel": "Automação",
+  "summary": "Descubra como a integração de CLPs, sensores IoT e sistemas supervisórios está revolucionando as fábricas no interior e capital paraibana.",
+  "readTime": "6 min",
+  "author": "Eng. Lucas Menezes",
+  "heroImage": "/img/projeto-vdi-infraestrutura-bim.webp",
+  "contentHtml": "<p>A Indústria 4.0 deixou de ser uma exclusividade dos grandes polos industriais do Sul e Sudeste. Em <strong>2026</strong>, a integração de inteligência de dados, sensores IoT e automação de processos está redefinindo as indústrias de <strong><%- cityData.name %> e da Paraíba</strong>.</p>\n            \n            <h2>O papel do CLP e dos Supervisórios (SCADA)</h2>\n            <p>Para manter a competitividade, as plantas industriais do Nordeste têm substituído lógicas mecânicas e painéis manuais antigos por <strong>Controladores Lógicos Programáveis (CLPs)</strong> e sistemas <strong>SCADA</strong> de monitoramento em tempo real. Isso permite acompanhar a produção à distância, identificar gargalos operacionais e ajustar parâmetros sem paralisar a linha de montagem.</p>\n\n            <h3>Principais melhorias observadas em fábricas automatizadas na Paraíba:</h3>\n            <ul>\n                <li><strong>Redução de Custos Fixos:</strong> Otimização do consumo de ar comprimido, vapor, eletricidade e insumos básicos na linha produtiva.</li>\n                <li><strong>Manutenção Preditiva:</strong> Alarmes automáticos alertam quando rolamentos ou conexões entram em sobretemperatura, prevenindo a parada inesperada de canteiros de produção críticos.</li>\n                <li><strong>Padronização de Qualidade:</strong> Processamento repetitivo e medição contínua eliminam lotes de mercadorias com defeito.</li>\n            </ul>\n\n            <p>Seja no setor têxtil e tecnológico de Campina Grande ou no polo portuário e industrial da Grande João Pessoa, a automação é o caminho definitivo para o crescimento econômico sustentável em 2026.</p>\n            \n            <p>A Klyfe Electric projeta a arquitetura lógica e monta sistemas robustos para fábricas. Veja as nossas soluções em <a href=\"<%- getHomePrefix() %>/solucoes/automacao\">Automação Inteligente e Industrial da Klyfe</a>.</p>",
+  "faq": [
+    {
+      "question": "Minha fábrica possui maquinário antigo, preciso trocar tudo para automatizar?",
+      "answer": "Não. Realizamos o retrofit industrial de painéis elétricos instalando CLPs de última geração integrados a sensores modernos nas máquinas antigas, gerando a transição para a Indústria 4.0 com baixo custo."
+    },
+    {
+      "question": "O que é um sistema supervisório SCADA?",
+      "answer": "É uma tela de computador ou painel IHM que permite monitorar visualmente o status das máquinas, temperaturas, pressões e vazões de toda a planta fabril em tempo real."
+    }
+  ],
+  "keywords": [],
+  "affiliateProducts": [],
+  "affiliateDisclosure": false
+}

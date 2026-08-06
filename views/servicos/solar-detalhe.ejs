@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR"<% if (locals.theme) { %> data-theme="<%= theme %>"<% } %>>
+<head><%- include('../partials/head') %></head>
+<body>
+<%- include('../partials/navbar') %>
+<main>
+<%
+  const page = serviceData;
+  const waMsg = `Olá! Vim da página do serviço de ${page.h1} e quero um orçamento.`;
+  const waUrl = `https://wa.me/5583991430929?text=${encodeURIComponent(waMsg)}`;
+%>
+
+<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:1rem">
+    <div class="container fade-in">
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;" aria-label="Breadcrumb">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/energia-solar/" style="color: inherit; text-decoration: none;">Energia Solar</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);"><%= page.h1 %></span>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<section class="hero-internal bg-blueprint" style="padding: 4rem 0 3rem;">
+    <div class="container fade-in">
+        <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span><%= page.eyebrow %></span></div>
+        <h1 class="hero-internal-title" style="max-width: 18ch;"><%= page.h1 %></h1>
+        <p class="hero-internal-desc" style="max-width: 720px;"><%= page.intro %></p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento de Serviço</a>
+            <a href="/contato" class="btn btn-ghost">Falar com Engenheiro</a>
+        </div>
+    </div>
+</section>
+
+<% if (page.stats && page.stats.length) { %>
+<section style="padding: 2.5rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="grid grid-cols-4" style="gap: 1.25rem;">
+            <% page.stats.forEach(function(s) { %>
+            <div class="fade-in" style="text-align: center; padding: 1rem;">
+                <div style="font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--accent-primary); line-height: 1.2;"><%= s.value %></div>
+                <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-mono);"><%= s.label %></div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<% if (page.painPoints && page.painPoints.length) { %>
+<section style="padding: 4rem 0; background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>DIFERENCIAIS TÉCNICOS</span></div>
+        <h2 class="fade-in" style="margin-bottom: 2.5rem; max-width: 20ch;">Por que contratar a Klyfe Electric</h2>
+        <div class="grid grid-cols-3" style="gap: 1.5rem;">
+            <% page.painPoints.forEach(function(p) { %>
+            <div class="bracket-box fade-in" style="padding: 2rem;">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--text-main);"><%= p.title %></h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;"><%= p.text %></p>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="grid grid-cols-2" style="gap: 4rem; align-items: start;">
+            <div class="fade-in">
+                <div class="section-separator"><%- include('../partials/symbol') %> <span>DETALHES DO SERVIÇO</span></div>
+                <h2 style="margin-bottom: 1.5rem; max-width: 22ch;">Execução com padrão de engenharia</h2>
+                <div class="solar-capture-body" style="color: var(--text-muted); line-height: 1.8; font-size: 1.05rem;">
+                    <%- page.bodyHtml %>
+                </div>
+            </div>
+            <div class="fade-in">
+                <div class="bracket-box" style="padding: 2.5rem; background: var(--bg-secondary); border-color: var(--accent-primary);">
+                    <h3 style="margin-bottom: 1.25rem; color: var(--text-main);">O que você recebe no serviço</h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-muted);">
+                        <% page.benefits.forEach(function(b) { %>
+                        <li style="margin-bottom: 0.85rem;"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i><%= b %></li>
+                        <% }) %>
+                    </ul>
+                    <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 2rem; display: inline-flex;"><i class="fab fa-whatsapp"></i> Falar com Especialista</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% if (page.processSteps && page.processSteps.length) { %>
+<section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('../partials/symbol') %> <span>ETAPAS DO ATENDIMENTO</span></div>
+        <h2 class="fade-in" style="margin-bottom: 2.5rem;">Como realizamos este serviço</h2>
+        <div class="grid grid-cols-4" style="gap: 1.25rem;">
+            <% page.processSteps.forEach(function(step, idx) { %>
+            <div class="bracket-box fade-in" style="padding: 1.75rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-primary); margin-bottom: 0.75rem;">0<%= idx + 1 %></div>
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.6rem; color: var(--text-main);"><%= step.title %></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= step.text %></p>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<% if (page.faq && page.faq.length) { %>
+<section class="section-padding" style="background: var(--bg-primary);">
+    <div class="container" style="max-width: 900px;">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Dúvidas frequentes sobre<br><span style="color:var(--accent-primary)"><%= page.h1 %></span></h2>
+        <div class="faq-accordion">
+            <% page.faq.forEach(function(item) { %>
+            <div class="faq-item">
+                <button class="faq-question" type="button" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    <%= item.question %>
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= item.answer %></p>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- Mesh Internal Links Partial -->
+<%- include('../partials/solar-mesh-links', { currentType: 'service', currentSlug: page.slug }) %>
+
+<section class="cta-banner">
+    <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
+        <div>
+            <h2 style="color:var(--bg-primary)"><%= page.ctaTitle %></h2>
+            <p style="color:var(--bg-primary)"><%= page.ctaSubtitle %></p>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/contato" class="btn-dark">Solicitar Atendimento</a>
+            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+</main>
+<%- include('../partials/whatsapp') %>
+<%- include('../partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR"<% if (locals.theme) { %> data-theme="<%= theme %>"<% } %>>
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+<main>
+<%
+  const page = capture;
+  const isSegment = captureType === 'segment';
+  const waMsg = page.whatsappMessage || (isSegment
+    ? `Olá! Vim da página de energia solar para ${page.label} e quero um estudo de viabilidade.`
+    : `Olá! Vim da página de energia solar em ${page.name} e quero um orçamento.`);
+  const waUrl = `https://wa.me/5583991430929?text=${encodeURIComponent(waMsg)}`;
+  const bodyTitle = page.h2Body || (isSegment ? 'Engenharia solar sob medida' : ('Por que energia solar ' + page.preposition + ' ' + page.name));
+%>
+
+<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:1rem">
+    <div class="container fade-in">
+        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;" aria-label="Breadcrumb">
+            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <a href="/energia-solar/" style="color: inherit; text-decoration: none;">Energia Solar</a>
+                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
+                <span style="color: var(--text-main);"><%= page.h1 %></span>
+            </div>
+        </nav>
+    </div>
+</section>
+
+<section class="hero-internal bg-blueprint" style="padding: 5rem 0 3rem;">
+    <div class="container fade-in">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span><%= page.eyebrow %></span></div>
+        <h1 class="hero-internal-title" style="max-width: 18ch;"><% if (!isSegment) { %>Energia Solar <br><span style="color:var(--accent-primary)"><%= page.preposition %> <%= page.name %> / <%= page.stateAbbr %></span><% } else { %><%= page.h1 %><br><span style="color:var(--accent-primary)">no Nordeste.</span><% } %></h1>
+        <p class="hero-internal-desc" style="max-width: 680px;"><%= page.intro %></p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Estudo Grátis</a>
+            <a href="/contato" class="btn btn-ghost">Falar com Engenheiro</a>
+        </div>
+        <% if (isSegment) { %>
+        <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
+            Porte típico: <strong style="color:var(--text-main)"><%= page.kWpRange %></strong>
+            &nbsp;·&nbsp; Payback: <strong style="color:var(--text-main)"><%= page.paybackHint %></strong>
+        </p>
+        <% } else { %>
+        <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
+            Irradiação: <strong style="color:var(--text-main)"><%= page.irradiacao %></strong>
+            &nbsp;·&nbsp; Distribuidora: <strong style="color:var(--text-main)"><%= page.concessionaria %></strong>
+        </p>
+        <% } %>
+    </div>
+</section>
+
+<% if (page.stats && page.stats.length) { %>
+<section style="padding: 2.5rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="grid grid-cols-4" style="gap: 1.25rem;">
+            <% page.stats.forEach(function(s) { %>
+            <div class="fade-in" style="text-align: center; padding: 1rem;">
+                <div style="font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--accent-primary); line-height: 1.2;"><%= s.value %></div>
+                <div style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-family: var(--font-mono);"><%= s.label %></div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<% if (page.painPoints && page.painPoints.length) { %>
+<section style="padding: 4rem 0; background: var(--bg-secondary);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span><%= isSegment ? 'DORES DO SEGMENTO' : 'CENÁRIO LOCAL' %></span></div>
+        <h2 class="fade-in" style="margin-bottom: 2.5rem; max-width: 18ch;"><%= isSegment ? ('Por que ' + page.label.toLowerCase() + ' escolhem a Klyfe') : ('O que pesa ' + page.preposition + ' ' + page.name) %></h2>
+        <div class="grid <%= page.painPoints.length > 3 ? 'grid-cols-4' : 'grid-cols-3' %>" style="gap: 1.5rem;">
+            <% page.painPoints.forEach(function(p) { %>
+            <div class="bracket-box fade-in" style="padding: 2rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.75rem; color: var(--text-main);"><%= p.title %></h3>
+                <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;"><%= p.text %></p>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="grid grid-cols-2" style="gap: 4rem; align-items: start;">
+            <div class="fade-in">
+                <div class="section-separator"><%- include('partials/symbol') %> <span><%= isSegment ? 'SOLUÇÃO KLYFE' : 'CONTEXTO REGIONAL' %></span></div>
+                <h2 style="margin-bottom: 1.5rem; max-width: 22ch;"><%= bodyTitle %></h2>
+                <div class="solar-capture-body" style="color: var(--text-muted); line-height: 1.8; font-size: 1.05rem;">
+                    <%- page.bodyHtml %>
+                </div>
+            </div>
+            <div class="fade-in">
+                <div class="bracket-box" style="padding: 2.5rem; background: var(--bg-secondary); border-color: var(--accent-primary);">
+                    <% if (page.benefits && page.benefits.length) { %>
+                    <h3 style="margin-bottom: 1.25rem; color: var(--text-main);"><%= isSegment ? 'O que você recebe' : 'Entrega Klyfe ' + page.preposition + ' ' + page.name %></h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-muted);">
+                        <% page.benefits.forEach(function(b) { %>
+                        <li style="margin-bottom: 0.85rem;"><i class="fas fa-check-circle" style="color:var(--accent-primary);margin-right:10px"></i><%= b %></li>
+                        <% }) %>
+                    </ul>
+                    <% } else { %>
+                    <h3 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">HOMOLOGAÇÃO <%= (page.concessionaria || '').toUpperCase() %></h3>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65;">
+                        Cuidamos do projeto elétrico com ART, protocolo e vistoria junto à <strong><%= page.concessionaria %></strong> até o medidor bidirecional.
+                    </p>
+                    <% } %>
+                    <% if (!isSegment) { %>
+                    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                        <h4 style="font-size: 0.85rem; color: var(--accent-primary); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 0.5rem;">Estrutura Operacional</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5;"><%= page.hqProximity %></p>
+                    </div>
+                    <% } %>
+                    <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 2rem; display: inline-flex;"><i class="fab fa-whatsapp"></i> Quero meu estudo agora</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% if (page.processSteps && page.processSteps.length) { %>
+<section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>COMO FUNCIONA</span></div>
+        <h2 class="fade-in" style="margin-bottom: 2.5rem;">Do diagnóstico à energia gerando créditos</h2>
+        <div class="grid grid-cols-4" style="gap: 1.25rem;">
+            <% page.processSteps.forEach(function(step, idx) { %>
+            <div class="bracket-box fade-in" style="padding: 1.75rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-primary); margin-bottom: 0.75rem;">0<%= idx + 1 %></div>
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.6rem; color: var(--text-main);"><%= step.title %></h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= step.text %></p>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<% if (page.faq && page.faq.length) { %>
+<section class="section-padding" style="background: var(--bg-primary);">
+    <div class="container" style="max-width: 900px;">
+        <h2 style="text-align: center; margin-bottom: 3rem;">Perguntas frequentes sobre<br><span style="color:var(--accent-primary)"><%= page.h1 %></span></h2>
+        <div class="faq-accordion">
+            <% page.faq.forEach(function(item) { %>
+            <div class="faq-item">
+                <button class="faq-question" type="button" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
+                    <%= item.question %>
+                    <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
+                </button>
+                <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
+                    <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= item.answer %></p>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- Mesh Internal Links Partial -->
+<%- include('partials/solar-mesh-links') %>
+
+<section class="cta-banner">
+    <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
+        <div>
+            <h2 style="color:var(--bg-primary)"><%= page.ctaTitle || (isSegment ? 'Transforme a conta de luz em investimento.' : 'Sol no Nordeste. Economia na sua cidade.') %></h2>
+            <p style="color:var(--bg-primary)"><%= page.ctaSubtitle || 'Fale com a engenharia da Klyfe e receba um estudo sem compromisso.' %></p>
+        </div>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <a href="/contato" class="btn-dark">Solicitar Estudo Solar</a>
+            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+    </div>
+</section>
+
+</main>
+<%- include('partials/whatsapp') %>
+<%- include('partials/footer') %>
+<script src="/js/main.js"></script>
+</body>
+</html>

@@ -39,7 +39,7 @@ module.exports = {
         {
             term: 'Energia Fotovoltaica',
             definition: 'Energia elétrica gerada a partir da luz solar por meio de células fotovoltaicas, sendo uma fonte limpa, renovável e de alta economia.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Saiba como a Klyfe Electric projeta e instala <a href="/campina-grande/solucoes/solar" style="color: var(--accent-primary); font-weight: 600;">Energia Solar em Campina Grande</a>.</p>'
+            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Saiba como a Klyfe Electric projeta e instala <a href="/energia-solar/" style="color: var(--accent-primary); font-weight: 600;">Energia Solar no Nordeste</a>.</p>'
         }
     ],
     'L': [

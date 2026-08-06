@@ -3,8 +3,10 @@ const router = express.Router();
 const ejs = require('ejs');
 const locations = require('../config/locations');
 const glossario = require('../config/glossario');
-const posts = require('../config/blog');
-
+const solarCapture = require('../config/solar-capture');
+const solarServices = require('../config/solar-services');
+const { getPublishedPosts, getPostBySlug } = require('../lib/blog-loader');
+const { evaluatePosts, evaluatePost, buildLocals } = require('../lib/blog-evaluator');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -15,7 +17,7 @@ router.use((req, res, next) => {
     if (path === '') path = '/';
 
     const redirects = {
-        '/nossos-servicos/klyfe-energia-solar': '/solucoes/solar',
+        '/nossos-servicos/klyfe-energia-solar': '/energia-solar/',
         '/nossos-servicos/klyfe-automacao-residencial': '/solucoes/automacao/automacao-residencial',
         '/nossos-servicos/klyfe-solucoes-eletricas': '/solucoes/eletrica',
         '/nossos-servicos/klyfe-instalacao-eletrica': '/solucoes/eletrica',
@@ -27,7 +29,25 @@ router.use((req, res, next) => {
         '/nossos-servicos': '/solucoes',
         '/contatos': '/contato',
         '/sobre': '/quem-somos',
-        '/empresa': '/quem-somos'
+        '/empresa': '/quem-somos',
+        '/solucoes/solar': '/energia-solar/',
+        '/energia-solar-para-empresas': '/energia-solar/comercial/',
+        '/energia-solar-para-fazendas': '/energia-solar/fazendas-e-irrigacao/',
+        '/energia-solar-para-clinicas': '/energia-solar/hospitais-e-clinicas/',
+        '/energia-solar-para-hoteis': '/energia-solar/hoteis-e-pousadas/',
+        '/energia-solar-para-condominios': '/energia-solar/condominios/',
+        '/energia-solar-para-supermercados': '/energia-solar/supermercados/',
+        '/energia-solar-para-postos': '/energia-solar/postos-de-combustivel/',
+        '/energia-solar-em-recife-pe': '/energia-solar/recife-pe/',
+        '/energia-solar-em-caruaru-pe': '/energia-solar/caruaru-pe/',
+        '/energia-solar-em-natal-rn': '/energia-solar/natal-rn/',
+        '/energia-solar-em-joao-pessoa-pb': '/energia-solar/joao-pessoa-pb/',
+        '/energia-solar-em-cajazeiras-pb': '/energia-solar/',
+        '/energia-solar-em-sousa-pb': '/energia-solar/',
+        '/energia-solar-em-patos-pb': '/energia-solar/',
+        '/energia-solar-em-gravata-pe': '/energia-solar/',
+        '/blog/quanto-custa-energia-solar-2026': '/blog/quanto-custa-instalar-energia-solar/',
+        '/blog/payback-painel-solar-simulacao': '/blog/em-quanto-tempo-a-energia-solar-se-paga/'
     };
 
     // Caso o path exato esteja no mapeamento, redireciona com status 301
@@ -36,15 +56,24 @@ router.use((req, res, next) => {
     }
 
     // Suporte para URLs com prefixo de cidade caso existam
-    // Ex: /campina-grande/nossos-servicos/klyfe-energia-solar -> /campina-grande/solucoes/solar
+    // Ex: /campina-grande/nossos-servicos/klyfe-energia-solar -> /campina-grande/solucoes/... OR /energia-solar/
     const cityPattern = /^\/(campina-grande|joao-pessoa)(\/nossos-servicos\/[a-z0-9-]+)/;
     const match = path.match(cityPattern);
     if (match) {
         const cityPrefix = '/' + match[1];
         const oldServicePath = match[2];
         if (redirects[oldServicePath]) {
+            // Energia solar agora é hub global (sem prefixo de cidade)
+            if (redirects[oldServicePath].startsWith('/energia-solar')) {
+                return res.redirect(301, redirects[oldServicePath]);
+            }
             return res.redirect(301, cityPrefix + redirects[oldServicePath]);
         }
+    }
+
+    // /campina-grande/solucoes/solar -> /energia-solar/
+    if (/^\/(campina-grande|joao-pessoa)\/solucoes\/solar$/.test(path)) {
+        return res.redirect(301, '/energia-solar/');
     }
 
     // Fallback para qualquer outra rota sob "nossos-servicos" não mapeada exaustivamente
@@ -167,19 +196,8 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
     const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
     const canonical = cityKey === 'default' ? `${baseUrl}/` : `${baseUrl}/${cityKey}`;
     
-    // Render posts dynamic values with cityData context
-    const evaluatedPosts = posts.slice(0, 2).map(post => {
-        const locals = {
-            cityKey,
-            cityData: cityBase,
-            getHomePrefix: () => cityKey !== 'default' ? '/' + cityKey : ''
-        };
-        return {
-            ...post,
-            title: ejs.render(post.title, locals),
-            summary: ejs.render(post.summary, locals)
-        };
-    });
+    const allPosts = getPublishedPosts();
+    const evaluatedPosts = evaluatePosts(allPosts.slice(0, 2), cityKey, cityBase);
 
     // WebSite Schema para ajudar o Google a gerar sitelinks ricos na busca da marca
     const jsonLd = `
@@ -202,7 +220,8 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
         cityData: cityBase,
         page: 'home',
         posts: evaluatedPosts,
-        jsonLd
+        jsonLd,
+        theme: 'solar-warm'
     });
 });
 
@@ -282,52 +301,163 @@ router.get('/:city(campina-grande|joao-pessoa)?/solucoes/eletrica', (req, res) =
     });
 });
 
-// Solar
+// Solar (legado) → hub /energia-solar/
 router.get('/:city(campina-grande|joao-pessoa)?/solucoes/solar', (req, res) => {
-    const cityKey = req.params.city || 'default';
-    const cityBase = locations[cityKey] || locations['default'];
-    const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
-    const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
-    const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/solucoes/solar`;
+    return res.redirect(301, '/energia-solar/');
+});
 
-    const titleText = `Instalação de Placa Solar ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`;
-    const descText = `Instalação de placa solar e painel solar ${cityBase.preposition} ${cityBase.name}. Economize até 95% na conta de luz. Projetos residenciais e industriais com homologação Energisa.`;
+// ═══ HUB ENERGIA SOLAR ═══
+router.get('/energia-solar', (req, res) => {
+    const cityKey = 'default';
+    const cityBase = locations.default;
+    const canonical = `${baseUrl}/energia-solar/`;
 
-    const jsonLdData = {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": `Instalação de Placa Solar ${cityBase.preposition} ${cityBase.name}`,
-        "serviceType": "Instalação de Energia Solar",
-        "provider": {
+    const titleText = `Energia Solar no Nordeste | Klyfe Electric`;
+    const descText = `Energia Solar para Residências e Empresas no Nordeste. Projetos de alta performance, homologação e manutenção em PB, RN e PE com a Klyfe Electric.`;
+
+    const jsonLdData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": titleText,
+            "url": canonical,
+            "description": descText,
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+                    { "@type": "ListItem", "position": 2, "name": "Energia Solar", "item": canonical }
+                ]
+            }
+        },
+        {
+            "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Klyfe Electric",
+            "image": `${baseUrl}/img/hero-klyfe.webp`,
             "telephone": "+5583991330972",
-            "image": "https://www.klyfeelectric.com.br/img/hero-klyfe.webp",
-            "url": "https://www.klyfeelectric.com.br"
-        },
-        "areaServed": [
-            {
-                "@type": "AdministrativeArea",
-                "name": cityBase.name
+            "url": baseUrl,
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Campina Grande",
+                "addressRegion": "PB",
+                "addressCountry": "BR"
             },
-            {
-                "@type": "AdministrativeArea",
-                "name": "Paraíba"
-            }
-        ],
-        "description": `Instalação de placa solar e painel solar de alta performance ${cityBase.preposition} ${cityBase.name}. Economize até 95% na conta de luz com homologação Energisa.`
-    };
-    
-    const jsonLd = `<script type="application/ld+json">${JSON.stringify(jsonLdData)}</script>`;
+            "areaServed": ["Paraíba", "Rio Grande do Norte", "Pernambuco"]
+        }
+    ];
+
+    const jsonLd = jsonLdData.map(b => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('\n');
 
     res.render('solar', {
         title: titleText,
         pageTitle: titleText,
         description: descText,
         metaDesc: descText,
-        canonical: cityKey === 'default' ? `${baseUrl}/solucoes/solar` : `${baseUrl}/${cityKey}/solucoes/solar`,
-        cityKey, cityData: cityBase, alternateCityName, alternateUrl, page: 'solar', jsonLd
+        canonical,
+        cityKey,
+        cityData: cityBase,
+        alternateCityName: 'João Pessoa',
+        alternateUrl: `${baseUrl}/energia-solar/joao-pessoa-pb/`,
+        page: 'solar',
+        jsonLd,
+        solarSegments: solarCapture.getSegmentList(),
+        solarCities: solarCapture.getCityList(),
+        theme: 'azure-sky'
     });
+});
+
+// Páginas comerciais de serviços solares
+router.get('/servicos/:slug', (req, res, next) => {
+    const service = solarServices[req.params.slug];
+    if (!service) return next();
+
+    const canonical = `${baseUrl}${service.urlPath}`;
+    const jsonLd = `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": service.h1,
+        "description": service.description,
+        "url": canonical,
+        "provider": { "@type": "LocalBusiness", "name": "Klyfe Electric", "url": baseUrl }
+    })}</script>`;
+
+    res.render('servicos/solar-detalhe', {
+        title: service.title,
+        description: service.description,
+        canonical,
+        cityKey: 'default',
+        cityData: locations.default,
+        page: 'solar-service',
+        serviceData: service,
+        jsonLd,
+        theme: 'azure-sky'
+    });
+});
+
+// Captura solar: segmentos e cidades
+router.get('/energia-solar/:slug', (req, res, next) => {
+    const slug = req.params.slug;
+    const segment = Object.values(solarCapture.segments).find(s => s.slug === slug) || solarCapture.segments[slug];
+    const city = Object.values(solarCapture.cities).find(c => c.slug === slug) || solarCapture.cities[slug];
+
+    if (segment) {
+        const canonical = `${baseUrl}${segment.urlPath}`;
+        const jsonLd = `<script type="application/ld+json">${JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": segment.title,
+            "url": canonical,
+            "description": segment.description,
+            "breadcrumb": {
+                "@type": "BreadcrumbList",
+                "itemListElement": [
+                    { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
+                    { "@type": "ListItem", "position": 2, "name": "Energia Solar", "item": `${baseUrl}/energia-solar/` },
+                    { "@type": "ListItem", "position": 3, "name": segment.h1, "item": canonical }
+                ]
+            }
+        })}</script>`;
+
+        return res.render('solar-capture', {
+            title: segment.title,
+            description: segment.description,
+            canonical,
+            cityKey: 'default',
+            cityData: locations.default,
+            page: 'solar-capture',
+            captureType: 'segment',
+            capture: segment,
+            jsonLd,
+            theme: 'azure-sky'
+        });
+    }
+
+    if (city) {
+        const canonical = `${baseUrl}${city.urlPath}`;
+        const jsonLd = `<script type="application/ld+json">${JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": city.title,
+            "url": canonical,
+            "description": city.description
+        })}</script>`;
+
+        return res.render('solar-capture', {
+            title: city.title,
+            description: city.description,
+            canonical,
+            cityKey: 'default',
+            cityData: locations.default,
+            page: 'solar-capture',
+            captureType: 'city',
+            capture: city,
+            jsonLd,
+            theme: 'azure-sky'
+        });
+    }
+
+    return next();
 });
 
 // Automação
@@ -389,20 +519,7 @@ router.get('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu', (req, res) 
 router.get('/:city(campina-grande|joao-pessoa)?/blog', (req, res) => {
     const cityKey = req.params.city || 'default';
     const cityBase = locations[cityKey] || locations['default'];
-    
-    // Render posts dynamic values with cityData context
-    const evaluatedPosts = posts.map(post => {
-        const locals = {
-            cityKey,
-            cityData: cityBase,
-            getHomePrefix: () => cityKey !== 'default' ? '/' + cityKey : ''
-        };
-        return {
-            ...post,
-            title: ejs.render(post.title, locals),
-            summary: ejs.render(post.summary, locals)
-        };
-    });
+    const evaluatedPosts = evaluatePosts(getPublishedPosts(), cityKey, cityBase);
 
     res.render('blog', {
         title: `Blog Técnico | Klyfe Electric — ${cityBase.name}`,
@@ -421,10 +538,9 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
     const cityBase = locations[cityKey] || locations['default'];
     const postSlug = req.params.postSlug;
     
-    // Find post in raw database
-    const post = posts.find(p => p.slug === postSlug);
+    const post = getPostBySlug(postSlug);
     if (!post) {
-        return next(); // Proceed to 404
+        return next();
     }
 
     const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
@@ -434,26 +550,11 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
     const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
     const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/blog/${postSlug}`;
 
-    // Evaluated post
-    const locals = {
-        cityKey,
-        cityData: cityBase,
-        getHomePrefix: () => homePrefix
-    };
-    
-    const evaluatedPost = {
-        ...post,
-        title: ejs.render(post.title, locals),
-        summary: ejs.render(post.summary, locals),
-        contentHtml: ejs.render(post.contentHtml, locals),
-        faq: post.faq.map(item => ({
-            question: ejs.render(item.question, locals),
-            answer: ejs.render(item.answer, locals)
-        }))
-    };
+    const locals = buildLocals(cityKey, cityBase);
+    const evaluatedPost = evaluatePost(post, locals);
+    const allPosts = getPublishedPosts();
 
-    // Recommended articles: other 3 posts (excluding current one)
-    const recommended = posts
+    const recommended = allPosts
         .filter(p => p.slug !== postSlug)
         .slice(0, 3)
         .map(p => ({
@@ -462,18 +563,8 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
             summary: ejs.render(p.summary, locals)
         }));
 
-    // Date ISO format helper
-    const dateMap = {
-        '15 de Maio de 2026': '2026-05-15',
-        '28 de Abril de 2026': '2026-04-28',
-        '02 de Junho de 2026': '2026-06-02',
-        '20 de Maio de 2026': '2026-05-20',
-        '10 de Março de 2026': '2026-03-10',
-        '05 de Junho de 2026': '2026-06-05'
-    };
-    const dateIso = dateMap[post.date] || '2026-06-06';
+    const dateIso = post.dateIso || post.publishAt || '2026-06-06';
 
-    // JSON-LD dynamic construction
     let schemaJson = {
         "@context": "https://schema.org",
         "@graph": [
@@ -486,12 +577,12 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
                 },
                 "headline": evaluatedPost.title,
                 "description": evaluatedPost.summary,
-                "image": `${baseUrl}${evaluatedPost.heroImage}`,
+                "image": `${baseUrl}${evaluatedPost.heroImage || '/img/hero-klyfe.webp'}`,
                 "datePublished": `${dateIso}T08:00:00Z`,
                 "dateModified": `${dateIso}T08:00:00Z`,
                 "author": {
                     "@type": "Person",
-                    "name": evaluatedPost.author
+                    "name": evaluatedPost.author || 'Klyfe Electric'
                 },
                 "publisher": {
                     "@type": "Organization",
@@ -567,7 +658,7 @@ router.get('/sitemap.xml', (req, res) => {
     const urls = [];
     const cities = Object.keys(locations);
     const statics = ['', '/solucoes', '/quem-somos', '/projetos', '/blog', '/contato', '/glossario'];
-    const hubs = ['engenharia', 'eletrica', 'solar', 'automacao'];
+    const hubs = ['engenharia', 'eletrica', 'automacao']; // solar migrou para /energia-solar/
     const serviceKeys = Object.keys(locations.default.services);
 
     // 1. URLs Estáticas e Hubs para cada cidade
@@ -583,6 +674,12 @@ router.get('/sitemap.xml', (req, res) => {
     // 2. Projeto estático (sem prefixo de cidade)
     urls.push('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu');
 
+    // 2b. Hub Solar + segmentos + cidades + serviços comerciais
+    urls.push('/energia-solar/');
+    Object.values(solarCapture.segments).forEach(s => urls.push(s.urlPath));
+    Object.values(solarCapture.cities).forEach(c => urls.push(c.urlPath));
+    Object.values(solarServices).forEach(s => urls.push(s.urlPath));
+
     // Helper para verificar se serviço é habilitado para dada cidade
     function isServiceEnabled(cityKey, serviceKey) {
         const currentData = locations[cityKey];
@@ -596,6 +693,7 @@ router.get('/sitemap.xml', (req, res) => {
         serviceKeys.forEach(sKey => {
             const defaultSvc = locations.default.services[sKey];
             if (sKey === defaultSvc.category) return; // ignora hubs já adicionados
+            if (defaultSvc.category === 'solar') return; // solar agora está em /energia-solar e /servicos
 
             if (isServiceEnabled(city, sKey)) {
                 urls.push(`${prefix}/solucoes/${defaultSvc.category}/${sKey}`);
@@ -606,7 +704,7 @@ router.get('/sitemap.xml', (req, res) => {
     // 4. URLs dinâmicas dos posts do blog em cada cidade
     cities.forEach(city => {
         const prefix = city === 'default' ? '' : `/${city}`;
-        posts.forEach(post => {
+        getPublishedPosts().forEach(post => {
             urls.push(`${prefix}/blog/${post.slug}`);
         });
     });
@@ -615,7 +713,8 @@ router.get('/sitemap.xml', (req, res) => {
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     uniqueUrls.forEach(url => {
         const formattedUrl = url === '' ? '/' : url.replace(/\/$/, '');
-        sitemap += `  <url><loc>${baseUrl}${formattedUrl}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`;
+        const priority = formattedUrl === '/' || formattedUrl === '/energia-solar' ? '1.0' : (formattedUrl.startsWith('/energia-solar') || formattedUrl.startsWith('/servicos') ? '0.9' : '0.8');
+        sitemap += `  <url><loc>${baseUrl}${formattedUrl}</loc><changefreq>weekly</changefreq><priority>${priority}</priority></url>\n`;
     });
     sitemap += `</urlset>`;
     res.header('Content-Type', 'application/xml');

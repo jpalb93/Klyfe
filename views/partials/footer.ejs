@@ -49,7 +49,7 @@
                         <li><a href="<%= prefix %>/solucoes/automacao">Automação Residencial</a></li>
                     <% } %>
                     <% if (isServiceEnabled('solar')) { %>
-                        <li><a href="<%= prefix %>/solucoes/solar">Energia Solar</a></li>
+                        <li><a href="/energia-solar/">Energia Solar</a></li>
                     <% } %>
                     <% if (isServiceEnabled('eletrica')) { %>
                         <li><a href="<%= prefix %>/solucoes/eletrica">Serviços de Eletricista</a></li>
@@ -99,3 +99,5 @@
         </div>
     </div>
 </footer>
+<%- include('../lp/_tracking-body') %>
+

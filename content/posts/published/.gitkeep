@@ -1,0 +1,3 @@
+# Placeholder — posts publicados ficam nesta pasta como arquivos JSON individuais.
+# Execute: npm run blog:migrate  (migra os posts legados)
+# Ou gere novos: npm run blog:generate

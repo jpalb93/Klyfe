@@ -1,0 +1,26 @@
+{
+  "slug": "nr10-laudo-eletrico-empresa",
+  "status": "published",
+  "publishAt": "2026-04-28",
+  "title": "NR-10: o que é e por que sua empresa precisa de laudo elétrico",
+  "category": "eletrica",
+  "categoryLabel": "Elétrica",
+  "summary": "Entenda os riscos legais e operacionais de manter instalações comerciais ou industriais fora das normas de segurança elétrica do Ministério do Trabalho.",
+  "readTime": "4 min",
+  "author": "Klyfe Electric",
+  "heroImage": "/img/infraestrutura-predial-eletrica-bim.webp",
+  "contentHtml": "<p>A segurança nas instalações elétricas corporativas é um tema de extrema seriedade fiscalizado pelo Ministério do Trabalho e Emprego (MTE) e exigido pelo Corpo de Bombeiros. A <strong>NR-10</strong> estabelece os requisitos e condições mínimas de segurança que devem ser seguidos por empresas que possuem trabalhadores expostos direta ou indiretamente a riscos elétricos em <strong><%- cityData.name %></strong>.</p>\n            \n            <h2>O que é o Laudo Técnico de NR-10?</h2>\n            <p>O Laudo de NR-10 é um relatório pericial emitido por um Engenheiro Eletricista habilitado após vistoria técnica detalhada das instalações. Esse documento atesta se os painéis, transformadores, cabeamentos e o sistema de aterramento estão em conformidade com as normas vigentes, assegurando a integridade física dos funcionários.</p>\n\n            <h3>Consequências de não possuir o laudo elétrico atualizado:</h3>\n            <ul>\n                <li><strong>Interdição Parcial ou Total:</strong> Fiscais do trabalho podem embargar instalações que apresentem risco iminente de choques ou arcos elétricos.</li>\n                <li><strong>Multas Severas:</strong> As penalidades financeiras variam conforme o número de não-conformidades e o porte da empresa.</li>\n                <li><strong>Recusa de Sinistros de Seguros:</strong> Em caso de incêndio de origem elétrica, as seguradoras recusam o pagamento da indenização caso o laudo de NR-10/SPDA não esteja em dia.</li>\n                <li><strong>Responsabilidade Civil e Criminal:</strong> Diretores e gerentes de manutenção respondem diretamente caso ocorra um acidente elétrico grave com colaboradores.</li>\n            </ul>\n\n            <blockquote style=\"border-left: 4px solid var(--accent-primary); padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--text-muted);\">\n                \"A conformidade técnica com a NBR 5410 e a NR-10 reduz as chances de panes e incêndios nas instalações comerciais e industriais para quase zero.\"\n            </blockquote>\n\n            <p>Não corra riscos de paradas operacionais ou problemas legais com fiscalizações na região de <strong><%- cityData.name %> e <%- cityData.region %></strong>. Solicite seu <a href=\"<%- getHomePrefix() %>/solucoes/engenharia/laudos-eletricos\">Laudo Técnico de Engenharia na Klyfe Electric</a> com ART e validação profissional.</p>",
+  "faq": [
+    {
+      "question": "Com que frequência a minha empresa deve renovar o laudo de NR-10?",
+      "answer": "A periodicidade recomendada é anual para a vistoria técnica e emissão de laudo das instalações, principalmente em ambientes industriais de regime contínuo ou estabelecimentos comerciais expostos à umidade/salinidade."
+    },
+    {
+      "question": "O que avaliamos no laudo elétrico de NR-10?",
+      "answer": "Analisamos painéis elétricos, aterramentos, diagramas unifilares, equipamentos de proteção individual (EPI) e coletiva (EPC), realizamos termografia infravermelha e emitimos o Prontuário de Instalações Elétricas (PIE)."
+    }
+  ],
+  "keywords": [],
+  "affiliateProducts": [],
+  "affiliateDisclosure": false
+}

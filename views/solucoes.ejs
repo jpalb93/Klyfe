@@ -29,7 +29,7 @@
         {
           "@type": "ListItem",
           "position": 4,
-          "url": "https://www.klyfeelectric.com.br/solucoes/solar"
+          "url": "https://www.klyfeelectric.com.br/energia-solar/"
         }
       ]
     }
@@ -125,7 +125,7 @@
                     <% if (isServiceEnabled('solar')) { %>
                     <div class="fade-in">
 
-                        <a href="<%= cityPrefix %>/solucoes/solar" style="text-decoration: none; display: block;">
+                        <a href="/energia-solar/" style="text-decoration: none; display: block;">
                             <div class="bracket-box" style="height: 100%; border-left: 4px solid var(--accent-solar); background: var(--bg-secondary); padding: 3rem; transition: transform 0.3s; position: relative; overflow: hidden;">
                                 <div style="position: absolute; top: -10px; right: -10px; opacity: 0.05; font-size: 8rem;"><i class="fas fa-sun"></i></div>
                                 <h3 style="color: var(--text-main); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem;">
@@ -137,7 +137,7 @@
                                        const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                                     %>
                                        <li style="color: var(--text-muted); font-size: 0.85rem;">
-                                           <a href="<%= cityPrefix %>/solucoes/solar/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
+                                           <a href="/energia-solar/" style="color: inherit;">• <%= svc.label %></a>
                                        </li>
                                     <% }) %>
                                 </ul>

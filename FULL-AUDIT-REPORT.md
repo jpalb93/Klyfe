@@ -1,8 +1,8 @@
 # Full Audit Report
 
 - URL: `https://www.klyfeelectric.com.br`
-- Generated: `2026-06-13T21:55:57.838719`
-- Overall score: `77/100`
+- Generated: `2026-06-22T11:47:19.809265`
+- Overall score: `83/100`
 - Score confidence: `Medium`
 - Scoring version: `1`
 
@@ -10,18 +10,18 @@
 
 | Category | Weight | Score |
 | --- | ---: | ---: |
-| Security Headers | 8 | 75 |
-| Social Meta | 5 | 77 |
+| Security Headers | 8 | 100 |
+| Social Meta | 5 | 100 |
 | Robots and Crawlers | 8 | 100 |
 | Broken Links | 10 | 100 |
 | Internal Links | 8 | 80 |
 | Redirects | 3 | 100 |
-| AI Search | 5 | 65 |
+| AI Search | 5 | 90 |
 | Performance and Core Web Vitals | 13 | 0 |
 | On-Page SEO | 10 | 100 |
-| Readability | 8 | 30 |
+| Readability | 8 | 31 |
 | Entity SEO | 5 | 0 |
-| Link Profile | 7 | 80 |
+| Link Profile | 7 | 85 |
 | Hreflang | 5 | 0 |
 | Content Uniqueness | 5 | 100 |
 
@@ -29,14 +29,10 @@
 
 | Severity | Area | Finding | Evidence | Fix |
 | --- | --- | --- | --- | --- |
-| Critical | link_profile | 1 orphan page(s) with zero inbound internal links. |  | Add internal links from relevant content pages to these orphan pages. |
-| Warning | environment | Meta description is missing or out of range | This can reduce SERP CTR and snippet quality. | Update page templates to set complete title/meta/OG/Twitter tags. |
-| Warning | environment | 2 security headers missing | Missing headers reduce trust and can expose the site to browser/security risks. | Set missing security headers at web server or CDN layer. |
 | Warning | environment | Content readability is difficult | Long, complex text can reduce engagement and comprehension. | Rewrite key sections with shorter sentences (15-20 words), shorter paragraphs (2-4 sentences), and clearer subheadings. |
 | Warning | internal_links | ⚠️ 67 potential orphan page(s) (≤1 internal link pointing to them) |  |  |
-| Warning | readability | ⚠️ Content is difficult to read (Flesch: 18.1) — may reduce engagement |  |  |
+| Warning | readability | ⚠️ Content is difficult to read (Flesch: 18.7) — may reduce engagement |  |  |
 | Warning | readability | ⚠️ 32.7% complex words (3+ syllables) — consider simplifying |  |  |
-| Warning | security | ⚠️ 2 security header(s) missing |  |  |
 | Info | Wikidata | No Wikidata entry found for 'Klyfe Electric'. |  | If the entity meets Wikidata notability guidelines, create or improve an item with accurate third-party references. Do not create one solely for SEO. |
 | Info | Wikipedia | No Wikipedia article found for 'Klyfe Electric'. |  | Only pursue Wikipedia if the entity meets independent notability standards. Otherwise, strengthen official schema, sameAs profiles, citations, and About/Contact signals. |
 | Info | environment | Performance measurement incomplete | PageSpeed API returned an error, so CWV recommendations are less reliable. | Set `PAGESPEED_API_KEY` in your environment or `.env` file (see `.env.example`), then rerun. The CLI also accepts `--api-key`. Prioritize LCP/INP/CLS fixes from that output. |

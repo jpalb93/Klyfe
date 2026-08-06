@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+Disallow: /lp/
+
+# AI search-augmented crawlers (citações e busca em IA)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Scrapers agressivos
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://www.klyfeelectric.com.br/sitemap.xml

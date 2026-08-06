@@ -1,8 +1,16 @@
+<% 
+   const isSolarPost = (typeof post !== 'undefined' && (post.category === 'solar' || (post.slug && post.slug.includes('solar'))));
+   const waPostPhone = isSolarPost ? '5583991430929' : '5583991330972';
+%>
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR"<% if (locals.theme) { %> data-theme="<%= theme %>"<% } %>>
 <head>
-    <%- include('partials/head', { title: title, description: description, canonical: canonical, jsonLd: jsonLd }) %>
+    <%- include('partials/head', { title: title, description: description, canonical: canonical, jsonLd: jsonLd, image: post.heroImage }) %>
     <style>
+        :root {
+            --bg-tertiary: var(--bg-secondary);
+        }
+
         /* Scoped styles for premium blog post reader */
         .post-layout {
             display: grid;
@@ -24,11 +32,24 @@
         .post-content-body {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: rgba(232, 234, 240, 0.92);
+            color: var(--text-main);
         }
 
         .post-content-body p {
             margin-bottom: 1.75rem;
+            color: var(--text-main);
+        }
+
+        .post-content-body p.lead {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .post-content-body strong,
+        .post-content-body em {
+            color: var(--text-main);
         }
 
         .post-content-body h2 {
@@ -57,6 +78,7 @@
         .post-content-body ul, .post-content-body ol {
             margin-bottom: 2rem;
             padding-left: 1.5rem;
+            color: var(--text-main);
         }
 
         .post-content-body ul {
@@ -69,6 +91,7 @@
 
         .post-content-body li {
             margin-bottom: 0.5rem;
+            color: var(--text-main);
         }
 
         .post-content-body blockquote {
@@ -83,6 +106,7 @@
 
         .post-content-body blockquote p {
             margin-bottom: 0;
+            color: var(--text-muted);
         }
 
         .post-content-body a {
@@ -135,7 +159,7 @@
 
         .blog-table tr:hover td {
             color: var(--text-main);
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: var(--accent-tint-soft);
         }
 
         /* Social sharing link styling */
@@ -154,7 +178,7 @@
         }
 
         .share-btn:hover {
-            color: var(--bg-primary);
+            color: #ffffff;
             transform: translateY(-2px);
         }
 
@@ -165,7 +189,7 @@
 
         /* Banner CTA Widget */
         .sidebar-cta {
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(21, 26, 32, 0.95) 100%);
+            background: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-top: 4px solid var(--accent-primary);
         }
@@ -176,6 +200,14 @@
 
         .sidebar-cta.automacao {
             border-top-color: var(--accent-secondary);
+        }
+
+        .sidebar-cta h3 {
+            color: var(--text-main) !important;
+        }
+
+        .sidebar-cta p {
+            color: var(--text-muted) !important;
         }
     </style>
 </head>
@@ -251,6 +283,45 @@
                         <div class="post-content-body">
                             <%- post.contentHtml %>
                         </div>
+
+                        <% if (post.affiliateProducts && post.affiliateProducts.length > 0) { %>
+                            <section class="affiliate-section" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+                                <% if (post.affiliateDisclosure) { %>
+                                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic;">
+                                        Este artigo contém links de afiliado. Podemos receber comissão por compras realizadas, sem custo adicional para você.
+                                    </p>
+                                <% } %>
+                                <h3 style="font-family: var(--font-heading); text-transform: uppercase; margin-bottom: 1.5rem; color: var(--text-main);">
+                                    Equipamentos Recomendados
+                                </h3>
+                                <div style="display: grid; gap: 1rem;">
+                                    <% post.affiliateProducts.forEach(product => { %>
+                                        <div class="bracket-box" style="padding: 1.25rem; display: flex; gap: 1rem; align-items: center; background: var(--bg-secondary);">
+                                            <% if (product.image) { %>
+                                                <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px;" loading="lazy">
+                                            <% } %>
+                                            <div style="flex: 1;">
+                                                <% if (product.badge) { %>
+                                                    <span class="badge-mono" style="background: var(--accent-primary); color: var(--bg-primary); font-size: 0.7rem; padding: 0.2rem 0.5rem; border-radius: 3px;"><%= product.badge %></span>
+                                                <% } %>
+                                                <h4 style="margin: 0.5rem 0 0.25rem; font-size: 1rem; color: var(--text-main);"><%= product.name %></h4>
+                                                <% if (product.description) { %>
+                                                    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;"><%= product.description %></p>
+                                                <% } %>
+                                                <% if (product.price) { %>
+                                                    <p style="font-size: 0.9rem; color: var(--accent-primary); font-weight: bold; margin-top: 0.5rem;"><%= product.price %></p>
+                                                <% } %>
+                                            </div>
+                                            <% if (product.affiliateUrl) { %>
+                                                <a href="<%= product.affiliateUrl %>" target="_blank" rel="sponsored noopener" class="btn btn-primary" style="white-space: nowrap; font-size: 0.85rem;">
+                                                    Ver oferta →
+                                                </a>
+                                            <% } %>
+                                        </div>
+                                    <% }) %>
+                                </div>
+                            </section>
+                        <% } %>
                     </article>
 
                     <!-- Coluna Lateral (Sidebar) -->
@@ -295,7 +366,7 @@
                             <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
                                 Converse com a nossa engenharia e receba uma análise estrutural ou simulação gratuita em ambiente BIM.
                             </p>
-                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; justify-content: center;">
                                 <i class="fab fa-whatsapp"></i> Falar Conosco
                             </a>
                         </div>
@@ -385,7 +456,7 @@
                 <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">
                     Na Klyfe Electric, aplicamos modelagem BIM 3D, cumprimento estrito das normas da ABNT/Energisa e emissão de ART para garantir máxima proteção e eficiência nas suas instalações.
                 </p>
-                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">
+                <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">
                     <i class="fab fa-whatsapp"></i> Falar com Engenheiro no WhatsApp
                 </a>
             </div>

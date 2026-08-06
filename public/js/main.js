@@ -189,4 +189,135 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ═══ LP Solar Empresas: UTM capture ═══
+    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'gclid', 'fbclid'];
+    const lpForm = document.getElementById('lp-solar-form');
+    const lpPhone = document.getElementById('telefone');
+
+    function maskBRWhatsApp(value) {
+        const d = String(value || '').replace(/\D/g, '').slice(0, 11);
+        if (d.length === 0) return '';
+        if (d.length <= 2) return `(${d}`;
+        if (d.length <= 7) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+        return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+    }
+
+    if (lpPhone && lpForm) {
+        lpPhone.addEventListener('input', () => {
+            lpPhone.value = maskBRWhatsApp(lpPhone.value);
+        });
+        lpPhone.addEventListener('blur', () => {
+            lpPhone.value = maskBRWhatsApp(lpPhone.value);
+        });
+    }
+
+    if (lpForm) {
+        const params = new URLSearchParams(window.location.search);
+        const stored = {};
+        try {
+            Object.assign(stored, JSON.parse(sessionStorage.getItem('lp_solar_utm') || '{}'));
+        } catch (_) { /* ignore */ }
+
+        UTM_KEYS.forEach((key) => {
+            const fromQuery = params.get(key);
+            if (fromQuery) stored[key] = fromQuery;
+            const input = document.getElementById(key);
+            if (input && stored[key]) input.value = stored[key];
+        });
+
+        try {
+            sessionStorage.setItem('lp_solar_utm', JSON.stringify(stored));
+        } catch (_) { /* ignore */ }
+
+        lpForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(lpForm);
+            if (formData.get('website_url')) return;
+
+            const phoneDigits = String(formData.get('telefone') || '').replace(/\D/g, '');
+            if (phoneDigits.length < 10 || phoneDigits.length > 11) {
+                alert('Informe um WhatsApp válido com DDD (10 ou 11 dígitos).');
+                if (lpPhone) lpPhone.focus();
+                return;
+            }
+
+            const btn = lpForm.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENVIANDO...';
+            btn.disabled = true;
+
+            const data = Object.fromEntries(formData.entries());
+            delete data.website_url;
+            data.telefone = phoneDigits;
+
+            try {
+                const res = await fetch('/contato', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                });
+                if (!res.ok) throw new Error('Falha no servidor');
+                const json = await res.json();
+                if (json.success) {
+                    if (window.dataLayer) {
+                        window.dataLayer.push({
+                            event: 'generate_lead',
+                            lead_source: 'lp-solar-empresas',
+                            conta_media: data.conta_media || '',
+                        });
+                    }
+                    window.location.href = '/lp/energia-solar-empresas/obrigado';
+                    return;
+                }
+                throw new Error('Resposta inválida');
+            } catch (err) {
+                alert('⚠️ Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');
+                console.error('Erro LP solar form:', err);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
+    }
+
+    // ═══ LP Solar Empresas: commercial calculator ═══
+    const lpBillRange = document.getElementById('lp-bill-range');
+    const lpBillValue = document.getElementById('lp-bill-value');
+    function lpBillToContaMedia(val) {
+        if (val < 5000) return 'R$ 2.000 – R$ 5.000';
+        if (val < 10000) return 'R$ 5.000 – R$ 10.000';
+        if (val < 20000) return 'R$ 10.000 – R$ 20.000';
+        if (val <= 50000) return 'R$ 20.000 – R$ 50.000';
+        return 'Acima de R$ 50.000';
+    }
+    function updateLpSolarCalc(val) {
+        if (lpBillValue) lpBillValue.textContent = `R$ ${val.toLocaleString('pt-BR')}`;
+        const econMensal = val * 0.90;
+        const econAnual = econMensal * 12;
+        const kwp = Math.max(10, Math.round(val / 140));
+        const roi = Math.max(2.2, (4.2 - val / 40000)).toFixed(1).replace('.', ',');
+        const monthly = document.getElementById('lp-result-monthly');
+        const yearly = document.getElementById('lp-result-yearly');
+        const kwpEl = document.getElementById('lp-result-kwp');
+        const roiEl = document.getElementById('lp-result-roi');
+        if (monthly) monthly.textContent = `R$ ${Math.round(econMensal).toLocaleString('pt-BR')}`;
+        if (yearly) yearly.textContent = `R$ ${Math.round(econAnual).toLocaleString('pt-BR')}`;
+        if (kwpEl) kwpEl.textContent = `${kwp} kWp`;
+        if (roiEl) roiEl.textContent = `${roi} anos`;
+    }
+    if (lpBillRange) {
+        updateLpSolarCalc(parseInt(lpBillRange.value, 10));
+        lpBillRange.addEventListener('input', (e) => {
+            updateLpSolarCalc(parseInt(e.target.value, 10));
+        });
+        const lpCalcCta = document.getElementById('lp-calc-cta');
+        if (lpCalcCta) {
+            lpCalcCta.addEventListener('click', () => {
+                const contaSelect = document.getElementById('conta_media');
+                if (contaSelect) {
+                    contaSelect.value = lpBillToContaMedia(parseInt(lpBillRange.value, 10));
+                }
+            });
+        }
+    }
 });

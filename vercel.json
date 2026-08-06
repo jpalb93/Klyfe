@@ -9,7 +9,9 @@
           "public/**",
           "views/**",
           "config/**",
-          "routes/**"
+          "routes/**",
+          "lib/**",
+          "content/**"
         ]
       }
     }

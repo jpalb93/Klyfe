@@ -1,0 +1,26 @@
+{
+  "slug": "payback-painel-solar-simulacao",
+  "status": "published",
+  "publishAt": "2026-05-20",
+  "title": "Quanto tempo leva para o painel solar se pagar? Simulação real",
+  "category": "solar",
+  "categoryLabel": "Solar",
+  "summary": "Calculamos detalhadamente as tarifas, taxas e geração na Paraíba para mostrar o tempo de retorno do investimento fotovoltaico residencial.",
+  "readTime": "7 min",
+  "author": "Klyfe Electric",
+  "heroImage": "/img/planta-projeto-eletrico-predial-bim.webp",
+  "contentHtml": "<p>Muitos consumidores que desejam economizar na conta de luz se perguntam se a energia solar ainda vale a pena em <strong>2026</strong> após a implantação completa das fases de taxação do Marco Legal da Geração Distribuída (Lei 14.300).</p>\n            \n            <h2>A Matemática do Payback Solar na Paraíba</h2>\n            <p>O payback (tempo de retorno sobre o investimento) é calculado dividindo o valor total investido no sistema pela economia mensal gerada na conta de energia. Abaixo, realizamos uma simulação real para uma residência típica em <strong><%- cityData.name %></strong>, consumindo em média 600 kWh/mês faturados na tarifa residencial da <strong><%- cityData.concessionaria %></strong>:</p>\n\n            <table class=\"blog-table\" style=\"width:100%; border-collapse: collapse; margin: 1.5rem 0;\">\n                <thead>\n                    <tr style=\"background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);\">\n                        <th style=\"padding: 10px; text-align: left;\">Parâmetro Simulado</th>\n                        <th style=\"padding: 10px; text-align: left;\">Valor Estimado</th>\n                    </tr>\n                </thead>\n                <tbody>\n                    <tr style=\"border-bottom: 1px solid var(--border-color);\">\n                        <td style=\"padding: 10px;\">Valor do Investimento (Sistema de 5 kWp Completo)</td>\n                        <td style=\"padding: 10px; color: var(--accent-primary); font-weight: bold;\">R$ 15.000,00</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid var(--border-color);\">\n                        <td style=\"padding: 10px;\">Conta de Luz Anterior (Tarifa Média R$ 0,95 por kWh)</td>\n                        <td style=\"padding: 10px;\">R$ 570,00</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid var(--border-color);\">\n                        <td style=\"padding: 10px;\">Nova Fatura de Energia (Custo de Disponibilidade + Fio B)</td>\n                        <td style=\"padding: 10px;\">R$ 80,00</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid var(--border-color);\">\n                        <td style=\"padding: 10px;\">Economia Líquida Mensal Gerada</td>\n                        <td style=\"padding: 10px; color: var(--accent-primary); font-weight: bold;\">R$ 490,00</td>\n                    </tr>\n                    <tr style=\"border-bottom: 1px solid var(--border-color);\">\n                        <td style=\"padding: 10px;\"><strong>Tempo de Retorno (Payback)</strong></td>\n                        <td style=\"padding: 10px; color: var(--accent-primary); font-weight: bold;\">~30 Meses (2,5 Anos)</td>\n                    </tr>\n                </tbody>\n            </table>\n\n            <h2>Por que o retorno é tão rápido em <%- cityData.name %>?</h2>\n            <p>A nossa mesorregião possui índices de irradiação solar acima de 5,5 kWh/m²/dia, o que significa que os painéis fotovoltaicos operam em nível máximo de geração ao longo de quase todo o ano. Isso garante que a planta solar amortize o custo inicial de instalação rapidamente, proporcionando mais de 25 anos de energia gratuita de forma contínua.</p>\n\n            <p>Se você deseja planejar sua economia e fazer uma simulação personalizada, fale diretamente com a equipe técnica da Klyfe Electric. Acesse a nossa <a href=\"<%- getHomePrefix() %>/solucoes/solar\">página de Energia Solar</a> e solicite um estudo gratuito.</p>",
+  "faq": [
+    {
+      "question": "A vida útil dos painéis solares compensa o payback de 3 anos?",
+      "answer": "Absolutamente. Os painéis solares de marcas de primeira linha (Tier 1) instalados pela Klyfe têm garantia de geração de 25 anos, com perda de eficiência de apenas 0.5% ao ano. Isso garante mais de duas décadas de lucro após a quitação do sistema."
+    },
+    {
+      "question": "Posso transferir a sobra de energia gerada para outro local?",
+      "answer": "Sim. A energia injetada excedente que vira crédito pode ser consumida por outro imóvel sob a mesma titularidade do CPF/CNPJ, desde que atenda à mesma concessionária."
+    }
+  ],
+  "keywords": [],
+  "affiliateProducts": [],
+  "affiliateDisclosure": false
+}
