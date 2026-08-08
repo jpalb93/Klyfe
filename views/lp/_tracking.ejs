@@ -12,12 +12,24 @@
     || (locals.page && String(locals.page))
     || contentCategory
     || '';
-  const leadContentName = locals.leadContentName || 'lp-solar-empresas';
+  const leadContentName = locals.leadContentName || 'lp-solar';
   const leadContentCategory = locals.leadContentCategory || 'solar';
   const expectLpLead = !!locals.expectLpLead;
 %>
 <script>
 window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+window.gtag = window.gtag || gtag;
+/* Consent Mode v2 default — reforçado em tracking.js antes de tags */
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  functionality_storage: 'granted',
+  security_storage: 'granted',
+  wait_for_update: 500
+});
 window.__KLYFE_TRACKING__ = {
   gtmId: <%- JSON.stringify(gtmId) %>,
   metaPixelId: <%- JSON.stringify(pixelViaGtm ? '' : metaPixelId) %>,

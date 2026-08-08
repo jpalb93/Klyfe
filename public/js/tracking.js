@@ -1,8 +1,10 @@
 /**
- * Klyfe tracking bootstrap:
- * - Cookie consent (LGPD) antes de Pixel / GTM / Google Ads
- * - PageView + ViewContent (solar) + Lead (gated) + Contact (WA solar)
- * - event_id compartilhado com CAPI (POST /api/tracking/event)
+ * Klyfe tracking bootstrap (padrão agência):
+ * - Google Consent Mode v2 + banner LGPD
+ * - Meta Pixel + CAPI (event_id), Advanced Matching no Lead
+ * - _fbc a partir de fbclid; atribuição first-party 90 dias
+ * - GTM + Google Ads + Enhanced Conversions
+ * - PageView / ViewContent (solar) / Lead / Contact (WA solar)
  */
 (function () {
     'use strict';
@@ -10,7 +12,56 @@
     var CFG = window.__KLYFE_TRACKING__ || {};
     var CONSENT_KEY = 'klyfe_cookie_consent';
     var LP_LEAD_KEY = 'klyfe_lp_solar_lead';
+    var CAMPAIGN_KEY = 'klyfe_campaign_params';
+    var CAMPAIGN_COOKIE = 'klyfe_camp';
+    var CAMPAIGN_TTL_MS = 90 * 24 * 60 * 60 * 1000;
+    var OBRIGADO_PATH = '/lp/energia-solar-empresas/obrigado';
     var loaded = false;
+    var gtagScriptLoading = false;
+
+    function ensureDataLayer() {
+        window.dataLayer = window.dataLayer || [];
+    }
+
+    function ensureGtag() {
+        ensureDataLayer();
+        window.gtag =
+            window.gtag ||
+            function () {
+                window.dataLayer.push(arguments);
+            };
+        return window.gtag;
+    }
+
+    /** Consent Mode v2 defaults — deve rodar antes de GTM/gtag/Ads */
+    function initConsentDefaults() {
+        var gtag = ensureGtag();
+        gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            functionality_storage: 'granted',
+            security_storage: 'granted',
+            wait_for_update: 500
+        });
+        gtag('set', 'ads_data_redaction', true);
+        gtag('set', 'url_passthrough', true);
+    }
+
+    function updateConsentMode(granted) {
+        var gtag = ensureGtag();
+        var state = granted ? 'granted' : 'denied';
+        gtag('consent', 'update', {
+            ad_storage: state,
+            ad_user_data: state,
+            ad_personalization: state,
+            analytics_storage: state
+        });
+        if (granted) {
+            gtag('set', 'ads_data_redaction', false);
+        }
+    }
 
     function getConsent() {
         try {
@@ -42,16 +93,135 @@
     }
 
     function readCookie(name) {
-        var match = document.cookie.match(new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)'));
+        var match = document.cookie.match(
+            new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
+        );
         return match ? decodeURIComponent(match[1]) : '';
     }
 
+    function writeCookie(name, value, maxAgeSec) {
+        try {
+            document.cookie =
+                name +
+                '=' +
+                encodeURIComponent(value) +
+                ';path=/;max-age=' +
+                maxAgeSec +
+                ';SameSite=Lax';
+        } catch (_) { /* ignore */ }
+    }
+
+    /** Meta: fb.1.{creation_time}.{fbclid} */
+    function ensureFbcFromFbclid(fbclid) {
+        if (!fbclid) return readCookie('_fbc') || '';
+        var existing = readCookie('_fbc') || '';
+        if (existing && existing.indexOf(fbclid) !== -1) return existing;
+        var fbc = 'fb.1.' + Date.now() + '.' + fbclid;
+        writeCookie('_fbc', fbc, 90 * 24 * 60 * 60);
+        return fbc;
+    }
+
     function getMetaCookies() {
+        var urlParams;
+        try {
+            urlParams = new URLSearchParams(window.location.search);
+        } catch (_) {
+            urlParams = null;
+        }
+        var fbclid = (urlParams && urlParams.get('fbclid')) || '';
+        var fbc = ensureFbcFromFbclid(fbclid) || readCookie('_fbc') || '';
         return {
             fbp: readCookie('_fbp') || '',
-            fbc: readCookie('_fbc') || ''
+            fbc: fbc
         };
     }
+
+    function normalizePhoneE164(phone) {
+        var digits = String(phone || '').replace(/\D/g, '');
+        if (!digits) return '';
+        if (digits.indexOf('55') === 0 && digits.length >= 12) return '+' + digits;
+        if (digits.length === 10 || digits.length === 11) return '+55' + digits;
+        return digits.charAt(0) === '+' ? String(phone) : '+' + digits;
+    }
+
+    function persistCampaign(data) {
+        try {
+            sessionStorage.setItem(CAMPAIGN_KEY, JSON.stringify(data));
+        } catch (_) { /* ignore */ }
+        try {
+            localStorage.setItem(CAMPAIGN_KEY, JSON.stringify(data));
+        } catch (_) { /* ignore */ }
+        writeCookie(CAMPAIGN_COOKIE, JSON.stringify(data), Math.floor(CAMPAIGN_TTL_MS / 1000));
+    }
+
+    function readStoredCampaign() {
+        var sources = [];
+        try {
+            sources.push(sessionStorage.getItem(CAMPAIGN_KEY));
+        } catch (_) { /* ignore */ }
+        try {
+            sources.push(localStorage.getItem(CAMPAIGN_KEY));
+        } catch (_) { /* ignore */ }
+        try {
+            sources.push(readCookie(CAMPAIGN_COOKIE));
+        } catch (_) { /* ignore */ }
+
+        for (var i = 0; i < sources.length; i++) {
+            if (!sources[i]) continue;
+            try {
+                var parsed = JSON.parse(sources[i]);
+                if (parsed && parsed.captured_at && Date.now() - parsed.captured_at > CAMPAIGN_TTL_MS) {
+                    continue;
+                }
+                if (parsed && (parsed.gclid || parsed.fbclid || parsed.utm_source || parsed.utm_campaign)) {
+                    return parsed;
+                }
+            } catch (_) { /* ignore */ }
+        }
+        return {};
+    }
+
+    function captureUtmsAndClickIds() {
+        try {
+            var urlParams = new URLSearchParams(window.location.search);
+            var gclid = urlParams.get('gclid') || '';
+            var gbraid = urlParams.get('gbraid') || '';
+            var wbraid = urlParams.get('wbraid') || '';
+            var fbclid = urlParams.get('fbclid') || '';
+            var utmSource = urlParams.get('utm_source') || '';
+            var utmMedium = urlParams.get('utm_medium') || '';
+            var utmCampaign = urlParams.get('utm_campaign') || '';
+            var utmTerm = urlParams.get('utm_term') || '';
+            var utmContent = urlParams.get('utm_content') || '';
+
+            if (fbclid) ensureFbcFromFbclid(fbclid);
+
+            if (gclid || gbraid || wbraid || fbclid || utmSource || utmMedium || utmCampaign) {
+                var prev = readStoredCampaign();
+                var data = {
+                    gclid: gclid || prev.gclid || '',
+                    gbraid: gbraid || prev.gbraid || '',
+                    wbraid: wbraid || prev.wbraid || '',
+                    fbclid: fbclid || prev.fbclid || '',
+                    utm_source: utmSource || prev.utm_source || '',
+                    utm_medium: utmMedium || prev.utm_medium || '',
+                    utm_campaign: utmCampaign || prev.utm_campaign || '',
+                    utm_term: utmTerm || prev.utm_term || '',
+                    utm_content: utmContent || prev.utm_content || '',
+                    landing_page: window.location.pathname || '',
+                    captured_at: Date.now()
+                };
+                persistCampaign(data);
+            }
+        } catch (_) { /* ignore */ }
+    }
+
+    function getCampaignParams() {
+        return readStoredCampaign();
+    }
+
+    initConsentDefaults();
+    captureUtmsAndClickIds();
 
     function sendCapi(eventName, eventId, customData, userData) {
         if (!CFG.capiEnabled) return;
@@ -78,10 +248,6 @@
         } catch (_) { /* ignore */ }
     }
 
-    function ensureDataLayer() {
-        window.dataLayer = window.dataLayer || [];
-    }
-
     function loadGtm() {
         if (!CFG.gtmId) return;
         ensureDataLayer();
@@ -93,25 +259,70 @@
         f.parentNode.insertBefore(j, f);
     }
 
-    function loadGoogleAds(fireConversion) {
-        if (!CFG.googleAdsId) return;
-        ensureDataLayer();
-        window.gtag =
-            window.gtag ||
-            function () {
-                window.dataLayer.push(arguments);
-            };
+    function loadGtagScript(cb) {
+        if (!CFG.googleAdsId) {
+            if (cb) cb();
+            return;
+        }
+        ensureGtag();
+        if (window.__klyfeGtagLoaded) {
+            if (cb) cb();
+            return;
+        }
+        if (gtagScriptLoading) {
+            var wait = setInterval(function () {
+                if (window.__klyfeGtagLoaded) {
+                    clearInterval(wait);
+                    if (cb) cb();
+                }
+            }, 50);
+            return;
+        }
+        gtagScriptLoading = true;
         var s = document.createElement('script');
         s.async = true;
         s.src = 'https://www.googletagmanager.com/gtag/js?id=' + CFG.googleAdsId;
+        s.onload = function () {
+            window.__klyfeGtagLoaded = true;
+            window.gtag('js', new Date());
+            window.gtag('config', CFG.googleAdsId, { allow_enhanced_conversions: true });
+            if (cb) cb();
+        };
+        s.onerror = function () {
+            gtagScriptLoading = false;
+            if (cb) cb();
+        };
         document.head.appendChild(s);
-        window.gtag('js', new Date());
-        window.gtag('config', CFG.googleAdsId);
-        if (fireConversion && CFG.googleAdsConversionLabel) {
+    }
+
+    function setEnhancedConversionUserData(user) {
+        if (!user) return;
+        var gtag = ensureGtag();
+        var payload = {};
+        if (user.email) payload.email = String(user.email).trim().toLowerCase();
+        if (user.phone) payload.phone_number = normalizePhoneE164(user.phone);
+        if (user.firstName) payload.address = Object.assign({}, payload.address || {}, { first_name: String(user.firstName).trim().toLowerCase() });
+        if (user.lastName) payload.address = Object.assign({}, payload.address || {}, { last_name: String(user.lastName).trim().toLowerCase() });
+        if (payload.email || payload.phone_number || payload.address) {
+            gtag('set', 'user_data', payload);
+        }
+    }
+
+    function fireGoogleAdsConversion(userData) {
+        if (!CFG.googleAdsId || !CFG.googleAdsConversionLabel) return;
+        loadGtagScript(function () {
+            setEnhancedConversionUserData(userData);
             window.gtag('event', 'conversion', {
                 send_to: CFG.googleAdsId + '/' + CFG.googleAdsConversionLabel
             });
-        }
+        });
+    }
+
+    function loadGoogleAds(fireConversion, userData) {
+        if (!CFG.googleAdsId) return;
+        loadGtagScript(function () {
+            if (fireConversion) fireGoogleAdsConversion(userData);
+        });
     }
 
     function loadMetaPixel() {
@@ -134,7 +345,9 @@
             s.parentNode.insertBefore(t, s);
         })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
+        // Automatic Advanced Matching (Events Manager) + init limpo
         window.fbq('init', CFG.metaPixelId);
+        window.fbq('set', 'autoConfig', true, CFG.metaPixelId);
 
         var pvId = newEventId('pv');
         window.fbq('track', 'PageView', {}, { eventID: pvId });
@@ -152,6 +365,21 @@
             };
             window.fbq('track', 'ViewContent', vcParams, { eventID: vcId });
             sendCapi('ViewContent', vcId, vcParams);
+        }
+    }
+
+    function applyAdvancedMatching(user) {
+        if (!CFG.metaPixelId || typeof window.fbq !== 'function' || !user) return;
+        var am = {};
+        if (user.email) am.em = String(user.email).trim().toLowerCase();
+        if (user.phone) {
+            var ph = String(user.phone).replace(/\D/g, '');
+            if (ph) am.ph = ph.indexOf('55') === 0 ? ph : '55' + ph;
+        }
+        if (user.firstName) am.fn = String(user.firstName).trim().toLowerCase();
+        if (user.lastName) am.ln = String(user.lastName).trim().toLowerCase();
+        if (am.em || am.ph || am.fn || am.ln) {
+            window.fbq('init', CFG.metaPixelId, am);
         }
     }
 
@@ -173,9 +401,18 @@
         if (!pending || !pending.event_id || pending.browser_fired) return;
 
         var params = {
-            content_name: CFG.leadContentName || 'lp-solar-empresas',
-            content_category: CFG.leadContentCategory || 'solar'
+            content_name: pending.content_name || CFG.leadContentName || 'lp-solar-empresas',
+            content_category: pending.content_category || CFG.leadContentCategory || 'solar'
         };
+
+        var user = {
+            email: pending.email || '',
+            phone: pending.phone || '',
+            firstName: pending.firstName || '',
+            lastName: pending.lastName || ''
+        };
+
+        applyAdvancedMatching(user);
 
         if (typeof window.fbq === 'function') {
             window.fbq('track', 'Lead', params, { eventID: pending.event_id });
@@ -187,13 +424,22 @@
             lead_source: params.content_name,
             content_category: params.content_category,
             page: 'obrigado',
-            event_id: pending.event_id
+            event_id: pending.event_id,
+            gclid: (getCampaignParams().gclid || ''),
+            enhanced_conversion_data: {
+                email: user.email || undefined,
+                phone_number: user.phone ? normalizePhoneE164(user.phone) : undefined
+            }
         });
 
-        loadGoogleAds(true);
+        loadGoogleAds(true, user);
 
         pending.browser_fired = true;
         try {
+            sessionStorage.setItem(LP_LEAD_KEY, JSON.stringify(pending));
+            // Limpa PII após disparo
+            pending.email = '';
+            pending.phone = '';
             sessionStorage.setItem(LP_LEAD_KEY, JSON.stringify(pending));
         } catch (_) { /* ignore */ }
     }
@@ -201,6 +447,25 @@
     function loadMarketingTags() {
         if (loaded) return;
         loaded = true;
+
+        var camp = getCampaignParams();
+        if (camp.gclid || camp.fbclid || camp.utm_source) {
+            ensureDataLayer();
+            window.dataLayer.push({
+                event: 'campaign_attribution',
+                gclid: camp.gclid || '',
+                gbraid: camp.gbraid || '',
+                wbraid: camp.wbraid || '',
+                fbclid: camp.fbclid || '',
+                utm_source: camp.utm_source || '',
+                utm_medium: camp.utm_medium || '',
+                utm_campaign: camp.utm_campaign || '',
+                utm_term: camp.utm_term || '',
+                utm_content: camp.utm_content || '',
+                landing_page: camp.landing_page || ''
+            });
+        }
+
         loadGtm();
         loadMetaPixel();
         if (CFG.expectLpLead) {
@@ -226,12 +491,14 @@
 
     function acceptConsent() {
         setConsent('granted');
+        updateConsentMode(true);
         hideBanner();
         loadMarketingTags();
     }
 
     function denyConsent() {
         setConsent('denied');
+        updateConsentMode(false);
         hideBanner();
     }
 
@@ -241,7 +508,6 @@
         get: getConsent
     };
 
-    // Bind sem onclick inline (Helmet/CSP bloqueia script-src-attr por padrão)
     document.addEventListener('click', function (e) {
         var btn = e.target && e.target.closest ? e.target.closest('[data-klyfe-consent]') : null;
         if (!btn) return;
@@ -250,33 +516,147 @@
         if (action === 'deny') denyConsent();
     });
 
+    function splitName(fullName) {
+        var parts = String(fullName || '')
+            .trim()
+            .split(/\s+/)
+            .filter(Boolean);
+        return {
+            firstName: parts[0] || '',
+            lastName: parts.slice(1).join(' ')
+        };
+    }
+
+    function markLpLeadPending(opts) {
+        opts = opts || {};
+        var eventId = opts.eventId || opts.event_id;
+        if (!eventId) return;
+        var names = splitName(opts.nome || opts.name || '');
+        try {
+            sessionStorage.setItem(
+                LP_LEAD_KEY,
+                JSON.stringify({
+                    event_id: eventId,
+                    browser_fired: false,
+                    content_name: opts.content_name || CFG.leadContentName || 'lp-solar',
+                    content_category: opts.content_category || 'solar',
+                    email: opts.email || '',
+                    phone: opts.phone || opts.telefone || '',
+                    firstName: opts.firstName || names.firstName,
+                    lastName: opts.lastName || names.lastName,
+                    ts: Date.now()
+                })
+            );
+        } catch (_) { /* ignore */ }
+    }
+
+    /**
+     * Fluxo padrão LP → POST /contato → CAPI server → thank-you (Pixel + Ads).
+     * @returns {Promise<{ok:boolean, event_id?:string}>}
+     */
+    function submitLpLead(opts) {
+        opts = opts || {};
+        var camp = getCampaignParams();
+        var cookies = getMetaCookies();
+        var eventId = opts.event_id || newEventId('lead');
+        var contentName = opts.content_name || opts.source || 'lp-solar';
+        var names = splitName(opts.nome);
+
+        var payload = Object.assign({}, opts, {
+            event_id: eventId,
+            event_source_url: window.location.href,
+            servico: opts.servico || 'Energia Solar Fotovoltaica',
+            gclid: opts.gclid || camp.gclid || '',
+            gbraid: opts.gbraid || camp.gbraid || '',
+            wbraid: opts.wbraid || camp.wbraid || '',
+            fbclid: opts.fbclid || camp.fbclid || '',
+            utm_source: opts.utm_source || camp.utm_source || '',
+            utm_medium: opts.utm_medium || camp.utm_medium || '',
+            utm_campaign: opts.utm_campaign || camp.utm_campaign || '',
+            utm_term: opts.utm_term || camp.utm_term || '',
+            utm_content: opts.utm_content || camp.utm_content || '',
+            fbp: cookies.fbp,
+            fbc: cookies.fbc
+        });
+
+        markLpLeadPending({
+            eventId: eventId,
+            content_name: contentName,
+            content_category: 'solar',
+            email: payload.email || '',
+            phone: payload.telefone || '',
+            nome: payload.nome || '',
+            firstName: names.firstName,
+            lastName: names.lastName
+        });
+
+        return fetch('/contato', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+            .then(function (res) {
+                if (!res.ok) throw new Error('Falha no servidor');
+                return res.json();
+            })
+            .then(function (json) {
+                var finalId = (json && json.event_id) || eventId;
+                if (finalId !== eventId) {
+                    markLpLeadPending({
+                        eventId: finalId,
+                        content_name: contentName,
+                        content_category: 'solar',
+                        email: payload.email || '',
+                        phone: payload.telefone || '',
+                        nome: payload.nome || ''
+                    });
+                }
+                window.location.href = opts.thankYouUrl || OBRIGADO_PATH;
+                return { ok: true, event_id: finalId };
+            });
+    }
+
     window.KlyfeTracking = {
         newEventId: newEventId,
         sendCapi: sendCapi,
         getMetaCookies: getMetaCookies,
-        trackLeadSolar: function (params, eventId) {
+        getCampaignParams: getCampaignParams,
+        submitLpLead: submitLpLead,
+        fireGoogleAdsConversion: fireGoogleAdsConversion,
+        markLpLeadPending: function (eventIdOrOpts, maybeOpts) {
+            // Retrocompat: markLpLeadPending(eventId) | markLpLeadPending({eventId, ...})
+            if (typeof eventIdOrOpts === 'string') {
+                markLpLeadPending(Object.assign({ eventId: eventIdOrOpts }, maybeOpts || {}));
+            } else {
+                markLpLeadPending(eventIdOrOpts || {});
+            }
+        },
+        trackLeadSolar: function (params, eventId, userData) {
             if (getConsent() !== 'granted') return eventId || newEventId('lead');
             var id = eventId || newEventId('lead');
             var p = params || {
                 content_name: 'contato',
                 content_category: 'solar'
             };
+            if (userData) applyAdvancedMatching(userData);
             if (typeof window.fbq === 'function') {
                 window.fbq('track', 'Lead', p, { eventID: id });
             }
+            ensureDataLayer();
+            window.dataLayer.push({
+                event: 'generate_lead',
+                lead_source: p.content_name || 'contato',
+                content_category: p.content_category || 'solar',
+                event_id: id,
+                enhanced_conversion_data: userData
+                    ? {
+                          email: userData.email || undefined,
+                          phone_number: userData.phone ? normalizePhoneE164(userData.phone) : undefined
+                      }
+                    : undefined
+            });
+            if (userData) fireGoogleAdsConversion(userData);
             return id;
-        },
-        markLpLeadPending: function (eventId) {
-            try {
-                sessionStorage.setItem(
-                    LP_LEAD_KEY,
-                    JSON.stringify({
-                        event_id: eventId,
-                        browser_fired: false,
-                        ts: Date.now()
-                    })
-                );
-            } catch (_) { /* ignore */ }
         }
     };
 
@@ -322,9 +702,11 @@
     function boot() {
         var consent = getConsent();
         if (consent === 'granted') {
+            updateConsentMode(true);
             hideBanner();
             loadMarketingTags();
         } else if (consent === 'denied') {
+            updateConsentMode(false);
             hideBanner();
         } else {
             showBanner();

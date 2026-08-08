@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR"<% if (locals.theme) { %> data-theme="<%= theme %>"<% } %>>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <meta name="description" content="<%= description %>">
+    <link rel="canonical" href="<%= canonical %>">
+    <meta name="robots" content="<%= robots %>">
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= description %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= canonical %>">
+    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-residencial-hero.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <%- include('_tracking') %>
+    <style>
+        :root {
+            --ink: #101318;
+            --ink-soft: #3a4250;
+            --muted: #6b7380;
+            --line: #e4e7ec;
+            --paper: #f5f6f8;
+            --white: #ffffff;
+            --solar: #e35a1b;
+            --solar-deep: #c44812;
+            --home-orange: #f97316;
+            --trust: #0f7a4a;
+            --wa: #25d366;
+            --shadow: 0 18px 50px rgba(16, 19, 24, 0.14);
+            --radius: 16px;
+            --font-h: "Sora", system-ui, sans-serif;
+            --font-b: "Manrope", system-ui, sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: var(--font-b);
+            color: var(--ink);
+            background: var(--paper);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+        .wrap { width: min(1120px, calc(100% - 2rem)); margin-inline: auto; }
+
+        /* Header */
+        .topbar {
+            position: sticky; top: 0; z-index: 50;
+            background: rgba(16, 19, 24, 0.94);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .topbar-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; min-height: 64px;
+        }
+        .topbar-logo { height: 28px; width: auto; }
+        .topbar-right { display: flex; align-items: center; gap: 0.75rem; }
+        .pill {
+            display: none; align-items: center; gap: 0.4rem;
+            font-size: 0.78rem; font-weight: 700; color: #fdba74;
+            background: rgba(253, 186, 116, 0.12); border: 1px solid rgba(253, 186, 116, 0.25);
+            padding: 0.35rem 0.75rem; border-radius: 999px;
+        }
+        @media (min-width: 720px) { .pill { display: inline-flex; } }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            border: none; cursor: pointer; text-decoration: none;
+            font-family: var(--font-b); font-weight: 800; font-size: 0.95rem;
+            border-radius: 12px; padding: 0.9rem 1.25rem;
+            transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+        }
+        .btn:hover { transform: translateY(-1px); }
+        .btn-solar {
+            background: linear-gradient(180deg, #f06a2b, var(--solar));
+            color: #fff; box-shadow: 0 10px 24px rgba(227, 90, 27, 0.35);
+        }
+        .btn-solar:hover { background: linear-gradient(180deg, #f1783c, var(--solar-deep)); }
+        .btn-wa { background: var(--wa); color: #083218; }
+        .btn-block { width: 100%; }
+        .btn-sm { padding: 0.65rem 1rem; font-size: 0.85rem; }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            color: #fff;
+            padding: 2.5rem 0 3.5rem;
+            overflow: hidden;
+            min-height: min(92vh, 820px);
+            display: flex; align-items: center;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background:
+                linear-gradient(105deg, rgba(20,15,10,0.94) 0%, rgba(20,15,10,0.82) 48%, rgba(10,12,16,0.55) 100%),
+                url("/img/lp/solar-residencial-hero.png") center/cover no-repeat;
+        }
+        .hero-grid {
+            position: relative; z-index: 1;
+            display: grid; gap: 2rem;
+            grid-template-columns: 1fr;
+            align-items: start;
+        }
+        @media (min-width: 960px) {
+            .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 2.5rem; }
+        }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: #fdba74; margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-family: var(--font-h);
+            font-size: clamp(1.85rem, 4.2vw, 3.15rem);
+            line-height: 1.08; font-weight: 800; margin: 0 0 1rem;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 em {
+            font-style: normal; color: #ff8a4c;
+        }
+        .hero-lead {
+            font-size: 1.08rem; color: rgba(255,255,255,0.85);
+            max-width: 34rem; margin: 0 0 1.5rem;
+        }
+        .bullets { list-style: none; padding: 0; margin: 0 0 1.75rem; }
+        .bullets li {
+            display: flex; gap: 0.7rem; align-items: flex-start;
+            margin-bottom: 0.7rem; color: rgba(255,255,255,0.92); font-weight: 600;
+        }
+        .bullets i { color: #4ade80; margin-top: 0.2rem; }
+        .trust-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .trust-chip {
+            font-size: 0.78rem; font-weight: 700;
+            padding: 0.45rem 0.7rem; border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.14);
+            color: rgba(255,255,255,0.92);
+        }
+
+        /* Form card */
+        .form-card {
+            background: var(--white);
+            color: var(--ink);
+            border-radius: 20px;
+            padding: 1.5rem 1.35rem 1.35rem;
+            box-shadow: var(--shadow);
+        }
+        @media (min-width: 960px) {
+            .form-card { position: sticky; top: 88px; padding: 1.75rem; }
+        }
+        .form-card h2 {
+            font-family: var(--font-h); font-size: 1.25rem; margin: 0 0 0.35rem;
+        }
+        .form-sub { color: var(--muted); font-size: 0.9rem; margin: 0 0 1.25rem; }
+        .form-group { margin-bottom: 0.85rem; }
+        .form-group label {
+            display: block; font-size: 0.78rem; font-weight: 700;
+            color: var(--ink-soft); margin-bottom: 0.35rem;
+        }
+        .form-control {
+            width: 100%; border: 1.5px solid var(--line); border-radius: 12px;
+            padding: 0.85rem 0.95rem; font: 600 0.95rem/1.3 var(--font-b);
+            background: #fafbfc; color: var(--ink); outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .form-control:focus {
+            border-color: var(--solar);
+            box-shadow: 0 0 0 3px rgba(227, 90, 27, 0.15);
+            background: #fff;
+        }
+        .form-note {
+            display: flex; gap: 0.5rem; align-items: flex-start;
+            font-size: 0.78rem; color: var(--muted); margin: 0.85rem 0 0;
+        }
+        .form-note i { color: var(--trust); margin-top: 0.1rem; }
+        .form-or {
+            text-align: center; font-size: 0.82rem; color: var(--muted); margin-top: 0.85rem;
+        }
+        .form-or a { color: var(--trust); font-weight: 800; text-decoration: none; }
+
+        /* Stats strip */
+        .stats {
+            background: var(--white);
+            border-bottom: 1px solid var(--line);
+            padding: 1.25rem 0;
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+        }
+        @media (min-width: 800px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+        .stat strong {
+            display: block; font-family: var(--font-h); font-size: 1.35rem;
+            color: var(--solar); letter-spacing: -0.02em;
+        }
+        .stat span { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+
+        /* Feature Cards Grid */
+        section.block { padding: 4rem 0; }
+        .block h2 {
+            font-family: var(--font-h);
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            letter-spacing: -0.02em; margin: 0 0 0.75rem; line-height: 1.15;
+        }
+        .block .lead { color: var(--muted); max-width: 38rem; margin: 0 0 2rem; font-size: 1.05rem; }
+        .section-kicker {
+            font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--solar); margin-bottom: 0.4rem;
+        }
+
+        .grid-3 { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+        @media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+        .card-feat {
+            background: var(--white); border: 1px solid var(--line);
+            border-radius: 16px; padding: 1.5rem;
+        }
+        .card-feat i { font-size: 1.6rem; color: var(--solar); margin-bottom: 0.75rem; }
+        .card-feat h3 { font-family: var(--font-h); font-size: 1.1rem; margin: 0 0 0.5rem; }
+        .card-feat p { color: var(--muted); font-size: 0.9rem; margin: 0; line-height: 1.5; }
+
+        /* Calculator */
+        .calc-panel {
+            background: #fff; border: 1.5px solid var(--line); border-radius: 20px;
+            padding: 1.75rem; box-shadow: var(--shadow);
+            display: grid; gap: 1.75rem; grid-template-columns: 1fr;
+        }
+        @media (min-width: 880px) {
+            .calc-panel { grid-template-columns: 1fr 1fr; align-items: center; }
+        }
+        .calc-label {
+            display: flex; justify-content: space-between; font-weight: 700;
+            margin-bottom: 0.5rem; font-size: 0.95rem;
+        }
+        .calc-label span:nth-child(2) { color: var(--solar); font-size: 1.2rem; font-family: var(--font-h); }
+        input[type=range] {
+            width: 100%; height: 8px; border-radius: 4px; background: var(--line);
+            accent-color: var(--solar); cursor: pointer;
+        }
+        .calc-results {
+            background: #fff7ed; border: 1px solid #ffedd5; border-radius: 16px;
+            padding: 1.25rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+        }
+        .result-box small { display: block; font-size: 0.75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+        .result-box strong { font-family: var(--font-h); font-size: 1.25rem; color: var(--solar); }
+
+        /* Steps */
+        .steps { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+        @media (min-width: 768px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+        .step { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem; }
+        .step-num { font-family: var(--font-h); font-size: 1.8rem; font-weight: 800; color: var(--solar); margin-bottom: 0.35rem; }
+        .step h3 { font-size: 0.98rem; font-family: var(--font-h); margin: 0 0 0.35rem; }
+        .step p { font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+        /* FAQ */
+        .faq-item { background: var(--white); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 0.75rem; overflow: hidden; }
+        .faq-question {
+            width: 100%; text-align: left; padding: 1.1rem 1.25rem; background: none; border: none;
+            font: 700 0.98rem var(--font-b); color: var(--ink); cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .faq-answer { padding: 0 1.25rem 1.1rem; color: var(--muted); font-size: 0.92rem; display: none; }
+        .faq-item.is-open .faq-answer { display: block; }
+        .faq-item.is-open i { transform: rotate(45deg); }
+
+        /* Footer band */
+        .cta-band {
+            background: linear-gradient(135deg, #18120c 0%, #101318 100%);
+            color: #fff; padding: 4rem 0; text-align: center;
+        }
+        .cta-band h2 { font-family: var(--font-h); font-size: clamp(1.75rem, 3.5vw, 2.4rem); margin: 0 0 0.75rem; }
+        .cta-band p { color: rgba(255,255,255,0.8); max-width: 32rem; margin: 0 auto 1.75rem; }
+        .cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+    </style>
+</head>
+<body>
+<%- include('_tracking-body') %>
+
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <a href="/" aria-label="Klyfe Electric - Voltar à página inicial">
+            <img class="topbar-logo" src="/img/Assinatura%20Completa%20-%20AmareloB%20-%20Klyfe.webp" alt="Klyfe Electric" width="160" height="28">
+        </a>
+        <div class="topbar-right">
+            <span class="pill"><i class="fas fa-home"></i> Residências & Pequeno Comércio</span>
+            <a class="btn btn-wa btn-sm" href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar">
+                <i class="fab fa-whatsapp"></i> Falar com Engenheiro
+            </a>
+        </div>
+    </div>
+</header>
+
+<main id="main-content">
+    <section class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="wrap hero-grid">
+            <div>
+                <div class="eyebrow"><i class="fas fa-solar-panel"></i> Energia Solar Residencial & Comercial (~300 kWh/mês)</div>
+                <h1>Reduza sua conta de luz para o <em>mínimo da distribuidora</em>.</h1>
+                <p class="hero-lead">
+                    Para casas, apartamentos de cobertura, condomínios e pequenos comércios a partir de R$ 300/mês de energia. Troque a conta de luz por um investimento na sua própria casa.
+                </p>
+                <ul class="bullets">
+                    <li><i class="fas fa-check-circle"></i> <strong>Economia imediata de até 95%:</strong> Use ar-condicionado à vontade sem sustos na fatura.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Parcela que substitui a conta:</strong> Financiamento bancário onde a parcela fica menor que a economia gerada.</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Engenharia com ART e Garantia de 25 anos:</strong> Projeto seguro instalado por profissionais qualificados.</li>
+                </ul>
+                <div class="trust-row">
+                    <span class="trust-chip"><i class="fas fa-shield-alt"></i> Garantia de 25 Anos nos Painéis</span>
+                    <span class="trust-chip"><i class="fas fa-bolt"></i> Homologação Completa Energisa</span>
+                </div>
+            </div>
+
+            <div class="form-card" id="estudo">
+                <h2>Simular Solar para Sua Casa</h2>
+                <p class="form-sub">Receba a estimativa exata de placas, valor do investimento e economia em até 24h.</p>
+                
+                <form id="lp-solar-residencial-form" action="/contato" method="POST">
+                    <input type="hidden" name="source" value="lp-solar-residencial">
+                    <input type="hidden" name="servico" value="Energia Solar Fotovoltaica">
+                    
+                    <div class="form-group">
+                        <label for="f-nome">Seu Nome</label>
+                        <input type="text" id="f-nome" name="nome" class="form-control" placeholder="Ex: Maria Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="f-cidade">Cidade e Bairro</label>
+                        <input type="text" id="f-cidade" name="cidade" class="form-control" placeholder="Ex: João Pessoa - Altiplano" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="f-telefone">WhatsApp com DDD</label>
+                        <input type="tel" id="f-telefone" name="telefone" class="form-control" placeholder="(83) 99999-9999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="f-conta">Média da Conta de Luz Mensal</label>
+                        <select id="f-conta" name="faixa_conta" class="form-control" required>
+                            <option value="" disabled selected>Selecione o valor médio da conta...</option>
+                            <option value="R$ 300 a R$ 600">R$ 300 a R$ 600 /mês (~250 - 450 kWh)</option>
+                            <option value="R$ 600 a R$ 1.200">R$ 600 a R$ 1.200 /mês (~450 - 900 kWh)</option>
+                            <option value="R$ 1.200 a R$ 2.500">R$ 1.200 a R$ 2.500 /mês (~900 - 1.800 kWh)</option>
+                            <option value="Acima de R$ 2.500">Acima de R$ 2.500 /mês</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-solar btn-block">
+                        <i class="fas fa-calculator"></i> Receber Simulação Gratuita
+                    </button>
+                </form>
+
+                <div class="form-note">
+                    <i class="fas fa-lock"></i>
+                    <span>Seus dados estão protegidos. Resposta técnica e orçamento sem compromisso.</span>
+                </div>
+                <div class="form-or">
+                    ou <a href="<%= waUrl %>" target="_blank" rel="noopener" data-content-category="solar">enviar foto da conta no WhatsApp <i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="wrap stats-grid">
+            <div class="stat"><strong>Até 95%</strong><span>de redução na conta de luz</span></div>
+            <div class="stat"><strong>25 Anos</strong><span>garantia de geração</span></div>
+            <div class="stat"><strong>~3,2 Anos</strong><span>payback estimado</span></div>
+            <div class="stat"><strong>100% ART</strong><span>Engenharia responsável</span></div>
+        </div>
+    </section>
+
+    <section class="block" style="background: var(--white);">
+        <div class="wrap">
+            <div class="section-kicker">Por que colocar Solar em Casa</div>
+            <h2>Mais Conforto e Liberdade para Sua Família</h2>
+            <p class="lead">Ligue o ar-condicionado sem preocupação com a bandeira tarifária ou aumentos da distribuidora.</p>
+
+            <div class="grid-3">
+                <div class="card-feat">
+                    <i class="fas fa-snowflake"></i>
+                    <h3>Ar-Condicionado Sem Medo</h3>
+                    <p>Mantenha os quartos e ambientes climatizados com a energia limpa gerada no seu próprio telhado.</p>
+                </div>
+                <div class="card-feat">
+                    <i class="fas fa-piggy-bank"></i>
+                    <h3>Investimento no Seu Imóvel</h3>
+                    <p>O sistema fotovoltaico valoriza sua casa imediatamente e gera economia garantida por mais de 25 anos.</p>
+                </div>
+                <div class="card-feat">
+                    <i class="fas fa-credit-card"></i>
+                    <h3>Troque a Conta pela Parcela</h3>
+                    <p>Financie o sistema em até 84x com parcelas que muitas vezes custam menos do que você já paga de energia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" id="calculadora" style="background: var(--paper); border-top: 1px solid var(--line);">
+        <div class="wrap">
+            <div class="section-kicker">Simulador Residencial</div>
+            <h2>Calcule Quanto Sua Casa Pode Economizar</h2>
+            <p class="lead">Arraste a barra para selecionar o valor atual da sua conta de energia mensal.</p>
+
+            <div class="calc-panel">
+                <div>
+                    <div class="calc-label">
+                        <span>Sua conta mensal de energia</span>
+                        <span id="bill-val">R$ 500</span>
+                    </div>
+                    <input type="range" id="bill-range" min="300" max="3000" step="50" value="500">
+                    <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.75rem;">
+                        * Estimativa para tarifa B1 residencial na Paraíba. O estudo exato analisa o consumo em kWh da sua fatura.
+                    </p>
+                    <div class="calc-actions" style="margin-top: 1.25rem; display: flex; flex-wrap: wrap; gap: 0.65rem;">
+                        <a href="#estudo" id="calc-solar-btn" class="btn btn-solar"><i class="fas fa-calculator"></i> Garantir Economia de R$ 440/mês</a>
+                        <a href="<%= waUrl %>" id="calc-wa-btn" class="btn btn-wa" target="_blank" rel="noopener" data-content-category="solar"><i class="fab fa-whatsapp"></i> Receber Proposta de R$ 440/mês no WhatsApp</a>
+                    </div>
+                </div>
+                <div class="calc-results">
+                    <div class="result-box"><small>Economia Mensal Est.</small><strong id="res-monthly">R$ 440</strong></div>
+                    <div class="result-box"><small>Economia Anual Est.</small><strong id="res-yearly">R$ 5.280</strong></div>
+                    <div class="result-box"><small>Consumo Atendido</small><strong id="res-kwh">~380 kWh/mês</strong></div>
+                    <div class="result-box"><small>Payback Projetado</small><strong id="res-payback">3,2 Anos</strong></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" style="background: var(--white); border-top: 1px solid var(--line);">
+        <div class="wrap">
+            <div class="section-kicker">Passo a Passo</div>
+            <h2>Instalação Limpa e Sem Complicação</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h3>Envio da Conta</h3>
+                    <p>Analisamos seu consumo histórico em kWh e a estrutura do telhado.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h3>Projeto com ART</h3>
+                    <p>Engenheiro dimensiona o gerador fotovoltaico com máxima segurança.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h3>Instalação Rápida</h3>
+                    <p>Montagem limpa dos painéis e inversor em 1 a 2 dias na sua residência.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">04</div>
+                    <h3>Homologação Energisa</h3>
+                    <p>Troca do medidor e liberação para você começar a economizar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="block" style="background: var(--paper); border-top: 1px solid var(--line);">
+        <div class="wrap">
+            <div class="section-kicker" style="text-align: center;">Perguntas Frequentes</div>
+            <h2 style="text-align: center; margin-bottom: 2rem;">Dúvidas Comuns sobre Solar Residencial</h2>
+            <div class="faq">
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Minha conta de energia fica R$ 0,00?
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não fica exatamente zero porque a distribuidora (Energisa) cobra a taxa de disponibilidade mínima do medidor (taxa de rede) e a iluminação pública municipal. Mas sua fatura cai em até 95%, pagando apenas o custo mínimo obrigatório.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        E se chover ou o dia estiver nublado?
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Os painéis solares modernos continuam gerando energia mesmo em dias nublados ou chuvosos. Além disso, a energia excedente gerada em dias ensolarados vira créditos com validade de 5 anos junto à Energisa.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" type="button">
+                        Moro em apartamento de cobertura ou casa alugada. Dá para colocar?
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Em coberturas de prédios (com área técnica aprovada) ou casas é perfeitamente viável. Caso o imóvel seja alugado, o sistema fotovoltaico pode ser desmontado e instalado no seu novo endereço se você se mudar.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-band">
+        <div class="wrap">
+            <div class="section-kicker" style="color: #fdba74;">Próximo Passo</div>
+            <h2>Comece a Economizar na Sua Casa Hoje</h2>
+            <p>Peça sua simulação gratuita sem compromisso. Em até 24h o nosso time técnico envia a proposta da sua residência.</p>
+            <div class="cta-actions">
+                <a href="#estudo" class="btn btn-solar">Solicitar Simulação Residencial</a>
+                <a href="<%= waUrl %>" class="btn btn-wa" target="_blank" rel="noopener" data-content-category="solar"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            item.classList.toggle('is-open');
+        });
+    });
+
+    // Calc simulator
+    const billRange = document.getElementById('bill-range');
+    const billVal = document.getElementById('bill-val');
+    const resMonthly = document.getElementById('res-monthly');
+    const resYearly = document.getElementById('res-yearly');
+    const resKwh = document.getElementById('res-kwh');
+    const resPayback = document.getElementById('res-payback');
+
+    if (billRange) {
+        billRange.addEventListener('input', (e) => {
+            const val = parseInt(e.target.value, 10);
+            billVal.textContent = 'R$ ' + val.toLocaleString('pt-BR');
+            const monthly = Math.round(val * 0.88);
+            const yearly = monthly * 12;
+            const kwh = Math.round(val / 1.3);
+            resMonthly.textContent = 'R$ ' + monthly.toLocaleString('pt-BR');
+            resYearly.textContent = 'R$ ' + yearly.toLocaleString('pt-BR');
+            resKwh.textContent = '~' + kwh + ' kWh/mês';
+            resPayback.textContent = (val > 1000 ? '3,1' : '3,3') + ' Anos';
+
+            const calcWaBtn = document.getElementById('calc-wa-btn');
+            const calcSolarBtn = document.getElementById('calc-solar-btn');
+            if (calcWaBtn) {
+                const msg = `Olá! Simulei uma conta de R$ ${val.toLocaleString('pt-BR')}/mês no site da Klyfe e gostaria de receber a proposta de economia de R$ ${monthly.toLocaleString('pt-BR')}/mês!`;
+                calcWaBtn.href = `https://wa.me/<%= waPhone %>?text=${encodeURIComponent(msg)}`;
+                calcWaBtn.innerHTML = `<i class="fab fa-whatsapp"></i> Receber Proposta de R$ ${monthly.toLocaleString('pt-BR')}/mês no WhatsApp`;
+            }
+            if (calcSolarBtn) {
+                calcSolarBtn.innerHTML = `<i class="fas fa-calculator"></i> Garantir Economia de R$ ${monthly.toLocaleString('pt-BR')}/mês`;
+            }
+        });
+
+        const calcSolarBtn = document.getElementById('calc-solar-btn');
+        if (calcSolarBtn) {
+            calcSolarBtn.addEventListener('click', () => {
+                const val = parseInt(billRange.value, 10);
+                const fConta = document.getElementById('f-conta');
+                if (fConta) {
+                    if (val <= 600) fConta.value = 'R$ 300 a R$ 600';
+                    else if (val <= 1200) fConta.value = 'R$ 600 a R$ 1.200';
+                    else if (val <= 2500) fConta.value = 'R$ 1.200 a R$ 2.500';
+                    else fConta.value = 'Acima de R$ 2.500';
+                }
+            });
+        }
+    }
+
+    // Lead Form submission
+    const form = document.getElementById('lp-solar-residencial-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            const original = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+            const telefone = String(form.querySelector('#f-telefone').value || '').replace(/\D/g, '');
+            const payload = {
+                nome: form.querySelector('#f-nome').value,
+                empresa: form.querySelector('#f-cidade').value,
+                telefone: telefone,
+                faixa_conta: form.querySelector('#f-conta').value,
+                servico: 'Energia Solar Fotovoltaica',
+                source: 'lp-solar-residencial',
+                content_name: 'lp-solar-residencial'
+            };
+
+            const run = window.KlyfeTracking && window.KlyfeTracking.submitLpLead
+                ? window.KlyfeTracking.submitLpLead(payload)
+                : Promise.reject(new Error('Tracking indisponível'));
+
+            run.catch(() => {
+                alert('⚠️ Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');
+                btn.disabled = false;
+                btn.innerHTML = original;
+            });
+        });
+    }
+</script>
+
+<%- include('../partials/cookie-banner') %>
+</body>
+</html>

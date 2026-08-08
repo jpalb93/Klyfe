@@ -161,6 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
                 Object.assign(data, window.KlyfeTracking.getMetaCookies());
             }
+            if (window.KlyfeTracking && window.KlyfeTracking.getCampaignParams) {
+                const camp = window.KlyfeTracking.getCampaignParams();
+                ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach((k) => {
+                    if (camp[k] && !data[k]) data[k] = camp[k];
+                });
+            }
 
             try {
                 const res = await fetch('/contato', { 
@@ -173,21 +179,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const json = await res.json();
                 if (json.success) {
+                    const finalEventId = json.event_id || eventId;
+                    const nameParts = String(data.nome || '').trim().split(/\s+/).filter(Boolean);
+                    const userData = {
+                        email: data.email || '',
+                        phone: data.telefone || '',
+                        firstName: nameParts[0] || '',
+                        lastName: nameParts.slice(1).join(' ')
+                    };
                     // Lead padrão Meta somente no funil Solar (otimização de campanhas)
-                    if (isSolarLead && typeof window.fbq === 'function') {
+                    if (isSolarLead && window.KlyfeTracking && typeof window.KlyfeTracking.trackLeadSolar === 'function') {
+                        window.KlyfeTracking.trackLeadSolar({
+                            content_name: 'contato',
+                            content_category: 'solar',
+                            content_category_label: servico
+                        }, finalEventId, userData);
+                    } else if (isSolarLead && typeof window.fbq === 'function') {
                         window.fbq('track', 'Lead', {
                             content_name: 'contato',
                             content_category: 'solar',
                             content_category_label: servico
-                        }, { eventID: json.event_id || eventId });
+                        }, { eventID: finalEventId });
                     }
-                    if (window.dataLayer) {
+                    if (!isSolarLead && window.dataLayer) {
                         window.dataLayer.push({
-                            event: isSolarLead ? 'generate_lead' : 'generate_lead_other',
+                            event: 'generate_lead_other',
                             lead_source: 'contato',
                             content_category: contentCategory,
                             servico: servico,
-                            event_id: json.event_id || eventId
+                            event_id: finalEventId
                         });
                     }
                     alert('✓ ' + json.message);
@@ -229,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ═══ LP Solar Empresas: UTM capture ═══
-    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'gclid', 'fbclid'];
+    const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'wbraid', 'fbclid'];
     const lpForm = document.getElementById('lp-solar-form');
     const lpPhone = document.getElementById('telefone');
 
@@ -252,7 +272,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (lpForm) {
         const params = new URLSearchParams(window.location.search);
-        const stored = {};
+        const stored = (window.KlyfeTracking && window.KlyfeTracking.getCampaignParams)
+            ? Object.assign({}, window.KlyfeTracking.getCampaignParams())
+            : {};
         try {
             Object.assign(stored, JSON.parse(sessionStorage.getItem('lp_solar_utm') || '{}'));
         } catch (_) { /* ignore */ }
@@ -288,42 +310,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = Object.fromEntries(formData.entries());
             delete data.website_url;
             data.telefone = phoneDigits;
-
-            const eventId = (window.KlyfeTracking && window.KlyfeTracking.newEventId)
-                ? window.KlyfeTracking.newEventId('lead')
-                : ('lead_' + Date.now());
-            data.event_id = eventId;
-            data.event_source_url = window.location.href;
-            if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
-                Object.assign(data, window.KlyfeTracking.getMetaCookies());
-            }
+            data.content_name = 'lp-solar-empresas';
+            data.source = data.source || 'lp-solar-empresas';
 
             try {
-                const res = await fetch('/contato', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data),
-                });
-                if (!res.ok) throw new Error('Falha no servidor');
-                const json = await res.json();
-                if (json.success) {
-                    const finalEventId = json.event_id || eventId;
-                    // Lead Pixel + dataLayer só na /obrigado (uma vez), com o mesmo event_id da CAPI
-                    if (window.KlyfeTracking && window.KlyfeTracking.markLpLeadPending) {
-                        window.KlyfeTracking.markLpLeadPending(finalEventId);
-                    } else {
-                        try {
-                            sessionStorage.setItem('klyfe_lp_solar_lead', JSON.stringify({
-                                event_id: finalEventId,
-                                browser_fired: false,
-                                ts: Date.now()
-                            }));
-                        } catch (_) { /* ignore */ }
-                    }
-                    window.location.href = '/lp/energia-solar-empresas/obrigado';
+                if (window.KlyfeTracking && typeof window.KlyfeTracking.submitLpLead === 'function') {
+                    await window.KlyfeTracking.submitLpLead(data);
                     return;
                 }
-                throw new Error('Resposta inválida');
+                throw new Error('Tracking indisponível');
             } catch (err) {
                 alert('⚠️ Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');
                 console.error('Erro LP solar form:', err);
@@ -345,18 +340,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function updateLpSolarCalc(val) {
         if (lpBillValue) lpBillValue.textContent = `R$ ${val.toLocaleString('pt-BR')}`;
-        const econMensal = val * 0.90;
-        const econAnual = econMensal * 12;
+        const econMensal = Math.round(val * 0.90);
+        const econAnual = Math.round(econMensal * 12);
         const kwp = Math.max(10, Math.round(val / 140));
         const roi = Math.max(2.2, (4.2 - val / 40000)).toFixed(1).replace('.', ',');
         const monthly = document.getElementById('lp-result-monthly');
         const yearly = document.getElementById('lp-result-yearly');
         const kwpEl = document.getElementById('lp-result-kwp');
         const roiEl = document.getElementById('lp-result-roi');
-        if (monthly) monthly.textContent = `R$ ${Math.round(econMensal).toLocaleString('pt-BR')}`;
-        if (yearly) yearly.textContent = `R$ ${Math.round(econAnual).toLocaleString('pt-BR')}`;
+        if (monthly) monthly.textContent = `R$ ${econMensal.toLocaleString('pt-BR')}`;
+        if (yearly) yearly.textContent = `R$ ${econAnual.toLocaleString('pt-BR')}`;
         if (kwpEl) kwpEl.textContent = `${kwp} kWp`;
         if (roiEl) roiEl.textContent = `${roi} anos`;
+
+        const lpCalcCta = document.getElementById('lp-calc-cta');
+        const calcWaBtn = document.getElementById('calc-wa-btn');
+        if (lpCalcCta) {
+            lpCalcCta.innerHTML = `<i class="fas fa-calculator"></i> Garantir Economia de R$ ${econMensal.toLocaleString('pt-BR')}/mês`;
+        }
+        if (calcWaBtn) {
+            const msg = `Olá! Simulei uma conta empresarial de R$ ${val.toLocaleString('pt-BR')}/mês no site da Klyfe e gostaria de receber a proposta de economia de R$ ${econMensal.toLocaleString('pt-BR')}/mês!`;
+            calcWaBtn.href = `https://wa.me/5583991430929?text=${encodeURIComponent(msg)}`;
+            calcWaBtn.innerHTML = `<i class="fab fa-whatsapp"></i> Receber Proposta de R$ ${econMensal.toLocaleString('pt-BR')}/mês no WhatsApp`;
+        }
     }
     if (lpBillRange) {
         updateLpSolarCalc(parseInt(lpBillRange.value, 10));

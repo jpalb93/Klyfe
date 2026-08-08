@@ -8,7 +8,13 @@ const solarServices = require('../config/solar-services');
 const { getPublishedPosts, getPostBySlug } = require('../lib/blog-loader');
 const { evaluatePosts, evaluatePost, buildLocals } = require('../lib/blog-evaluator');
 const { resolveTrackingContext, PHONE_SOLAR, MESSAGES, buildWaUrl, categoryFromServico } = require('../lib/site-tracking');
-const { sendMetaCapiEvent, newEventId } = require('../lib/meta-capi');
+const {
+    sendMetaCapiEvent,
+    newEventId,
+    resolveLeadContentName,
+    isLpSolarSource
+} = require('../lib/meta-capi');
+const { forwardLeadToAgentesCRM } = require('../lib/agentes-crm');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -51,8 +57,19 @@ router.use((req, res, next) => {
         '/energia-solar-em-patos-pb': '/energia-solar/',
         '/energia-solar-em-gravata-pe': '/energia-solar/',
         '/blog/quanto-custa-energia-solar-2026': '/blog/quanto-custa-instalar-energia-solar/',
-        '/blog/payback-painel-solar-simulacao': '/blog/em-quanto-tempo-a-energia-solar-se-paga/'
+        '/blog/payback-painel-solar-simulacao': '/blog/em-quanto-tempo-a-energia-solar-se-paga/',
+        // 301 para URLs com slugs duplicados detectadas no Google Search Console
+        '/solucoes/automacao/automacao': '/solucoes/automacao',
+        '/joao-pessoa/solucoes/automacao/automacao': '/joao-pessoa/solucoes/automacao',
+        '/joao-pessoa/solucoes/engenharia/engenharia': '/joao-pessoa/solucoes/engenharia',
+        '/campina-grande/solucoes/automacao/automacao': '/campina-grande/solucoes/automacao'
     };
+
+    // Redirecionamento genérico de segurança para qualquer slug duplicado no final (ex: /.../automacao/automacao -> /.../automacao)
+    const duplicateSlugMatch = path.match(/^(.+)\/([a-z0-9-]+)\/\2$/);
+    if (duplicateSlugMatch) {
+        return res.redirect(301, `${duplicateSlugMatch[1]}/${duplicateSlugMatch[2]}`);
+    }
 
     // Caso o path exato esteja no mapeamento, redireciona com status 301
     if (redirects[path]) {
@@ -667,6 +684,59 @@ router.get('/lp/energia-solar-empresas', (req, res) => {
     });
 });
 
+router.get('/lp/energia-solar-fazendas', (req, res) => {
+    res.render('lp/solar-fazendas', {
+        title: 'Energia Solar para Fazendas & Agronegócio | Klyfe Electric',
+        description: 'Reduza o custo de irrigação e bombeamento rural com energia solar fotovoltaica. Linhas FNE Verde, Pronaf e engenharia com ART na PB/PE/RN.',
+        canonical: `${baseUrl}/lp/energia-solar-fazendas`,
+        robots: 'noindex, nofollow',
+        page: 'lp-solar-fazendas',
+        contentCategory: 'solar',
+        contentName: '/lp/energia-solar-fazendas',
+        fireViewContent: true,
+        waUrl: lpSolarWaUrl,
+        waMsg: lpSolarWaMsg,
+        waPhone: PHONE_SOLAR,
+        expectLpLead: false
+    });
+});
+
+router.get('/lp/energia-solar-supermercados-clinicas', (req, res) => {
+    res.render('lp/solar-supermercados-clinicas', {
+        title: 'Energia Solar para Supermercados, Clínicas & Postos | Klyfe Electric',
+        description: 'Elimine o custo de climatização e refrigeração 24/7 na sua empresa. Estudo de demanda B3/A4, payback rápido e engenharia com ART.',
+        canonical: `${baseUrl}/lp/energia-solar-supermercados-clinicas`,
+        robots: 'noindex, nofollow',
+        page: 'lp-solar-supermercados-clinicas',
+        contentCategory: 'solar',
+        contentName: '/lp/energia-solar-supermercados-clinicas',
+        fireViewContent: true,
+        waUrl: lpSolarWaUrl,
+        waMsg: lpSolarWaMsg,
+        waPhone: PHONE_SOLAR,
+        expectLpLead: false
+    });
+});
+
+router.get('/lp/energia-solar-residencial', (req, res) => {
+    res.render('lp/solar-residencial', {
+        title: 'Energia Solar Residencial | Economize até 95% na conta de luz | Klyfe',
+        description: 'Energia solar para casas, condomínios e pequenos comércios a partir de 300 kWh/mês. Parcela que substitui a conta com 25 anos de garantia.',
+        canonical: `${baseUrl}/lp/energia-solar-residencial`,
+        robots: 'noindex, nofollow',
+        page: 'lp-solar-residencial',
+        contentCategory: 'solar',
+        contentName: '/lp/energia-solar-residencial',
+        fireViewContent: true,
+        waUrl: lpSolarWaUrl,
+        waMsg: lpSolarWaMsg,
+        waPhone: PHONE_SOLAR,
+        expectLpLead: false
+    });
+});
+
+
+
 router.get('/lp/energia-solar-empresas/obrigado', (req, res) => {
     res.render('lp/solar-empresas-obrigado', {
         title: 'Solicitação recebida | Klyfe Electric',
@@ -677,7 +747,7 @@ router.get('/lp/energia-solar-empresas/obrigado', (req, res) => {
         contentCategory: 'solar',
         contentName: '/lp/energia-solar-empresas/obrigado',
         fireViewContent: false,
-        leadContentName: 'lp-solar-empresas',
+        leadContentName: 'lp-solar',
         leadContentCategory: 'solar',
         waUrl: lpSolarWaUrl,
         waMsg: lpSolarWaMsg,
@@ -737,6 +807,8 @@ router.post('/api/tracking/event', async (req, res) => {
             phone: user.phone || user.ph,
             firstName: user.firstName || user.fn,
             lastName: user.lastName || user.ln,
+            country: user.country || 'br',
+            externalId: user.externalId || user.external_id || eventId,
             fbp: user.fbp,
             fbc: user.fbc
         },
@@ -756,9 +828,12 @@ router.post('/api/tracking/event', async (req, res) => {
 router.post('/contato', async (req, res) => {
     const body = req.body || {};
     const category = categoryFromServico(body.servico);
-    const isLpSolar = body.source === 'lp-solar-empresas';
+    const isLpSolar = isLpSolarSource(body.source);
     const isSolarLead = category === 'solar' || isLpSolar;
     const eventId = String(body.event_id || newEventId('lead'));
+    const contentName = resolveLeadContentName(body.source, isSolarLead);
+    const firstName = (body.nome || '').trim().split(/\s+/)[0] || '';
+    const lastName = (body.nome || '').trim().split(/\s+/).slice(1).join(' ') || '';
 
     let capi = null;
     if (isSolarLead) {
@@ -766,22 +841,34 @@ router.post('/contato', async (req, res) => {
             ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
             : (req.ip || '').replace(/^::ffff:/, '');
 
+        const lpPathMap = {
+            'lp-solar-empresas': '/lp/energia-solar-empresas',
+            'lp-solar-fazendas': '/lp/energia-solar-fazendas',
+            'lp-solar-supermercados-clinicas': '/lp/energia-solar-supermercados-clinicas',
+            'lp-solar-residencial': '/lp/energia-solar-residencial'
+        };
+        const defaultSourceUrl = isLpSolar
+            ? `${baseUrl}${lpPathMap[body.source] || '/lp/energia-solar-empresas'}`
+            : `${baseUrl}/contato`;
+
         capi = await sendMetaCapiEvent({
             eventName: 'Lead',
             eventId,
-            eventSourceUrl: body.event_source_url || (isLpSolar
-                ? `${baseUrl}/lp/energia-solar-empresas`
-                : `${baseUrl}/contato`),
+            eventSourceUrl: body.event_source_url || defaultSourceUrl,
             customData: {
-                content_name: isLpSolar ? 'lp-solar-empresas' : 'contato',
+                content_name: contentName,
                 content_category: 'solar',
-                content_category_label: body.servico || 'Energia Solar Fotovoltaica'
+                content_category_label: body.servico || 'Energia Solar Fotovoltaica',
+                lead_source: body.source || 'contato',
+                currency: 'BRL'
             },
             userData: {
                 email: body.email,
                 phone: body.telefone,
-                firstName: (body.nome || '').split(/\s+/)[0],
-                lastName: (body.nome || '').split(/\s+/).slice(1).join(' '),
+                firstName,
+                lastName,
+                country: 'br',
+                externalId: eventId,
                 fbp: body.fbp,
                 fbc: body.fbc
             },
@@ -790,12 +877,24 @@ router.post('/contato', async (req, res) => {
         });
     }
 
+    // Encaminhamento automático para o CRM central da Klyfe (Agentes-Klyfe)
+    // Inclui gclid/fbclid/UTMs para offline conversions / atribuição de agência
+    const crmResult = await forwardLeadToAgentesCRM({
+        ...body,
+        event_id: eventId,
+        content_name: contentName,
+        category: isSolarLead ? 'solar' : category,
+        conversion_time: new Date().toISOString()
+    });
+
     res.json({
         success: true,
         message: 'Recebido!',
         event_id: eventId,
+        content_name: contentName,
         content_category: isSolarLead ? 'solar' : category,
-        capi_ok: isSolarLead ? !!(capi && capi.ok) : undefined
+        capi_ok: isSolarLead ? !!(capi && capi.ok) : undefined,
+        crm_ok: !!(crmResult && crmResult.ok)
     });
 });
 
