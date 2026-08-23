@@ -1,0 +1,571 @@
+<%- include('partials/head') %>
+<%- include('partials/navbar') %>
+
+<style>
+    /* Estilos Customizados e Integrados da Calculadora Solar Klyfe */
+    .solar-calc-hero {
+        padding: 4rem 0 2rem;
+        background: radial-gradient(circle at 50% 0%, rgba(217, 166, 8, 0.08), transparent 70%), var(--bg-primary);
+        border-bottom: 1px solid var(--border-color);
+    }
+    .solar-calc-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    @media (min-width: 1024px) {
+        .solar-calc-grid {
+            grid-template-columns: 52% 48%;
+            align-items: start;
+        }
+    }
+    .calc-card-panel {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.75rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .calc-card-title {
+        font-family: var(--font-heading);
+        font-size: 1.25rem;
+        color: var(--accent-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .form-group-klyfe {
+        margin-bottom: 1.25rem;
+    }
+    .form-label-klyfe {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 0.4rem;
+        font-family: var(--font-mono);
+    }
+    .form-control-klyfe {
+        width: 100%;
+        padding: 0.65rem 0.85rem;
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        color: var(--text-main);
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        transition: border-color 0.2s;
+    }
+    .form-control-klyfe:focus {
+        outline: none;
+        border-color: var(--accent-primary);
+    }
+    .quick-actions-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+    }
+    .btn-quick-add {
+        padding: 0.4rem 0.75rem;
+        background: rgba(217, 166, 8, 0.1);
+        border: 1px solid rgba(217, 166, 8, 0.3);
+        border-radius: 20px;
+        color: var(--accent-primary);
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .btn-quick-add:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+    }
+    .eq-item-card {
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.85rem;
+        margin-bottom: 0.75rem;
+    }
+    .eq-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+    .eq-inp-name {
+        background: transparent;
+        border: none;
+        color: var(--text-main);
+        font-weight: 700;
+        font-size: 0.95rem;
+        width: 80%;
+    }
+    .btn-remove-eq {
+        background: transparent;
+        border: none;
+        color: #f85149;
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    .eq-result-kwh {
+        font-family: var(--font-mono);
+        color: var(--accent-primary);
+        font-weight: 700;
+        font-size: 0.9rem;
+    }
+    .badge-manual-power {
+        display: inline-block;
+        margin-top: 0.35rem;
+        font-size: 0.7rem;
+        color: #f59e0b;
+        font-family: var(--font-mono);
+    }
+    /* Sticky Output Panel */
+    .sticky-results-panel {
+        position: sticky;
+        top: 90px;
+    }
+    .metric-hero-box {
+        background: radial-gradient(circle at 100% 0%, rgba(217, 166, 8, 0.12), transparent 60%), var(--bg-primary);
+        border: 1px solid var(--accent-primary);
+        border-radius: 10px;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+    .metric-title {
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+    }
+    .metric-value {
+        font-size: 1.8rem;
+        font-weight: 800;
+        font-family: var(--font-mono);
+        color: var(--accent-primary);
+        margin-top: 0.25rem;
+    }
+    .savings-positive { color: var(--accent-secondary) !important; }
+    .savings-negative { color: #f85149 !important; }
+
+    .scenario-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+    .scenario-card {
+        background: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 0.75rem;
+        text-align: center;
+        position: relative;
+    }
+    .scenario-card-featured {
+        border-color: var(--accent-primary);
+        background: rgba(217, 166, 8, 0.04);
+    }
+    .scenario-badge {
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+        font-size: 0.65rem;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 10px;
+        text-transform: uppercase;
+    }
+    .scenario-title { font-size: 0.75rem; color: var(--text-muted); font-weight: 700; margin-bottom: 0.3rem; }
+    .scenario-val { font-size: 1.1rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-main); }
+    .scenario-sub { font-size: 0.7rem; color: var(--text-muted); }
+    .scenario-price { font-size: 0.9rem; font-weight: 700; color: var(--accent-primary); margin-top: 0.4rem; }
+
+    .alert-box {
+        padding: 0.85rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        font-family: var(--font-mono);
+    }
+    .alert-warning { background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; color: #fce7f3; }
+    .alert-info { background: rgba(59, 130, 246, 0.15); border-left: 4px solid #3b82f6; color: #dbeafe; }
+    .alert-notice { background: rgba(217, 166, 8, 0.12); border-left: 4px solid var(--accent-primary); color: var(--text-main); }
+
+    /* Client View Mode overrides */
+    body.client-view-mode .internal-only {
+        display: none !important;
+    }
+</style>
+
+<div class="solar-calc-hero">
+    <div class="container">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+            <div>
+                <div class="section-separator"><span>— FERRAMENTA INTERNA DE ENGENHARIA COMERCIAL —</span></div>
+                <h1 style="font-size: 2.8rem; margin-bottom: 0.5rem;">Calculadora Solar <span style="color: var(--accent-primary);">Klyfe</span></h1>
+                <p style="color: var(--text-muted); max-width: 650px; font-size: 1rem;">Dimensionamento comercial, projeção de consumo, simulação financeira e apoio à decisão em pré-venda.</p>
+            </div>
+            <div>
+                <button type="button" id="btn-toggle-view" class="btn btn-secondary" style="font-size: 0.85rem; padding: 0.6rem 1rem;">
+                    <i class="fas fa-eye-slash"></i> Alternar para Visão Cliente
+                </button>
+            </div>
+        </div>
+
+        <!-- Banner de Aviso Técnico Obrigatório -->
+        <div class="alert-box alert-notice" style="margin-top: 1.5rem; margin-bottom: 0;">
+            <i class="fas fa-shield-alt" style="margin-right: 8px;"></i>
+            <strong>Nota de Engenharia Comercial:</strong> Pré-dimensionamento comercial. Confirmar em análise técnica antes da proposta definitiva.
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding-bottom: 4rem;">
+    <div class="solar-calc-grid">
+        
+        <!-- ════ COLUNA ESQUERDA: ENTRADAS E CONFIGURAÇÃO ════ -->
+        <div>
+            <!-- 1. IDENTIFICAÇÃO DO CLIENTE -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-user-tie"></i> 1. Identificação do Cliente</div>
+                <div class="grid grid-cols-2" style="gap: 1rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Nome do Cliente (Opcional)</label>
+                        <input type="text" id="inp-customer-name" class="form-control-klyfe" placeholder="Ex: João Silva">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Telefone / WhatsApp</label>
+                        <input type="text" id="inp-customer-phone" class="form-control-klyfe" placeholder="(83) 99999-9999">
+                    </div>
+                </div>
+                <div class="grid grid-cols-3" style="gap: 1rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Cidade</label>
+                        <input type="text" id="inp-customer-city" class="form-control-klyfe" placeholder="Campina Grande">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Distribuidora</label>
+                        <select id="inp-utility" class="form-control-klyfe">
+                            <option value="Energisa PB" selected>Energisa PB</option>
+                            <option value="Energisa PE">Energisa PE / Neoenergia</option>
+                            <option value="Celpe">Neoenergia Pernambuco</option>
+                            <option value="Cosern">Neoenergia Cosern (RN)</option>
+                            <option value="Outra">Outra Distribuidora</option>
+                        </select>
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Tipo de Cliente</label>
+                        <select id="inp-customer-type" class="form-control-klyfe">
+                            <option value="Residencial" selected>Residencial</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Industrial">Industrial</option>
+                            <option value="Rural">Rural</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2" style="gap: 1rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Tipo de Ligação</label>
+                        <select id="inp-connection-type" class="form-control-klyfe">
+                            <option value="Bifásica" selected>Bifásica</option>
+                            <option value="Trifásica">Trifásica</option>
+                            <option value="Monofásica">Monofásica</option>
+                            <option value="Nao informado">Não informado</option>
+                        </select>
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Tarifa Social?</label>
+                        <select id="inp-social-tariff" class="form-control-klyfe">
+                            <option value="nao" selected>Não</option>
+                            <option value="sim">Sim (Tarifa Social)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. CONSUMO ATUAL DA CONTA -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-bolt"></i> 2. Consumo Atual da Fatura</div>
+                
+                <div class="form-group-klyfe">
+                    <label class="form-label-klyfe">Método de Entrada</label>
+                    <select id="calc-method" class="form-control-klyfe">
+                        <option value="A" selected>Método A — Consumo Médio Informado (kWh/mês)</option>
+                        <option value="B">Método B — Histórico Mensal (até 12 meses)</option>
+                    </select>
+                </div>
+
+                <!-- Método A -->
+                <div id="method-a-box">
+                    <div class="grid grid-cols-2" style="gap: 1rem;">
+                        <div class="form-group-klyfe">
+                            <label class="form-label-klyfe">Consumo Médio Mensal (kWh/mês) *</label>
+                            <input type="number" id="inp-current-kwh" class="form-control-klyfe" placeholder="Ex: 500" value="500" min="0">
+                        </div>
+                        <div class="form-group-klyfe">
+                            <label class="form-label-klyfe">Valor Médio da Fatura (R$)</label>
+                            <input type="number" id="inp-current-bill" class="form-control-klyfe" placeholder="Ex: 550" value="550" min="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Método B (12 Meses) -->
+                <div id="method-b-box" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <span class="form-label-klyfe">Informe o Histórico Mensal (kWh):</span>
+                        <span id="hist-avg-display" class="eq-result-kwh">0 kWh/mês</span>
+                    </div>
+                    <div class="grid grid-cols-4" style="gap: 0.5rem;">
+                        <% const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']; %>
+                        <% months.forEach((m, idx) => { %>
+                            <div>
+                                <label class="lbl-sub" style="font-size:0.7rem; color:var(--text-muted);"><%= m %></label>
+                                <input type="number" id="inp-hist-month-<%= idx + 1 %>" class="form-control-klyfe" style="padding: 0.4rem;" placeholder="kWh">
+                            </div>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PROJEÇÃO DE NOVO CONSUMO E EQUIPAMENTOS -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-snowflake"></i> 3. Novos Equipamentos e Aumento de Carga</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    Adicione os equipamentos que o cliente pretende instalar (ex: ar-condicionado, chuveiro, piscina).
+                </p>
+
+                <div class="quick-actions-bar">
+                    <span style="font-size: 0.75rem; color: var(--text-muted); width: 100%; margin-bottom: 0.2rem; font-family: var(--font-mono);">Ações Rápidas Klyfe:</span>
+                    <button type="button" class="btn-quick-add" data-preset="ar_9k">+ Ar 9k BTU</button>
+                    <button type="button" class="btn-quick-add" data-preset="ar_12k">+ Ar 12k BTU</button>
+                    <button type="button" class="btn-quick-add" data-preset="ar_18k">+ Ar 18k BTU</button>
+                    <button type="button" class="btn-quick-add" data-preset="ar_24k">+ Ar 24k BTU</button>
+                    <button type="button" class="btn-quick-add" data-preset="chuveiro">+ Chuveiro</button>
+                    <button type="button" class="btn-quick-add" data-preset="geladeira">+ Geladeira</button>
+                </div>
+
+                <div id="equipment-list-container"></div>
+
+                <button type="button" id="btn-add-equipment" class="btn btn-secondary" style="width: 100%; font-size: 0.85rem; margin-top: 0.5rem;">
+                    <i class="fas fa-plus"></i> Adicionar Equipamento Manual
+                </button>
+
+                <!-- Consumo Manual Adicional -->
+                <div class="grid grid-cols-2" style="gap: 1rem; margin-top: 1.25rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Consumo Adicional Direto (kWh/mês)</label>
+                        <input type="number" id="inp-additional-kwh" class="form-control-klyfe" placeholder="Ex: 300" value="0">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Margem de Crescimento Futura</label>
+                        <select id="inp-growth-margin" class="form-control-klyfe">
+                            <option value="0" selected>0% (Sem margem)</option>
+                            <option value="5">5% de margem</option>
+                            <option value="10">10% de margem</option>
+                            <option value="15">15% de margem</option>
+                            <option value="20">20% de margem</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. MÓDULOS E CONFIGURAÇÃO DO SISTEMA -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-solar-panel"></i> 4. Módulos e Engenharia Comercial</div>
+                <div class="grid grid-cols-2" style="gap: 1rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Potência do Módulo Fotovoltaico</label>
+                        <select id="inp-module-watts" class="form-control-klyfe">
+                            <option value="550">550 W</option>
+                            <option value="580">580 W</option>
+                            <option value="590">590 W</option>
+                            <option value="600" selected>600 W (Padrão Klyfe)</option>
+                            <option value="610">610 W</option>
+                            <option value="620">620 W</option>
+                            <option value="650">650 W</option>
+                        </select>
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Produtividade (kWh/kWp/mês)</label>
+                        <input type="number" id="inp-productivity" class="form-control-klyfe" value="130" step="1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. PRECIFICAÇÃO E FINANCIAMENTO -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-file-invoice-dollar"></i> 5. Ajustes Comerciais e Financiamento</div>
+                <div class="grid grid-cols-3" style="gap: 0.75rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Desconto (R$)</label>
+                        <input type="number" id="inp-discount" class="form-control-klyfe" placeholder="0" value="0">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Acréscimo (R$)</label>
+                        <input type="number" id="inp-addition" class="form-control-klyfe" placeholder="0" value="0">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Preço Ajustado (R$)</label>
+                        <input type="number" id="inp-manual-price" class="form-control-klyfe" placeholder="Manual">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3" style="gap: 0.75rem; margin-top: 0.5rem;">
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Entrada (R$)</label>
+                        <input type="number" id="inp-down-payment" class="form-control-klyfe" value="0">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Taxa Mensal (%)</label>
+                        <input type="number" id="inp-interest-rate" class="form-control-klyfe" value="1.39" step="0.01">
+                    </div>
+                    <div class="form-group-klyfe">
+                        <label class="form-label-klyfe">Prazo (Meses)</label>
+                        <select id="inp-term-months" class="form-control-klyfe">
+                            <option value="24">24 meses</option>
+                            <option value="36">36 meses</option>
+                            <option value="48">48 meses</option>
+                            <option value="60" selected>60 meses</option>
+                            <option value="72">72 meses</option>
+                            <option value="84">84 meses</option>
+                            <option value="96">96 meses</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════ COLUNA DIREITA: RESULTADOS EM TEMPO REAL ════ -->
+        <div class="sticky-results-panel">
+            
+            <!-- RESUMO PRINCIPAL DO SISTEMA -->
+            <div class="calc-card-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div class="calc-card-title" style="margin-bottom: 0;"><i class="fas fa-chart-line"></i> Resumo em Tempo Real</div>
+                    <span id="estimation-score-badge" class="badge-manual-power" style="padding: 4px 10px; border-radius: 12px; font-weight: 800; color: #000; background: var(--accent-secondary);">Alta Qualidade</span>
+                </div>
+
+                <div class="metric-hero-box">
+                    <div class="grid grid-cols-2" style="gap: 1rem;">
+                        <div>
+                            <div class="metric-title">Sistema Sugerido</div>
+                            <div id="res-installed-kwp" class="metric-value">6,60 kWp</div>
+                            <div id="res-modules-desc" style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">11 × 600W</div>
+                        </div>
+                        <div>
+                            <div class="metric-title">Investimento Final</div>
+                            <div id="res-final-price" class="metric-value">R$ 26.000</div>
+                            <div id="res-price-per-kwp" class="internal-only" style="font-size: 0.85rem; color: var(--accent-primary); font-family: var(--font-mono);">R$ 3.939/kWp</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alert box de ajuste de dimensionamento -->
+                <div id="sizing-adjustment-alert" style="display: none;"></div>
+                <div id="extrapolating-table-alert" class="alert-box alert-warning" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i> Estimativa fora da faixa principal da tabela comercial da Klyfe. Revisão manual recomendada.
+                </div>
+
+                <div class="grid grid-cols-3" style="gap: 0.75rem; text-align: center; margin-top: 1rem;">
+                    <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px;">
+                        <div class="metric-title">Consumo Proj.</div>
+                        <div id="res-considered-kwh" style="font-weight: 700; font-family: var(--font-mono);">500 kWh</div>
+                    </div>
+                    <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px;">
+                        <div class="metric-title">Geração Est.</div>
+                        <div id="res-estimated-gen" style="font-weight: 700; font-family: var(--font-mono);">858 kWh</div>
+                    </div>
+                    <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px;">
+                        <div class="metric-title">Cobertura</div>
+                        <div id="res-coverage" style="font-weight: 700; font-family: var(--font-mono); color: var(--accent-secondary);">171%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SIMULAÇÃO FINANCEIRA E COMPARATIVO -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-hand-holding-usd"></i> Comparativo Financeiro</div>
+
+                <div class="grid grid-cols-2" style="gap: 1rem; margin-bottom: 1rem;">
+                    <div style="background: var(--bg-primary); padding: 1rem; border-radius: 8px;">
+                        <div class="metric-title">Sem Solar (Projetado)</div>
+                        <div id="res-bill-without-solar" style="font-size: 1.3rem; font-weight: 800; font-family: var(--font-mono); color: #f85149; margin-top: 0.2rem;">R$ 550</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Conta mensal futura sem a usina</div>
+                    </div>
+                    <div style="background: var(--bg-primary); padding: 1rem; border-radius: 8px;">
+                        <div class="metric-title">Com Solar (Desembolso)</div>
+                        <div id="res-total-outlay-solar" style="font-size: 1.3rem; font-weight: 800; font-family: var(--font-mono); color: var(--text-main); margin-top: 0.2rem;">R$ 543</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">Parcela + Conta Residual</div>
+                    </div>
+                </div>
+
+                <div style="background: var(--bg-primary); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                    <div class="grid grid-cols-2" style="gap: 1rem; align-items: center;">
+                        <div>
+                            <div class="metric-title">Financiamento (Parcela)</div>
+                            <div id="res-installment-amount" style="font-size: 1.4rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-primary);">R$ 493,00</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Taxa 1.39% a.m. em 60x</div>
+                        </div>
+                        <div>
+                            <div class="metric-title">Resultado Mensal</div>
+                            <div id="res-monthly-diff" class="metric-value savings-positive" style="font-size: 1.1rem;">Economia de R$ 7/mês</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2" style="gap: 1rem;">
+                    <div style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px;">
+                        <div class="metric-title">Payback Simples</div>
+                        <div id="res-payback-formatted" style="font-size: 1rem; font-weight: 700; color: var(--accent-secondary);">~3.9 anos</div>
+                    </div>
+                    <div class="internal-only" style="background: var(--bg-primary); padding: 0.75rem; border-radius: 6px;">
+                        <div class="metric-title">Preço de Tabela Ref.</div>
+                        <div id="res-reference-price" style="font-size: 1rem; font-weight: 700; color: var(--text-muted);">R$ 26.000</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CENÁRIOS COMPARATIVOS -->
+            <div class="calc-card-panel">
+                <div class="calc-card-title"><i class="fas fa-layer-group"></i> Cenários Comerciais</div>
+                <div id="scenarios-cards-container" class="scenario-grid"></div>
+            </div>
+
+            <!-- PAINEL DE OBSERVAÇÕES AUTOMÁTICAS -->
+            <div class="calc-card-panel internal-only">
+                <div class="calc-card-title"><i class="fas fa-microchip"></i> Observações Automáticas Klyfe</div>
+                <ul id="auto-observations-list" style="font-size: 0.85rem; line-height: 1.7; color: var(--text-main);"></ul>
+            </div>
+
+            <!-- AÇÕES E EXPORTAÇÃO -->
+            <div class="calc-card-panel">
+                <div class="grid grid-cols-2" style="gap: 0.75rem;">
+                    <button type="button" id="btn-copy-whatsapp" class="btn btn-primary" style="background: #25d366; border-color: #25d366; color: #fff; font-weight: 700; font-size: 0.9rem;">
+                        <i class="fab fa-whatsapp" style="margin-right: 6px;"></i> Copiar p/ WhatsApp
+                    </button>
+                    <button type="button" id="btn-save-crm" class="btn btn-secondary" style="font-size: 0.9rem;">
+                        <i class="fas fa-save" style="margin-right: 6px;"></i> Salvar no CRM
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    window.SOLAR_CALCULATOR_CONFIG = <%- JSON.stringify(config) %>;
+</script>
+<script src="/js/solar-calculator-client.js"></script>
+
+<%- include('partials/footer') %>

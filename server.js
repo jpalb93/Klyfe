@@ -6,8 +6,16 @@ const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const locations = require('./config/locations'); // Carregado uma única vez (Eficiência)
 const { resolveTrackingContext } = require('./lib/site-tracking');
+const { startBlogRemoteSync, ensureBlogRemoteSynced } = require('./lib/blog-remote-sync');
+
+function safeOrigin(value) {
+    try { return new URL(value).origin; } catch { return null; }
+}
+const centralOrigin = safeOrigin(process.env.CENTRAL_APP_ORIGIN || 'http://localhost:5173');
+const blogCmsOrigin = safeOrigin(process.env.BLOG_CMS_URL || '');
 
 const app = express();
+startBlogRemoteSync();
 
 // ═══ SEGURANÇA (Helmet) ═══
 // Configuração básica para proteger headers e mitigar ataques comuns
@@ -44,6 +52,8 @@ app.use(helmet({
                 "https://www.googletagmanager.com",
                 "https://googleads.g.doubleclick.net",
                 "https://www.google.com",
+                "https://*.public.blob.vercel-storage.com",
+                ...(blogCmsOrigin ? [blogCmsOrigin] : []),
             ],
             connectSrc: [
                 "'self'",
@@ -63,15 +73,28 @@ app.use(helmet({
                 "https://www.facebook.com",
                 "https://*.facebook.com",
             ],
+            frameAncestors: ["'self'", ...(centralOrigin ? [centralOrigin] : [])],
             upgradeInsecureRequests: []
         }
     },
-    crossOriginEmbedderPolicy: false
+    crossOriginEmbedderPolicy: false,
+    // CSP frame-ancestors restringe a incorporação à Central; X-Frame-Options
+    // SAMEORIGIN impediria o preview autenticado entre os dois subdomínios.
+    xFrameOptions: false
 }));
 
 // Header Permissions-Policy para controlar acesso a recursos do navegador
 app.use((req, res, next) => {
     res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+    next();
+});
+
+// Em uma instância serverless recém-iniciada, garante que blog/home/sitemap
+// aguardem a primeira leitura da Central antes de renderizar o acervo.
+app.use(async (req, _res, next) => {
+    if (req.path === '/' || req.path === '/sitemap.xml' || req.path.includes('/blog')) {
+        await ensureBlogRemoteSynced().catch(() => undefined);
+    }
     next();
 });
 
@@ -139,7 +162,11 @@ app.use((req, res, next) => {
 // Importar rotas
 const indexRouter = require('./routes/index');
 const adminBlogRouter = require('./routes/admin-blog');
+const blogPreviewRouter = require('./routes/blog-preview');
 app.use('/', indexRouter);
+// Depois do router principal para herdar os helpers/locais de cidade usados
+// pelo mesmo template blog-post.ejs, mas antes do fallback 404 global.
+app.use('/', blogPreviewRouter);
 app.use('/admin', adminBlogRouter);
 
 // ═══ TRATAMENTO DE ERROS (Fallback 404) ═══
@@ -173,4 +200,3 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
-

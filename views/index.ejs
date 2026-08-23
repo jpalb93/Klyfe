@@ -7,9 +7,12 @@
 <!-- Scroll Spy Nav (lateral) -->
 <nav class="scroll-nav">
     <div class="dot active" data-target="#hero" data-label="Início"></div>
-    <div class="dot" data-target="#solucoes" data-label="Soluções"></div>
+    <div class="dot" data-target="#solucoes" data-label="Energia Solar"></div>
+    <div class="dot" data-target="#engenharia-automacao" data-label="Engenharia & Automação"></div>
+    <div class="dot" data-target="#servicos-eletricos" data-label="Serviços Elétricos"></div>
     <div class="dot" data-target="#empresa" data-label="A Empresa"></div>
     <div class="dot" data-target="#diferenciais" data-label="Diferenciais"></div>
+    <div class="dot" data-target="#depoimentos" data-label="Depoimentos"></div>
     <div class="dot" data-target="#projetos" data-label="Projetos"></div>
     <div class="dot" data-target="#blog" data-label="Blog"></div>
     <div class="dot" data-target="#social-hub" data-label="Redes Sociais"></div>
@@ -30,151 +33,220 @@
                 <span style="color:var(--accent-primary);font-size:5.5rem"><%= cityData.name %>.</span>
             </h1>
 
-            <p class="hero-subtitle">Soluções elétricas, automação e energia solar <%= cityData.preposition %> <%= cityData.name %> e região. Projetos sob medida, execução de precisão.</p>
-
-
+            <p class="hero-subtitle">Soluções elétricas, automação e usinas solares fotovoltaicas <%= cityData.preposition %> <%= cityData.name %> e em todo o Nordeste. Engenharia consultiva com ART no CREA e execução de máxima precisão.</p>
 
             <div style="display:flex;gap:1rem;flex-wrap:wrap">
                 <a href="/contato" class="btn btn-primary">Solicitar Orçamento</a>
+                <a href="/energia-solar/#calculadora" class="btn btn-outline"><i class="fas fa-calculator" style="margin-right: 6px;"></i> Simular Economia Solar</a>
                 <a href="/projetos" class="btn btn-ghost"><i class="fas fa-play-circle"></i> Ver Projetos</a>
             </div>
         </div>
     </div>
-        <!-- Stats removidos a pedido do usuário -->
-
 </section>
 
-
-<!-- ═══ MARQUEE TICKER ═══ -->
-<div class="marquee-wrap">
-    <div class="marquee-track">
-        <span>Soluções Elétricas</span><div class="dot">⚡</div>
-        <span>Automação Residencial</span><div class="dot">⚙️</div>
-        <span>Energia Solar</span><div class="dot">☀️</div>
-        <span>Projetos com ART</span><div class="dot">📐</div>
-        <span>NR-10 · SPDA</span><div class="dot">🛡️</div>
-        <span>Campina Grande</span><div class="dot">📍</div>
-        <span>João Pessoa</span><div class="dot">📍</div>
-        <!-- Duplicado para loop infinito -->
-        <span>Soluções Elétricas</span><div class="dot">⚡</div>
-        <span>Automação Residencial</span><div class="dot">⚙️</div>
-        <span>Energia Solar</span><div class="dot">☀️</div>
-        <span>Projetos com ART</span><div class="dot">📐</div>
-        <span>NR-10 · SPDA</span><div class="dot">🛡️</div>
-        <span>Campina Grande</span><div class="dot">📍</div>
-        <span>João Pessoa</span><div class="dot">📍</div>
+<!-- ═══ TRUST & PERFORMANCE COUNTER BAR (DESTAQUE SOLAR) ═══ -->
+<section class="trust-counter-bar">
+    <div class="container">
+        <div class="trust-counter-grid">
+            <div class="trust-counter-item fade-in">
+                <div class="trust-counter-number">25 Anos</div>
+                <div class="trust-counter-label">Garantia Linear de Geração Fotovoltaica</div>
+            </div>
+            <div class="trust-counter-item fade-in">
+                <div class="trust-counter-number">Até 95%</div>
+                <div class="trust-counter-label">Redução Real na Conta de Energia Elétrica</div>
+            </div>
+            <div class="trust-counter-item fade-in">
+                <div class="trust-counter-number">100% Homologado</div>
+                <div class="trust-counter-label">Projetos com ART e Engenharia Eletricista CREA</div>
+            </div>
+            <div class="trust-counter-item fade-in">
+                <div class="trust-counter-number">2.5 a 3.5 Anos</div>
+                <div class="trust-counter-label">Payback Médio de Retorno no Nordeste</div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
 
-
-<!-- Divisor de Identidade -->
-<div class="home-identity-divider container" style="display:flex; justify-content:center; margin: 4rem 0 -2rem 0; opacity:0.3">
-    <div style="width:2px; height:60px; background:linear-gradient(transparent, var(--accent-solar), transparent)"></div>
-</div>
-
-<!-- ═══ SOLUÇÕES (Reveal Cards) ═══ -->
+<!-- ═══ 01 ENERGIA SOLAR & PROJETOS POR PERFIL ═══ -->
 <section class="section-padding home-sec home-sec-solucoes" id="solucoes">
     <div class="container">
-        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>01 SOLUÇÕES</span></div>
-        <h2 class="fade-in" style="margin-bottom:1rem">SOLUÇÕES DE<br><em style="color:var(--accent-primary);font-style:italic">ALTO IMPACTO.</em></h2>
-        <p class="section-intro fade-in" style="color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; line-height: 1.6;">Oferecemos um portfólio completo de engenharia para viabilizar seus projetos com máxima economia e eficiência. Nossos serviços cobrem desde laudos técnicos e homologações de energia solar até automação residencial inteligente e instalações elétricas industriais.</p>
-        <div class="grid grid-cols-3">
-            <% // O helper getServicesByCategory agora vem do middleware no routes/index.js %>
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>01 ENERGIA SOLAR FOTOVOLTAICA</span></div>
+        <h2 class="fade-in" style="margin-bottom:1rem">PROJETOS SOLARES SOB MEDIDA<br><em style="color:var(--accent-primary);font-style:italic">PARA O SEU PERFIL.</em></h2>
+        <p class="section-intro fade-in" style="color: var(--text-muted); margin-bottom: 3.5rem; max-width: 720px; line-height: 1.6;">Cada setor possui demandas elétricas e padrões de consumo específicos. A Klyfe Electric projeta e homologa usinas solares fotovoltaicas de alta performance com dimensionamento preciso e engenharia própria <%= cityData.preposition %> <%= cityData.name %> e em todo o Nordeste:</p>
 
+        <div class="home-solar-profiles-grid">
+            <!-- RESIDENCIAL -->
+            <a href="/energia-solar/residencial/" class="segment-card-flagship fade-in">
+                <div>
+                    <div class="segment-card-img-wrap">
+                        <img src="/img/blog/como-funciona-a-energia-solar-em-casas.webp" alt="Energia Solar Residencial em Casa" class="segment-card-img" loading="lazy">
+                    </div>
+                    <h3>Energia Solar Residencial</h3>
+                    <p>Livre sua família de aumentos tarifários e bandeiras vermelhas. Climatização com ar-condicionado liberada 24 horas por dia com até 95% de economia.</p>
+                </div>
+                <div class="segment-card-action">Ver Solução Residencial <i class="fas fa-arrow-right"></i></div>
+            </a>
 
+            <!-- COMERCIAL -->
+            <a href="/energia-solar/comercial/" class="segment-card-flagship fade-in">
+                <div>
+                    <div class="segment-card-img-wrap">
+                        <img src="/img/blog/quanto-custa-instalar-energia-solar.webp" alt="Energia Solar Comercial e Empresarial" class="segment-card-img" loading="lazy">
+                    </div>
+                    <h3>Energia Solar Comercial</h3>
+                    <p>Corte despesas operacionais fixas em escritórios, lojas, academias e postos. Reduza o custo de produção e aumente a margem de lucro da sua empresa.</p>
+                </div>
+                <div class="segment-card-action">Ver Solução Comercial <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- SUPERMERCADOS -->
+            <a href="/energia-solar/supermercados/" class="segment-card-flagship fade-in">
+                <div>
+                    <div class="segment-card-img-wrap">
+                        <img src="/img/blog/energia-solar-para-supermercados.webp" alt="Usina Solar para Supermercados" class="segment-card-img" loading="lazy">
+                    </div>
+                    <h3>Supermercados & Atacado</h3>
+                    <p>Sincronismo perfeito de carga: os painéis geram no pico diurno exatamente quando os compressores de frio exigem potência máxima. Payback inferior a 3 anos.</p>
+                </div>
+                <div class="segment-card-action">Ver Guia de Supermercados <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- HOSPITAIS -->
+            <a href="/energia-solar/hospitais-e-clinicas/" class="segment-card-flagship fade-in">
+                <div>
+                    <div class="segment-card-img-wrap">
+                        <img src="/img/blog/energia-solar-para-hospitais.webp" alt="Energia Solar para Hospitais e Clínicas" class="segment-card-img" loading="lazy">
+                    </div>
+                    <h3>Hospitais & Clínicas</h3>
+                    <p>Segurança eletrotécnica rigorosa: compatibilização com nobreaks cirúrgicos, geradores e quadros de IT-Médico em total conformidade com a ABNT e ANVISA.</p>
+                </div>
+                <div class="segment-card-action">Ver Solução Hospitalar <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- CONDOMÍNIOS -->
+            <a href="/energia-solar/condominios/" class="segment-card-flagship fade-in">
+                <div>
+                    <div class="segment-card-img-wrap">
+                        <img src="/img/blog/energia-solar-para-condominios.webp" alt="Energia Solar para Condomínios e Prédios" class="segment-card-img" loading="lazy">
+                    </div>
+                    <h3>Condomínios & Edifícios</h3>
+                    <p>Reduza a taxa de condomínio com geração para elevadores, bombas e portaria, ou distribua créditos entre apartamentos pelo modelo EMUC.</p>
+                </div>
+                <div class="segment-card-action">Ver Solução Condominial <i class="fas fa-arrow-right"></i></div>
+            </a>
+
+            <!-- FAZENDAS -->
+            <a href="/energia-solar/fazendas-e-irrigacao/" class="segment-card-flagship fade-in">
+                <div>
+                    <div class="segment-card-img-wrap">
+                        <img src="/img/blog/energia-solar-para-fazendas.webp" alt="Energia Solar para Fazendas e Irrigação" class="segment-card-img" loading="lazy">
+                    </div>
+                    <h3>Fazendas & Irrigação</h3>
+                    <p>Aproveite a alta irradiação do Sertão para bombeamento solar de água de poços artesianos, irrigação de pivôs e eletrificação de galpões rurais.</p>
+                </div>
+                <div class="segment-card-action">Ver Solução Agronegócio <i class="fas fa-arrow-right"></i></div>
+            </a>
+        </div>
+
+        <!-- CTA Solar Bar -->
+        <div class="home-solar-cta-bar fade-in">
+            <div>
+                <h4 style="font-size: 1.3rem; margin-bottom: 0.35rem; color: var(--text-main);">Descubra quanto você pode economizar com Energia Solar</h4>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">Use nosso simulador ou consulte um engenheiro eletricista responsável para um estudo gratuito.</p>
+            </div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <a href="/energia-solar/#calculadora" class="btn btn-primary" style="background: #f59e0b; border-color: #f59e0b; color: #000; font-weight: 700;">
+                    <i class="fas fa-calculator" style="margin-right: 6px;"></i> Simular Economia
+                </a>
+                <a href="/energia-solar/" class="btn btn-outline" style="font-weight: 700;">
+                    Conhecer Hub Solar Completo <i class="fas fa-arrow-right" style="margin-left: 6px;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ 02 ENGENHARIA ELÉTRICA & AUTOMAÇÃO SMART ═══ -->
+<section class="section-padding home-sec home-sec-eng-auto" id="engenharia-automacao">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>02 ENGENHARIA & AUTOMAÇÃO</span></div>
+        <h2 class="fade-in" style="margin-bottom:1rem">ENGENHARIA ELÉTRICA DE ALTA COMPLEXIDADE<br><em style="color:var(--accent-primary);font-style:italic">& AUTOMAÇÃO INTELIGENTE.</em></h2>
+        <p class="section-intro fade-in" style="color: var(--text-muted); margin-bottom: 3.5rem; max-width: 720px; line-height: 1.6;">Além de usinas solares, a Klyfe Electric entrega soluções completas em infraestrutura elétrica de alta e baixa tensão com ART no CREA, projetos executivos e tecnologias avançadas de automação residencial e predial.</p>
+
+        <div class="pillars-grid">
+            <!-- PILAR 1: ENGENHARIA ELÉTRICA -->
             <% if (isServiceEnabled('engenharia')) { %>
-            <div class="reveal-card eng fade-in">
-                <a href="<%= homePrefix %>/solucoes/engenharia" class="card-top-link" style="text-decoration: none; color: inherit; display: block;">
-                    <div class="card-top">
-                        <div class="card-icon" style="background:rgba(245,200,66,0.1);color:var(--accent-primary)"><i class="fas fa-hard-hat"></i></div>
-                        <h3>ENGENHARIA ELÉTRICA</h3>
-                        <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.5rem">Projetos, laudos e consultoria com responsabilidade técnica.</p>
+            <div class="pillar-card eng fade-in">
+                <div>
+                    <div class="pillar-card-header">
+                        <div class="pillar-card-icon">
+                            <i class="fas fa-hard-hat"></i>
+                        </div>
+                        <div>
+                            <span class="pillar-badge">CREA-PB · ART GARANTIDA</span>
+                            <h3 class="pillar-card-title">Engenharia Elétrica & Laudos</h3>
+                        </div>
                     </div>
-                </a>
-                <div class="card-bottom">
-                    <div class="card-bottom-inner">
-                        <h4 style="font-family: var(--font-heading); color: var(--text-main); margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;">Serviços & Laudos</h4>
-                        <ul>
-                            <li><a href="<%= homePrefix %>/solucoes/engenharia/projeto-eletrico">Projeto Elétrico (BIM 3D)</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/engenharia/laudos-eletricos">Laudo de NR-10 e SPDA</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/engenharia/projeto-subestacao">Projeto de Subestações</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/engenharia/pericia-furto-energia">Perícias de TOI e Danos</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/engenharia/viabilidade-carregador-veicular">Viabilidade de Recarga EV</a></li>
-                        </ul>
-                        <a href="<%= homePrefix %>/solucoes/engenharia" class="btn-ver-mais" style="color: var(--accent-primary); font-family: var(--font-heading); text-transform: uppercase; font-weight: bold; font-size: 0.9rem; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                            Ver todas as soluções <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    <p class="pillar-card-desc">Projetos elétricos executivos em BIM, laudos de conformidade com normas regulamentadoras e consultoria técnica especializada para indústrias, comércios e edifícios.</p>
+
+                    <ul class="pillar-services-list">
+                        <li><a href="<%= homePrefix %>/solucoes/engenharia/projeto-eletrico"><i class="fas fa-chevron-right" style="color: var(--accent-primary); font-size: 0.75rem;"></i> Projeto Elétrico (BIM 3D)</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/engenharia/laudos-eletricos"><i class="fas fa-chevron-right" style="color: var(--accent-primary); font-size: 0.75rem;"></i> Laudo de NR-10 e SPDA</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/engenharia/projeto-subestacao"><i class="fas fa-chevron-right" style="color: var(--accent-primary); font-size: 0.75rem;"></i> Projeto de Subestações</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/engenharia/pericia-furto-energia"><i class="fas fa-chevron-right" style="color: var(--accent-primary); font-size: 0.75rem;"></i> Perícias de TOI e Danos</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/engenharia/viabilidade-carregador-veicular"><i class="fas fa-chevron-right" style="color: var(--accent-primary); font-size: 0.75rem;"></i> Viabilidade de Recarga EV</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/engenharia/aprovacao-energisa"><i class="fas fa-chevron-right" style="color: var(--accent-primary); font-size: 0.75rem;"></i> Aprovação na Concessionária</a></li>
+                    </ul>
                 </div>
+
+                <a href="<%= homePrefix %>/solucoes/engenharia" class="pillar-card-btn">
+                    <span>Ver catálogo completo de engenharia</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
             <% } %>
 
-            <% if (isServiceEnabled('solar')) { %>
-            <div class="reveal-card solar fade-in">
-                <a href="/energia-solar/" class="card-top-link" style="text-decoration: none; color: inherit; display: block;">
-                    <div class="card-top">
-                        <div class="card-icon" style="background:rgba(255,107,43,0.1);color:var(--accent-solar)"><i class="fas fa-sun"></i></div>
-                        <h3>ENERGIA SOLAR</h3>
-                        <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.5rem">Sistemas fotovoltaicos para redução de custos.</p>
-                    </div>
-                </a>
-                <div class="card-bottom">
-                    <div class="card-bottom-inner">
-                        <h4 style="font-family: var(--font-heading); color: var(--text-main); margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;">Geração Solar</h4>
-                        <ul>
-                            <li><a href="/energia-solar/#residencial">Projetos Solares Residenciais</a></li>
-                            <li><a href="/energia-solar/#comercial">Sistemas Fotovoltaicos Comerciais</a></li>
-                            <li><a href="/energia-solar/#homologacao">Homologação na Energisa</a></li>
-                            <li><a href="/energia-solar/#roi">Estudo de Viabilidade & ROI</a></li>
-                            <li><a href="/energia-solar/#manutencao">Manutenção de Painéis</a></li>
-                        </ul>
-                        <a href="/energia-solar/" class="btn-ver-mais" style="color: var(--accent-solar); font-family: var(--font-heading); text-transform: uppercase; font-weight: bold; font-size: 0.9rem; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                            Ver todas as soluções <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <% } %>
-
+            <!-- PILAR 2: AUTOMAÇÃO SMART -->
             <% if (isServiceEnabled('automacao')) { %>
-            <div class="reveal-card auto fade-in">
-                <a href="<%= homePrefix %>/solucoes/automacao" class="card-top-link" style="text-decoration: none; color: inherit; display: block;">
-                    <div class="card-top">
-                        <div class="card-icon" style="background:rgba(42,245,160,0.1);color:var(--accent-secondary)"><i class="fas fa-cog"></i></div>
-                        <h3>AUTOMAÇÃO SMART</h3>
-                        <p style="color:var(--text-muted);font-size:0.9rem;margin-top:0.5rem">Controle e inteligência residencial e industrial.</p>
+            <div class="pillar-card auto fade-in">
+                <div>
+                    <div class="pillar-card-header">
+                        <div class="pillar-card-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div>
+                            <span class="pillar-badge">SMART LIVING & IOT</span>
+                            <h3 class="pillar-card-title">Automação Residencial & Smart</h3>
+                        </div>
                     </div>
-                </a>
-                <div class="card-bottom">
-                    <div class="card-bottom-inner">
-                        <h4 style="font-family: var(--font-heading); color: var(--text-main); margin-bottom: 1rem; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px;">Sistemas Inteligentes</h4>
-                        <ul>
-                            <li><a href="<%= homePrefix %>/solucoes/automacao/automacao-residencial">Automação Residencial (Smart Home)</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/automacao#clima">Controle de Climatização e Luzes</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/automacao#audio">Integração de Áudio e Home Theater</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/eletrica/projeto-rede">Infraestrutura de Redes e Wi-Fi</a></li>
-                            <li><a href="<%= homePrefix %>/solucoes/automacao#processos">Automação de Processos</a></li>
-                        </ul>
-                        <a href="<%= homePrefix %>/solucoes/automacao" class="btn-ver-mais" style="color: var(--accent-secondary); font-family: var(--font-heading); text-transform: uppercase; font-weight: bold; font-size: 0.9rem; margin-top: 1rem; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;">
-                            Ver todas as soluções <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    <p class="pillar-card-desc">Conectividade e controle total na ponta dos seus dedos. Ambientes inteligentes projetados para proporcionar conforto absoluto, segurança reforçada e eficiência energética.</p>
+
+                    <ul class="pillar-services-list">
+                        <li><a href="<%= homePrefix %>/solucoes/automacao/automacao-residencial"><i class="fas fa-chevron-right" style="color: var(--accent-secondary); font-size: 0.75rem;"></i> Automação Smart Home</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/automacao#clima"><i class="fas fa-chevron-right" style="color: var(--accent-secondary); font-size: 0.75rem;"></i> Controle de Clima e Luzes</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/automacao#audio"><i class="fas fa-chevron-right" style="color: var(--accent-secondary); font-size: 0.75rem;"></i> Áudio & Home Theater</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/eletrica/projeto-rede"><i class="fas fa-chevron-right" style="color: var(--accent-secondary); font-size: 0.75rem;"></i> Redes e Wi-Fi de Alta Densidade</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/automacao#processos"><i class="fas fa-chevron-right" style="color: var(--accent-secondary); font-size: 0.75rem;"></i> Automação Comercial e Predial</a></li>
+                        <li><a href="<%= homePrefix %>/solucoes/automacao"><i class="fas fa-chevron-right" style="color: var(--accent-secondary); font-size: 0.75rem;"></i> Sensores & Fechaduras Digitais</a></li>
+                    </ul>
                 </div>
+
+                <a href="<%= homePrefix %>/solucoes/automacao" class="pillar-card-btn">
+                    <span>Ver soluções de automação smart</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
             <% } %>
         </div>
-
     </div>
 </section>
 
-
-
-
-<!-- ═══ SERVIÇOS DO DIA A DIA ═══ -->
+<!-- ═══ 03 SERVIÇOS DO DIA A DIA ═══ -->
 <% if (isServiceEnabled('eletrica')) { %>
-<section class="section-padding home-sec home-sec-eletrica" style="background:var(--bg-secondary)">
+<section class="section-padding home-sec home-sec-eletrica" id="servicos-eletricos" style="background:var(--bg-secondary)">
     <div class="container fade-in">
-        <div class="section-separator"><%- include('partials/symbol') %> <span>SERVIÇOS ELÉTRICOS</span></div>
+        <div class="section-separator"><%- include('partials/symbol') %> <span>03 SERVIÇOS ELÉTRICOS</span></div>
         <h2 style="margin-bottom:2.5rem; font-size: clamp(2rem, 3.5vw, 2.8rem); text-transform: uppercase;">Serviços do <span style="color:var(--accent-primary); font-style:italic;">Dia a Dia.</span></h2>
         <div class="feature-grid">
             <% 
@@ -210,16 +282,16 @@
 </section>
 <% } %>
 
-<!-- ═══ SOBRE ═══ -->
+<!-- ═══ 04 A EMPRESA ═══ -->
 <section class="section-padding home-sec home-sec-empresa" style="background:var(--bg-secondary)" id="empresa">
     <div class="container grid grid-cols-2 home-empresa-grid" style="align-items:center;gap:4rem">
         <div class="fade-in home-empresa-visual" style="border-radius: 50% !important; aspect-ratio: 1 / 1; width: 100%; max-width: 340px; margin: 0 auto; overflow: hidden; box-shadow: 0 20px 50px rgba(227,90,27,0.18); border: 4px solid #ffffff;">
             <img src="/img/home-empresa-klyfe.webp" alt="Equipe de Engenheiros Eletricistas Klyfe Electric" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy">
         </div>
         <div class="fade-in home-empresa-copy">
-            <div class="section-separator"><%- include('partials/symbol') %> <span>02 A EMPRESA</span></div>
-            <h2>Sua empresa de<br>eletricidade <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %>.</span></h2>
-            <p style="margin:1.5rem 0;color:var(--text-muted);line-height:1.8">Elevamos o padrão da engenharia elétrica na Paraíba. Unimos técnica rigorosa, equipamentos premium e segurança máxima em todos os projetos que entregamos <%= cityData.preposition %> <%= cityData.name %> e região.</p>
+            <div class="section-separator"><%- include('partials/symbol') %> <span>04 A EMPRESA</span></div>
+            <h2>Sua empresa de<br>engenharia elétrica <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %>.</span></h2>
+            <p style="margin:1.5rem 0;color:var(--text-muted);line-height:1.8">Elevamos o padrão da engenharia elétrica na Paraíba. Unimos técnica rigorosa, equipamentos premium e segurança máxima em todos os projetos que entregamos <%= cityData.preposition %> <%= cityData.name %> e em todo o Nordeste.</p>
 
             <a href="/quem-somos" class="btn btn-outline">Conheça nossa história →</a>
         </div>
@@ -227,25 +299,27 @@
     </div>
 </section>
 
-<!-- ═══ DIFERENCIAIS ═══ -->
+<!-- ═══ 05 DIFERENCIAIS OPERACIONAIS ═══ -->
 <section class="section-padding bg-blueprint home-sec home-sec-diferenciais" id="diferenciais">
     <div class="container fade-in">
-        <h2 style="text-align:center;margin-bottom:1rem;color:var(--accent-primary)"><em style="font-style:italic">OPERACIONAIS.</em></h2>
+        <div class="section-separator"><%- include('partials/symbol') %> <span>05 DIFERENCIAIS OPERACIONAIS</span></div>
+        <h2 style="text-align:center;margin-bottom:1rem;color:var(--accent-primary)">PADRÃO DE QUALIDADE & <em style="font-style:italic">CONFORMIDADE TÉCNICA.</em></h2>
         <p class="fade-in home-sec-lead" style="color: var(--text-muted); text-align: center; max-width: 600px; margin: 0 auto 3rem auto; line-height: 1.6;">Nossa equipe de engenharia atua em conformidade com as normas nacionais de segurança e regulamentos das concessionárias locais. Garantimos alta precisão em todas as etapas de sua obra.</p>
         <div class="grid grid-cols-3 home-diferenciais-grid" style="gap:1.5rem">
             <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-file-signature" style="color:var(--accent-primary);margin-right:0.5rem"></i> ART em toda obra</h4><p style="color:var(--text-muted);font-size:0.9rem">Garantia de responsabilidade técnica em 100% dos serviços.</p></div>
             <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-tools" style="color:var(--accent-primary);margin-right:0.5rem"></i> Normas ABNT/NR-10</h4><p style="color:var(--text-muted);font-size:0.9rem">Projetos e execuções conforme todas as normas vigentes.</p></div>
             <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-shield-alt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Equipe certificada</h4><p style="color:var(--text-muted);font-size:0.9rem">Profissionais com certificações técnicas reconhecidas.</p></div>
             <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-headset" style="color:var(--accent-primary);margin-right:0.5rem"></i> Suporte pós-obra</h4><p style="color:var(--text-muted);font-size:0.9rem">Acompanhamento dedicado após a entrega do projeto.</p></div>
-            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-dollar-sign" style="color:var(--accent-primary);margin-right:0.5rem"></i> Projetos para financiamento</h4><p style="color:var(--text-muted);font-size:0.9rem">Documentação pronta para aprovação de crédito.</p></div>
-            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-map-marked-alt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Atendimento regional</h4><p style="color:var(--text-muted);font-size:0.9rem">CG, JP e toda a Paraíba com logística ágil.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-dollar-sign" style="color:var(--accent-primary);margin-right:0.5rem"></i> Projetos para financiamento</h4><p style="color:var(--text-muted);font-size:0.9rem">Documentação pronta para aprovação de crédito bancário.</p></div>
+            <div class="bracket-box"><h4 style="margin-bottom:0.5rem"><i class="fas fa-map-marked-alt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Atendimento regional</h4><p style="color:var(--text-muted);font-size:0.9rem">Campina Grande, João Pessoa e todo o Nordeste com logística ágil.</p></div>
         </div>
     </div>
 </section>
 
-<!-- ═══ DEPOIMENTOS ═══ -->
-<section class="section-padding home-sec home-sec-depoimentos" style="background:var(--bg-secondary)">
+<!-- ═══ 06 DEPOIMENTOS & AVALIAÇÕES ═══ -->
+<section class="section-padding home-sec home-sec-depoimentos" id="depoimentos" style="background:var(--bg-secondary)">
     <div class="container fade-in">
+        <div class="section-separator"><%- include('partials/symbol') %> <span>06 AVALIAÇÕES & PROVA SOCIAL</span></div>
         <h2 style="text-align:center;margin-bottom:0.5rem">O que dizem nossos clientes</h2>
         <p class="home-sec-lead" style="text-align:center;color:var(--text-muted);margin-bottom:3rem">★★★★★ 5,0 · 120 avaliações no Google</p>
         <div class="grid grid-cols-3 home-depoimentos-grid">
@@ -256,10 +330,10 @@
     </div>
 </section>
 
-<!-- ═══ PROJETOS BENTO GRID ═══ -->
+<!-- ═══ 07 PROJETOS BENTO GRID ═══ -->
 <section class="section-padding bg-blueprint home-sec home-sec-projetos" id="projetos">
     <div class="container fade-in">
-        <div class="section-separator"> <%- include('partials/symbol') %> <span>05 PROJETOS</span></div>
+        <div class="section-separator"> <%- include('partials/symbol') %> <span>07 PROJETOS EXECUTADOS</span></div>
         <h2>ENGENHARIA EM<br><em style="color:var(--accent-primary);font-style:italic">MOVIMENTO.</em></h2>
         <div class="grid grid-cols-1" style="margin-top:3rem">
             <!-- Case Real: HU -->
@@ -284,10 +358,10 @@
 </section>
 
 
-<!-- ═══ BLOG ═══ -->
+<!-- ═══ 08 BLOG TÉCNICO ═══ -->
 <section class="section-padding home-sec home-sec-blog" style="background:var(--bg-secondary)" id="blog">
     <div class="container fade-in">
-        <div class="section-separator"><%- include('partials/symbol') %> <span>06 BLOG TÉCNICO</span></div>
+        <div class="section-separator"><%- include('partials/symbol') %> <span>08 BLOG TÉCNICO</span></div>
         <h2>BLOG<br><em style="color:var(--accent-primary);font-style:italic">TÉCNICO.</em></h2>
         <div class="grid grid-cols-2 home-blog-grid" style="margin-top:3rem">
             <% posts.forEach(post => { 
@@ -308,10 +382,10 @@
     </div>
 </section>
 
-<!-- ═══ REDES SOCIAIS (HUB) ═══ -->
+<!-- ═══ 09 REDES SOCIAIS (HUB) ═══ -->
 <section class="section-padding home-sec home-sec-social" style="background:var(--bg-primary); border-top: 1px solid var(--border-color);" id="social-hub">
     <div class="container fade-in">
-        <div class="section-separator"><%- include('partials/symbol') %> <span>07 HUB DIGITAL</span></div>
+        <div class="section-separator"><%- include('partials/symbol') %> <span>09 HUB DIGITAL</span></div>
         <h2>CONECTE-SE<br><span style="color:var(--accent-primary)">CONOSCO.</span></h2>
         
         <div class="social-hub-grid" style="margin-top:3rem;">
@@ -373,27 +447,28 @@
     <div class="container fade-in home-cta-inner" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
         <div>
             <h2>Pronto para reduzir sua<br>conta de energia?</h2>
-            <p>Solicite um orçamento grátis de energia solar, automação ou soluções elétricas <%= cityData.preposition %> <%= cityData.name %> e toda a Paraíba.</p>
+            <p>Solicite um orçamento grátis de energia solar, automação ou soluções elétricas <%= cityData.preposition %> <%= cityData.name %> e em todo o Nordeste.</p>
 
         </div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
             <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
             <% const waMsgHome = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.'; %>
             <% const waUrlHome = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(waMsgHome)}`; %>
-            <a href="<%= waUrlHome %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Ligue Agora</a>
+            <a href="<%= waUrlHome %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> Fale Conosco</a>
         </div>
 
     </div>
 </section>
 
-<!-- ═══ FAQ ═══ -->
+<!-- ═══ 10 FAQ ═══ -->
 <section class="section-padding home-sec home-sec-faq" id="faq">
     <div class="container fade-in home-faq-inner" style="max-width:800px">
+        <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>10 DÚVIDAS FREQUENTES</span></div>
         <h2 style="text-align:center;margin-bottom:3rem">Perguntas Frequentes</h2>
-        <div class="faq-item"><div class="faq-question">Quanto custa uma instalação elétrica? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>O custo varia conforme o tamanho e complexidade do projeto. Realizamos uma visita técnica para levantamento e apresentamos um orçamento detalhado sem compromisso.</p></div></div></div>
-        <div class="faq-item"><div class="faq-question">Vocês atendem em João Pessoa? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>Sim! Atendemos Campina Grande, João Pessoa, Patos, Caruaru e toda a região do Nordeste com logística ágil e equipe dedicada.</p></div></div></div>
-        <div class="faq-item"><div class="faq-question">Qual o prazo médio de uma obra? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>O prazo depende da complexidade. Instalações residenciais simples levam 1-3 dias; projetos industriais e solares podem levar de 1 a 4 semanas.</p></div></div></div>
-        <div class="faq-item"><div class="faq-question">A energia solar realmente compensa? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>Sim! Com o sol abundante do Nordeste, nossos clientes economizam até 95% na conta de luz. O retorno do investimento ocorre em média em 4-5 anos.</p></div></div></div>
+        <div class="faq-item"><div class="faq-question">Quanto custa uma instalação solar ou elétrica? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>O custo varia conforme o tamanho e complexidade do projeto. Realizamos uma visita técnica ou levantamento fotométrico para apresentar um estudo de viabilidade detalhado sem compromisso.</p></div></div></div>
+        <div class="faq-item"><div class="faq-question">Vocês atendem em toda a Paraíba e outros estados? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>Sim! Atendemos Campina Grande, João Pessoa, Patos, Sousa, Caruaru, Recife, Natal e toda a região do Nordeste com logística ágil e equipe de engenharia própria.</p></div></div></div>
+        <div class="faq-item"><div class="faq-question">Qual o prazo médio de homologação e obra? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>Instalações residenciais simples levam 1 a 3 dias úteis; usinas solares comerciais e industriais levam de 1 a 3 semanas, com homologação técnica completa perante a concessionária.</p></div></div></div>
+        <div class="faq-item"><div class="faq-question">A energia solar realmente compensa no Nordeste? <i class="fas fa-plus"></i></div><div class="faq-answer"><div class="faq-answer-inner"><p>Sim! O Nordeste possui um dos maiores índices de irradiação solar do mundo (média de 5.4 kWh/m²/dia). Nossos clientes economizam até 95% na conta de luz, com retorno do investimento (payback) entre 2.5 e 3.5 anos.</p></div></div></div>
     </div>
 </section>
 

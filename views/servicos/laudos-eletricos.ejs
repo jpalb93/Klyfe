@@ -290,55 +290,6 @@
     <%- include('../partials/whatsapp') %>
     <%- include('../partials/footer') %>
 
-    <!-- Schema.org FAQPage JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "O que é um laudo elétrico e quando ele é obrigatório?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "O laudo elétrico é um documento técnico emitido por engenheiro eletricista habilitado que atesta as condições e a conformidade das instalações elétricas. É obrigatório para renovação de alvarás, exigências do Corpo de Bombeiros, conformidade com a NR-10 em ambientes de trabalho e contratação de seguros prediais."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Qual norma regulamenta o laudo de SPDA (para-raios)?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "O laudo de SPDA é regulamentado pela NBR 5419 da ABNT, que estabelece os requisitos para projeto, instalação, inspeção e manutenção de sistemas de proteção contra descargas atmosféricas. O laudo deve ser emitido por engenheiro eletricista com ART recolhida junto ao CREA."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O que é termografia infravermelha em instalações elétricas?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A termografia infravermelha é uma técnica de inspeção não invasiva que utiliza câmera de infravermelho para detectar pontos de aquecimento anômalo em conexões, disjuntores, barramentos e cabos, sem necessidade de desligar a instalação. Pontos quentes indicam conexões oxidadas, sobrecargas ou falhas de isolamento que podem evoluir para curtos-circuitos ou incêndios."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Com que frequência o laudo elétrico deve ser renovado?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A frequência de renovação varia conforme o tipo de instalação e as exigências do órgão solicitante. Em geral, instalações comerciais e industriais devem renovar o laudo a cada um ou dois anos. A NR-10 exige inspeções periódicas em instalações de trabalho, cuja frequência é definida pelo responsável técnico conforme o risco da atividade."
-          }
-        }<% if (cityData.faqExtra) { %>,
-        {
-          "@type": "Question",
-          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
-          }
-        }<% } %>
-      ]
-    }
-    </script>
 
     <script src="/js/main.js"></script>
 </body>

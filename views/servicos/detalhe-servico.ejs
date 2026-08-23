@@ -238,27 +238,6 @@
     <%- include('../partials/whatsapp') %>
     <%- include('../partials/footer') %>
 
-    <!-- Schema.org FAQPage JSON-LD -->
-    <% if (serviceData.faq && serviceData.faq.length > 0) { %>
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          "mainEntity": [
-            <% serviceData.faq.forEach((item, idx) => { %>
-                {
-                  "@type": "Question",
-                  "name": "<%= item.question.replace(/"/g, '\\"') %>",
-                  "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "<%= item.answer.replace(/"/g, '\\"') %>"
-                  }
-                }<%= idx === serviceData.faq.length - 1 ? '' : ',' %>
-            <% }) %>
-          ]
-        }
-        </script>
-    <% } %>
 
     <script src="/js/main.js"></script>
 </body>

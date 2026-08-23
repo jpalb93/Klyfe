@@ -111,13 +111,17 @@
         } catch (_) { /* ignore */ }
     }
 
-    /** Meta: fb.1.{creation_time}.{fbclid} */
+    var inMemoryCampaignData = {};
+
+    /** Meta: fb.1.{creation_time}.{fbclid} — só grava se consentimento concedido */
     function ensureFbcFromFbclid(fbclid) {
         if (!fbclid) return readCookie('_fbc') || '';
         var existing = readCookie('_fbc') || '';
         if (existing && existing.indexOf(fbclid) !== -1) return existing;
         var fbc = 'fb.1.' + Date.now() + '.' + fbclid;
-        writeCookie('_fbc', fbc, 90 * 24 * 60 * 60);
+        if (getConsent() === 'granted') {
+            writeCookie('_fbc', fbc, 90 * 24 * 60 * 60);
+        }
         return fbc;
     }
 
@@ -128,8 +132,8 @@
         } catch (_) {
             urlParams = null;
         }
-        var fbclid = (urlParams && urlParams.get('fbclid')) || '';
-        var fbc = ensureFbcFromFbclid(fbclid) || readCookie('_fbc') || '';
+        var fbclid = (urlParams && urlParams.get('fbclid')) || (inMemoryCampaignData && inMemoryCampaignData.fbclid) || '';
+        var fbc = (fbclid ? ensureFbcFromFbclid(fbclid) : '') || readCookie('_fbc') || '';
         return {
             fbp: readCookie('_fbp') || '',
             fbc: fbc
@@ -145,6 +149,7 @@
     }
 
     function persistCampaign(data) {
+        if (getConsent() !== 'granted') return;
         try {
             sessionStorage.setItem(CAMPAIGN_KEY, JSON.stringify(data));
         } catch (_) { /* ignore */ }
@@ -188,21 +193,21 @@
             var gbraid = urlParams.get('gbraid') || '';
             var wbraid = urlParams.get('wbraid') || '';
             var fbclid = urlParams.get('fbclid') || '';
+            var ctwaClid = urlParams.get('ctwa_clid') || '';
             var utmSource = urlParams.get('utm_source') || '';
             var utmMedium = urlParams.get('utm_medium') || '';
             var utmCampaign = urlParams.get('utm_campaign') || '';
             var utmTerm = urlParams.get('utm_term') || '';
             var utmContent = urlParams.get('utm_content') || '';
 
-            if (fbclid) ensureFbcFromFbclid(fbclid);
-
-            if (gclid || gbraid || wbraid || fbclid || utmSource || utmMedium || utmCampaign) {
+            if (gclid || gbraid || wbraid || fbclid || ctwaClid || utmSource || utmMedium || utmCampaign) {
                 var prev = readStoredCampaign();
-                var data = {
+                inMemoryCampaignData = {
                     gclid: gclid || prev.gclid || '',
                     gbraid: gbraid || prev.gbraid || '',
                     wbraid: wbraid || prev.wbraid || '',
                     fbclid: fbclid || prev.fbclid || '',
+                    ctwa_clid: ctwaClid || prev.ctwa_clid || '',
                     utm_source: utmSource || prev.utm_source || '',
                     utm_medium: utmMedium || prev.utm_medium || '',
                     utm_campaign: utmCampaign || prev.utm_campaign || '',
@@ -211,13 +216,15 @@
                     landing_page: window.location.pathname || '',
                     captured_at: Date.now()
                 };
-                persistCampaign(data);
+                if (fbclid) ensureFbcFromFbclid(fbclid);
+                persistCampaign(inMemoryCampaignData);
             }
         } catch (_) { /* ignore */ }
     }
 
     function getCampaignParams() {
-        return readStoredCampaign();
+        var stored = readStoredCampaign();
+        return Object.assign({}, stored, inMemoryCampaignData);
     }
 
     initConsentDefaults();
@@ -450,6 +457,8 @@
 
         var camp = getCampaignParams();
         if (camp.gclid || camp.fbclid || camp.utm_source) {
+            persistCampaign(camp);
+            if (camp.fbclid) ensureFbcFromFbclid(camp.fbclid);
             ensureDataLayer();
             window.dataLayer.push({
                 event: 'campaign_attribution',
@@ -473,6 +482,24 @@
         } else if (CFG.googleAdsId) {
             loadGoogleAds(false);
         }
+    }
+
+    function clearMarketingCookies() {
+        ['_fbp', '_fbc', CAMPAIGN_COOKIE].forEach(function (name) {
+            try {
+                document.cookie = name + '=;path=/;max-age=0;SameSite=Lax';
+            } catch (_) { /* ignore */ }
+        });
+        try {
+            document.cookie.split(';').forEach(function (c) {
+                var name = c.trim().split('=')[0];
+                if (name && name.indexOf('_gcl_') === 0) {
+                    document.cookie = name + '=;path=/;max-age=0;SameSite=Lax';
+                }
+            });
+        } catch (_) { /* ignore */ }
+        try { localStorage.removeItem(CAMPAIGN_KEY); } catch (_) { /* ignore */ }
+        try { sessionStorage.removeItem(CAMPAIGN_KEY); } catch (_) { /* ignore */ }
     }
 
     function hideBanner() {
@@ -499,13 +526,15 @@
     function denyConsent() {
         setConsent('denied');
         updateConsentMode(false);
+        clearMarketingCookies();
         hideBanner();
     }
 
     window.KlyfeConsent = {
         accept: acceptConsent,
         deny: denyConsent,
-        get: getConsent
+        get: getConsent,
+        reopen: showBanner
     };
 
     document.addEventListener('click', function (e) {
@@ -514,6 +543,10 @@
         var action = btn.getAttribute('data-klyfe-consent');
         if (action === 'accept') acceptConsent();
         if (action === 'deny') denyConsent();
+        if (action === 'reopen') {
+            if (e.preventDefault) e.preventDefault();
+            showBanner();
+        }
     });
 
     function splitName(fullName) {
@@ -565,11 +598,13 @@
         var payload = Object.assign({}, opts, {
             event_id: eventId,
             event_source_url: window.location.href,
+            marketing_consent: getConsent() || 'unknown',
             servico: opts.servico || 'Energia Solar Fotovoltaica',
             gclid: opts.gclid || camp.gclid || '',
             gbraid: opts.gbraid || camp.gbraid || '',
             wbraid: opts.wbraid || camp.wbraid || '',
             fbclid: opts.fbclid || camp.fbclid || '',
+            ctwa_clid: opts.ctwa_clid || camp.ctwa_clid || '',
             utm_source: opts.utm_source || camp.utm_source || '',
             utm_medium: opts.utm_medium || camp.utm_medium || '',
             utm_campaign: opts.utm_campaign || camp.utm_campaign || '',
@@ -695,6 +730,7 @@
                 content_category: 'solar',
                 event_id: eventId
             });
+            fireGoogleAdsConversion();
         },
         true
     );

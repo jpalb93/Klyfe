@@ -9,11 +9,15 @@
     "build": "npx ejs-lint views/**/*.ejs",
     "blog:migrate": "node scripts/migrate-blog-to-json.js",
     "blog:generate": "node scripts/generate-blog-post.js",
-    "blog:generate:weekly": "node scripts/generate-blog-post.js --weekly"
+    "blog:generate:weekly": "node scripts/generate-blog-post.js --weekly",
+    "test:solar": "node tests/solar-calculator.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=20.9.0"
+  },
   "dependencies": {
     "compression": "^1.8.1",
     "dotenv": "^16.4.7",
@@ -23,7 +27,8 @@
     "helmet": "^8.1.0"
   },
   "devDependencies": {
+    "ejs-lint": "^2.0.1",
     "nodemon": "^3.1.14",
-    "sharp": "^0.34.5"
+    "sharp": "^0.35.3"
   }
 }

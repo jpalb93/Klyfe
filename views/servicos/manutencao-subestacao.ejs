@@ -347,55 +347,6 @@
     <%- include('../partials/whatsapp') %>
     <%- include('../partials/footer') %>
 
-    <!-- Schema.org FAQPage JSON-LD -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Quais normas regulamentam a manutenção de subestações elétricas?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A manutenção de subestações é regulamentada principalmente pela NBR 14039 (instalações elétricas de média tensão), pela NBR 5419 (proteção contra descargas atmosféricas) e pela NR-10 (segurança em instalações e serviços em eletricidade). Toda intervenção deve ser realizada por engenheiro eletricista habilitado com ART recolhida junto ao CREA."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Qual a diferença entre manutenção preventiva, corretiva e preditiva em subestações?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A manutenção preventiva é realizada em intervalos programados para evitar falhas, independentemente do estado atual dos componentes. A manutenção corretiva é executada após a identificação de uma falha para restaurar o funcionamento normal. A manutenção preditiva utiliza técnicas como termografia infravermelha e análise de óleo do transformador para prever falhas antes que ocorram, com base no estado real dos componentes."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O que é análise de óleo do transformador e quando é necessária?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A análise de óleo do transformador é um ensaio laboratorial que avalia as propriedades dielétricas e físico-químicas do óleo isolante, identificando contaminações, umidade e produtos de degradação que indicam desgaste interno do equipamento. É recomendada em transformadores a óleo como parte da manutenção preditiva, com periodicidade definida pelo engenheiro responsável conforme o histórico e a criticidade da instalação."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O que é verificado na manutenção de uma subestação aérea até 500kVA?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "A manutenção inclui inspeção visual e termográfica, limpeza geral de componentes e ferragens, verificação e reaperto de conexões elétricas, análise de óleo do transformador quando aplicável, testes de resistência de isolação e aterramento, verificação de disjuntores, chaves seccionadoras, para-raios e DPS, substituição de componentes danificados e emissão de relatório técnico com laudo e ART."
-          }
-        }<% if (cityData.faqExtra) { %>,
-        {
-          "@type": "Question",
-          "name": "<%= cityData.faqExtra.question.replace(/"/g, '\\"') %>",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "<%= cityData.faqExtra.answer.replace(/"/g, '\\"') %>"
-          }
-        }<% } %>
-      ]
-    }
-    </script>
 
     <script src="/js/main.js"></script>
 </body>

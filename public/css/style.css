@@ -514,25 +514,53 @@ footer { background: var(--bg-primary); border-top: 2px solid var(--accent-prima
 .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-/* ═══ 1. MARQUEE TICKER ═══ */
+/* ═══ 1. MARQUEE TICKER (PILLS / BADGES FLUTUANTES) ═══ */
 .marquee-wrap {
-  overflow: hidden; border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color); padding: 1rem 0;
+  overflow: hidden;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.85rem 0;
   background: var(--bg-secondary);
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
 }
 .marquee-track {
-  display: flex; width: max-content;
-  animation: marquee-scroll 25s linear infinite;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
 }
-.marquee-track span {
-  flex-shrink: 0; padding: 0 3rem;
-  font-family: var(--font-display); font-size: 1.8rem;
-  text-transform: uppercase; color: var(--text-muted); letter-spacing: 2px;
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+.marquee-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
   white-space: nowrap;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+  transition: all 0.25s ease;
+  backdrop-filter: blur(6px);
 }
-.marquee-track .dot {
-  padding: 0 1.5rem; color: var(--accent-primary); font-size: 1rem;
-  display: flex; align-items: center;
+.marquee-pill i {
+  color: var(--accent-primary);
+  font-size: 0.95rem;
+}
+.marquee-pill:hover {
+  border-color: var(--accent-primary);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 @keyframes marquee-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
@@ -625,6 +653,267 @@ footer { background: var(--bg-primary); border-top: 2px solid var(--accent-prima
 .reveal-card.eng .card-bottom ul li a:hover { color: var(--accent-primary); }
 .reveal-card.solar .card-bottom ul li a:hover { color: var(--accent-solar); }
 .reveal-card.auto .card-bottom ul li a:hover { color: var(--accent-secondary); }
+
+/* ═══ 3.0. TRUST COUNTER BAR (MÉTRICAS DE CREDIBILIDADE SOLAR) ═══ */
+.trust-counter-bar {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: 2.25rem 0;
+  position: relative;
+  z-index: 2;
+}
+.trust-counter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+.trust-counter-item {
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-right: 1px solid var(--border-color);
+}
+.trust-counter-item:last-child {
+  border-right: none;
+}
+.trust-counter-number {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+}
+.trust-counter-label {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* ═══ 3.1. CARDS DE PERFIS SOLARES (FLAGSHIP) ═══ */
+.home-solar-profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+.segment-card-flagship {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid #f59e0b;
+  border-radius: 14px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+.segment-card-flagship:hover {
+  transform: translateY(-6px);
+  border-color: #f59e0b;
+  box-shadow: 0 16px 36px rgba(245, 158, 11, 0.2);
+}
+.segment-card-img-wrap {
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+.segment-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.segment-card-flagship:hover .segment-card-img {
+  transform: scale(1.04);
+}
+.segment-card-flagship h3 {
+  color: var(--text-main);
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+  font-weight: 700;
+}
+.segment-card-flagship p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.segment-card-action {
+  margin-top: 1.5rem;
+  color: #f59e0b;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s ease;
+}
+.segment-card-flagship:hover .segment-card-action {
+  gap: 0.65rem;
+}
+
+/* ═══ 3.2. PILARES DE ENGENHARIA & AUTOMAÇÃO ═══ */
+.home-sec-eng-auto {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+}
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+.pillar-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 18px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.pillar-card.eng {
+  border-top: 4px solid var(--accent-primary);
+}
+.pillar-card.auto {
+  border-top: 4px solid var(--accent-secondary);
+}
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+.pillar-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.pillar-card-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.pillar-card.eng .pillar-card-icon {
+  background: rgba(217, 166, 8, 0.12);
+  color: var(--accent-primary);
+}
+.pillar-card.auto .pillar-card-icon {
+  background: rgba(42, 245, 160, 0.12);
+  color: var(--accent-secondary);
+}
+.pillar-badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+.pillar-card.eng .pillar-badge {
+  background: rgba(217, 166, 8, 0.15);
+  color: var(--accent-primary);
+}
+.pillar-card.auto .pillar-badge {
+  background: rgba(42, 245, 160, 0.15);
+  color: var(--accent-secondary);
+}
+.pillar-card-title {
+  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+.pillar-card-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+.pillar-services-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+}
+.pillar-services-list li a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.pillar-card.eng .pillar-services-list li a:hover {
+  color: var(--accent-primary);
+  transform: translateX(4px);
+}
+.pillar-card.auto .pillar-services-list li a:hover {
+  color: var(--accent-secondary);
+  transform: translateX(4px);
+}
+.pillar-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+.pillar-card:hover .pillar-card-btn {
+  transform: translateX(4px);
+}
+.pillar-card.eng .pillar-card-btn {
+  color: var(--accent-primary);
+}
+.pillar-card.auto .pillar-card-btn {
+  color: var(--accent-secondary);
+}
+
+.home-solar-cta-bar {
+  margin-top: 3.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
 
 .bento-grid {
   display: grid;
@@ -1440,22 +1729,31 @@ input[type=range]::-webkit-slider-thumb {
 ═══════════════════════════════════════════ */
 [data-theme="solar-warm"] .home-identity-divider { display: none !important; }
 
-/* Marquee: faixa solar quente */
+/* Marquee: faixa solar quente com pílulas em vidro translúcido */
 [data-theme="solar-warm"] .marquee-wrap {
   background: linear-gradient(90deg, #E35A1B, #FF6B2B 50%, #E35A1B);
   border: none;
   margin: 0;
-  padding: 1.1rem 0;
+  padding: 0.85rem 0;
   position: relative;
   z-index: 2;
+  box-shadow: 0 4px 20px rgba(227, 90, 27, 0.2);
 }
-[data-theme="solar-warm"] .marquee-track span {
-  font-size: 1.2rem;
-  letter-spacing: 3px;
+[data-theme="solar-warm"] .marquee-pill {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   color: #FFFFFF;
-  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
 }
-[data-theme="solar-warm"] .marquee-track .dot { color: rgba(255,255,255,0.55); }
+[data-theme="solar-warm"] .marquee-pill i {
+  color: #FFE600;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+[data-theme="solar-warm"] .marquee-pill:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
 
 /* Ritmo geral: mais ar entre seções */
 [data-theme="solar-warm"] .home-sec {
@@ -1509,45 +1807,122 @@ input[type=range]::-webkit-slider-thumb {
   font-size: 1.05rem;
   margin-bottom: 2.75rem !important;
 }
-[data-theme="solar-warm"] .home-sec-solucoes .grid.grid-cols-3 {
-  grid-template-columns: 1fr;
-  gap: 1.35rem;
-  max-width: 860px;
+/* ── SOLUÇÕES: SOLAR SPOTLIGHT NO TEMA SOLAR-WARM ── */
+[data-theme="solar-warm"] .trust-counter-bar {
+  background: #FFFFFF;
+  border-top: 1px solid rgba(227, 90, 27, 0.12);
+  border-bottom: 1px solid rgba(227, 90, 27, 0.12);
+  box-shadow: 0 4px 20px rgba(227, 90, 27, 0.04);
 }
-[data-theme="solar-warm"] .home-sec-solucoes .reveal-card {
+[data-theme="solar-warm"] .trust-counter-item {
+  border-right: 1px solid rgba(227, 90, 27, 0.12);
+}
+[data-theme="solar-warm"] .trust-counter-item:last-child {
+  border-right: none;
+}
+[data-theme="solar-warm"] .trust-counter-number {
+  color: #E35A1B;
+}
+
+[data-theme="solar-warm"] .home-sec-solucoes {
+  background: #FFFFFF !important;
+  padding-top: 5.5rem;
+}
+[data-theme="solar-warm"] .home-sec-solucoes h2 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  max-width: 18ch;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+[data-theme="solar-warm"] .home-sec-solucoes .section-intro {
+  max-width: 44rem !important;
+  font-size: 1.05rem;
+  margin-bottom: 3rem !important;
+}
+[data-theme="solar-warm"] .home-solar-profiles-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  min-height: 0;
-  height: auto;
-  border: none;
-  border-radius: 22px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 18px 50px rgba(227, 90, 27, 0.1);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  max-width: 100%;
 }
-[data-theme="solar-warm"] .home-sec-solucoes .reveal-card .card-top {
-  padding: 2rem 2rem 2rem 2.25rem;
-  justify-content: center;
+[data-theme="solar-warm"] .segment-card-flagship {
+  background: #FFFFFF;
+  border: 1px solid rgba(227, 90, 27, 0.12);
+  border-left: 4px solid #E35A1B;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(227, 90, 27, 0.08);
 }
-[data-theme="solar-warm"] .home-sec-solucoes .reveal-card .card-top .card-icon {
-  width: 64px; height: 64px; border-radius: 20px; font-size: 1.6rem;
+[data-theme="solar-warm"] .segment-card-flagship:hover {
+  transform: translateY(-6px);
+  border-color: #E35A1B;
+  box-shadow: 0 22px 50px rgba(227, 90, 27, 0.18);
 }
-[data-theme="solar-warm"] .home-sec-solucoes .reveal-card .card-bottom {
-  position: relative;
-  transform: none !important;
-  inset: auto;
-  width: auto; height: auto;
-  background: #FFF7F2;
-  padding: 1.75rem 2rem;
-  justify-content: center;
+[data-theme="solar-warm"] .segment-card-action {
+  color: #E35A1B;
 }
-[data-theme="solar-warm"] .home-sec-solucoes .reveal-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(227, 90, 27, 0.16);
+[data-theme="solar-warm"] .home-solar-cta-bar {
+  background: linear-gradient(135deg, #FFF7F2 0%, #FFEFE6 100%);
+  border: 1px solid rgba(227, 90, 27, 0.16);
+  border-radius: 18px;
+  box-shadow: 0 12px 35px rgba(227, 90, 27, 0.07);
 }
-[data-theme="solar-warm"] .home-sec-solucoes .reveal-card.solar {
-  box-shadow: 0 22px 55px rgba(255, 107, 43, 0.18);
-  outline: 2px solid rgba(255, 107, 43, 0.25);
+
+/* ── ENGENHARIA & AUTOMAÇÃO NO TEMA SOLAR-WARM ── */
+[data-theme="solar-warm"] .home-sec-eng-auto {
+  background: #FAF8F5 !important;
+  border-top: 1px solid rgba(227, 90, 27, 0.1);
+  padding: 6.5rem 0;
+}
+[data-theme="solar-warm"] .home-sec-eng-auto h2 {
+  font-size: clamp(2.3rem, 4.5vw, 3.4rem);
+  max-width: 18ch;
+  line-height: 1.08;
+}
+[data-theme="solar-warm"] .pillar-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(227, 90, 27, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(227, 90, 27, 0.07);
+}
+[data-theme="solar-warm"] .pillar-card.eng {
+  border-top: 4px solid #E35A1B;
+}
+[data-theme="solar-warm"] .pillar-card.auto {
+  border-top: 4px solid #0D9488;
+}
+[data-theme="solar-warm"] .pillar-card.eng .pillar-card-icon {
+  background: #FFF4EC;
+  color: #E35A1B;
+}
+[data-theme="solar-warm"] .pillar-card.auto .pillar-card-icon {
+  background: #F0FDF4;
+  color: #0D9488;
+}
+[data-theme="solar-warm"] .pillar-card.eng .pillar-badge {
+  background: #FFF4EC;
+  color: #E35A1B;
+}
+[data-theme="solar-warm"] .pillar-card.auto .pillar-badge {
+  background: #F0FDF4;
+  color: #0D9488;
+}
+[data-theme="solar-warm"] .pillar-card.eng .pillar-services-list li a:hover {
+  color: #E35A1B;
+}
+[data-theme="solar-warm"] .pillar-card.auto .pillar-services-list li a:hover {
+  color: #0D9488;
+}
+[data-theme="solar-warm"] .pillar-card.eng .pillar-card-btn {
+  color: #E35A1B;
+  border-top-color: rgba(227, 90, 27, 0.12);
+}
+[data-theme="solar-warm"] .pillar-card.auto .pillar-card-btn {
+  color: #0D9488;
+  border-top-color: rgba(13, 148, 136, 0.12);
+}
+[data-theme="solar-warm"] .pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(227, 90, 27, 0.14);
 }
 
 /* ── ELÉTRICA: faixa pêssego ── */
@@ -1831,6 +2206,24 @@ input[type=range]::-webkit-slider-thumb {
 [data-theme="solar-warm"] .main-footer .klyfe-symbol rect { fill: #E35A1B; }
 [data-theme="solar-warm"] .footer-col h4::after { background: #E35A1B; }
 
+@media (max-width: 990px) {
+  .home-solar-profiles-grid,
+  [data-theme="solar-warm"] .home-solar-profiles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-counter-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem 0 !important;
+  }
+  .trust-counter-item:nth-child(2) {
+    border-right: none;
+  }
+}
+
 @media (max-width: 900px) {
   [data-theme="solar-warm"] .home-sec { padding: 5rem 0; }
   [data-theme="solar-warm"] .home-sec-solucoes .reveal-card { grid-template-columns: 1fr; }
@@ -1838,6 +2231,37 @@ input[type=range]::-webkit-slider-thumb {
   [data-theme="solar-warm"] .home-diferenciais-grid,
   [data-theme="solar-warm"] .home-sec-social .social-hub-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .home-solar-profiles-grid,
+  [data-theme="solar-warm"] .home-solar-profiles-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pillar-services-list {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-counter-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-counter-item {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+  }
+  .trust-counter-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .home-solar-cta-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .home-solar-cta-bar .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

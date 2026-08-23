@@ -2,6 +2,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= title %></title>
 <meta name="description" content="<%= description %>">
+<% if (locals.keywords && locals.keywords.length) { %><meta name="keywords" content="<%= Array.isArray(keywords) ? keywords.join(', ') : keywords %>"><% } %>
 <link rel="canonical" href="<%= canonical %>">
 <meta name="robots" content="<%= locals.robots || 'index, follow' %>">
 <meta name="google-site-verification" content="VN7ObKFVGeA9nxcdp6P2VYnHDmbp5iKerV289RTjdrc" />
@@ -14,8 +15,8 @@
 <link rel="shortcut icon" href="/favicon.ico">
 
 <!-- Open Graph -->
-<meta property="og:title" content="<%= title %>">
-<meta property="og:description" content="<%= description %>">
+<meta property="og:title" content="<%= locals.ogTitle || title %>">
+<meta property="og:description" content="<%= locals.ogDescription || description %>">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:url" content="<%= canonical %>">
@@ -26,8 +27,8 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<%= title %>">
-<meta name="twitter:description" content="<%= description %>">
+<meta name="twitter:title" content="<%= locals.ogTitle || title %>">
+<meta name="twitter:description" content="<%= locals.ogDescription || description %>">
 <meta name="twitter:image" content="<%= locals.image ? (locals.image.startsWith('http') ? locals.image : 'https://www.klyfeelectric.com.br' + locals.image) : 'https://www.klyfeelectric.com.br/img/logo-klyfe.webp' %>">
 <meta name="twitter:site" content="@klyfeelectric">
 <meta name="twitter:creator" content="@klyfeelectric">
@@ -67,7 +68,7 @@
         "https://www.linkedin.com/company/klyfeelectric",
         "https://www.instagram.com/klyfeelectric"
       ],
-      "areaServed": ["<%= cityData.name %>", "Paraíba"],
+      "areaServed": <%- JSON.stringify([...new Set([cityData.name, 'Paraíba'])]) %>,
       "serviceType": ["Instalação Elétrica", "Automação", "Energia Solar"]
     }
   ]
@@ -79,4 +80,3 @@
 
 <!-- Tracking: config + /js/tracking.js (Pixel/GTM após consentimento) -->
 <%- include('../lp/_tracking') %>
-

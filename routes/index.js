@@ -15,6 +15,8 @@ const {
     isLpSolarSource
 } = require('../lib/meta-capi');
 const { forwardLeadToAgentesCRM } = require('../lib/agentes-crm');
+const solarCalculatorConfig = require('../config/solar-calculator');
+const { runSolarSimulation } = require('../lib/solar-calculator');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -598,9 +600,10 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
                 },
                 "headline": evaluatedPost.title,
                 "description": evaluatedPost.summary,
+                "keywords": (evaluatedPost.keywords || []).join(', '),
                 "image": `${baseUrl}${evaluatedPost.heroImage || '/img/hero-klyfe.webp'}`,
                 "datePublished": `${dateIso}T08:00:00Z`,
-                "dateModified": `${dateIso}T08:00:00Z`,
+                "dateModified": `${evaluatedPost.dateModified || dateIso}T08:00:00Z`,
                 "author": {
                     "@type": "Person",
                     "name": evaluatedPost.author || 'Klyfe Electric'
@@ -616,25 +619,16 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
                 "mainEntityOfPage": {
                     "@type": "WebPage",
                     "@id": canonical
-                }
+                },
+                ...(evaluatedPost.sources && evaluatedPost.sources.length ? {
+                    "citation": evaluatedPost.sources.filter(source => /^https:\/\//i.test(source.url || '')).map(source => source.url)
+                } : {}),
+                ...(evaluatedPost.technicalReviewedAt ? {
+                    "reviewedBy": { "@type": "Organization", "name": "Klyfe Electric, Engenharia" }
+                } : {})
             }
         ]
     };
-
-    if (evaluatedPost.faq && evaluatedPost.faq.length > 0) {
-        schemaJson["@graph"].push({
-            "@type": "FAQPage",
-            "@id": `${canonical}#faq`,
-            "mainEntity": evaluatedPost.faq.map(item => ({
-                "@type": "Question",
-                "name": item.question,
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": item.answer
-                }
-            }))
-        });
-    }
 
     const jsonLd = `
     <script type="application/ld+json">
@@ -648,8 +642,8 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
         : {};
 
     res.render('blog-post', {
-        title: `${evaluatedPost.title} | Klyfe Electric`,
-        description: evaluatedPost.summary,
+        title: evaluatedPost.metaTitle || `${evaluatedPost.title} | Klyfe Electric`,
+        description: evaluatedPost.metaDescription || evaluatedPost.summary,
         canonical,
         cityKey,
         cityData: cityBase,
@@ -659,6 +653,11 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
         alternateUrl,
         page: 'blog',
         jsonLd,
+        keywords: evaluatedPost.keywords || [],
+        ogTitle: evaluatedPost.ogTitle || evaluatedPost.metaTitle || evaluatedPost.title,
+        ogDescription: evaluatedPost.ogDescription || evaluatedPost.metaDescription || evaluatedPost.summary,
+        image: evaluatedPost.ogImage || evaluatedPost.heroImage,
+        robots: evaluatedPost.robots || 'index, follow',
         ...trackingExtras
     });
 });
@@ -732,6 +731,117 @@ router.get('/lp/energia-solar-residencial', (req, res) => {
         waMsg: lpSolarWaMsg,
         waPhone: PHONE_SOLAR,
         expectLpLead: false
+    });
+});
+
+const CITY_CONFIG = {
+    'campina-grande': {
+        name: 'Campina Grande',
+        prep: 'em Campina Grande',
+        localTag: 'EM CAMPINA GRANDE'
+    },
+    'joao-pessoa': {
+        name: 'João Pessoa',
+        prep: 'em João Pessoa',
+        localTag: 'EM JOÃO PESSOA'
+    },
+    'paraiba': {
+        name: 'Paraíba',
+        prep: 'na Paraíba',
+        localTag: 'NA PARAÍBA'
+    }
+};
+
+const DEFAULT_CITY = {
+    name: 'Paraíba',
+    prep: 'na Paraíba',
+    localTag: 'NA PARAÍBA'
+};
+
+const INTENT_CONFIG = {
+    'preco': {
+        eyebrow: (geo) => `ESTIMATIVA SOLAR • KLYFE ELECTRIC`,
+        h1: (geo) => `Quer saber quanto custa energia solar ${geo.prep}? Comece pela sua conta de luz.`,
+        subheadline: (geo) => `Informe quanto você paga por mês, veja quanto esse gasto representa em 5 anos e solicite uma estimativa personalizada do seu projeto.`
+    },
+    'orcamento': {
+        eyebrow: (geo) => `ORÇAMENTO DE ENERGIA SOLAR • ${geo.localTag}`,
+        h1: (geo) => `Informe o valor da sua conta de luz e solicite um orçamento de energia solar ${geo.prep}.`,
+        subheadline: (geo) => `Veja quanto você gasta em 5 anos de energia e solicite uma análise do seu imóvel.`
+    },
+    'empresa': {
+        eyebrow: (geo) => `EMPRESA DE ENERGIA SOLAR • ${geo.localTag}`,
+        h1: (geo) => `Empresa de energia solar ${geo.prep} com projeto, instalação e homologação.`,
+        subheadline: (geo) => `Informe sua conta de luz, veja o valor acumulado em 5 anos e solicite uma análise inicial do seu projeto.`
+    },
+    'geral': {
+        eyebrow: (geo) => `ENGENHARIA SOLAR ${geo.localTag} (CREA-PB)`,
+        h1: (geo) => `Energia solar ${geo.prep}: transforme sua conta de luz em geração própria.`,
+        subheadline: (geo) => `Informe quanto você paga de energia por mês, veja quanto esse gasto representa em 5 anos e solicite uma análise inicial do seu projeto.`
+    }
+};
+
+function resolveSolarHeroVariant(queryCidade, queryIntent) {
+    const cityKey = String(queryCidade || '').toLowerCase().trim();
+    const intentKey = String(queryIntent || '').toLowerCase().trim();
+
+    const geo = CITY_CONFIG[cityKey] || DEFAULT_CITY;
+    const intentObj = INTENT_CONFIG[intentKey] || INTENT_CONFIG['geral'];
+
+    return {
+        eyebrow: intentObj.eyebrow(geo),
+        h1: intentObj.h1(geo),
+        subheadline: intentObj.subheadline(geo),
+        city: geo
+    };
+}
+
+// LP Ads: Alta Conversão Solar (Residencial & Comercial na PB)
+router.get(['/lp/energia-solar-alta-conversao', '/lp/energia-solar'], (req, res) => {
+    const canonical = `${baseUrl}/lp/energia-solar`;
+    const heroVariant = resolveSolarHeroVariant(req.query.cidade, req.query.intent);
+
+    const jsonLdData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Simulador Solar & Engenharia | Klyfe Electric Paraíba",
+            "url": canonical,
+            "description": "Simule seu sistema solar em Campina Grande ou João Pessoa. Projeto com ART, homologação Energisa PB e 25 anos de garantia."
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Klyfe Electric | Energia Solar",
+            "telephone": "+5583991330972",
+            "url": baseUrl,
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Campina Grande",
+                "addressRegion": "PB",
+                "addressCountry": "BR"
+            },
+            "areaServed": ["Campina Grande", "João Pessoa", "Paraíba"]
+        }
+    ];
+
+    const jsonLd = jsonLdData.map(b => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('\n');
+
+    res.render('lp/solar-alta-conversao', {
+        title: 'Simulador Solar & Ativo de Energia | Klyfe Electric Paraíba',
+        description: 'Transforme sua conta de luz em um ativo próprio em Campina Grande e João Pessoa. Simule o valor acumulado em 10 segundos e peça seu projeto com ART.',
+        canonical,
+        robots: 'noindex, nofollow',
+        page: 'lp-solar-alta-conversao',
+        contentCategory: 'solar',
+        contentName: '/lp/energia-solar-alta-conversao',
+        fireViewContent: true,
+        waUrl: lpSolarWaUrl,
+        waMsg: lpSolarWaMsg,
+        waPhone: PHONE_SOLAR,
+        expectLpLead: false,
+        heroVariant,
+        jsonLd
     });
 });
 
@@ -836,7 +946,8 @@ router.post('/contato', async (req, res) => {
     const lastName = (body.nome || '').trim().split(/\s+/).slice(1).join(' ') || '';
 
     let capi = null;
-    if (isSolarLead) {
+    const hasConsent = body.marketing_consent === 'granted' || body.marketing_consent === true;
+    if (isSolarLead && hasConsent) {
         const clientIp = req.headers['x-forwarded-for']
             ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
             : (req.ip || '').replace(/^::ffff:/, '');
@@ -860,6 +971,7 @@ router.post('/contato', async (req, res) => {
                 content_category: 'solar',
                 content_category_label: body.servico || 'Energia Solar Fotovoltaica',
                 lead_source: body.source || 'contato',
+                ctwa_clid: body.ctwa_clid || undefined,
                 currency: 'BRL'
             },
             userData: {
@@ -971,6 +1083,8 @@ router.get('/robots.txt', (req, res) => {
     res.header('Content-Type', 'text/plain');
     res.send(`User-agent: *
 Allow: /
+Disallow: /calculadora-solar
+Disallow: /api/calculadora-solar/
 
 # Explicit rules for AI Crawlers (Allow for AI Search Presence)
 User-agent: GPTBot
@@ -1007,6 +1121,59 @@ User-agent: Amazonbot
 Allow: /
 
 Sitemap: ${baseUrl}/sitemap.xml`);
+});
+
+// Middleware de Proteção Interna para a Calculadora Solar
+function requireSolarAuth(req, res, next) {
+    const token = req.query?.token || req.headers['x-admin-token'] || req.headers['x-solar-token'];
+    const expectedToken = process.env.ADMIN_TOKEN || process.env.SOLAR_CALC_KEY || 'klyfe';
+
+    // Se o token fornecido for válido, concede o acesso
+    if (token === expectedToken) {
+        return next();
+    }
+
+    // No localhost em desenvolvimento, permite acesso direto se ADMIN_TOKEN não estiver strict no .env
+    const isLocalhost = req.hostname === 'localhost' || req.hostname === '127.0.0.1';
+    if (isLocalhost && !process.env.ADMIN_TOKEN) {
+        return next();
+    }
+
+    // Se for acesso público de clientes/visitantes não autorizados, exibe 404 silencioso
+    return res.status(404).render('404', {
+        title: 'Página Não Encontrada | Klyfe Electric',
+        description: 'A página que você está procurando não existe.',
+        canonical: `${baseUrl}/404`,
+        page: '404'
+    });
+}
+
+// ═══ CALCULADORA SOLAR INTERNA ═══
+router.get('/calculadora-solar', requireSolarAuth, (req, res) => {
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
+    res.render('calculadora-solar', {
+        title: 'Calculadora Solar | Klyfe Electric — Dimensionamento Comercial',
+        description: 'Ferramenta interna de pré-venda, dimensionamento técnico-comercial, projeção de consumo e simulação financeira.',
+        canonical: `${baseUrl}/calculadora-solar`,
+        page: 'calculadora-solar',
+        robots: 'noindex, nofollow',
+        config: solarCalculatorConfig
+    });
+});
+
+router.post('/api/calculadora-solar/salvar', async (req, res) => {
+    try {
+        const leadData = req.body || {};
+        const result = await forwardLeadToAgentesCRM({
+            ...leadData,
+            source: 'calculadora_solar_interna',
+            category: 'solar'
+        });
+        res.json({ success: true, crmResult: result });
+    } catch (err) {
+        console.error('[CalculadoraSolar] Erro ao salvar no CRM:', err.message);
+        res.status(500).json({ success: false, error: err.message });
+    }
 });
 
 module.exports = router;
