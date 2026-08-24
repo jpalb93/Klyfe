@@ -2,6 +2,7 @@
 <html lang="pt-BR"<% if (locals.theme) { %> data-theme="<%= theme %>"<% } %>>
 <head>
     <%- include('partials/head') %>
+    <style>@media(max-width:760px){.blog-filter-form{grid-template-columns:1fr!important}}</style>
 </head>
 <body>
     <%- include('partials/navbar') %>
@@ -30,6 +31,12 @@
         <!-- Grid de Artigos -->
         <section class="section-padding">
             <div class="container">
+                <form class="blog-filter-form" method="get" action="<%= getHomePrefix() %>/blog" style="display:grid;grid-template-columns:minmax(220px,1fr) minmax(170px,.35fr) auto;gap:.75rem;margin-bottom:2rem;padding:1rem;border:1px solid var(--border-color);border-radius:8px;background:var(--bg-secondary);">
+                    <label style="display:grid;gap:.35rem;color:var(--text-muted);font-size:.75rem;"><span>BUSCAR NO BLOG</span><input name="q" value="<%= filters.search %>" placeholder="Tema, dúvida ou palavra-chave" style="padding:.8rem;border:1px solid var(--border-color);border-radius:5px;color:var(--text-main);background:var(--bg-primary);"></label>
+                    <label style="display:grid;gap:.35rem;color:var(--text-muted);font-size:.75rem;"><span>CATEGORIA</span><select name="categoria" style="padding:.8rem;border:1px solid var(--border-color);border-radius:5px;color:var(--text-main);background:var(--bg-primary);"><option value="">Todas</option><% categories.forEach(item => { %><option value="<%= item.slug %>" <%= filters.category === item.slug ? 'selected' : '' %>><%= item.label %></option><% }) %></select></label>
+                    <button class="btn btn-primary" type="submit" style="align-self:end;justify-content:center;">Buscar</button>
+                </form>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.25rem;color:var(--text-muted);font-size:.85rem;"><span><%= filters.total %> artigo(s) encontrado(s)</span><a href="/blog/rss.xml" style="color:var(--accent-primary);text-decoration:none;">Assinar RSS</a></div>
                 <div class="grid grid-cols-3">
                     <% posts.forEach(post => { %>
                         <% 
@@ -60,6 +67,8 @@
                         </div>
                     <% }) %>
                 </div>
+                <% if (!posts.length) { %><div class="bracket-box" style="padding:3rem;text-align:center;color:var(--text-muted);"><h2 style="color:var(--text-main);">Nenhum artigo encontrado</h2><p>Tente outra palavra-chave ou remova o filtro de categoria.</p><a class="btn btn-primary" href="<%= getHomePrefix() %>/blog">Limpar filtros</a></div><% } %>
+                <% if (filters.totalPages > 1) { %><nav aria-label="Paginação do blog" style="display:flex;justify-content:center;gap:.5rem;margin-top:2.5rem;"><% for (let pageNumber = 1; pageNumber <= filters.totalPages; pageNumber += 1) { %><a href="?q=<%= encodeURIComponent(filters.search) %>&categoria=<%= encodeURIComponent(filters.category) %>&pagina=<%= pageNumber %>" aria-current="<%= pageNumber === filters.page ? 'page' : 'false' %>" style="display:grid;place-items:center;min-width:40px;height:40px;border:1px solid <%= pageNumber === filters.page ? 'var(--accent-primary)' : 'var(--border-color)' %>;border-radius:5px;color:<%= pageNumber === filters.page ? 'var(--bg-primary)' : 'var(--text-main)' %>;background:<%= pageNumber === filters.page ? 'var(--accent-primary)' : 'transparent' %>;text-decoration:none;"><%= pageNumber %></a><% } %></nav><% } %>
             </div>
         </section>
 

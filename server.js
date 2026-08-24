@@ -92,7 +92,7 @@ app.use((req, res, next) => {
 // Em uma instância serverless recém-iniciada, garante que blog/home/sitemap
 // aguardem a primeira leitura da Central antes de renderizar o acervo.
 app.use(async (req, _res, next) => {
-    if (req.path === '/' || req.path === '/sitemap.xml' || req.path.includes('/blog')) {
+    if (req.path === '/' || req.path === '/sitemap.xml' || (req.path.includes('/blog') && req.path !== '/api/blog-events')) {
         await ensureBlogRemoteSynced().catch(() => undefined);
     }
     next();
