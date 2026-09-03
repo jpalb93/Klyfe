@@ -6,11 +6,13 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "npx ejs-lint views/**/*.ejs",
+    "build": "node scripts/build-css.js && npx ejs-lint views/**/*.ejs",
+    "build:css": "node scripts/build-css.js",
     "blog:migrate": "node scripts/migrate-blog-to-json.js",
     "blog:generate": "node scripts/generate-blog-post.js",
     "blog:generate:weekly": "node scripts/generate-blog-post.js --weekly",
-    "test:solar": "node tests/solar-calculator.test.js"
+    "test:solar": "node tests/solar-calculator.test.js",
+    "test:seo-solar": "node tests/solar-seo.test.js"
   },
   "keywords": [],
   "author": "",

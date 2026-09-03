@@ -1,0 +1,59 @@
+/* Shared responsive rules for the Home and Solar showcase components. */
+@media (max-width: 990px) {
+  .home-solar-profiles-grid,
+  [data-theme="solar-warm"] .home-solar-profiles-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-counter-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem 0 !important;
+  }
+  .trust-counter-item:nth-child(2) {
+    border-right: none;
+  }
+}
+
+@media (max-width: 900px) {
+  [data-theme="solar-warm"] .home-sec { padding: 5rem 0; }
+  [data-theme="solar-warm"] .home-sec-solucoes .reveal-card { grid-template-columns: 1fr; }
+  [data-theme="solar-warm"] .home-sec-eletrica .feature-grid,
+  [data-theme="solar-warm"] .home-diferenciais-grid,
+  [data-theme="solar-warm"] .home-sec-social .social-hub-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 680px) {
+  .home-solar-profiles-grid,
+  [data-theme="solar-warm"] .home-solar-profiles-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pillar-services-list {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-counter-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-counter-item {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.25rem;
+  }
+  .trust-counter-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .home-solar-cta-bar {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .home-solar-cta-bar .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,63 +1,220 @@
-<%
-  // Partial para Malha de Links Internos (Topical Authority Mesh)
-%>
-<section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
-    <div class="container">
-        <div class="section-separator fade-in" style="justify-content: center;"><%- include('symbol') %> <span>NAVEGAÇÃO E AUTORIDADE</span></div>
-        <h2 style="text-align: center; margin-bottom: 2.5rem;">Explore Nosso Ecossistema Solar no Nordeste</h2>
-
-        <div class="grid grid-cols-4" style="gap: 1.25rem;">
-            <!-- Link para Pillar -->
-            <a href="/energia-solar/" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.25rem;">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--text-main);">Página Pilar Solar</h3>
-                <p style="color: var(--text-muted); font-size: 0.8rem;">Visão Geral no Nordeste →</p>
-            </a>
-
-            <!-- Links para Serviços -->
-            <a href="/servicos/instalacao-energia-solar/" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.25rem;">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--text-main);">Instalação Solar</h3>
-                <p style="color: var(--text-muted); font-size: 0.8rem;">Execução e Segurança →</p>
-            </a>
-
-            <a href="/servicos/manutencao-energia-solar/" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.25rem;">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--text-main);">Manutenção Solar</h3>
-                <p style="color: var(--text-muted); font-size: 0.8rem;">Preventiva & Termografia →</p>
-            </a>
-
-            <a href="/servicos/homologacao-energia-solar/" class="bracket-box fade-in" style="text-decoration: none; border-left: 4px solid var(--accent-primary); padding: 1.25rem;">
-                <h3 style="font-size: 0.95rem; margin-bottom: 0.3rem; color: var(--text-main);">Homologação</h3>
-                <p style="color: var(--text-muted); font-size: 0.8rem;">Regularização na Distribuidora →</p>
-            </a>
+<section class="section-padding solar-mesh-hub-section" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
+    <div class="container fade-in">
+        <!-- Header -->
+        <div class="solar-mesh-header">
+            <div class="solar-mesh-badge">
+                <i class="far fa-lightbulb"></i>
+                <span>GUIA DE ENERGIA SOLAR</span>
+            </div>
+            <h2 class="solar-mesh-title">
+                EXPLORE ENERGIA SOLAR POR<br>
+                SERVIÇO, PERFIL E LOCALIDADE
+            </h2>
+            <div class="solar-mesh-dash"></div>
         </div>
 
-        <div style="margin-top: 2rem;" class="grid grid-cols-3" style="gap: 1.25rem;">
-            <div class="bracket-box fade-in" style="padding: 1.25rem;">
-                <h4 style="font-size: 0.85rem; color: var(--accent-primary); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 0.75rem;">Segmentos em Destaque</h4>
-                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
-                    <li><a href="/energia-solar/residencial/" style="color: var(--text-muted); text-decoration: none;">• Energia Solar Residencial</a></li>
-                    <li><a href="/energia-solar/comercial/" style="color: var(--text-muted); text-decoration: none;">• Energia Solar Comercial</a></li>
-                    <li><a href="/energia-solar/supermercados/" style="color: var(--text-muted); text-decoration: none;">• Energia Solar para Supermercados</a></li>
-                    <li><a href="/energia-solar/fazendas-e-irrigacao/" style="color: var(--text-muted); text-decoration: none;">• Energia Solar para Fazendas</a></li>
-                </ul>
+        <!-- Bento Grid Principal -->
+        <div class="solar-mesh-bento-grid">
+            <!-- Coluna Esquerda: Flagship Card "JORNADA PRINCIPAL" -->
+            <div class="solar-mesh-flagship-card" style="background-image: url('/img/solar-hub/jornada-principal-solar.webp');">
+                <div class="solar-mesh-flagship-overlay"></div>
+                
+                <div class="solar-mesh-flagship-top">
+                    <span class="flagship-tag-pill">JORNADA PRINCIPAL</span>
+                    <h3 class="flagship-main-title">PROJETO + INSTALAÇÃO<br>DE ENERGIA SOLAR</h3>
+                    <p class="flagship-main-subtitle">Do planejamento à geração de energia com segurança e performance.</p>
+                </div>
+
+                <div class="solar-mesh-flagship-bottom-cards">
+                    <a href="/servicos/projeto-energia-solar/" class="flagship-sub-card">
+                        <div class="flagship-sub-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <div class="flagship-sub-text">
+                            <strong>PROJETO SOLAR</strong>
+                            <span>Dimensionamento, projeto e ART <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="/servicos/instalacao-energia-solar/" class="flagship-sub-card">
+                        <div class="flagship-sub-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="flagship-sub-text">
+                            <strong>INSTALAÇÃO SOLAR</strong>
+                            <span>Execução e segurança <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                </div>
             </div>
 
-            <div class="bracket-box fade-in" style="padding: 1.25rem;">
-                <h4 style="font-size: 0.85rem; color: var(--accent-primary); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 0.75rem;">Cidades Atendidas (PB-RN-PE)</h4>
-                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
-                    <li><a href="/energia-solar/campina-grande-pb/" style="color: var(--text-main); font-weight: 600; text-decoration: none;">• Campina Grande (Sede PB)</a></li>
-                    <li><a href="/energia-solar/joao-pessoa-pb/" style="color: var(--text-muted); text-decoration: none;">• João Pessoa (PB)</a></li>
-                    <li><a href="/energia-solar/recife-pe/" style="color: var(--text-muted); text-decoration: none;">• Recife (PE)</a></li>
-                    <li><a href="/energia-solar/natal-rn/" style="color: var(--text-muted); text-decoration: none;">• Natal (RN)</a></li>
-                </ul>
+<%
+  const isSolarPillarHub = (typeof canonical !== 'undefined' && canonical && (canonical.endsWith('/energia-solar/') || canonical.endsWith('/energia-solar')));
+%>
+
+            <!-- Coluna Direita: Grade 3 Linhas x 2 Colunas -->
+            <div class="solar-mesh-right-grid">
+                <!-- Card 01: Dinâmico (Residencial na Home do Hub / Pilar Solar nas Subpáginas) -->
+                <% if (isSolarPillarHub) { %>
+                <a href="/energia-solar/residencial/" class="solar-mesh-mini-card">
+                    <div class="mini-card-content">
+                        <div>
+                            <h4>ENERGIA SOLAR<br>RESIDENCIAL</h4>
+                            <p>Casas e alto padrão →</p>
+                        </div>
+                        <div class="mini-card-circle-icon"><i class="fas fa-home"></i></div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/blog/como-funciona-a-energia-solar-em-casas.webp" alt="Energia Solar Residencial" loading="lazy">
+                    </div>
+                </a>
+                <% } else { %>
+                <a href="/energia-solar/" class="solar-mesh-mini-card">
+                    <div class="mini-card-content">
+                        <div>
+                            <h4>PÁGINA<br>PILAR SOLAR</h4>
+                            <p>Visão Geral no Nordeste →</p>
+                        </div>
+                        <div class="mini-card-circle-icon"><i class="fas fa-city"></i></div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/blog/como-funciona-a-energia-solar-em-casas.webp" alt="Página Pilar Solar" loading="lazy">
+                    </div>
+                </a>
+                <% } %>
+
+                <!-- Card 02: Homologação (Dark Navy) -->
+                <a href="/servicos/homologacao-energia-solar/" class="solar-mesh-mini-card card-theme-dark">
+                    <div class="mini-card-content">
+                        <div>
+                            <div class="mini-card-badge-icon"><i class="far fa-file-alt"></i></div>
+                            <h4>HOMOLOGAÇÃO</h4>
+                            <p>Processo com a distribuidora →</p>
+                        </div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/blog/como-funciona-a-homologacao-da-energia-solar.webp" alt="Homologação Solar" loading="lazy">
+                    </div>
+                </a>
+
+                <!-- Card 03: Manutenção Solar -->
+                <a href="/servicos/manutencao-energia-solar/" class="solar-mesh-mini-card">
+                    <div class="mini-card-content">
+                        <div>
+                            <h4>MANUTENÇÃO<br>SOLAR</h4>
+                            <p>Inspeção e diagnóstico →</p>
+                        </div>
+                        <div class="mini-card-circle-icon"><i class="fas fa-tools"></i></div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/blog/como-escolher-uma-empresa-de-energia-solar.webp" alt="Manutenção Solar" loading="lazy">
+                    </div>
+                </a>
+
+                <!-- Card 04: Monitoramento Solar -->
+                <a href="/servicos/monitoramento-usina-solar/" class="solar-mesh-mini-card">
+                    <div class="mini-card-content">
+                        <div>
+                            <h4>MONITORAMENTO<br>SOLAR</h4>
+                            <p>Histórico e alertas de geração →</p>
+                        </div>
+                        <div class="mini-card-circle-icon"><i class="fas fa-chart-line"></i></div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/solar-hub/monitoramento-solar.webp" alt="Monitoramento Solar App" loading="lazy">
+                    </div>
+                </a>
+
+                <!-- Card 05: Limpeza de Painéis -->
+                <a href="/servicos/limpeza-de-paineis-solares/" class="solar-mesh-mini-card">
+                    <div class="mini-card-content">
+                        <div>
+                            <h4>LIMPEZA DE<br>PAINÉIS</h4>
+                            <p>Avaliação e limpeza técnica →</p>
+                        </div>
+                        <div class="mini-card-circle-icon"><i class="fas fa-tint"></i></div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/blog/painel-solar-precisa-de-limpeza.webp" alt="Limpeza de Painéis Solares" loading="lazy">
+                    </div>
+                </a>
+
+                <!-- Card 06: Financiamento Solar (Dark Navy) -->
+                <a href="/servicos/financiamento-energia-solar/" class="solar-mesh-mini-card card-theme-dark">
+                    <div class="mini-card-content">
+                        <div>
+                            <h4>FINANCIAMENTO<br>SOLAR</h4>
+                            <p>Cenários e custo total →</p>
+                        </div>
+                        <div class="mini-card-circle-icon"><i class="fas fa-dollar-sign"></i></div>
+                    </div>
+                    <div class="mini-card-img-wrap">
+                        <img src="/img/solar-hub/financiamento-solar.webp" alt="Financiamento Solar" loading="lazy">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Banner Inferior Dark Navy com as 3 Colunas de Links -->
+        <div class="solar-mesh-footer-banner">
+            <!-- Coluna 01: Perfis -->
+            <div class="mesh-footer-col">
+                <div class="mesh-col-header">
+                    <div class="mesh-col-icon"><i class="fas fa-users"></i></div>
+                    <h4>ENERGIA SOLAR POR PERFIL</h4>
+                </div>
+                <div class="mesh-col-links-split">
+                    <ul>
+                        <li><a href="/energia-solar/residencial/">• Energia Solar Residencial</a></li>
+                        <li><a href="/energia-solar/comercial/">• Energia Solar Comercial</a></li>
+                        <li><a href="/energia-solar/industrial/">• Energia Solar Industrial</a></li>
+                        <li><a href="/energia-solar/supermercados/">• Energia Solar para Supermercados</a></li>
+                        <li><a href="/energia-solar/hospitais-e-clinicas/">• Energia Solar para Clínicas</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/energia-solar/hoteis-e-pousadas/">• Energia Solar para Hotéis</a></li>
+                        <li><a href="/energia-solar/condominios/">• Energia Solar para Condomínios</a></li>
+                        <li><a href="/energia-solar/fazendas-e-irrigacao/">• Energia Solar para Fazendas</a></li>
+                        <li><a href="/energia-solar/postos-de-combustivel/">• Energia Solar para Postos</a></li>
+                        <li><a href="/energia-solar/escolas-e-faculdades/">• Energia Solar para Escolas</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="bracket-box fade-in" style="padding: 1.25rem;">
-                <h4 style="font-size: 0.85rem; color: var(--accent-primary); font-family: var(--font-mono); text-transform: uppercase; margin-bottom: 0.75rem;">Guias de Autoridade</h4>
-                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem; line-height: 1.8;">
-                    <li><a href="/blog/energia-solar-vale-a-pena-no-nordeste/" style="color: var(--text-muted); text-decoration: none;">• Energia Solar vale a pena no Nordeste?</a></li>
-                    <li><a href="/blog/quanto-custa-instalar-energia-solar/" style="color: var(--text-muted); text-decoration: none;">• Quanto custa instalar energia solar?</a></li>
-                    <li><a href="/blog/em-quanto-tempo-a-energia-solar-se-paga/" style="color: var(--text-muted); text-decoration: none;">• Qual o payback da energia solar?</a></li>
-                    <li><a href="/blog/como-escolher-uma-empresa-de-energia-solar/" style="color: var(--text-muted); text-decoration: none;">• Como escolher uma empresa de energia solar</a></li>
+            <div class="mesh-footer-divider"></div>
+
+            <!-- Coluna 02: Localidades com Mapa de Fundo -->
+            <div class="mesh-footer-col mesh-col-localidades">
+                <div class="mesh-col-header">
+                    <div class="mesh-col-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h4>ENERGIA SOLAR POR LOCALIDADE</h4>
+                </div>
+                <div class="mesh-col-links-split">
+                    <ul>
+                        <li><a href="/energia-solar/campina-grande-pb/">• Campina Grande (Sede PB)</a></li>
+                        <li><a href="/energia-solar/joao-pessoa-pb/">• João Pessoa (PB)</a></li>
+                        <li><a href="/energia-solar/recife-pe/">• Recife (PE)</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="/energia-solar/natal-rn/">• Natal (RN)</a></li>
+                        <li><a href="/energia-solar/caruaru-pe/">• Caruaru (PE)</a></li>
+                        <li><a href="/energia-solar/mossoro-rn/">• Mossoró (RN)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mesh-footer-divider"></div>
+
+            <!-- Coluna 03: Guias de Autoridade -->
+            <div class="mesh-footer-col">
+                <div class="mesh-col-header">
+                    <div class="mesh-col-icon"><i class="far fa-star"></i></div>
+                    <h4>GUIAS DE AUTORIDADE</h4>
+                </div>
+                <ul class="mesh-authority-list">
+                    <li><a href="/blog/energia-solar-vale-a-pena-no-nordeste/">• Energia Solar vale a pena no Nordeste?</a></li>
+                    <li><a href="/blog/quanto-custa-instalar-energia-solar/">• Quanto custa instalar energia solar?</a></li>
+                    <li><a href="/blog/em-quanto-tempo-a-energia-solar-se-paga/">• Qual o payback da energia solar?</a></li>
+                    <li><a href="/blog/como-escolher-uma-empresa-de-energia-solar/">• Como escolher uma empresa de energia solar</a></li>
                 </ul>
             </div>
         </div>

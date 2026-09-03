@@ -4,20 +4,23 @@
     <%- include('partials/head') %>
     <style>@media(max-width:760px){.blog-filter-form{grid-template-columns:1fr!important}}</style>
 </head>
-<body>
+<body class="page-blog">
     <%- include('partials/navbar') %>
 
     <main style="padding-top: 80px;">
-        <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
-            <div class="container fade-in">
-                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
-                    Home > Blog
+        <section class="bg-blueprint institutional-hero">
+            <div class="container fade-in institutional-hero-grid">
+                <div class="institutional-hero-title">
+                    <%- include('partials/breadcrumb', { breadcrumbItems: [
+                        { label: 'Home', href: getHomePrefix() || '/' },
+                        { label: 'Blog' }
+                    ] }) %>
+                    <span class="institutional-kicker">CONHECIMENTO KLYFE</span>
+                    <h1>ARTIGOS TÉCNICOS</h1>
+                    <p>Conteúdo para tomar decisões mais seguras em engenharia elétrica, automação e energia solar.</p>
                 </div>
-                <h1>ARTIGOS TÉCNICOS</h1>
-                <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 1rem; margin-bottom: 2rem;">
-                    Conhecimento que gera valor: artigos sobre engenharia elétrica, automação residencial/industrial e energia solar.
-                </p>
-                <div style="max-width: 800px; line-height: 1.8; color: var(--text-muted); font-size: 1rem; display: grid; gap: 1rem;">
+                <div class="institutional-hero-note">
+                    <span class="badge-mono">CONTEÚDO VALIDADO</span>
                     <p>
                         Bem-vindo ao canal oficial de conhecimento técnico da Klyfe Electric. Nossa missão é compartilhar conteúdo de alto valor sobre as inovações, normas técnicas de segurança (NR-10, NR-12) e boas práticas em engenharia elétrica. Nosso time de especialistas e engenheiros redige e valida cada artigo para garantir informações precisas, úteis e alinhadas com as diretrizes da ABNT e do CREA-PB.
                     </p>
@@ -76,6 +79,6 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

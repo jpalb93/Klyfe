@@ -1,0 +1,99 @@
+<!-- ═══ 08 BLOG TÉCNICO ═══ -->
+<section class="section-padding home-sec home-sec-blog" id="blog">
+    <div class="container fade-in">
+        <!-- ═══ HEADER DA SEÇÃO ═══ -->
+        <div class="home-blog-header-block">
+            <span class="home-blog-tag-badge">08 BLOG TÉCNICO</span>
+            <div class="home-blog-title-row">
+                <h2 class="home-blog-sec-title">BLOG <span class="text-solar-orange">TÉCNICO.</span></h2>
+                <p class="home-blog-sec-lead">Conteúdos técnicos, práticos e confiáveis para ajudar você a tomar decisões seguras sobre energia solar e instalações elétricas <%= cityData.preposition %> <%= cityData.name %>.</p>
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="home-blog-filter-pills" role="tablist" aria-label="Filtrar artigos do blog">
+                <button type="button" class="blog-filter-btn active" role="tab" id="tab-blog-all" aria-selected="true" data-category="all">Todos os artigos</button>
+                <button type="button" class="blog-filter-btn" role="tab" id="tab-blog-compra" aria-selected="false" data-category="compra-confianca">Compra & Confiança</button>
+                <button type="button" class="blog-filter-btn" role="tab" id="tab-blog-doc" aria-selected="false" data-category="documentacao">Documentação</button>
+                <button type="button" class="blog-filter-btn" role="tab" id="tab-blog-seg" aria-selected="false" data-category="seguranca">Segurança</button>
+                <button type="button" class="blog-filter-btn" role="tab" id="tab-blog-solar" aria-selected="false" data-category="solar">Energia Solar</button>
+            </div>
+        </div>
+
+        <% if (typeof posts !== 'undefined' && posts.length > 0) { 
+            const featuredPost = posts[0];
+            const supportingPosts = posts.slice(1, 4);
+        %>
+            <!-- ═══ POST DE DESTAQUE (CARD HERO HORIZONTAL) ═══ -->
+            <div class="home-blog-featured-card" data-category="<%= featuredPost.category || 'compra-confianca' %>">
+                <div class="blog-featured-img-wrap">
+                    <img src="<%= featuredPost.heroImage || '/img/blog/documentos-para-instalar-energia-solar.webp' %>" alt="<%= featuredPost.title %>" class="blog-featured-img" loading="lazy" width="1024" height="1024">
+                </div>
+                <div class="blog-featured-content">
+                    <div class="blog-meta-row">
+                        <span class="blog-meta-badge"><%= featuredPost.categoryLabel || 'Compra & Confiança' %></span>
+                        <span class="blog-read-time">• <%= featuredPost.readTime || '10 min de leitura' %></span>
+                    </div>
+                    <h3 class="blog-featured-title">
+                        <a href="<%= homePrefix %>/blog/<%= featuredPost.slug %>"><%= featuredPost.title %></a>
+                    </h3>
+                    <p class="blog-featured-desc">
+                        <%= featuredPost.summary || 'Guia completo e atualizado com todos os documentos, autorizações e aprovações necessárias para instalar seu sistema solar sem dores de cabeça.' %>
+                    </p>
+                    <a href="<%= homePrefix %>/blog/<%= featuredPost.slug %>" class="blog-read-action featured">
+                        <span>Ler artigo completo</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ═══ GRID DE 3 CARDS DE ARTIGOS ═══ -->
+            <div class="home-blog-cards-grid">
+                <% supportingPosts.forEach((post, idx) => { 
+                    let iconClass = 'fa-file-alt';
+                    if (idx === 1 || post.category === 'seguranca' || post.category === 'eletrica') iconClass = 'fa-shield-alt';
+                    if (idx === 2 || post.category === 'solar') iconClass = 'fa-sun';
+                %>
+                    <div class="home-blog-card" data-category="<%= post.category || 'solar' %>">
+                        <div class="blog-card-img-wrap">
+                            <img src="<%= post.heroImage || '/img/blog/como-funciona-a-homologacao-da-energia-solar.webp' %>" alt="<%= post.title %>" class="blog-card-img" loading="lazy" width="1024" height="1024">
+                            <div class="blog-floating-icon">
+                                <i class="fas <%= iconClass %>"></i>
+                            </div>
+                        </div>
+                        <div class="blog-card-body">
+                            <div class="blog-meta-row">
+                                <span class="blog-meta-badge"><%= post.categoryLabel || 'Artigo' %></span>
+                                <span class="blog-read-time">• <%= post.readTime || '8 min de leitura' %></span>
+                            </div>
+                            <h4 class="blog-card-title">
+                                <a href="<%= homePrefix %>/blog/<%= post.slug %>"><%= post.title %></a>
+                            </h4>
+                            <p class="blog-card-desc"><%= post.summary || 'Entenda os detalhes técnicos e práticos para a melhor tomada de decisão.' %></p>
+                            <a href="<%= homePrefix %>/blog/<%= post.slug %>" class="blog-read-action">
+                                <span>Ler artigo</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        <% } %>
+
+        <!-- ═══ BANNER INFERIOR DO BLOG ═══ -->
+        <div class="home-blog-bottom-banner fade-in">
+            <div class="blog-banner-left">
+                <div class="blog-banner-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div>
+                    <h4 class="blog-banner-title">Quer mais conteúdos como estes?</h4>
+                    <p class="blog-banner-desc">Acesse o blog completo e explore todos os guias, comparativos e novidades.</p>
+                </div>
+            </div>
+            <a href="<%= homePrefix %>/blog" class="btn-blog-bottom-cta">
+                <span>Explorar todos os artigos</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>

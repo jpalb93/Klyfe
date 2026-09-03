@@ -1,120 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const ejs = require('ejs');
 const locations = require('../config/locations');
 const glossario = require('../config/glossario');
-const solarCapture = require('../config/solar-capture');
-const solarServices = require('../config/solar-services');
-const { getPublishedPosts, getPostBySlug, getBlogRedirectBySlug } = require('../lib/blog-loader');
-const { evaluatePosts, evaluatePost, buildLocals } = require('../lib/blog-evaluator');
-const { resolveTrackingContext, PHONE_SOLAR, MESSAGES, buildWaUrl, categoryFromServico } = require('../lib/site-tracking');
-const {
-    sendMetaCapiEvent,
-    newEventId,
-    resolveLeadContentName,
-    isLpSolarSource
-} = require('../lib/meta-capi');
-const { forwardLeadToAgentesCRM } = require('../lib/agentes-crm');
-const solarCalculatorConfig = require('../config/solar-calculator');
-const { runSolarSimulation } = require('../lib/solar-calculator');
+const business = require('../config/business');
+const { getPublishedPosts } = require('../lib/blog-loader');
+const { evaluatePosts } = require('../lib/blog-evaluator');
+
+// Sub-routers especializados
+const redirectsRouter = require('./redirects');
+const servicesRouter = require('./services');
+const blogRouter = require('./blog');
+const landingPagesRouter = require('./landing-pages');
+const apiTrackingRouter = require('./api-tracking');
+const seoRouter = require('./seo');
+const calculatorRouter = require('./calculator');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
-const ALLOWED_CAPI_EVENTS = new Set(['PageView', 'ViewContent', 'Lead', 'Contact']);
+// 1. Redirecionamentos Legados 301 e normalização de URLs
+router.use(redirectsRouter);
 
-// ═══ REDIRECIONAMENTOS 301 (SEO Legacy Redirects) ═══
-router.use((req, res, next) => {
-    // Normaliza o path: remove barra no final e coloca em lowercase
-    let path = req.path.toLowerCase().replace(/\/$/, '');
-    if (path === '') path = '/';
-
-    const redirects = {
-        '/nossos-servicos/klyfe-energia-solar': '/energia-solar/',
-        '/nossos-servicos/klyfe-automacao-residencial': '/solucoes/automacao/automacao-residencial',
-        '/nossos-servicos/klyfe-solucoes-eletricas': '/solucoes/eletrica',
-        '/nossos-servicos/klyfe-instalacao-eletrica': '/solucoes/eletrica',
-        '/nossos-servicos/klyfe-laudos-eletricos-e-engenharia': '/solucoes/engenharia',
-        '/nossos-servicos/klyfe-laudos-eletricos-e-engenharia/laudo-de-spda': '/solucoes/engenharia/spda',
-        '/nossos-servicos/klyfe-laudos-eletricos-e-engenharia/laudo-de-aterramento': '/solucoes/engenharia/laudos-eletricos',
-        '/nossos-servicos/klyfe-spda-para-raios': '/solucoes/engenharia/spda',
-        '/nossos-servicos/klyfe-subestacao-de-energia': '/solucoes/engenharia/projeto-subestacao',
-        '/nossos-servicos': '/solucoes',
-        '/contatos': '/contato',
-        '/sobre': '/quem-somos',
-        '/empresa': '/quem-somos',
-        '/solucoes/solar': '/energia-solar/',
-        '/energia-solar-para-empresas': '/energia-solar/comercial/',
-        '/energia-solar-para-fazendas': '/energia-solar/fazendas-e-irrigacao/',
-        '/energia-solar-para-clinicas': '/energia-solar/hospitais-e-clinicas/',
-        '/energia-solar-para-hoteis': '/energia-solar/hoteis-e-pousadas/',
-        '/energia-solar-para-condominios': '/energia-solar/condominios/',
-        '/energia-solar-para-supermercados': '/energia-solar/supermercados/',
-        '/energia-solar-para-postos': '/energia-solar/postos-de-combustivel/',
-        '/energia-solar-em-recife-pe': '/energia-solar/recife-pe/',
-        '/energia-solar-em-caruaru-pe': '/energia-solar/caruaru-pe/',
-        '/energia-solar-em-natal-rn': '/energia-solar/natal-rn/',
-        '/energia-solar-em-joao-pessoa-pb': '/energia-solar/joao-pessoa-pb/',
-        '/energia-solar-em-cajazeiras-pb': '/energia-solar/',
-        '/energia-solar-em-sousa-pb': '/energia-solar/',
-        '/energia-solar-em-patos-pb': '/energia-solar/',
-        '/energia-solar-em-gravata-pe': '/energia-solar/',
-        '/blog/quanto-custa-energia-solar-2026': '/blog/quanto-custa-instalar-energia-solar/',
-        '/blog/payback-painel-solar-simulacao': '/blog/em-quanto-tempo-a-energia-solar-se-paga/',
-        // 301 para URLs com slugs duplicados detectadas no Google Search Console
-        '/solucoes/automacao/automacao': '/solucoes/automacao',
-        '/joao-pessoa/solucoes/automacao/automacao': '/joao-pessoa/solucoes/automacao',
-        '/joao-pessoa/solucoes/engenharia/engenharia': '/joao-pessoa/solucoes/engenharia',
-        '/campina-grande/solucoes/automacao/automacao': '/campina-grande/solucoes/automacao'
-    };
-
-    // Redirecionamento genérico de segurança para qualquer slug duplicado no final (ex: /.../automacao/automacao -> /.../automacao)
-    const duplicateSlugMatch = path.match(/^(.+)\/([a-z0-9-]+)\/\2$/);
-    if (duplicateSlugMatch) {
-        return res.redirect(301, `${duplicateSlugMatch[1]}/${duplicateSlugMatch[2]}`);
-    }
-
-    // Caso o path exato esteja no mapeamento, redireciona com status 301
-    if (redirects[path]) {
-        return res.redirect(301, redirects[path]);
-    }
-
-    // Suporte para URLs com prefixo de cidade caso existam
-    // Ex: /campina-grande/nossos-servicos/klyfe-energia-solar -> /campina-grande/solucoes/... OR /energia-solar/
-    const cityPattern = /^\/(campina-grande|joao-pessoa)(\/nossos-servicos\/[a-z0-9-]+)/;
-    const match = path.match(cityPattern);
-    if (match) {
-        const cityPrefix = '/' + match[1];
-        const oldServicePath = match[2];
-        if (redirects[oldServicePath]) {
-            // Energia solar agora é hub global (sem prefixo de cidade)
-            if (redirects[oldServicePath].startsWith('/energia-solar')) {
-                return res.redirect(301, redirects[oldServicePath]);
-            }
-            return res.redirect(301, cityPrefix + redirects[oldServicePath]);
-        }
-    }
-
-    // /campina-grande/solucoes/solar -> /energia-solar/
-    if (/^\/(campina-grande|joao-pessoa)\/solucoes\/solar$/.test(path)) {
-        return res.redirect(301, '/energia-solar/');
-    }
-
-    // Fallback para qualquer outra rota sob "nossos-servicos" não mapeada exaustivamente
-    if (path.startsWith('/nossos-servicos')) {
-        return res.redirect(301, '/solucoes');
-    }
-
-    const cityFallbackPattern = /^\/(campina-grande|joao-pessoa)\/nossos-servicos/;
-    const fallbackMatch = path.match(cityFallbackPattern);
-    if (fallbackMatch) {
-        const cityPrefix = '/' + fallbackMatch[1];
-        return res.redirect(301, cityPrefix + '/solucoes');
-    }
-
-    next();
-});
-
-// Middleware para disponibilizar ajudantes globais nos templates EJS
+// 2. Middleware para disponibilizar ajudantes globais de localização nos templates EJS
 router.use((req, res, next) => {
     // Determina a cidade atual diretamente pela URL para evitar falhas de contexto
     const pathParts = req.path.split('/');
@@ -136,6 +42,7 @@ router.use((req, res, next) => {
     };
     
     // Helper para prefixo de URL (SEO Mesh)
+    res.locals.homePrefix = (cityFromUrl !== 'default') ? '/' + cityFromUrl : '';
     res.locals.getHomePrefix = () => {
         return (cityFromUrl !== 'default') ? '/' + cityFromUrl : '';
     };
@@ -152,65 +59,15 @@ router.use((req, res, next) => {
     next();
 });
 
-// ═══ GERADOR DE ROTAS DINÂMICAS PARA SERVIÇOS (Power Pages) ═══
-Object.keys(locations.default.services).forEach(serviceKey => {
-    const defaultSvc = locations.default.services[serviceKey];
-    
-    // Ignora as rotas de categoria (Hubs) que já possuem lógica manual complexa
-    if (serviceKey === defaultSvc.category) return;
+// 3. Montagem dos Sub-Routers
+router.use(servicesRouter);
+router.use(blogRouter);
+router.use(landingPagesRouter);
+router.use(apiTrackingRouter);
+router.use(seoRouter);
+router.use(calculatorRouter);
 
-    router.get(`/:city(campina-grande|joao-pessoa)?/solucoes/:category/${serviceKey}`, (req, res, next) => {
-        const cityKey = req.params.city || 'default';
-        const cityBase = locations[cityKey] || locations['default'];
-        
-        // Validação de segurança: o serviço deve existir e estar habilitado para esta cidade
-        if (!res.locals.isServiceEnabled(serviceKey)) {
-            return next();
-        }
-
-        const citySvc = { ...defaultSvc, ...(cityBase.services?.[serviceKey] || {}) };
-        const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
-        const canonical = `${baseUrl}${homePrefix}/solucoes/${defaultSvc.category}/${serviceKey}`;
-
-        const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
-        const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
-        const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/solucoes/${defaultSvc.category}/${serviceKey}`;
-
-        // Geração de JSON-LD Básico (Breadcrumbs)
-        const jsonLd = `
-        <script type="application/ld+json">
-        {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "${baseUrl}${homePrefix}/" },
-            { "@type": "ListItem", "position": 2, "name": "Soluções", "item": "${baseUrl}${homePrefix}/solucoes" },
-            { "@type": "ListItem", "position": 3, "name": "${citySvc.category.toUpperCase()}", "item": "${baseUrl}${homePrefix}/solucoes/${citySvc.category}" },
-            { "@type": "ListItem", "position": 4, "name": "${citySvc.label}", "item": "${canonical}" }
-          ]
-        }
-        </script>
-        `;
-
-        res.render(defaultSvc.template, {
-            title: `${citySvc.label} ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-            pageTitle: `${citySvc.label} ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-            description: `${citySvc.label} ${cityBase.preposition} ${cityBase.name} e região. ${citySvc.painPoint} Atendimento especializado com engenharia e ART.`,
-            metaDesc: `${citySvc.label} ${cityBase.preposition} ${cityBase.name} e região. ${citySvc.painPoint} Atendimento especializado com engenharia e ART.`,
-            canonical,
-            robots: 'index, follow',
-            page: citySvc.category,
-            cityData: cityBase,
-            cityKey: cityKey,
-            serviceData: citySvc,
-            alternateCityName,
-            alternateUrl,
-            jsonLd: jsonLd
-        });
-    });
-});
-
-// ═══ ROTAS ESTÁTICAS E INSTITUCIONAIS ═══
+// ═══ ROTAS ESTÁTICAS E INSTITUCIONAIS CORE ═══
 
 // Home
 router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
@@ -218,29 +75,71 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
     const cityBase = locations[cityKey] || locations['default'];
     const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
     const canonical = cityKey === 'default' ? `${baseUrl}/` : `${baseUrl}/${cityKey}`;
+    const homeSeoByCity = {
+        default: {
+            title: 'Energia Solar na Paraíba com Engenharia | Klyfe',
+            description: 'Energia solar na Paraíba com projeto, ART, instalação e homologação. Sede em Campina Grande e atendimento regional. Solicite seu estudo.',
+            eyebrow: 'KLYFE ELECTRIC | ENGENHARIA & ENERGIA',
+            h1Lead: 'Energia Solar',
+            h1Middle: 'com Engenharia na',
+            h1Location: 'Paraíba',
+            heroText: 'Projetos e instalação de energia solar com análise da fatura, dimensionamento, ART e acompanhamento da homologação. Com sede em Campina Grande, a Klyfe também atua com projetos e serviços de engenharia elétrica, laudos, subestações e automação.',
+            localProofLink: '/energia-solar/',
+            localProofLinkText: 'Conhecer energia solar na Paraíba'
+        },
+        'campina-grande': {
+            title: 'Energia Solar em Campina Grande | Klyfe Electric',
+            description: 'Energia solar em Campina Grande com projeto, ART, instalação e homologação Energisa. Atendimento pela sede local da Klyfe. Solicite seu estudo.',
+            eyebrow: 'KLYFE ELECTRIC | ENGENHARIA & ENERGIA',
+            h1Lead: 'Energia Solar',
+            h1Middle: 'com Engenharia em',
+            h1Location: 'Campina Grande',
+            heroText: 'Energia solar em Campina Grande com atendimento pela sede local, análise da fatura, projeto com ART, instalação e acompanhamento da homologação na Energisa Borborema. A Klyfe também desenvolve projetos e serviços de engenharia elétrica, laudos, subestações e automação.',
+            localProofLink: '/energia-solar/campina-grande-pb/',
+            localProofLinkText: 'Ver energia solar em Campina Grande'
+        },
+        'joao-pessoa': {
+            title: 'Energia Solar em João Pessoa | Klyfe Electric',
+            description: 'Energia solar em João Pessoa com projeto, ART, instalação e homologação Energisa. Atendimento a partir de Campina Grande. Solicite seu estudo.',
+            eyebrow: 'KLYFE ELECTRIC | ENGENHARIA & ENERGIA',
+            h1Lead: 'Energia Solar',
+            h1Middle: 'com Engenharia em',
+            h1Location: 'João Pessoa',
+            heroText: 'Projetos de energia solar em João Pessoa para residências, condomínios e empresas, com atendimento organizado a partir da sede em Campina Grande. A Klyfe também atua com engenharia elétrica, laudos, subestações e automação, conforme o escopo e a logística do projeto.',
+            localProofLink: '/energia-solar/joao-pessoa-pb/',
+            localProofLinkText: 'Ver energia solar em João Pessoa'
+        }
+    };
+    const homeSeo = homeSeoByCity[cityKey];
     
     const allPosts = getPublishedPosts();
-    const evaluatedPosts = evaluatePosts(allPosts.slice(0, 2), cityKey, cityBase);
+    const evaluatedPosts = evaluatePosts(allPosts.slice(0, 4), cityKey, cityBase);
 
-    // WebSite Schema para ajudar o Google a gerar sitelinks ricos na busca da marca
+    // A entidade WebSite já é publicada pelo head global; a Home descreve a página atual.
     const jsonLd = `
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Klyfe Electric",
-      "alternateName": ["Klyfe", "Klyfe Electric Engenharia"],
-      "url": "${baseUrl}${homePrefix}/"
+      "@type": "WebPage",
+      "@id": "${canonical}#webpage",
+      "url": "${canonical}",
+      "name": ${JSON.stringify(homeSeo.title)},
+      "description": ${JSON.stringify(homeSeo.description)},
+      "inLanguage": "pt-BR",
+      "isPartOf": { "@id": "${baseUrl}/#website" },
+      "about": { "@id": "${baseUrl}/#localbusiness" },
+      "publisher": { "@id": "${baseUrl}/#localbusiness" }
     }
     </script>
     `;
 
     res.render('index', {
-        title: `Klyfe Electric | Engenharia, Elétrica e Solar ${cityBase.preposition} ${cityBase.name}`,
-        description: `Especialistas em projetos elétricos, automação inteligente e energia solar ${cityBase.preposition} ${cityBase.name} e região. Engenharia de alta performance com ART e segurança total.`,
+        title: homeSeo.title,
+        description: homeSeo.description,
         canonical,
         cityKey,
         cityData: cityBase,
+        homeSeo,
         page: 'home',
         posts: evaluatedPosts,
         jsonLd,
@@ -286,221 +185,6 @@ router.get('/:city(campina-grande|joao-pessoa)?/solucoes', (req, res) => {
     });
 });
 
-// ═══ HUB ROUTES ═══
-
-// Engenharia
-router.get('/:city(campina-grande|joao-pessoa)?/solucoes/engenharia', (req, res) => {
-    const cityKey = req.params.city || 'default';
-    const cityBase = locations[cityKey] || locations['default'];
-    const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
-    const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
-    const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/solucoes/engenharia`;
-    
-    res.render('engenharia', {
-        title: `Engenharia Elétrica ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        pageTitle: `Engenharia Elétrica ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        description: `Projetos elétricos, laudos de SPDA, aterramento e perícias ${cityBase.preposition} ${cityBase.name}. Engenharia de precisão com emissão de ART e conformidade normativa.`,
-        metaDesc: `Projetos elétricos, laudos de SPDA, aterramento e perícias ${cityBase.preposition} ${cityBase.name}. Engenharia de precisão com emissão de ART e conformidade normativa.`,
-        canonical: cityKey === 'default' ? `${baseUrl}/solucoes/engenharia` : `${baseUrl}/${cityKey}/solucoes/engenharia`,
-        cityKey, cityData: cityBase, alternateCityName, alternateUrl, page: 'engenharia', jsonLd: ''
-    });
-});
-
-// Elétrica
-router.get('/:city(campina-grande|joao-pessoa)?/solucoes/eletrica', (req, res) => {
-    const cityKey = req.params.city || 'default';
-    const cityBase = locations[cityKey] || locations['default'];
-    const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
-    const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
-    const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/solucoes/eletrica`;
-
-    res.render('eletrica', {
-        title: `Serviços Elétricos ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        pageTitle: `Serviços Elétricos ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        description: `Serviços de eletricista, instalações e manutenção corretiva ${cityBase.preposition} ${cityBase.name}. Mão de obra qualificada com supervisão de engenharia e ART.`,
-        metaDesc: `Serviços de eletricista, instalações e manutenção corretiva ${cityBase.preposition} ${cityBase.name}. Mão de obra qualificada com supervisão de engenharia e ART.`,
-        canonical: cityKey === 'default' ? `${baseUrl}/solucoes/eletrica` : `${baseUrl}/${cityKey}/solucoes/eletrica`,
-        cityKey, cityData: cityBase, alternateCityName, alternateUrl, page: 'eletrica', jsonLd: ''
-    });
-});
-
-// Solar (legado) → hub /energia-solar/
-router.get('/:city(campina-grande|joao-pessoa)?/solucoes/solar', (req, res) => {
-    return res.redirect(301, '/energia-solar/');
-});
-
-// ═══ HUB ENERGIA SOLAR ═══
-router.get('/energia-solar', (req, res) => {
-    const cityKey = 'default';
-    const cityBase = locations.default;
-    const canonical = `${baseUrl}/energia-solar/`;
-
-    const titleText = `Energia Solar no Nordeste | Klyfe Electric`;
-    const descText = `Energia Solar para Residências e Empresas no Nordeste. Projetos de alta performance, homologação e manutenção em PB, RN e PE com a Klyfe Electric.`;
-
-    const jsonLdData = [
-        {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": titleText,
-            "url": canonical,
-            "description": descText,
-            "breadcrumb": {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-                    { "@type": "ListItem", "position": 2, "name": "Energia Solar", "item": canonical }
-                ]
-            }
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Klyfe Electric",
-            "image": `${baseUrl}/img/hero-klyfe.webp`,
-            "telephone": "+5583991330972",
-            "url": baseUrl,
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Campina Grande",
-                "addressRegion": "PB",
-                "addressCountry": "BR"
-            },
-            "areaServed": ["Paraíba", "Rio Grande do Norte", "Pernambuco"]
-        }
-    ];
-
-    const jsonLd = jsonLdData.map(b => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('\n');
-
-    res.render('solar', {
-        title: titleText,
-        pageTitle: titleText,
-        description: descText,
-        metaDesc: descText,
-        canonical,
-        cityKey,
-        cityData: cityBase,
-        alternateCityName: 'João Pessoa',
-        alternateUrl: `${baseUrl}/energia-solar/joao-pessoa-pb/`,
-        page: 'solar',
-        jsonLd,
-        solarSegments: solarCapture.getSegmentList(),
-        solarCities: solarCapture.getCityList(),
-        theme: 'azure-sky'
-    });
-});
-
-// Páginas comerciais de serviços solares
-router.get('/servicos/:slug', (req, res, next) => {
-    const service = solarServices[req.params.slug];
-    if (!service) return next();
-
-    const canonical = `${baseUrl}${service.urlPath}`;
-    const jsonLd = `<script type="application/ld+json">${JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        "name": service.h1,
-        "description": service.description,
-        "url": canonical,
-        "provider": { "@type": "LocalBusiness", "name": "Klyfe Electric", "url": baseUrl }
-    })}</script>`;
-
-    res.render('servicos/solar-detalhe', {
-        title: service.title,
-        description: service.description,
-        canonical,
-        cityKey: 'default',
-        cityData: locations.default,
-        page: 'solar-service',
-        serviceData: service,
-        jsonLd,
-        theme: 'azure-sky'
-    });
-});
-
-// Captura solar: segmentos e cidades
-router.get('/energia-solar/:slug', (req, res, next) => {
-    const slug = req.params.slug;
-    const segment = Object.values(solarCapture.segments).find(s => s.slug === slug) || solarCapture.segments[slug];
-    const city = Object.values(solarCapture.cities).find(c => c.slug === slug) || solarCapture.cities[slug];
-
-    if (segment) {
-        const canonical = `${baseUrl}${segment.urlPath}`;
-        const jsonLd = `<script type="application/ld+json">${JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": segment.title,
-            "url": canonical,
-            "description": segment.description,
-            "breadcrumb": {
-                "@type": "BreadcrumbList",
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Home", "item": baseUrl },
-                    { "@type": "ListItem", "position": 2, "name": "Energia Solar", "item": `${baseUrl}/energia-solar/` },
-                    { "@type": "ListItem", "position": 3, "name": segment.h1, "item": canonical }
-                ]
-            }
-        })}</script>`;
-
-        return res.render('solar-capture', {
-            title: segment.title,
-            description: segment.description,
-            canonical,
-            cityKey: 'default',
-            cityData: locations.default,
-            page: 'solar-capture',
-            captureType: 'segment',
-            capture: segment,
-            jsonLd,
-            theme: 'azure-sky'
-        });
-    }
-
-    if (city) {
-        const canonical = `${baseUrl}${city.urlPath}`;
-        const jsonLd = `<script type="application/ld+json">${JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": city.title,
-            "url": canonical,
-            "description": city.description
-        })}</script>`;
-
-        return res.render('solar-capture', {
-            title: city.title,
-            description: city.description,
-            canonical,
-            cityKey: 'default',
-            cityData: locations.default,
-            page: 'solar-capture',
-            captureType: 'city',
-            capture: city,
-            jsonLd,
-            theme: 'azure-sky'
-        });
-    }
-
-    return next();
-});
-
-// Automação
-router.get('/:city(campina-grande|joao-pessoa)?/solucoes/automacao', (req, res) => {
-    const cityKey = req.params.city || 'default';
-    const cityBase = locations[cityKey] || locations['default'];
-    const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
-    const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
-    const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/solucoes/automacao`;
-
-    res.render('automacao', {
-        title: `Automação Smart ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        pageTitle: `Automação Smart ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
-        description: `Projetos de automação residencial Smart Home e processos industriais ${cityBase.preposition} ${cityBase.name}. Mais conforto, segurança e economia para o seu imóvel.`,
-        metaDesc: `Projetos de automação residencial Smart Home e processos industriais ${cityBase.preposition} ${cityBase.name}. Mais conforto, segurança e economia para o seu imóvel.`,
-        canonical: cityKey === 'default' ? `${baseUrl}/solucoes/automacao` : `${baseUrl}/${cityKey}/solucoes/automacao`,
-        cityKey, cityData: cityBase, alternateCityName, alternateUrl, page: 'automacao', jsonLd: ''
-    });
-});
-
 // Projetos
 router.get('/:city(campina-grande|joao-pessoa)?/projetos', (req, res) => {
     const cityKey = req.params.city || 'default';
@@ -527,7 +211,6 @@ router.get('/:city(campina-grande|joao-pessoa)?/glossario', (req, res) => {
     });
 });
 
-
 // Projeto Específico HU
 router.get('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu', (req, res) => {
     res.render('projeto-hu-cg', {
@@ -538,713 +221,24 @@ router.get('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu', (req, res) 
     });
 });
 
-// Blog
-router.get('/:city(campina-grande|joao-pessoa)?/blog', (req, res) => {
-    const cityKey = req.params.city || 'default';
-    const cityBase = locations[cityKey] || locations['default'];
-    const search = String(req.query.q || '').trim().slice(0, 100);
-    const category = String(req.query.categoria || '').trim().toLowerCase();
-    const page = Math.max(1, Number.parseInt(String(req.query.pagina || '1'), 10) || 1);
-    const pageSize = 12;
-    const normalized = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    const allPosts = evaluatePosts(getPublishedPosts(), cityKey, cityBase);
-    const filtered = allPosts.filter(post => !category || post.category === category).filter(post => !search || normalized(`${post.title} ${post.summary} ${(post.tags || []).join(' ')}`).includes(normalized(search)));
-    const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
-    const currentPage = Math.min(page, totalPages);
-    const evaluatedPosts = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
-    const categories = [...new Map(allPosts.map(post => [post.category, { slug: post.category, label: post.categoryLabel }])).values()];
-
-    res.render('blog', {
-        title: `Blog Técnico | Klyfe Electric — ${cityBase.name}`,
-        description: `Artigos técnicos e guias sobre engenharia elétrica, segurança e energia solar ${cityBase.preposition} ${cityBase.name}. Mantenha-se informado with nossos especialistas.`,
-        canonical: cityKey === 'default' ? `${baseUrl}/blog` : `${baseUrl}/${cityKey}/blog`,
-        cityKey,
-        cityData: cityBase,
-        page: 'blog',
-        posts: evaluatedPosts,
-        categories,
-        filters: { search, category, page: currentPage, totalPages, total: filtered.length },
-        robots: search || category || currentPage > 1 ? 'noindex, follow' : 'index, follow'
-    });
-});
-
-router.get('/blog/rss.xml', (req, res) => {
-    const escapeXml = value => String(value || '').replace(/[<>&"']/g, char => ({ '<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;' }[char]));
-    const items = getPublishedPosts().slice(0, 50).map(post => {
-        const url = `${baseUrl}/blog/${post.slug}`;
-        const date = new Date(post.dateIso || post.publishAt || Date.now()).toUTCString();
-        return `<item><title>${escapeXml(post.title)}</title><link>${url}</link><guid isPermaLink="true">${url}</guid><pubDate>${date}</pubDate><description>${escapeXml(post.summary)}</description></item>`;
-    }).join('');
-    res.type('application/rss+xml').set('Cache-Control','public, max-age=300, stale-while-revalidate=3600').send(`<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Blog Técnico Klyfe Electric</title><link>${baseUrl}/blog</link><description>Engenharia elétrica, automação e energia solar.</description><language>pt-BR</language>${items}</channel></rss>`);
-});
-
-router.post('/api/blog-events', async (req, res) => {
-    const postId = String(req.body?.postId || '');
-    const event = String(req.body?.event || '');
-    if (!/^[a-f0-9-]{36}$/i.test(postId) || !['view','cta','share'].includes(event)) return res.status(400).json({ error: 'Evento inválido' });
-    const cmsUrl = String(process.env.BLOG_CMS_URL || '').replace(/\/$/, '');
-    if (!cmsUrl) return res.status(202).json({ accepted: false });
-    try {
-        const response = await fetch(`${cmsUrl}/public/blog/events`, { method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify({ postId, event }), signal:AbortSignal.timeout(2500) });
-        return res.status(response.ok ? 202 : 502).json({ accepted: response.ok });
-    } catch { return res.status(202).json({ accepted: false }); }
-});
-
-// Blog Post Detail Route
-router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next) => {
-    const cityKey = req.params.city || 'default';
-    const cityBase = locations[cityKey] || locations['default'];
-    const postSlug = req.params.postSlug;
-    
-    const post = getPostBySlug(postSlug);
-    if (!post) {
-        const redirect = getBlogRedirectBySlug(postSlug);
-        if (redirect) {
-            const cityPrefix = cityKey !== 'default' ? `/${cityKey}` : '';
-            return res.redirect(301, `${cityPrefix}${redirect.toPath}`);
-        }
-        return next();
-    }
-
-    const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
-    const canonical = `${baseUrl}${homePrefix}/blog/${postSlug}`;
-    
-    const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
-    const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
-    const alternateUrl      = `${baseUrl}${alternateCityKey !== 'default' ? '/' + alternateCityKey : ''}/blog/${postSlug}`;
-
-    const locals = buildLocals(cityKey, cityBase);
-    const evaluatedPost = evaluatePost(post, locals);
-    const allPosts = getPublishedPosts();
-
-    const recommended = allPosts
-        .filter(p => p.slug !== postSlug)
-        .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category))
-        .slice(0, 3)
-        .map(p => ({
-            ...p,
-            title: ejs.render(p.title, locals),
-            summary: ejs.render(p.summary, locals)
-        }));
-
-    const dateIso = post.dateIso || post.publishAt || '2026-06-06';
-    const structuredImage = evaluatedPost.heroImage || '/img/hero-klyfe.webp';
-    const structuredImageUrl = /^https?:\/\//i.test(structuredImage) ? structuredImage : `${baseUrl}${structuredImage}`;
-    const authorImage = evaluatedPost.authorAvatar
-        ? (/^https?:\/\//i.test(evaluatedPost.authorAvatar) ? evaluatedPost.authorAvatar : `${baseUrl}${evaluatedPost.authorAvatar}`)
-        : null;
-    const structuredAuthor = {
-        "@type": "Person",
-        "name": evaluatedPost.author || 'Equipe Técnica Klyfe Electric',
-        ...(evaluatedPost.authorRole ? { "jobTitle": evaluatedPost.authorRole } : {}),
-        ...(evaluatedPost.authorBio ? { "description": evaluatedPost.authorBio } : {}),
-        ...(authorImage ? { "image": authorImage } : {}),
-        "worksFor": { "@type": "Organization", "name": "Klyfe Electric", "url": baseUrl }
-    };
-
-    let schemaJson = {
-        "@context": "https://schema.org",
-        "@graph": [
-            {
-                "@type": "BlogPosting",
-                "@id": `${canonical}#blogposting`,
-                "isPartOf": {
-                    "@type": "WebPage",
-                    "@id": canonical
-                },
-                "headline": evaluatedPost.title,
-                "description": evaluatedPost.summary,
-                "keywords": (evaluatedPost.keywords || []).join(', '),
-                "image": structuredImageUrl,
-                "datePublished": evaluatedPost.datePublished || `${dateIso}T08:00:00Z`,
-                "dateModified": evaluatedPost.dateModifiedIso || `${evaluatedPost.dateModified || dateIso}T08:00:00Z`,
-                "author": structuredAuthor,
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "Klyfe Electric",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://www.klyfeelectric.com.br/img/Assinatura%20Completa%20-%20AmareloB%20-%20Klyfe.webp"
-                    }
-                },
-                "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": canonical
-                },
-                ...(evaluatedPost.sources && evaluatedPost.sources.length ? {
-                    "citation": evaluatedPost.sources.filter(source => /^https:\/\//i.test(source.url || '')).map(source => source.url)
-                } : {}),
-                ...(evaluatedPost.technicalReviewedAt ? {
-                    "reviewedBy": { "@type": "Organization", "name": "Klyfe Electric, Engenharia" }
-                } : {})
-            },
-            {
-                "@type": "BreadcrumbList",
-                "@id": `${canonical}#breadcrumb`,
-                "itemListElement": [
-                    { "@type": "ListItem", "position": 1, "name": "Início", "item": `${baseUrl}/` },
-                    { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${baseUrl}${homePrefix}/blog` },
-                    { "@type": "ListItem", "position": 3, "name": evaluatedPost.title, "item": canonical }
-                ]
-            }
-        ]
-    };
-
-    const jsonLd = `
-    <script type="application/ld+json">
-    ${JSON.stringify(schemaJson)}
-    </script>
-    `;
-
-    const solarish = /solar|fotovolta|painel|inversor|homologacao/i.test(postSlug + ' ' + (post.category || '') + ' ' + (post.title || ''));
-    const trackingExtras = solarish
-        ? resolveTrackingContext('/energia-solar/', { contentCategory: 'solar' })
-        : {};
-
-    res.render('blog-post', {
-        title: evaluatedPost.metaTitle || `${evaluatedPost.title} | Klyfe Electric`,
-        description: evaluatedPost.metaDescription || evaluatedPost.summary,
-        canonical,
-        cityKey,
-        cityData: cityBase,
-        post: evaluatedPost,
-        recommendedPosts: recommended,
-        alternateCityName,
-        alternateUrl,
-        page: 'blog',
-        jsonLd,
-        keywords: evaluatedPost.keywords || [],
-        ogTitle: evaluatedPost.ogTitle || evaluatedPost.metaTitle || evaluatedPost.title,
-        ogDescription: evaluatedPost.ogDescription || evaluatedPost.metaDescription || evaluatedPost.summary,
-        image: evaluatedPost.ogImage || evaluatedPost.heroImage,
-        robots: evaluatedPost.robots || 'index, follow',
-        ogType: 'article',
-        articlePublishedTime: evaluatedPost.datePublished || `${dateIso}T08:00:00Z`,
-        articleModifiedTime: evaluatedPost.dateModifiedIso || `${evaluatedPost.dateModified || dateIso}T08:00:00Z`,
-        articleAuthor: evaluatedPost.author || 'Equipe Técnica Klyfe Electric',
-        articleSection: evaluatedPost.categoryLabel,
-        articleTags: evaluatedPost.tags || [],
-        ...trackingExtras
-    });
-});
-
-// ═══ LP Ads: Energia Solar Empresas (noindex) ═══
-const lpSolarWaMsg = MESSAGES.solar;
-const lpSolarWaUrl = buildWaUrl(PHONE_SOLAR, lpSolarWaMsg);
-
-router.get('/lp/energia-solar-empresas', (req, res) => {
-    res.render('lp/solar-empresas', {
-        title: 'Energia Solar para Empresas | Reduza até 95% da conta | Klyfe',
-        description: 'Projeto, instalação e homologação de energia solar para empresas no Nordeste. Simule economia e fale com a Klyfe Electric.',
-        canonical: `${baseUrl}/lp/energia-solar-empresas`,
-        robots: 'noindex, nofollow',
-        page: 'lp-solar-empresas',
-        contentCategory: 'solar',
-        contentName: '/lp/energia-solar-empresas',
-        fireViewContent: true,
-        waUrl: lpSolarWaUrl,
-        waMsg: lpSolarWaMsg,
-        waPhone: PHONE_SOLAR,
-        expectLpLead: false
-    });
-});
-
-router.get('/lp/energia-solar-fazendas', (req, res) => {
-    res.render('lp/solar-fazendas', {
-        title: 'Energia Solar para Fazendas & Agronegócio | Klyfe Electric',
-        description: 'Reduza o custo de irrigação e bombeamento rural com energia solar fotovoltaica. Linhas FNE Verde, Pronaf e engenharia com ART na PB/PE/RN.',
-        canonical: `${baseUrl}/lp/energia-solar-fazendas`,
-        robots: 'noindex, nofollow',
-        page: 'lp-solar-fazendas',
-        contentCategory: 'solar',
-        contentName: '/lp/energia-solar-fazendas',
-        fireViewContent: true,
-        waUrl: lpSolarWaUrl,
-        waMsg: lpSolarWaMsg,
-        waPhone: PHONE_SOLAR,
-        expectLpLead: false
-    });
-});
-
-router.get('/lp/energia-solar-supermercados-clinicas', (req, res) => {
-    res.render('lp/solar-supermercados-clinicas', {
-        title: 'Energia Solar para Supermercados, Clínicas & Postos | Klyfe Electric',
-        description: 'Elimine o custo de climatização e refrigeração 24/7 na sua empresa. Estudo de demanda B3/A4, payback rápido e engenharia com ART.',
-        canonical: `${baseUrl}/lp/energia-solar-supermercados-clinicas`,
-        robots: 'noindex, nofollow',
-        page: 'lp-solar-supermercados-clinicas',
-        contentCategory: 'solar',
-        contentName: '/lp/energia-solar-supermercados-clinicas',
-        fireViewContent: true,
-        waUrl: lpSolarWaUrl,
-        waMsg: lpSolarWaMsg,
-        waPhone: PHONE_SOLAR,
-        expectLpLead: false
-    });
-});
-
-router.get('/lp/energia-solar-residencial', (req, res) => {
-    res.render('lp/solar-residencial', {
-        title: 'Energia Solar Residencial | Economize até 95% na conta de luz | Klyfe',
-        description: 'Energia solar para casas, condomínios e pequenos comércios a partir de 300 kWh/mês. Parcela que substitui a conta com 25 anos de garantia.',
-        canonical: `${baseUrl}/lp/energia-solar-residencial`,
-        robots: 'noindex, nofollow',
-        page: 'lp-solar-residencial',
-        contentCategory: 'solar',
-        contentName: '/lp/energia-solar-residencial',
-        fireViewContent: true,
-        waUrl: lpSolarWaUrl,
-        waMsg: lpSolarWaMsg,
-        waPhone: PHONE_SOLAR,
-        expectLpLead: false
-    });
-});
-
-const CITY_CONFIG = {
-    'campina-grande': {
-        name: 'Campina Grande',
-        prep: 'em Campina Grande',
-        localTag: 'EM CAMPINA GRANDE'
-    },
-    'joao-pessoa': {
-        name: 'João Pessoa',
-        prep: 'em João Pessoa',
-        localTag: 'EM JOÃO PESSOA'
-    },
-    'paraiba': {
-        name: 'Paraíba',
-        prep: 'na Paraíba',
-        localTag: 'NA PARAÍBA'
-    }
-};
-
-const DEFAULT_CITY = {
-    name: 'Paraíba',
-    prep: 'na Paraíba',
-    localTag: 'NA PARAÍBA'
-};
-
-const INTENT_CONFIG = {
-    'preco': {
-        eyebrow: (geo) => `ESTIMATIVA SOLAR • KLYFE ELECTRIC`,
-        h1: (geo) => `Quer saber quanto custa energia solar ${geo.prep}? Comece pela sua conta de luz.`,
-        subheadline: (geo) => `Informe quanto você paga por mês, veja quanto esse gasto representa em 5 anos e solicite uma estimativa personalizada do seu projeto.`
-    },
-    'orcamento': {
-        eyebrow: (geo) => `ORÇAMENTO DE ENERGIA SOLAR • ${geo.localTag}`,
-        h1: (geo) => `Informe o valor da sua conta de luz e solicite um orçamento de energia solar ${geo.prep}.`,
-        subheadline: (geo) => `Veja quanto você gasta em 5 anos de energia e solicite uma análise do seu imóvel.`
-    },
-    'empresa': {
-        eyebrow: (geo) => `EMPRESA DE ENERGIA SOLAR • ${geo.localTag}`,
-        h1: (geo) => `Empresa de energia solar ${geo.prep} com projeto, instalação e homologação.`,
-        subheadline: (geo) => `Informe sua conta de luz, veja o valor acumulado em 5 anos e solicite uma análise inicial do seu projeto.`
-    },
-    'geral': {
-        eyebrow: (geo) => `ENGENHARIA SOLAR ${geo.localTag} (CREA-PB)`,
-        h1: (geo) => `Energia solar ${geo.prep}: transforme sua conta de luz em geração própria.`,
-        subheadline: (geo) => `Informe quanto você paga de energia por mês, veja quanto esse gasto representa em 5 anos e solicite uma análise inicial do seu projeto.`
-    }
-};
-
-function resolveSolarHeroVariant(queryCidade, queryIntent) {
-    const cityKey = String(queryCidade || '').toLowerCase().trim();
-    const intentKey = String(queryIntent || '').toLowerCase().trim();
-
-    const geo = CITY_CONFIG[cityKey] || DEFAULT_CITY;
-    const intentObj = INTENT_CONFIG[intentKey] || INTENT_CONFIG['geral'];
-
-    return {
-        eyebrow: intentObj.eyebrow(geo),
-        h1: intentObj.h1(geo),
-        subheadline: intentObj.subheadline(geo),
-        city: geo
-    };
-}
-
-// LP Ads: Alta Conversão Solar (Residencial & Comercial na PB)
-router.get(['/lp/energia-solar-alta-conversao', '/lp/energia-solar'], (req, res) => {
-    const canonical = `${baseUrl}/lp/energia-solar`;
-    const heroVariant = resolveSolarHeroVariant(req.query.cidade, req.query.intent);
-
-    const jsonLdData = [
-        {
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Simulador Solar & Engenharia | Klyfe Electric Paraíba",
-            "url": canonical,
-            "description": "Simule seu sistema solar em Campina Grande ou João Pessoa. Projeto com ART, homologação Energisa PB e 25 anos de garantia."
-        },
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "Klyfe Electric | Energia Solar",
-            "telephone": "+5583991330972",
-            "url": baseUrl,
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Campina Grande",
-                "addressRegion": "PB",
-                "addressCountry": "BR"
-            },
-            "areaServed": ["Campina Grande", "João Pessoa", "Paraíba"]
-        }
-    ];
-
-    const jsonLd = jsonLdData.map(b => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('\n');
-
-    res.render('lp/solar-alta-conversao', {
-        title: 'Simulador Solar & Ativo de Energia | Klyfe Electric Paraíba',
-        description: 'Transforme sua conta de luz em um ativo próprio em Campina Grande e João Pessoa. Simule o valor acumulado em 10 segundos e peça seu projeto com ART.',
-        canonical,
-        robots: 'noindex, nofollow',
-        page: 'lp-solar-alta-conversao',
-        contentCategory: 'solar',
-        contentName: '/lp/energia-solar-alta-conversao',
-        fireViewContent: true,
-        waUrl: lpSolarWaUrl,
-        waMsg: lpSolarWaMsg,
-        waPhone: PHONE_SOLAR,
-        expectLpLead: false,
-        heroVariant,
-        jsonLd
-    });
-});
-
-
-
-router.get('/lp/energia-solar-empresas/obrigado', (req, res) => {
-    res.render('lp/solar-empresas-obrigado', {
-        title: 'Solicitação recebida | Klyfe Electric',
-        description: 'Recebemos seu pedido de estudo solar. Em breve nossa equipe entra em contato.',
-        canonical: `${baseUrl}/lp/energia-solar-empresas/obrigado`,
-        robots: 'noindex, nofollow',
-        page: 'lp-solar-empresas-obrigado',
-        contentCategory: 'solar',
-        contentName: '/lp/energia-solar-empresas/obrigado',
-        fireViewContent: false,
-        leadContentName: 'lp-solar',
-        leadContentCategory: 'solar',
-        waUrl: lpSolarWaUrl,
-        waMsg: lpSolarWaMsg,
-        waPhone: PHONE_SOLAR,
-        expectLpLead: true
-    });
-});
-
 // Contato
 router.get('/:city(campina-grande|joao-pessoa)?/contato', (req, res) => {
     const cityKey = req.params.city || 'default';
     const cityBase = locations[cityKey] || locations['default'];
+    const canonical = cityKey === 'default' ? `${baseUrl}/contato` : `${baseUrl}/${cityKey}/contato`;
+    const jsonLd = `<script type="application/ld+json">${JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: `Contato | ${business.name}`,
+        url: canonical,
+        mainEntity: { '@id': `${business.url}/#localbusiness` }
+    })}</script>`;
     res.render('contato', {
         title: `Contato ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
         description: `Solicite orçamento ou consultoria técnica para projetos elétricos, laudos ou energia solar ${cityBase.preposition} ${cityBase.name}. Fale com nosso time de engenharia.`,
-        canonical: cityKey === 'default' ? `${baseUrl}/contato` : `${baseUrl}/${cityKey}/contato`,
-        cityKey, cityData: cityBase, page: 'contato'
+        canonical,
+        cityKey, cityData: cityBase, page: 'contato', jsonLd
     });
-});
-
-/**
- * Meta CAPI (browser dedup via event_id).
- * Aceita PageView | ViewContent | Lead | Contact.
- * IMPORTANTE: await no Vercel — fire-and-forget após res.json é cortado.
- */
-router.post('/api/tracking/event', async (req, res) => {
-    const body = req.body || {};
-    const eventName = String(body.event_name || '');
-    if (!ALLOWED_CAPI_EVENTS.has(eventName)) {
-        return res.status(400).json({ success: false, message: 'event_name inválido' });
-    }
-    const eventId = String(body.event_id || newEventId('capi'));
-    const user = body.user_data || {};
-    const customData = body.custom_data || {};
-
-    // Lead padrão Meta só no funil Solar
-    if (eventName === 'Lead' && customData.content_category && customData.content_category !== 'solar') {
-        return res.status(400).json({ success: false, message: 'Lead padrão restrito a solar' });
-    }
-
-    const sourceUrl =
-        body.event_source_url ||
-        req.get('referer') ||
-        baseUrl;
-
-    const clientIp = req.headers['x-forwarded-for']
-        ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
-        : (req.ip || '').replace(/^::ffff:/, '');
-
-    const capi = await sendMetaCapiEvent({
-        eventName,
-        eventId,
-        eventSourceUrl: sourceUrl,
-        customData,
-        userData: {
-            email: user.email || user.em,
-            phone: user.phone || user.ph,
-            firstName: user.firstName || user.fn,
-            lastName: user.lastName || user.ln,
-            country: user.country || 'br',
-            externalId: user.externalId || user.external_id || eventId,
-            fbp: user.fbp,
-            fbc: user.fbc
-        },
-        clientIp,
-        userAgent: req.get('user-agent') || ''
-    });
-
-    res.json({
-        success: true,
-        event_id: eventId,
-        capi_ok: !!(capi && capi.ok),
-        capi_skipped: !!(capi && capi.skipped)
-    });
-});
-
-// POST Contato (+ CAPI Lead solar com event_id para dedup com Pixel)
-router.post('/contato', async (req, res) => {
-    const body = req.body || {};
-    const category = categoryFromServico(body.servico);
-    const isLpSolar = isLpSolarSource(body.source);
-    const isSolarLead = category === 'solar' || isLpSolar;
-    const eventId = String(body.event_id || newEventId('lead'));
-    const contentName = resolveLeadContentName(body.source, isSolarLead);
-    const firstName = (body.nome || '').trim().split(/\s+/)[0] || '';
-    const lastName = (body.nome || '').trim().split(/\s+/).slice(1).join(' ') || '';
-
-    let capi = null;
-    const hasConsent = body.marketing_consent === 'granted' || body.marketing_consent === true;
-    if (isSolarLead && hasConsent) {
-        const clientIp = req.headers['x-forwarded-for']
-            ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
-            : (req.ip || '').replace(/^::ffff:/, '');
-
-        const lpPathMap = {
-            'lp-solar-empresas': '/lp/energia-solar-empresas',
-            'lp-solar-fazendas': '/lp/energia-solar-fazendas',
-            'lp-solar-supermercados-clinicas': '/lp/energia-solar-supermercados-clinicas',
-            'lp-solar-residencial': '/lp/energia-solar-residencial'
-        };
-        const defaultSourceUrl = isLpSolar
-            ? `${baseUrl}${lpPathMap[body.source] || '/lp/energia-solar-empresas'}`
-            : `${baseUrl}/contato`;
-
-        capi = await sendMetaCapiEvent({
-            eventName: 'Lead',
-            eventId,
-            eventSourceUrl: body.event_source_url || defaultSourceUrl,
-            customData: {
-                content_name: contentName,
-                content_category: 'solar',
-                content_category_label: body.servico || 'Energia Solar Fotovoltaica',
-                lead_source: body.source || 'contato',
-                ctwa_clid: body.ctwa_clid || undefined,
-                currency: 'BRL'
-            },
-            userData: {
-                email: body.email,
-                phone: body.telefone,
-                firstName,
-                lastName,
-                country: 'br',
-                externalId: eventId,
-                fbp: body.fbp,
-                fbc: body.fbc
-            },
-            clientIp,
-            userAgent: req.get('user-agent') || ''
-        });
-    }
-
-    // Encaminhamento automático para o CRM central da Klyfe (Agentes-Klyfe)
-    // Inclui gclid/fbclid/UTMs para offline conversions / atribuição de agência
-    const crmResult = await forwardLeadToAgentesCRM({
-        ...body,
-        event_id: eventId,
-        content_name: contentName,
-        category: isSolarLead ? 'solar' : category,
-        conversion_time: new Date().toISOString()
-    });
-
-    res.json({
-        success: true,
-        message: 'Recebido!',
-        event_id: eventId,
-        content_name: contentName,
-        content_category: isSolarLead ? 'solar' : category,
-        capi_ok: isSolarLead ? !!(capi && capi.ok) : undefined,
-        crm_ok: !!(crmResult && crmResult.ok)
-    });
-});
-
-// Sitemap XML
-router.get('/sitemap.xml', (req, res) => {
-    const urls = [];
-    const lastModifiedByPath = new Map();
-    const cities = Object.keys(locations);
-    const statics = ['', '/solucoes', '/quem-somos', '/projetos', '/blog', '/contato', '/glossario'];
-    const hubs = ['engenharia', 'eletrica', 'automacao']; // solar migrou para /energia-solar/
-    const serviceKeys = Object.keys(locations.default.services);
-
-    // 1. URLs Estáticas e Hubs para cada cidade
-    cities.forEach(city => {
-        const prefix = city === 'default' ? '' : `/${city}`;
-        statics.forEach(s => urls.push(`${prefix}${s}`));
-        hubs.forEach(h => urls.push(`${prefix}/solucoes/${h}`));
-    });
-
-    // Página legal (sem prefixo de cidade)
-    urls.push('/politica-de-privacidade');
-
-    // 2. Projeto estático (sem prefixo de cidade)
-    urls.push('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu');
-
-    // 2b. Hub Solar + segmentos + cidades + serviços comerciais
-    urls.push('/energia-solar/');
-    Object.values(solarCapture.segments).forEach(s => urls.push(s.urlPath));
-    Object.values(solarCapture.cities).forEach(c => urls.push(c.urlPath));
-    Object.values(solarServices).forEach(s => urls.push(s.urlPath));
-
-    // Helper para verificar se serviço é habilitado para dada cidade
-    function isServiceEnabled(cityKey, serviceKey) {
-        const currentData = locations[cityKey];
-        if (cityKey === 'default' || (currentData && currentData.allServices === true)) return true;
-        return !!(currentData && currentData.services && currentData.services[serviceKey]);
-    }
-
-    // 3. URLs dinâmicas de serviços ativos em cada cidade
-    cities.forEach(city => {
-        const prefix = city === 'default' ? '' : `/${city}`;
-        serviceKeys.forEach(sKey => {
-            const defaultSvc = locations.default.services[sKey];
-            if (sKey === defaultSvc.category) return; // ignora hubs já adicionados
-            if (defaultSvc.category === 'solar') return; // solar agora está em /energia-solar e /servicos
-
-            if (isServiceEnabled(city, sKey)) {
-                urls.push(`${prefix}/solucoes/${defaultSvc.category}/${sKey}`);
-            }
-        });
-    });
-
-    // 4. URLs dinâmicas dos posts do blog em cada cidade
-    cities.forEach(city => {
-        const prefix = city === 'default' ? '' : `/${city}`;
-        getPublishedPosts().forEach(post => {
-            const postPath = `${prefix}/blog/${post.slug}`;
-            urls.push(postPath);
-            const lastModified = post.dateModifiedIso || post.dateModified || post.datePublished || post.publishAt || post.dateIso;
-            if (lastModified) lastModifiedByPath.set(postPath.replace(/\/$/, ''), String(lastModified).slice(0, 10));
-        });
-    });
-
-    const uniqueUrls = [...new Set(urls)];
-    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
-    uniqueUrls.forEach(url => {
-        const formattedUrl = url === '' ? '/' : url.replace(/\/$/, '');
-        const priority = formattedUrl === '/' || formattedUrl === '/energia-solar' ? '1.0' : (formattedUrl.startsWith('/energia-solar') || formattedUrl.startsWith('/servicos') ? '0.9' : '0.8');
-        const lastmod = lastModifiedByPath.get(formattedUrl);
-        sitemap += `  <url><loc>${baseUrl}${formattedUrl}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>${priority}</priority></url>\n`;
-    });
-    sitemap += `</urlset>`;
-    res.header('Content-Type', 'application/xml');
-    res.send(sitemap);
-});
-
-// Robots.txt
-router.get('/robots.txt', (req, res) => {
-    res.header('Content-Type', 'text/plain');
-    res.send(`User-agent: *
-Allow: /
-Disallow: /calculadora-solar
-Disallow: /api/calculadora-solar/
-
-# Explicit rules for AI Crawlers (Allow for AI Search Presence)
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: FacebookBot
-Allow: /
-
-User-agent: Amazonbot
-Allow: /
-
-Sitemap: ${baseUrl}/sitemap.xml`);
-});
-
-// Middleware de Proteção Interna para a Calculadora Solar
-function requireSolarAuth(req, res, next) {
-    const token = req.query?.token || req.headers['x-admin-token'] || req.headers['x-solar-token'];
-    const expectedToken = process.env.ADMIN_TOKEN || process.env.SOLAR_CALC_KEY || 'klyfe';
-
-    // Se o token fornecido for válido, concede o acesso
-    if (token === expectedToken) {
-        return next();
-    }
-
-    // No localhost em desenvolvimento, permite acesso direto se ADMIN_TOKEN não estiver strict no .env
-    const isLocalhost = req.hostname === 'localhost' || req.hostname === '127.0.0.1';
-    if (isLocalhost && !process.env.ADMIN_TOKEN) {
-        return next();
-    }
-
-    // Se for acesso público de clientes/visitantes não autorizados, exibe 404 silencioso
-    return res.status(404).render('404', {
-        title: 'Página Não Encontrada | Klyfe Electric',
-        description: 'A página que você está procurando não existe.',
-        canonical: `${baseUrl}/404`,
-        page: '404'
-    });
-}
-
-// ═══ CALCULADORA SOLAR INTERNA ═══
-router.get('/calculadora-solar', requireSolarAuth, (req, res) => {
-    res.setHeader('X-Robots-Tag', 'noindex, nofollow, noarchive');
-    res.render('calculadora-solar', {
-        title: 'Calculadora Solar | Klyfe Electric — Dimensionamento Comercial',
-        description: 'Ferramenta interna de pré-venda, dimensionamento técnico-comercial, projeção de consumo e simulação financeira.',
-        canonical: `${baseUrl}/calculadora-solar`,
-        page: 'calculadora-solar',
-        robots: 'noindex, nofollow',
-        config: solarCalculatorConfig
-    });
-});
-
-router.post('/api/calculadora-solar/salvar', async (req, res) => {
-    try {
-        const leadData = req.body || {};
-        const result = await forwardLeadToAgentesCRM({
-            ...leadData,
-            source: 'calculadora_solar_interna',
-            category: 'solar'
-        });
-        res.json({ success: true, crmResult: result });
-    } catch (err) {
-        console.error('[CalculadoraSolar] Erro ao salvar no CRM:', err.message);
-        res.status(500).json({ success: false, error: err.message });
-    }
 });
 
 module.exports = router;

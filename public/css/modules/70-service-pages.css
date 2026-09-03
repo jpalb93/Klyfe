@@ -1,0 +1,169 @@
+/* ═══ ENGENHARIA SERVICES PHOTO CARDS ═══ */
+.eng-service-card {
+  background: var(--bg-secondary, #FFFFFF);
+  border: 1px solid var(--border-color, rgba(0, 0, 0, 0.08));
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+  height: 100%;
+}
+.eng-service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-primary);
+}
+.eng-service-img-wrap {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background: #0E1217;
+}
+.eng-service-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+.eng-service-card:hover .eng-service-img-wrap img {
+  transform: scale(1.06);
+}
+.eng-service-body {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+}
+.eng-service-body h3 {
+  font-family: var(--font-heading, 'Barlow Condensed', sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-main, #0E1217);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.eng-service-body h3 i {
+  color: var(--accent-primary, #EA580C);
+  font-size: 0.85rem;
+  transition: transform 0.3s ease;
+}
+.eng-service-card:hover .eng-service-body h3 i {
+  transform: translateX(4px);
+}
+.eng-service-body p {
+  color: var(--text-muted, #64748B);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+.eng-service-link {
+  display: inline-block;
+  color: var(--accent-primary, #EA580C);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: transform 0.25s ease;
+}
+.eng-service-card:hover .eng-service-link {
+  transform: translateX(3px);
+}
+
+/* ═══ HIGH-CONTRAST DARK CTA BANNER SECTIONS ═══ */
+section[style*="hero-klyfe"],
+section[style*="rgba(10,13,16"],
+section[style*="rgba(10, 13, 16"],
+.cta-dark-hero {
+  color: #FFFFFF !important;
+}
+
+section[style*="hero-klyfe"] h2,
+section[style*="rgba(10,13,16"] h2,
+section[style*="rgba(10, 13, 16"] h2,
+.cta-dark-hero h2 {
+  color: #FFFFFF !important;
+  font-family: var(--font-heading, 'Barlow Condensed', sans-serif) !important;
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  line-height: 1.08 !important;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.9) !important;
+}
+
+section[style*="hero-klyfe"] h2 span,
+section[style*="rgba(10,13,16"] h2 span,
+section[style*="rgba(10, 13, 16"] h2 span,
+.cta-dark-hero h2 span {
+  color: #EA580C !important;
+  text-shadow: 0 0 24px rgba(234, 88, 12, 0.5) !important;
+}
+
+[data-theme="azure-sky"] section[style*="hero-klyfe"] h2 span,
+[data-theme="azure-sky"] section[style*="rgba(10,13,16"] h2 span,
+[data-theme="azure-sky"] section[style*="rgba(10, 13, 16"] h2 span,
+[data-theme="azure-sky"] .cta-dark-hero h2 span {
+  color: #38BDF8 !important;
+  text-shadow: 0 0 24px rgba(56, 189, 248, 0.5) !important;
+}
+
+section[style*="hero-klyfe"] p,
+section[style*="rgba(10,13,16"] p,
+section[style*="rgba(10, 13, 16"] p,
+.cta-dark-hero p {
+  color: #E2E8F0 !important;
+  font-size: 1.08rem !important;
+  line-height: 1.65 !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8) !important;
+}
+
+section[style*="hero-klyfe"] .section-separator,
+section[style*="rgba(10,13,16"] .section-separator,
+section[style*="rgba(10, 13, 16"] .section-separator,
+.cta-dark-hero .section-separator {
+  color: #F8FAFC !important;
+}
+
+section[style*="hero-klyfe"] .section-separator span,
+section[style*="rgba(10,13,16"] .section-separator span,
+section[style*="rgba(10, 13, 16"] .section-separator span,
+.cta-dark-hero .section-separator span {
+  color: #F8FAFC !important;
+  font-family: var(--font-mono, monospace) !important;
+  font-weight: 700 !important;
+  letter-spacing: 1.5px !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8) !important;
+}
+
+section[style*="hero-klyfe"] .btn-primary,
+section[style*="rgba(10,13,16"] .btn-primary,
+section[style*="rgba(10, 13, 16"] .btn-primary,
+.cta-dark-hero .btn-primary {
+  background: #EA580C !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(234, 88, 12, 0.4) !important;
+  font-weight: 800 !important;
+}
+
+section[style*="hero-klyfe"] .btn-primary:hover,
+section[style*="rgba(10,13,16"] .btn-primary:hover,
+section[style*="rgba(10, 13, 16"] .btn-primary:hover,
+.cta-dark-hero .btn-primary:hover {
+  background: #C2410C !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(234, 88, 12, 0.5) !important;
+}

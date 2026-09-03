@@ -1,0 +1,22 @@
+<%
+const trail = Array.isArray(breadcrumbItems) ? breadcrumbItems : [];
+const compactClass = typeof breadcrumbCompact !== 'undefined' && breadcrumbCompact
+    ? ' breadcrumb-compact'
+    : '';
+%>
+<nav class="breadcrumb-nav breadcrumb-component<%= compactClass %>" aria-label="Breadcrumb">
+    <ol class="breadcrumb-list">
+        <% trail.forEach(function(item, index) { const isCurrent = index === trail.length - 1 || !item.href; %>
+            <li class="breadcrumb-item<%= isCurrent ? ' breadcrumb-current' : '' %>">
+                <% if (!isCurrent) { %>
+                    <a href="<%= item.href %>">
+                        <% if (index === 0) { %><i class="fas fa-house" aria-hidden="true"></i><% } %>
+                        <span><%= item.label %></span>
+                    </a>
+                <% } else { %>
+                    <span aria-current="page"><%= item.label %></span>
+                <% } %>
+            </li>
+        <% }) %>
+    </ol>
+</nav>

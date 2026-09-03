@@ -1,0 +1,12 @@
+.git
+.agents
+.agent
+node_modules
+scratch
+audits
+tests
+*.log
+.env
+.DS_Store
+.idea
+.vscode

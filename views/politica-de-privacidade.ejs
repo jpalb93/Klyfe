@@ -9,9 +9,10 @@
     <main style="padding-top: 80px;">
         <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
             <div class="container fade-in">
-                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
-                    Home &gt; Política de Privacidade
-                </div>
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Política de privacidade' }
+                ] }) %>
                 <h1>POLÍTICA DE PRIVACIDADE</h1>
                 <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 720px; margin-top: 1rem;">
                     Como a Klyfe Electric trata dados pessoais no site, WhatsApp, formulários e canais digitais.
@@ -121,6 +122,6 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

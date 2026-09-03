@@ -1,5 +1,6 @@
 const express = require('express');
 const locations = require('../config/locations');
+const business = require('../config/business');
 const { getPublishedPosts } = require('../lib/blog-loader');
 const { evaluatePost, evaluatePosts, buildLocals } = require('../lib/blog-evaluator');
 
@@ -43,10 +44,10 @@ router.get('/preview/blog/:postId', async (req, res, next) => {
             datePublished: `${dateIso}T08:00:00Z`,
             dateModified: `${post.dateModified || dateIso}T08:00:00Z`,
             author: { '@type': 'Person', name: post.author || 'Klyfe Electric' },
-            publisher: { '@type': 'Organization', name: 'Klyfe Electric' },
+            publisher: { '@type': 'Organization', name: business.name },
             mainEntityOfPage: canonical,
             ...(post.sources && post.sources.length ? { citation: post.sources.filter(source => /^https:\/\//i.test(source.url || '')).map(source => source.url) } : {}),
-            ...(post.technicalReviewedAt ? { reviewedBy: { '@type': 'Organization', name: 'Klyfe Electric, Engenharia' } } : {})
+            ...(post.technicalReviewedAt ? { reviewedBy: { '@type': 'Organization', name: business.name } } : {})
         };
 
         res.setHeader('Cache-Control', 'private, no-store, max-age=0');

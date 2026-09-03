@@ -12,40 +12,79 @@
     : `Olá! Vim da página de energia solar em ${page.name} e quero um orçamento.`);
   const waUrl = `https://wa.me/5583991430929?text=${encodeURIComponent(waMsg)}`;
   const bodyTitle = page.h2Body || (isSegment ? 'Engenharia solar sob medida' : ('Por que energia solar ' + page.preposition + ' ' + page.name));
+
+  // Dynamic Background Image Mapping for Segments and Cities
+  const segmentImageMap = {
+    'supermercados': '/img/blog/energia-solar-para-supermercados.webp',
+    'hospitais-e-clinicas': '/img/blog/energia-solar-para-hospitais.webp',
+    'condominios': '/img/blog/energia-solar-para-condominios.webp',
+    'fazendas-e-irrigacao': '/img/blog/energia-solar-para-fazendas.webp',
+    'residencial': '/img/blog/como-funciona-a-energia-solar-em-casas.webp',
+    'industrial': '/img/lp/solar-industrial-hero.webp',
+    'comercial': '/img/blog/como-escolher-uma-empresa-de-energia-solar.webp',
+    'hoteis-e-pousadas': '/img/hero-solar-condominios.webp',
+    'postos-de-combustivel': '/img/lp/solar-postos-combustivel.webp',
+    'escolas-e-faculdades': '/img/hero-solar-condominios.webp',
+    'campina-grande-pb': '/img/cidades/campina-grande.webp',
+    'joao-pessoa-pb': '/img/cidades/joao-pessoa.webp',
+    'recife-pe': '/img/blog/como-escolher-uma-empresa-de-energia-solar.webp',
+    'natal-rn': '/img/cidades/natal.webp',
+    'caruaru-pe': '/img/hero-solar-condominios.webp',
+    'mossoro-rn': '/img/cidades/mossoro.webp'
+  };
+  const heroBg = page.heroImage || segmentImageMap[page.slug] || '/img/hero-solar-condominios.webp';
 %>
 
-<section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:1rem">
+<!-- ═══ BREADCRUMB ═══ -->
+<section style="padding-top: 110px; padding-bottom: 0.5rem; background: var(--bg-primary);">
     <div class="container fade-in">
-        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;" aria-label="Breadcrumb">
-            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
-                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-                <a href="/energia-solar/" style="color: inherit; text-decoration: none;">Energia Solar</a>
-                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-                <span style="color: var(--text-main);"><%= page.h1 %></span>
-            </div>
-        </nav>
+        <%- include('partials/breadcrumb', { breadcrumbItems: [
+            { label: 'Home', href: '/' },
+            { label: 'Energia solar', href: '/energia-solar/' },
+            { label: isSegment ? page.label : page.name }
+        ], breadcrumbCompact: true }) %>
     </div>
 </section>
 
-<section class="hero-internal bg-blueprint" style="padding: 5rem 0 3rem;">
+<!-- ═══ HERO FLAGSHIP COM FOTO DE FUNDO E GRADIENTE ═══ -->
+<section class="hero-solar-bg" style="background: linear-gradient(180deg, rgba(8, 12, 24, 0.70) 0%, rgba(10, 15, 29, 0.88) 100%), url('<%= heroBg %>') center/cover no-repeat;">
     <div class="container fade-in">
-        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span><%= page.eyebrow %></span></div>
-        <h1 class="hero-internal-title" style="max-width: 18ch;"><% if (!isSegment) { %>Energia Solar <br><span style="color:var(--accent-primary)"><%= page.preposition %> <%= page.name %> / <%= page.stateAbbr %></span><% } else { %><%= page.h1 %><br><span style="color:var(--accent-primary)">no Nordeste.</span><% } %></h1>
-        <p class="hero-internal-desc" style="max-width: 680px;"><%= page.intro %></p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Estudo Grátis</a>
-            <a href="/contato" class="btn btn-ghost">Falar com Engenheiro</a>
+        <div class="solar-flagship-badge">
+            <i class="fas fa-bolt"></i> <%= page.eyebrow || 'KLYFE SOLAR POWER • ENGENHARIA ELETRICISTA CREA' %>
         </div>
+
+        <h1 class="hero-internal-title" style="font-size: clamp(2.3rem, 4.2vw, 3.6rem); line-height: 1.15; margin-bottom: 1.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.7); max-width: 900px;">
+            <% if (!isSegment) { %>
+                Energia Solar <%= page.preposition %> <%= page.name %>:<br>
+                <span style="color: #f59e0b;">Projeto, Instalação e Homologação.</span>
+            <% } else { %>
+                <%= page.h1 %>:<br>
+                <span style="color: #f59e0b;">Engenharia Solar Sob Medida.</span>
+            <% } %>
+        </h1>
+
+        <p class="hero-internal-desc" style="max-width: 840px; font-size: 1.15rem; line-height: 1.7; color: #e5e7eb; text-shadow: 0 2px 8px rgba(0,0,0,0.7);">
+            <%= page.intro %>
+        </p>
+
+        <div style="display:flex; gap:1.25rem; flex-wrap:wrap; margin-top: 2.5rem;">
+            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary" style="background: #f59e0b; border-color: #f59e0b; color: #000; font-weight: 700; padding: 0.9rem 2rem;">
+                <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Solicitar Estudo Grátis
+            </a>
+            <a href="/contato" class="btn btn-ghost" style="padding: 0.9rem 2rem; color: #ffffff; border-color: rgba(255,255,255,0.3);">
+                <i class="fas fa-user-shield" style="margin-right: 8px; color: #f59e0b;"></i> Falar com Engenheiro
+            </a>
+        </div>
+
         <% if (isSegment) { %>
-        <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-            Porte típico: <strong style="color:var(--text-main)"><%= page.kWpRange %></strong>
-            &nbsp;·&nbsp; Payback: <strong style="color:var(--text-main)"><%= page.paybackHint %></strong>
+        <p style="margin-top: 1.75rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94a3b8; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">
+            Porte típico: <strong style="color:#ffffff"><%= page.kWpRange %></strong>
+            &nbsp;·&nbsp; Payback estimado: <strong style="color:#f59e0b"><%= page.paybackHint %></strong>
         </p>
         <% } else { %>
-        <p style="margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-            Irradiação: <strong style="color:var(--text-main)"><%= page.irradiacao %></strong>
-            &nbsp;·&nbsp; Distribuidora: <strong style="color:var(--text-main)"><%= page.concessionaria %></strong>
+        <p style="margin-top: 1.75rem; font-family: var(--font-mono); font-size: 0.85rem; color: #94a3b8; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">
+            Irradiação Solar: <strong style="color:#ffffff"><%= page.irradiacao %></strong>
+            &nbsp;·&nbsp; Distribuidora: <strong style="color:#f59e0b"><%= page.concessionaria %></strong>
         </p>
         <% } %>
     </div>
@@ -121,6 +160,40 @@
     </div>
 </section>
 
+<% if (!isSegment && page.decisionGuide) { %>
+<section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>GUIA PARA CONTRATAR</span></div>
+        <h2 class="fade-in" style="margin-bottom: 1rem; max-width: 28ch;"><%= page.decisionGuide.title %></h2>
+        <p class="fade-in" style="color: var(--text-muted); max-width: 780px; margin-bottom: 2.5rem; line-height: 1.7;"><%= page.decisionGuide.intro %></p>
+
+        <div class="grid grid-cols-3" style="gap: 1.5rem; margin-bottom: 3rem;">
+            <% page.decisionGuide.priceFactors.forEach(function(item) { %>
+            <article class="bracket-box fade-in" style="padding: 1.75rem;">
+                <h3 style="font-size: 1.05rem; margin-bottom: 0.7rem; color: var(--text-main);"><%= item.title %></h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.65;"><%= item.text %></p>
+            </article>
+            <% }) %>
+        </div>
+
+        <div class="grid grid-cols-2" style="gap: 1.5rem; align-items: stretch;">
+            <div class="bracket-box fade-in" style="padding: 2rem; background: var(--bg-primary);">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-main);">Dados usados no dimensionamento</h3>
+                <ul style="margin: 0; padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                    <% page.decisionGuide.sizingInputs.forEach(function(item) { %><li><%= item %></li><% }) %>
+                </ul>
+            </div>
+            <div class="bracket-box fade-in" style="padding: 2rem; background: var(--bg-primary);">
+                <h3 style="font-size: 1.1rem; margin-bottom: 1rem; color: var(--text-main);">O que deve constar na proposta</h3>
+                <ul style="margin: 0; padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                    <% page.decisionGuide.proposalDeliverables.forEach(function(item) { %><li><%= item %></li><% }) %>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<% } %>
+
 <% if (page.processSteps && page.processSteps.length) { %>
 <section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
     <div class="container">
@@ -160,6 +233,35 @@
 </section>
 <% } %>
 
+<% if (!isSegment && ((page.serviceAreas && page.serviceAreas.length) || (page.officialSources && page.officialSources.length))) { %>
+<section class="section-padding" style="background: var(--bg-secondary); border-top: 1px solid var(--border-color);">
+    <div class="container">
+        <div class="grid grid-cols-2" style="gap: 2rem; align-items: start;">
+            <% if (page.serviceAreas && page.serviceAreas.length) { %>
+            <div class="fade-in">
+                <div class="section-separator"><%- include('partials/symbol') %> <span>ÁREA DE ATENDIMENTO</span></div>
+                <h2 style="font-size: 1.6rem; margin-bottom: 1rem;">Onde atendemos na região</h2>
+                <p style="color: var(--text-muted); line-height: 1.7;"><%= page.serviceAreas.join(' · ') %>.</p>
+                <p style="color: var(--text-muted); line-height: 1.7; margin-top: 0.75rem;">A disponibilidade de visita e instalação é confirmada após a análise do endereço e do escopo.</p>
+            </div>
+            <% } %>
+            <% if (page.officialSources && page.officialSources.length) { %>
+            <div class="bracket-box fade-in" style="padding: 2rem; background: var(--bg-primary);">
+                <h2 style="font-size: 1.35rem; margin-bottom: 0.75rem;">Regras e fontes oficiais</h2>
+                <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 1rem;">Consulte as regras vigentes de geração distribuída e os procedimentos da distribuidora:</p>
+                <ul style="margin: 0; padding-left: 1.2rem; line-height: 1.8;">
+                    <% page.officialSources.forEach(function(source) { %>
+                    <li><a href="<%= source.href %>" target="_blank" rel="noopener noreferrer"><%= source.label %></a></li>
+                    <% }) %>
+                </ul>
+                <% if (page.lastReviewed) { %><p style="margin-top: 1rem; color: var(--text-muted); font-size: 0.78rem; font-family: var(--font-mono);">Conteúdo técnico revisado em <%= page.lastReviewed %>.</p><% } %>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+<% } %>
+
 <!-- Mesh Internal Links Partial -->
 <%- include('partials/solar-mesh-links') %>
 
@@ -179,6 +281,6 @@
 </main>
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,126 @@
+<!-- ═══ 03 SERVIÇOS DO DIA A DIA ═══ -->
+<% if (isServiceEnabled('eletrica')) { %>
+<section class="section-padding home-sec home-sec-eletrica" id="servicos-eletricos">
+    <div class="container fade-in">
+        <div class="daily-services-layout">
+            <!-- Coluna Esquerda: Header, Copy & Provas de Valor -->
+            <div class="daily-services-sidebar">
+                <span class="daily-badge-tag"><i class="fas fa-bolt"></i> 03 SERVIÇOS ELÉTRICOS</span>
+                <h2 class="daily-sec-title">SERVIÇOS DO<br><span class="text-solar-orange">DIA A DIA.</span></h2>
+                <div class="daily-title-divider"></div>
+                <p class="daily-sec-desc">
+                    Além da energia solar, a Klyfe executa serviços elétricos residenciais e comerciais. O escopo, as proteções e os requisitos técnicos são definidos conforme a necessidade levantada e as normas aplicáveis.
+                </p>
+
+                <div class="daily-trust-list">
+                    <div class="daily-trust-item">
+                        <div class="daily-trust-icon">
+                            <i class="far fa-check-circle"></i>
+                        </div>
+                        <div class="daily-trust-text">
+                            <strong>Segurança em primeiro lugar</strong>
+                            <span>Serviços executados conforme NBRs e com materiais de alta qualidade.</span>
+                        </div>
+                    </div>
+                    <div class="daily-trust-item">
+                        <div class="daily-trust-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="daily-trust-text">
+                            <strong>Agilidade e organização</strong>
+                            <span>Processos otimizados e atendimento pontual para o seu dia a dia.</span>
+                        </div>
+                    </div>
+                    <div class="daily-trust-item">
+                        <div class="daily-trust-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div class="daily-trust-text">
+                            <strong>Suporte especializado</strong>
+                            <span>Equipe técnica preparada para orientar e entregar a melhor solução.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="/contato" class="btn-daily-left-cta">
+                    <i class="fas fa-bolt"></i>
+                    <span>FALAR COM A KLYFE</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Coluna Direita: Grid de 8 Cards de Serviços -->
+            <div class="daily-services-grid">
+                <% 
+                   const dailyKeys = [
+                     'tomadas-interruptores',
+                     'iluminacao',
+                     'chuveiro-eletrico',
+                     'ventiladores',
+                     'quadro-distribuicao',
+                     'fiacao-cabeamento',
+                     'ar-condicionado',
+                     'carregador-veicular'
+                   ];
+                   const serviceTagsMap = {
+                     'tomadas-interruptores': 'Residencial',
+                     'iluminacao': 'Instalação',
+                     'chuveiro-eletrico': 'Residencial',
+                     'ventiladores': 'Instalação',
+                     'quadro-distribuicao': 'Upgrade',
+                     'fiacao-cabeamento': 'Instalação',
+                     'ar-condicionado': 'Residencial',
+                     'carregador-veicular': 'Instalação'
+                   };
+                   const activeDailyServices = dailyKeys.filter(key => isServiceEnabled(key));
+                   activeDailyServices.forEach(key => {
+                     const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
+                     const badgeTag = serviceTagsMap[key] || 'Elétrica';
+                %>
+                    <a href="<%= homePrefix %>/solucoes/eletrica" class="daily-modern-card">
+                        <div class="daily-card-top">
+                            <div class="daily-card-icon">
+                                <i class="fas <%= svc.icon || 'fa-plug' %>"></i>
+                            </div>
+                            <span class="daily-card-badge"><%= badgeTag %></span>
+                        </div>
+                        <h3 class="daily-card-title"><%= svc.label %></h3>
+                        <p class="daily-card-desc"><%= svc.summary || svc.painPoint || 'Instalação e manutenção técnica especializada.' %></p>
+                        <i class="fas fa-arrow-right daily-card-arrow"></i>
+                    </a>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- ═══ BANNER INFERIOR DA SEÇÃO 03 ═══ -->
+        <div class="daily-bottom-banner fade-in">
+            <div class="daily-banner-left">
+                <div class="daily-banner-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h4 class="daily-banner-title">Energia que acompanha <span class="text-solar-orange">a sua vida.</span></h4>
+                </div>
+            </div>
+
+            <div class="daily-banner-center">
+                <p>Conte com a Klyfe Electric para manter sua casa funcionando com segurança e eficiência todos os dias <%= cityData.preposition %> <%= cityData.name %>.</p>
+            </div>
+
+            <div class="daily-banner-right">
+                <% const waMsgDaily = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento de serviços elétricos.'; %>
+                <% const waUrlDaily = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(waMsgDaily)}`; %>
+                <a href="<%= waUrlDaily %>" target="_blank" rel="noopener" class="btn-daily-whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    <span>SOLICITAR ORÇAMENTO</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <div class="daily-micro-badges">
+                    <span class="daily-micro-badge"><i class="far fa-clock"></i> Atendimento rápido</span>
+                    <span class="daily-micro-badge"><i class="fas fa-award"></i> Profissionais certificados</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% } %>

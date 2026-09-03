@@ -4,7 +4,7 @@ module.exports = {
   region: 'Grande João Pessoa',
   state: 'Paraíba',
   concessionaria: 'Energisa Paraíba',
-  address: 'Atendimento Presencial e Consultoria - João Pessoa - PB',
+  address: 'Av. Pref. Severino Bezerra Cabral, 1225 - Mirante, Campina Grande - PB, 58410-640',
   phone: '(83) 99133-0972',
   whatsappMessage: 'Olá! Vi o site da Klyfe em João Pessoa e gostaria de um orçamento.',
   cta: 'Fale com nosso consultor técnico em João Pessoa.',
@@ -270,5 +270,4 @@ module.exports = {
     }
   }
 };
-
 

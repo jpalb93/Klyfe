@@ -3,16 +3,17 @@
 <head>
     <%- include('partials/head') %>
 </head>
-<body>
+<body class="page-about">
     <%- include('partials/navbar') %>
 
     <main style="padding-top: 80px;">
         <!-- Hero da Página -->
         <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
             <div class="container fade-in">
-                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
-                    Home > Quem Somos
-                </div>
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Quem somos' }
+                ] }) %>
                 <h1>QUEM SOMOS</h1>
                 <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 1rem;">
                     Engenharia técnica de alta precisão.
@@ -134,6 +135,6 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

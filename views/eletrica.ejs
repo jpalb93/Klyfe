@@ -1,34 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head><%- include('partials/head') %></head>
-<body>
+<body class="page-electrical">
 <%- include('partials/navbar') %>
 <main>
 
 <!-- HERO & BREADCRUMB -->
 <section class="page-hero bg-blueprint" style="padding-top:120px;padding-bottom:4rem">
     <div class="container fade-in">
-    <!-- ═══ BREADCRUMB VISUAL ═══ -->
-    <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
-        <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-            <a href="<%= getHomePrefix() || '/' %>" style="color: inherit; text-decoration: none;">Home</a>
-            <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <a href="<%= getHomePrefix() %>/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
-            <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-            <span style="color: var(--text-main);">Serviços Elétricos <%= cityData.preposition %> <%= cityData.name %></span>
-        </div>
-    </nav>
+    <%- include('partials/breadcrumb', { breadcrumbItems: [
+        { label: 'Home', href: getHomePrefix() || '/' },
+        { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+        { label: 'Serviços elétricos' }
+    ] }) %>
 
-    <!-- HERO -->
-    <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
-        <div class="container fade-in">
-            <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INSTALAÇÕES & MANUTENÇÃO</span></div>
-            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias <%= cityData.preposition %> <%= cityData.name %>. Manutenção preventiva, reparos urgentes e novas instalações com garantia técnica.</p>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-                <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> <%= cityData.cta || 'Chamar no WhatsApp' %></a>
-                <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
-            </div>
+    <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INSTALAÇÕES & MANUTENÇÃO</span></div>
+    <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
+    <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias <%= cityData.preposition %> <%= cityData.name %>. Manutenção preventiva, reparos urgentes e novas instalações com garantia técnica.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+        <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+        <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
+    </div>
         </div>
     </section>
 
@@ -53,13 +45,19 @@
                        const cardUrl = isGeneric 
                          ? `https://wa.me/5583991330972?text=${encodeURIComponent('Olá! Vi o site da Klyfe e gostaria de solicitar um orçamento para o serviço de ' + svc.label + ' em ' + cityData.name + '.')}`
                          : `${getHomePrefix()}/solucoes/eletrica/${key}`;
+                       const imgPath = `/img/eletrica/${key}.webp`;
                     %>
-                    <a href="<%= cardUrl %>" <%= isGeneric ? 'target="_blank" rel="noopener"' : '' %> class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary); transition: transform 0.3s; padding: 2.5rem;">
-                        <h3 style="color: var(--text-main); margin-bottom: 1rem; font-size: 1.2rem;"><%= svc.label %> <i class="fas <%= isGeneric ? 'fa-whatsapp' : 'fa-arrow-right' %>" style="font-size: 0.8rem; margin-left: 0.5rem; color: var(--accent-primary);"></i></h3>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;"><%= svc.summary || svc.painPoint || 'Serviços elétricos de alto padrão com garantia técnica.' %></p>
-                        <span style="display: inline-block; margin-top: 1.5rem; color: var(--accent-primary); font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;">
-                            <%= isGeneric ? 'Orçamento Rápido →' : 'Explorar →' %>
-                        </span>
+                    <a href="<%= cardUrl %>" <%= isGeneric ? 'target="_blank" rel="noopener"' : '' %> class="eng-service-card fade-in">
+                        <div class="eng-service-img-wrap">
+                            <img src="<%= imgPath %>" alt="<%= svc.label %>" loading="lazy">
+                        </div>
+                        <div class="eng-service-body">
+                            <h3><%= svc.label %> <i class="fas <%= isGeneric ? 'fa-whatsapp' : 'fa-arrow-right' %>"></i></h3>
+                            <p><%= svc.summary || svc.painPoint || 'Serviços elétricos de alto padrão com garantia técnica.' %></p>
+                            <span class="eng-service-link">
+                                <%= isGeneric ? 'Orçamento Rápido →' : 'EXPLORAR →' %>
+                            </span>
+                        </div>
                     </a>
                     <% }) %>
                 </div>
@@ -222,6 +220,6 @@
 </main>
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
-<script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

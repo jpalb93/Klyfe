@@ -3,38 +3,29 @@
 <head>
     <%- include('partials/head') %>
 </head>
-<body>
+<body class="page-projects">
     <%- include('partials/navbar') %>
 
     <main style="padding-top: 80px;">
-        <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
-            <div class="container fade-in">
-                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
-                    Home > Projetos
+        <section class="bg-blueprint institutional-hero">
+            <div class="container fade-in institutional-hero-grid">
+                <div class="institutional-hero-title">
+                    <%- include('partials/breadcrumb', { breadcrumbItems: [
+                        { label: 'Home', href: getHomePrefix() || '/' },
+                        { label: 'Projetos' }
+                    ] }) %>
+                    <span class="institutional-kicker">PORTFÓLIO TÉCNICO</span>
+                    <h1>NOSSOS PROJETOS</h1>
+                    <p>Casos documentados, escopos verificáveis e resultados apresentados com transparência.</p>
                 </div>
-                <h1>NOSSOS PROJETOS</h1>
-                <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 1rem; margin-bottom: 2rem;">
-                    Portfólio técnico completo de obras executadas em Campina Grande, João Pessoa e todo o Nordeste.
-                </p>
-                <div style="max-width: 800px; line-height: 1.8; color: var(--text-muted); font-size: 1rem; display: grid; gap: 1rem;">
+                <div class="institutional-hero-note">
+                    <span class="badge-mono">CASOS PUBLICADOS</span>
                     <p>
-                        Nosso portfólio demonstra nossa competência em engenharia prática e projetos homologados. Cada obra realizada pela Klyfe Electric segue um rigoroso controle de qualidade, desde o planejamento inicial em modelagem BIM 3D até a entrega final com vistorias aprovadas pela Energisa e emissão de ART registrada no CREA-PB. Atendemos indústrias, comércios, condomínios prediais e residências com foco em eficiência, economia e segurança operacional máxima.
+                        Esta página reúne os estudos de caso que já possuem documentação editorial para publicação. Em cada caso, mostramos o problema analisado, o escopo técnico e os registros disponíveis, sem transformar serviços oferecidos em projetos supostamente executados.
                     </p>
                     <p>
-                        Navegue pelos nossos casos de sucesso em todo o estado da Paraíba. Realizamos perícias elétricas de alta complexidade, montagem e manutenção de subestações aéreas e cabines primárias, estudos de viabilidade para infraestruturas de recarga de veículos elétricos e instalações fotovoltaicas completas. Cada projeto reflete nossa engenharia diagnóstica precisa e compromisso com o cliente.
+                        Para energia solar, consulte as páginas locais abaixo. Elas explicam critérios de projeto, instalação, homologação na Energisa e atendimento na Paraíba; novos casos solares só serão adicionados ao portfólio quando houver material verificável para apresentá-los.
                     </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Filtros JS Estáticos -->
-        <section style="padding: 2rem 0; border-bottom: 1px solid var(--border-color); background-color: var(--bg-secondary);">
-            <div class="container fade-in">
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <span class="badge-mono" style="cursor: pointer; background: var(--accent-primary); color: var(--bg-primary);">[Todos]</span>
-                    <span class="badge-mono" style="cursor: pointer;">[Soluções Elétricas]</span>
-                    <span class="badge-mono" style="cursor: pointer;">[Automação]</span>
-                    <span class="badge-mono" style="cursor: pointer;">[Energia Solar]</span>
                 </div>
             </div>
         </section>
@@ -67,10 +58,30 @@
             </div>
         </section>
 
+        <section style="padding: 3.5rem 0; border-top: 1px solid var(--border-color); background: var(--bg-secondary);">
+            <div class="container">
+                <div class="bracket-box fade-in" style="max-width: 980px;">
+                    <span class="badge-mono">ENERGIA SOLAR NA PARAÍBA</span>
+                    <h2 style="margin-top: 1rem;">Planejando um projeto fotovoltaico?</h2>
+                    <p style="color: var(--text-muted); line-height: 1.8; max-width: 780px;">
+                        Conheça o processo completo e escolha a página correspondente ao local do imóvel. O estudo definitivo depende da fatura, do endereço, do telhado, do padrão elétrico e das condições de conexão.
+                    </p>
+                    <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                        <a class="btn btn-primary" href="/energia-solar/">Energia solar na Paraíba</a>
+                        <a class="btn btn-secondary" href="/energia-solar/campina-grande-pb/">Energia solar em Campina Grande</a>
+                        <a class="btn btn-secondary" href="/energia-solar/joao-pessoa-pb/">Energia solar em João Pessoa</a>
+                    </div>
+                    <p style="color: var(--text-muted); margin-top: 1.25rem; margin-bottom: 0;">
+                        Antes de solicitar uma proposta, veja também <a href="/blog/como-escolher-uma-empresa-de-energia-solar/">como escolher uma empresa de energia solar</a>.
+                    </p>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

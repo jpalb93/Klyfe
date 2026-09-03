@@ -2,8 +2,8 @@
   const currentCityKey = (typeof cityKey !== 'undefined') ? cityKey : 'default';
   const prefix = (currentCityKey !== 'default') ? '/' + currentCityKey : '';
 
-  const displayAddress = (typeof cityData !== 'undefined' && cityData.address) ? cityData.address : 'Atendimento Consultivo em toda a Paraíba';
-  const displayPhone = (typeof cityData !== 'undefined' && cityData.phone) ? cityData.phone : '(83) 99133-0972';
+  const displayAddress = business.formattedAddress;
+  const displayPhone = business.displayPhone;
   const footerWaMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.');
   const footerWaUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(footerWaMsg)}`;
 
@@ -25,13 +25,9 @@
                 <p class="footer-tagline">Alta performance em Engenharia Elétrica, Automação e Energia Solar.</p>
                 <div class="google-reviews">
                     <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fab fa-google" aria-hidden="true"></i>
                     </div>
-                    <span>5.0 · 120 avaliações no Google</span>
+                    <span><a href="<%= business.mapsUrl %>" target="_blank" rel="noopener">Ver perfil e avaliações no Google</a></span>
                 </div>
             </div>
 
@@ -75,8 +71,12 @@
             <!-- Contact & Local -->
             <div class="footer-col">
                 <h4>Onde Estamos</h4>
-                <p class="contact-info"><i class="fas fa-map-marker-alt"></i> <%= displayAddress %></p>
-                <p class="contact-info"><i class="fas fa-phone-alt"></i> <%= displayPhone %></p>
+                <address class="contact-info" style="font-style: normal;">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                    <a href="<%= business.mapsUrl %>" target="_blank" rel="noopener"><%= displayAddress %></a>
+                </address>
+                <p class="contact-info"><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:<%= business.telephone %>"><%= displayPhone %></a></p>
+                <p class="contact-info"><i class="fas fa-building" aria-hidden="true"></i> CNPJ: <%= business.taxId %></p>
                 <div class="footer-social">
                     <a href="https://www.instagram.com/klyfeelectric" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.linkedin.com/company/klyfeelectric" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
@@ -102,4 +102,3 @@
 </footer>
 <%- include('../lp/_tracking-body') %>
 <%- include('cookie-banner') %>
-

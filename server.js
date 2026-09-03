@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 const locations = require('./config/locations'); // Carregado uma única vez (Eficiência)
+const business = require('./config/business');
 const { resolveTrackingContext } = require('./lib/site-tracking');
 const { startBlogRemoteSync, ensureBlogRemoteSynced } = require('./lib/blog-remote-sync');
 
@@ -72,6 +73,8 @@ app.use(helmet({
                 "https://www.googletagmanager.com",
                 "https://www.facebook.com",
                 "https://*.facebook.com",
+                "https://maps.google.com",
+                "https://www.google.com",
             ],
             frameAncestors: ["'self'", ...(centralOrigin ? [centralOrigin] : [])],
             upgradeInsecureRequests: []
@@ -120,8 +123,18 @@ app.use('/api/tracking', rateLimit({
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'views'));
 
-// Servir arquivos estáticos da pasta public
-app.use(express.static(path.join(process.cwd(), 'public')));
+// Servir arquivos estáticos com cache explícito. CSS/JS revalidam diariamente;
+// fontes e imagens, que mudam com menos frequência, ficam em cache por 30 dias.
+app.use(express.static(path.join(process.cwd(), 'public'), {
+    etag: true,
+    setHeaders: (res, filePath) => {
+        if (/\.(?:woff2?|webp|avif|png|jpe?g|svg|ico)$/i.test(filePath)) {
+            res.setHeader('Cache-Control', 'public, max-age=2592000, stale-while-revalidate=604800');
+        } else if (/\.(?:css|js)$/i.test(filePath)) {
+            res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
+        }
+    }
+}));
 
 // Middleware para processar dados de formulário
 app.use(express.urlencoded({ extended: true }));
@@ -131,6 +144,7 @@ app.use(express.json());
 app.use((req, res, next) => {
     res.locals.cityKey = 'default';
     res.locals.cityData = locations['default'];
+    res.locals.business = business;
     res.locals.page = '';
     res.locals.theme = null;
     const pixelViaGtm =

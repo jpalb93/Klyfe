@@ -1,0 +1,163 @@
+<!-- ═══ 02 ENGENHARIA ELÉTRICA & AUTOMAÇÃO SMART ═══ -->
+<section class="section-padding home-sec home-sec-eng-auto" id="engenharia-automacao">
+    <div class="container">
+        <!-- ═══ TOP HEADER & HERO SHOWCASE ═══ -->
+        <div class="home-eng-hero-layout fade-in">
+            <!-- Coluna Esquerda: Textos -->
+            <div class="home-eng-hero-copy">
+                <span class="home-eng-tag">— 02 ENGENHARIA & AUTOMAÇÃO</span>
+                <h2 class="home-eng-hero-title">
+                    Soluções de Engenharia Elétrica e Automação para operações críticas e <span class="text-solar-orange">ambientes inteligentes.</span>
+                </h2>
+                <div class="home-eng-title-divider"></div>
+                <p class="home-eng-hero-desc">
+                    Como linhas complementares à energia solar, a Klyfe desenvolve projetos elétricos, laudos e soluções de baixa e média tensão. Também atua com automação e conectividade para residências, empresas e operações técnicas.
+                </p>
+            </div>
+
+            <!-- Coluna Direita: Imagem de Destaque com Overlay de 4 Pilares -->
+            <div class="home-eng-hero-visual">
+                <div class="home-eng-hero-img-wrap">
+                    <img src="/img/engenharia-painel-eletrico.webp" alt="Profissional inspecionando painel elétrico" class="home-eng-hero-img" loading="lazy" width="1672" height="941">
+                    <div class="home-eng-overlay-bar">
+                        <div class="home-eng-overlay-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <strong>Segurança</strong>
+                                <span>em primeiro lugar</span>
+                            </div>
+                        </div>
+                        <div class="home-eng-overlay-item">
+                            <i class="fas fa-bolt"></i>
+                            <div>
+                                <strong>Eficiência</strong>
+                                <span>que gera valor</span>
+                            </div>
+                        </div>
+                        <div class="home-eng-overlay-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Conformidade</strong>
+                                <span>sem complicação</span>
+                            </div>
+                        </div>
+                        <div class="home-eng-overlay-item">
+                            <i class="fas fa-network-wired"></i>
+                            <div>
+                                <strong>Tecnologia</strong>
+                                <span>que conecta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ CARDS DE PILARES (ENGENHARIA & AUTOMAÇÃO) ═══ -->
+        <div class="home-eng-pillars-grid">
+            <!-- PILAR 1: ENGENHARIA ELÉTRICA & LAUDOS -->
+            <% if (isServiceEnabled('engenharia')) { %>
+            <div class="eng-modern-card eng fade-in">
+                <div class="eng-modern-img-wrap">
+                            <img src="/img/engenharia-bim-projetos.webp" alt="Projeto de engenharia elétrica em BIM" class="eng-modern-img" loading="lazy" width="1672" height="941">
+                    <div class="eng-modern-badge-icon badge-orange">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                </div>
+                <div class="eng-modern-body">
+                    <h3 class="eng-modern-title">ENGENHARIA ELÉTRICA & LAUDOS</h3>
+                    <p class="eng-modern-desc">Projetos, estudos e laudos técnicos desenvolvidos por especialistas, com foco em desempenho, segurança e atendimento às normas vigentes.</p>
+
+                    <div class="eng-modern-services-grid">
+                        <div class="eng-modern-col">
+                            <a href="<%= homePrefix %>/solucoes/engenharia/projeto-eletrico" class="eng-service-check-link orange">
+                                <i class="far fa-check-circle"></i>
+                                <span>Projetos elétricos executivos</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/engenharia/projeto-eletrico" class="eng-service-check-link orange">
+                                <i class="far fa-check-circle"></i>
+                                <span>Modelagem BIM 3D</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/engenharia/laudos-eletricos" class="eng-service-check-link orange">
+                                <i class="far fa-check-circle"></i>
+                                <span>Laudos de NR-10 e SPDA</span>
+                            </a>
+                        </div>
+                        <div class="eng-modern-col">
+                            <a href="<%= homePrefix %>/solucoes/engenharia/projeto-subestacao" class="eng-service-check-link orange">
+                                <i class="far fa-check-circle"></i>
+                                <span>Projetos de subestações</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/engenharia/aprovacao-energisa" class="eng-service-check-link orange">
+                                <i class="far fa-check-circle"></i>
+                                <span>Aprovação na concessionária</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/engenharia/viabilidade-carregador-veicular" class="eng-service-check-link orange">
+                                <i class="far fa-check-circle"></i>
+                                <span>Viabilidade de recarga EV</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="<%= homePrefix %>/solucoes/engenharia" class="eng-modern-cta-link orange">
+                        <span>VER SOLUÇÕES DE ENGENHARIA</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <% } %>
+
+            <!-- PILAR 2: AUTOMAÇÃO RESIDENCIAL & SMART -->
+            <% if (isServiceEnabled('automacao')) { %>
+            <div class="eng-modern-card auto fade-in">
+                <div class="eng-modern-img-wrap">
+                            <img src="/img/automacao-smart-living.webp" alt="Automação residencial e ambientes inteligentes" class="eng-modern-img" loading="lazy" width="1672" height="941">
+                    <div class="eng-modern-badge-icon badge-teal">
+                        <i class="fas fa-home"></i>
+                    </div>
+                </div>
+                <div class="eng-modern-body">
+                    <h3 class="eng-modern-title">AUTOMAÇÃO RESIDENCIAL & SMART</h3>
+                    <p class="eng-modern-desc">Soluções inteligentes que conectam pessoas, ambientes e sistemas para mais conforto, praticidade e eficiência energética.</p>
+
+                    <div class="eng-modern-services-grid">
+                        <div class="eng-modern-col">
+                            <a href="<%= homePrefix %>/solucoes/automacao/automacao-residencial" class="eng-service-check-link teal">
+                                <i class="far fa-check-circle"></i>
+                                <span>Automação Smart Home</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/automacao#clima" class="eng-service-check-link teal">
+                                <i class="far fa-check-circle"></i>
+                                <span>Controle de clima e iluminação</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/automacao#audio" class="eng-service-check-link teal">
+                                <i class="far fa-check-circle"></i>
+                                <span>Áudio e Home Theater</span>
+                            </a>
+                        </div>
+                    <div class="eng-modern-col">
+                            <a href="<%= homePrefix %>/solucoes/eletrica/projeto-rede" class="eng-service-check-link teal">
+                                <i class="far fa-check-circle"></i>
+                                <span>Redes Wi-Fi de alta performance</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/automacao#processos" class="eng-service-check-link teal">
+                                <i class="far fa-check-circle"></i>
+                                <span>Automação comercial e predial</span>
+                            </a>
+                            <a href="<%= homePrefix %>/solucoes/automacao" class="eng-service-check-link teal">
+                                <i class="far fa-check-circle"></i>
+                                <span>Sensores e fechaduras digitais</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="<%= homePrefix %>/solucoes/automacao" class="eng-modern-cta-link teal">
+                        <span>VER SOLUÇÕES DE AUTOMAÇÃO</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</section>

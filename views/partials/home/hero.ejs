@@ -1,0 +1,28 @@
+<!-- ═══ HERO ═══ -->
+<section class="hero bg-blueprint" id="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem"><%= homeSeo.eyebrow %></div>
+            <h1 style="font-size:clamp(2.6rem, 5.5vw, 4.5rem);line-height:1.05"><%= homeSeo.h1Lead %><br>
+                <span style="font-family:var(--font-heading);font-weight:400;font-style:italic;font-size:clamp(2.2rem, 5vw, 4rem)"><%= homeSeo.h1Middle %></span><br>
+                <span style="color:var(--accent-primary);font-size:clamp(3rem, 6.8vw, 5.5rem)"><%= homeSeo.h1Location %>.</span>
+            </h1>
+
+            <p class="hero-subtitle"><%= homeSeo.heroText %></p>
+
+            <div style="display:flex;gap:1rem;flex-wrap:wrap">
+                <a href="/contato" class="btn btn-primary">Solicitar Estudo Solar</a>
+                <a href="/energia-solar/#calculadora" class="btn btn-outline"><i class="fas fa-calculator" style="margin-right: 6px;"></i> Simular Economia Solar</a>
+            </div>
+
+            <nav class="hero-service-links" aria-label="Outras áreas de atuação da Klyfe">
+                <span class="hero-service-line" aria-hidden="true"></span>
+                <a href="<%= homePrefix %>/solucoes/engenharia">Engenharia Elétrica</a>
+                <span class="hero-service-dot" aria-hidden="true"></span>
+                <a href="<%= homePrefix %>/solucoes/automacao">Automação</a>
+                <span class="hero-service-arrow" aria-hidden="true">→</span>
+                <a href="<%= homePrefix %>/solucoes" class="hero-service-all">Conheça todas as soluções</a>
+            </nav>
+        </div>
+    </div>
+</section>

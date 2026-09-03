@@ -10,13 +10,13 @@ const solarServices = {
         title: 'Projeto de Energia Solar Fotovoltaica | Klyfe Electric',
         h1: 'Projeto de Energia Solar com Engenharia Especializada',
         eyebrow: 'SERVIÇOS SOLARES · ENGENHARIA E DIMENSIONAMENTO',
-        description: 'Projeto elétrico fotovoltaico com responsabilidade técnica e ART. Dimensionamento preciso, análise de sombreamento e homologação para residências e empresas no Nordeste.',
+        description: 'Projeto de energia solar com dimensionamento, análise de sombreamento, responsabilidade técnica, ART e documentação para conexão na distribuidora.',
         intro: 'Um projeto de energia solar de alta performance começa no papel. A Klyfe Electric desenvolve projetos engenheirados com emissão de ART (Anotação de Responsabilidade Técnica), respeitando as normas da ABNT e os requisitos das concessionárias do Nordeste. Dimensionamos o sistema para a curva real de consumo do seu imóvel, sem subdimensionamento que deixa economia na mesa nem oversizing desnecessário.',
         stats: [
-            { value: '100%', label: 'Projetos com ART' },
+            { value: 'ART', label: 'Responsabilidade Técnica' },
             { value: 'ABNT', label: 'Conformidade NBR' },
-            { value: '0% a 95%', label: 'Meta de Abatimento' },
-            { value: '24-48h', label: 'Diagnóstico Inicial' }
+            { value: 'Sob medida', label: 'Meta de Redução' },
+            { value: 'Análise', label: 'Diagnóstico Inicial' }
         ],
         painPoints: [
             {
@@ -48,20 +48,20 @@ const solarServices = {
         bodyHtml: `
             <p>O <strong>projeto de energia solar fotovoltaica</strong> é o coração de uma usina solar eficiente e duradoura. Não basta adquirir placas solares; é fundamental calcular o arranjo elétrico, a tensão de partida dos inversores, o agrupamento de strings e a proteção elétrica necessária para suportar intempéries e variações de tensão da rede elétrica.</p>
             <p>Na Klyfe Electric, cada projeto solar é elaborado por engenheiros eletricistas capacitados. Avaliamos a capacidade da estrutura do telhado (fibrocimento, metálico, cerâmico ou laje) e determinamos as estruturas de fixação adequadas para ventos fortes característicos do litoral e do sertão nordestino.</p>
-            <p>Para clientes comerciais e industriais no grupo A (média tensão), o projeto de engenharia solar contempla a análise detalhada da demanda contratada e do fator de potência, garantindo que a conexão do sistema fotovoltaico não gere penalidades na fatura.</p>
+            <p>Para clientes comerciais e industriais no grupo A, o projeto pode incluir a análise da demanda contratada, da curva de carga e das condições de conexão. Essas verificações ajudam a estimar o efeito do sistema na fatura sem prometer eliminação de cobranças ou penalidades.</p>
         `,
         faq: [
             {
                 question: 'Por que o projeto precisa de ART (Anotação de Responsabilidade Técnica)?',
-                answer: 'A ART emitida junto ao CREA é exigência legal e norma das concessionárias de energia (como Energisa, Neoenergia e Cosern). Ela garante que um engenheiro habilitado responde tecnicamente pela segurança e correto dimensionamento da instalação.'
+                answer: 'A ART identifica o profissional responsável pelas atividades técnicas abrangidas e formaliza esse vínculo perante o CREA. O documento precisa corresponder ao escopo efetivamente contratado.'
             },
             {
                 question: 'Quanto tempo leva para elaborar o projeto fotovoltaico?',
-                answer: 'Para projetos residenciais e pequenos comércios, a elaboração técnica leva entre 2 a 5 dias úteis. Projetos industriais de grande porte levam de 7 a 15 dias úteis.'
+                answer: 'O prazo depende do porte, da vistoria, da disponibilidade de dados e das análises necessárias. O cronograma é informado após o levantamento inicial e separado do prazo de análise da distribuidora.'
             },
             {
                 question: 'O projeto já inclui o pedido de homologação na concessionária?',
-                answer: 'Sim, o projeto elaborado pela Klyfe já é formatado de acordo com as especificações exigidas pela concessionária local para aprovação imediata do parecer de acesso.'
+                answer: 'O pedido de conexão pode ser incluído no escopo da proposta. A documentação segue os requisitos aplicáveis, mas a aprovação e o prazo de análise dependem da distribuidora e das condições do projeto.'
             }
         ],
         ctaTitle: 'Projete seu sistema solar com engenheiros especialistas.',
@@ -74,12 +74,12 @@ const solarServices = {
         title: 'Instalação de Energia Solar | Klyfe Electric',
         h1: 'Instalação de Energia Solar com Segurança e Performance',
         eyebrow: 'SERVIÇOS SOLARES · EXECUÇÃO E SEGURANÇA',
-        description: 'Instalação profissional de painéis e inversores solares no Nordeste. Equipe própria certificada em NR-10 e NR-35, garantia de instalação e equipamentos de primeira linha.',
+        description: 'Instalação de painéis e inversores solares com planejamento, proteções elétricas, comissionamento e cuidados de segurança para cada imóvel.',
         intro: 'A instalação do sistema fotovoltaico exige precisão mecânica e rigor elétrico. Um módulo mal fixado pode soltar em tempestades; uma conexão elétrica mal crimpada pode gerar arco elétrico e aquecimento. Na Klyfe Electric, a execução é realizada por instaladores e eletricistas treinados sob rigoroso protocolo de segurança do trabalho e engenharia.',
         stats: [
-            { value: 'NR-10 / NR-35', label: 'Equipe Certificada' },
-            { value: '100%', label: 'Kits com DPS e Aterramento' },
-            { value: 'Garantia', label: 'Suporte Pós-Instalação' },
+            { value: 'NR-10 / NR-35', label: 'Segurança Aplicável' },
+            { value: 'Projeto', label: 'DPS e Aterramento' },
+            { value: 'Contrato', label: 'Garantias Definidas' },
             { value: 'Nordeste', label: 'Atendimento Regional' }
         ],
         painPoints: [
@@ -110,18 +110,18 @@ const solarServices = {
             { title: 'Comissionamento', text: 'Testes de continuidade, aferição de tensão, parametrização do inversor e entrega técnica.' }
         ],
         bodyHtml: `
-            <p>Uma <strong>instalação de energia solar</strong> duradoura deve resistir por mais de 25 anos exposta ao sol intenso, chuvas e ventos da região Nordeste. Por isso, a escolha dos insumos e o método construtivo fazem toda a diferença.</p>
+            <p>Uma <strong>instalação de energia solar</strong> é projetada para operar por longo prazo exposta ao sol, à chuva e ao vento. A vida útil real depende dos equipamentos, da estrutura, da execução, do ambiente e da manutenção.</p>
             <p>Utilizamos apenas estruturas de fixação em alumínio anonisado ou aço inoxidável, evitando a corrosão precoce — fator essencial principalmente nas regiões litorâneas do Rio Grande do Norte, Pernambuco e Paraíba. No cabeamento, aplicamos cabos solares flexíveis com proteção contra raios UV e conectores MC4 padrão industrial.</p>
             <p>Após a conclusão física da montagem, realizamos o comissionamento elétrico: testamos as polaridades, a tensão de circuito aberto (VOC), a corrente de curto-circuito (ISC) e a resistência do aterramento antes de energizar o inversor.</p>
         `,
         faq: [
             {
                 question: 'Quanto tempo demora a instalação física das placas solares?',
-                answer: 'Residências de pequeno e médio porte são instaladas em 1 a 2 dias. Instalações comerciais levam de 3 a 7 dias, a depender da complexidade do telhado.'
+                answer: 'O prazo depende do porte do sistema, do telhado, do acesso, das adequações e das condições climáticas. A proposta informa o cronograma estimado depois da vistoria e da definição do escopo.'
             },
             {
                 question: 'A instalação das placas fura meu telhado? Há risco de vazar água?',
-                answer: 'Utilizamos fixadores específicos para cada tipo de telha (cerâmica, fibrocimento, metálica) com borrachas EPDM de vedação e vedantes estruturais que impedem qualquer infiltração de água.'
+                answer: 'A fixação é escolhida conforme o tipo e o estado da cobertura. Vedações e procedimentos corretos reduzem o risco de infiltração, mas a condição existente do telhado também precisa ser avaliada antes da instalação.'
             },
             {
                 question: 'Vocês realizam a instalação em telhados de laje ou no solo?',
@@ -139,17 +139,17 @@ const solarServices = {
         h1: 'Homologação de Sistema Solar com Suporte Completo',
         eyebrow: 'SERVIÇOS SOLARES · REGULARIZAÇÃO E CONEXÃO',
         description: 'Homologação de energia solar fotovoltaica junto à Energisa, Neoenergia e Cosern. Suporte burocrático e técnico do parecer de acesso à troca do medidor.',
-        intro: 'Sem a homologação correta na distribuidora de energia, o seu sistema fotovoltaico não pode ser ligado à rede elétrica. A homologação garante que o seu gerador cumpre as exigências regulatórias da ANEEL e permite que a concessionária substitua o seu medidor antigo por um modelo bidirecional (que registra a energia injetada e consumida). A Klyfe assume 100% da burocracia técnica.',
+        intro: 'Um sistema fotovoltaico conectado à rede precisa seguir o processo de conexão da distribuidora antes de injetar energia. A Klyfe pode elaborar e acompanhar as etapas técnicas incluídas no contrato, enquanto a análise, os prazos e os atos de conexão que cabem à distribuidora permanecem sob responsabilidade dela.',
         stats: [
             { value: 'Energisa / Cosern', label: 'Distribuidoras do Eixo' },
-            { value: '100%', label: 'Acompanhamento de Vistoria' },
+            { value: 'Protocolo', label: 'Acompanhamento Técnico' },
             { value: 'ANEEL', label: 'Conformidade com a Lei 14.300' },
-            { value: 'Zero', label: 'Dor de cabeça para o cliente' }
+            { value: 'Transparência', label: 'Pendências Informadas' }
         ],
         painPoints: [
             {
                 title: 'Reprovações por falha em projetos informais',
-                text: 'Projetos sem atenção às normas técnicas locais são reprovados pela distribuidora, atrasando a ligação do sistema e a economia na conta em meses.'
+                text: 'Documentação incompleta ou divergente pode gerar pendências e retrabalho. A revisão prévia reduz esse risco, mas não garante aprovação automática.'
             },
             {
                 title: 'Exigências de adequação do padrão de entrada',
@@ -164,8 +164,8 @@ const solarServices = {
             'Solicitação de Acesso (Parecer de Acesso) protocolado via sistema oficial',
             'Submissão de diagramas unifilares, memoriais e ART de projeto/execução',
             'Adequação do padrão de entrada conforme norma técnica da concessionária',
-            'Agendamento e acompanhamento presencial da vistoria técnica da distribuidora',
-            'Ativação do medidor bidirecional e entrada oficial no sistema de créditos'
+            'Solicitação e acompanhamento das verificações previstas pela distribuidora',
+            'Orientação ao cliente até a conclusão das etapas contratadas'
         ],
         processSteps: [
             { title: 'Protocolo', text: 'Envio do projeto elétrico e documentação do titular para a concessionária.' },
@@ -175,13 +175,13 @@ const solarServices = {
         ],
         bodyHtml: `
             <p>A <strong>homologação de energia solar</strong> é a etapa jurídica e técnica que autoriza a conexão do sistema de micro ou minigeração distribuída à rede da concessionária (como Energisa na Paraíba, Neoenergia em Pernambuco ou Cosern no Rio Grande do Norte).</p>
-            <p>Com as atualizações regulatórias introduzidas pela Lei 14.300 (Marco Legal da Geração Distribuída), o enquadramento tarifário e a análise de fluxo de potência tornaram-se ainda mais exigentes. Qualquer divergência entre o inversor instalado e a documentação enviada resulta em reprovação automática da vistoria.</p>
-            <p>A Klyfe Electric cuida de todas as interações burocráticas: preenchimento dos formulários de cadastro de carga, submissão da ART, agendamento de vistoria e acompanhamento até a instalação do medidor bidirecional.</p>
+            <p>A Lei 14.300 e a regulamentação da ANEEL estabelecem regras para a micro e minigeração distribuída. Divergências entre a documentação e o sistema instalado podem gerar pendências que precisam ser corrigidas.</p>
+            <p>A Klyfe Electric pode cuidar dos formulários, documentos técnicos, ART e acompanhamento previstos no escopo. A distribuidora analisa a solicitação e define as condições de conexão aplicáveis.</p>
         `,
         faq: [
             {
                 question: 'Quanto tempo demora o processo de homologação da energia solar?',
-                answer: 'O prazo regulatório da ANEEL para emissão do parecer de acesso é de até 15 dias (para microgeração sem necessidade de obras na rede). A vistoria e troca do medidor ocorrem em até 7 dias úteis após a solicitação.'
+                answer: 'Não existe um prazo único para todos os projetos. Potência, nível de tensão, documentação, necessidade de obras e o procedimento vigente alteram o cronograma. A proposta deve separar o prazo interno da Klyfe do prazo da distribuidora.'
             },
             {
                 question: 'Posso ligar meu inversor antes da concessionária trocar o medidor?',
@@ -192,8 +192,8 @@ const solarServices = {
                 answer: 'Identificamos a necessidade de adequação durante a visita técnica prévia. Se necessário, realizamos a adequação do padrão para que atenda às exigências da concessionária antes da vistoria.'
             }
         ],
-        ctaTitle: 'Homologue seu sistema solar sem atrasos nem complicações.',
-        ctaSubtitle: 'Deixe a burocracia regulatória com a equipe de engenharia da Klyfe.'
+        ctaTitle: 'Organize a conexão do seu sistema solar com suporte técnico.',
+        ctaSubtitle: 'Entenda documentos, responsabilidades e etapas antes de protocolar.'
     },
 
     'manutencao-energia-solar': {
@@ -203,12 +203,12 @@ const solarServices = {
         h1: 'Manutenção Preventiva e Corretiva em Sistemas Solares',
         eyebrow: 'SERVIÇOS SOLARES · O&M E PERFORMANCE',
         description: 'Manutenção técnica de usinas e sistemas solares no Nordeste. Termografia, reaperto de conexões, diagnóstico de falhas e recuperação de geração.',
-        intro: 'Um sistema solar sem manutenção preventiva pode perder entre 10% e 35% de eficiência ao longo dos anos devido a pontos quentes (hotspots), afrouxamento de conectores e degradação de componentes elétricos. A Klyfe Electric oferece serviços especializados de O&M (Operação e Manutenção) preventiva e corretiva para garantir que sua usina gere o máximo de energia possível.',
+        intro: 'Quedas de geração podem estar relacionadas a sujeira, sombreamento, alarmes, conexões, inversores ou indisponibilidade. A manutenção preventiva e corretiva busca identificar a causa com inspeções e medições compatíveis com o sistema, sem aplicar um percentual genérico de perda ou recuperação.',
         stats: [
-            { value: 'até +30%', label: 'Recuperação de Geração' },
+            { value: 'Diagnóstico', label: 'Causa da Queda' },
             { value: 'Termografia', label: 'Detecção de Hotspots' },
-            { value: 'Preventiva', label: 'Inspeção Anual' },
-            { value: 'Corretiva', label: 'Reparo Rápido' }
+            { value: 'Preventiva', label: 'Plano por Condição' },
+            { value: 'Corretiva', label: 'Reparo por Diagnóstico' }
         ],
         painPoints: [
             {
@@ -239,13 +239,13 @@ const solarServices = {
         ],
         bodyHtml: `
             <p>A <strong>manutenção de energia solar</strong> preventiva é a chave para proteger o retorno financeiro do seu investimento fotovoltaico. Embora os sistemas solares sejam altamente duráveis, as intempéries, vibrações e variações extremas de temperatura no Nordeste exigem acompanhamento técnico regular.</p>
-            <p>Durante a manutenção preventiva, realizamos testes avançados: a varredura termográfica detecta <em>hotspots</em> (pontos quentes) provocados por sombras, sujeira localizada ou defeitos em diodos de bypass, prevenindo danos permanentes às células do módulo.</p>
+            <p>Quando indicada, a termografia ajuda a localizar aquecimentos anormais que precisam ser interpretados junto com a inspeção e os dados elétricos. O diagnóstico diferencia sujeira, sombra, defeito de componente e problema de conexão antes de recomendar uma intervenção.</p>
             <p>Já na manutenção corretiva, nossa equipe atua com agilidade para diagnosticar e reparar falhas em inversores, substituição de fusíveis queimados em String Boxes e correção de falhas de aterramento que desarmam o sistema.</p>
         `,
         faq: [
             {
                 question: 'Com qual frequência devo realizar a manutenção preventiva do meu sistema solar?',
-                answer: 'Recomendamos a realização de manutenção preventiva pelo menos 1 vez ao ano em instalações residenciais e a cada 6 meses em usinas comerciais ou de solo.'
+                answer: 'A frequência depende do manual dos equipamentos, do ambiente, do porte, do histórico de falhas e dos dados de desempenho. Uma inspeção inicial permite definir um plano baseado nas condições reais da usina.'
             },
             {
                 question: 'Como saber se o meu sistema está precisando de manutenção?',
@@ -256,7 +256,7 @@ const solarServices = {
                 answer: 'Sim! Realizamos diagnósticos, manutenção corretiva e otimização de sistemas instalados por terceiros em toda a Paraíba, Pernambuco e Rio Grande do Norte.'
             }
         ],
-        ctaTitle: 'Recupere a geração máxima do seu sistema solar.',
+        ctaTitle: 'Identifique a causa da queda de geração do seu sistema.',
         ctaSubtitle: 'Agende uma inspeção técnica com relatório termográfico completo.'
     },
 
@@ -264,15 +264,15 @@ const solarServices = {
         slug: 'monitoramento-usina-solar',
         urlPath: '/servicos/monitoramento-usina-solar/',
         title: 'Monitoramento de Usina Solar | Klyfe Electric',
-        h1: 'Monitoramento de Energia Solar para Máxima Geração',
+        h1: 'Monitoramento de Energia Solar e Acompanhamento da Geração',
         eyebrow: 'SERVIÇOS SOLARES · TECNOLOGIA E PERFORMANCE',
         description: 'Monitoramento remoto em tempo real de usinas solares fotovoltaicas. Gestão de alertas, análise de geração diária e acompanhamento de créditos no Nordeste.',
         intro: 'Instalar energia solar e não acompanhar a geração diária é como dirigir sem velocímetro. O monitoramento contínuo permite detectar falhas no inversor no mesmo dia em que ocorrem, evitando que a usina passe semanas desligada sem que você perceba. A Klyfe Electric implementa sistemas de telemetria inteligente e gestão de desempenho.',
         stats: [
-            { value: '24/7', label: 'Acompanhamento de Geração' },
+            { value: 'Histórico', label: 'Acompanhamento de Geração' },
             { value: 'Alertas', label: 'Notificação de Falhas' },
             { value: 'App / Web', label: 'Acesso Remoto' },
-            { value: '0 kWh', label: 'Energia Desperdiçada' }
+            { value: 'Dados', label: 'Decisão de Manutenção' }
         ],
         painPoints: [
             {
@@ -304,12 +304,12 @@ const solarServices = {
         bodyHtml: `
             <p>O <strong>monitoramento de usinas solares</strong> transforma dados brutos em decisões inteligentes de gestão energética. Ao acompanhar a curva diária de geração de energia (kWh), é possível identificar rapidamente o impacto de sombras, sujeira nos módulos ou oscilações de tensão da concessionária.</p>
             <p>A Klyfe integra plataformas de telemetria que operam em nuvem, permitindo que o cliente acompanhe a geração da usina de qualquer lugar via smartphone ou computador.</p>
-            <p>Para clientes B2B e usinas de médio e grande porte, nosso time de engenharia monitora remotamente os principais indicadores de desempenho (Performance Ratio - PR), garantindo que qualquer anomalia seja corrigida imediatamente por nossa equipe de campo.</p>
+            <p>Para clientes B2B e usinas de maior porte, o escopo pode incluir acompanhamento remoto de indicadores de desempenho. Alertas ajudam a detectar anomalias, mas diagnóstico, prazo de resposta e atendimento em campo dependem do contrato e da causa encontrada.</p>
         `,
         faq: [
             {
                 question: 'O monitoramento funciona em qualquer marca de inversor?',
-                answer: 'Sim, a maioria dos inversores modernos possui comunicação Wi-Fi ou RS485/4G nativa ou via módulo adicional, compatível com as principais plataformas do mercado.'
+                answer: 'A compatibilidade depende da marca, do modelo, do protocolo de comunicação, do datalogger e da plataforma. A análise técnica confirma as opções disponíveis antes da contratação.'
             },
             {
                 question: 'Preciso ter internet Wi-Fi no local da instalação?',
@@ -330,13 +330,13 @@ const solarServices = {
         title: 'Limpeza de Painéis Solares | Klyfe Electric',
         h1: 'Limpeza Técnica de Painéis Solares',
         eyebrow: 'SERVIÇOS SOLARES · MANUTENÇÃO E EFICIÊNCIA',
-        description: 'Limpeza profissional de placas e painéis solares no Nordeste. Remoção de poeira, dejetos de aves e fuligem com equipamentos e produtos específicos sem riscos.',
-        intro: 'No Nordeste, a poeira do sertão, a fuligem de vias movimentadas e a maresia litorânea formam uma camada opaca sobre os módulos solares. Essa sujeira bloqueia a passagem da luz solar e pode reduzir a geração do seu sistema em até 25%. A limpeza técnica profissional restaura a capacidade total das placas solares de forma segura e sem riscar o vidro temperado.',
+        description: 'Limpeza de painéis solares com avaliação de sujeira, segurança de acesso e procedimentos compatíveis com o manual dos módulos e as condições locais.',
+        intro: 'Poeira, fuligem, resíduos de aves e névoa salina podem se depositar sobre os módulos. O efeito na geração varia conforme clima, inclinação e tipo de sujeira; por isso, a limpeza deve ser indicada a partir de inspeção, dados do sistema e orientações do fabricante.',
         stats: [
-            { value: 'até +25%', label: 'Ganho Instantâneo de Eficiência' },
-            { value: 'Sem Risco', label: 'Escovas Macias Específicas' },
-            { value: 'Água Deionizada', label: 'Sem Manchas de Calcário' },
-            { value: 'Segurança', label: 'Ancoragem e NR-35' }
+            { value: 'Inspeção', label: 'Necessidade Confirmada' },
+            { value: 'Manual', label: 'Método Compatível' },
+            { value: 'Água', label: 'Qualidade Avaliada' },
+            { value: 'NR-35', label: 'Segurança em Altura' }
         ],
         painPoints: [
             {
@@ -345,18 +345,18 @@ const solarServices = {
             },
             {
                 title: 'Uso de produtos químicos inadequados',
-                text: 'Lavar as placas com sabão em pó, detergentes abrasivos ou produtos ácidos danifica a camada anti-reflexo do vidro e invalida a garantia do fabricante.'
+                text: 'Produtos e ferramentas não autorizados podem danificar o revestimento ou contrariar as condições de garantia. O manual do módulo define o procedimento compatível.'
             },
             {
                 title: 'Choque térmico e trincas no vidro',
-                text: 'Lavar os módulos sob o sol quente do meio-dia com água fria causa choque térmico, trincando as células fotovoltaicas internamente.'
+                text: 'Temperatura dos módulos, qualidade da água e condições de operação precisam entrar no planejamento para evitar estresse térmico e riscos durante a atividade.'
             }
         ],
         benefits: [
             'Utilização de água filtrada/deionizada e escovas rotativas ultra-macias específicas para fotovoltaica',
-            'Remoção completa de excrementos de pássaros, poeira mineral, fuligem e resíduos vegetais',
-            'Execução no início da manhã ou fim da tarde para evitar choque térmico nas placas',
-            'Equipe equipada com linha de vida e equipamentos de segurança NR-35',
+            'Remoção dos depósitos identificados na inspeção e compatíveis com o escopo',
+            'Horário e procedimento definidos pelas condições do local e pelo manual',
+            'Planejamento de acesso e proteções aplicáveis ao trabalho em altura',
             'Inspeção visual inclusa para identificar módulos trincados ou fixadores soltos'
         ],
         processSteps: [
@@ -366,14 +366,14 @@ const solarServices = {
             { title: 'Re-energização', text: 'Religamento do sistema e verificação do pico instantâneo de geração no inversor.' }
         ],
         bodyHtml: `
-            <p>A <strong>limpeza de painéis solares</strong> é a intervenção de manutenção de menor custo e maior retorno imediato na geração de energia. Em regiões nordestinas com longos períodos de estiagem, a poeira mineral acumulada sobre a superfície de vidro atua como uma barreira física à radiação solar.</p>
+            <p>A <strong>limpeza de painéis solares</strong> pode recuperar parte da geração perdida por sujeira quando o diagnóstico confirma essa causa. Em regiões com estiagem, obras, vias movimentadas ou exposição costeira, a inspeção ajuda a definir a necessidade e a periodicidade.</p>
             <p>Lavar placas solares não é equivalente a lavar um piso de concreto. Vidros fotovoltaicos possuem tratamento antireflexo e revestimentos especiais. O uso de vassouras de cerdas duras, palhas de aço ou produtos químicos agressivos risca a superfície e reduz permanentemente o rendimento do módulo.</p>
-            <p>A Klyfe utiliza equipamentos apropriados: varas telescópicas com escovas de cerdas ultrafinas de nylon e água com baixo teor de minerais, garantindo a remoção da sujeira sem micro-riscos e mantendo a garantia de 25 anos dos fabricantes.</p>
+            <p>Os equipamentos, a pressão, a água e os produtos são definidos conforme o manual do módulo e o acesso. A garantia é concedida pelo respectivo fornecedor e continua sujeita aos termos e às condições documentadas por ele.</p>
         `,
         faq: [
             {
                 question: 'Com que frequência devo lavar meus painéis solares?',
-                answer: 'A recomendação geral no Nordeste é lavar os painéis de 1 a 2 vezes por ano. Em locais próximos a estradas de terra, canteiros de obras ou indústrias, a limpeza pode ser necessária a cada 4 meses.'
+                answer: 'Não há um intervalo universal. Dados de geração, inspeção visual, chuva, inclinação e tipo de depósito ajudam a definir a frequência, sempre respeitando o manual do fabricante.'
             },
             {
                 question: 'A chuva normal não limpa as placas solares?',
@@ -381,7 +381,7 @@ const solarServices = {
             },
             {
                 question: 'Vocês limpam instalações de difícil acesso ou telhados muito altos?',
-                answer: 'Sim! Nossos técnicos são treinados para acesso seguro em altura (NR-35) com ancoragem apropriada em telhados residenciais, galpões industriais e lajes comerciais.'
+                answer: 'O atendimento depende de uma avaliação de acesso, ancoragem, altura, cobertura e riscos. A Klyfe confirma a viabilidade e as medidas de segurança antes de incluir o serviço na proposta.'
             }
         ],
         ctaTitle: 'Recupere a potência do seu sistema com uma limpeza profissional.',
@@ -394,62 +394,62 @@ const solarServices = {
         title: 'Financiamento para Energia Solar | Klyfe Electric',
         h1: 'Como Financiar Seu Sistema de Energia Solar',
         eyebrow: 'SERVIÇOS SOLARES · LINHAS DE CRÉDITO E PAYBACK',
-        description: 'Financiamento de energia solar residencial, comercial e rural no Nordeste. Troque a conta de luz pela parcela do financiamento com carência de até 120 dias.',
-        intro: 'Você não precisa descapitalizar seu caixa nem usar suas reservas de emergência para instalar energia solar. Com as linhas de financiamento fotovoltaico atuais, a própria economia gerada na conta de luz cobre o valor da parcela mensal do projeto. Você troca um gasto fundo perdido por uma parcela que tem prazo para acabar.',
+        description: 'Entenda como financiar energia solar, quais custos comparar e por que entrada, juros, carência e aprovação dependem da instituição e do perfil do cliente.',
+        intro: 'O financiamento pode reduzir o desembolso inicial, mas cria um compromisso de crédito que precisa ser comparado com a economia estimada. Entrada, prazo, juros, carência, seguros e aprovação dependem da instituição financeira e do perfil do cliente; a parcela não é automaticamente menor que a redução da fatura.',
         stats: [
-            { value: 'Até 100%', label: 'Do Projeto Financiado' },
-            { value: 'até 120 dias', label: 'De Carência para 1ª Parcela' },
-            { value: 'até 84x', label: 'Prazo de Pagamento' },
-            { value: 'PF / PJ / Agro', label: 'Linhas Específicas' }
+            { value: 'CET', label: 'Custo Total Comparado' },
+            { value: 'Crédito', label: 'Sujeito à Aprovação' },
+            { value: 'Cenários', label: 'Parcela e Economia' },
+            { value: 'PF / PJ / Agro', label: 'Perfis Analisados' }
         ],
         painPoints: [
             {
                 title: 'Receio de desembolsar um valor alto à vista',
-                text: 'O financiamento permite instalar o sistema sem entrada, utilizando a economia na fatura para pagar as parcelas mensais do banco.'
+                text: 'Algumas linhas podem reduzir a entrada, conforme análise de crédito. Compare o Custo Efetivo Total e mantenha margem caso a economia fique abaixo da projeção.'
             },
             {
                 title: 'Burocracia bancária e incerteza na aprovação',
-                text: 'Ajudamos a preparar toda a documentação técnica e projeto para envio direto aos bancos parceiros com agilidade.'
+                text: 'A Klyfe pode preparar a documentação técnica do projeto. A relação com instituições, os documentos financeiros e o prazo de análise são confirmados em cada proposta.'
             },
             {
                 title: 'Taxas de juros e cálculo de viabilidade',
-                text: 'Comparamos as principais opções do mercado (Santander, BV, Sicredi, Banco do Nordeste, Solfácil) para encontrar a melhor taxa para o seu perfil.'
+                text: 'Taxa nominal não basta: compare CET, entrada, prazo, carência, seguros, garantias e condições para quitação antecipada.'
             }
         ],
         benefits: [
-            'Simulação de crédito gratuita comparando múltiplos bancos',
-            'Projetos 100% financiados (equipamentos + engenharia + instalação)',
-            'Prazos flexíveis de 12 a 84 meses com juros competitivos',
-            'Carência de 30 a 120 dias para começar a pagar (prazo ideal para o sistema já estar gerando)',
-            'Linhas de crédito com incentivo sustentável (ESG / FNE Sol no Banco do Nordeste)'
+            'Levantamento do investimento total necessário para o projeto',
+            'Separação entre economia projetada e obrigação de pagamento',
+            'Checklist para comparar entrada, prazo, juros, seguros e CET',
+            'Documentação técnica do sistema conforme o escopo contratado',
+            'Avaliação das condições vigentes apresentadas pela instituição financeira'
         ],
         processSteps: [
-            { title: 'Simulação', text: 'Calculamos a parcela ideal com base no valor da sua conta de luz atual.' },
-            { title: 'Aprovação', text: 'Envio da documentação e projeto para análise de crédito junto à instituição financeira.' },
-            { title: 'Contratação', text: 'Assinatura digital do contrato de financiamento com o banco aprovado.' },
-            { title: 'Execução', text: 'Liberação dos recursos para compra de equipamentos e início imediato da instalação.' }
+            { title: 'Projeto', text: 'Dimensionamento do sistema e definição do investimento necessário.' },
+            { title: 'Comparação', text: 'Análise das propostas de crédito e do Custo Efetivo Total.' },
+            { title: 'Aprovação', text: 'Envio de documentos e decisão de crédito pela instituição escolhida.' },
+            { title: 'Execução', text: 'Início do projeto conforme liberação, contrato e cronograma técnico.' }
         ],
         bodyHtml: `
-            <p>O <strong>financiamento para energia solar</strong> é a ferramenta que democratizou o acesso à energia limpa no Brasil. Em vez de pagar uma tarifa de energia que sobe constantemente acima da inflação, você fixa o valor das parcelas do financiamento fotovoltaico.</p>
-            <p>Na prática, se você paga R$ 800 por mês à distribuidora, é possível estruturar um financiamento com parcela de valor semelhante (ou até inferior). Durante o prazo do financiamento, seu custo permanece estável. Após a quitação do contrato, o sistema continua produzindo por mais de 20 anos com custo praticamente zero.</p>
-            <p>A Klyfe apoia você em todas as etapas: desde a simulação de crédito até a emissão da documentação técnica exigida pelos bancos comerciais e de desenvolvimento (como BNB / FNE Sol).</p>
+            <p>O <strong>financiamento para energia solar</strong> transforma parte do investimento inicial em parcelas. A comparação responsável usa o Custo Efetivo Total, e não apenas a taxa anunciada ou o valor da primeira prestação.</p>
+            <p>A economia solar é uma estimativa sujeita a geração, consumo, tarifa, cobranças remanescentes e disponibilidade. Já a parcela é uma obrigação contratual. Por isso, a análise deve testar cenários conservador, provável e favorável, com margem financeira.</p>
+            <p>A Klyfe pode fornecer o orçamento e a documentação técnica previstos no escopo. A aprovação, as condições e a contratação do crédito são definidas pela instituição financeira escolhida pelo cliente.</p>
         `,
         faq: [
             {
                 question: 'Preciso dar algum valor de entrada no financiamento solar?',
-                answer: 'Na maioria das instituições parceiras é possível financiar 100% do valor do projeto (equipamentos, engenharia e mão de obra), sem necessidade de entrada.'
+                answer: 'Depende da instituição, do produto de crédito e da análise do cliente. Algumas propostas podem exigir entrada, garantias ou financiar apenas parte do escopo. Confirme tudo no contrato bancário.'
             },
             {
                 question: 'Quais documentos são necessários para aprovar o crédito solar?',
-                answer: 'Para Pessoa Física: documento de identidade (RG/CNH), comprovante de residência e fatura de energia recente. Para Pessoa Física / PJ: contrato social, faturamento dos últimos 12 meses e fatura de energia.'
+                answer: 'Os documentos variam por instituição e perfil. Em geral, podem incluir identificação, comprovantes financeiros, fatura de energia e dados do projeto. A lista oficial deve vir da instituição escolhida.'
             },
             {
                 question: 'O que é a carência do financiamento solar?',
-                answer: 'É o prazo entre a aprovação do contrato e o vencimento da primeira parcela (geralmente entre 30 e 120 dias). Essa carência permite que a instalação e homologação sejam concluídas antes de você começar a pagar a 1ª parcela.'
+                answer: 'Carência é o intervalo previsto no contrato antes do início dos pagamentos. Ela não é garantida e pode gerar juros ou encargos. Compare o CET e não presuma que instalação e conexão terminarão antes da primeira parcela.'
             }
         ],
-        ctaTitle: 'Faça uma simulação de financiamento solar sem compromisso.',
-        ctaSubtitle: 'Veja como trocar a sua conta de luz por um investimento próprio.'
+        ctaTitle: 'Compare o financiamento solar com premissas claras.',
+        ctaSubtitle: 'Solicite o orçamento técnico antes de avaliar as condições de crédito.'
     }
 };
 

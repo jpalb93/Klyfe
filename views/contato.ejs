@@ -37,15 +37,16 @@
         }
     </style>
 </head>
-<body>
+<body class="page-contact">
     <%- include('partials/navbar') %>
 
     <main style="padding-top: 80px;">
         <section class="bg-blueprint" style="padding: 4rem 0; border-bottom: 1px solid var(--border-color);">
             <div class="container fade-in">
-                <div style="font-family: var(--font-mono); color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
-                    Home > Contato
-                </div>
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Contato' }
+                ] }) %>
                 <h1>FALE COM A KLYFE ELECTRIC</h1>
                 <p style="color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin-top: 1rem;">
                     Atendemos Campina Grande, João Pessoa e toda a região. Orçamento sem compromisso.
@@ -123,6 +124,14 @@
                             <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Atendimento Local</h4>
                             <p style="font-size: 0.9rem; line-height: 1.4;">Realizamos consultoria técnica e vistorias diretamente no local da sua obra ou empresa em toda a Paraíba.</p>
                         </div>
+                        <div class="bracket-box" style="padding: 1.5rem; grid-column: span 2;">
+                            <i class="fas fa-map-marker-alt" style="color: var(--accent-primary); margin-bottom: 0.5rem; display: block;"></i>
+                            <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">Sede em Campina Grande</h4>
+                            <address style="font-style: normal; font-size: 0.9rem; line-height: 1.5;">
+                                <a href="<%= business.mapsUrl %>" target="_blank" rel="noopener" style="color: var(--text-main); text-decoration: none;"><%= business.formattedAddress %></a>
+                            </address>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">CNPJ: <%= business.taxId %></p>
+                        </div>
                         <div class="bracket-box" style="padding: 1.5rem;">
                             <i class="fab fa-whatsapp" style="color: var(--accent-secondary); margin-bottom: 0.5rem; display: block;"></i>
                             <h4 style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase;">WhatsApp</h4>
@@ -143,11 +152,11 @@
                     <!-- Selo Google -->
                     <div class="bracket-box" style="margin-bottom: 2rem; padding: 1.5rem; display: flex; align-items: center; gap: 1.5rem; border-color: rgba(255, 185, 0, 0.3);">
                         <div style="font-size: 2rem; color: #FFB900;">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <i class="fab fa-google" aria-hidden="true"></i>
                         </div>
                         <div>
-                            <div style="font-weight: bold; font-size: 1.1rem; color: var(--text-main);">5,0 de Excelência</div>
-                            <div style="color: var(--text-muted); font-size: 0.9rem;">+120 avaliações positivas no Google</div>
+                            <div style="font-weight: bold; font-size: 1.1rem; color: var(--text-main);">Perfil da Klyfe no Google</div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;"><a href="<%= business.mapsUrl %>" target="_blank" rel="noopener">Consulte avaliações e informações atualizadas</a></div>
                         </div>
                     </div>
 
@@ -199,6 +208,6 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

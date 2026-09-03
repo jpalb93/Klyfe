@@ -9,7 +9,14 @@
 
   let cityPrefix = (activeCityKey !== 'default') ? '/' + activeCityKey : '';
   let currentPage = (typeof page !== 'undefined') ? page : '';
-  let servicePath = (['engenharia', 'eletrica', 'automacao', 'solar'].includes(currentPage)) ? `/solucoes/${currentPage}` : '/solucoes';
+  const isSolarContext = currentPage.includes('solar');
+  let servicePath = (['engenharia', 'eletrica', 'automacao'].includes(currentPage)) ? `/solucoes/${currentPage}` : '/solucoes';
+  const solarPath = activeCityKey === 'campina-grande'
+      ? '/energia-solar/campina-grande-pb/'
+      : (activeCityKey === 'joao-pessoa' ? '/energia-solar/joao-pessoa-pb/' : '/energia-solar/');
+  const selectorDefaultHref = isSolarContext ? '/energia-solar/' : servicePath;
+  const selectorCampinaHref = isSolarContext ? '/energia-solar/campina-grande-pb/' : `/campina-grande${servicePath}`;
+  const selectorJoaoPessoaHref = isSolarContext ? '/energia-solar/joao-pessoa-pb/' : `/joao-pessoa${servicePath}`;
 
   const waMenuMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.');
   const waMenuUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(waMenuMsg)}`;
@@ -47,7 +54,7 @@
                         <a href="<%= cityPrefix %>/solucoes/automacao"><i class="fas fa-cog" style="color:var(--accent-secondary);margin-right:0.5rem"></i> Automação</a>
                     <% } %>
                     <% if (isServiceEnabled('solar')) { %>
-                        <a href="/energia-solar/"><i class="fas fa-sun" style="color:var(--accent-solar);margin-right:0.5rem"></i> Energia Solar</a>
+                        <a href="<%= solarPath %>"><i class="fas fa-sun" style="color:var(--accent-solar);margin-right:0.5rem"></i> Energia Solar</a>
                     <% } %>
                 </div>
 
@@ -67,9 +74,9 @@
                 </a>
                 <div class="dropdown-menu">
                     <div style="padding: 0.5rem 1.2rem; font-size: 0.7rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-color);">Região de Atendimento</div>
-                    <a href="<%= servicePath %>">Estado da Paraíba</a>
-                    <a href="/campina-grande<%= servicePath %>">Campina Grande</a>
-                    <a href="/joao-pessoa<%= servicePath %>">João Pessoa</a>
+                    <a href="<%= selectorDefaultHref %>">Estado da Paraíba</a>
+                    <a href="<%= selectorCampinaHref %>">Campina Grande</a>
+                    <a href="<%= selectorJoaoPessoaHref %>">João Pessoa</a>
                 </div>
             </div>
 
@@ -88,13 +95,13 @@
     <!-- Seletor Rápido de Cidade (Mobile) -->
     <div class="quick-city-selector">
         <div class="quick-city-header">Selecione sua Região</div>
-        <a href="<%= servicePath %>" class="<%= activeCityKey === 'default' ? 'active' : '' %>">
+        <a href="<%= selectorDefaultHref %>" class="<%= activeCityKey === 'default' ? 'active' : '' %>">
             <i class="fas fa-map"></i> Paraíba (Geral)
         </a>
-        <a href="/campina-grande<%= servicePath %>" class="<%= activeCityKey === 'campina-grande' ? 'active' : '' %>">
+        <a href="<%= selectorCampinaHref %>" class="<%= activeCityKey === 'campina-grande' ? 'active' : '' %>">
             <i class="fas fa-map-marker-alt"></i> Campina Grande
         </a>
-        <a href="/joao-pessoa<%= servicePath %>" class="<%= activeCityKey === 'joao-pessoa' ? 'active' : '' %>">
+        <a href="<%= selectorJoaoPessoaHref %>" class="<%= activeCityKey === 'joao-pessoa' ? 'active' : '' %>">
             <i class="fas fa-map-marker-alt"></i> João Pessoa
         </a>
     </div>
@@ -103,49 +110,54 @@
 <!-- Mobile Nav -->
 <div class="mobile-overlay"></div>
 <div class="mobile-nav">
-    <button class="close-btn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
-    <div class="logo-mobile-wrapper">
-        <%- include('logo') %>
+    <div class="mobile-nav-top-row">
+        <div class="logo-mobile-wrapper">
+            <%- include('logo') %>
+        </div>
+        <button class="close-btn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
     </div>
-    <a href="<%= cityPrefix || '/' %>">Home</a>
-    
-    <% if (isServiceEnabled('engenharia')) { %>
-        <a href="<%= cityPrefix %>/solucoes/engenharia">Engenharia Elétrica</a>
-    <% } %>
-    <% if (isServiceEnabled('eletrica')) { %>
-        <a href="<%= cityPrefix %>/solucoes/eletrica">Serviços Elétricos</a>
-    <% } %>
-    <% if (isServiceEnabled('automacao')) { %>
-        <a href="<%= cityPrefix %>/solucoes/automacao">Automação</a>
-    <% } %>
-    <% if (isServiceEnabled('solar')) { %>
-        <a href="/energia-solar/">Energia Solar</a>
-    <% } %>
 
-
-    <a href="<%= cityPrefix %>/quem-somos">Quem Somos</a>
-    <a href="<%= cityPrefix %>/projetos">Projetos</a>
-    <a href="<%= cityPrefix %>/blog">Blog</a>
-    <a href="<%= cityPrefix %>/contato">Contato</a>
-
-
-    <!-- Seletor de Região Mobile -->
-    <div class="mobile-location-selector">
-        <p>Selecione sua Região:</p>
-        <div class="mobile-location-links">
-            <a href="<%= servicePath %>" class="<%= activeCityKey === 'default' ? 'active' : '' %>">
-                <i class="fas fa-map"></i> Paraíba (Geral)
+    <!-- Seletor de Região em Destaque no Topo do Menu Mobile -->
+    <div class="mobile-nav-region-header">
+        <span class="region-label"><i class="fas fa-map-marker-alt"></i> Sua Região Atual:</span>
+        <div class="mobile-region-pills">
+            <a href="<%= selectorDefaultHref %>" class="region-pill <%= activeCityKey === 'default' ? 'active' : '' %>">
+                <span>Estado da Paraíba</span>
             </a>
-            <a href="/campina-grande<%= servicePath %>" class="<%= activeCityKey === 'campina-grande' ? 'active' : '' %>">
-                <i class="fas fa-map-marker-alt"></i> Campina Grande
+            <a href="<%= selectorCampinaHref %>" class="region-pill <%= activeCityKey === 'campina-grande' ? 'active' : '' %>">
+                <span>Campina Grande</span>
             </a>
-            <a href="/joao-pessoa<%= servicePath %>" class="<%= activeCityKey === 'joao-pessoa' ? 'active' : '' %>">
-                <i class="fas fa-map-marker-alt"></i> João Pessoa
+            <a href="<%= selectorJoaoPessoaHref %>" class="region-pill <%= activeCityKey === 'joao-pessoa' ? 'active' : '' %>">
+                <span>João Pessoa</span>
             </a>
         </div>
     </div>
 
-    <a href="<%= waMenuUrl %>" target="_blank" rel="noopener" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>" style="color:var(--accent-secondary);margin-top:1.5rem;border-bottom:none"><i class="fab fa-whatsapp"></i> (83) 99133-0972</a>
+    <nav class="mobile-nav-links-wrap">
+        <a href="<%= cityPrefix || '/' %>" class="nav-item">Home</a>
+        
+        <% if (isServiceEnabled('engenharia')) { %>
+            <a href="<%= cityPrefix %>/solucoes/engenharia" class="nav-item">Engenharia Elétrica</a>
+        <% } %>
+        <% if (isServiceEnabled('eletrica')) { %>
+            <a href="<%= cityPrefix %>/solucoes/eletrica" class="nav-item">Serviços Elétricos</a>
+        <% } %>
+        <% if (isServiceEnabled('automacao')) { %>
+            <a href="<%= cityPrefix %>/solucoes/automacao" class="nav-item">Automação</a>
+        <% } %>
+        <% if (isServiceEnabled('solar')) { %>
+            <a href="<%= solarPath %>" class="nav-item text-solar-orange-nav">Energia Solar</a>
+        <% } %>
 
+        <a href="<%= cityPrefix %>/quem-somos" class="nav-item">Quem Somos</a>
+        <a href="<%= cityPrefix %>/projetos" class="nav-item">Projetos</a>
+        <a href="<%= cityPrefix %>/blog" class="nav-item">Blog</a>
+        <a href="<%= cityPrefix %>/contato" class="nav-item">Contato</a>
+    </nav>
+
+    <div class="mobile-nav-footer">
+        <a href="<%= waMenuUrl %>" target="_blank" rel="noopener" class="btn-mobile-whatsapp" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>">
+            <i class="fab fa-whatsapp"></i> <%= isSolarContext ? 'WhatsApp Energia Solar' : '(83) 99133-0972' %>
+        </a>
+    </div>
 </div>
-

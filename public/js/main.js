@@ -1,5 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Klyfe Main JS Loaded');
+
+    // ═══ Navbar Pill on Scroll ═══
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        let ticking = false;
+        const updateNavbarPill = () => {
+            if (window.scrollY > 30) {
+                navbar.classList.add('navbar-pill');
+            } else {
+                navbar.classList.remove('navbar-pill');
+            }
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    updateNavbarPill();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        updateNavbarPill();
+    }
+
     // ═══ Intersection Observer (Fade-in) ═══
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -52,6 +78,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Fechar seletor rápido de cidade ao clicar fora
+    document.addEventListener('click', (e) => {
+        const selector = document.querySelector('.quick-city-selector');
+        const tag = document.querySelector('.mobile-location-tag');
+        if (selector && selector.classList.contains('open')) {
+            if (!selector.contains(e.target) && (!tag || !tag.contains(e.target))) {
+                selector.classList.remove('open');
+            }
+        }
+    });
+
     // ═══ Solutions Accordion (Home) ═══
     document.querySelectorAll('.accordion-item').forEach(item => {
         const header = item.querySelector('.accordion-header');
@@ -73,28 +110,102 @@ document.addEventListener('DOMContentLoaded', () => {
         const answer = item.querySelector('.faq-answer');
         
         if (question && answer) {
+            if (item.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+
             question.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
+                const wasActive = item.classList.contains('active');
                 
                 // Fecha todos os outros
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                        const otherAnswer = otherItem.querySelector('.faq-answer');
-                        if (otherAnswer) otherAnswer.style.maxHeight = null;
-                    }
+                const parentAccordion = item.closest('.home-faq-accordion-card') || document;
+                parentAccordion.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    if (otherAnswer) otherAnswer.style.maxHeight = null;
                 });
 
                 // Toggle atual
-                item.classList.toggle('active');
-                if (item.classList.contains('active')) {
+                if (!wasActive) {
+                    item.classList.add('active');
                     answer.style.maxHeight = answer.scrollHeight + "px";
-                } else {
-                    answer.style.maxHeight = null;
                 }
             });
         }
     });
+
+    // ═══ Solar Sectors Filter Pills ═══
+    const solarFilterBtns = document.querySelectorAll('.solar-filter-btn');
+    const solarCards = document.querySelectorAll('.solar-showcase-card');
+    const solarTabPanel = document.getElementById('solar-showcase-panel') || document.getElementById('solar-page-showcase-panel');
+    if (solarFilterBtns.length > 0 && solarCards.length > 0) {
+        solarFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                solarFilterBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                if (solarTabPanel && btn.id) {
+                    solarTabPanel.setAttribute('aria-labelledby', btn.id);
+                }
+
+                solarCards.forEach(card => {
+                    const category = card.dataset.category || '';
+                    if (filter === 'all' || category.includes(filter)) {
+                        card.classList.remove('is-hidden');
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(12px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 20);
+                    } else {
+                        card.classList.add('is-hidden');
+                    }
+                });
+            });
+        });
+    }
+
+    // ═══ Home Blog Filter Pills ═══
+    const blogFilterBtns = document.querySelectorAll('.blog-filter-btn');
+    const blogFeaturedCard = document.querySelector('.home-blog-featured-card');
+    const blogCards = document.querySelectorAll('.home-blog-card');
+    if (blogFilterBtns.length > 0) {
+        blogFilterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.category || 'all';
+                blogFilterBtns.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                // Animação de filtro nos cards
+                const allBlogItems = [...(blogFeaturedCard ? [blogFeaturedCard] : []), ...blogCards];
+                allBlogItems.forEach(card => {
+                    const cat = card.dataset.category || '';
+                    if (filter === 'all' || cat.includes(filter) || (filter === 'solar' && (cat.includes('solar') || cat.includes('segmentos'))) || (filter === 'compra-confianca' && cat.includes('compra-confianca')) || (filter === 'documentacao' && (cat.includes('documentacao') || cat.includes('engenharia'))) || (filter === 'seguranca' && (cat.includes('seguranca') || cat.includes('eletrica')))) {
+                        card.style.display = card.classList.contains('home-blog-featured-card') ? 'flex' : 'flex';
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 20);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
 
     // ═══ Solar Calculator (Slider) ═══
     const billRange = document.getElementById('bill-range');
@@ -377,6 +488,57 @@ document.addEventListener('DOMContentLoaded', () => {
                     contaSelect.value = lpBillToContaMedia(parseInt(lpBillRange.value, 10));
                 }
             });
+        }
+    }
+
+    // ═══ Botão Copiar Endereço da Sede ═══
+    const btnCopyAddr = document.getElementById('btn-copy-sede-addr');
+    if (btnCopyAddr) {
+        btnCopyAddr.addEventListener('click', () => {
+            const addr = btnCopyAddr.getAttribute('data-address');
+            if (!addr) return;
+            const setSuccessState = () => {
+                btnCopyAddr.classList.add('copied');
+                const tooltip = btnCopyAddr.querySelector('.copy-tooltip');
+                const icon = btnCopyAddr.querySelector('i');
+                if (tooltip) tooltip.textContent = 'Copiado!';
+                if (icon) {
+                    icon.classList.remove('far', 'fa-copy');
+                    icon.classList.add('fas', 'fa-check');
+                }
+                setTimeout(() => {
+                    btnCopyAddr.classList.remove('copied');
+                    if (tooltip) tooltip.textContent = 'Copiar';
+                    if (icon) {
+                        icon.classList.remove('fas', 'fa-check');
+                        icon.classList.add('far', 'fa-copy');
+                    }
+                }, 2500);
+            };
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(addr).then(setSuccessState).catch(() => {
+                    fallbackCopy(addr, setSuccessState);
+                });
+            } else {
+                fallbackCopy(addr, setSuccessState);
+            }
+        });
+
+        function fallbackCopy(text, cb) {
+            const temp = document.createElement('textarea');
+            temp.value = text;
+            temp.style.position = 'fixed';
+            temp.style.opacity = '0';
+            document.body.appendChild(temp);
+            temp.select();
+            try {
+                document.execCommand('copy');
+                if (cb) cb();
+            } catch (err) {
+                console.warn('Erro ao copiar endereço:', err);
+            }
+            document.body.removeChild(temp);
         }
     }
 });

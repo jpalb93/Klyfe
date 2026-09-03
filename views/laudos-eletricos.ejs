@@ -9,30 +9,35 @@
     <%- include('partials/navbar') %>
 
     <main>
-        <!-- ═══ BREADCRUMB VISUAL ═══ -->
-        <nav class="breadcrumb-nav" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color); padding: 1rem 0;">
-            <div class="container" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                <a href="/" style="color: inherit; text-decoration: none;">Home</a>
-                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-                <a href="/solucoes" style="color: inherit; text-decoration: none;">Soluções</a>
-                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-                <a href="/solucoes/engenharia" style="color: inherit; text-decoration: none;">Engenharia Elétrica</a>
-                <span style="margin: 0 0.5rem; color: var(--accent-primary);">/</span>
-                <span style="color: var(--text-main);">Laudos Elétricos</span>
-            </div>
-        </nav>
+        <div class="container breadcrumb-standalone">
+            <%- include('partials/breadcrumb', { breadcrumbItems: [
+                { label: 'Home', href: '/' },
+                { label: 'Soluções', href: '/solucoes' },
+                { label: 'Engenharia', href: '/solucoes/engenharia' },
+                { label: 'Laudos elétricos' }
+            ], breadcrumbCompact: true }) %>
+        </div>
 
         <!-- ═══ HERO ═══ -->
         <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
             <div class="container fade-in">
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA DIAGNÓSTICA</span></div>
-                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Laudos Elétricos e Inspeções em<br><span style="color:var(--accent-primary)">Campina Grande e Paraíba.</span></h1>
-                <p style="color:var(--text-muted); font-size: 1.15rem; max-width: 800px; margin: 1.5rem 0;">
-                    Garantimos segurança técnica e conformidade jurídica para suas instalações. A Klyfe Electric realiza inspeções rigorosas e emite laudos com ART para residências, comércios e indústrias, identificando riscos e assegurando o atendimento às normas NBR 5410, NBR 5419 e NR-10.
-                </p>
-                <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
-                    <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Engenheiro</a>
-                    <a href="#especialidades" class="btn btn-ghost">Ver Especialidades →</a>
+                <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
+                    <div>
+                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Laudos Técnicos & ART <%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %>:<br><span style="color:var(--accent-primary)">Inspeções e Conformidade Legal.</span></h1>
+                        <p style="color:var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
+                            Garantimos segurança técnica e conformidade jurídica para suas instalações. A Klyfe realiza inspeções com laudos e ART para residências, comércios e indústrias conforme NBR 5410, NBR 5419 e NR-10.
+                        </p>
+                        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
+                            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Engenheiro</a>
+                            <a href="#especialidades" class="btn btn-ghost">Ver Especialidades →</a>
+                        </div>
+                    </div>
+                    <div style="position: relative;">
+                        <div style="width: 100%; overflow: hidden; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 16px 40px rgba(0,0,0,0.35);">
+                            <img src="/img/engenharia/laudos-eletricos.webp" alt="Laudos Técnicos e ART" style="width: 100%; height: auto; display: block; filter: brightness(0.95) contrast(1.05); transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -267,6 +272,6 @@
     <%- include('partials/footer') %>
 
 
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

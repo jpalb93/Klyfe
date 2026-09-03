@@ -35,7 +35,7 @@
     }
     </script>
 </head>
-<body>
+<body class="page-solutions">
     <%- include('partials/navbar') %>
 
     <main>
@@ -45,24 +45,43 @@
         <!-- ═══ HERO ═══ -->
         <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Soluções' }
+                ] }) %>
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ECOSSISTEMA TÉCNICO</span></div>
                 <h1 class="fade-in">Soluções em Engenharia, Elétrica<br>e Solar <%= cityData.preposition %> <span style="color:var(--accent-primary)"><%= cityData.name %>.</span></h1>
                 <p class="fade-in" style="max-width: 800px; font-size: 1.2rem; margin-top: 1.5rem; color: var(--text-muted); margin-bottom: 2rem;">
                     Da infraestrutura pesada à inteligência da sua casa. A Klyfe Electric integra tecnologia e engenharia de precisão para transformar a forma como você consome energia <%= cityData.preposition %> <strong><%= cityData.name %></strong> e em toda a <strong><%= cityData.region %></strong>.
                 </p>
-                <div class="fade-in" style="max-width: 800px; line-height: 1.8; color: var(--text-muted); font-size: 1rem; display: grid; gap: 1rem;">
-                    <p>
-                        Nosso compromisso é estruturar soluções elétricas completas que garantem alto retorno financeiro e segurança jurídica total. Por meio de uma engenharia consultiva, analisamos a infraestrutura existente, identificamos desperdícios de energia elétrica e propomos melhorias sob medida baseadas em normas vigentes como a NBR 5410 para baixa tensão e NBR 14039 para média tensão. Seja na adequação de cabines primárias ou no retrofit de redes de fiação complexas, asseguramos o acompanhamento completo em todas as etapas.
-                    </p>
-                    <p>
-                        Combinamos equipamentos premium de fabricantes reconhecidos internacionalmente com a expertise de profissionais certificados. Isso nos permite entregar projetos de automação residencial e industrial inovadores e sistemas de geração solar fotovoltaica com máxima durabilidade. Confie na Klyfe Electric para gerenciar sua energia com o máximo padrão de conformidade e excelência técnica do mercado.
-                    </p>
+                <div class="fade-in hero-actions">
+                    <a href="#portal-solucoes" class="btn btn-primary">Explorar soluções</a>
+                    <a href="/contato" class="btn btn-ghost">Falar com especialista</a>
                 </div>
             </div>
         </section>
 
+        <section class="section-padding solutions-intro">
+            <div class="container grid grid-cols-2" style="gap: 2rem;">
+                <article class="bracket-box fade-in">
+                    <span class="badge-mono">ENGENHARIA CONSULTIVA</span>
+                    <h2>Decisões técnicas<br>bem fundamentadas.</h2>
+                    <p>
+                        Analisamos a infraestrutura existente, identificamos desperdícios e propomos melhorias sob medida com base nas normas aplicáveis, como NBR 5410 e NBR 14039. O acompanhamento conecta diagnóstico, projeto, execução e entrega.
+                    </p>
+                </article>
+                <article class="bracket-box fade-in">
+                    <span class="badge-mono">EXECUÇÃO & TECNOLOGIA</span>
+                    <h2>Uma solução completa,<br>do projeto à operação.</h2>
+                    <p>
+                        Unimos profissionais habilitados, equipamentos de fabricantes reconhecidos e documentação técnica para entregar engenharia elétrica, automação e energia solar com segurança, durabilidade e clareza de escopo.
+                    </p>
+                </article>
+            </div>
+        </section>
+
         <!-- ═══ PORTAL DE SOLUÇÕES ═══ -->
-        <section class="section-padding">
+        <section class="section-padding" id="portal-solucoes">
             <div class="container">
                 <div class="grid grid-cols-2" style="gap: 3rem;">
                     
@@ -193,6 +212,6 @@
 
     <%- include('partials/footer') %>
     <%- include('partials/whatsapp') %>
-    <script src="/js/main.js"></script>
+<script src="/js/main.js" defer></script>
 </body>
 </html>

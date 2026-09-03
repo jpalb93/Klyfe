@@ -4,7 +4,7 @@ module.exports = {
   region: 'Agreste Paraibano',
   state: 'Paraíba',
   concessionaria: 'Energisa Borborema',
-  address: 'Atendimento Consultivo e Visitas Técnicas - Campina Grande - PB',
+  address: 'Av. Pref. Severino Bezerra Cabral, 1225 - Mirante, Campina Grande - PB, 58410-640',
   phone: '(83) 99133-0972',
   whatsappMessage: 'Olá! Vi o site da Klyfe em Campina Grande e gostaria de um orçamento.',
   cta: 'Solicite orçamento com nossa equipe em Campina Grande.',
@@ -287,4 +287,3 @@ module.exports = {
     }
   }
 };
-
