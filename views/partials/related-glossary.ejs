@@ -1,0 +1,71 @@
+<% if (Array.isArray(glossaryServiceLinks) && glossaryServiceLinks.length) { %>
+<section class="service-glossary-bridge" aria-labelledby="service-glossary-heading">
+    <div class="container">
+        <div class="service-glossary-bridge__inner">
+            <div class="service-glossary-bridge__intro">
+                <div class="section-separator"><%- include('symbol') %> <span>VOCABULÁRIO KLYFE</span></div>
+                <h2 id="service-glossary-heading">Entenda os termos deste serviço</h2>
+                <p>
+                    Conheça os conceitos técnicos que orientam este trabalho e veja como eles se aplicam ao seu imóvel,
+                    empreendimento ou sistema. Clique em um termo para abrir uma explicação rápida.
+                </p>
+            </div>
+            <nav class="service-glossary-bridge__links" aria-label="Termos relacionados no Glossário Técnico">
+                <% glossaryServiceLinks.forEach((link) => { %>
+                    <a class="service-glossary-bridge__link js-glossary-trigger" href="<%= link.href %>"
+                        data-glossary-trigger
+                        data-glossary-template="glossary-panel-<%= link.slug %>"
+                        aria-haspopup="dialog"
+                        aria-expanded="false"
+                        title="Saiba mais sobre <%= link.term %>">
+                        <span><%= link.label %></span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                <% }) %>
+            </nav>
+        </div>
+    </div>
+
+    <% glossaryServiceLinks.forEach((link) => { %>
+        <template id="glossary-panel-<%= link.slug %>">
+            <div class="service-glossary-modal__eyebrow">Glossário técnico Klyfe</div>
+            <h3 id="glossary-modal-title"><%= link.term %></h3>
+            <p class="service-glossary-modal__definition"><%= link.definition %></p>
+            <div class="service-glossary-modal__details">
+                <div>
+                    <span class="service-glossary-modal__label">Na prática</span>
+                    <p><%= link.practical %></p>
+                </div>
+                <div>
+                    <span class="service-glossary-modal__label">Por que importa</span>
+                    <p><%= link.importance %></p>
+                </div>
+            </div>
+            <% if (Array.isArray(link.related) && link.related.length) { %>
+                <div class="service-glossary-modal__related">
+                    <span class="service-glossary-modal__label">Termos relacionados</span>
+                    <div>
+                        <% link.related.forEach((related) => { %>
+                            <a href="<%= related.href %>"><%= related.term %></a>
+                        <% }) %>
+                    </div>
+                </div>
+            <% } %>
+            <a class="service-glossary-modal__full-link" href="<%= link.href %>" data-glossary-full-link>
+                Ver este termo no Glossário completo <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+        </template>
+    <% }) %>
+
+    <div class="service-glossary-modal" data-glossary-modal hidden>
+        <div class="service-glossary-modal__backdrop" data-glossary-close tabindex="-1"></div>
+        <div class="service-glossary-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="glossary-modal-title" tabindex="-1">
+            <button class="service-glossary-modal__close" type="button" data-glossary-close aria-label="Fechar explicação do termo">
+                <i class="fas fa-xmark" aria-hidden="true"></i>
+            </button>
+            <div class="service-glossary-modal__content" data-glossary-modal-content></div>
+        </div>
+    </div>
+</section>
+<script src="/js/glossary-modal.js" defer></script>
+<% } %>

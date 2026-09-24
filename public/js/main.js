@@ -134,6 +134,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ═══ Wallbox FAQ ═══
+    document.querySelectorAll('.wallbox-faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.closest('.wallbox-faq-item');
+            if (!item) return;
+            const shouldOpen = !item.classList.contains('open');
+
+            document.querySelectorAll('.wallbox-faq-item.open').forEach(openItem => {
+                openItem.classList.remove('open');
+                const openQuestion = openItem.querySelector('.wallbox-faq-question');
+                if (openQuestion) openQuestion.setAttribute('aria-expanded', 'false');
+            });
+
+            item.classList.toggle('open', shouldOpen);
+            question.setAttribute('aria-expanded', String(shouldOpen));
+        });
+    });
+
     // ═══ Solar Sectors Filter Pills ═══
     const solarFilterBtns = document.querySelectorAll('.solar-filter-btn');
     const solarCards = document.querySelectorAll('.solar-showcase-card');
@@ -259,14 +277,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Manutenção de Subestações': 'engenharia',
                 'Instalações Industriais': 'eletrica',
                 'Laudos e Termografia': 'engenharia',
+                'Instalação de Wallbox': 'wallbox',
                 'Automação Predial/Industrial': 'automacao',
                 Outro: 'geral'
             };
             const contentCategory = categoryMap[servico] || 'geral';
             const isSolarLead = contentCategory === 'solar';
-            const eventId = (window.KlyfeTracking && window.KlyfeTracking.newEventId)
+            // Mantém a mesma chave durante uma retentativa. Se a resposta do
+            // CRM se perder depois da persistência, o retry não cria outro lead.
+            const eventId = contactForm.dataset.eventId || ((window.KlyfeTracking && window.KlyfeTracking.newEventId)
                 ? window.KlyfeTracking.newEventId('lead')
-                : ('lead_' + Date.now());
+                : ('lead_' + Date.now()));
+            contactForm.dataset.eventId = eventId;
             data.event_id = eventId;
             data.event_source_url = window.location.href;
             if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
@@ -290,6 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 const json = await res.json();
                 if (json.success) {
+                    document.dispatchEvent(new CustomEvent('klyfe:form-result', { detail: { status: 'success' } }));
                     const finalEventId = json.event_id || eventId;
                     const nameParts = String(data.nome || '').trim().split(/\s+/).filter(Boolean);
                     const userData = {
@@ -313,18 +336,35 @@ document.addEventListener('DOMContentLoaded', () => {
                         }, { eventID: finalEventId });
                     }
                     if (!isSolarLead && window.dataLayer) {
+                        const trackingCfg = window.__KLYFE_TRACKING__ || {};
                         window.dataLayer.push({
                             event: 'generate_lead_other',
                             lead_source: 'contato',
                             content_category: contentCategory,
+                            content_vertical: trackingCfg.contentVertical || contentCategory,
+                            service_key: trackingCfg.serviceKey || undefined,
+                            location: trackingCfg.locationName || data.cidade || undefined,
                             servico: servico,
                             event_id: finalEventId
                         });
+                        if (contentCategory === 'wallbox') {
+                            window.dataLayer.push({
+                                event: 'wallbox_qualified_lead',
+                                content_category: 'wallbox',
+                                content_name: 'contato',
+                                location: trackingCfg.locationName || data.cidade || undefined,
+                                event_id: finalEventId
+                            });
+                        }
                     }
                     alert('✓ ' + json.message);
                     contactForm.reset();
+                    delete contactForm.dataset.eventId;
+                } else {
+                    throw new Error('Envio não confirmado');
                 }
             } catch (err) { 
+                document.dispatchEvent(new CustomEvent('klyfe:form-result', { detail: { status: 'error' } }));
                 alert('⚠️ Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente ou entre em contato via WhatsApp.'); 
                 console.error('Erro no envio do form:', err);
             }
@@ -334,6 +374,138 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ═══ Wallbox: briefing curto + registro do lead + WhatsApp ═══
+    const wallboxBriefForm = document.getElementById('wallbox-brief-form');
+    if (wallboxBriefForm) {
+        wallboxBriefForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(wallboxBriefForm);
+            const data = Object.fromEntries(formData.entries());
+            const phone = wallboxBriefForm.dataset.phone || '5583991330972';
+            const button = wallboxBriefForm.querySelector('button[type="submit"]');
+            const originalText = button ? button.innerHTML : '';
+            const eventId = (window.KlyfeTracking && window.KlyfeTracking.newEventId)
+                ? window.KlyfeTracking.newEventId('lead')
+                : ('lead_' + Date.now());
+            const message = [
+                'Olá! Vim pelo site da Klyfe e quero avaliar uma instalação de Wallbox.',
+                `Nome: ${data.nome}`,
+                `WhatsApp: ${data.telefone}`,
+                `Cidade: ${data.cidade}`,
+                `Perfil: ${data.perfil}`,
+                data.veiculo ? `Veículo: ${data.veiculo}` : '',
+                `Já possui carregador: ${data.possui_carregador}`,
+                `Distância entre quadro e vaga: ${data.distancia_quadro_vaga}`
+            ].filter(Boolean).join('\n');
+
+            // Abre a aba antes do await para evitar bloqueio de pop-up no celular.
+            const whatsappWindow = window.open('about:blank', '_blank');
+            const payload = Object.assign({}, data, {
+                form_type: 'wallbox_brief',
+                servico: 'Instalação de Wallbox',
+                service_key: 'carregador-veicular',
+                source: 'wallbox-page',
+                event_id: eventId,
+                event_source_url: window.location.href,
+                marketing_consent: (window.KlyfeConsent && window.KlyfeConsent.get)
+                    ? (window.KlyfeConsent.get() || 'unknown')
+                    : 'unknown'
+            });
+            if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
+                Object.assign(payload, window.KlyfeTracking.getMetaCookies());
+            }
+            if (window.KlyfeTracking && window.KlyfeTracking.getCampaignParams) {
+                const camp = window.KlyfeTracking.getCampaignParams();
+                ['gclid', 'gbraid', 'wbraid', 'fbclid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach((key) => {
+                    if (camp[key]) payload[key] = camp[key];
+                });
+            }
+
+            if (button) {
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ORGANIZANDO...';
+            }
+
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'wallbox_brief_submit',
+                    content_category: 'wallbox',
+                    content_name: 'wallbox-brief-form',
+                    location: data.cidade,
+                    property_type: data.perfil,
+                    vehicle: data.veiculo || '',
+                    charger_status: data.possui_carregador || '',
+                    distance_to_parking: data.distancia_quadro_vaga || '',
+                    event_id: eventId
+                });
+            }
+
+            let crmOk = false;
+            try {
+                const response = await fetch('/contato', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (response.ok) {
+                    const json = await response.json().catch(() => ({}));
+                    crmOk = !!json.success;
+                }
+            } catch (error) {
+                console.warn('Não foi possível registrar o briefing de Wallbox:', error);
+            }
+
+            document.dispatchEvent(new CustomEvent('klyfe:form-result', { detail: { status: crmOk ? 'success' : 'error' } }));
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: crmOk ? 'wallbox_qualified_lead' : 'wallbox_lead_registration_failed',
+                    content_category: 'wallbox',
+                    content_name: 'wallbox-brief-form',
+                    location: data.cidade,
+                    property_type: data.perfil,
+                    event_id: eventId
+                });
+            }
+
+            const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            if (whatsappWindow && !whatsappWindow.closed) {
+                whatsappWindow.location.href = whatsappUrl;
+            } else {
+                window.open(whatsappUrl, '_blank', 'noopener');
+            }
+            if (window.dataLayer) {
+                window.dataLayer.push({
+                    event: 'wallbox_whatsapp_click',
+                    content_category: 'wallbox',
+                    content_name: 'wallbox-brief-form',
+                    location: data.cidade,
+                    property_type: data.perfil,
+                    event_id: eventId,
+                    crm_registered: crmOk
+                });
+            }
+            wallboxBriefForm.reset();
+            if (button) {
+                button.disabled = false;
+                button.innerHTML = originalText;
+            }
+        });
+    }
+
+    // Cliques em pontos de destaque ajudam a separar descoberta, CTA e navegação.
+    document.addEventListener('click', (e) => {
+        const wallboxLink = e.target && e.target.closest ? e.target.closest('[data-wallbox-event]') : null;
+        if (!wallboxLink || !window.dataLayer) return;
+        window.dataLayer.push({
+            event: 'wallbox_cta_click',
+            wallbox_event: wallboxLink.dataset.wallboxEvent || 'unknown',
+            content_category: 'wallbox',
+            content_name: wallboxLink.dataset.contentName || wallboxLink.textContent.trim().slice(0, 80),
+            location: (window.__KLYFE_TRACKING__ || {}).locationName || undefined,
+            href: wallboxLink.href || ''
+        });
+    });
 
     // ═══ Hero Power Out Control ═══
     const hero = document.getElementById('hero');

@@ -31,14 +31,14 @@ module.exports = {
       template: 'servicos/laudos-eletricos',
       bairros: 'Manaíra, Altiplano, Bessa, Tambaú, Cabo Branco e Cabedelo',
       serviceContext: `
-        <p>As instalações na faixa litorânea enfrentam condições severas: a maresia corrói componentes com velocidade muito maior do que no interior. Conexões oxidadas aumentam o risco de arco elétrico.</p>
-        <p>A termografia é recomendada para Manaíra, Tambaú e Altiplano, onde a degradação por salinidade é acelerada. O laudo de SPDA litorâneo também exige aterramento diferenciado.</p>
+        <p>Em áreas litorâneas, a maresia pode acelerar a oxidação de componentes. Conexões e quadros devem ser observados durante a vistoria.</p>
+        <p>A termografia e a avaliação do SPDA são escolhidas conforme o ambiente, o histórico e o objetivo do laudo. A necessidade de materiais ou testes específicos é confirmada no escopo.</p>
       `,
       painPoint: 'Corrosão por maresia em conexões e quadros elétricos litorâneos.',
       cta: 'Solicite seu laudo técnico em João Pessoa.',
       faqExtra: {
         question: 'A maresia de João Pessoa exige laudos elétricos mais frequentes?',
-        answer: 'Sim. A salinidade acelera a oxidação em quadros elétricos. Para condomínios na orla (Cabo Branco, Tambaú, Bessa), a termografia é essencial para evitar curtos-circuitos causados por conexões deterioradas.'
+        answer: 'A salinidade pode acelerar a oxidação em quadros e conexões. A periodicidade e os testes indicados dependem do ambiente, do histórico e da avaliação do responsável técnico.'
       }
     },
     'engenharia': {
@@ -47,8 +47,8 @@ module.exports = {
       template: 'engenharia',
       bairros: 'Manaíra, Altiplano, Tambaú e Distrito Industrial',
       serviceContext: `
-        <p>Nossa engenharia em João Pessoa foca em garantir a segurança e continuidade de grandes empreendimentos através de diagnósticos técnicos precisos e manutenções críticas.</p>
-        <p>Através de laudos técnicos e manutenção de subestações, garantimos que sua edificação ou indústria esteja protegida contra falhas e em total conformidade com as normas.</p>
+        <p>Nossa engenharia em João Pessoa atua na segurança e na continuidade de grandes empreendimentos por meio de diagnósticos técnicos e planos de manutenção definidos para cada instalação.</p>
+        <p>Laudos e manutenção de subestações podem apoiar a identificação de riscos e a organização das adequações. A conformidade depende das condições encontradas, das normas aplicáveis e do escopo contratado.</p>
       `,
       painPoint: 'Necessidade de laudos técnicos e manutenção de subestações em ambiente litorâneo.',
       cta: 'Consultar nossa engenharia técnica em João Pessoa.'
@@ -59,14 +59,14 @@ module.exports = {
       template: 'servicos/manutencao-subestacao',
       bairros: 'Manaíra, Tambaú, Bessa, Cabo Branco, Altiplano e Cabedelo',
       serviceContext: `
-        <p>Subestações na orla de João Pessoa sofrem com a maresia constante, que oxida componentes e aumenta o risco de falhas graves. Nossa manutenção preventiva é essencial para garantir a vida útil dos equipamentos.</p>
-        <p>Realizamos limpeza técnica, termografia e testes de isolação, atendendo condomínios e indústrias na capital.</p>
+        <p>Na orla de João Pessoa, a maresia pode acelerar a oxidação de componentes. A inspeção ajuda a identificar conexões e materiais que merecem atenção.</p>
+        <p>O atendimento pode incluir limpeza, termografia e testes de isolação, conforme o estado da subestação e o escopo contratado.</p>
       `,
       painPoint: 'Corrosão por maresia e risco de parada energética em subestações.',
       cta: 'Solicitar manutenção de subestação em João Pessoa.',
       faqExtra: {
         question: 'A maresia de João Pessoa exige manutenção mais frequente?',
-        answer: 'Sim. A concentração de cloretos acelera a corrosão em subestações litorâneas. Recomendamos manutenção semestral para garantir a segurança e evitar paradas não programadas.'
+        answer: 'A maresia pode exigir inspeções mais frequentes em alguns ambientes. A periodicidade é definida pelo histórico, pelo estado dos componentes e pela avaliação do responsável técnico.'
       }
     },
     'eletrica': {
@@ -76,7 +76,7 @@ module.exports = {
       bairros: 'Altiplano, Manaíra, Tambaú, Bessa e Cabo Branco',
       serviceContext: `
         <p>Oferecemos suporte técnico especializado para a infraestrutura elétrica de João Pessoa. Atuamos em reformas, manutenções preventivas e instalações de alto padrão para condomínios e empresas litorâneas.</p>
-        <p>Nossa equipe utiliza materiais e técnicas resistentes à oxidação, garantindo a durabilidade das instalações elétricas mesmo sob efeito constante da maresia típica de João Pessoa.</p>
+        <p>Nossa equipe pode especificar materiais e técnicas com resistência à oxidação quando o ambiente exigir. A durabilidade depende da exposição, da instalação, da manutenção e dos componentes escolhidos.</p>
       `,
       painPoint: 'Necessidade de eletricistas especializados em ambientes litorâneos e maresia.',
       cta: 'Solicitar eletricista em João Pessoa.'
@@ -91,15 +91,63 @@ module.exports = {
       cta: 'Solicitar instalação industrial em João Pessoa.'
     },
     'carregador-veicular': {
-      label: 'Carregador Veicular (Wallbox)',
+      label: 'Instalação de Wallbox',
       category: 'eletrica',
       template: 'carregador-veicular',
       icon: 'fa-charging-station',
-      summary: 'Instalação de Wallbox com proteção maresia-proof e circuito dedicado em João Pessoa.',
+      summary: 'Instalação de carregador Wallbox com circuito dedicado em João Pessoa.',
       bairros: 'Manaíra, Altiplano, Bessa, Cabo Branco, Tambaú e região',
-      serviceContext: '<p>A proximidade com o mar exige materiais e conexões com tratamento anticorrosivo rigoroso na instalação de carregadores veiculares na orla de João Pessoa. Garantimos a proteção e durabilidade do seu EV Charger.</p>',
-      painPoint: 'Necessidade de carregamento rápido e resistente à corrosão litorânea.',
+      serviceContext: '<p>A proximidade com o mar pode exigir materiais e conexões com tratamento anticorrosivo na instalação de carregadores veiculares na orla de João Pessoa. A especificação é definida após avaliar a exposição e o equipamento.</p>',
+      painPoint: 'Infraestrutura de recarga adequada para imóveis em João Pessoa e região.',
       cta: 'Solicitar instalação de Wallbox em João Pessoa.'
+    },
+    'wallbox-residencial': {
+      label: 'Instalação de Wallbox Residencial',
+      category: 'eletrica',
+      template: 'wallbox-residencial',
+      heroImage: '/img/wallbox/wallbox-casa.webp',
+      icon: 'fa-house-chimney',
+      summary: 'Instalação de Wallbox residencial com circuito dedicado em João Pessoa e Cabedelo.',
+      bairros: 'Altiplano, Manaíra, Cabo Branco, Bessa, Tambaú, Intermares e condomínios Alphaville, Bosque das Gameleiras, Bougainville, Cabo Branco Privê',
+      serviceContext: '<p>Em residências e condomínios horizontais de João Pessoa e Cabedelo, dimensionamos o circuito elétrico dedicado, quadro de distribuição e proteções DR Tipo A/B e DPS para recarga segura de veículos elétricos.</p>',
+      painPoint: 'Recarga rápida e segura em casa, sem risco de desarmar o disjuntor geral.',
+      cta: 'Solicitar orçamento de Wallbox residencial em João Pessoa.'
+    },
+    'wallbox-condominio': {
+      label: 'Instalação de Wallbox em Condomínio',
+      category: 'eletrica',
+      template: 'wallbox-condominio',
+      heroImage: '/img/wallbox/wallbox-condominio.webp',
+      icon: 'fa-building',
+      summary: 'Infraestrutura de recarga elétrica para condomínios verticais em João Pessoa com medição individual.',
+      bairros: 'Edifícios em Manaíra, Altiplano, Cabo Branco, Tambaú, Bessa e Jardim Oceania',
+      serviceContext: '<p>Projetos com ART no CREA-PB para condomínios em João Pessoa: viabilidade técnica de carga, passagem de cabeamento em prumadas coletivas, medidores digitais homologados pelo Inmetro e suporte técnico para assembleias.</p>',
+      painPoint: 'Regularização técnica com o síndico, medição individual de energia e segurança contra sobrecargas.',
+      cta: 'Solicitar consultoria para condomínio em João Pessoa.'
+    },
+    'wallbox-empresa': {
+      label: 'Instalação de Wallbox para Empresas',
+      category: 'eletrica',
+      template: 'wallbox-empresa',
+      heroImage: '/img/wallbox/wallbox-empresa.webp',
+      icon: 'fa-briefcase',
+      summary: 'Estações de recarga veicular para empresas, clínicas, hotéis e centros comerciais de João Pessoa.',
+      bairros: 'Av. Epitácio Pessoa, Centro, Manaíra, Bessa, Bancários, Distrito Industrial e Polo Turístico',
+      serviceContext: '<p>Soluções corporativas completas na Grande João Pessoa: totens de alta potência, protocolo aberto OCPP, autenticação por RFID/App e dimensionamento de carga compatível com a entrada de energia da empresa.</p>',
+      painPoint: 'Eletrificação de frota, atendimento a clientes de veículos elétricos e selo de sustentabilidade empresarial.',
+      cta: 'Solicitar projeto de recarga corporativa em João Pessoa.'
+    },
+    'wallbox-energia-solar': {
+      label: 'Wallbox com Energia Solar',
+      category: 'eletrica',
+      template: 'wallbox-energia-solar',
+      heroImage: '/img/wallbox/wallbox-com-energia-solar.webp',
+      icon: 'fa-solar-panel',
+      summary: 'Recarga veicular inteligente alimentada por energia solar fotovoltaica em João Pessoa e região.',
+      bairros: 'João Pessoa, Cabedelo, Conde, Lucena, Santa Rita e Bayeux',
+      serviceContext: '<p>Estude a integração entre geração solar e recarga em João Pessoa com base na rotina do veículo, no consumo do imóvel e na infraestrutura elétrica disponível.</p>',
+      painPoint: 'Aproveitar a geração disponível para recarga sem presumir economia ou independência da rede.',
+      cta: 'Solicitar projeto Solar + Wallbox em João Pessoa.'
     },
     'projeto-rede': {
       label: 'Redes, Telefonia & Antenas',
@@ -108,7 +156,7 @@ module.exports = {
       icon: 'fa-network-wired',
       summary: 'Infraestrutura de dados de alta performance e Wi-Fi estável sem zonas mortas.',
       bairros: 'Altiplano, Manaíra, Tambaú, Bessa e Cabedelo',
-      serviceContext: '<p>Projetos de conectividade cabeada e Wi-Fi Mesh dimensionados para apartamentos de alto padrão e empresas em João Pessoa, garantindo estabilidade total.</p>',
+      serviceContext: '<p>Projetos de conectividade cabeada e Wi-Fi Mesh podem ser dimensionados para apartamentos de alto padrão e empresas em João Pessoa. A cobertura e a estabilidade dependem do layout, dos equipamentos e da infraestrutura.</p>',
       painPoint: 'Problemas de cobertura Wi-Fi em edifícios de alta densidade no Altiplano e orla.',
       cta: 'Solicitar projeto de rede em João Pessoa.'
     },
@@ -119,7 +167,7 @@ module.exports = {
       bairros: 'Altiplano, Bessa, Manaíra, Tambaú e Intermares',
       serviceContext: `
         <p>Levamos o conforto e a sofisticação da automação residencial para os melhores endereços de João Pessoa. Projetos de Smart Home com controle total de iluminação, climatização e segurança via smartphone.</p>
-        <p>Especialistas em integrar tecnologias que otimizam o consumo de energia em prédios e residências de alto padrão no Altiplano e bairros da orla.</p>
+        <p>Integramos tecnologias que podem apoiar o controle de energia em prédios e residências de alto padrão no Altiplano e nos bairros da orla. O resultado depende dos dispositivos, das regras e do perfil de uso.</p>
       `,
       painPoint: 'Busca por conforto, sofisticação e controle tecnológico em residências de alto padrão.',
       cta: 'Agendar consultoria de automação em João Pessoa.'
@@ -139,135 +187,136 @@ module.exports = {
     'projeto-eletrico-multifamiliar': {
       bairros: 'Altiplano, Cabo Branco, Tambaú, Manaíra e Bessa',
       serviceContext: `
-        <p>O Altiplano Nobre e a orla de João Pessoa reúnem alguns dos arranha-céus residenciais mais altos do país. Projetar a rede elétrica de edifícios dessa magnitude exige uma engenharia de alto nível e precisão absoluta.</p>
-        <p>Na Klyfe Electric, elaboramos projetos elétricos prediais em BIM tridimensional com foco na facilidade de execução física e proteção total contra o desgaste por salinidade. Garantimos que todas as prumadas verticais e centrais de distribuição estejam em conformidade estrita com as regulamentações técnicas da Energisa Paraíba.</p>
+        <p>Edifícios do Altiplano e da orla de João Pessoa costumam reunir muitas unidades e áreas comuns. O projeto elétrico precisa separar essas cargas e compatibilizar prumadas, quadros e caminhos de cabos com a arquitetura.</p>
+        <p>A modelagem em BIM ajuda a revisar interferências antes da obra. Em locais sujeitos à maresia, o estudo também pode considerar o ambiente e os materiais adequados, conforme os dados do empreendimento.</p>
       `,
       painPoint: 'Segurança e compatibilização estrutural em BIM para arranha-céus residenciais da capital.',
       faqExtra: {
         question: 'Como a maresia afeta os projetos elétricos multifamiliares na orla de João Pessoa?',
-        answer: 'Em edifícios costeiros, a salinidade penetra nos quadros e eletrodutos externos. Por isso, a Klyfe especifica materiais com tratamento especial (como PVC pesado, calhas de fibra e conexões de latão/inox) nos projetos da orla da capital, prolongando a vida útil do sistema.'
+        answer: 'Em edifícios costeiros, a salinidade pode acelerar a corrosão de quadros e eletrodutos externos. O projeto pode considerar materiais e acabamentos adequados após avaliar exposição, instalação e requisitos do empreendimento.'
       }
     },
     'projeto-eletrico-unifamiliar': {
       bairros: 'Condomínios horizontais (Alphaville Paraíba, Bosque das Gameleiras, Cabo Branco Privê)',
       serviceContext: `
-        <p>Projetar residências em condomínios fechados em João Pessoa exige compatibilização estreita com arquitetos locais e foco em automação.</p>
-        <p>Desenhamos a rede elétrica prevendo a ergonometria total dos circuitos e protegendo os eletrodomésticos contra surtos elétricos induzidos. Nossa modelagem tridimensional em BIM assegura que a tubulação seja integrada às estruturas de concreto armado da casa, eliminando quebras desnecessárias de alvenaria.</p>
+        <p>Residências em condomínios de João Pessoa precisam de pontos elétricos compatíveis com a planta, a rotina da família e os equipamentos previstos. O levantamento orienta tomadas, iluminação, climatização e o quadro de distribuição.</p>
+        <p>Quando solicitado, a modelagem em BIM ajuda a comparar a rede elétrica com a arquitetura. A especificação de proteções e de infraestrutura para automação depende do projeto e do escopo contratado.</p>
       `,
-      painPoint: 'Projetos integrados a sistemas inteligentes e proteção total contra curtos em residências de alto padrão de João Pessoa.',
+      painPoint: 'Distribuição de pontos e proteções compatíveis com residências de João Pessoa.',
       faqExtra: {
         question: 'Quais normas a Klyfe segue para projetos residenciais unifamiliares em condomínios fechados de João Pessoa?',
-        answer: 'Nossos projetos seguem rigorosamente a NBR 5410 da ABNT e as normas internas da Energisa Paraíba para o padrão de entrada monofásico, bifásico ou trifásico de energia.'
+        answer: 'Usamos a NBR 5410 como referência para instalações de baixa tensão e conferimos as exigências da Energisa aplicáveis ao padrão de entrada da obra.'
       }
     },
     'projeto-eletrico-comercial': {
       bairros: 'Tambaú, Cabo Branco, Manaíra, Bessa e Centro',
       serviceContext: `
-        <p>O dinâmico setor de turismo e serviços em João Pessoa — hotéis em Tambaú, restaurantes no Cabo Branco e escritórios no Bessa — necessita de instalações elétricas flexíveis.</p>
-        <p>Elaboramos projetos comerciais customizados para layouts de alta rotatividade. Dimensionamos circuitos dedicados de força, redes de dados estruturadas e prevemos geradores de emergência para que sua empresa continue faturando mesmo em caso de panes temporárias na rede externa da capital.</p>
+        <p>Hotéis, restaurantes e escritórios de Tambaú, Cabo Branco e Bessa podem ter mudanças de layout e equipamentos com cargas diferentes. O projeto registra circuitos de força, iluminação e infraestrutura de dados conforme o uso do negócio.</p>
+        <p>Geradores, nobreaks e apoio à aprovação na Energisa entram somente quando forem necessários e estiverem previstos na contratação.</p>
       `,
-      painPoint: 'Evitar inatividade comercial e garantir aprovação veloz de projetos na Energisa Paraíba.',
+      painPoint: 'Adequar carga e layout para operações comerciais na capital.',
       faqExtra: {
         question: 'A Klyfe aprova projetos comerciais para novos estabelecimentos na orla de João Pessoa?',
-        answer: 'Sim. Cuidamos do processo integral de homologação e aprovação de aumento de carga comercial junto à Energisa Paraíba, eliminando a burocracia para que sua empresa inicie as atividades no prazo acordado.'
+        answer: 'Podemos preparar e acompanhar a documentação quando a aprovação ou o aumento de carga fizer parte do escopo. A análise e o prazo dependem da Energisa.'
       }
     },
     'projeto-eletrico-industrial': {
       bairros: 'Polo Industrial de Conde, Cabedelo e Distrito Industrial de JP',
       serviceContext: `
-        <p>A Grande João Pessoa concentra indústrias petroquímicas, metalúrgicas, cimenteiras e centros logísticos portuários em Cabedelo. Operações industriais não toleram falhas no fornecimento elétrico de seus motores e linhas de montagem.</p>
-        <p>A Klyfe desenvolve projetos industriais robustos focados na estabilidade de corrente e na proteção contra arcos elétricos. Projetamos painéis de força e controle, barramentos blindados e malhas de aterramento de alto desempenho, tudo em conformidade com as diretrizes de segurança da NR-10.</p>
+        <p>Indústrias de João Pessoa, Conde e Cabedelo precisam relacionar máquinas, motores, turnos e expansão de carga ao projeto elétrico. O levantamento orienta painéis, centros de controle, rotas de cabos e aterramento.</p>
+        <p>Estudos de curto-circuito, seletividade e proteção podem ser incluídos para apoiar a operação e a manutenção. Cada medida depende dos dados da planta e do escopo contratado.</p>
       `,
-      painPoint: 'Mitigação de blackouts internos e adequação de segurança à NR-10 em plantas fabris de João Pessoa.',
+      painPoint: 'Organização de potência e proteção para plantas industriais da região.',
       faqExtra: {
         question: 'Como a Klyfe protege instalações elétricas industriais em áreas portuárias de Cabedelo?',
-        answer: 'Especificamos invólucros estanques com elevado índice de proteção (IP) e tratamentos anticorrosivos específicos nos projetos industriais litorâneos, isolando barramentos contra o ar salino altamente corrosivo.'
+        answer: 'Em áreas próximas ao mar, o ambiente pode influenciar a escolha de invólucros e materiais. A especificação é definida após avaliar exposição, instalação e requisitos do projeto.'
       }
     },
     'projeto-eletrico-multiplas-unidades': {
       bairros: 'Torre, Miramar, Manaíra, Altiplano e Cabedelo',
       serviceContext: `
-        <p>Desenvolvemos projetos de entradas de energia agrupadas (padrão de múltiplas unidades) adequados às normas e exigências da Energisa Paraíba para condomínios residenciais e centros comerciais na capital.</p>
-        <p>A Klyfe projeta a alvenaria, o dimensionamento de barramentos de cobre e a fiação do centro de medição. Assim, garantimos que a distribuidora aprove a ligação de energia sem atrasos ou impedimentos burocráticos durante as vistorias de ligação final.</p>
+        <p>Condomínios e centros comerciais de João Pessoa podem compartilhar uma entrada de energia com várias medições. O projeto separa unidades e áreas comuns e detalha caixas, barramentos, circuitos e aterramento.</p>
+        <p>Os desenhos são organizados para a análise da Energisa. Protocolo, vistoria e eventuais ajustes dependem da documentação completa e das regras da ligação.</p>
       `,
-      painPoint: 'Garantir a ligação de energia rápida e sem reprovações na vistoria técnica da Energisa Paraíba.',
+      painPoint: 'Organizar medições coletivas e reduzir retrabalho na ligação de energia.',
       faqExtra: {
         question: 'Onde o projeto de múltiplas unidades é protocolado em João Pessoa?',
-        answer: 'Ele é submetido digitalmente através do sistema de atendimento de média/baixa tensão corporativo da Energisa Paraíba, com acompanhamento técnico diário da nossa equipe de engenheiros.'
+        answer: 'O canal e os documentos dependem do tipo de ligação. Quando contratado, o protocolo pode ser preparado e acompanhado conforme as orientações da Energisa.'
       }
     },
     'projeto-luminotecnico': {
       bairros: 'Manaíra, Altiplano, Cabo Branco, Tambaú e Miramar',
       serviceContext: `
-        <p>A iluminação em João Pessoa tem papel fundamental no setor comercial e hoteleiro. Projetos luminotécnicos de qualidade devem aliar economia no faturamento com aconchego estético para clientes.</p>
-        <p>A Klyfe desenvolve projetos luminotécnicos detalhados usando softwares de simulação 3D, calculando o lux exato de trabalho (NBR ISO/CIE 8995-1) e mapeando o layout de lâmpadas de LED de alto desempenho, eliminando problemas de ofuscamento visual em escritórios ou hotéis.</p>
+        <p>Hotéis, restaurantes e escritórios de João Pessoa precisam equilibrar aparência, conforto e consumo de energia. O estudo considera a atividade de cada ambiente, a luz natural e a posição das luminárias.</p>
+        <p>Simulações podem comparar níveis de iluminância, uniformidade e ofuscamento antes da compra. Medições e especificações finais dependem do escopo contratado.</p>
       `,
-      painPoint: 'Falta de uniformidade de luz e alto consumo financeiro em luminárias comerciais de João Pessoa.',
+      painPoint: 'Iluminação irregular e consumo elevado em ambientes comerciais da capital.',
       faqExtra: {
         question: 'O projeto luminotécnico da Klyfe em João Pessoa prevê controle automatizado de intensidade?',
-        answer: 'Sim. Projetamos a integração de sistemas luminotécnicos com sensores de luminosidade e dimmers automáticos, ajustando o brilho das luminárias conforme a luz do sol que entra pelas janelas, economizando ainda mais energia.'
+        answer: 'Podemos estudar sensores e dimmers quando o sistema de controle fizer parte do escopo. A solução depende do layout, dos equipamentos e da automação existente.'
       }
     },
     'spda': {
       bairros: 'Altiplano, Manaíra, Cabo Branco, Bessa e Cabedelo',
       serviceContext: `
-        <p>A Grande João Pessoa possui alto índice de umidade e vento salino. Em prédios altos do Altiplano e indústrias, os para-raios (SPDA) sofrem desgaste químico severo causado pela maresia, o que pode danificar a malha condutora.</p>
-        <p>Projetamos e inspecionamos sistemas SPDA em total conformidade com a NBR 5419. Realizamos testes com equipamentos de precisão para atestar a continuidade das descidas internas e a resistividade da malha de aterramento, fornecendo laudos técnicos oficiais com ART para seguradoras e Corpo de Bombeiros de João Pessoa.</p>
+        <p>Em áreas da Grande João Pessoa expostas à umidade e à atmosfera salina, a corrosão pode influenciar o estado de conexões, condutores e eletrodos. Essa condição não é presumida para toda edificação: ela é verificada no levantamento e na inspeção.</p>
+        <p>A Klyfe avalia, projeta, instala e adequa SPDA em João Pessoa conforme a ABNT NBR 5419 vigente e o escopo técnico. A inspeção pode incluir continuidade, aterramento, conexões e registro fotográfico, de acordo com as condições encontradas.</p>
+        <p>Em condomínios, hotéis, comércios e edifícios de João Pessoa e Cabedelo, o levantamento pode precisar compatibilizar cobertura, fachadas, áreas técnicas, estruturas metálicas e caminhos de cabos. A solução é definida depois de verificar o imóvel e os documentos disponíveis.</p>
+        <p>Quando já existe um sistema, a equipe registra o estado das descidas, conexões, eletrodos e pontos de inspeção antes de recomendar manutenção ou adequação. A exposição costeira é tratada como uma condição a investigar, não como uma conclusão automática.</p>
       `,
-      painPoint: 'Oxidação acelerada em para-raios e exigências de seguros em condomínios da capital.',
+      painPoint: 'Necessidade de avaliar corrosão, continuidade e documentação técnica em SPDA de edificações da Grande João Pessoa.',
       faqExtra: {
         question: 'A salinidade da praia de João Pessoa afeta o aterramento do SPDA?',
-        answer: 'Sim. Embora a umidade do solo litorâneo ajude na condutividade, o sal acelera a corrosão galvânica dos eletrodos de aterramento. Por isso, no projeto da capital especificamos hastes revestidas de alta durabilidade e conexões soldadas para resistir à corrosão.'
+        answer: 'A exposição à atmosfera salina pode acelerar a corrosão de eletrodos e conexões em algumas instalações. Por isso, o projeto ou a inspeção deve avaliar o ambiente, os materiais e o estado do aterramento antes de definir qualquer intervenção.'
       }
     },
     'projeto-subestacao': {
       bairros: 'Distrito Industrial, Conde, Cabedelo, Altiplano e Tambaú',
       serviceContext: `
         <p>Condomínios verticais de grande porte na capital e indústrias de João Pessoa dependem de projetos de subestação eficientes para conexão à rede de média tensão da Energisa Paraíba.</p>
-        <p>Elaboramos projetos técnicos civis e elétricos de subestações aéreas e abrigadas. Garantimos o cálculo de seletividade e dimensionamento exato do transformador, viabilizando o fornecimento ininterrupto com o menor custo de implantação possível perante a concessionária local.</p>
+        <p>Elaboramos projetos civis e elétricos para subestações aéreas e abrigadas. O cálculo de proteção, a potência do transformador e a documentação são definidos conforme a demanda e as exigências da concessionária.</p>
       `,
       painPoint: 'Demanda reprimida de energia e necessidade de tarifa verde mais barata na capital.',
       faqExtra: {
         question: 'A Klyfe atende projetos de subestações abrigadas no Altiplano em João Pessoa?',
-        answer: 'Sim. Em edifícios de grande altura no Altiplano, projetamos subestações abrigadas de média tensão no subsolo ou em cabines de alvenaria específicas nas áreas comuns, atendendo aos limites da Energisa Paraíba.'
+        answer: 'Podemos avaliar subestações abrigadas para edifícios de grande altura no Altiplano. A solução, o local da cabine e os limites de atendimento são confirmados no estudo e com a Energisa Paraíba.'
       }
     },
     'pericia-ressarcimento-danos': {
       bairros: 'Todos os bairros e indústrias da Grande João Pessoa',
       serviceContext: `
-        <p>Com as frequentes chuvas e ventos costeiros em João Pessoa, oscilações na rede de energia são comuns, podendo causar sobretensões prejudiciais às instalações internas.</p>
-        <p>Se as suas instalações na capital sofreram avarias em equipamentos eletroeletrônicos, a Klyfe fornece perícia técnica diagnóstica. Elaboramos laudos periciais detalhados atestando o nexo causal com ART registrada, oferecendo a sustentação técnica necessária para reverter recusas administrativas de indenização por parte da Energisa Paraíba.</p>
+        <p>Após uma oscilação ou outro distúrbio, a perícia em João Pessoa reúne registros do evento, do equipamento e da instalação interna. A vistoria pode incluir fotos, identificação das cargas e análise dos documentos disponíveis.</p>
+        <p>O laudo descreve os achados e os limites da análise. Ele pode apoiar um pedido de ressarcimento, cuja decisão depende da Energisa e das regras aplicáveis.</p>
       `,
-      painPoint: 'Recusas da Energisa Paraíba em indenizar aparelhos queimados na capital.',
+      painPoint: 'Danos em equipamentos e necessidade de organizar evidências técnicas.',
       faqExtra: {
         question: 'Como abrir um processo de ressarcimento contra a Energisa Paraíba?',
-        answer: 'A reclamação deve ser aberta no site ou atendimento da Energisa. Caso eles exijam laudo técnico detalhado de terceiros ou neguem o pedido, a Klyfe elabora o laudo pericial oficial assinado por engenheiro para fundamentar a contestação.'
+        answer: 'O pedido começa pelos canais da Energisa e deve seguir os prazos e documentos informados pela distribuidora. Um laudo de terceiro pode ser preparado quando fizer parte do escopo contratado.'
       }
     },
     'pericia-furto-energia': {
       bairros: 'Manaíra, Bessa, Tambaú, Cabo Branco, Centro e Geisel',
       serviceContext: `
-        <p>Inspeções e multas unilaterais por suposto desvio de consumo (TOI) emitidas pela concessionária local em João Pessoa necessitam de análise técnica independente.</p>
-        <p>Atuamos como peritos de parte (assistentes técnicos) para contestações de TOI da Energisa Paraíba. Realizamos vistoria técnica independente na caixa de medição, auditamos o padrão de entrada do cliente e elaboramos laudo pericial para refutar acusações ilegais ou erros de cálculo da distribuidora, visando à anulação das cobranças.</p>
+        <p>Um TOI registra uma irregularidade apontada pela concessionária durante a inspeção do medidor. Em João Pessoa, a análise independente pode revisar o termo, as fotos, o padrão de entrada e o histórico de consumo.</p>
+        <p>O parecer organiza os dados que podem ser usados em uma contestação. O resultado depende das provas reunidas e da autoridade que analisa o caso.</p>
       `,
-      painPoint: 'Recebimento de cobrança arbitrária por anomalia de medição na capital.',
+      painPoint: 'Cobranças de consumo que precisam de conferência técnica.',
       faqExtra: {
         question: 'A Energisa Paraíba pode suspender o fornecimento de luz por recusa do pagamento do TOI?',
-        answer: 'Não. A jurisprudência proíbe o corte de energia baseado em débito de TOI, já que este é gerado unilateralmente. O laudo pericial da Klyfe fornece a base de segurança jurídica para contestar a suspensão.'
+        answer: 'As medidas de cobrança e eventual suspensão dependem do caso e das regras aplicáveis. Questões jurídicas devem ser avaliadas com advogado; a perícia fornece apenas a análise técnica contratada.'
       }
     },
     'viabilidade-carregador-veicular': {
       bairros: 'Altiplano, Cabo Branco, Tambaú, Manaíra e Bessa',
       serviceContext: `
-        <p>João Pessoa concentra uma alta frota de carros elétricos em bairros nobres e na orla. A instalação de carregadores em garagens de condomínios tem gerado dúvidas técnicas complexas nas assembleias prediais.</p>
-        <p>Elaboramos Estudos de Viabilidade Técnica (EVT) para recarga veicular na capital. Inspecionamos a capacidade da subestação do edifício, medimos o perfil de consumo e geramos o parecer conclusivo atestando se a rede elétrica do condomínio comporta as novas cargas sem desarmes, garantindo segurança na aprovação.</p>
+        <p>Em condomínios de João Pessoa, a instalação de carregadores precisa considerar vagas, caminhos de cabos e a capacidade da infraestrutura comum. O estudo reúne o perfil de consumo e a potência pretendida.</p>
+        <p>O parecer indica se a rede atende ao uso previsto ou se serão necessárias adequações. A decisão do condomínio e a aprovação de qualquer alteração seguem o escopo e as regras aplicáveis.</p>
       `,
-      painPoint: 'Dificuldades na aprovação de Wallboxes em garagens de prédios de João Pessoa.',
+      painPoint: 'Dúvidas sobre capacidade e infraestrutura para carregadores em condomínios.',
       faqExtra: {
         question: 'Como funciona o estudo de viabilidade para carregadores em prédios do Altiplano?',
-        answer: 'Realizamos medições de consumo contínuo nas áreas comuns e subestação. Caso a capacidade geral esteja próxima do limite, propomos o sistema de controle de demanda inteligente para permitir que vários condôminos carreguem seus carros sem sobrecarregar a rede.'
+        answer: 'O estudo pode incluir medições e uma comparação entre a demanda atual e a potência dos carregadores. Se houver pouco espaço de carga, podem ser avaliados controle de demanda ou adequações.'
       }
     }
   }
 };
-

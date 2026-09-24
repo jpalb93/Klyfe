@@ -3,7 +3,7 @@ const router = express.Router();
 const locations = require('../config/locations');
 const solarCapture = require('../config/solar-capture');
 const solarServices = require('../config/solar-services');
-const { getPublishedPosts } = require('../lib/blog-loader');
+const { getPublishedPosts, getBlogRedirectBySlug } = require('../lib/blog-loader');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -13,6 +13,8 @@ router.get('/sitemap.xml', (req, res) => {
     const lastModifiedByPath = new Map();
     ['/energia-solar', '/energia-solar/campina-grande-pb', '/energia-solar/joao-pessoa-pb']
         .forEach(path => lastModifiedByPath.set(path, '2026-08-27'));
+    ['/glossario', '/campina-grande/glossario', '/joao-pessoa/glossario']
+        .forEach(path => lastModifiedByPath.set(path, '2026-09-12'));
     const cities = Object.keys(locations);
     const statics = ['', '/solucoes', '/quem-somos', '/projetos', '/blog', '/contato', '/glossario'];
     const hubs = ['engenharia', 'eletrica', 'automacao']; // solar migrou para /energia-solar/
@@ -53,7 +55,7 @@ router.get('/sitemap.xml', (req, res) => {
             if (defaultSvc.category === 'solar') return; // solar agora está em /energia-solar e /servicos
 
             if (isServiceEnabled(city, sKey)) {
-                urls.push(`${prefix}/solucoes/${defaultSvc.category}/${sKey}`);
+                urls.push(`${prefix}/solucoes/${defaultSvc.category}/${sKey}${sKey === 'carregador-veicular' || sKey.startsWith('wallbox-') ? '/' : ''}`);
             }
         });
     });
@@ -62,6 +64,9 @@ router.get('/sitemap.xml', (req, res) => {
     cities.forEach(city => {
         const prefix = city === 'default' ? '' : `/${city}`;
         getPublishedPosts().forEach(post => {
+            // O sitemap deve apontar apenas para destinos finais indexáveis.
+            if (getBlogRedirectBySlug(post.slug)) return;
+            if (city !== 'default' && require('../config/editorial-guides').isCanonicalGuide(post.slug)) return;
             const postPath = `${prefix}/blog/${post.slug}`;
             urls.push(postPath);
             const lastModified = post.dateModifiedIso || post.dateModified || post.datePublished || post.publishAt || post.dateIso;
@@ -72,9 +77,11 @@ router.get('/sitemap.xml', (req, res) => {
     const uniqueUrls = [...new Set(urls)];
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     uniqueUrls.forEach(url => {
-        const formattedUrl = url === '' ? '/' : url.replace(/\/$/, '');
-        const priority = formattedUrl === '/' || formattedUrl === '/energia-solar' ? '1.0' : (formattedUrl.startsWith('/energia-solar') || formattedUrl.startsWith('/servicos') ? '0.9' : '0.8');
-        const lastmod = lastModifiedByPath.get(formattedUrl);
+        // Solar usa barra final de forma canônica; não a remova no sitemap.
+        const formattedUrl = url === '' ? '/' : url;
+        const lookupUrl = formattedUrl.replace(/\/$/, '');
+        const priority = lookupUrl === '/' || lookupUrl === '/energia-solar' ? '1.0' : (lookupUrl.startsWith('/energia-solar') || lookupUrl.startsWith('/servicos') ? '0.9' : '0.8');
+        const lastmod = lastModifiedByPath.get(lookupUrl);
         sitemap += `  <url><loc>${baseUrl}${formattedUrl}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<changefreq>weekly</changefreq><priority>${priority}</priority></url>\n`;
     });
     sitemap += `</urlset>`;

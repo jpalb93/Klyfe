@@ -15,10 +15,10 @@
     ] }) %>
 
     <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>TECNOLOGIA & CONFORTO</span></div>
-    <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Automação Inteligente <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-    <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Controle total do seu ambiente na palma da mão. Soluções de automação residencial e industrial <%= cityData.preposition %> <%= cityData.name %> que unem conforto, economia de energia e segurança de última geração.</p>
+    <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Automação Inteligente <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+    <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Projetos de automação residencial e industrial <%= cityData.preposition %> <%= cityData.name %>, com integração de dispositivos, rotinas e interfaces conforme o objetivo do ambiente.</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-        <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+        <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar um orçamento de automação.') %>" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
         <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
     </div>
         </div>
@@ -59,7 +59,7 @@
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>EM BREVE</span></div>
                 <h2 style="margin-bottom: 1.5rem;">Soluções de Automação <%= cityData.preposition %> <%= cityData.name %>.</h2>
                 <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Estamos preparando conteúdos e soluções exclusivas de Smart Home e Automação Industrial para esta região. Em breve, você poderá conferir nossos projetos detalhados aqui.</p>
-                <a href="/contato" class="btn btn-primary">Fale com um consultor técnico</a>
+                <a href="<%= getHomePrefix() %>/contato" class="btn btn-primary">Fale com um consultor técnico</a>
             </div>
         </section>
         <% } %>
@@ -126,7 +126,7 @@
         <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
             <div class="fade-in">
                 <h2 style="margin-bottom:1.5rem">Tecnologia invisível,<br>resultados tangíveis.</h2>
-                <p style="color:var(--text-muted);line-height:1.8">Nossos projetos de automação visam simplificar sua rotina sem complicar a operação. Utilizamos as tecnologias sem fio mais avançadas e robustas do mercado para garantir estabilidade e resposta imediata.</p>
+                <p style="color:var(--text-muted);line-height:1.8">Os projetos de automação buscam simplificar a rotina sem complicar a operação. A escolha entre tecnologias com fio e sem fio depende da infraestrutura, da compatibilidade dos dispositivos e do objetivo do ambiente.</p>
                 <div style="margin-top:2rem;display:flex;gap:2rem">
                     <div><h4 style="color:var(--accent-primary)">IoT</h4><p style="font-size:0.8rem;color:var(--text-muted)">Integração Nativa</p></div>
                     <div><h4 style="color:var(--accent-primary)">100%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Estabilidade de Rede</p></div>
@@ -146,7 +146,7 @@
 </section>
 
 <!-- ═══ FAQ ═══ -->
-<% if (cityData.faqExtra) { %>
+<% if (serviceData && serviceData.faqExtra) { %>
     <section class="section-padding" style="background: var(--bg-secondary);">
         <div class="container" style="max-width: 800px;">
             <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
@@ -155,11 +155,11 @@
             <div class="faq-accordion fade-in">
                 <div class="faq-item" style="padding: 1.5rem 0; border-bottom: 1px solid var(--border-color);">
                     <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
-                        <%= cityData.faqExtra.question %>
+                        <%= serviceData.faqExtra.question %>
                         <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
                     </button>
                     <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
-                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
+                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= serviceData.faqExtra.answer %></p>
                     </div>
                 </div>
             </div>
@@ -185,18 +185,6 @@
         </section>
         <% } %>
 
-<!-- CONCEITOS TÉCNICOS -->
-<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
-    <div class="container" style="max-width: 900px; text-align: center;">
-        <div class="glossario-links">
-            <h3 style="color:var(--text-main); margin-bottom: 1.5rem; font-size: 1.25rem;">Conceitos técnicos relacionados</h3>
-            <ul style="list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-                <li><a href="/glossario#automação-residencial" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Automação Residencial</a></li>
-            </ul>
-        </div>
-    </div>
-</section>
-
 <!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
 <section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
     <div class="container" style="text-align: center;">
@@ -220,8 +208,8 @@
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
         <div><h2>Pronto para viver o futuro<br>na sua casa?</h2><p>Agende uma demonstração <%= cityData.preposition %> <%= cityData.name %> e região.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="/contato" class="btn-dark">Consultoria Gratuita</a>
-            <% const waHubMsgAut = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
+            <a href="<%= getHomePrefix() %>/contato" class="btn-dark">Solicitar avaliação</a>
+            <% const waHubMsgAut = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'); %>
             <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waHubMsgAut) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> <%= cityData.cta || '(83) 99133-0972' %></a>
         </div>
     </div>

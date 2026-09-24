@@ -82,6 +82,7 @@
                 encodeURIComponent(value) +
                 ';path=/;max-age=31536000;SameSite=Lax';
         } catch (_) { /* ignore */ }
+        window.dispatchEvent(new Event('klyfe:consent'));
     }
 
     function newEventId(prefix) {
@@ -230,6 +231,15 @@
     initConsentDefaults();
     captureUtmsAndClickIds();
 
+    function trackingContext() {
+        return {
+            content_category: CFG.contentCategory || 'geral',
+            content_vertical: CFG.contentVertical || CFG.contentCategory || 'geral',
+            service_key: CFG.serviceKey || undefined,
+            location: CFG.locationName || undefined
+        };
+    }
+
     function sendCapi(eventName, eventId, customData, userData) {
         if (!CFG.capiEnabled) return;
         var cookies = getMetaCookies();
@@ -237,7 +247,7 @@
             event_name: eventName,
             event_id: eventId,
             event_source_url: window.location.href,
-            custom_data: customData || {},
+            custom_data: Object.assign(trackingContext(), customData || {}),
             user_data: Object.assign({}, userData || {}, cookies)
         };
         try {
@@ -359,17 +369,15 @@
         var pvId = newEventId('pv');
         window.fbq('track', 'PageView', {}, { eventID: pvId });
         sendCapi('PageView', pvId, {
-            content_category: CFG.contentCategory || 'geral',
             content_name: CFG.contentName || ''
         });
 
         if (CFG.fireViewContent) {
             var vcId = newEventId('vc');
-            var vcParams = {
-                content_category: CFG.contentCategory || 'solar',
+            var vcParams = Object.assign(trackingContext(), {
                 content_name: CFG.contentName || CFG.contentCategory || 'solar',
                 content_type: 'product'
-            };
+            });
             window.fbq('track', 'ViewContent', vcParams, { eventID: vcId });
             sendCapi('ViewContent', vcId, vcParams);
         }
@@ -430,13 +438,13 @@
             event: 'generate_lead',
             lead_source: params.content_name,
             content_category: params.content_category,
+            content_vertical: CFG.contentVertical || params.content_category,
+            service_key: CFG.serviceKey || undefined,
+            location: CFG.locationName || undefined,
             page: 'obrigado',
             event_id: pending.event_id,
             gclid: (getCampaignParams().gclid || ''),
-            enhanced_conversion_data: {
-                email: user.email || undefined,
-                phone_number: user.phone ? normalizePhoneE164(user.phone) : undefined
-            }
+            has_user_data: !!(user.email || user.phone || user.firstName || user.lastName)
         });
 
         loadGoogleAds(true, user);
@@ -635,6 +643,8 @@
                 return res.json();
             })
             .then(function (json) {
+                if (!json || !json.success) throw new Error('Envio não confirmado');
+                document.dispatchEvent(new CustomEvent('klyfe:form-result', { detail: { status: 'success' } }));
                 var finalId = (json && json.event_id) || eventId;
                 if (finalId !== eventId) {
                     markLpLeadPending({
@@ -648,6 +658,10 @@
                 }
                 window.location.href = opts.thankYouUrl || OBRIGADO_PATH;
                 return { ok: true, event_id: finalId };
+            })
+            .catch(function (error) {
+                document.dispatchEvent(new CustomEvent('klyfe:form-result', { detail: { status: 'error' } }));
+                throw error;
             });
     }
 
@@ -682,16 +696,25 @@
                 event: 'generate_lead',
                 lead_source: p.content_name || 'contato',
                 content_category: p.content_category || 'solar',
+                content_vertical: CFG.contentVertical || p.content_category || 'solar',
+                service_key: CFG.serviceKey || undefined,
+                location: CFG.locationName || undefined,
                 event_id: id,
-                enhanced_conversion_data: userData
-                    ? {
-                          email: userData.email || undefined,
-                          phone_number: userData.phone ? normalizePhoneE164(userData.phone) : undefined
-                      }
-                    : undefined
+                has_user_data: !!userData
             });
             if (userData) fireGoogleAdsConversion(userData);
             return id;
+        },
+        trackWallboxStage: function (stage, details) {
+            var allowed = ['qualified_lead', 'budget_sent', 'contracted'];
+            if (allowed.indexOf(stage) === -1) return false;
+            ensureDataLayer();
+            window.dataLayer.push(Object.assign({
+                event: 'wallbox_' + stage,
+                content_category: 'wallbox',
+                content_name: 'wallbox-funnel'
+            }, details || {}));
+            return true;
         }
     };
 
@@ -712,7 +735,20 @@
         function (e) {
             var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
             if (!a || !isWhatsAppHref(a.getAttribute('href'))) return;
-            if (resolveWaCategory(a) !== 'solar') return;
+            var category = resolveWaCategory(a);
+            if (category === 'wallbox') {
+                ensureDataLayer();
+                window.dataLayer.push({
+                    event: 'contact_whatsapp',
+                    content_category: 'wallbox',
+                    content_vertical: CFG.contentVertical || 'wallbox',
+                    service_key: CFG.serviceKey || 'carregador-veicular',
+                    location: CFG.locationName || undefined,
+                    content_name: a.getAttribute('data-content-name') || 'whatsapp-wallbox'
+                });
+                return;
+            }
+            if (category !== 'solar') return;
             if (getConsent() !== 'granted') return;
             if (typeof window.fbq !== 'function') return;
 
@@ -728,6 +764,9 @@
             window.dataLayer.push({
                 event: 'contact_whatsapp',
                 content_category: 'solar',
+                content_vertical: CFG.contentVertical || 'solar',
+                service_key: CFG.serviceKey || undefined,
+                location: CFG.locationName || undefined,
                 event_id: eventId
             });
             fireGoogleAdsConversion();

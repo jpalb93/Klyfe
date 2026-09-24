@@ -15,10 +15,10 @@
                 { label: 'Engenharia elétrica' }
             ] }) %>
             <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA DE PRECISÃO</span></div>
-            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Engenharia Elétrica <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Consultoria técnica, projetos com ART, subestações e adequação normativa para indústrias, hospitais e grandes empreendimentos em <%= cityData.region %>.</p>
+            <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Engenharia Elétrica <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+            <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Consultoria técnica, projetos, subestações e adequação normativa para indústrias, hospitais e empreendimentos em <%= cityData.region %>. O escopo e os registros são definidos conforme cada necessidade.</p>
             <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-                <a href="/contato" class="btn btn-primary">Solicitar Orçamento</a>
+                <a href="<%= cityPrefix %>/contato" class="btn btn-primary">Solicitar Orçamento</a>
                 <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
             </div>
         </div>
@@ -66,13 +66,13 @@
                     <h2 style="margin-bottom: 2rem;">Engenharia Elétrica <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Atuação Direcionada</span></h2>
                     <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
                         <%- cityData.serviceContext %>
-                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos os principais bairros como <%= cityData.bairros %>.</p>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">A disponibilidade é confirmada conforme a localidade, a logística e o escopo solicitado.</p>
                     </div>
                 </div>
                 <div class="fade-in" style="position: relative;">
                      <div class="bracket-box" style="padding: 2rem; background: var(--bg-primary); border-color: var(--accent-primary);">
                         <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">ÁREA DE COBERTURA</h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">A Klyfe Electric mantém equipes técnicas dimensionadas para pronto atendimento em <strong><%= cityData.name %></strong> e municípios da <strong><%= cityData.region %></strong>, garantindo agilidade no planejamento e execução de obras de engenharia elétrica.</p>
+                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">A análise de <strong><%= cityData.name %></strong> considera deslocamento, acesso e as condições da instalação. Prazo e execução são confirmados no orçamento.</p>
                      </div>
                 </div>
             </div>
@@ -89,7 +89,7 @@
                 <h3 style="margin-bottom:1.5rem">Projetos & Consultoria</h3>
                 <ul style="color:var(--text-muted);font-size:0.95rem">
                     <li style="margin-bottom:1rem"><strong>Projetos Elétricos Industriais</strong> — Dimensionamento de cargas e proteção.</li>
-                    <li style="margin-bottom:1rem"><strong>Projetos de SPDA (Para-raios)</strong> — Proteção contra descargas atmosféricas <span class="badge-mono">NBR 5419</span>.</li>
+                    <li style="margin-bottom:1rem"><strong>SPDA (Para-raios)</strong> — Projeto, instalação, adequação, inspeção e laudo conforme a <span class="badge-mono">NBR 5419</span>.</li>
                     <li style="margin-bottom:1rem"><strong>Subestações de Energia</strong> — Projetos, montagem e manutenção preventiva/corretiva.</li>
                     <li style="margin-bottom:1rem"><strong>Estudo de Seletividade</strong> — Coordenação de dispositivos de proteção.</li>
                     <li><strong>Consultoria em Eficiência Energética</strong> — Redução de custos operacionais.</li>
@@ -98,7 +98,7 @@
             <div class="bracket-box" style="border-left:4px solid var(--accent-primary)">
                 <h3 style="margin-bottom:1.5rem">Laudos & Normas</h3>
                 <ul style="color:var(--text-muted);font-size:0.95rem">
-                    <li style="margin-bottom:1rem"><strong>Prontuário das Instalações Elétricas (PIE)</strong> — Conformidade total <span class="badge-mono">NR-10</span>.</li>
+                    <li style="margin-bottom:1rem"><strong>Prontuário das Instalações Elétricas (PIE)</strong> — Organização documental conforme o escopo <span class="badge-mono">NR-10</span>.</li>
                     <li style="margin-bottom:1rem"><strong>Laudo de Aterramento</strong> — Medição de continuidade e resistência.</li>
                     <li style="margin-bottom:1rem"><strong>Inspeção Termográfica</strong> — Identificação de pontos quentes em painéis.</li>
                     <li style="margin-bottom:1rem"><strong>Análise de Qualidade de Energia</strong> — Estudo de harmônicas e fator de potência.</li>
@@ -115,10 +115,10 @@
         <div class="grid grid-cols-2" style="align-items:center;gap:4rem">
             <div class="fade-in">
                 <h2 style="margin-bottom:1.5rem">Responsabilidade Técnica<br>em cada detalhe.</h2>
-                <p style="color:var(--text-muted);line-height:1.8">Na Klyfe Electric, a engenharia não é apenas um papel assinado. É a aplicação rigorosa de normas internacionais e brasileiras para garantir que seu empreendimento opere com 100% de disponibilidade e segurança.</p>
+                <p style="color:var(--text-muted);line-height:1.8">Na Klyfe Electric, a engenharia combina análise, documentação e orientação técnica. As normas e os critérios adotados são definidos conforme o tipo de instalação e o objetivo do trabalho.</p>
                 <div style="margin-top:2rem;display:flex;gap:2rem">
-                    <div><h4 style="color:var(--accent-primary)">+200</h4><p style="font-size:0.8rem;color:var(--text-muted)">Projetos com ART</p></div>
-                    <div><h4 style="color:var(--accent-primary)">100%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Conformidade NR-10</p></div>
+                    <div><h4 style="color:var(--accent-primary)">Escopo</h4><p style="font-size:0.8rem;color:var(--text-muted)">Definido por instalação</p></div>
+                    <div><h4 style="color:var(--accent-primary)">Rastreável</h4><p style="font-size:0.8rem;color:var(--text-muted)">Documentação do trabalho</p></div>
                 </div>
             </div>
             <div class="bracket-box fade-in" style="padding:3rem">
@@ -135,7 +135,7 @@
 </section>
 
 <!-- ═══ FAQ ═══ -->
-<% if (cityData.faqExtra) { %>
+<% if (serviceData && serviceData.faqExtra) { %>
     <section class="section-padding" style="background: var(--bg-secondary);">
         <div class="container" style="max-width: 800px;">
             <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
@@ -144,11 +144,11 @@
             <div class="faq-accordion fade-in">
                 <div class="faq-item" style="padding: 1.5rem 0; border-bottom: 1px solid var(--border-color);">
                     <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
-                        <%= cityData.faqExtra.question %>
+                        <%= serviceData.faqExtra.question %>
                         <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
                     </button>
                     <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
-                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
+                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= serviceData.faqExtra.answer %></p>
                     </div>
                 </div>
             </div>
@@ -180,8 +180,8 @@
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
         <div><h2>Inicie seu projeto de<br>Engenharia hoje.</h2><p>Fale diretamente com nossa equipe de engenheiros <%= cityData.preposition %> <%= cityData.name %>.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="/contato" class="btn-dark">Agendar Consultoria</a>
-            <% const waHubMsg = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
+            <a href="<%= cityPrefix %>/contato" class="btn-dark">Agendar Consultoria</a>
+            <% const waHubMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'); %>
             <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waHubMsg) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> <%= cityData.cta || '(83) 99133-0972' %></a>
         </div>
 

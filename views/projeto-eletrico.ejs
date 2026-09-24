@@ -11,9 +11,9 @@
     <main>
         <div class="container breadcrumb-standalone">
             <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Engenharia', href: '/solucoes/engenharia' },
+                { label: 'Home', href: getHomePrefix() + '/' },
+                { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                { label: 'Engenharia', href: getHomePrefix() + '/solucoes/engenharia' },
                 { label: 'Projeto elétrico' }
             ], breadcrumbCompact: true }) %>
         </div>
@@ -24,12 +24,12 @@
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA ELÉTRICA</span></div>
                 <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
                     <div>
-                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Projeto Elétrico <%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %>:<br><span style="color:var(--accent-primary)">Residencial, Predial e Industrial.</span></h1>
+                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Projeto Elétrico <span style="color:var(--accent-primary)"><%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %></span></h1>
                         <p style="color:var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
-                            A Klyfe Electric é especialista na elaboração de projetos elétricos completos, seguros e dentro das normas técnicas vigentes. Atendemos obras novas, ampliações e adequações com ART e aprovação junto à Energisa.
+                            Elaboramos projetos elétricos para obras novas, ampliações e adequações. O dimensionamento, os registros, a ART e a interface com a Energisa são definidos conforme a tipologia e o escopo contratado.
                         </p>
                         <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                            <a href="<%= waUrl %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
                             <a href="#servicos" class="btn btn-ghost">Conheça Nossos Serviços →</a>
                         </div>
                     </div>
@@ -50,13 +50,33 @@
                         <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ NBR 5410 e NR-10</span>
                     </div>
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
-                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ ART inclusa</span>
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ ART quando aplicável</span>
                     </div>
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
-                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Aprovação na Energisa</span>
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Interface com a Energisa</span>
                     </div>
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
                         <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Obras novas e ampliações</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ EXPLICAÇÃO EM LINGUAGEM SIMPLES ═══ -->
+        <section class="section-padding" style="background: var(--bg-secondary); border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="grid grid-cols-2" style="gap: 4rem; align-items: start;">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>EM LINGUAGEM SIMPLES</span></div>
+                        <h2 style="margin-bottom: 1.5rem;">O que um projeto elétrico <span style="color:var(--accent-primary)">organiza?</span></h2>
+                        <p style="color: var(--text-muted); line-height: 1.7;">Ele transforma as necessidades da obra em desenhos, cálculos e orientações para a execução. Assim, cada circuito, proteção e ponto de uso é definido antes da instalação.</p>
+                    </div>
+                    <div class="bracket-box" style="padding: 2rem; background: var(--bg-primary);">
+                        <ul style="margin: 0; padding-left: 1.25rem; color: var(--text-muted); line-height: 1.8;">
+                            <li>Quais cargas a obra terá.</li>
+                            <li>Como os circuitos serão distribuídos e protegidos.</li>
+                            <li>Quais desenhos, memoriais e registros fazem sentido para o escopo.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -86,7 +106,7 @@
                                 <i class="fas fa-check" style="color: var(--accent-primary);"></i> ART (Anotação de Responsabilidade Técnica)
                             </li>
                             <li style="margin-bottom: 1rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted);">
-                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Aprovação na Energisa e acompanhamento técnico
+                                <i class="fas fa-check" style="color: var(--accent-primary);"></i> Documentação e interface com a Energisa, quando previstas
                             </li>
                         </ul>
                     </div>
@@ -109,19 +129,19 @@
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Projeto Elétrico Residencial</h3>
                         <p style="color: var(--text-muted); line-height: 1.6;">
-                            Desenvolvemos projetos elétricos residenciais com foco em segurança, economia de energia e confiabilidade para sua casa. O projeto garante que a instalação esteja em conformidade com a NBR 5410 e aprovada pela concessionária.
+                            Projetos residenciais organizam cargas, circuitos, proteção e pontos de uso. A necessidade de aprovação depende da ligação e da concessionária.
                         </p>
                     </div>
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Projeto Elétrico Predial</h3>
                         <p style="color: var(--text-muted); line-height: 1.6;">
-                            Para edifícios, condomínios, comércios e escritórios, elaboramos projetos elétricos prediais com dimensionamento adequado às demandas coletivas, distribuição eficiente de circuitos e conformidade com as normas técnicas aplicáveis.
+                            Para edifícios, condomínios, comércios e escritórios, o projeto distribui circuitos e dimensiona as cargas coletivas. As normas aplicáveis são confirmadas conforme a instalação.
                         </p>
                     </div>
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Projeto Elétrico Industrial</h3>
                         <p style="color: var(--text-muted); line-height: 1.6;">
-                            Projetos elétricos industriais exigem atenção especial à alta demanda, eficiência energética e normas técnicas específicas como a NR-10. A Klyfe Electric elabora projetos técnicos completos para ambientes industriais.
+                            Projetos industriais precisam considerar demanda, proteção, aterramento e normas específicas, como a NR-10. O escopo é definido conforme a planta e os equipamentos.
                         </p>
                     </div>
                 </div>
@@ -138,13 +158,13 @@
                     <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
                         <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 1rem;">Segurança</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                            Um projeto elaborado por engenheiro eletricista habilitado previne riscos de curto-circuito, sobrecargas e incêndios elétricos, protegendo pessoas e patrimônio.
+                            Um projeto bem dimensionado ajuda a reduzir riscos de curto-circuito e sobrecarga. A análise considera pessoas, equipamentos e características da instalação.
                         </p>
                     </div>
                     <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
                         <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 1rem;">Conformidade com Normas</h3>
                         <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6;">
-                            A NBR 5410 e a NR-10 estabelecem requisitos técnicos obrigatórios. O projeto garante que sua instalação esteja dentro da legalidade e aprovada pela Energisa.
+                            A NBR 5410, a NR-10 e outras referências podem se aplicar conforme o tipo de instalação. O projeto registra as premissas adotadas; aprovação e exigências são tratadas com a concessionária quando cabível.
                         </p>
                     </div>
                     <div class="bracket-box fade-in" style="background: var(--bg-secondary);">
@@ -173,12 +193,12 @@
                         <p style="color: var(--text-muted); font-size: 0.95rem;">Desenvolvimento dos diagramas, memorial de cálculo e toda a documentação técnica exigida por norma.</p>
                     </div>
                     <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
-                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">3. Emissão da ART</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Registro da Anotação de Responsabilidade Técnica junto ao CREA, com responsabilidade técnica do engenheiro eletricista da Klyfe Electric.</p>
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">3. Registros e responsabilidade</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Definição da documentação e eventual ART conforme o escopo contratado e as exigências aplicáveis.</p>
                     </div>
                     <div class="bracket-box fade-in">
-                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">4. Aprovação na Energisa</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Protocolo e acompanhamento da aprovação junto à concessionária Energisa.</p>
+                        <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">4. Interface com a concessionária</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Quando prevista no orçamento, organização do protocolo e acompanhamento das etapas informadas pela Energisa.</p>
                     </div>
                 </div>
             </div>
@@ -199,7 +219,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                Sim. A NBR 5410 exige que instalações elétricas residenciais sigam projeto elaborado por profissional habilitado. Além disso, a concessionária (Energisa) exige o projeto para aprovação da ligação elétrica em obras acima de determinada carga instalada.
+                                A necessidade depende do tipo de obra, da carga e das exigências aplicáveis. A NBR 5410 orienta as instalações de baixa tensão, enquanto a concessionária informa quando precisa analisar o projeto para a ligação.
                             </p>
                         </div>
                     </div>
@@ -211,7 +231,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                ART é a Anotação de Responsabilidade Técnica emitida pelo CREA. Ela atesta que um engenheiro eletricista habilitado é responsável técnico pelo projeto, garantindo validade legal, segurança e conformidade com as normas vigentes.
+                                ART é a Anotação de Responsabilidade Técnica registrada no sistema profissional. Ela identifica o responsável pelo serviço quando esse registro faz parte do escopo e das exigências do caso.
                             </p>
                         </div>
                     </div>
@@ -223,7 +243,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                A NBR 5410 da ABNT é a norma brasileira que regulamenta as instalações elétricas de baixa tensão, sendo aplicada em projetos residenciais e comerciais. Projetos industriais seguem complementarmente a NR-10 e normas específicas do setor.
+                                A ABNT NBR 5410 apresenta requisitos para instalações elétricas de baixa tensão. Projetos industriais também podem envolver a NR-10 e outras normas, conforme o processo e os equipamentos.
                             </p>
                         </div>
                     </div>
@@ -235,7 +255,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                Sim. A Klyfe Electric acompanha todo o processo de aprovação junto à Energisa, desde a elaboração da documentação técnica exigida até o protocolo e acompanhamento da aprovação da ligação elétrica.
+                                Podemos avaliar a documentação e, quando contratado, apoiar o protocolo e o acompanhamento junto à Energisa. O enquadramento e a decisão pertencem à concessionária.
                             </p>
                         </div>
                     </div>
@@ -247,7 +267,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                Sim. Projetos elétricos industriais exigem atenção a aspectos como alta demanda, fator de potência, proteção contra surtos, aterramento e conformidade com a NR-10 (Segurança em Instalações e Serviços em Eletricidade), além das normas ABNT aplicáveis ao setor.
+                                Sim. Além da demanda, o projeto pode tratar de fator de potência, proteção contra surtos, aterramento e NR-10. As referências ABNT são escolhidas conforme o setor e as características da planta.
                             </p>
                         </div>
                     </div>
@@ -262,27 +282,27 @@
                 <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
                 
                 <div class="grid grid-cols-4" style="gap: 1.5rem;">
-                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Subestação Aérea</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Média Tensão até 500kVA.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Laudos Elétricos</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">NR-10, SPDA, Termografia.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Fator de Potência</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Elimine multas na fatura.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Instalações Industriais</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Infraestrutura e Manutenção.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
@@ -295,9 +315,9 @@
         <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container" style="text-align: center;">
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
-                <h2 style="margin-bottom: 2rem;">Solicite seu Projeto Elétrico em <br><span style="color:var(--accent-primary)">Campina Grande</span></h2>
-                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite um orçamento para o seu projeto elétrico residencial, predial ou industrial. Nossa equipe está pronta para atender você em Campina Grande e região.</p>
-                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
+                <h2 style="margin-bottom: 2rem;">Solicite seu Projeto Elétrico <%= cityData.preposition %> <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite um orçamento para o seu projeto elétrico residencial, predial ou industrial. A disponibilidade e o escopo são confirmados conforme sua localidade e a necessidade da obra.</p>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar um projeto elétrico.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
             </div>
         </section>
 

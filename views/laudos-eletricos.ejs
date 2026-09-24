@@ -11,9 +11,9 @@
     <main>
         <div class="container breadcrumb-standalone">
             <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Engenharia', href: '/solucoes/engenharia' },
+                { label: 'Home', href: getHomePrefix() + '/' },
+                { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                { label: 'Engenharia', href: getHomePrefix() + '/solucoes/engenharia' },
                 { label: 'Laudos elétricos' }
             ], breadcrumbCompact: true }) %>
         </div>
@@ -24,12 +24,12 @@
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENGENHARIA DIAGNÓSTICA</span></div>
                 <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
                     <div>
-                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Laudos Técnicos & ART <%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %>:<br><span style="color:var(--accent-primary)">Inspeções e Conformidade Legal.</span></h1>
+                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Laudos Técnicos &amp; ART <%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %></h1>
                         <p style="color:var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
                             Garantimos segurança técnica e conformidade jurídica para suas instalações. A Klyfe realiza inspeções com laudos e ART para residências, comércios e indústrias conforme NBR 5410, NBR 5419 e NR-10.
                         </p>
                         <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Engenheiro</a>
+                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de consultar um laudo técnico.') %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Engenheiro</a>
                             <a href="#especialidades" class="btn btn-ghost">Ver Especialidades →</a>
                         </div>
                     </div>
@@ -176,7 +176,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                A validade varia conforme o tipo de laudo e a exigência do órgão solicitante. Em geral, laudos de SPDA e instalações industriais são renovados anualmente para garantir a continuidade da segurança e conformidade normativa.
+                                A validade e a necessidade de nova inspeção variam conforme o tipo de laudo, a edificação, as condições encontradas e a exigência do órgão solicitante, seguradora ou responsável pelo imóvel. O prazo aplicável deve ser registrado no documento e confirmado para cada caso.
                             </p>
                         </div>
                     </div>
@@ -212,7 +212,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                Temos sede em Campina Grande e atendemos João Pessoa, Guarabira, Patos e todas as principais regiões da Paraíba com equipe técnica local pronta para realizar vistorias e diagnósticos.
+                                A disponibilidade para vistorias e diagnósticos é confirmada conforme a localidade, a logística e o escopo técnico solicitado. A sede da Klyfe fica em Campina Grande.
                             </p>
                         </div>
                     </div>
@@ -227,27 +227,27 @@
                 <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
                 
                 <div class="grid grid-cols-4" style="gap: 1.5rem;">
-                    <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Projeto Elétrico</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Residencial, Predial e Industrial.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Subestação Aérea</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Média Tensão até 500kVA.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Fator de Potência</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Elimine multas na fatura.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Instalações Industriais</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Infraestrutura e Manutenção.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
@@ -262,7 +262,7 @@
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>SOLICITE SUA VISTORIA</span></div>
                 <h2 style="margin-bottom: 2rem;">Sua instalação está segura?<br><span style="color:var(--accent-primary)">Peça seu laudo técnico hoje.</span></h2>
                 <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric para agendar uma inspeção técnica detalhada. Emitimos laudos com ART para sua total tranquilidade e conformidade legal.</p>
-                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Agendar Inspeção Técnica</a>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de agendar uma inspeção técnica.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Agendar Inspeção Técnica</a>
             </div>
         </section>
 

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body class="page-service page-wallbox page-wallbox-condominio">
+    <%- include('partials/navbar') %>
+
+    <style>
+        .page-wallbox .wallbox-brief-form label {
+            color: #E2E8F0 !important;
+        }
+    </style>
+
+    <%
+        const wallboxWaMsg = (typeof waMsg !== 'undefined' && waMsg)
+            ? waMsg
+            : `Olá! Gostaria de solicitar uma consultoria para instalação de Wallbox em condomínio em ${cityData.name}.`;
+        const wallboxWaUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(wallboxWaMsg)}`;
+    %>
+
+    <main class="wallbox-page-content">
+        <% const heroBg = (typeof serviceData !== 'undefined' && serviceData.heroImage) ? serviceData.heroImage : '/img/wallbox/wallbox-condominio.webp'; %>
+        <section class="page-hero bg-blueprint hero-wallbox" style="background: linear-gradient(100deg, rgba(8, 19, 29, 0.95) 0%, rgba(8, 19, 29, 0.80) 54%, rgba(8, 19, 29, 0.42) 100%), url('<%= heroBg %>') center / cover no-repeat !important; padding-top:120px; padding-bottom:4rem">
+            <div class="container fade-in">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                    { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
+                    { label: 'Instalação de Wallbox', href: getHomePrefix() + '/solucoes/eletrica/carregador-veicular/' },
+                    { label: 'Wallbox em Condomínio' }
+                ] }) %>
+
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>VAGAS EM CONDOMÍNIOS & ENGENHARIA</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Instalação de Wallbox em Condomínio <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+                <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Solução completa e segura para recarga veicular em vagas de garagem de condomínios verticais e horizontais: medição individualizada Inmetro, balanceamento dinâmico de carga (DLB), laudo técnico para assembleias e ART no CREA-PB.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-primary" data-wallbox-event="condominio_hero_whatsapp" data-content-category="wallbox" data-content-name="wallbox-condominio-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Solicitar Consultoria
+                    </a>
+                    <a href="#solucoes-condominio" class="btn btn-ghost">Modelos de Instalação</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVA DE VALOR -->
+        <section class="wallbox-proof-strip" aria-label="Garantias para o condomínio">
+            <div class="container wallbox-proof-grid">
+                <div><strong>01</strong><span>Laudo de Viabilidade da Subestação</span></div>
+                <div><strong>02</strong><span>Medição Individual Homologada Inmetro</span></div>
+                <div><strong>03</strong><span>Assessoria Técnica para Assembleias</span></div>
+                <div><strong>04</strong><span>Conformidade com CBMPB e NBR 17019</span></div>
+            </div>
+        </section>
+
+        <!-- OS DOIS MODELOS DE INSTALAÇÃO EM CONDOMÍNIO -->
+        <section id="solucoes-condominio" class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>ARQUITETURA ELÉTRICA</span></div>
+                        <h2>Como viabilizar a recarga no <span>seu condomínio?</span></h2>
+                    </div>
+                    <p>Analisamos a topologia do edifício e a localização das vagas para definir o modelo mais seguro, econômico e juridicamente aprovável.</p>
+                </div>
+
+                <div class="wallbox-condo-models-grid">
+                    <article class="wallbox-condo-card fade-in">
+                        <div class="condo-card-badge">MODELO 01</div>
+                        <h3>Ligação ao Medidor da Unidade Privativa</h3>
+                        <p class="condo-card-desc">Quando a vaga de garagem está próxima aos centros de medição ou há shaft técnico disponível, o circuito do Wallbox é conectado diretamente após o medidor do próprio apartamento.</p>
+                        <ul class="condo-card-features">
+                            <li><i class="fas fa-check"></i> Cobrança direta na fatura de energia da unidade</li>
+                            <li><i class="fas fa-check"></i> Sem necessidade de rateio interno pelo condomínio</li>
+                            <li><i class="fas fa-check"></i> Proteção individualizada no quadro técnico da vaga</li>
+                            <li><i class="fas fa-check"></i> Ideal para edifícios com shaft técnico acessível</li>
+                        </ul>
+                    </article>
+
+                    <article class="wallbox-condo-card condo-card-featured fade-in">
+                        <div class="condo-card-badge">MODELO 02 · RECOMENDADO</div>
+                        <h3>Prumada Coletiva com Medição Individual</h3>
+                        <p class="condo-card-desc">Criação de uma infraestrutura mestra (eletrocalha ou barramento blindado) alimentada pelo quadro geral do condomínio, com medidores digitais individuais homologados pelo Inmetro.</p>
+                        <ul class="condo-card-features">
+                            <li><i class="fas fa-check"></i> Garagem organizada sem fios soltos ou tubulações desordenadas</li>
+                            <li><i class="fas fa-check"></i> Medidores com display digital e selo do Inmetro</li>
+                            <li><i class="fas fa-check"></i> Possibilidade de integração com aplicativo de bilhetagem automática</li>
+                            <li><i class="fas fa-check"></i> Suporte a Balanceamento Dinâmico de Carga (DLB)</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENGENHARIA E GESTÃO DE CARGA -->
+        <section class="section-padding wallbox-section bg-blueprint">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>SEGURANÇA PREDIAL</span></div>
+                        <h2>Evite sobrecarga e desarmes com <span>Balanceamento Dinâmico</span></h2>
+                    </div>
+                    <p>O que acontece quando 10 ou 20 moradores chegam do trabalho e colocam os carros para recarregar ao mesmo tempo? Sem engenharia, o transformador do edifício desarma.</p>
+                </div>
+
+                <div class="wallbox-specs-grid">
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-network-wired"></i></div>
+                        <h3>Dynamic Load Balancing (DLB)</h3>
+                        <p>O sistema mede em tempo real o consumo dos elevadores, bombas e áreas comuns do condomínio, distribuindo a capacidade excedente entre os carros conectados de forma inteligente.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-calculator"></i></div>
+                        <h3>Medidores Inmetro de Alta Precisão</h3>
+                        <p>Cada morador paga exatamente pelo que consumiu. Medidores digitais aferidos com precisão de classe 1 evitam atritos entre moradores e facilitam o rateio mensal na taxa de condomínio.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-shield-halved"></i></div>
+                        <h3>Segurança Antichamas & Bombeiros</h3>
+                        <p>Atendemos integralmente as instruções técnicas do Corpo de Bombeiros Militar da Paraíba (CBMPB): eletrodutos metálicos rígidos, cabos livres de halogênio (baixo fumo e toxidade) e botoeira de emergência.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-file-signature"></i></div>
+                        <h3>Laudo Técnico e ART no CREA-PB</h3>
+                        <p>Emitimos o laudo de viabilidade técnica com cálculo de demanda da subestação e ART do CREA-PB para tranquilizar síndicos, conselheiros fiscais e administradoras de condomínio.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-users"></i></div>
+                        <h3>Assessoria Técnica em Assembleia</h3>
+                        <p>Engenheiro eletricista da Klyfe comparece à assembleia de condomínio ou reunião de conselho para sanar dúvidas dos moradores sobre segurança, custos e responsabilidade jurídica.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Valorização do Imóvel</h3>
+                        <p>Edifícios preparados para mobilidade elétrica têm maior liquidez imobiliária e atraem compradores e inquilinos que já possuem ou planejam adquirir veículos elétricos.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESSO DE APROVAÇÃO EM CONDOMÍNIOS -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading wallbox-section-heading-centered fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>PASSO A PASSO</span></div>
+                        <h2>Como aprovar e instalar <span>no condomínio</span></h2>
+                    </div>
+                    <p>Orientamos o morador e a administração predial em cada etapa jurídica e de engenharia.</p>
+                </div>
+                <div class="wallbox-process-grid">
+                    <article class="wallbox-process-step fade-in">
+                        <strong>01</strong>
+                        <i class="fas fa-search-location"></i>
+                        <h3>Vistoria da Garagem e Subestação</h3>
+                        <p>Análise da prumada, distância da vaga, transformador da Energisa PB e painel de medição geral.</p>
+                    </article>
+                    <article class="wallbox-process-step fade-in">
+                        <strong>02</strong>
+                        <i class="fas fa-file-alt"></i>
+                        <h3>Projeto e Memorial Descritivo</h3>
+                        <p>Elaboração do projeto executivo com roteiro de cabos, especificação de medidor e ART registrada.</p>
+                    </article>
+                    <article class="wallbox-process-step fade-in">
+                        <strong>03</strong>
+                        <i class="fas fa-handshake"></i>
+                        <h3>Aprovação com Síndico / Assembleia</h3>
+                        <p>Apresentação do memorial técnico comprovando conformidade com as normas e ausência de riscos para o condomínio.</p>
+                    </article>
+                    <article class="wallbox-process-step fade-in">
+                        <strong>04</strong>
+                        <i class="fas fa-tools"></i>
+                        <h3>Execução e Comissionamento</h3>
+                        <p>Montagem limpa, testes de aterramento, parametrização do medidor e entrega do termo de responsabilidade.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO DE ORÇAMENTO -->
+        <section id="solicitar" class="section-padding wallbox-lead-section">
+            <div class="container wallbox-lead-grid">
+                <div class="wallbox-lead-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>CONSULTORIA ESPECIALIZADA</span></div>
+                    <h2>Viabilize a recarga no seu condomínio <%= cityData.preposition %> <span><%= cityData.name %></span></h2>
+                    <p>Seja você morador querendo carregar seu carro ou síndico buscando regulamentar as garagens com segurança, conte com o suporte da Klyfe Electric.</p>
+                    <div class="wallbox-lead-points">
+                        <span><i class="fas fa-check-circle"></i> Vistoria técnica gratuita na garagem</span>
+                        <span><i class="fas fa-shield-alt"></i> Conformidade com NBR 17019 e CBMPB</span>
+                        <span><i class="fas fa-file-contract"></i> Emissão de ART no CREA-PB</span>
+                    </div>
+                </div>
+                <form id="wallbox-brief-form" class="wallbox-brief-form fade-in" data-phone="5583991330972" data-content-category="wallbox" data-content-name="wallbox-condominio-form">
+                    <input type="hidden" name="perfil" value="Condomínio">
+                    <div class="wallbox-form-heading"><span>01</span><div><strong>Consulta para Condomínio</strong><small>Atendimento para moradores e síndicos</small></div></div>
+                    <label for="wallbox-name" style="color: #FFFFFF !important;">Seu nome</label>
+                    <input id="wallbox-name" name="nome" type="text" placeholder="Como podemos chamar você?" required>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-phone" style="color: #FFFFFF !important;">WhatsApp</label><input id="wallbox-phone" name="telefone" type="tel" placeholder="(83) 99999-9999" required></div>
+                        <div><label for="wallbox-role" style="color: #FFFFFF !important;">Você é:</label>
+                            <select id="wallbox-role" name="funcao" required>
+                                <option value="">Selecione</option>
+                                <option>Morador / Proprietário</option>
+                                <option>Síndico / Subsíndico</option>
+                                <option>Administradora de Condomínio</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-condo-name" style="color: #FFFFFF !important;">Nome do Condomínio</label><input id="wallbox-condo-name" name="nome_condominio" type="text" placeholder="Ex: Edifício Solar das Acácias" required></div>
+                        <div><label for="wallbox-city" style="color: #FFFFFF !important;">Cidade / Bairro</label><input id="wallbox-city" name="cidade" type="text" placeholder="Ex: Manaíra, Altiplano..." value="<%= cityData.name !== 'Paraíba' ? cityData.name : '' %>" required></div>
+                    </div>
+                    <label for="wallbox-car" style="color: #FFFFFF !important;">Modelo do veículo elétrico (se aplicável)</label>
+                    <input id="wallbox-car" name="veiculo" type="text" placeholder="Ex: BYD Dolphin, Volvo EX30, GWM Haval...">
+                    <button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Falar com Engenheiro no WhatsApp</button>
+                    <small class="wallbox-form-note">Seus dados são protegidos e utilizados exclusivamente para orientar o projeto no seu condomínio.</small>
+                </form>
+            </div>
+        </section>
+
+        <!-- BAIRROS E ATENDIMENTO REGIONAL -->
+        <section class="section-padding wallbox-section wallbox-area-section">
+            <div class="container wallbox-area-grid">
+                <div class="wallbox-area-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>ÁREA DE COBERTURA</span></div>
+                    <h2>Condomínios atendidos <span><%= cityData.preposition %> <%= cityData.name %></span></h2>
+                    <p>Atendemos condomínios verticais e horizontais em toda a capital e polo regional, com atuação frequente nos principais eixos residenciais.</p>
+                </div>
+                <div class="wallbox-area-card fade-in">
+                    <span class="wallbox-area-label">Bairros com Forte Atuação em Condomínios</span>
+                    <strong><%= cityData.name %> e Região Metropolitana</strong>
+                    <p><%= serviceData.bairros || 'Atendimento sob consulta em condomínios.' %></p>
+                    <a href="#solicitar" class="text-link">Agendar Vistoria no Meu Condomínio <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="duvidas" class="section-padding wallbox-faq-section bg-blueprint">
+            <div class="container wallbox-faq-container">
+                <div class="section-separator section-separator-centered"><%- include('partials/symbol') %> <span>RESPOSTAS TÉCNICAS</span></div>
+                <h2>Dúvidas Frequentes sobre <span>Wallbox em Condomínio</span></h2>
+                <div class="wallbox-faq-list">
+                    <% (faqList || []).forEach(item => { %>
+                        <div class="wallbox-faq-item">
+                            <button class="wallbox-faq-question" type="button" aria-expanded="false"><%= item.question %><i class="fas fa-plus"></i></button>
+                            <div class="wallbox-faq-answer"><p><%= item.answer %></p></div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVEGAÇÃO ENTRE MODALIDADES -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>OUTRAS SOLUÇÕES</span></div>
+                        <h2>Conheça outras aplicações de <span>mobilidade elétrica</span></h2>
+                    </div>
+                    <p>Projetos residenciais, comerciais e integrados com energia solar.</p>
+                </div>
+                <div class="wallbox-other-solutions-grid">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-casa.webp" alt="Wallbox residencial" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>RESIDENCIAL</span>
+                            <h3>Wallbox Residencial</h3>
+                            <p>Instalação de carregador veicular em casas com circuito exclusivo e proteções de alto padrão.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-empresa/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-empresa.webp" alt="Wallbox para empresas" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>EMPRESAS</span>
+                            <h3>Wallbox para Empresas</h3>
+                            <p>Infraestrutura para frotas comerciais, estacionamentos corporativos e estações com OCPP.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-energia-solar/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Wallbox integrado à energia solar" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>ENERGIA SOLAR</span>
+                            <h3>Wallbox + Energia Solar</h3>
+                            <p>Planeje a recarga para aproveitar a geração solar disponível no imóvel.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding wallbox-section" aria-labelledby="guia-wallbox-condominio">
+            <div class="container">
+                <h2 id="guia-wallbox-condominio">Prepare o pedido antes da instalação</h2>
+                <p>O guia ajuda moradores e síndicos a organizar autorização, medição e responsabilidades. Nesta página você encontra o serviço de engenharia e pode solicitar uma avaliação.</p>
+                <a href="/blog/wallbox-em-condominio">Leia o guia para pedir um wallbox ao condomínio <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="wallbox-final-cta">
+            <div class="container wallbox-final-cta-inner">
+                <div>
+                    <span class="wallbox-eyebrow">AGENDE SUA CONSULTORIA</span>
+                    <h2>Leve mobilidade elétrica segura para o seu condomínio.</h2>
+                    <p>Converse com a engenharia da Klyfe e receba todo o suporte técnico e documental.</p>
+                </div>
+                <div class="wallbox-final-cta-actions">
+                    <a href="#solicitar" class="btn btn-primary" data-wallbox-event="final_primary_cta">Solicitar Laudo Técnico</a>
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" data-wallbox-event="final_whatsapp_cta" data-content-category="wallbox"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

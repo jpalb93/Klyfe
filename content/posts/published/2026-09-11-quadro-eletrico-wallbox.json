@@ -1,0 +1,98 @@
+{
+  "status": "published",
+  "slug": "quadro-eletrico-wallbox",
+  "title": "O Quadro Elétrico Suporta um Wallbox? Como Avaliar a Capacidade da Casa",
+  "publishAt": "2026-09-11",
+  "category": "eletrica",
+  "categoryLabel": "Elétrica",
+  "summary": "Saiba se seu disjuntor geral e quadro de distribuição suportam a carga contínua de 32A de um Wallbox e quando é preciso solicitar aumento de carga na Energisa.",
+  "whatsappMessage": "Olá! Vim do artigo sobre capacidade do quadro elétrico para Wallbox <%- locationPhrase %> e gostaria de agendar uma vistoria técnica no meu imóvel.",
+  "readTime": "10 min",
+  "heroImage": "/img/wallbox/wallbox-hero.webp",
+  "keywords": [
+    "quadro elétrico para wallbox",
+    "capacidade do disjuntor para wallbox",
+    "aumento de carga wallbox",
+    "bitola cabo carregador",
+    "avaliação elétrica wallbox"
+  ],
+  "contentHtml": "\n      <p class=\"lead\">Ao planejar a compra de um carro elétrico, a maioria das pessoas analisa o design, a autonomia da bateria e o tempo de aceleração. No entanto, o elemento mais crítico para o sucesso da recarga diária costuma ficar escondido atrás de uma portinha de metal no corredor ou na garagem: <strong>o Quadro de Distribuição Geral (QDG) do imóvel</strong>.</p>\n\n      <p>Um Wallbox residencial padrão de 7,4 kW consome <strong>32 Amperes contínuos em 220V</strong>. Isso equivale a manter dois chuveiros elétricos de alta potência ou quatro aparelhos de ar-condicionado inverter ligados simultaneamente na potência máxima por 6 a 8 horas ininterruptas. Se o quadro elétrico da sua casa não estiver preparado, o disjuntor geral desarmará frequentemente, podendo queimar componentes e causar sobreaquecimento nos barramentos.</p>\n\n      <h2>Os 4 Pontos Críticos na Avaliação do Quadro Elétrico</h2>\n      <p>Antes de passar qualquer cabo, o engenheiro eletricista realiza uma inspeção minuciosa com foco em quatro requisitos técnicos normativos (NBR 5410):</p>\n\n      <ul>\n        <li><strong>1. Capacidade do Disjuntor Geral da Entrada (Energisa):</strong> O disjuntor geral da sua residência determina a corrente máxima que a concessionária autoriza você consumir. Se a entrada for monofásica de 40A ou 50A, ligar um carregador de 32A deixa apenas 8A a 18A disponíveis para todos os outros eletrodomésticos da casa. Ao ligar um forno elétrico ou ar-condicionado, a casa ficará no escuro;</li>\n        <li><strong>2. Espaço Físico nos Trilhos DIN:</strong> A alimentação do carregador não pode compartilhar disjuntores existentes. O circuito exige obrigatoriamente um disjuntor exclusivo, um interruptor DR e protetores de surto (DPS). Isso demanda entre <strong>6 e 10 módulos livres</strong> no trilho DIN do quadro. Se o quadro estiver 100% lotado, a solução é instalar um <em>Quadro Elétrico Auxiliar</em> dedicado;</li>\n        <li><strong>3. Equipotencialização e Integridade do Aterramento:</strong> O Wallbox possui circuitos de autoteste que medem a resistência de aterramento antes de autorizar a passagem de energia. Se o aterramento for inexistente, ineficiente ou apresentar flutuações de tensão no neutro, o carregador travará e exibirá código de erro no painel;</li>\n        <li><strong>4. Dimensionamento e Queda de Tensão no Circuito:</strong> A NBR 5410 limita a queda de tensão máxima admissível. Se a distância entre o quadro e a garagem for superior a 15 metros, o condutor de 6 mm² pode sofrer queda de tensão excessiva, exigindo cabos de 10 mm² ou 16 mm² para evitar desperdício de energia e aquecimento.</li>\n      </ul>\n\n      <h2>Tabela Checklist: O Que o Imóvel Precisa vs. Solução Técnica</h2>\n      <p>Confira os cenários mais frequentes encontrados em residências de Campina Grande e João Pessoa:</p>\n\n      <table class=\"blog-table\" style=\"width:100%; border-collapse: collapse; margin: 1.5rem 0;\">\n        <thead>\n          <tr style=\"background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);\">\n            <th style=\"padding: 12px; text-align: left;\">Situação Encontrada no Imóvel</th>\n            <th style=\"padding: 12px; text-align: left;\">Diagnóstico Técnico</th>\n            <th style=\"padding: 12px; text-align: left;\">Solução Recomendada pela Engenharia</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Padrão Monofásico 40A ou 50A</td>\n            <td style=\"padding: 12px; color: #c62828;\">Sobrecarga iminente ao ligar Wallbox e eletrodomésticos.</td>\n            <td style=\"padding: 12px; font-weight: bold;\">Solicitar Aumento de Carga para Padrão Bifásico ou Trifásico na Energisa.</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Quadro Principal sem Espaço Vazio</td>\n            <td style=\"padding: 12px; color: #b78103;\">Impossibilidade física de acomodar o disjuntor, DR e DPS do carro.</td>\n            <td style=\"padding: 12px; font-weight: bold;\">Derivação protegida para um Quadro Auxiliar exclusivo de recarga veicular.</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Garagem Afastada (Mais de 25 metros)</td>\n            <td style=\"padding: 12px; color: #b78103;\">Queda de tensão superior a 3% com cabo de 6 mm².</td>\n            <td style=\"padding: 12px; font-weight: bold;\">Aumento de bitola para cabos de 10 mm² ou 16 mm² em eletroduto galvanizado.</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Padrão Trifásico 63A a 100A</td>\n            <td style=\"padding: 12px; color: #2e7d32;\">Capacidade plenamente compatível com Wallbox de 7,4 kW ou 11 kW.</td>\n            <td style=\"padding: 12px; font-weight: bold;\">Instalação direta com balanceamento de fases e proteções normativas completas.</td>\n          </tr>\n        </tbody>\n      </table>\n\n      <h2>Quando É Preciso Pedir Aumento de Carga na Energisa?</h2>\n      <p>Se o cálculo de demanda do seu imóvel indicar que a soma de suas cargas ultrapassa o limite da entrada, é necessário solicitar formalmente o aumento de carga à concessionária (Energisa Paraíba). Esse processo envolve:</p>\n      <ol>\n        <li>Elaboração do memorial descritivo de carga por engenheiro eletricista;</li>\n        <li>Adequação da caixa de medição e do poste do padrão de entrada conforme a norma técnica da concessionária (NDU 001 / NDU 002);</li>\n        <li>Vistoria e troca do ramal de ligação e do medidor pela distribuidora.</li>\n      </ol>\n\n      <div style=\"background: var(--bg-tertiary); padding: 2rem; border-radius: 8px; margin: 2.5rem 0; border-left: 4px solid var(--accent-primary);\">\n        <h3 style=\"margin-top: 0; color: var(--text-main);\">Avaliação Termográfica e de Carga Gratuita no Projeto</h3>\n        <p style=\"color: var(--text-muted);\">A equipe técnica da Klyfe Electric realiza vistoria no seu quadro elétrico, mede a resistência do aterramento e calcula a viabilidade da sua instalação antes de emitir a proposta comercial.</p>\n        <p><a href=\"/solucoes/eletrica/carregador-veicular/\" style=\"font-weight: bold; color: var(--accent-primary); text-decoration: underline;\">Agende a avaliação do quadro elétrico da sua residência →</a></p>\n      </div>\n    ",
+  "faq": [
+    {
+      "question": "Se o disjuntor geral desarmar durante a recarga, o que devo fazer?",
+      "answer": "Não tente forçar o religamento repetidas vezes nem troque o disjuntor por um de maior amperagem sem trocar a fiação. O desarme indica que a corrente total excedeu a capacidade dos cabos da entrada. Desconecte o carregador e solicite uma avaliação técnica de engenharia para rebalancear os circuitos ou aumentar a carga do padrão."
+    },
+    {
+      "question": "Posso puxar a energia do Wallbox direto da tomada do ar-condicionado?",
+      "answer": "Não. É expressamente proibido pela NBR 5410 compartilhar o circuito de recarga veicular com outros aparelhos. O Wallbox exige fiação direta exclusiva desde o quadro de distribuição com disjuntor e DR próprios."
+    },
+    {
+      "question": "O que é um Quadro Auxiliar para Wallbox?",
+      "answer": "É uma caixinha de distribuição compacta instalada próxima ao carregador ou ao lado do quadro principal. Ela abriga exclusivamente os dispositivos de segurança do carro (disjuntor curva C, DPS e DR Tipo B), mantendo o sistema veicular isolado das instalações da casa."
+    },
+    {
+      "question": "Quanto tempo demora o aumento de carga na Energisa?",
+      "answer": "Geralmente, após a aprovação do projeto técnico e a adequação da caixinha do padrão pelo proprietário, a Energisa realiza a ligação ou troca do medidor em um prazo de 5 a 15 dias úteis."
+    }
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "quadro elétrico para wallbox",
+  "searchIntent": "informacional-comercial",
+  "metaTitle": "Quadro Elétrico para Wallbox: Como Avaliar",
+  "metaDescription": "Saiba como verificar se o quadro elétrico suporta um Wallbox, considerando demanda, disjuntor, cabos, proteções, fases e aumento de carga.",
+  "seoTitle": "Quadro Elétrico para Wallbox: Como Avaliar",
+  "seoDescription": "Saiba como verificar se o quadro elétrico suporta um Wallbox, considerando demanda, disjuntor, cabos, proteções, fases e aumento de carga.",
+  "tags": [
+    "Quadro elétrico",
+    "Wallbox",
+    "Carga",
+    "Disjuntor"
+  ],
+  "imageAlt": "Quadro de distribuição avaliado para circuito dedicado de carregador veicular",
+  "heroImageAlt": "Quadro de distribuição avaliado para circuito dedicado de carregador veicular",
+  "canonicalPath": "/blog/quadro-eletrico-wallbox",
+  "robots": "index, follow",
+  "ogTitle": "Quadro Elétrico para Wallbox: Como Avaliar",
+  "ogDescription": "Saiba como verificar se o quadro elétrico suporta um Wallbox, considerando demanda, disjuntor, cabos, proteções, fases e aumento de carga.",
+  "ogImage": "/img/wallbox/wallbox-hero.webp",
+  "dateModified": "2026-09-16",
+  "dateModifiedIso": "2026-09-16T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "ABNT NBR 17019:2022 — Alimentação de veículos elétricos",
+      "publisher": "ABNT Catálogo",
+      "url": "https://www.abntcatalogo.com.br/default.aspx?P=C0W59PS6VY3A",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Veículos elétricos",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/veiculos-eletricos",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Normas técnicas de conexão",
+      "publisher": "Energisa",
+      "url": "https://www.energisa.com.br/normas-tecnicas",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "escolha da potência",
+      "url": "/blog/qual-potencia-wallbox-escolher"
+    },
+    {
+      "anchor": "custo da infraestrutura",
+      "url": "/blog/quanto-custa-instalar-wallbox"
+    },
+    {
+      "anchor": "proteções e segurança",
+      "url": "/blog/cuidados-seguranca-carregador-veicular"
+    }
+  ],
+  "contentAppendHtml": "\n<section class=\"blog-editorial-expansion\" data-blog-block=\"editorial-expansion-v1\">\n  <h2>Como saber se o quadro suporta um Wallbox</h2>\n  <p><strong>Resposta curta:</strong> É preciso comparar a corrente do carregador com a capacidade do padrão, do alimentador, do quadro e das demais cargas no mesmo período. O disjuntor geral sozinho não responde à pergunta.</p>\n  <p>Cabo, barramento, conexões, queda de tensão, fases, aterramento, espaço físico e seletividade também podem exigir adequação. Em condomínios, a rota e o ponto de medição entram no estudo.</p>\n\n  <h2>Como avaliar o seu caso</h2>\n  <p>Faça levantamento com o circuito desenergizado por profissional habilitado e, quando necessário, medições sob carga. Só depois defina bitola, disjuntor, proteção diferencial e eventual aumento de carga.</p>\n  <ul><li>identificar tensão e número de fases;</li><li>somar cargas simultâneas relevantes;</li><li>avaliar distância e método de instalação;</li><li>verificar aquecimento e estado das conexões;</li><li>confirmar exigências da distribuidora ou condomínio;</li></ul>\n\n  <h2>O que este guia não promete</h2>\n  <p>Trocar o disjuntor por um de maior corrente sem estudar os condutores pode criar risco. A potência anunciada do Wallbox também não garante que o veículo ou a rede aceitarão essa carga.</p>\n\n  <h2>Próximo passo recomendado</h2>\n  <p>Leve foto do quadro, dados do carro, modelo do carregador e distância até a vaga para a vistoria técnica.</p>\n  <aside class=\"blog-content-cta\" data-blog-block=\"related-links-v1\">\n    <h3>Continue a pesquisa</h3>\n    <ul><li><a href=\"/blog/qual-potencia-wallbox-escolher\">escolha da potência</a></li><li><a href=\"/blog/quanto-custa-instalar-wallbox\">custo da infraestrutura</a></li><li><a href=\"/blog/cuidados-seguranca-carregador-veicular\">proteções e segurança</a></li></ul>\n  </aside>\n</section>\n<section class=\"blog-editorial-deepening\" data-blog-block=\"editorial-expansion-v2\">\n  <h2>Quando a solução é gerenciamento de carga</h2>\n  <p>Nem todo imóvel precisa aumentar imediatamente a entrada. Em alguns casos, um sistema de gerenciamento pode limitar ou programar a recarga para evitar que várias cargas atinjam o pico ao mesmo tempo. Essa solução precisa ser compatível com o carregador e com o perfil de uso.</p>\n<p>Em outros casos, a instalação exige adequação de alimentador, quadro, padrão ou medição. A decisão depende de medição, cálculo e exigência da distribuidora, não de uma regra baseada só na corrente do Wallbox.</p>\n<p>O estudo também deve prever expansão: segundo veículo, ar-condicionado, bomba ou geração solar podem alterar a demanda. Deixar reserva técnica pode ser mais econômico que refazer a infraestrutura.</p>\n  <h3>Checklist de aplicação</h3>\n  <ul><li>medir ou estimar cargas simultâneas;</li><li>definir se a recarga pode ser agendada;</li><li>avaliar gerenciamento automático;</li><li>considerar futura expansão;</li><li>registrar limites da solução entregue;</li></ul>\n  <p><strong>Limite importante:</strong> A melhor solução pode ser um novo circuito, uma adequação do padrão, um controlador de carga ou uma combinação. O diagnóstico é que define a alternativa.</p>\n</section>\n\n\n<section class=\"blog-editorial-second-round\" data-blog-block=\"editorial-expansion-v4\">\n  <h2>Como verificar se o quadro suporta um Wallbox</h2>\n  <p>O disjuntor geral não responde sozinho se o quadro suporta o carregador. É preciso verificar padrão, alimentador, barramentos, condutores, fases, conexões, espaço físico, cargas simultâneas, queda de tensão e capacidade da instalação. A análise deve considerar o que acontece quando o veículo carrega junto com as demais cargas.</p>\n<p>Identifique tensão e número de fases disponíveis e compare com o Wallbox e com o carregador interno do veículo. A potência nominal do equipamento pode não ser utilizada se o veículo limitar a entrada, mas o circuito ainda precisa ser dimensionado para a corrente configurada e para o uso prolongado.</p>\n<p>A distância até a vaga altera cabo, queda de tensão, método de instalação, fixação, proteção e custo. Em condomínios, a rota pode passar por áreas comuns, shafts, garagens e paredes com restrições. O projeto deve registrar percurso, acesso, pontos de manutenção e responsabilidade por acabamento.</p>\n<p>O estado das conexões é tão importante quanto a seção do cabo. Bornes frouxos, barramentos danificados, aquecimento, oxidação e emendas inadequadas aumentam risco. Faça inspeção com segurança e, quando necessário, medições sob carga por profissional habilitado.</p>\n<p>O circuito deve ter proteção e seccionamento compatíveis. A escolha de diferencial, DPS, disjuntor e aterramento depende da arquitetura, do fabricante e do esquema da instalação. Não instale proteções apenas para preencher espaço: cada componente precisa ter função e coordenação.</p>\n<p>A demanda pode exigir aumento de carga ou gerenciamento. Em uma casa, chuveiro, ar-condicionado, forno e bomba podem coincidir com a recarga. Em condomínio, vários carros podem carregar ao mesmo tempo. Balanceamento e controle de potência podem ser alternativas, mas precisam ser especificados e testados.</p>\n<p>O quadro deve ser identificado e deixar caminho para manutenção. Etiquetas, diagrama, posição do seccionamento e acesso reduzem erro em uma emergência. Ao concluir, registre torque ou teste aplicável, medições, modelo do Wallbox, parâmetros e orientação ao usuário.</p>\n<p>Reavalie o quadro quando trocar equipamento, aumentar corrente, instalar segundo ponto ou alterar padrão. Um sistema que suportava um carregador pode não suportar dois. A expansão deve ser estudada antes de comprar o novo aparelho.</p>\n  <h3>Roteiro de aplicação</h3>\n  <ul><li>identificar tensão e fases;</li><li>somar cargas simultâneas;</li><li>avaliar cabos e conexões;</li><li>medir queda de tensão quando necessário;</li><li>definir proteções compatíveis;</li><li>planejar rota e manutenção;</li><li>documentar testes e expansões;</li></ul>\n  <h3>Dúvidas práticas</h3>\n  <p><strong>Posso usar um disjuntor vazio?</strong> Espaço disponível não significa capacidade. Alimentador, barramento, proteção, carga e rota precisam ser avaliados.</p>\n<p><strong>A potência do Wallbox é a corrente do circuito?</strong> A relação depende de tensão e fases, além da configuração e do veículo. O dimensionamento deve considerar o cenário real.</p>\n<p><strong>Preciso trocar o padrão?</strong> Somente a análise da demanda e da capacidade existente pode indicar. Não é automático nem deve ser descartado sem estudo.</p>\n  <p><strong>Síntese:</strong> Capacidade de quadro é uma conclusão de diagnóstico: ela envolve carga, condutor, proteção, rota, fases e uso simultâneo.</p>\n</section>"
+}

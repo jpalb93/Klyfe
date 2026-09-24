@@ -1,0 +1,86 @@
+{
+  "status": "published",
+  "slug": "wallbox-em-condominio",
+  "title": "Wallbox em condomínio: como preparar o pedido ao síndico",
+  "publishAt": "2026-09-11",
+  "category": "eletrica",
+  "categoryLabel": "Elétrica",
+  "summary": "Organize autorização, medição, capacidade elétrica e responsabilidades antes de solicitar um ponto de recarga na garagem.",
+  "whatsappMessage": "Olá! Vim do artigo sobre instalação de Wallbox em condomínio <%- locationPhrase %> e gostaria de orientações sobre viabilidade técnica, regras e medição individual na minha vaga.",
+  "readTime": "3 min",
+  "heroImage": "/img/wallbox/wallbox-condominio.webp",
+  "keywords": [
+    "aprovação de wallbox em condomínio"
+  ],
+  "contentHtml": "<p class=\"lead\">O pedido de um ponto de recarga em garagem coletiva precisa esclarecer quem utiliza, quem paga, de onde vem a energia e como a instalação será avaliada. Para o morador, o primeiro passo é organizar informações; a definição elétrica e as exigências do condomínio dependem de análise do caso.</p>\n<h2>O que apresentar à administração?</h2><p>Descreva a vaga, o equipamento pretendido, o uso estimado e o responsável pelo contato. Pergunte quais documentos o condomínio exige, como são tratadas intervenções em áreas comuns e quem deve analisar a proposta.</p>\n<p>Evite assumir que o síndico pode aprovar ou negar sozinho em qualquer situação. Convenção, decisões internas e regras aplicáveis precisam ser verificadas.</p>\n<h2>Como discutir a medição?</h2><p>A cobrança pode exigir medição individual, sistema compartilhado ou outra solução definida para o empreendimento. Antes de escolher, esclareça onde seria o ponto de alimentação, como registrar o consumo e quem pagará implantação e manutenção.</p>\n<p>Não use uma extensão ou tomada existente como atalho de projeto. A solução depende da capacidade da instalação e dos critérios de segurança pertinentes.</p>\n<h2>O edifício suporta novas cargas?</h2><p>Peça à administração diagramas, informações sobre transformador, quadros e histórico de ampliação. A avaliação de capacidade deve considerar o conjunto do prédio e a possibilidade de outros moradores solicitarem recarga no futuro.</p>\n<p>Uma vaga isolada pode parecer simples, mas passagens de cabos, proteção, sinalização e acesso às áreas técnicas precisam ser estudados.</p>\n<h2>Como fechar responsabilidades?</h2><p>Registre quem contrata projeto, quem aprova a intervenção, quem executa, quem guarda documentos e quem atende futuras manutenções. Uma proposta comercial deve separar levantamento, eventuais adequações e instalação.</p>\n<h2>Um pedido individual pode abrir uma decisão coletiva</h2><p>Quando a primeira instalação ocupa espaço em shafts, quadros ou rotas compartilhadas, a administração precisa considerar solicitações futuras. Pergunte se o prédio possui diretriz para novos pontos de recarga e se uma infraestrutura comum poderia evitar obras repetidas.</p>\n<p>O estudo de capacidade deve identificar limites existentes e alternativas de implantação. O artigo não define quantos carregadores o edifício suporta; isso depende da instalação real.</p>\n<h2>Documente a entrega</h2><p>Após aprovação e execução, mantenha registros do circuito instalado, medições, documentos técnicos, responsáveis e orientações de uso. Defina também quem será acionado em caso de falha e como o morador comunicará troca de equipamento ou aumento de potência.</p>\n<p>Esse histórico ajuda o condomínio a administrar os pontos de recarga e a avaliar novos pedidos com informações confiáveis.</p>\n<h2>Exemplo para comparar situações</h2><p>Um morador dispõe de vaga próxima ao quadro comum; outro estaciona a vários pavimentos do ponto de alimentação. A distância, o caminho dos cabos e a forma de cobrança alteram a proposta. É melhor esclarecer essas condições com a administração antes de comprar o carregador.</p>\n<p>Quando vários moradores têm interesse, o condomínio pode avaliar uma solução compartilhada de infraestrutura em vez de tratar cada solicitação isoladamente. A decisão depende da capacidade disponível e das regras internas.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Convenção e regras internas disponíveis.</li><li>Identificação da vaga e do veículo/equipamento pretendido.</li><li>Diagramas e informações da instalação comum.</li><li>Critério preliminar de medição e pagamento.</li><li>Responsável pela análise e comunicação aos moradores.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/solucoes/eletrica/wallbox-condominio/\">instalação de wallbox em condomínio</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
+  "faq": [
+    {
+      "question": "O síndico pode autorizar sozinho?",
+      "answer": "A competência depende das regras internas e da natureza da intervenção. Consulte a convenção e a administração antes de assumir um rito de aprovação."
+    },
+    {
+      "question": "Uma tomada da garagem resolve?",
+      "answer": "Não é possível afirmar sem avaliação da instalação, da carga e da proteção. O ponto de recarga deve ser definido tecnicamente."
+    }
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "aprovação de wallbox em condomínio",
+  "searchIntent": "informacional",
+  "metaTitle": "Wallbox em condomínio: como preparar o pedido ao síndico",
+  "metaDescription": "Organize autorização, medição, capacidade elétrica e responsabilidades antes de solicitar um ponto de recarga na garagem.",
+  "seoTitle": "Wallbox em condomínio: como preparar o pedido ao síndico",
+  "seoDescription": "Organize autorização, medição, capacidade elétrica e responsabilidades antes de solicitar um ponto de recarga na garagem.",
+  "tags": [
+    "Condomínio",
+    "Wallbox",
+    "Medição",
+    "Aprovação"
+  ],
+  "imageAlt": "Infraestrutura de recarga Wallbox em garagem de condomínio",
+  "heroImageAlt": "Infraestrutura de recarga Wallbox em garagem de condomínio",
+  "canonicalPath": "/blog/wallbox-em-condominio",
+  "robots": "index, follow",
+  "ogTitle": "Wallbox em condomínio: como preparar o pedido ao síndico",
+  "ogDescription": "Organize autorização, medição, capacidade elétrica e responsabilidades antes de solicitar um ponto de recarga na garagem.",
+  "ogImage": "/img/wallbox/wallbox-condominio.webp",
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "ABNT NBR 17019:2022 — Alimentação de veículos elétricos",
+      "publisher": "ABNT Catálogo",
+      "url": "https://www.abntcatalogo.com.br/default.aspx?P=C0W59PS6VY3A",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Veículos elétricos",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/veiculos-eletricos",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Norma Regulamentadora nº 10",
+      "publisher": "Ministério do Trabalho e Emprego",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "estudo de capacidade",
+      "url": "/blog/quadro-eletrico-wallbox"
+    },
+    {
+      "anchor": "composição do custo",
+      "url": "/blog/quanto-custa-instalar-wallbox"
+    },
+    {
+      "anchor": "critérios do instalador",
+      "url": "/blog/como-escolher-instalador-wallbox"
+    }
+  ],
+  "contentAppendHtml": ""
+}

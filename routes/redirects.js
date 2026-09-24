@@ -6,9 +6,37 @@ const router = express.Router();
  * Normaliza caminhos, remove barras finais duplicadas e garante preservação de backlinks legados.
  */
 router.use((req, res, next) => {
+    const rawPath = req.path || '/';
     // Normaliza o path: remove barra no final e coloca em lowercase
-    let path = req.path.toLowerCase().replace(/\/$/, '');
+    let path = rawPath.toLowerCase().replace(/\/$/, '');
     if (path === '') path = '/';
+
+    // Wallbox é uma página comercial prioritária: concentra aliases, cidades
+    // e a versão canônica com barra final em um único destino indexável.
+    const wallboxAliasMatch = path.match(/^\/(?:(campina-grande|joao-pessoa)\/)?(?:(?:solucoes\/)?(?:eletrica\/)?)?(?:wallbox|carregador-veicular|carregador-ev|carregador-de-carro-eletrico)$/);
+    if (wallboxAliasMatch) {
+        const cityPrefix = wallboxAliasMatch[1] ? `/${wallboxAliasMatch[1]}` : '';
+        const wallboxPath = `${cityPrefix}/solucoes/eletrica/carregador-veicular`;
+        if (path !== wallboxPath || !rawPath.endsWith('/')) {
+            return res.redirect(301, `${wallboxPath}/`);
+        }
+    }
+
+    const specificWallboxMatch = path.match(/^\/(?:(campina-grande|joao-pessoa)\/)?(?:(?:solucoes\/)?(?:eletrica\/)?)?(wallbox-(?:residencial|condominio|empresa|energia-solar|solar))$/);
+    if (specificWallboxMatch) {
+        const cityPrefix = specificWallboxMatch[1] ? `/${specificWallboxMatch[1]}` : '';
+        let targetService = specificWallboxMatch[2];
+        if (targetService === 'wallbox-solar') targetService = 'wallbox-energia-solar';
+        const targetPath = `${cityPrefix}/solucoes/eletrica/${targetService}`;
+        if (path !== targetPath || !rawPath.endsWith('/')) {
+            return res.redirect(301, `${targetPath}/`);
+        }
+    }
+
+    const regionalWallboxLegacy = path.match(/^\/(campina-grande|joao-pessoa)\/nossos-servicos\/(?:klyfe-)?(?:wallbox|carregador-veicular|carregador-ev)$/);
+    if (regionalWallboxLegacy) {
+        return res.redirect(301, `/${regionalWallboxLegacy[1]}/solucoes/eletrica/carregador-veicular/`);
+    }
 
     const redirects = {
         '/nossos-servicos/klyfe-energia-solar': '/energia-solar/',
@@ -20,6 +48,13 @@ router.use((req, res, next) => {
         '/nossos-servicos/klyfe-laudos-eletricos-e-engenharia/laudo-de-aterramento': '/solucoes/engenharia/laudos-eletricos',
         '/nossos-servicos/klyfe-spda-para-raios': '/solucoes/engenharia/spda',
         '/nossos-servicos/klyfe-subestacao-de-energia': '/solucoes/engenharia/projeto-subestacao',
+        '/nossos-servicos/klyfe-carregador-veicular': '/solucoes/eletrica/carregador-veicular/',
+        '/nossos-servicos/klyfe-wallbox': '/solucoes/eletrica/carregador-veicular/',
+        '/carregador-veicular': '/solucoes/eletrica/carregador-veicular/',
+        '/carregador-ev': '/solucoes/eletrica/carregador-veicular/',
+        '/wallbox': '/solucoes/eletrica/carregador-veicular/',
+        '/solucoes/wallbox': '/solucoes/eletrica/carregador-veicular/',
+        '/solucoes/carregador-veicular': '/solucoes/eletrica/carregador-veicular/',
         '/nossos-servicos': '/solucoes',
         '/contatos': '/contato',
         '/sobre': '/quem-somos',

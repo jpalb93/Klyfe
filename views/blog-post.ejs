@@ -1,6 +1,7 @@
 <% 
-   const isSolarPost = (typeof post !== 'undefined' && (post.category === 'solar' || (post.slug && post.slug.includes('solar'))));
-   const waPostPhone = isSolarPost ? '5583991430929' : '5583991330972';
+   const isWallboxPost = typeof post !== 'undefined' && (post.slug && (post.slug.includes('wallbox') || post.slug.includes('veicular')));
+   const isSolarPost = (typeof post !== 'undefined' && post.category === 'solar' && !isWallboxPost);
+   const waPostPhone = (typeof waPhone !== 'undefined' && waPhone) ? waPhone : (isSolarPost ? '5583991430929' : '5583991330972');
 %>
 <!DOCTYPE html>
 <html lang="pt-BR"<% if (locals.theme) { %> data-theme="<%= theme %>"<% } %>>
@@ -312,7 +313,7 @@
                 <div class="post-layout">
                     
                     <!-- Coluna Principal (Conteúdo) -->
-                    <article class="post-main fade-in">
+                    <article class="post-main">
                         <div class="post-content-body">
                             <%- post.contentHtml %>
                         </div>
@@ -381,7 +382,7 @@
                     </article>
 
                     <!-- Coluna Lateral (Sidebar) -->
-                    <aside class="post-sidebar fade-in">
+                    <aside class="post-sidebar">
                         
                         <!-- Sumário Dinâmico (TOC) -->
                         <div class="toc-container bracket-box" style="margin-bottom: 2rem; background: var(--bg-secondary); padding: 1.5rem;">
@@ -415,16 +416,28 @@
                         </div>
 
                         <!-- CTA Rápido / Lateral de Captação -->
-                        <div class="bracket-box sidebar-cta <%= post.category %>" style="padding: 2rem; border-radius: 6px; text-align: center;">
-                            <h3 style="font-size: 1.4rem; margin-bottom: 1rem; line-height: 1.3;">
-                                Quer economizar ou automatizar <%= cityData.preposition %> <%= cityData.name %>?
-                            </h3>
-                            <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
-                                Converse com a equipe da Klyfe para avaliar o seu cenário e entender os próximos passos do projeto.
-                            </p>
-                            <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                                <i class="fab fa-whatsapp"></i> Falar Conosco
-                            </a>
+                        <div class="bracket-box sidebar-cta <%= isWallboxPost ? 'eletrica' : post.category %>" style="padding: 2rem; border-radius: 6px; text-align: center;">
+                            <% if (isWallboxPost) { %>
+                                <h3 style="font-size: 1.4rem; margin-bottom: 1rem; line-height: 1.3;">
+                                    Quer instalar um Wallbox com segurança <%= cityData.preposition %> <%= cityData.name %>?
+                                </h3>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                                    Converse com nossos engenheiros para avaliar a capacidade do seu quadro e solicitar uma vistoria técnica.
+                                </p>
+                                <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                    <i class="fab fa-whatsapp"></i> Falar com Especialista
+                                </a>
+                            <% } else { %>
+                                <h3 style="font-size: 1.4rem; margin-bottom: 1rem; line-height: 1.3;">
+                                    Quer economizar ou automatizar <%= cityData.preposition %> <%= cityData.name %>?
+                                </h3>
+                                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; margin-bottom: 1.5rem;">
+                                    Converse com a equipe da Klyfe para avaliar o seu cenário e entender os próximos passos do projeto.
+                                </p>
+                                <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" target="_blank" rel="noopener" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                    <i class="fab fa-whatsapp"></i> Falar Conosco
+                                </a>
+                            <% } %>
                         </div>
 
                     </aside>
@@ -507,14 +520,25 @@
         <!-- ═══ CTA PRINCIPAL / RODAPÉ DO ARTIGO ═══ -->
         <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.92), rgba(10,13,16,0.92)), url('/img/hero-klyfe.webp') center/cover; border-top: 1px solid var(--border-color);">
             <div class="container" style="text-align: center;">
-                <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS TÉCNICAS?</span></div>
-                <h2 style="margin-bottom: 2rem;">Planeje seu projeto <%= cityData.preposition %> <%= cityData.name %><br>com <span style="color:var(--accent-primary)">engenharia responsável.</span></h2>
-                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">
-                    A Klyfe Electric avalia cada necessidade com critérios técnicos, documentação adequada e orientação clara sobre escopo, normas aplicáveis e responsabilidade profissional.
-                </p>
-                <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">
-                    <i class="fab fa-whatsapp"></i> Falar com Engenheiro no WhatsApp
-                </a>
+                <% if (isWallboxPost) { %>
+                    <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>INSTALAÇÃO DE WALLBOX</span></div>
+                    <h2 style="margin-bottom: 2rem;">Instale seu Carregador Veicular <%= cityData.preposition %> <%= cityData.name %><br>com <span style="color:var(--accent-primary)">engenharia e segurança.</span></h2>
+                    <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">
+                        A Klyfe Electric realiza dimensionamento de carga, instalação de proteções normativas dedicadas (DR Tipo B/A-EV e DPS) e emissão de ART registrada no CREA.
+                    </p>
+                    <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">
+                        <i class="fab fa-whatsapp"></i> Solicitar Avaliação no WhatsApp
+                    </a>
+                <% } else { %>
+                    <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS TÉCNICAS?</span></div>
+                    <h2 style="margin-bottom: 2rem;">Planeje seu projeto <%= cityData.preposition %> <%= cityData.name %><br>com <span style="color:var(--accent-primary)">engenharia responsável.</span></h2>
+                    <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">
+                        A Klyfe Electric avalia cada necessidade com critérios técnicos, documentação adequada e orientação clara sobre escopo, normas aplicáveis e responsabilidade profissional.
+                    </p>
+                    <a href="https://wa.me/<%= waPostPhone %>?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de um orçamento.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;">
+                        <i class="fab fa-whatsapp"></i> Falar com Engenheiro no WhatsApp
+                    </a>
+                <% } %>
             </div>
         </section>
 

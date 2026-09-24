@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body class="page-service page-wallbox page-wallbox-solar">
+    <%- include('partials/navbar') %>
+
+    <style>
+        .page-wallbox .wallbox-brief-form label {
+            color: #E2E8F0 !important;
+        }
+    </style>
+
+    <%
+        const wallboxWaMsg = (typeof waMsg !== 'undefined' && waMsg)
+            ? waMsg
+            : `Olá! Gostaria de solicitar um orçamento para o sistema integrado de Wallbox com Energia Solar em ${cityData.name}.`;
+        const wallboxWaUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(wallboxWaMsg)}`;
+    %>
+
+    <main class="wallbox-page-content">
+        <% const heroBg = (typeof serviceData !== 'undefined' && serviceData.heroImage) ? serviceData.heroImage : '/img/wallbox/wallbox-com-energia-solar.webp'; %>
+        <section class="page-hero bg-blueprint hero-wallbox" style="background: linear-gradient(100deg, rgba(8, 19, 29, 0.95) 0%, rgba(8, 19, 29, 0.80) 54%, rgba(8, 19, 29, 0.42) 100%), url('<%= heroBg %>') center / cover no-repeat !important; padding-top:120px; padding-bottom:4rem">
+            <div class="container fade-in">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                    { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
+                    { label: 'Instalação de Wallbox', href: getHomePrefix() + '/solucoes/eletrica/carregador-veicular/' },
+                    { label: 'Wallbox + Energia Solar' }
+                ] }) %>
+
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>ENERGIA SOLAR + MOBILIDADE ELÉTRICA</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Wallbox Integrado à Energia Solar <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+                <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Integre a recarga do carro à geração do imóvel. Avaliamos capacidade elétrica, horários de uso e recursos de controle para propor uma solução compatível com a instalação.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-primary" data-wallbox-event="solar_hero_whatsapp" data-content-category="wallbox" data-content-name="wallbox-solar-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Projeto Solar + Wallbox
+                    </a>
+                    <a href="#simulador-solar" class="btn btn-ghost">Calcular Autonomia Solar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVA DE VALOR -->
+        <section class="wallbox-proof-strip" aria-label="Benefícios da integração solar">
+            <div class="container wallbox-proof-grid">
+                <div><strong>01</strong><span>Geração e recarga analisadas em conjunto</span></div>
+                <div><strong>02</strong><span>Controle por excedente quando compatível</span></div>
+                <div><strong>03</strong><span>Consumo e horários considerados no estudo</span></div>
+                <div><strong>04</strong><span>Projeto elétrico e conexão conforme o caso</span></div>
+            </div>
+        </section>
+
+        <!-- SIMULADOR SOLAR + CARRO ELÉTRICO -->
+        <section id="simulador-solar" class="section-padding wallbox-section wallbox-simulator-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>CALCULADORA DE AUTONOMIA SOLAR</span></div>
+                        <h2>Estime a energia mensal <span>para sua recarga</span></h2>
+                    </div>
+                    <p>Uma conta ilustrativa ajuda a preparar o estudo. A quantidade de módulos e o resultado econômico dependem do veículo, do imóvel, da geração real e do projeto.</p>
+                </div>
+
+                <div class="wallbox-sim-card fade-in">
+                    <div class="wallbox-sim-controls">
+                        <div class="wallbox-sim-field">
+                            <label for="solar-km-day"><i class="fas fa-road"></i> Quantos quilômetros você roda por dia?</label>
+                            <select id="solar-km-day" class="wallbox-sim-select">
+                                <option value="30">30 km por dia (~900 km/mês · Uso Urbano Leve)</option>
+                                <option value="50" selected>50 km por dia (~1.500 km/mês · Uso Urbano Médio)</option>
+                                <option value="80">80 km por dia (~2.400 km/mês · Uso Intenso / Rodovia)</option>
+                                <option value="120">120 km por dia (~3.600 km/mês · Frotas / Aplicativo)</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="wallbox-sim-results">
+                        <div class="sim-result-box">
+                            <span class="sim-result-icon"><i class="fas fa-solar-panel"></i></span>
+                            <div class="sim-result-data">
+                                <strong id="solar-panels-result">4 painéis (referência)</strong>
+                                <span>Equivalência ilustrativa, não dimensionamento</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-result-box">
+                            <span class="sim-result-icon"><i class="fas fa-bolt"></i></span>
+                            <div class="sim-result-data">
+                                <strong id="solar-kwh-result">~230 kWh/mês</strong>
+                                <span>Consumo mensal estimado do veículo</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-result-box sim-result-box-highlight">
+                            <span class="sim-result-icon"><i class="fas fa-coins"></i></span>
+                            <div class="sim-result-data">
+                                <strong id="solar-distance-result">1.500 km/mês</strong>
+                                <span>Distância mensal considerada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wallbox-sim-cta">
+                        <p><i class="fas fa-info-circle"></i> Exemplo com 6,5 km/kWh e 70 kWh/mês por módulo de referência. Não inclui perdas, consumo da casa, tarifas nem análise da cobertura.</p>
+                        <a href="#solicitar" class="btn btn-primary btn-sm">Solicitar Estudo de Viabilidade Gratuito</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA O SOLAR MATCHING -->
+        <section class="section-padding wallbox-section bg-blueprint">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>GESTÃO INTELIGENTE DE ENERGIA</span></div>
+                        <h2>Os modos de operação do <span>Wallbox Solar</span></h2>
+                    </div>
+                    <p>Recursos e modos variam por modelo e pela arquitetura instalada; a escolha depende da rotina de recarga e da medição disponível.</p>
+                </div>
+
+                <div class="wallbox-specs-grid">
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-leaf"></i></div>
+                        <h3>Modo Solar Exclusivo (Solar Only)</h3>
+                        <p>Em modelos compatíveis e configurados para isso, a recarga pode ajustar a potência conforme o excedente medido. Limites de operação e comportamento em variações de geração dependem do equipamento.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-shuffle"></i></div>
+                        <h3>Modo Híbrido Inteligente (Solar + Rede)</h3>
+                        <p>Uma configuração pode combinar geração e rede para atender uma meta de recarga. A potência e o horário alcançáveis dependem do veículo, do carregador e da capacidade elétrica disponível.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-bolt-lightning"></i></div>
+                        <h3>Modo Carga Rápida (Fast Charge)</h3>
+                        <p>Alguns carregadores podem priorizar velocidade dentro dos limites do veículo e da instalação. A potência nominal do wallbox não significa que o imóvel possa utilizá-la sem adequações.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-car-battery"></i></div>
+                        <h3>Compatível com Baterias de Lítio (BESS)</h3>
+                        <p>Armazenamento pode ser estudado para usos específicos, sujeito a projeto e compatibilidade dos componentes. A presença de baterias não implica independência total da rede.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-mobile-screen-button"></i></div>
+                        <h3>Aplicativo com Gráficos em Tempo Real</h3>
+                        <p>Aplicativos compatíveis podem apresentar geração, consumo e energia de recarga quando há medição e integração adequadas. Recursos e precisão dos relatórios variam.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-certificate"></i></div>
+                        <h3>Projeto Unificado Klyfe com ART</h3>
+                        <p>Avaliamos geração, circuito de recarga e proteções em conjunto. A solução e eventuais adequações são definidas após levantamento das condições do imóvel.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO DE ORÇAMENTO SOLAR + WALLBOX -->
+        <section id="solicitar" class="section-padding wallbox-lead-section">
+            <div class="container wallbox-lead-grid">
+                <div class="wallbox-lead-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>PROJETO INTEGRADO</span></div>
+                    <h2>Solicite seu projeto Solar + Wallbox <%= cityData.preposition %> <span><%= cityData.name %></span></h2>
+                    <p>Nossa equipe avalia consumo da casa, uso do veículo e infraestrutura para propor o porte e a integração adequados.</p>
+                    <div class="wallbox-lead-points">
+                        <span><i class="fas fa-check-circle"></i> Estudo solar e elétrico unificado</span>
+                        <span><i class="fas fa-shield-alt"></i> Homologação completa na Energisa PB</span>
+                        <span><i class="fas fa-file-contract"></i> Emissão de ART no CREA-PB</span>
+                    </div>
+                </div>
+                <form id="wallbox-brief-form" class="wallbox-brief-form fade-in" data-phone="5583991330972" data-content-category="wallbox" data-content-name="wallbox-solar-form">
+                    <input type="hidden" name="perfil" value="Wallbox + Energia Solar">
+                    <div class="wallbox-form-heading"><span>01</span><div><strong>Orçamento Solar + Wallbox</strong><small>Estudo conforme o seu imóvel</small></div></div>
+                    <label for="wallbox-name" style="color: #FFFFFF !important;">Seu nome</label>
+                    <input id="wallbox-name" name="nome" type="text" placeholder="Como podemos chamar você?" required>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-phone" style="color: #FFFFFF !important;">WhatsApp</label><input id="wallbox-phone" name="telefone" type="tel" placeholder="(83) 99999-9999" required></div>
+                        <div><label for="wallbox-solar-status" style="color: #FFFFFF !important;">Já possui energia solar?</label>
+                            <select id="wallbox-solar-status" name="possui_energia_solar" required>
+                                <option value="">Selecione</option>
+                                <option>Não, quero instalar a usina + Wallbox</option>
+                                <option>Sim, já tenho e quero ampliar para o carro</option>
+                                <option>Sim, já tenho créditos suficientes</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-bill" style="color: #FFFFFF !important;">Conta de luz média (R$/mês)</label><input id="wallbox-bill" name="valor_conta" type="text" placeholder="Ex: R$ 800,00" required></div>
+                        <div><label for="wallbox-city" style="color: #FFFFFF !important;">Cidade / Bairro</label><input id="wallbox-city" name="cidade" type="text" placeholder="Ex: João Pessoa, Campina Grande..." value="<%= cityData.name !== 'Paraíba' ? cityData.name : '' %>" required></div>
+                    </div>
+                    <label for="wallbox-car" style="color: #FFFFFF !important;">Modelo do carro elétrico (ou planejado)</label>
+                    <input id="wallbox-car" name="veiculo" type="text" placeholder="Ex: BYD Dolphin, Volvo EX30, GWM Haval..." required>
+                    <button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Estudo Solar + Wallbox</button>
+                    <small class="wallbox-form-note">Nossa equipe entrará em contato com a simulação completa de geração e retorno financeiro.</small>
+                </form>
+            </div>
+        </section>
+
+        <!-- ATENDIMENTO REGIONAL -->
+        <section class="section-padding wallbox-section wallbox-area-section">
+            <div class="container wallbox-area-grid">
+                <div class="wallbox-area-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>ATENDIMENTO ESTADUAL</span></div>
+                    <h2>Onde instalamos projetos integrados <span><%= cityData.preposition %> <%= cityData.name %></span></h2>
+                    <p>A Paraíba possui um dos melhores índices de insolação do planeta. Atendemos residências, comércios e propriedades rurais em todo o estado.</p>
+                </div>
+                <div class="wallbox-area-card fade-in">
+                    <span class="wallbox-area-label">Região de Atendimento Solar + Wallbox</span>
+                    <strong><%= cityData.name %> e Todo o Estado da Paraíba</strong>
+                    <p><%= serviceData.bairros || 'Atendimento em todo o estado para projetos integrados.' %></p>
+                    <a href="#solicitar" class="text-link">Consultar Viabilidade no Meu Endereço <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="duvidas" class="section-padding wallbox-faq-section bg-blueprint">
+            <div class="container wallbox-faq-container">
+                <div class="section-separator section-separator-centered"><%- include('partials/symbol') %> <span>PERGUNTAS FREQUENTES</span></div>
+                <h2>Dúvidas sobre <span>Wallbox com Energia Solar</span></h2>
+                <div class="wallbox-faq-list">
+                    <% (faqList || []).forEach(item => { %>
+                        <div class="wallbox-faq-item">
+                            <button class="wallbox-faq-question" type="button" aria-expanded="false"><%= item.question %><i class="fas fa-plus"></i></button>
+                            <div class="wallbox-faq-answer"><p><%= item.answer %></p></div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVEGAÇÃO ENTRE MODALIDADES -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>OUTRAS SOLUÇÕES</span></div>
+                        <h2>Conheça outras aplicações de <span>mobilidade elétrica</span></h2>
+                    </div>
+                    <p>Projetos residenciais dedicados, para condomínios e para empresas.</p>
+                </div>
+                <div class="wallbox-other-solutions-grid">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-casa.webp" alt="Wallbox residencial" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>RESIDENCIAL</span>
+                            <h3>Wallbox Residencial</h3>
+                            <p>Instalação de carregador veicular em casas com circuito exclusivo e proteções de alto padrão.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-condominio/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-condominio.webp" alt="Wallbox em condomínio" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>CONDOMÍNIOS</span>
+                            <h3>Wallbox em Condomínio</h3>
+                            <p>Projetos para vagas privativas em garagens coletivas com medição individualizada e rateio seguro.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-empresa/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-empresa.webp" alt="Wallbox corporativo" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>EMPRESAS</span>
+                            <h3>Wallbox para Empresas</h3>
+                            <p>Infraestrutura para frotas comerciais, estacionamentos corporativos e estações com OCPP.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding wallbox-section" aria-labelledby="guia-wallbox-solar">
+            <div class="container">
+                <h2 id="guia-wallbox-solar">Entenda a integração antes do projeto</h2>
+                <p>O guia explica como geração, consumo da casa e recarga se relacionam. Nesta página você encontra o serviço de engenharia para avaliar a instalação.</p>
+                <a href="/blog/wallbox-com-energia-solar">Leia o guia de integração de wallbox e energia solar <span aria-hidden="true">→</span></a>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="wallbox-final-cta">
+            <div class="container wallbox-final-cta-inner">
+                <div>
+                    <span class="wallbox-eyebrow">AUTONOMIA ENERGÉTICA</span>
+                    <h2>Planeje a geração solar e a recarga do carro em conjunto.</h2>
+                    <p>Fale com a equipe de engenharia solar e mobilidade da Klyfe Electric.</p>
+                </div>
+                <div class="wallbox-final-cta-actions">
+                    <a href="#solicitar" class="btn btn-primary" data-wallbox-event="final_primary_cta">Solicitar Estudo Solar</a>
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" data-wallbox-event="final_whatsapp_cta" data-content-category="wallbox"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js" defer></script>
+    <script>
+        // Simulador Solar
+        (function() {
+            const kmSelect = document.getElementById('solar-km-day');
+            const panelsOutput = document.getElementById('solar-panels-result');
+            const kwhOutput = document.getElementById('solar-kwh-result');
+            const distanceOutput = document.getElementById('solar-distance-result');
+
+            function updateSolarSim() {
+                if (!kmSelect) return;
+                const kmPerDay = parseFloat(kmSelect.value) || 50;
+
+                // Consumo médio: 6.5 km por kWh. Mês = 30 dias.
+                const monthlyKm = kmPerDay * 30;
+                const monthlyKwh = Math.round(monthlyKm / 6.5);
+                // Na Paraíba, 1 painel de 580W gera em média ~70 kWh/mês
+                const panels = Math.max(2, Math.ceil(monthlyKwh / 70));
+
+                panelsOutput.textContent = `${panels} painéis (referência)`;
+                kwhOutput.textContent = `~${monthlyKwh} kWh/mês`;
+                distanceOutput.textContent = `${monthlyKm.toLocaleString('pt-BR')} km/mês`;
+            }
+
+            if (kmSelect) {
+                kmSelect.addEventListener('change', updateSolarSim);
+                updateSolarSim();
+            }
+        })();
+    </script>
+</body>
+</html>

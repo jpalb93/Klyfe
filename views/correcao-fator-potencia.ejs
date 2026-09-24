@@ -11,9 +11,9 @@
     <main>
         <div class="container breadcrumb-standalone">
             <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Engenharia', href: '/solucoes/engenharia' },
+                { label: 'Home', href: getHomePrefix() + '/' },
+                { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                { label: 'Engenharia', href: getHomePrefix() + '/solucoes/engenharia' },
                 { label: 'Correção do fator de potência' }
             ], breadcrumbCompact: true }) %>
         </div>
@@ -24,12 +24,12 @@
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>EFICIÊNCIA ENERGÉTICA</span></div>
                 <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
                     <div>
-                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Correção de Fator de Potência <%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %>:<br><span style="color:var(--accent-primary)">Bancos de Capacitores e Eficiência.</span></h1>
+                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Correção de Fator de Potência <span style="color:var(--accent-primary)"><%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %></span></h1>
                         <p style="color:var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
-                            Sua indústria ou comércio está pagando multas por reativos na conta de luz? A Klyfe realiza o estudo técnico, dimensionamento e instalação de banco de capacitores, eliminando encargos e aumentando a eficiência energética.
+                            Sua indústria ou comércio identificou cobrança por energia reativa? A equipe pode avaliar o perfil de carga, dimensionar uma solução e orientar a execução conforme os dados medidos e o escopo contratado.
                         </p>
                         <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de consultar a correção do fator de potência.') %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
                             <a href="#servicos" class="btn btn-ghost">Entenda o Serviço →</a>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
             <div class="container">
                 <div class="grid grid-cols-4" style="gap: 1rem;">
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
-                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Eliminação de Multas ANEEL</span>
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Avaliação de energia reativa</span>
                     </div>
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
                         <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Estudo + Dimensionamento + Instalação</span>
@@ -56,7 +56,7 @@
                         <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Banco Fixo ou Automático</span>
                     </div>
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
-                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Campina Grande e Paraíba</span>
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Atendimento <%= cityData.preposition %> <%= cityData.name %></span>
                     </div>
                 </div>
             </div>
@@ -106,13 +106,13 @@
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Economia Direta na Conta de Energia</h3>
                         <p style="color: var(--text-muted); line-height: 1.6;">
-                            A correção elimina os encargos cobrados pela concessionária quando o fator de potência está abaixo do limite de 0,92 exigido pela ANEEL, resultando em redução imediata na fatura de energia elétrica.
+                            A correção pode reduzir a energia reativa medida quando a solução é compatível com o perfil de carga. O efeito financeiro depende dos dados de medição e das regras aplicáveis à unidade.
                         </p>
                     </div>
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Redução de Multas e Encargos</h3>
                         <p style="color: var(--text-muted); line-height: 1.6;">
-                            A Resolução ANEEL nº 414/2010 prevê cobranças adicionais para instalações com fator de potência fora do limite. Com a correção, sua instalação passa a operar dentro da faixa exigida e essas cobranças são eliminadas.
+                            As regras da distribuidora e da regulação podem prever cobrança por energia reativa em determinados enquadramentos. O estudo verifica a situação da unidade antes de indicar qualquer correção.
                         </p>
                     </div>
                     <div class="bracket-box fade-in">
@@ -144,7 +144,7 @@
                     </div>
                     <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
                         <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">2. Dimensionamento do Banco de Capacitores</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Com base no estudo, dimensionamos o banco de capacitores — fixo ou automático — com a potência reativa necessária para trazer o fator de potência para a faixa exigida pela ANEEL (entre 0,92 e 1,00).</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Com base no estudo, a equipe dimensiona o banco de capacitores — fixo ou automático — para o perfil de carga e os parâmetros aplicáveis à unidade.</p>
                     </div>
                     <div class="bracket-box fade-in" style="margin-bottom: 2rem;">
                         <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">3. Instalação</h3>
@@ -211,7 +211,7 @@
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                A Resolução ANEEL nº 414/2010 e o PRODIST estabelecem que o fator de potência das instalações deve ser mantido entre 0,92 indutivo e 1,00. Quando o fator de potência medido fica abaixo de 0,92, a concessionária aplica encargos adicionais na fatura de energia elétrica. A correção elimina essa cobrança.
+                                As regras de medição e cobrança por energia reativa dependem do enquadramento da unidade e da regulamentação vigente. O diagnóstico deve confirmar o fator de potência medido e a eventual cobrança antes da intervenção.
                             </p>
                         </div>
                     </div>
@@ -262,27 +262,27 @@
                 <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
                 
                 <div class="grid grid-cols-4" style="gap: 1.5rem;">
-                    <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Projeto Elétrico</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Residencial, Predial e Industrial.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Subestação Aérea</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Média Tensão até 500kVA.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Laudos Elétricos</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">NR-10, SPDA, Termografia.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/instalacoes-industriais" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Instalações Industriais</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Infraestrutura e Manutenção.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
@@ -295,9 +295,9 @@
         <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container" style="text-align: center;">
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
-                <h2 style="margin-bottom: 2rem;">Corrija o Fator de Potência da Sua<br><span style="color:var(--accent-primary)">Instalação em Campina Grande</span></h2>
-                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e solicite o estudo técnico para correção de fator de potência da sua indústria ou comércio. Atendemos Campina Grande e toda a Paraíba.</p>
-                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
+                <h2 style="margin-bottom: 2rem;">Corrija o Fator de Potência da Sua<br><span style="color:var(--accent-primary)">Instalação <%= cityData.preposition %> <%= cityData.name %></span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric para solicitar uma avaliação técnica do fator de potência da sua indústria ou comércio. A disponibilidade e o escopo são confirmados conforme sua localidade.</p>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de consultar a correção do fator de potência.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
             </div>
         </section>
 

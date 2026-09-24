@@ -49,6 +49,9 @@
                     <% } %>
                     <% if (isServiceEnabled('eletrica')) { %>
                         <a href="<%= cityPrefix %>/solucoes/eletrica"><i class="fas fa-bolt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Serviços Elétricos</a>
+                        <% if (isServiceEnabled('carregador-veicular')) { %>
+                            <a href="<%= cityPrefix %>/solucoes/eletrica/carregador-veicular/" class="nav-wallbox-link" data-wallbox-event="nav_solution"><i class="fas fa-charging-station" style="color:var(--accent-solar);margin-right:0.5rem"></i> Wallbox / Carregador veicular</a>
+                        <% } %>
                     <% } %>
                     <% if (isServiceEnabled('automacao')) { %>
                         <a href="<%= cityPrefix %>/solucoes/automacao"><i class="fas fa-cog" style="color:var(--accent-secondary);margin-right:0.5rem"></i> Automação</a>
@@ -141,6 +144,9 @@
         <% } %>
         <% if (isServiceEnabled('eletrica')) { %>
             <a href="<%= cityPrefix %>/solucoes/eletrica" class="nav-item">Serviços Elétricos</a>
+            <% if (isServiceEnabled('carregador-veicular')) { %>
+                <a href="<%= cityPrefix %>/solucoes/eletrica/carregador-veicular/" class="nav-item nav-wallbox-link" data-wallbox-event="nav_solution"><i class="fas fa-charging-station"></i> Wallbox / Carregador veicular</a>
+            <% } %>
         <% } %>
         <% if (isServiceEnabled('automacao')) { %>
             <a href="<%= cityPrefix %>/solucoes/automacao" class="nav-item">Automação</a>

@@ -11,9 +11,9 @@
     <main>
         <div class="container breadcrumb-standalone">
             <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Serviços elétricos', href: '/solucoes/eletrica' },
+                { label: 'Home', href: getHomePrefix() + '/' },
+                { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
                 { label: 'Instalações industriais' }
             ], breadcrumbCompact: true }) %>
         </div>
@@ -24,12 +24,12 @@
                 <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INFRAESTRUTURA FABRIL</span></div>
                 <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
                     <div>
-                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Instalações Elétricas Industriais <%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %>:<br><span style="color:var(--accent-primary)">Infraestrutura Robusta e Segura.</span></h1>
+                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem;">Instalações Elétricas Industriais <span style="color:var(--accent-primary)"><%= typeof cityData !== 'undefined' ? cityData.preposition + ' ' + cityData.name : 'em Campina Grande' %></span></h1>
                         <p style="color:var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
-                            A Klyfe Electric realiza instalações elétricas industriais completas, manutenção preventiva e corretiva e montagem de quadros conforme NR-10, NBR 5410 e NR-12 com foco em disponibilidade fabril.
+                            Avaliamos instalações, manutenção preventiva ou corretiva e montagem de quadros conforme a necessidade da planta. As normas, os registros e o escopo são definidos a partir das condições encontradas.
                         </p>
                         <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar uma avaliação para instalações elétricas industriais.') %>" target="_blank" rel="noopener" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
                             <a href="#servicos" class="btn btn-ghost">Nossos Serviços →</a>
                         </div>
                     </div>
@@ -56,7 +56,7 @@
                         <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Montagem de Quadros Elétricos</span>
                     </div>
                     <div class="bracket-box" style="padding: 1rem; text-align: center; border: none; background: var(--bg-secondary);">
-                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Campina Grande e Região</span>
+                        <span style="color: var(--accent-primary); font-weight: bold; display: block; font-size: 0.9rem;">✔ Atendimento <%= cityData.preposition %> <%= cityData.name %></span>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.25rem; margin-bottom: 1rem;">Manutenção Elétrica Corretiva</h3>
                         <p style="color: var(--text-muted); line-height: 1.6;">
-                            Na ocorrência de falhas ou defeitos nas instalações elétricas, a Klyfe Electric atua com agilidade para restabelecer a operação com segurança e dentro das normas técnicas, minimizando o impacto na produtividade.
+                            Quando há falhas ou defeitos, a equipe pode avaliar a instalação, priorizar riscos e indicar os reparos compatíveis com o escopo contratado.
                         </p>
                     </div>
                     <div class="bracket-box fade-in">
@@ -147,7 +147,7 @@
                     </div>
                     <div class="bracket-box fade-in">
                         <h3 style="color: var(--accent-primary); font-size: 1.1rem; margin-bottom: 0.5rem;">4. Entrega e Documentação</h3>
-                        <p style="color: var(--text-muted); font-size: 0.95rem;">Entrega do serviço concluído com documentação técnica, garantindo rastreabilidade e conformidade legal das instalações.</p>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Entrega da documentação prevista no orçamento, com registros que ajudam a acompanhar o serviço executado e as recomendações.</p>
                     </div>
                 </div>
             </div>
@@ -160,27 +160,27 @@
                 <h2 class="fade-in" style="text-align: center; margin-bottom: 3rem;">Outros Serviços de Engenharia da <br><span style="color:var(--accent-primary)">Klyfe Electric</span></h2>
                 
                 <div class="grid grid-cols-4" style="gap: 1.5rem;">
-                    <a href="/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Projeto Elétrico</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Residencial, Predial e Industrial.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/aprovacao-energisa" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Aprovação Energisa</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Protocolo e Acompanhamento.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/laudos-eletricos" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Laudos Elétricos</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">NR-10, SPDA, Termografia.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/subestacao-aerea" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Subestação Aérea</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Média Tensão até 500kVA.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
                     </a>
-                    <a href="/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/correcao-fator-potencia" class="bracket-box fade-in" style="text-decoration: none; display: block; border-left: 4px solid var(--accent-primary);">
                         <h3 style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 0.5rem;">Fator de Potência</h3>
                         <p style="color: var(--text-muted); font-size: 0.85rem;">Elimine multas na fatura.</p>
                         <span style="display: block; margin-top: 1rem; color: var(--accent-primary); font-size: 0.75rem; font-family: var(--font-mono);">VER SERVIÇO →</span>
@@ -247,12 +247,12 @@
                     <!-- Q5 -->
                     <div class="faq-item" style="padding: 1.5rem 0;">
                         <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
-                            A Klyfe Electric atende indústrias fora de Campina Grande?
+                            A Klyfe Electric atende indústrias fora de <%= cityData.name %>?
                             <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
                         </button>
                         <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
                             <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;">
-                                Sim. A Klyfe Electric atende instalações industriais em Campina Grande e na região. Entre em contato para verificar a disponibilidade de atendimento para a sua localidade.
+                                A disponibilidade depende da localidade, do escopo e da logística do projeto. Entre em contato para verificar o atendimento para sua indústria.
                             </p>
                         </div>
                     </div>
@@ -282,9 +282,9 @@
         <section class="section-padding" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
             <div class="container" style="text-align: center;">
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>VAMOS CONVERSAR?</span></div>
-                <h2 style="margin-bottom: 2rem;">Solicite um Orçamento para Sua Indústria em <br><span style="color:var(--accent-primary)">Campina Grande</span></h2>
-                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e fale com nossa equipe técnica sobre as necessidades elétricas da sua indústria. Atendemos Campina Grande e região com foco em segurança, eficiência e conformidade com as normas técnicas.</p>
-                <a href="https://wa.me/5583991330972" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
+                <h2 style="margin-bottom: 2rem;">Solicite um Orçamento para Sua Indústria <%= cityData.preposition %> <br><span style="color:var(--accent-primary)"><%= cityData.name %></span></h2>
+                <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto 3rem auto;">Entre em contato com a Klyfe Electric e fale com nossa equipe técnica sobre as necessidades elétricas da sua indústria. A disponibilidade e o escopo são confirmados conforme sua localidade e a complexidade da instalação.</p>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar instalações elétricas industriais.') %>" class="btn btn-primary" style="padding: 1.2rem 2.5rem; font-size: 1.1rem;"><i class="fab fa-whatsapp"></i> Solicitar Orçamento pelo WhatsApp</a>
             </div>
         </section>
 

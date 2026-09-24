@@ -3,188 +3,378 @@
 <head>
     <%- include('partials/head') %>
 </head>
-<body>
+<body class="page-service page-wallbox">
     <%- include('partials/navbar') %>
 
-    <main>
-        <!-- CarregadorVeicularPage -->
+    <style>
+        .page-wallbox .wallbox-brief-form label {
+            color: #E2E8F0 !important;
+        }
+    </style>
 
-        <div class="container breadcrumb-standalone">
-            <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Serviços elétricos', href: '/solucoes/eletrica' },
-                { label: 'Carregador veicular' }
-            ], breadcrumbCompact: true }) %>
-        </div>
+    <%
+        const wallboxWaMsg = (typeof waMsg !== 'undefined' && waMsg)
+            ? waMsg
+            : (cityData.whatsappMessage || 'Olá! Gostaria de solicitar uma avaliação para instalação de Wallbox.');
+        const wallboxWaUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(wallboxWaMsg)}`;
+    %>
 
-        <!-- ═══ HERO ═══ -->
-        <section class="hero-internal bg-blueprint" style="padding: 6rem 0;">
+    <main class="wallbox-page-content">
+        <% const heroBg = (typeof serviceData !== 'undefined' && serviceData.heroImage) ? serviceData.heroImage : '/img/wallbox/wallbox-hero-dusk.webp'; %>
+        <section class="page-hero bg-blueprint hero-wallbox" style="background: linear-gradient(100deg, rgba(8, 19, 29, 0.95) 0%, rgba(8, 19, 29, 0.80) 54%, rgba(8, 19, 29, 0.42) 100%), url('<%= heroBg %>') center / cover no-repeat !important; padding-top:120px; padding-bottom:4rem">
             <div class="container fade-in">
-                <div class="section-separator"><%- include('partials/symbol') %> <span>MOBILIDADE ELÉTRICA</span></div>
-                <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                    { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
+                    { label: 'Instalação de Wallbox' }
+                ] }) %>
+
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>MOBILIDADE ELÉTRICA & ENGENHARIA</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Instalação de Wallbox <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+                <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Carregador veicular para casa, condomínio ou empresa, com avaliação de quadro elétrico, circuito dedicado, proteções DR/DPS e ART registrada no CREA-PB.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-primary" data-wallbox-event="hero_primary_cta" data-content-category="wallbox" data-content-name="wallbox-hero-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Solicitar Orçamento
+                    </a>
+                    <a href="#avaliacao" class="btn btn-ghost">Entender a Avaliação →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVA DE VALOR -->
+        <section class="wallbox-proof-strip" aria-label="O que a Klyfe avalia">
+            <div class="container wallbox-proof-grid">
+                <div><strong>01</strong><span>Vistoria do quadro e do percurso</span></div>
+                <div><strong>02</strong><span>Circuito e cabos dimensionados</span></div>
+                <div><strong>03</strong><span>Proteções compatíveis com o uso</span></div>
+                <div><strong>04</strong><span>Teste e orientação de operação</span></div>
+            </div>
+        </section>
+
+        <!-- APLICAÇÕES -->
+        <section id="aplicacoes" class="section-padding wallbox-section wallbox-applications">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
                     <div>
-                        <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem; font-weight: 800;">
-                            Instalação de Carregador <br>
-                            <span class="text-gradient">Veicular (EV Charger).</span>
-                        </h1>
-                        <p style="color: var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
-                            Soluções seguras para carregar seu veículo elétrico em casa, no condomínio ou na empresa. Instalação profissional de Wallbox com proteção total e ART em toda a Paraíba.
-                        </p>
-                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
-                            <a href="#detalhes" class="btn btn-ghost">Especificações Técnicas →</a>
-                        </div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>PARA CADA CENÁRIO</span></div>
+                        <h2>Onde instalar um <span>Wallbox?</span></h2>
                     </div>
-                    <div style="position: relative;">
-                        <div style="width: 100%; overflow: hidden; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 16px 40px rgba(0,0,0,0.35);">
-                            <img src="/img/eletrica/carregador-veicular.webp" alt="Instalação de Carregador Veicular Wallbox" style="width: 100%; height: auto; display: block; filter: brightness(0.95) contrast(1.05); transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'">
+                    <p>A solução muda conforme a rotina de recarga, a disponibilidade elétrica e as regras do imóvel. Conheça nossas soluções completas para cada perfil de instalação:</p>
+                </div>
+                <div class="wallbox-application-grid">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" class="wallbox-application-card fade-in" data-wallbox-event="card_wallbox_residencial">
+                        <div class="wallbox-card-image"><img src="/img/wallbox/wallbox-casa.webp" alt="Wallbox residencial para recarga de carro elétrico em casa" loading="lazy"></div>
+                        <div class="wallbox-card-body">
+                            <span>RESIDENCIAL</span>
+                            <h3>Recarga em Casa</h3>
+                            <p>Ponto de recarga exclusivo na garagem com velocidade máxima, dimensionamento seguro e ART no CREA-PB.</p>
+                            <span class="wallbox-card-cta">Conhecer Residencial <i class="fas fa-arrow-right"></i></span>
                         </div>
-                    </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-condominio/" class="wallbox-application-card fade-in" data-wallbox-event="card_wallbox_condominio">
+                        <div class="wallbox-card-image"><img src="/img/wallbox/wallbox-condominio.webp" alt="Instalação de Wallbox em condomínio" loading="lazy"></div>
+                        <div class="wallbox-card-body">
+                            <span>CONDOMÍNIOS</span>
+                            <h3>Garagens Coletivas</h3>
+                            <p>Medição individualizada Inmetro, balanceamento dinâmico de carga (DLB), laudo para assembleia e rateio.</p>
+                            <span class="wallbox-card-cta">Conhecer Condomínio <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-empresa/" class="wallbox-application-card fade-in" data-wallbox-event="card_wallbox_empresa">
+                        <div class="wallbox-card-image"><img src="/img/wallbox/wallbox-empresa.webp" alt="Wallbox para empresa e estacionamento corporativo" loading="lazy"></div>
+                        <div class="wallbox-card-body">
+                            <span>EMPRESAS & FROTAS</span>
+                            <h3>Recarga Corporativa</h3>
+                            <p>Totens de alta potência, protocolo aberto OCPP, bilhetagem de clientes e redução em custos de frota.</p>
+                            <span class="wallbox-card-cta">Conhecer Empresas <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-energia-solar/" class="wallbox-application-card fade-in" data-wallbox-event="card_wallbox_solar">
+                        <div class="wallbox-card-image"><img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Wallbox integrado à energia solar residencial" loading="lazy"></div>
+                        <div class="wallbox-card-body">
+                            <span>SOLAR + MOBILIDADE</span>
+                            <h3>Wallbox + Energia Solar</h3>
+                            <p>Estude como a geração do imóvel pode participar da recarga do carro, conforme seus horários de uso.</p>
+                            <span class="wallbox-card-cta">Conhecer Solar + Wallbox <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- ═══ SNAPSHOT DE VALOR ═══ -->
-        <section style="padding: 4rem 0; background: var(--bg-primary); border-bottom: 1px solid var(--border-color);">
-            <div class="container">
-                <div class="grid grid-cols-4">
-                    <div class="feature-card-simple">
-                        <div class="icon-wrap"><i class="fas fa-bolt"></i></div>
-                        <h4>Carga Rápida e Segura</h4>
-                        <p>Dimensionamento de cabos para potências de 7.4kW a 22kW.</p>
-                    </div>
-                    <div class="feature-card-simple">
-                        <div class="icon-wrap"><i class="fas fa-shield-alt"></i></div>
-                        <h4>Proteção Elétrica</h4>
-                        <p>Inclusão de DR, DPS e disjuntores específicos para sua proteção.</p>
-                    </div>
-                    <div class="feature-card-simple">
-                        <div class="icon-wrap"><i class="fas fa-sun"></i></div>
-                        <h4>Integração Solar</h4>
-                        <p>Abasteça seu veículo com a energia produzida pelo seu telhado solar.</p>
-                    </div>
-                    <div class="feature-card-simple">
-                        <div class="icon-wrap"><i class="fas fa-file-signature"></i></div>
-                        <h4>Projeto e ART</h4>
-                        <p>Garantia técnica e legal assinada por engenheiro habilitado.</p>
-                    </div>
+        <!-- AVALIAÇÃO TÉCNICA -->
+        <section id="avaliacao" class="section-padding wallbox-section wallbox-assessment bg-blueprint">
+            <div class="container wallbox-assessment-grid">
+                <div class="wallbox-assessment-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>AVALIAÇÃO TÉCNICA</span></div>
+                    <h2>O que a instalação de <span>Wallbox</span> precisa considerar?</h2>
+                    <p>Carregar um veículo elétrico pode manter o circuito em uso por várias horas. Por isso, a proposta deve considerar o equipamento, a potência, a distância e as condições do imóvel.</p>
+                    <ul class="wallbox-checklist">
+                        <li><i class="fas fa-check"></i> Capacidade do quadro e do padrão de entrada</li>
+                        <li><i class="fas fa-check"></i> Tensão, potência, distância e queda de tensão</li>
+                        <li><i class="fas fa-check"></i> Disjuntor, DR, DPS, aterramento e seccionamento</li>
+                        <li><i class="fas fa-check"></i> Rota de cabos, passagem e acabamento</li>
+                        <li><i class="fas fa-check"></i> Necessidade de medição individual em condomínios</li>
+                    </ul>
+                    <div class="wallbox-local-context"><strong><%= cityData.name %></strong><%- serviceData.serviceContext || '<p>A especificação é confirmada após avaliar o equipamento e a infraestrutura disponível.</p>' %></div>
                 </div>
+                <figure class="wallbox-assessment-media fade-in">
+                    <img src="/img/wallbox/wallbox-processo.webp" alt="Avaliação da infraestrutura para instalação de carregador Wallbox" loading="lazy">
+                    <figcaption>Da vistoria ao teste final, cada etapa fica documentada no escopo.</figcaption>
+                </figure>
             </div>
         </section>
 
-        <!-- ═══ DETALHES / ESCOPO ═══ -->
-        <section id="detalhes" class="section-padding">
+        <!-- ESCOPO DA ENTREGA -->
+        <section class="section-padding wallbox-section wallbox-includes-section">
             <div class="container">
-                <div class="grid grid-cols-2 gap-xl align-center">
+                <div class="wallbox-section-heading fade-in">
                     <div>
-                        <h2 style="margin-bottom: 2rem;">A infraestrutura correta para a <em class="text-gradient">mobilidade do futuro.</em></h2>
-                        <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7;">
-                            Carregar um veículo elétrico exige uma corrente elevada e constante por várias horas. Uma instalação comum não está preparada para esse esforço. A Klyfe Electric garante que seu sistema suporte essa carga sem riscos de aquecimento ou danos à sua rede.
-                        </p>
-                        <ul class="checklist-modern">
-                            <li>Instalação de Wallboxes de Todas as Marcas (Weg, Volvo, BMW, BYD)</li>
-                            <li>Criação de Circuitos Dedicados e Protegidos</li>
-                            <li>Infraestrutura para Condomínios (Medição Individual)</li>
-                            <li>Aterramento Exclusivo para Carregadores</li>
-                            <li>Configuração de Aplicativos e Gerenciamento de Carga</li>
-                        </ul>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>ESCOPO TRANSPARENTE</span></div>
+                        <h2>O que está incluso na <span>avaliação?</span></h2>
                     </div>
-                    <div class="bracket-box">
-                        <h3 style="margin-bottom: 1.5rem; font-family: var(--font-mono); color: var(--accent-primary);">// O QUE ESTÁ INCLUSO</h3>
-                        <div class="spec-item"><strong>Vistoria Técnica:</strong> Avaliação do quadro elétrico e local de carga.</div>
-                        <div class="spec-item"><strong>Quadro de Proteção:</strong> Mini quadro dedicado para o carregador.</div>
-                        <div class="spec-item"><strong>Cabeamento Especial:</strong> Bitola calculada para zero perda de energia.</div>
-                        <div class="spec-item"><strong>Comissionamento:</strong> Testes finais de carga e segurança.</div>
-                    </div>
+                    <p>Você recebe uma visão clara do que precisa ser feito, do que depende da infraestrutura existente e de quais adequações podem entrar na proposta.</p>
+                </div>
+                <div class="wallbox-includes-grid">
+                    <article class="wallbox-includes-card fade-in">
+                        <i class="fas fa-drafting-compass"></i>
+                        <h3>Dimensionamento</h3>
+                        <p>Cálculo de potência, cabos e percurso definidos para o seu veículo e imóvel.</p>
+                    </article>
+                    <article class="wallbox-includes-card fade-in">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Proteções</h3>
+                        <p>Disjuntor dedicado, DR com detecção DC, DPS e aterramento normatizado.</p>
+                    </article>
+                    <article class="wallbox-includes-card fade-in">
+                        <i class="fas fa-tools"></i>
+                        <h3>Instalação</h3>
+                        <p>Execução do ponto, passagem de eletrodutos, acabamento e testes de recarga.</p>
+                    </article>
+                    <article class="wallbox-includes-card fade-in">
+                        <i class="fas fa-file-signature"></i>
+                        <h3>Documentação</h3>
+                        <p>Registro do escopo técnico e emissão de ART com engenheiro no CREA-PB.</p>
+                    </article>
+                    <article class="wallbox-includes-card fade-in">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Orientação</h3>
+                        <p>Instruções práticas para carregar o seu veículo com segurança no dia a dia.</p>
+                    </article>
                 </div>
             </div>
         </section>
 
-        <!-- ═══ FAQ ACCORDION ═══ -->
-        <section class="section-padding" style="background: var(--bg-secondary);">
-            <div class="container" style="max-width: 900px;">
-                <h2 style="text-align: center; margin-bottom: 3rem;">Dúvidas Frequentes sobre <br><span class="text-gradient">Carregadores Veiculares</span></h2>
-                
-                <div class="faq-accordion">
-                    <div class="faq-item active">
-                        <div class="faq-question">Posso usar uma tomada comum para carregar meu carro? <i class="fas fa-plus"></i></div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                Tomadas comuns não foram projetadas para suportar altas correntes por longos períodos. Isso pode causar derretimento da fiação e incêndios. O uso de um Wallbox com circuito dedicado é a única forma segura de carregamento doméstico.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Quanto tempo leva para carregar um carro em casa? <i class="fas fa-plus"></i></div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                Com um carregador de 7.4kW (padrão residencial), um carro com bateria média leva de 6 a 8 horas para carga total. Carregadores de 22kW (trifásicos) podem reduzir esse tempo drasticamente se o carro suportar.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Moro em prédio, posso instalar um carregador? <i class="fas fa-plus"></i></div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                Sim. Realizamos projetos que conectam o carregador diretamente ao seu medidor individual ou sistemas com medição inteligente para áreas comuns, respeitando as normas do condomínio.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">Vocês vendem o carregador ou apenas instalam? <i class="fas fa-plus"></i></div>
-                        <div class="faq-answer">
-                            <div class="faq-answer-inner">
-                                Atuamos principalmente na instalação técnica. Podemos indicar as melhores marcas e modelos para sua necessidade ou instalar o equipamento que você já adquiriu.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ═══ LINKS RELACIONADOS ═══ -->
-        <section style="padding: 4rem 0; border-top: 1px solid var(--border-color);">
+        <!-- POTÊNCIA E COMPATIBILIDADE -->
+        <section id="potencia" class="section-padding wallbox-section wallbox-power-section bg-blueprint">
             <div class="container">
-                <h3 style="margin-bottom: 2rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 2px;">// SOLUÇÕES RELACIONADAS</h3>
-                <div class="grid grid-cols-4">
-                    <a href="/energia-solar/" class="related-card">
-                        <h4>Energia Solar</h4>
-                        <span>Ver solução →</span>
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>POTÊNCIA SEM ACHISMO</span></div>
+                        <h2>Qual potência de Wallbox <span>faz sentido?</span></h2>
+                    </div>
+                    <p>7,4 kW, 11 kW e 22 kW não são escolhas isoladas: a compatibilidade depende do veículo, do carregador, da tensão e da capacidade disponível no imóvel.</p>
+                </div>
+                <div class="wallbox-power-grid">
+                    <article class="wallbox-power-card fade-in"><span>01</span><strong>7,4 kW</strong><h3>Uso residencial comum</h3><p>Alternativa frequente em instalações monofásicas ou bifásicas, quando a rede e o veículo são compatíveis.</p></article>
+                    <article class="wallbox-power-card wallbox-power-card-featured fade-in"><span>02</span><strong>11 kW</strong><h3>Recarga mais rápida</h3><p>Comum em aplicações trifásicas; exige conferência da rede, do veículo e do carregador instalado.</p></article>
+                    <article class="wallbox-power-card fade-in"><span>03</span><strong>22 kW</strong><h3>Maior demanda</h3><p>Requer infraestrutura compatível e nem todo veículo aproveita essa potência. A vistoria evita superdimensionamento.</p></article>
+                </div>
+                <p class="wallbox-section-note"><i class="fas fa-info-circle"></i> A potência final só é recomendada depois da conferência técnica do veículo, do equipamento e da instalação elétrica.</p>
+            </div>
+        </section>
+
+        <!-- PROCESSO -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading wallbox-section-heading-centered fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>COMO FUNCIONA</span></div>
+                        <h2>Um processo sem <span>surpresas.</span></h2>
+                    </div>
+                    <p>Você sabe o que será analisado antes de decidir. O escopo final depende da vistoria, do equipamento e das condições encontradas.</p>
+                </div>
+                <div class="wallbox-process-grid">
+                    <article class="wallbox-process-step fade-in"><strong>01</strong><i class="fas fa-clipboard-list"></i><h3>Conte o cenário</h3><p>Informe cidade, tipo de imóvel, veículo e o local imaginado para a recarga.</p></article>
+                    <article class="wallbox-process-step fade-in"><strong>02</strong><i class="fas fa-search"></i><h3>Avaliamos a estrutura</h3><p>Conferimos quadro, percurso, potência disponível e condições do ponto.</p></article>
+                    <article class="wallbox-process-step fade-in"><strong>03</strong><i class="fas fa-drafting-compass"></i><h3>Definimos o escopo</h3><p>Cabos, proteções, acabamento e eventuais adequações são descritos na proposta.</p></article>
+                    <article class="wallbox-process-step fade-in"><strong>04</strong><i class="fas fa-plug"></i><h3>Instalamos e testamos</h3><p>Após a execução, o ponto é conferido e você recebe orientação para usar o sistema.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO CURTO DE QUALIFICAÇÃO -->
+        <section id="solicitar" class="section-padding wallbox-lead-section">
+            <div class="container wallbox-lead-grid">
+                <div class="wallbox-lead-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>COMECE POR AQUI</span></div>
+                    <h2>Quer saber se o seu imóvel está pronto para um <span>Wallbox?</span></h2>
+                    <p>Preencha o essencial. A mensagem será organizada e enviada para o WhatsApp da Klyfe para um primeiro alinhamento.</p>
+                    <div class="wallbox-lead-points">
+                        <span><i class="fas fa-bolt"></i> Atendimento sobre carregador veicular</span>
+                        <span><i class="fas fa-map-marker-alt"></i> <%= cityData.name %> e região</span>
+                        <span><i class="fas fa-lock"></i> Sem compromisso nesta primeira conversa</span>
+                    </div>
+                </div>
+                <form id="wallbox-brief-form" class="wallbox-brief-form fade-in" data-phone="5583991330972" data-content-category="wallbox" data-content-name="wallbox-brief-form">
+                    <div class="wallbox-form-heading"><span>01</span><div><strong>Fale com a equipe</strong><small>Leva menos de 1 minuto</small></div></div>
+                    <label for="wallbox-name" style="color: #FFFFFF !important;">Seu nome</label>
+                    <input id="wallbox-name" name="nome" type="text" placeholder="Como podemos chamar você?" required>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-phone" style="color: #FFFFFF !important;">WhatsApp</label><input id="wallbox-phone" name="telefone" type="tel" placeholder="(83) 99999-9999" required></div>
+                        <div><label for="wallbox-city" style="color: #FFFFFF !important;">Cidade</label><input id="wallbox-city" name="cidade" type="text" placeholder="Sua cidade" value="<%= cityData.name !== 'Paraíba' ? cityData.name : '' %>" required></div>
+                    </div>
+                    <label for="wallbox-profile" style="color: #FFFFFF !important;">Onde será o Wallbox?</label>
+                    <select id="wallbox-profile" name="perfil" required>
+                        <option value="">Selecione uma opção</option>
+                        <option>Casa</option>
+                        <option>Condomínio</option>
+                        <option>Empresa</option>
+                    </select>
+                    <label for="wallbox-car" style="color: #FFFFFF !important;">Modelo do veículo (opcional)</label>
+                    <input id="wallbox-car" name="veiculo" type="text" placeholder="Ex.: BYD Song, Volvo EX30">
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-charger" style="color: #FFFFFF !important;">Já possui o carregador?</label><select id="wallbox-charger" name="possui_carregador" required><option value="">Selecione</option><option>Sim</option><option>Não</option><option>Ainda não sei</option></select></div>
+                        <div><label for="wallbox-distance" style="color: #FFFFFF !important;">Quadro até a vaga</label><select id="wallbox-distance" name="distancia_quadro_vaga" required><option value="">Selecione</option><option>Até 5 m</option><option>6–10 m</option><option>11–20 m</option><option>Acima de 20 m</option><option>Ainda não sei</option></select></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Quero instalar meu Wallbox</button>
+                    <small class="wallbox-form-note">Ao enviar, registramos o briefing e abrimos uma conversa com a Klyfe.</small>
+                </form>
+            </div>
+        </section>
+
+        <!-- SOLAR + WALLBOX -->
+        <section id="solar" class="section-padding wallbox-section wallbox-solar-section">
+            <div class="container wallbox-solar-grid">
+                <figure class="wallbox-solar-media fade-in"><img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Integração entre energia solar e carregador veicular Wallbox" loading="lazy"></figure>
+                <div class="wallbox-solar-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>SOLAR + MOBILIDADE</span></div>
+                    <h2>O seu Wallbox pode conversar com o projeto de <span>energia solar.</span></h2>
+                    <p>Quando há geração fotovoltaica no imóvel, a recarga pode ser planejada para aproveitar parte da produção disponível. A Klyfe avalia geração, consumo, capacidade elétrica e conexão antes de definir a integração.</p>
+                    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;">
+                        <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-energia-solar/" class="btn btn-primary" data-wallbox-event="solar_solution_cta">
+                            Conhecer Wallbox + Energia Solar <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="<%= getHomePrefix() %>/energia-solar/" class="btn btn-ghost">
+                            Energia Solar na Paraíba →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATENDIMENTO REGIONAL -->
+        <section class="section-padding wallbox-section wallbox-area-section">
+            <div class="container wallbox-area-grid">
+                <div class="wallbox-area-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>ONDE ATENDEMOS</span></div>
+                    <h2>Instalação de Wallbox <span><%= cityData.preposition %> <%= cityData.name %>.</span></h2>
+                    <p>A equipe organiza a visita conforme o tipo de imóvel, a distância e a complexidade do ponto de recarga. Em condomínios e empresas, também alinhamos o acesso e as regras do local.</p>
+                </div>
+                <div class="wallbox-area-card fade-in">
+                    <span class="wallbox-area-label">Região de atendimento</span>
+                    <strong><%= cityData.region || cityData.name %></strong>
+                    <p><%= serviceData.bairros || 'Atendimento sob consulta.' %></p>
+                    <a href="#solicitar" class="text-link">Verificar disponibilidade <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="duvidas" class="section-padding wallbox-faq-section">
+            <div class="container wallbox-faq-container">
+                <div class="section-separator section-separator-centered"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
+                <h2>Carregador veicular: <span>perguntas comuns.</span></h2>
+                <div class="wallbox-faq-list">
+                    <div class="wallbox-faq-item"><button class="wallbox-faq-question" type="button" aria-expanded="false">O que é um Wallbox?<i class="fas fa-plus"></i></button><div class="wallbox-faq-answer"><p>É uma estação de recarga para veículos elétricos ou híbridos plug-in. A instalação elétrica precisa ser avaliada conforme o equipamento e o local de uso.</p></div></div>
+                    <div class="wallbox-faq-item"><button class="wallbox-faq-question" type="button" aria-expanded="false">Posso instalar em uma casa existente?<i class="fas fa-plus"></i></button><div class="wallbox-faq-answer"><p>Sim, desde que a infraestrutura suporte a solução ou receba as adequações necessárias. A vistoria verifica quadro, padrão, percurso e proteções. Confira os detalhes na nossa solução de <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" style="color:#E35A1B;text-decoration:underline;font-weight:600;">Wallbox Residencial</a>.</p></div></div>
+                    <div class="wallbox-faq-item"><button class="wallbox-faq-question" type="button" aria-expanded="false">É possível instalar em condomínio?<i class="fas fa-plus"></i></button><div class="wallbox-faq-answer"><p>Sim! É possível avaliar alternativas ligadas ao medidor individual ou a uma estrutura comum com rateio. Conheça as opções completas na página de <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-condominio/" style="color:#E35A1B;text-decoration:underline;font-weight:600;">Wallbox em Condomínio</a>.</p></div></div>
+                    <div class="wallbox-faq-item"><button class="wallbox-faq-question" type="button" aria-expanded="false">Vocês instalam o carregador que eu já comprei?<i class="fas fa-plus"></i></button><div class="wallbox-faq-answer"><p>Podemos avaliar a instalação de um equipamento já adquirido. Antes, conferimos modelo, potência, tensão, manual e compatibilidade com o local.</p></div></div>
+                    <div class="wallbox-faq-item"><button class="wallbox-faq-question" type="button" aria-expanded="false">Tomada comum substitui um Wallbox?<i class="fas fa-plus"></i></button><div class="wallbox-faq-answer"><p>Não há uma resposta única. A tomada comum pode não ser adequada para altas correntes por longos períodos; a decisão depende do veículo, do carregador e da instalação.</p></div></div>
+                    <div class="wallbox-faq-item"><button class="wallbox-faq-question" type="button" aria-expanded="false">Quanto custa instalar um Wallbox?<i class="fas fa-plus"></i></button><div class="wallbox-faq-answer"><p>O valor varia principalmente com a distância, o caminho dos cabos, a potência, as proteções e eventuais adequações. A proposta é definida depois de entender o cenário técnico.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTEÚDO DE APOIO PARA BUSCA E DECISÃO -->
+        <section class="section-padding wallbox-education-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div><div class="section-separator"><%- include('partials/symbol') %> <span>GUIA WALLBOX</span></div><h2>Antes de instalar, <span>entenda.</span></h2></div>
+                    <p>Conteúdo técnico e comercial para você comparar opções, organizar a instalação e tomar uma decisão mais segura.</p>
+                </div>
+                <div class="wallbox-education-grid">
+                    <a href="<%= getHomePrefix() %>/blog/quanto-custa-instalar-wallbox" class="wallbox-education-card"><span>Orçamento</span><strong>Quanto custa instalar um Wallbox?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/wallbox-ou-tomada-comum" class="wallbox-education-card"><span>Comparativo</span><strong>Wallbox ou tomada comum?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/wallbox-em-condominio" class="wallbox-education-card"><span>Condomínios</span><strong>Como instalar em condomínio?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/qual-potencia-wallbox-escolher" class="wallbox-education-card"><span>Potência</span><strong>7,4 kW, 11 kW ou 22 kW?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/wallbox-com-energia-solar" class="wallbox-education-card"><span>Integração</span><strong>Wallbox funciona com energia solar?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/quadro-eletrico-wallbox" class="wallbox-education-card"><span>Infraestrutura</span><strong>O quadro suporta um Wallbox?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/como-escolher-instalador-wallbox" class="wallbox-education-card"><span>Contratação</span><strong>Como escolher um instalador?</strong><i class="fas fa-arrow-right"></i></a>
+                    <a href="<%= getHomePrefix() %>/blog/cuidados-seguranca-carregador-veicular" class="wallbox-education-card"><span>Segurança</span><strong>Cuidados na instalação e no uso</strong><i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJETOS E LINKS INTERNOS -->
+        <section class="section-padding wallbox-section wallbox-projects-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div><div class="section-separator"><%- include('partials/symbol') %> <span>INFRAESTRUTURA REAL</span></div><h2>Projetos e soluções <span>relacionadas.</span></h2></div>
+                    <p>Conheça todas as páginas e especialidades da Klyfe em mobilidade elétrica e engenharia:</p>
+                </div>
+                <div class="wallbox-project-grid">
+                    <figure><img src="/img/wallbox/wallbox-projeto-01.webp" alt="Projeto de infraestrutura para carregador veicular" loading="lazy"></figure>
+                    <figure><img src="/img/wallbox/wallbox-projeto-02.webp" alt="Detalhe de instalação de ponto de recarga Wallbox" loading="lazy"></figure>
+                    <figure><img src="/img/wallbox/wallbox-projeto-03.webp" alt="Ponto de recarga para veículo elétrico" loading="lazy"></figure>
+                </div>
+                <div class="wallbox-related-links">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" class="wallbox-related-card">
+                        <span>Wallbox Residencial</span>
+                        <small>Instalação em casa com circuito exclusivo e ART.</small>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/instalacoes-industriais" class="related-card">
-                        <h4>Instalações Elétricas</h4>
-                        <span>Ver solução →</span>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-condominio/" class="wallbox-related-card">
+                        <span>Wallbox em Condomínio</span>
+                        <small>Medição individual Inmetro e laudo para assembleia.</small>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="related-card">
-                        <h4>Projeto Elétrico</h4>
-                        <span>Ver solução →</span>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-empresa/" class="wallbox-related-card">
+                        <span>Wallbox para Empresas</span>
+                        <small>Totens corporativos, OCPP e recarga para frotas.</small>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
-                    <a href="<%= getHomePrefix() %>/solucoes/automacao/automacao-residencial" class="related-card">
-                        <h4>Automação</h4>
-                        <span>Ver solução →</span>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-energia-solar/" class="wallbox-related-card">
+                        <span>Wallbox + Energia Solar</span>
+                        <small>Recarga planejada com a geração fotovoltaica disponível.</small>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/engenharia/viabilidade-carregador-veicular" class="wallbox-related-card">
+                        <span>Estudo de Viabilidade (EVT)</span>
+                        <small>Laudo de demanda para condomínios e indústrias.</small>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/energia-solar/" class="wallbox-related-card">
+                        <span>Energia Solar Fotovoltaica</span>
+                        <small>Geração própria para abastecer sua casa e veículo.</small>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- ═══ CTA FINAL ═══ -->
-        <section class="cta-banner" style="margin: 4rem 0;">
-            <div class="container fade-in" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
-                <div>
-                    <h2 style="color: var(--bg-primary);">Abasteça seu carro com a segurança <br>de uma instalação profissional.</h2>
-                    <p style="color: rgba(255,255,255,0.8);">Proteja seu veículo e sua casa com engenharia de ponta.</p>
-                </div>
-                <a href="https://wa.me/5583991330972" class="btn btn-dark">Solicitar Orçamento de Instalação</a>
+        <!-- CTA FINAL -->
+        <section class="wallbox-final-cta">
+            <div class="container wallbox-final-cta-inner">
+                <div><span class="wallbox-eyebrow">PRÓXIMO PASSO</span><h2>Seu carro elétrico merece uma instalação à altura.</h2><p>Conte o seu cenário e receba uma orientação inicial da Klyfe.</p></div>
+                <div class="wallbox-final-cta-actions"><a href="#solicitar" class="btn btn-primary" data-wallbox-event="final_primary_cta">Descrever meu cenário</a><a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" data-wallbox-event="final_whatsapp_cta" data-content-category="wallbox"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
             </div>
         </section>
-
     </main>
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-
-
-<script src="/js/main.js" defer></script>
+    <script src="/js/main.js" defer></script>
 </body>
 </html>

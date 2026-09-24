@@ -129,11 +129,11 @@ const cities = {
     eyebrow: 'ATENDIMENTO REGIONAL · JOÃO PESSOA - PB',
     title: 'Energia Solar em João Pessoa PB | Klyfe Electric',
     description: 'Energia solar em João Pessoa com projeto, instalação, ART e homologação Energisa. Atendimento técnico na Grande João Pessoa. Solicite um estudo.',
-    intro: 'A Klyfe atende projetos de energia solar em João Pessoa, Cabedelo, Bayeux e Santa Rita a partir da sua sede em Campina Grande. O serviço inclui análise de consumo, vistoria técnica, projeto com ART, instalação e acompanhamento da homologação na Energisa Paraíba, com especificação adequada ao ambiente litorâneo.',
+    intro: 'Planeje seu sistema de energia solar em João Pessoa com análise da fatura e das condições do imóvel. A Klyfe oferece projeto com ART, instalação e acompanhamento da homologação na Energisa Paraíba. O atendimento na capital, em Cabedelo, Bayeux e Santa Rita é agendado a partir da sede em Campina Grande, após avaliação do endereço e do escopo.',
     irradiacao: 'calculada para o endereço do projeto',
     concessionaria: 'Energisa Paraíba',
     validationStatus: 'logistics',
-    hqProximity: 'Atendimento na Grande João Pessoa a partir da sede da Klyfe em Campina Grande; a empresa não declara filial física na capital.',
+    hqProximity: 'Sede em Campina Grande. Visitas, instalação e condições de suporte na Grande João Pessoa são combinadas na proposta, conforme o endereço e o escopo.',
     stats: [
       { value: 'Grande João Pessoa', label: 'Área de Atendimento' },
       { value: 'Energisa PB', label: 'Processo de Conexão' },
@@ -150,8 +150,8 @@ const cities = {
         text: 'O uso intenso de climatização aumenta o consumo. O dimensionamento considera esse perfil para estimar quanto da energia poderá ser compensado.'
       },
       {
-        title: 'Atendimento sem endereço fictício',
-        text: 'A Klyfe atende a Grande João Pessoa, mas sua sede física fica em Campina Grande. A página descreve uma área de serviço, não uma filial na capital.'
+        title: 'Visita técnica e instalação agendadas',
+        text: 'Envie sua fatura, o bairro e informações da cobertura para a análise inicial. A equipe confirma a possibilidade de atendimento e combina a vistoria e as próximas etapas antes da execução.'
       }
     ],
     benefits: [
@@ -169,8 +169,8 @@ const cities = {
     ],
     bodyHtml: `
       <p>Um projeto de <strong>energia solar em João Pessoa</strong> precisa conciliar consumo, espaço disponível, sombreamento e exposição ao ambiente litorâneo. Por isso, a proposta é feita depois da análise da fatura e das condições reais do imóvel.</p>
-      <p>Atendemos residências, condomínios e empresas em bairros como Bessa, Manaíra, Tambaú, Cabo Branco, Altiplano e Bancários, além de Cabedelo, Bayeux e Santa Rita. O cronograma de visita e instalação é combinado conforme o escopo e a logística do projeto.</p>
-      <p>A Klyfe não mantém uma sede física anunciada em João Pessoa: o atendimento parte de Campina Grande. Essa transparência evita confundir área de serviço com endereço comercial e não altera a responsabilidade técnica ou o acompanhamento do projeto.</p>
+      <p>Para solicitar uma avaliação em Bessa, Manaíra, Tambaú, Cabo Branco, Altiplano ou Bancários, informe o endereço e o tipo de imóvel. Também avaliamos solicitações de Cabedelo, Bayeux e Santa Rita. Em apartamentos e condomínios, informe qual área está disponível para os módulos e quem é responsável por autorizar o uso da cobertura.</p>
+      <p>Em imóveis próximos ao mar, fotos da cobertura e a localização ajudam na análise inicial da exposição. Casas de uso eventual precisam de um histórico de consumo que represente os períodos de ocupação. A vistoria complementa essas informações antes da definição dos equipamentos e da instalação.</p>
     `,
     decisionGuide: {
       title: 'Quanto custa e como escolher energia solar em João Pessoa?',
@@ -227,7 +227,7 @@ const cities = {
       }
     ],
     ctaTitle: 'Peça seu estudo de energia solar para João Pessoa.',
-    ctaSubtitle: 'Engenharia especializada com suporte ágil na capital paraibana.',
+    ctaSubtitle: 'Envie uma fatura recente, o bairro e fotos da cobertura. A equipe avalia as informações e combina os próximos passos para seu imóvel.',
     relatedSegments: ['residencial', 'comercial', 'hoteis-e-pousadas', 'condominios'],
     relatedCities: ['campina-grande-pb', 'recife-pe', 'natal-rn', 'caruaru-pe']
   },

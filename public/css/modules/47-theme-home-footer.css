@@ -1,7 +1,9 @@
 /* FOOTER */
 [data-theme="solar-warm"] .main-footer {
   border-top: none;
-  background: #1A1210;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(255, 107, 43, 0.08), transparent 23rem),
+    linear-gradient(180deg, #0C0D0E 0%, #070809 72%, #050607 100%) !important;
   position: relative;
 }
 [data-theme="solar-warm"] .main-footer .container {
@@ -11,12 +13,16 @@
 [data-theme="solar-warm"] .main-footer,
 [data-theme="solar-warm"] .main-footer a,
 [data-theme="solar-warm"] .footer-col h4,
+[data-theme="solar-warm"] .footer-col h3,
+[data-theme="solar-warm"] .footer-social-block h4,
 [data-theme="solar-warm"] .footer-tagline,
 [data-theme="solar-warm"] .footer-links a,
 [data-theme="solar-warm"] .footer-bottom {
   color: #D9C8BC;
 }
 [data-theme="solar-warm"] .footer-col h4,
+[data-theme="solar-warm"] .footer-col h3,
+[data-theme="solar-warm"] .footer-social-block h4,
 [data-theme="solar-warm"] .footer-links a:hover {
   color: #FF8A4C;
 }
@@ -26,4 +32,5 @@
 [data-theme="solar-warm"] .main-footer .klyfe-symbol rect { fill: #E35A1B; }
 [data-theme="solar-warm"] .footer-col h4::after { background: #E35A1B; }
 [data-theme="solar-warm"] .copyright p,
-[data-theme="solar-warm"] .developer { color: #D9C8BC; }
+[data-theme="solar-warm"] .developer { color: rgba(174,179,186,0.75); }
+[data-theme="solar-warm"] .developer a { color: #D9DCE0; }

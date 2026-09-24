@@ -1,0 +1,91 @@
+<% if (isServiceEnabled('carregador-veicular')) { %>
+<section class="home-wallbox-featured" id="wallbox-destaque" aria-labelledby="home-wallbox-title">
+    <div class="container">
+        <!-- Main Hero Card -->
+        <div class="home-wallbox-shell">
+            <!-- Left Column: Copy & CTAs -->
+            <div class="home-wallbox-copy">
+                <div class="home-wallbox-tag-row">
+                    <div class="home-wallbox-tag-badge">
+                        <span class="home-wallbox-tag-icon" aria-hidden="true">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="2" width="16" height="20" rx="3" />
+                                <circle cx="12" cy="10" r="3" />
+                                <path d="M12 13v4" />
+                            </svg>
+                        </span>
+                        <span>MOBILIDADE ELÉTRICA</span>
+                    </div>
+                </div>
+
+                <p class="home-wallbox-eyebrow">INSTALAÇÃO DE WALLBOX</p>
+
+                <h2 id="home-wallbox-title">
+                    INSTALAÇÃO DE<br>
+                    WALLBOX COM<br>
+                    <span class="home-wallbox-title-orange">ENGENHARIA<br>ELÉTRICA.</span>
+                </h2>
+
+                <p class="home-wallbox-lead">Para casas, condomínios e empresas: avaliamos o quadro, o percurso dos cabos, a potência e as proteções antes de definir o escopo da instalação.</p>
+
+                <div class="home-wallbox-actions">
+                    <a href="<%= homePrefix %>/solucoes/eletrica/carregador-veicular/" class="btn home-wallbox-btn-primary" data-wallbox-event="home_primary_cta" data-content-category="wallbox" data-content-name="home-wallbox-primary">
+                        QUERO INSTALAR MEU WALLBOX <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="<%= homePrefix %>/contato?servico=Instala%C3%A7%C3%A3o%20de%20Wallbox" class="btn home-wallbox-btn-ghost" data-wallbox-event="home_contact_cta">
+                        FALAR COM UM ESPECIALISTA
+                    </a>
+                </div>
+
+                <div class="home-wallbox-proof" aria-label="Diferenciais da instalação">
+                    <div class="home-wallbox-proof-item">
+                        <span class="home-wallbox-proof-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></span>
+                        <span class="home-wallbox-proof-text">Circuito dedicado</span>
+                    </div>
+                    <div class="home-wallbox-proof-item">
+                        <span class="home-wallbox-proof-icon"><i class="fas fa-shield-alt" aria-hidden="true"></i></span>
+                        <span class="home-wallbox-proof-text">Proteções compatíveis</span>
+                    </div>
+                    <div class="home-wallbox-proof-item">
+                        <span class="home-wallbox-proof-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+                        <span class="home-wallbox-proof-text"><%= cityData.name === 'Paraíba' ? 'Paraíba e região' : cityData.name + ' e região' %></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Cinematic Hero Image -->
+            <div class="home-wallbox-media">
+                <img src="/img/wallbox/wallbox-hero-dusk.webp" alt="Instalação de Wallbox com engenharia elétrica para carregamento veicular" loading="lazy" class="home-wallbox-media-img" width="1376" height="768">
+            </div>
+        </div>
+
+        <!-- Bottom Gallery: 4 Application Cards -->
+        <div class="home-wallbox-gallery" aria-label="Aplicações de Wallbox">
+            <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-residencial/" class="home-wallbox-card" data-wallbox-event="home_scenario_residencial">
+                <div class="home-wallbox-card-media">
+                    <img src="/img/wallbox/wallbox-casa.webp" alt="Wallbox residencial instalado em garagem de casa" loading="lazy">
+                </div>
+                <div class="home-wallbox-card-pill">CASA</div>
+            </a>
+            <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-condominio/" class="home-wallbox-card" data-wallbox-event="home_scenario_condominio">
+                <div class="home-wallbox-card-media">
+                    <img src="/img/wallbox/wallbox-condominio.webp" alt="Wallbox instalado em garagem de condomínio" loading="lazy">
+                </div>
+                <div class="home-wallbox-card-pill">CONDOMÍNIO</div>
+            </a>
+            <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-empresa/" class="home-wallbox-card" data-wallbox-event="home_scenario_empresa">
+                <div class="home-wallbox-card-media">
+                    <img src="/img/wallbox/wallbox-empresa.webp" alt="Wallbox para recarga de veículos em estacionamento de empresa" loading="lazy">
+                </div>
+                <div class="home-wallbox-card-pill">EMPRESA</div>
+            </a>
+            <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-energia-solar/" class="home-wallbox-card" data-wallbox-event="home_scenario_solar">
+                <div class="home-wallbox-card-media">
+                    <img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Wallbox integrado à energia solar residencial" loading="lazy">
+                </div>
+                <div class="home-wallbox-card-pill">WALLBOX + ENERGIA SOLAR</div>
+            </a>
+        </div>
+    </div>
+</section>
+<% } %>

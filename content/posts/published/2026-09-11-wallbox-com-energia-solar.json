@@ -1,0 +1,86 @@
+{
+  "status": "published",
+  "slug": "wallbox-com-energia-solar",
+  "title": "Como integrar wallbox e energia solar: fluxo e pré-requisitos",
+  "publishAt": "2026-09-11",
+  "category": "solar",
+  "categoryLabel": "Energia Solar",
+  "summary": "Entenda a relação entre geração fotovoltaica, consumo da casa e recarga do carro, além dos dados necessários para estudar a integração.",
+  "whatsappMessage": "Olá! Vim do artigo sobre Wallbox com energia solar <%- locationPhrase %> e gostaria de avaliar a integração da recarga do meu carro elétrico à geração fotovoltaica.",
+  "readTime": "4 min",
+  "heroImage": "/img/wallbox/wallbox-com-energia-solar.webp",
+  "keywords": [
+    "como integrar wallbox e energia solar"
+  ],
+  "contentHtml": "<p class=\"lead\">É possível planejar a recarga de um carro elétrico em um imóvel com geração fotovoltaica, mas a energia dos painéis também atende outras cargas. Para entender a integração, observe quando o carro está conectado, quanto ele consome e como o sistema solar opera.</p>\n<h2>O que acontece em um sistema conectado à rede?</h2><p>A geração e o consumo variam durante o dia. Se o carro carrega enquanto há produção solar, parte da energia pode coincidir com a recarga; se carrega à noite, a rede normalmente participa do suprimento. A fatura e a compensação seguem as regras aplicáveis.</p>\n<p>Não há uma quantidade universal de painéis “por carro”. Quilometragem, eficiência do veículo, rotina de recarga, consumo da casa e condições do telhado mudam o estudo.</p>\n<h2>Quais dados reunir antes de dimensionar?</h2><p>Separe faturas, potência e capacidade de recarga admitidas pelo veículo, horários em que ele fica estacionado e quilometragem habitual. Informe também a potência instalada do sistema solar e seus registros de geração, caso ele já exista.</p>\n<p>Um projeto precisa avaliar capacidade do quadro, alimentação, proteções e eventuais adequações. A existência de painéis não garante que o circuito disponível suporte o wallbox.</p>\n<h2>O que significa priorizar excedente solar?</h2><p>Alguns equipamentos e sistemas de gestão conseguem ajustar a recarga conforme a geração disponível, mas os recursos variam por modelo e configuração. Confirme compatibilidade, medição necessária e comportamento quando a produção cai.</p>\n<p>Priorizar excedente não equivale a dispensar a rede ou a ter recarga gratuita. O resultado depende do perfil de uso e da arquitetura instalada.</p>\n<h2>Como comparar propostas de integração?</h2><p>Peça que a proposta separe o ponto de recarga, eventuais alterações no sistema fotovoltaico, medição, automação e condições de manutenção. Assim fica claro o que a integração faz e o que é apenas uma estimativa financeira.</p>\n<h2>Recarga agendada e prioridade solar são coisas diferentes</h2><p>Agendar a recarga para determinado horário pode coincidir com a produção solar, mas não mede automaticamente quanto excedente há naquele instante. Um sistema que ajusta potência à geração disponível requer recursos de controle e medição compatíveis. Confirme o comportamento do conjunto antes de comprar equipamentos.</p>\n<p>Se o carro precisa estar pronto para sair em horário fixo, registre essa restrição. Uma estratégia baseada apenas no excedente pode não atender à rotina.</p>\n<h2>Como verificar o resultado depois</h2><p>Guarde dados de geração fotovoltaica, consumo do imóvel e energia entregue ao veículo, quando a medição permitir. Compare períodos semelhantes e observe mudanças de uso. Uma fatura isolada pode ser insuficiente para atribuir economia ao modo de recarga.</p>\n<p>O objetivo é verificar se a solução opera como planejado e ajustar horários ou configurações dentro dos limites definidos pelo projeto.</p>\n<h2>Exemplo para comparar situações</h2><p>Um veículo chega em casa ao fim da tarde, depois do período de maior geração solar. Outro permanece estacionado durante o dia. A possibilidade de coincidir recarga e produção será diferente; a economia não pode ser deduzida apenas pela existência de painéis.</p>\n<p>Se o proprietário já tem dados de geração e consumo, eles ajudam a comparar recarga imediata, agendada e eventual controle por excedente. A compatibilidade desses recursos precisa ser verificada no equipamento proposto.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Faturas e geração solar registrada.</li><li>Modelo do veículo e características de recarga.</li><li>Horários de estacionamento e quilometragem.</li><li>Fotos e dados do quadro elétrico.</li><li>Objetivo: recarga simples, priorização solar ou outro recurso.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/solucoes/eletrica/wallbox-energia-solar/\">solução de wallbox com energia solar</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
+  "faq": [
+    {
+      "question": "O carro só pode carregar quando há sol?",
+      "answer": "Não necessariamente. Em sistemas conectados à rede, a forma de alimentação e o controle da recarga dependem da configuração."
+    },
+    {
+      "question": "Preciso comprar mais painéis?",
+      "answer": "Depende da geração existente, do consumo do imóvel e do uso do veículo. Um estudo compara esses dados antes de propor expansão."
+    }
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "como integrar wallbox e energia solar",
+  "searchIntent": "informacional",
+  "metaTitle": "Como integrar wallbox e energia solar: fluxo e pré-requisitos",
+  "metaDescription": "Entenda a relação entre geração fotovoltaica, consumo da casa e recarga do carro, além dos dados necessários para estudar a integração.",
+  "seoTitle": "Como integrar wallbox e energia solar: fluxo e pré-requisitos",
+  "seoDescription": "Entenda a relação entre geração fotovoltaica, consumo da casa e recarga do carro, além dos dados necessários para estudar a integração.",
+  "tags": [
+    "Wallbox",
+    "Solar",
+    "Carro elétrico",
+    "Autoconsumo"
+  ],
+  "imageAlt": "Wallbox conectado a sistema fotovoltaico em residência",
+  "heroImageAlt": "Wallbox conectado a sistema fotovoltaico em residência",
+  "canonicalPath": "/blog/wallbox-com-energia-solar",
+  "robots": "index, follow",
+  "ogTitle": "Como integrar wallbox e energia solar: fluxo e pré-requisitos",
+  "ogDescription": "Entenda a relação entre geração fotovoltaica, consumo da casa e recarga do carro, além dos dados necessários para estudar a integração.",
+  "ogImage": "/img/wallbox/wallbox-com-energia-solar.webp",
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "Micro e Minigeração Distribuída",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Veículos elétricos",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/veiculos-eletricos",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Solar Electricity Basics",
+      "publisher": "National Renewable Energy Laboratory",
+      "url": "https://www.nrel.gov/docs/fy09osti/43844.pdf",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "custo da instalação",
+      "url": "/blog/quanto-custa-instalar-wallbox"
+    },
+    {
+      "anchor": "potência de recarga",
+      "url": "/blog/qual-potencia-wallbox-escolher"
+    },
+    {
+      "anchor": "como funciona o sistema solar",
+      "url": "/blog/o-que-e-energia-solar-fotovoltaica"
+    }
+  ],
+  "contentAppendHtml": ""
+}

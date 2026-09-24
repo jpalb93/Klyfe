@@ -2,25 +2,93 @@
   "slug": "spda-para-raios-obrigatorio",
   "status": "published",
   "publishAt": "2026-03-10",
-  "title": "SPDA: como funciona o para-raios e quando é obrigatório",
+  "dateModified": "2026-09-21",
+  "dateModifiedIso": "2026-09-21T12:00:00-03:00",
+  "title": "SPDA: como funciona o para-raios e quando avaliar a necessidade",
   "category": "eletrica",
   "categoryLabel": "Elétrica",
-  "summary": "Tudo sobre o Sistema de Proteção contra Descargas Atmosféricas segundo a NBR 5419, e sua importância legal para edifícios.",
+  "summary": "Entenda o SPDA, seus principais elementos e como a avaliação técnica considera a edificação, o risco e as exigências aplicáveis.",
   "readTime": "4 min",
-  "author": "Eng. Lucas Menezes",
+  "author": "Klyfe Electric",
   "heroImage": "/img/infraestrutura-predial-vdi-bim.webp",
-  "contentHtml": "<p>O Sistema de Proteção contra Descargas Atmosféricas (SPDA), popularmente conhecido como para-raios, é uma infraestrutura de segurança essencial para proteger as edificações e, principalmente, as pessoas contra os efeitos de incidência de raios no canteiro de <strong><%- cityData.name %> e região</strong>.</p>\n            \n            <h2>Quando a instalação do SPDA é obrigatória?</h2>\n            <p>Segundo as leis municipais, estaduais e orientações do Corpo de Bombeiros, o projeto e execução de SPDA é obrigatório para:</p>\n            <ul>\n                <li>Edifícios residenciais e comerciais com altura superior a 15 metros.</li>\n                <li>Galpões industriais com alta concentração de carga ou canteiro de inflamáveis/explosivos.</li>\n                <li>Escolas, hospitais, clínicas e espaços públicos de aglomeração.</li>\n                <li>Instalações isoladas de grande exposição física.</li>\n            </ul>\n\n            <h3>Como é estruturado o sistema SPDA conforme a NBR 5419?</h3>\n            <p>A norma regulamentadora dividiu a engenharia de proteção contra raios em 4 pontos fundamentais:</p>\n            <ol>\n                <li><strong>Captação:</strong> Responsável por reter o raio no topo do prédio (para-raios Franklin ou Gaiola de Faraday).</li>\n                <li><strong>Descida:</strong> Caminho seguro estruturado por condutores de cobre ou alumínio para escoar a energia elétrica.</li>\n                <li><strong>Aterramento:</strong> Dissipação rápida da corrente no solo através de malha e hastes equipotencializadas.</li>\n                <li><strong>Proteção Interna (DPS):</strong> Dispositivos nos quadros para evitar a queima de equipamentos eletrônicos ligados à rede de energia.</li>\n            </ol>\n\n            <blockquote style=\"border-left: 4px solid var(--accent-primary); padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--text-muted);\">\n                \"A salinidade da orla litorânea e a poeira seca do interior exigem manutenções preventivas do SPDA para evitar que a malha de aterramento se oxide e perda a condutividade.\"\n            </blockquote>\n\n            <p>A Klyfe projeta SPDA em ambiente BIM 3D de alta precisão e emite laudos periciais de aterramento. Veja os nossos serviços na página de <a href=\"<%- getHomePrefix() %>/solucoes/engenharia/laudos-eletricos\">Laudos Técnicos e SPDA da Klyfe</a>.</p>",
-  "faq": [
+  "imageAlt": "Infraestrutura predial analisada para projeto de SPDA e proteção contra descargas atmosféricas",
+  "keywords": [
+    "o que é SPDA",
+    "como funciona o SPDA",
+    "quando avaliar a necessidade de SPDA"
+  ],
+  "tags": [
+    "SPDA",
+    "Para-raios",
+    "NBR 5419",
+    "Segurança elétrica"
+  ],
+  "contentHtml": "<p class=\"lead\"><strong>SPDA</strong> é o Sistema de Proteção contra Descargas Atmosféricas, popularmente associado ao para-raios. Ele reúne medidas e componentes definidos para uma edificação, com o objetivo de organizar caminhos de descarga e reduzir seus efeitos conforme a avaliação técnica, a norma aplicável e o escopo contratado.</p>\n\n<p>A necessidade de projetar, instalar, adequar ou inspecionar um SPDA não deve ser decidida por uma única característica, como a altura do prédio. O responsável técnico avalia a edificação, a ocupação, a exposição, os sistemas existentes, a avaliação de risco e as exigências do empreendimento ou do órgão responsável.</p>\n\n<h2>Quando avaliar a necessidade de SPDA?</h2>\n<p>A avaliação costuma ser importante em edificações novas, reformas, imóveis com sistema antigo ou incompleto, ambientes industriais, locais de grande circulação e estruturas expostas. Esses cenários são referências para iniciar a análise; não substituem o enquadramento técnico nem uma exigência específica do caso.</p>\n\n<p>Em obras ou regularizações, também é necessário conferir as regras do Corpo de Bombeiros e os documentos requeridos para o imóvel. A decisão final deve considerar a versão vigente da ABNT NBR 5419 e as características reais da instalação.</p>\n\n<h2>Quais elementos podem fazer parte do sistema?</h2>\n<p>Conforme o projeto e as condições encontradas, o SPDA pode envolver:</p>\n<ul>\n  <li><strong>Captação:</strong> elementos destinados a receber a descarga dentro da solução projetada.</li>\n  <li><strong>Descidas:</strong> condutores ou elementos naturais verificados para conduzir a corrente por caminhos definidos.</li>\n  <li><strong>Aterramento:</strong> conjunto de eletrodos e conexões dimensionado e verificado para a solução adotada.</li>\n  <li><strong>Equipotencialização:</strong> medidas para reduzir diferenças de potencial entre partes condutoras.</li>\n  <li><strong>Proteção contra surtos:</strong> DPS e outras medidas aplicáveis à instalação interna; DPS não substitui o SPDA.</li>\n</ul>\n\n<h2>Por que inspeção e manutenção importam?</h2>\n<p>Conexões, condutores, eletrodos, fixações e registros do sistema podem sofrer alterações ao longo do tempo. Em áreas costeiras ou ambientes agressivos, a exposição pode acelerar a corrosão de alguns materiais, mas a necessidade e a periodicidade de cada verificação dependem da instalação, do histórico e das exigências aplicáveis.</p>\n\n<p>A Klyfe pode atuar no levantamento, projeto, instalação, adequação, inspeção, documentação técnica e manutenção de SPDA, conforme a edificação e o escopo contratado. <a href=\"<%- getHomePrefix() %>/solucoes/engenharia/spda\">Veja a solução de SPDA da Klyfe</a>.</p>",
+  "sources": [
     {
-      "question": "A falta de laudo de SPDA cancela a cobertura do seguro residencial/comercial?",
-      "answer": "Sim. Em caso de queimas de equipamentos ou incêndios provocados por raios, a primeira documentação cobrada pela seguradora é o Laudo Técnico de SPDA anual com ART. Sem ele, a cobertura é cancelada por negligência técnica."
+      "title": "ABNT Catálogo — NBR 5419, edição 2026",
+      "url": "https://www.abntcatalogo.com.br/default.aspx?P=C0N63GK2P5N1",
+      "publisher": "ABNT",
+      "lastVerifiedAt": "2026-09-21"
     },
     {
-      "question": "Podemos usar as ferragens da própria estrutura de concreto do prédio como descida de para-raios?",
-      "answer": "Sim, a NBR 5419 permite e até recomenda o uso das armaduras de aço internas da estrutura (SPDA estrutural), desde que testada a continuidade elétrica antes da entrega."
+      "title": "NBR 5419:2026 em foco",
+      "url": "https://crtsp.gov.br/crt-sp-e-abnt-se-unem-para-detalhar-a-nova-nbr-5419-em-sao-jose-dos-campos/",
+      "publisher": "CRT-SP",
+      "lastVerifiedAt": "2026-09-21"
     }
   ],
-  "keywords": [],
+  "faq": [
+    {
+      "question": "A seguradora pode solicitar um laudo de SPDA?",
+      "answer": "Pode, conforme a apólice, o imóvel e o caso analisado. A documentação exigida e as consequências de um sinistro dependem do contrato, do evento, das condições da instalação e da análise da seguradora. O laudo registra as condições observadas e deve ser emitido conforme o objetivo da inspeção."
+    },
+    {
+      "question": "Quando o SPDA é obrigatório?",
+      "answer": "Não há uma resposta universal baseada apenas na altura ou no tipo nominal do imóvel. A necessidade deve ser avaliada conforme a edificação, a ocupação, a exposição, a avaliação de risco, a ABNT NBR 5419 vigente e as exigências do órgão ou responsável pelo empreendimento."
+    },
+    {
+      "question": "A Klyfe faz instalação e adequação de SPDA?",
+      "answer": "Sim. A Klyfe pode atuar desde o levantamento e projeto até a instalação, adequação, inspeção, documentação e manutenção, conforme as necessidades da edificação e o escopo contratado."
+    }
+  ],
   "affiliateProducts": [],
-  "affiliateDisclosure": false
+  "affiliateDisclosure": false,
+  "authorType": "Organization",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "o que é SPDA",
+  "searchIntent": "informacional",
+  "metaTitle": "O que é SPDA? Guia de Para-raios e Avaliação Técnica",
+  "metaDescription": "Entenda o que é SPDA, quais elementos podem fazer parte do sistema e quando uma avaliação técnica deve considerar a edificação e a NBR 5419.",
+  "seoTitle": "O que é SPDA? Guia de Para-raios e Avaliação Técnica",
+  "seoDescription": "Entenda o que é SPDA, quais elementos podem fazer parte do sistema e quando uma avaliação técnica deve considerar a edificação e a NBR 5419.",
+  "heroImageAlt": "Infraestrutura predial analisada para projeto de SPDA e proteção contra descargas atmosféricas",
+  "canonicalPath": "/blog/spda-para-raios-obrigatorio",
+  "robots": "index, follow",
+  "ogTitle": "O que é SPDA? Guia de Para-raios e Avaliação Técnica",
+  "ogDescription": "Entenda o que é SPDA, quais elementos podem fazer parte do sistema e quando uma avaliação técnica deve considerar a edificação e a NBR 5419.",
+  "ogImage": "/img/infraestrutura-predial-vdi-bim.webp",
+  "internalLinks": [
+    {
+      "anchor": "Como ler um laudo de SPDA?",
+      "url": "/blog/laudo-spda-o-que-deve-conter"
+    },
+    {
+      "anchor": "Quando inspecionar e manter o SPDA?",
+      "url": "/blog/inspecao-manutencao-spda"
+    },
+    {
+      "anchor": "SPDA, aterramento e DPS: qual a diferença?",
+      "url": "/blog/diferenca-spda-aterramento-dps"
+    },
+    {
+      "anchor": "O que preparar para um projeto de SPDA?",
+      "url": "/blog/projeto-spda-etapas-documentos"
+    },
+    {
+      "anchor": "Como compatibilizar energia solar e SPDA?",
+      "url": "/blog/energia-solar-edificio-com-spda"
+    }
+  ],
+  "contentAppendHtml": "<h2>Qual é a sua dúvida sobre SPDA?</h2><p>Use este artigo como ponto de partida. Os guias abaixo aprofundam decisões diferentes, desde a preparação do projeto até o acompanhamento da manutenção.</p><ul><li><a href=\"/blog/laudo-spda-o-que-deve-conter\">Como ler um laudo de SPDA?</a> — Entenda escopo, evidências, conclusões e pendências do documento.</li><li><a href=\"/blog/inspecao-manutencao-spda\">Quando inspecionar e manter o SPDA?</a> — Organize verificações, registros e acompanhamento das correções.</li><li><a href=\"/blog/diferenca-spda-aterramento-dps\">SPDA, aterramento e DPS: qual a diferença?</a> — Conheça as funções e por que as medidas precisam ser coordenadas.</li><li><a href=\"/blog/projeto-spda-etapas-documentos\">O que preparar para um projeto de SPDA?</a> — Veja etapas, informações de entrada e entregáveis para a obra.</li><li><a href=\"/blog/energia-solar-edificio-com-spda\">Como compatibilizar energia solar e SPDA?</a> — Saiba o que avaliar antes de alterar a cobertura do prédio.</li></ul><h2>Como organizar uma primeira avaliação</h2><p>Reúna os desenhos disponíveis, relatórios anteriores e informações sobre reformas. Identifique o uso da edificação, as áreas envolvidas e o motivo da consulta. Não ter o projeto antigo é uma informação relevante: o responsável técnico pode precisar de levantamento complementar antes de concluir sua análise.</p><p>Separe também o que você pretende contratar. Projeto define uma solução; execução instala componentes; adequação trata mudanças necessárias; inspeção avalia condições e documentação. A proposta deve esclarecer as entregas e o que dependerá de uma etapa posterior.</p><h2>Referências atualizadas e limites da proteção</h2><p>A ABNT apresenta a edição de 2026 da NBR 5419 em seu catálogo. Consulte a edição vigente e peça ao responsável técnico a identificação das referências utilizadas. Não use um resumo antigo da internet para definir obrigatoriedade, intervalos de inspeção ou especificações de materiais.</p><p>O sistema busca reduzir riscos e efeitos das descargas dentro da solução adotada. Não representa uma promessa de ausência de danos em qualquer situação. A avaliação da estrutura e das instalações precisa considerar suas interfaces e ser atualizada quando mudanças relevantes ocorrerem.</p><h2>Converse com a Klyfe sobre a sua edificação</h2><p>Informe o endereço, o uso do imóvel, a situação do sistema e o objetivo do atendimento. A partir desses dados, a equipe pode definir levantamento, projeto, instalação, adequação ou inspeção, conforme a necessidade. <a href=\"<%- getHomePrefix() %>/solucoes/engenharia/spda\">Conheça os serviços de SPDA da Klyfe e solicite uma avaliação do escopo</a>.</p>"
 }

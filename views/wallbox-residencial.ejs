@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body class="page-service page-wallbox page-wallbox-residencial">
+    <%- include('partials/navbar') %>
+
+    <style>
+        .page-wallbox .wallbox-brief-form label {
+            color: #E2E8F0 !important;
+        }
+    </style>
+
+    <%
+        const wallboxWaMsg = (typeof waMsg !== 'undefined' && waMsg)
+            ? waMsg
+            : `Olá! Gostaria de solicitar um orçamento para instalação de Wallbox residencial em ${cityData.name}.`;
+        const wallboxWaUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(wallboxWaMsg)}`;
+    %>
+
+    <main class="wallbox-page-content">
+        <% const heroBg = (typeof serviceData !== 'undefined' && serviceData.heroImage) ? serviceData.heroImage : '/img/wallbox/wallbox-casa.webp'; %>
+        <section class="page-hero bg-blueprint hero-wallbox" style="background: linear-gradient(100deg, rgba(8, 19, 29, 0.95) 0%, rgba(8, 19, 29, 0.80) 54%, rgba(8, 19, 29, 0.42) 100%), url('<%= heroBg %>') center / cover no-repeat !important; padding-top:120px; padding-bottom:4rem">
+            <div class="container fade-in">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                    { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
+                    { label: 'Instalação de Wallbox', href: getHomePrefix() + '/solucoes/eletrica/carregador-veicular/' },
+                    { label: 'Wallbox Residencial' }
+                ] }) %>
+
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>RECARGA RESIDENCIAL & ENGENHARIA</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Instalação de Wallbox Residencial <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+                <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Carregue seu carro elétrico ou híbrido plug-in no conforto da sua garagem com velocidade máxima, circuito exclusivo, proteções contra sobrecarga e ART registrada no CREA-PB.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-primary" data-wallbox-event="residencial_hero_whatsapp" data-content-category="wallbox" data-content-name="wallbox-residencial-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Solicitar Orçamento
+                    </a>
+                    <a href="#simulador" class="btn btn-ghost">Simular Tempo de Recarga</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVA DE VALOR -->
+        <section class="wallbox-proof-strip" aria-label="Diferenciais Klyfe">
+            <div class="container wallbox-proof-grid">
+                <div><strong>01</strong><span>Estudo de Carga do Padrão Energisa</span></div>
+                <div><strong>02</strong><span>Cabos Antichamas sem Queda de Tensão</span></div>
+                <div><strong>03</strong><span>Proteção Específica para Fuga DC (>6mA)</span></div>
+                <div><strong>04</strong><span>Responsabilidade Técnica com ART no CREA-PB</span></div>
+            </div>
+        </section>
+
+        <!-- SIMULADOR INTERATIVO DE RECARGA -->
+        <section id="simulador" class="section-padding wallbox-section wallbox-simulator-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>CALCULADORA DE RECARGA</span></div>
+                        <h2>Simulador de Tempo e <span>Potência de Recarga</span></h2>
+                    </div>
+                    <p>Descubra quanto tempo seu veículo elétrico leva para recarregar na sua casa e qual potência de Wallbox é ideal para o seu perfil de uso diário.</p>
+                </div>
+
+                <div class="wallbox-sim-card fade-in">
+                    <div class="wallbox-sim-controls">
+                        <div class="wallbox-sim-field">
+                            <label for="sim-ev-model"><i class="fas fa-car-side"></i> Selecione seu Veículo Elétrico:</label>
+                            <select id="sim-ev-model" class="wallbox-sim-select">
+                                <option value="44.9" data-name="BYD Dolphin GS" data-range="405">BYD Dolphin (44,9 kWh · ~405 km)</option>
+                                <option value="38.8" data-name="BYD Dolphin Mini" data-range="280">BYD Dolphin Mini (38,8 kWh · ~280 km)</option>
+                                <option value="18.3" data-name="BYD Song Plus DM-i" data-range="105">BYD Song Plus DM-i (18,3 kWh · Híbrido)</option>
+                                <option value="82.5" data-name="BYD Seal" data-range="520">BYD Seal (82,5 kWh · ~520 km)</option>
+                                <option value="60.5" data-name="BYD Yuan Plus" data-range="420">BYD Yuan Plus (60,5 kWh · ~420 km)</option>
+                                <option value="48" data-name="GWM Ora 03 Skin" data-range="310">GWM Ora 03 Skin (48 kWh · ~310 km)</option>
+                                <option value="34" data-name="GWM Haval H6 PHEV" data-range="170">GWM Haval H6 PHEV (34 kWh · Híbrido)</option>
+                                <option value="69" data-name="Volvo EX30 Extended Range" data-range="476">Volvo EX30 (69 kWh · ~476 km)</option>
+                                <option value="78" data-name="Volvo XC40 Recharge" data-range="420">Volvo XC40 Recharge (78 kWh · ~420 km)</option>
+                                <option value="80" data-name="BMW iX3 M Sport" data-range="460">BMW iX3 (80 kWh · ~460 km)</option>
+                                <option value="93.4" data-name="Porsche Taycan Performance" data-range="450">Porsche Taycan (93,4 kWh · ~450 km)</option>
+                            </select>
+                        </div>
+
+                        <div class="wallbox-sim-field">
+                            <label><i class="fas fa-charging-station"></i> Potência do Carregador Wallbox:</label>
+                            <div class="wallbox-sim-power-radios">
+                                <label class="power-radio-label">
+                                    <input type="radio" name="sim-power" value="3.7">
+                                    <span><strong>3,7 kW</strong><small>16A · Monofásico</small></span>
+                                </label>
+                                <label class="power-radio-label active">
+                                    <input type="radio" name="sim-power" value="7.4" checked>
+                                    <span><strong>7,4 kW</strong><small>32A · Residencial Padrão</small></span>
+                                </label>
+                                <label class="power-radio-label">
+                                    <input type="radio" name="sim-power" value="11">
+                                    <span><strong>11 kW</strong><small>16A · Trifásico</small></span>
+                                </label>
+                                <label class="power-radio-label">
+                                    <input type="radio" name="sim-power" value="22">
+                                    <span><strong>22 kW</strong><small>32A · Trifásico Alta</small></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wallbox-sim-results">
+                        <div class="sim-result-box">
+                            <span class="sim-result-icon"><i class="fas fa-clock"></i></span>
+                            <div class="sim-result-data">
+                                <strong id="sim-time-result">3h 40min</strong>
+                                <span>Tempo de recarga (20% a 80%)</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-result-box">
+                            <span class="sim-result-icon"><i class="fas fa-tachometer-alt"></i></span>
+                            <div class="sim-result-data">
+                                <strong id="sim-speed-result">~45 km/h</strong>
+                                <span>Autonomia recuperada por hora</span>
+                            </div>
+                        </div>
+
+                        <div class="sim-result-box sim-result-box-highlight">
+                            <span class="sim-result-icon"><i class="fas fa-piggy-bank"></i></span>
+                            <div class="sim-result-data">
+                                <strong id="sim-economy-result">~82%</strong>
+                                <span>Economia em relação à gasolina</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="wallbox-sim-cta">
+                        <p><i class="fas fa-info-circle"></i> Valores calculados para recarga AC considerando a tarifa da Energisa Paraíba. Pronto para instalar na sua casa?</p>
+                        <a href="#solicitar" class="btn btn-primary btn-sm">Solicitar Vistoria Técnica</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENGENHARIA ELÉTRICA E SEGURANÇA -->
+        <section class="section-padding wallbox-section bg-blueprint">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>ENGENHARIA QUE PROTEGE SEU PATRIMÔNIO</span></div>
+                        <h2>Por que um Wallbox residencial exige <span>engenharia de verdade?</span></h2>
+                    </div>
+                    <p>Carregar um veículo elétrico exige manter uma corrente alta (32A) contínua por 6 a 8 horas. Uma tomada comum ou uma fiação mal dimensionada pode superaquecer, fundir conduítes e provocar incêndios.</p>
+                </div>
+
+                <div class="wallbox-specs-grid">
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Circuito 100% Exclusivo</h3>
+                        <p>Os cabos partem diretamente do quadro de distribuição (QDG) até o carregador sem emendas ou derivações para outros cômodos, dimensionados com folga térmica conforme a NBR 5410.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-shield-virus"></i></div>
+                        <h3>DR Tipo A ou Tipo B com RDC-DD</h3>
+                        <p>O carro elétrico possui componentes eletrônicos que podem gerar correntes de fuga em corrente contínua (DC). O DR comum (Tipo AC) não detecta essa falha; usamos DRs específicos para mobilidade elétrica com corte > 6mA.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-cloud-bolt"></i></div>
+                        <h3>DPS Classe II Coordenado</h3>
+                        <p>Protege o carregador e a eletrônica de bordo do seu carro contra surtos de tensão e descargas atmosféricas frequentes na rede da concessionária durante tempestades no Nordeste.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-arrows-down-to-line"></i></div>
+                        <h3>Queda de Tensão Inferior a 2%</h3>
+                        <p>Dimensionamos a bitola dos condutores (geralmente 6mm², 10mm² ou 16mm²) para garantir que a tensão chegue estável ao carro mesmo em garagens distantes do quadro principal.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-ruler-combined"></i></div>
+                        <h3>Adequação de Padrão Energisa PB</h3>
+                        <p>Se o padrão de entrada da sua residência for monofásico ou possuir disjuntor geral de baixa amperagem, calculamos a nova demanda e orientamos o processo de ampliação para bifásico ou trifásico.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-certificate"></i></div>
+                        <h3>ART Registrada no CREA-PB</h3>
+                        <p>Todas as instalações da Klyfe Electric contam com Anotação de Responsabilidade Técnica emitida por engenheiro eletricista habilitado, exigida pelas seguradoras residenciais de alto padrão.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPATIBILIDADE DE MARCAS -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading wallbox-section-heading-centered fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>UNIVERSAL E COMPATÍVEL</span></div>
+                        <h2>Instalação para todos os <span>veículos e marcas</span></h2>
+                    </div>
+                    <p>Trabalhamos com carregadores com conector Tipo 2 (Mennekes), o padrão universal adotado no Brasil por montadoras nacionais e importadas.</p>
+                </div>
+                <div class="wallbox-brands-row fade-in">
+                    <span class="brand-pill">BYD (Dolphin, Seal, Song, Yuan, Tan)</span>
+                    <span class="brand-pill">GWM (Haval H6, Ora 03)</span>
+                    <span class="brand-pill">Volvo (EX30, XC40, XC60, C40)</span>
+                    <span class="brand-pill">BMW (iX3, i4, iX1, X5 PHEV)</span>
+                    <span class="brand-pill">Porsche (Taycan, Cayenne E-Hybrid)</span>
+                    <span class="brand-pill">Audi (e-tron, Q8 e-tron)</span>
+                    <span class="brand-pill">Mercedes-Benz (EQA, EQB, EQC, EQE)</span>
+                    <span class="brand-pill">WEG (WEMOB Wall & Parking)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESSO DE INSTALAÇÃO KLYFE -->
+        <section class="section-padding wallbox-section bg-blueprint">
+            <div class="container">
+                <div class="wallbox-section-heading wallbox-section-heading-centered fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>ETAPAS CLARAS</span></div>
+                        <h2>Como funciona a instalação <span>com a Klyfe</span></h2>
+                    </div>
+                    <p>Do primeiro contato ao comissionamento do ponto de recarga, seguimos um protocolo rigoroso de engenharia.</p>
+                </div>
+                <div class="wallbox-process-grid">
+                    <article class="wallbox-process-step fade-in">
+                        <strong>01</strong>
+                        <i class="fas fa-clipboard-check"></i>
+                        <h3>Vistoria Técnica</h3>
+                        <p>Avaliamos o quadro de disjuntores, padrão de entrada Energisa, rota dos cabos até a garagem e ponto de aterramento.</p>
+                    </article>
+                    <article class="wallbox-process-step fade-in">
+                        <strong>02</strong>
+                        <i class="fas fa-drafting-compass"></i>
+                        <h3>Projeto e Dimensionamento</h3>
+                        <p>Definimos a bitola dos condutores, disjuntor dedicado, proteções DR/DPS e emitimos a ART no CREA-PB.</p>
+                    </article>
+                    <article class="wallbox-process-step fade-in">
+                        <strong>03</strong>
+                        <i class="fas fa-tools"></i>
+                        <h3>Montagem & Infraestrutura</h3>
+                        <p>Passagem do cabeamento em eletroduto antichamas metálico ou embutido, instalação das proteções e fixação do Wallbox.</p>
+                    </article>
+                    <article class="wallbox-process-step fade-in">
+                        <strong>04</strong>
+                        <i class="fas fa-shield-check"></i>
+                        <h3>Testes e Entrega Técnica</h3>
+                        <p>Medição de aterramento, teste de disparo de DR, verificação de comunicação com o carro e instruções de uso diário.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO DE ORÇAMENTO -->
+        <section id="solicitar" class="section-padding wallbox-lead-section">
+            <div class="container wallbox-lead-grid">
+                <div class="wallbox-lead-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>SOLICITE SUA AVALIAÇÃO</span></div>
+                    <h2>Instale seu Wallbox Residencial <%= cityData.preposition %> <span><%= cityData.name %></span></h2>
+                    <p>Preencha os dados do seu imóvel e veículo para receber um dimensionamento técnico preliminar e agendar a visita da equipe da Klyfe.</p>
+                    <div class="wallbox-lead-points">
+                        <span><i class="fas fa-check-circle"></i> Vistoria técnica no seu endereço</span>
+                        <span><i class="fas fa-shield-alt"></i> Instalação conforme NBR 5410 e NBR 17019</span>
+                        <span><i class="fas fa-file-contract"></i> Emissão de ART no CREA-PB</span>
+                    </div>
+                </div>
+                <form id="wallbox-brief-form" class="wallbox-brief-form fade-in" data-phone="5583991330972" data-content-category="wallbox" data-content-name="wallbox-residencial-form">
+                    <input type="hidden" name="perfil" value="Casa">
+                    <div class="wallbox-form-heading"><span>01</span><div><strong>Orçamento Residencial</strong><small>Atendimento direto por engenheiros</small></div></div>
+                    <label for="wallbox-name" style="color: #FFFFFF !important;">Seu nome</label>
+                    <input id="wallbox-name" name="nome" type="text" placeholder="Como podemos chamar você?" required>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-phone" style="color: #FFFFFF !important;">WhatsApp</label><input id="wallbox-phone" name="telefone" type="tel" placeholder="(83) 99999-9999" required></div>
+                        <div><label for="wallbox-city" style="color: #FFFFFF !important;">Cidade / Bairro</label><input id="wallbox-city" name="cidade" type="text" placeholder="Ex: Altiplano, Manaíra..." value="<%= cityData.name !== 'Paraíba' ? cityData.name : '' %>" required></div>
+                    </div>
+                    <label for="wallbox-car" style="color: #FFFFFF !important;">Modelo do carro elétrico</label>
+                    <input id="wallbox-car" name="veiculo" type="text" placeholder="Ex: BYD Dolphin, Volvo EX30, Song Plus..." required>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-charger" style="color: #FFFFFF !important;">Já tem o carregador?</label><select id="wallbox-charger" name="possui_carregador" required><option value="">Selecione</option><option>Sim, já comprei</option><option>Não, ainda vou comprar</option><option>Ainda estou escolhendo</option></select></div>
+                        <div><label for="wallbox-distance" style="color: #FFFFFF !important;">Distância quadro até a vaga</label><select id="wallbox-distance" name="distancia_quadro_vaga" required><option value="">Selecione</option><option>Até 5 m</option><option>6 a 15 m</option><option>16 a 30 m</option><option>Acima de 30 m</option></select></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento no WhatsApp</button>
+                    <small class="wallbox-form-note">Seus dados são protegidos e utilizados exclusivamente para elaborar o orçamento técnico.</small>
+                </form>
+            </div>
+        </section>
+
+        <!-- BAIRROS E ATENDIMENTO REGIONAL -->
+        <section class="section-padding wallbox-section wallbox-area-section">
+            <div class="container wallbox-area-grid">
+                <div class="wallbox-area-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>ATENDIMENTO REGIONAL</span></div>
+                    <h2>Onde instalamos Wallbox residencial <span><%= cityData.preposition %> <%= cityData.name %></span></h2>
+                    <p>Atendemos residências e condomínios horizontais de alto padrão em toda a capital paraibana, Campina Grande e municípios vizinhos, respeitando normas construtivas e regulamentos locais.</p>
+                </div>
+                <div class="wallbox-area-card fade-in">
+                    <span class="wallbox-area-label">Bairros e Condomínios Atendidos</span>
+                    <strong><%= cityData.name %> e Cidades Próximas</strong>
+                    <p><%= serviceData.bairros || 'Atendimento em toda a região metropolitana.' %></p>
+                    <a href="#solicitar" class="text-link">Verificar Disponibilidade na Sua Região <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="duvidas" class="section-padding wallbox-faq-section bg-blueprint">
+            <div class="container wallbox-faq-container">
+                <div class="section-separator section-separator-centered"><%- include('partials/symbol') %> <span>TIRE SUAS DÚVIDAS</span></div>
+                <h2>Perguntas Frequentes sobre <span>Wallbox Residencial</span></h2>
+                <div class="wallbox-faq-list">
+                    <% (faqList || []).forEach(item => { %>
+                        <div class="wallbox-faq-item">
+                            <button class="wallbox-faq-question" type="button" aria-expanded="false"><%= item.question %><i class="fas fa-plus"></i></button>
+                            <div class="wallbox-faq-answer"><p><%= item.answer %></p></div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVEGAÇÃO ENTRE MODALIDADES DE WALLBOX -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>OUTRAS APLICAÇÕES</span></div>
+                        <h2>Conheça outras soluções de <span>mobilidade elétrica</span></h2>
+                    </div>
+                    <p>Além de residências, a Klyfe desenvolve projetos completos para condomínios verticais, empresas e sistemas integrados com energia solar.</p>
+                </div>
+                <div class="wallbox-other-solutions-grid">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-condominio/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-condominio.webp" alt="Wallbox em condomínio" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>CONDOMÍNIOS</span>
+                            <h3>Wallbox em Condomínio</h3>
+                            <p>Projetos para vagas privativas em garagens coletivas com medição individualizada e rateio seguro.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-empresa/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-empresa.webp" alt="Wallbox corporativo" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>EMPRESAS</span>
+                            <h3>Wallbox para Empresas</h3>
+                            <p>Infraestrutura para frotas corporativas, centros comerciais e totens com protocolo aberto OCPP.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-energia-solar/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Wallbox com energia solar" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>ENERGIA SOLAR</span>
+                            <h3>Wallbox + Energia Solar</h3>
+                            <p>Planeje a recarga para aproveitar a geração solar disponível no imóvel.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="wallbox-final-cta">
+            <div class="container wallbox-final-cta-inner">
+                <div>
+                    <span class="wallbox-eyebrow">COMECE HOJE</span>
+                    <h2>Pronto para carregar seu carro em casa com total segurança?</h2>
+                    <p>Fale com os engenheiros da Klyfe Electric e receba seu orçamento sob medida.</p>
+                </div>
+                <div class="wallbox-final-cta-actions">
+                    <a href="#solicitar" class="btn btn-primary" data-wallbox-event="final_primary_cta">Solicitar Vistoria Técnica</a>
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" data-wallbox-event="final_whatsapp_cta" data-content-category="wallbox"><i class="fab fa-whatsapp"></i> Falar no WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js" defer></script>
+    <script>
+        // Simulador de Recarga
+        (function() {
+            const evSelect = document.getElementById('sim-ev-model');
+            const powerRadios = document.querySelectorAll('input[name="sim-power"]');
+            const timeOutput = document.getElementById('sim-time-result');
+            const speedOutput = document.getElementById('sim-speed-result');
+
+            function updateSimulator() {
+                if (!evSelect) return;
+                const batteryCap = parseFloat(evSelect.value) || 50;
+                let power = 7.4;
+                powerRadios.forEach(r => {
+                    if (r.checked) {
+                        power = parseFloat(r.value);
+                        r.closest('.power-radio-label').classList.add('active');
+                    } else {
+                        r.closest('.power-radio-label').classList.remove('active');
+                    }
+                });
+
+                // Recarga 20% a 80% = 60% da bateria (com eficiência de 90% AC)
+                const neededKwh = (batteryCap * 0.6) / 0.9;
+                const hours = neededKwh / power;
+                const h = Math.floor(hours);
+                const m = Math.round((hours - h) * 60);
+                timeOutput.textContent = `${h}h ${m < 10 ? '0' : ''}${m}min`;
+
+                // Autonomia adicionada por hora (considerando média de 6.5 km/kWh)
+                const kmPerHour = Math.round(power * 0.9 * 6.5);
+                speedOutput.textContent = `~${kmPerHour} km/h`;
+            }
+
+            if (evSelect) {
+                evSelect.addEventListener('change', updateSimulator);
+                powerRadios.forEach(r => r.addEventListener('change', updateSimulator));
+                updateSimulator();
+            }
+        })();
+    </script>
+</body>
+</html>

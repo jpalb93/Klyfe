@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const locations = require('../config/locations');
 const glossario = require('../config/glossario');
+const { getServiceGlossaryLinks, inferServiceGlossaryKey } = require('../config/service-glossary');
 const business = require('../config/business');
-const { getPublishedPosts } = require('../lib/blog-loader');
+const { getHomeFeaturedPosts } = require('../lib/blog-loader');
 const { evaluatePosts } = require('../lib/blog-evaluator');
 
 // Sub-routers especializados
@@ -46,6 +47,16 @@ router.use((req, res, next) => {
     res.locals.getHomePrefix = () => {
         return (cityFromUrl !== 'default') ? '/' + cityFromUrl : '';
     };
+
+    // Ponte editorial entre cada página de serviço e o Glossário Técnico.
+    // O componente recebe poucos termos contextuais, preservando a leitura e
+    // evitando despejar os 75 verbetes em todas as páginas.
+    res.locals.glossaryServiceKey = inferServiceGlossaryKey(req.path);
+    res.locals.getServiceGlossaryLinks = (serviceKey, category, requestedCityKey) => getServiceGlossaryLinks(
+        serviceKey || res.locals.glossaryServiceKey,
+        requestedCityKey || cityFromUrl,
+        category
+    );
 
     // Helper para pegar serviços ativos de uma categoria
     res.locals.getServicesByCategory = (cat) => {
@@ -112,8 +123,7 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
     };
     const homeSeo = homeSeoByCity[cityKey];
     
-    const allPosts = getPublishedPosts();
-    const evaluatedPosts = evaluatePosts(allPosts.slice(0, 4), cityKey, cityBase);
+    const evaluatedPosts = evaluatePosts(getHomeFeaturedPosts(), cityKey, cityBase);
 
     // A entidade WebSite já é publicada pelo head global; a Home descreve a página atual.
     const jsonLd = `
@@ -201,13 +211,92 @@ router.get('/:city(campina-grande|joao-pessoa)?/projetos', (req, res) => {
 router.get('/:city(campina-grande|joao-pessoa)?/glossario', (req, res) => {
     const cityKey = req.params.city || 'default';
     const cityBase = locations[cityKey] || locations['default'];
+    const localSolutionsPrefix = res.locals.homePrefix || '';
+    const localizedPrefixPath = path => {
+        if (!path) return path;
+        if (path.startsWith('/solucoes/')) return `${localSolutionsPrefix}${path}`;
+        if (path === '/energia-solar/' || path === '/energia-solar') {
+            if (cityKey === 'campina-grande') return '/energia-solar/campina-grande-pb/';
+            if (cityKey === 'joao-pessoa') return '/energia-solar/joao-pessoa-pb/';
+        }
+        return path;
+    };
+    const termSlugByName = new Map(glossario.terms.map(item => [item.term, item.slug]));
+    const localizedTerms = glossario.terms.map(item => ({
+        ...item,
+        serviceLink: item.serviceLink
+            ? { ...item.serviceLink, href: localizedPrefixPath(item.serviceLink.path) }
+            : null,
+        relatedTerms: (item.related || [])
+            .map(name => ({ name, slug: termSlugByName.get(name) }))
+            .filter(related => related.slug)
+    }));
+    const localizedGlossario = localizedTerms.reduce((groups, item) => {
+        (groups[item.letter] ||= []).push(item);
+        return groups;
+    }, {});
+    const localizedCategories = glossario.categories.map(category => ({
+        ...category,
+        count: localizedTerms.filter(item => item.category === category.id).length
+    }));
+    const prefix = cityKey === 'default' ? '' : `/${cityKey}`;
+    const canonical = cityKey === 'default' ? `${baseUrl}/glossario` : `${baseUrl}${prefix}/glossario`;
+    const title = `Glossário Elétrico e Solar ${cityBase.preposition} ${cityBase.name} | Klyfe`;
+    const description = `Consulte termos de engenharia elétrica, energia solar, SPDA, automação e carregamento veicular ${cityBase.preposition} ${cityBase.name}. Definições práticas da Klyfe Electric.`;
+    const termSetId = `${canonical}#defined-term-set`;
+    const jsonLd = `<script type="application/ld+json">${JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'CollectionPage',
+                '@id': `${canonical}#page`,
+                url: canonical,
+                name: title,
+                description,
+                inLanguage: 'pt-BR',
+                dateModified: glossario.updatedAt,
+                mainEntity: { '@id': termSetId },
+                breadcrumb: { '@id': `${canonical}#breadcrumb` }
+            },
+            {
+                '@type': 'DefinedTermSet',
+                '@id': termSetId,
+                url: canonical,
+                name: 'Glossário Técnico Klyfe Electric',
+                description: 'Base de conhecimento sobre engenharia elétrica, energia solar fotovoltaica, SPDA, automação e carregamento veicular.',
+                inLanguage: 'pt-BR',
+                dateModified: glossario.updatedAt,
+                hasDefinedTerm: localizedTerms.map(item => ({
+                    '@type': 'DefinedTerm',
+                    '@id': `${canonical}#${item.slug}`,
+                    name: item.term,
+                    description: `${item.definition} ${item.practical}`,
+                    url: `${canonical}#${item.slug}`,
+                    inDefinedTermSet: { '@id': termSetId }
+                }))
+            },
+            {
+                '@type': 'BreadcrumbList',
+                '@id': `${canonical}#breadcrumb`,
+                itemListElement: [
+                    { '@type': 'ListItem', position: 1, name: 'Home', item: `${baseUrl}${prefix}/` },
+                    { '@type': 'ListItem', position: 2, name: 'Glossário Técnico', item: canonical }
+                ]
+            }
+        ]
+    })}</script>`;
     res.render('glossario', {
-        title: `Glossário Técnico de Engenharia Elétrica | Klyfe Electric ${cityBase.preposition} ${cityBase.name}`,
-        description: `Dicionário técnico de engenharia elétrica, automação e energia solar. Entenda os principais termos do setor ${cityBase.preposition} ${cityBase.name}.`,
-        canonical: cityKey === 'default' ? `${baseUrl}/glossario` : `${baseUrl}/${cityKey}/glossario`,
+        title,
+        description,
+        keywords: 'glossário elétrico, engenharia elétrica, energia solar, SPDA, automação, wallbox, laudos elétricos',
+        canonical,
         cityKey, cityData: cityBase, page: 'glossario',
-        glossario: glossario,
-        jsonLd: ''
+        glossario: localizedGlossario,
+        glossaryCategories: localizedCategories,
+        glossaryTerms: localizedTerms,
+        glossaryReferences: glossario.references,
+        glossaryUpdatedAt: glossario.updatedAt,
+        jsonLd
     });
 });
 
@@ -237,7 +326,8 @@ router.get('/:city(campina-grande|joao-pessoa)?/contato', (req, res) => {
         title: `Contato ${cityBase.preposition} ${cityBase.name} | Klyfe Electric`,
         description: `Solicite orçamento ou consultoria técnica para projetos elétricos, laudos ou energia solar ${cityBase.preposition} ${cityBase.name}. Fale com nosso time de engenharia.`,
         canonical,
-        cityKey, cityData: cityBase, page: 'contato', jsonLd
+        cityKey, cityData: cityBase, page: 'contato', jsonLd,
+        leadService: req.query.servico || ''
     });
 });
 

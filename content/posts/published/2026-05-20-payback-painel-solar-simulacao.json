@@ -1,6 +1,6 @@
 {
   "slug": "payback-painel-solar-simulacao",
-  "status": "published",
+  "status": "archived",
   "publishAt": "2026-05-20",
   "title": "Quanto tempo leva para o painel solar se pagar? Simulação real",
   "category": "solar",
@@ -22,5 +22,7 @@
   ],
   "keywords": [],
   "affiliateProducts": [],
-  "affiliateDisclosure": false
+  "affiliateDisclosure": false,
+  "robots": "noindex, follow",
+  "canonicalPath": "/blog/em-quanto-tempo-a-energia-solar-se-paga"
 }

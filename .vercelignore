@@ -6,6 +6,9 @@ scratch
 audits
 tests
 *.log
+*.md
+seo-report*
+deploy.ps1
 .env
 .DS_Store
 .idea

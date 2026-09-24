@@ -1,159 +1,407 @@
+<%
+    const termCount = glossaryTerms.length;
+    const letterList = Object.keys(glossario).sort();
+    const localPrefix = cityKey !== 'default' ? `/${cityKey}` : '';
+    const featuredSlugs = ['energia-solar-fotovoltaica', 'spda-sistema-de-protecao-contra-descargas-atmosfericas', 'wallbox', 'laudo-de-instalacoes-eletricas', 'inversor-solar'];
+    const featuredTerms = featuredSlugs.map(slug => glossaryTerms.find(item => item.slug === slug)).filter(Boolean);
+    const updatedLabel = glossaryUpdatedAt ? glossaryUpdatedAt.split('-').reverse().join('/') : '';
+%>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <%- include('partials/head', { 
-        title: 'Glossário Técnico de Engenharia Elétrica e Automação | Klyfe Electric', 
-        description: 'Tire suas dúvidas com o nosso glossário técnico. Entenda termos como SPDA, NR-10, Fator de Potência e muito mais com especialistas.',
-        canonical: canonical,
-        jsonLd: jsonLd
+        title,
+        description,
+        canonical,
+        keywords,
+        jsonLd
     }) %>
     <style>
+        .glossary-page { background: var(--bg-primary, #f8fafc); color: var(--text-main, #0f172a); }
         .glossary-hero {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
-            padding: 80px 0 60px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
+            background: radial-gradient(circle at 85% 10%, rgba(234, 88, 12, 0.22), transparent 32%), linear-gradient(135deg, #101820 0%, #172b35 60%, #0e1217 100%);
+            padding: clamp(64px, 9vw, 112px) 0 72px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            color: #fff;
         }
-        .glossary-nav {
-            position: sticky;
-            top: 80px;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 0;
-            z-index: 100;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 40px;
-        }
-        .az-nav {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .az-link {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        .az-link:hover, .az-link.active {
-            background: var(--accent-primary);
-            color: var(--bg-dark);
-            border-color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
+        .glossary-hero-content { max-width: 900px; }
+        .glossary-breadcrumbs { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; color: rgba(255,255,255,0.58); font: 700 0.72rem/1.2 var(--font-mono, monospace); letter-spacing: .06em; text-transform: uppercase; }
+        .glossary-breadcrumbs a { color: rgba(255,255,255,0.72); text-decoration: none; }
+        .glossary-breadcrumbs a:hover { color: var(--accent-primary, #ea580c); }
+        .glossary-hero h1 { max-width: 780px; margin: 18px 0 16px; color: #fff; font-size: clamp(2.5rem, 6vw, 5.25rem); line-height: 0.98; }
+        .glossary-hero .subtitle { max-width: 760px; color: rgba(255,255,255,0.78); font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.65; margin: 0; }
+        .glossary-hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; color: rgba(255,255,255,0.68); font: 700 0.75rem/1.2 var(--font-mono, monospace); letter-spacing: 0.08em; text-transform: uppercase; }
+        .glossary-hero-meta span { padding: 9px 12px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; }
 
-        .glossary-section {
-            margin-bottom: 60px;
-            scroll-margin-top: 160px;
-        }
-        .letter-header {
-            font-size: 3rem;
-            color: var(--accent-primary);
-            font-family: var(--font-heading);
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--accent-primary);
-            display: inline-block;
-            padding-right: 20px;
-        }
-        .terms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 25px;
-        }
-        .term-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-        .term-card:hover {
-            border-color: var(--accent-primary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-        .term-card h3 {
-            color: var(--accent-primary);
-            margin-bottom: 15px;
-            font-size: 1.25rem;
-        }
-        .term-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
+        .glossary-toolbar { position: sticky; top: 72px; z-index: 20; padding: 18px 0; background: color-mix(in srgb, var(--bg-primary, #f8fafc) 92%, transparent); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color, #e2e8f0); }
+        .glossary-toolbar-inner { display: grid; grid-template-columns: minmax(260px, 1.5fr) minmax(200px, 0.7fr) auto; gap: 12px; align-items: center; }
+        .glossary-search-wrap { position: relative; }
+        .glossary-search-wrap i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--accent-primary, #ea580c); }
+        .glossary-search, .glossary-select { width: 100%; min-height: 48px; border: 1px solid var(--border-color, #cbd5e1); border-radius: 10px; background: var(--card-bg, #fff); color: var(--text-main, #0f172a); font: 500 0.95rem/1.2 var(--font-body, sans-serif); }
+        .glossary-search { padding: 0 44px; }
+        .glossary-select { padding: 0 14px; }
+        .glossary-search:focus, .glossary-select:focus { outline: 3px solid rgba(234, 88, 12, 0.2); border-color: var(--accent-primary, #ea580c); }
+        .glossary-clear { min-height: 48px; border: 1px solid var(--border-color, #cbd5e1); border-radius: 10px; padding: 0 14px; background: transparent; color: var(--text-main, #0f172a); cursor: pointer; font-weight: 700; }
+        .glossary-clear:hover { border-color: var(--accent-primary, #ea580c); color: var(--accent-primary, #ea580c); }
+        .glossary-result-count { margin: 10px 0 0; color: var(--text-muted, #64748b); font-size: 0.88rem; }
 
-        @media (max-width: 768px) {
-            .terms-grid { grid-template-columns: 1fr; }
-            .glossary-hero { padding: 60px 20px; }
-            .az-link { width: 35px; height: 35px; font-size: 0.9rem; }
+        .glossary-intro { padding: 52px 0 28px; }
+        .glossary-intro-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr); gap: 28px; align-items: stretch; }
+        .glossary-panel { padding: clamp(24px, 4vw, 38px); background: var(--card-bg, #fff); border: 1px solid var(--border-color, #e2e8f0); border-radius: 18px; box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06); }
+        .glossary-kicker { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-primary, #ea580c); font: 800 0.72rem/1.2 var(--font-mono, monospace); letter-spacing: 0.12em; text-transform: uppercase; }
+        .glossary-panel h2 { margin: 12px 0 14px; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.05; }
+        .glossary-panel p { color: var(--text-muted, #64748b); line-height: 1.7; }
+        .glossary-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+        .glossary-principle { padding: 14px; border-radius: 12px; background: color-mix(in srgb, var(--accent-primary, #ea580c) 8%, var(--card-bg, #fff)); }
+        .glossary-principle strong { display: block; margin-bottom: 6px; color: var(--text-main, #0f172a); font-size: 0.9rem; }
+        .glossary-principle span { color: var(--text-muted, #64748b); font-size: 0.82rem; line-height: 1.45; }
+        .glossary-featured { background: #101820; color: #fff; border-color: #101820; }
+        .glossary-featured p { color: rgba(255,255,255,0.7); }
+        .glossary-featured h2 { color: #fff; }
+        .featured-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .featured-list a { display: inline-flex; padding: 10px 12px; border: 1px solid rgba(255,255,255,0.18); border-radius: 999px; color: #fff; text-decoration: none; font-weight: 700; font-size: 0.88rem; }
+        .featured-list a:hover { border-color: var(--accent-primary, #ea580c); color: var(--accent-primary, #ea580c); }
+
+        .glossary-categories { padding: 24px 0 48px; }
+        .glossary-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 22px; }
+        .glossary-section-heading h2 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.5rem); }
+        .glossary-section-heading p { max-width: 600px; margin: 0; color: var(--text-muted, #64748b); line-height: 1.6; }
+        .category-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+        .category-card { display: flex; flex-direction: column; min-height: 150px; padding: 20px; border: 1px solid var(--border-color, #e2e8f0); border-radius: 14px; background: var(--card-bg, #fff); color: inherit; text-decoration: none; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+        .category-card:hover { transform: translateY(-3px); border-color: var(--accent-primary, #ea580c); box-shadow: 0 12px 26px rgba(15, 23, 42, 0.08); }
+        .category-card strong { display: block; margin-bottom: 8px; color: var(--text-main, #0f172a); font-size: 1.05rem; }
+        .category-card p { margin: 0; color: var(--text-muted, #64748b); font-size: 0.87rem; line-height: 1.5; }
+        .category-count { margin-top: auto; padding-top: 16px; color: var(--accent-primary, #ea580c); font: 800 0.7rem/1.2 var(--font-mono, monospace); letter-spacing: .08em; text-transform: uppercase; }
+
+        .glossary-letters { padding: 4px 0 30px; scroll-margin-top: 150px; }
+        .glossary-letters-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+        .glossary-letters-label { margin-right: 6px; color: var(--text-muted, #64748b); font: 800 0.72rem/1.2 var(--font-mono, monospace); letter-spacing: .12em; text-transform: uppercase; }
+        .letter-filter { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 34px; padding: 0 9px; border: 1px solid var(--border-color, #cbd5e1); border-radius: 8px; background: var(--card-bg, #fff); color: var(--text-main, #0f172a); text-decoration: none; font-weight: 800; font-size: .82rem; }
+        .letter-filter:hover, .letter-filter.is-active { background: var(--accent-primary, #ea580c); border-color: var(--accent-primary, #ea580c); color: #fff; }
+
+        .glossary-results { padding-bottom: 52px; scroll-margin-top: 150px; }
+        .glossary-category-section { margin-bottom: 58px; }
+        .glossary-category-section[hidden], .glossary-term[hidden] { display: none !important; }
+        .category-heading { display: flex; align-items: start; gap: 14px; margin: 0 0 22px; }
+        .category-heading-mark { flex: 0 0 9px; min-height: 52px; border-radius: 9px; background: var(--accent-primary, #ea580c); }
+        .category-heading h2 { margin: 0 0 6px; font-size: clamp(1.65rem, 3vw, 2.35rem); line-height: 1.05; }
+        .category-heading p { max-width: 760px; margin: 0; color: var(--text-muted, #64748b); line-height: 1.55; }
+        .terms-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+        .glossary-term { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--border-color, #e2e8f0); border-radius: 16px; background: var(--card-bg, #fff); box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04); scroll-margin-top: 155px; }
+        .glossary-term:hover { border-color: color-mix(in srgb, var(--accent-primary, #ea580c) 65%, var(--border-color, #e2e8f0)); }
+        .term-topline { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 16px; }
+        .term-letter { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 8px; background: color-mix(in srgb, var(--accent-primary, #ea580c) 12%, var(--card-bg, #fff)); color: var(--accent-primary, #ea580c); font: 900 0.86rem/1 var(--font-mono, monospace); }
+        .term-category-label { color: var(--text-muted, #64748b); font: 700 0.68rem/1.2 var(--font-mono, monospace); letter-spacing: .08em; text-transform: uppercase; text-align: right; }
+        .glossary-term h3 { margin: 0 0 11px; color: var(--text-main, #0f172a); font-size: 1.25rem; line-height: 1.12; }
+        .term-definition { margin: 0; color: var(--text-main, #0f172a); font-size: .98rem; line-height: 1.65; }
+        .term-details { display: grid; gap: 12px; margin: 20px 0 0; padding-top: 18px; border-top: 1px solid var(--border-color, #e2e8f0); }
+        .term-detail { margin: 0; }
+        .term-detail dt { margin-bottom: 4px; color: var(--accent-primary, #ea580c); font: 800 .68rem/1.2 var(--font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+        .term-detail dd { margin: 0; color: var(--text-muted, #64748b); font-size: .89rem; line-height: 1.55; }
+        .term-related { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin-top: 19px; }
+        .term-related-label { width: 100%; color: var(--text-muted, #64748b); font: 700 .68rem/1.2 var(--font-mono, monospace); letter-spacing: .08em; text-transform: uppercase; }
+        .term-related a { color: var(--accent-primary, #ea580c); font-size: .8rem; font-weight: 700; text-decoration: none; }
+        .term-related a:hover { text-decoration: underline; }
+        .term-service-link { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: auto; padding-top: 18px; color: var(--accent-primary, #ea580c); font-size: .87rem; font-weight: 800; text-decoration: none; }
+        .term-service-link:hover { text-decoration: underline; }
+        .glossary-empty { padding: 44px 20px; border: 1px dashed var(--border-color, #cbd5e1); border-radius: 16px; text-align: center; color: var(--text-muted, #64748b); }
+
+        .glossary-references { padding: 52px 0 66px; background: #101820; color: #fff; }
+        .glossary-references h2 { margin: 0 0 10px; color: #fff; font-size: clamp(1.7rem, 3vw, 2.5rem); }
+        .glossary-references-intro { max-width: 760px; margin: 0 0 24px; color: rgba(255,255,255,.7); line-height: 1.65; }
+        .references-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+        .reference-card { display: flex; flex-direction: column; padding: 20px; border: 1px solid rgba(255,255,255,.16); border-radius: 14px; color: #fff; text-decoration: none; }
+        .reference-card:hover { border-color: var(--accent-primary, #ea580c); }
+        .reference-card strong { margin-bottom: 8px; font-size: .96rem; line-height: 1.3; }
+        .reference-card span { color: rgba(255,255,255,.64); font-size: .83rem; line-height: 1.5; }
+        .reference-card i { margin-top: auto; padding-top: 18px; color: var(--accent-primary, #ea580c); }
+        .glossary-final-cta { padding: 50px 0 68px; text-align: center; }
+        .glossary-final-cta h2 { margin: 0 0 10px; font-size: clamp(1.7rem, 3vw, 2.7rem); }
+        .glossary-final-cta p { max-width: 660px; margin: 0 auto 22px; color: var(--text-muted, #64748b); line-height: 1.65; }
+        .glossary-final-cta a { display: inline-flex; align-items: center; gap: 8px; padding: 13px 18px; border-radius: 10px; background: var(--accent-primary, #ea580c); color: #fff; text-decoration: none; font-weight: 800; }
+        .glossary-final-cta a:hover { filter: brightness(1.08); }
+
+        @media (max-width: 980px) {
+            .category-grid, .references-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .glossary-toolbar-inner { grid-template-columns: 1fr 1fr; }
+            .glossary-clear { grid-column: 1 / -1; justify-self: start; }
+        }
+        @media (max-width: 720px) {
+            .glossary-toolbar { top: 58px; }
+            .glossary-toolbar-inner, .glossary-intro-grid, .terms-grid { grid-template-columns: 1fr; }
+            .glossary-intro { padding-top: 34px; }
+            .glossary-principles { grid-template-columns: 1fr; }
+            .category-grid, .references-grid { grid-template-columns: 1fr; }
+            .glossary-section-heading { display: block; }
+            .glossary-section-heading p { margin-top: 9px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .category-card { transition: none; }
         }
     </style>
 </head>
-<body>
+<body class="glossary-page">
     <%- include('partials/navbar') %>
 
     <header class="glossary-hero">
-        <div class="container">
-            <span class="badge">Conhecimento Técnico</span>
-            <h1>Glossário de Engenharia e Elétrica</h1>
-            <p class="subtitle">Entenda os termos fundamentais que regem a alta performance elétrica e automação industrial.</p>
+        <div class="container glossary-hero-content">
+            <nav class="glossary-breadcrumbs" aria-label="Você está aqui">
+                <a href="<%= localPrefix || '/' %>">Home</a>
+                <span aria-hidden="true">/</span>
+                <span>Glossário Técnico</span>
+            </nav>
+            <span class="badge">Base de conhecimento Klyfe</span>
+            <h1>Glossário de engenharia elétrica, energia solar e automação</h1>
+            <p class="subtitle">Termos explicados de forma prática para quem precisa projetar, instalar, adequar, inspecionar ou manter sistemas elétricos, solares, de proteção, automação e carregamento veicular.</p>
+            <div class="glossary-hero-meta" aria-label="Resumo do glossário">
+                <span><%= termCount %> termos</span>
+                <span><%= glossaryCategories.length %> áreas técnicas</span>
+                <span>Atualizado em <%= updatedLabel %></span>
+            </div>
         </div>
     </header>
 
-    <nav class="glossary-nav">
+    <section class="glossary-toolbar" aria-label="Pesquisar no glossário">
         <div class="container">
-            <div class="az-nav">
-                <% Object.keys(glossario).sort().forEach(letter => { %>
-                    <a href="#letter-<%= letter %>" class="az-link"><%= letter %></a>
+            <div class="glossary-toolbar-inner">
+                <div class="glossary-search-wrap">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <label class="sr-only" for="glossary-search">Buscar termo</label>
+                    <input id="glossary-search" class="glossary-search" type="search" placeholder="Buscar por termo, sigla ou aplicação..." autocomplete="off">
+                </div>
+                <div>
+                    <label class="sr-only" for="glossary-category">Filtrar por área</label>
+                    <select id="glossary-category" class="glossary-select">
+                        <option value="all">Todas as áreas</option>
+                        <% glossaryCategories.forEach(category => { %>
+                            <option value="<%= category.id %>"><%= category.label %></option>
+                        <% }); %>
+                    </select>
+                </div>
+                <button id="glossary-clear" class="glossary-clear" type="button">Limpar filtros</button>
+            </div>
+            <p id="glossary-result-count" class="glossary-result-count" aria-live="polite"><%= termCount %> termos disponíveis</p>
+        </div>
+    </section>
+
+    <main>
+        <section class="glossary-intro">
+            <div class="container glossary-intro-grid">
+                <div class="glossary-panel">
+                    <span class="glossary-kicker"><i class="fas fa-compass" aria-hidden="true"></i> Como usar</span>
+                    <h2>Decisões melhores começam com conceitos claros</h2>
+                    <p>Use a busca para encontrar uma sigla ou expressão, filtre por área técnica e avance pelos termos relacionados. Cada entrada separa definição, aplicação prática e ponto de atenção para evitar interpretações fora do contexto.</p>
+                    <div class="glossary-principles">
+                        <div class="glossary-principle"><strong>Entenda</strong><span>O que o termo significa.</span></div>
+                        <div class="glossary-principle"><strong>Aplique</strong><span>Onde ele aparece no projeto.</span></div>
+                        <div class="glossary-principle"><strong>Valide</strong><span>Quando consultar a engenharia.</span></div>
+                    </div>
+                </div>
+                <div class="glossary-panel glossary-featured">
+                    <span class="glossary-kicker"><i class="fas fa-bolt" aria-hidden="true"></i> Mais consultados</span>
+                    <h2>Comece por uma solução</h2>
+                    <p>Do primeiro conceito ao escopo técnico, estes termos ajudam a navegar pelas principais frentes da Klyfe.</p>
+                    <div class="featured-list">
+                        <% featuredTerms.forEach(item => { %>
+                            <a href="#<%= item.slug %>"><%= item.term.split(' (')[0] %></a>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="glossary-categories" aria-labelledby="glossary-categories-title">
+            <div class="container">
+                <div class="glossary-section-heading">
+                    <div>
+                        <span class="glossary-kicker">Navegue por assunto</span>
+                        <h2 id="glossary-categories-title">Áreas técnicas</h2>
+                    </div>
+                    <p>Um mapa do conhecimento da Klyfe: fundamentos, conformidade, SPDA, energia solar, automação e mobilidade elétrica.</p>
+                </div>
+                <div class="category-grid">
+                    <% glossaryCategories.forEach(category => { %>
+                        <a class="category-card" href="#category-<%= category.id %>" data-category-jump="<%= category.id %>">
+                            <strong><%= category.label %></strong>
+                            <p><%= category.description %></p>
+                            <span class="category-count"><%= category.count %> termos <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+        </section>
+
+        <section id="glossary-letters" class="glossary-letters" aria-label="Filtrar por letra">
+            <div class="container glossary-letters-inner">
+                <span class="glossary-letters-label">Índice A–Z</span>
+                <a href="#glossary-results" class="letter-filter is-active" data-letter-filter="all" aria-current="true">Todos</a>
+                <% letterList.forEach(letter => { %>
+                    <a href="#glossary-results" class="letter-filter" data-letter-filter="<%= letter %>"><%= letter %></a>
+                <% }); %>
+            </div>
+        </section>
+
+        <section id="glossary-results" class="glossary-results" aria-labelledby="glossary-results-title">
+            <div class="container">
+                <h2 id="glossary-results-title" class="sr-only">Termos do glossário</h2>
+                <% glossaryCategories.forEach(category => {
+                    const categoryTerms = glossaryTerms.filter(item => item.category === category.id).sort((a, b) => a.term.localeCompare(b.term, 'pt-BR'));
+                %>
+                    <section id="category-<%= category.id %>" class="glossary-category-section" data-category-section="<%= category.id %>">
+                        <div class="category-heading">
+                            <span class="category-heading-mark" aria-hidden="true"></span>
+                            <div>
+                                <h2><%= category.label %></h2>
+                                <p><%= category.description %></p>
+                            </div>
+                        </div>
+                        <div class="terms-grid">
+                            <% categoryTerms.forEach(item => { %>
+                                <article id="<%= item.slug %>" class="glossary-term" data-term-card data-category="<%= item.category %>" data-letter="<%= item.letter %>" data-search="<%= item.searchText %>">
+                                    <div class="term-topline">
+                                        <span class="term-letter" aria-hidden="true"><%= item.letter %></span>
+                                        <span class="term-category-label"><%= category.shortLabel %></span>
+                                    </div>
+                                    <h3><%= item.term %></h3>
+                                    <p class="term-definition"><%= item.definition %></p>
+                                    <dl class="term-details">
+                                        <div class="term-detail">
+                                            <dt>Na prática</dt>
+                                            <dd><%= item.practical %></dd>
+                                        </div>
+                                        <div class="term-detail">
+                                            <dt>Por que importa</dt>
+                                            <dd><%= item.importance %></dd>
+                                        </div>
+                                    </dl>
+                                    <% if (item.relatedTerms && item.relatedTerms.length) { %>
+                                        <div class="term-related">
+                                            <span class="term-related-label">Termos relacionados</span>
+                                            <% item.relatedTerms.forEach(related => { %>
+                                                <a href="#<%= related.slug %>"><%= related.name.split(' (')[0] %></a>
+                                            <% }); %>
+                                        </div>
+                                    <% } %>
+                                    <% if (item.serviceLink && item.serviceLink.href) { %>
+                                        <a class="term-service-link" href="<%= item.serviceLink.href %>"><%= item.serviceLink.label %> <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+                                    <% } %>
+                                </article>
+                            <% }); %>
+                        </div>
+                    </section>
+                <% }); %>
+                <div id="glossary-empty" class="glossary-empty" hidden>
+                    <strong>Nenhum termo encontrado.</strong>
+                    <p>Tente outra palavra, sigla ou área técnica.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section class="glossary-references" aria-labelledby="glossary-references-title">
+        <div class="container">
+            <span class="glossary-kicker">Responsabilidade técnica</span>
+            <h2 id="glossary-references-title">Fontes e limites deste conteúdo</h2>
+            <p class="glossary-references-intro">Este glossário é educativo e não substitui projeto, inspeção, laudo, manual do fabricante ou orientação de profissional habilitado. Normas e regras podem mudar; sempre confirme a edição vigente e o escopo aplicável ao seu caso.</p>
+            <div class="references-grid">
+                <% glossaryReferences.forEach(reference => { %>
+                    <a class="reference-card" href="<%= reference.url %>" target="_blank" rel="noopener noreferrer">
+                        <strong><%= reference.label %></strong>
+                        <span><%= reference.description %></span>
+                        <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                    </a>
                 <% }); %>
             </div>
         </div>
-    </nav>
+    </section>
 
-    <main class="container">
-        <% Object.keys(glossario).sort().forEach(letter => { %>
-            <section id="letter-<%= letter %>" class="glossary-section">
-                <h2 class="letter-header"><%= letter %></h2>
-                <div class="terms-grid">
-                    <% glossario[letter].forEach(item => { %>
-                        <div class="term-card" id="<%= item.term.toLowerCase().replace(/\s+/g, '-') %>">
-                            <h3><%= item.term %></h3>
-                            <p><%= item.definition %></p>
-                            <% if (item.linkHtml) { %>
-                                <%- item.linkHtml %>
-                            <% } %>
-                        </div>
-                    <% }); %>
-                </div>
-            </section>
-        <% }); %>
-    </main>
+    <section class="glossary-final-cta">
+        <div class="container">
+            <span class="glossary-kicker">Do conceito à decisão</span>
+            <h2>Não encontrou o termo ou precisa aplicar isso no seu imóvel?</h2>
+            <p>Converse com a Klyfe sobre o contexto da sua instalação, o objetivo do estudo e o escopo técnico mais adequado.</p>
+            <a href="<%= localPrefix %>/contato">Falar com a equipe técnica <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+        </div>
+    </section>
 
     <%- include('partials/footer') %>
 
     <script>
-        // Smooth scroll for AZ links
-        document.querySelectorAll('.az-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                window.scrollTo({
-                    top: target.offsetTop - 150,
-                    behavior: 'smooth'
+        (() => {
+            const searchInput = document.getElementById('glossary-search');
+            const categorySelect = document.getElementById('glossary-category');
+            const clearButton = document.getElementById('glossary-clear');
+            const resultCount = document.getElementById('glossary-result-count');
+            const emptyState = document.getElementById('glossary-empty');
+            const cards = Array.from(document.querySelectorAll('[data-term-card]'));
+            const sections = Array.from(document.querySelectorAll('[data-category-section]'));
+            const letterFilters = Array.from(document.querySelectorAll('[data-letter-filter]'));
+            const normalize = value => (value || '').toString().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+
+            const applyFilters = () => {
+                const query = normalize(searchInput.value);
+                const category = categorySelect.value;
+                const activeLetter = document.querySelector('[data-letter-filter].is-active')?.dataset.letterFilter || 'all';
+                let visibleCount = 0;
+
+                cards.forEach(card => {
+                    const matchesQuery = !query || normalize(card.dataset.search).includes(query);
+                    const matchesCategory = category === 'all' || card.dataset.category === category;
+                    const matchesLetter = activeLetter === 'all' || card.dataset.letter === activeLetter;
+                    const visible = matchesQuery && matchesCategory && matchesLetter;
+                    card.hidden = !visible;
+                    if (visible) visibleCount += 1;
                 });
+
+                sections.forEach(section => {
+                    section.hidden = !section.querySelector('[data-term-card]:not([hidden])');
+                });
+                emptyState.hidden = visibleCount > 0;
+                resultCount.textContent = `${visibleCount} ${visibleCount === 1 ? 'termo encontrado' : 'termos encontrados'}`;
+            };
+
+            letterFilters.forEach(filter => filter.addEventListener('click', event => {
+                event.preventDefault();
+                letterFilters.forEach(item => {
+                    const active = item === filter;
+                    item.classList.toggle('is-active', active);
+                    if (active) item.setAttribute('aria-current', 'true');
+                    else item.removeAttribute('aria-current');
+                });
+                applyFilters();
+                document.getElementById('glossary-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }));
+
+            document.querySelectorAll('[data-category-jump]').forEach(link => link.addEventListener('click', event => {
+                const target = document.getElementById(`category-${link.dataset.categoryJump}`);
+                if (!target) return;
+                event.preventDefault();
+                categorySelect.value = link.dataset.categoryJump;
+                letterFilters.forEach(item => {
+                    const active = item.dataset.letterFilter === 'all';
+                    item.classList.toggle('is-active', active);
+                    if (active) item.setAttribute('aria-current', 'true');
+                    else item.removeAttribute('aria-current');
+                });
+                applyFilters();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }));
+
+            searchInput.addEventListener('input', applyFilters);
+            categorySelect.addEventListener('change', applyFilters);
+            clearButton.addEventListener('click', () => {
+                searchInput.value = '';
+                categorySelect.value = 'all';
+                letterFilters.forEach(item => {
+                    const active = item.dataset.letterFilter === 'all';
+                    item.classList.toggle('is-active', active);
+                    if (active) item.setAttribute('aria-current', 'true');
+                    else item.removeAttribute('aria-current');
+                });
+                applyFilters();
+                searchInput.focus();
             });
-        });
+        })();
     </script>
 </body>
 </html>

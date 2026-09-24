@@ -1,99 +1,502 @@
 /**
- * Glossário Técnico Klyfe Electric
- * Foco em SEO e Autoridade Técnica
+ * Base editorial do Glossário Técnico Klyfe Electric.
+ *
+ * O glossário é uma página de conhecimento, não uma lista de palavras-chave:
+ * cada termo precisa explicar o conceito, mostrar onde ele aparece na prática
+ * e apontar para uma solução ou termo relacionado quando fizer sentido.
  */
+
+const updatedAt = '2026-09-12';
+
+const categories = [
+    {
+        id: 'fundamentos-eletricos',
+        label: 'Fundamentos elétricos',
+        shortLabel: 'Fundamentos',
+        description: 'Conceitos que ajudam a interpretar consumo, potência, qualidade de energia e comportamento dos circuitos.'
+    },
+    {
+        id: 'instalacoes-e-distribuicao',
+        label: 'Instalações e distribuição',
+        shortLabel: 'Instalações',
+        description: 'Componentes e critérios usados em instalações residenciais, comerciais, prediais e industriais.'
+    },
+    {
+        id: 'engenharia-laudos-e-normas',
+        label: 'Engenharia, laudos e normas',
+        shortLabel: 'Engenharia',
+        description: 'Documentação, inspeção, projeto e referências que apoiam decisões técnicas e de conformidade.'
+    },
+    {
+        id: 'spda-e-protecao',
+        label: 'SPDA, aterramento e proteção',
+        shortLabel: 'SPDA',
+        description: 'Termos sobre descargas atmosféricas, surtos, equipotencialização e proteção de pessoas e estruturas.'
+    },
+    {
+        id: 'energia-solar-fotovoltaica',
+        label: 'Energia solar fotovoltaica',
+        shortLabel: 'Energia solar',
+        description: 'Vocabulário para entender geração fotovoltaica, equipamentos, conexão à rede e desempenho do sistema.'
+    },
+    {
+        id: 'automacao-e-sistemas-inteligentes',
+        label: 'Automação e sistemas inteligentes',
+        shortLabel: 'Automação',
+        description: 'Conceitos de automação residencial, predial e industrial, integração de dispositivos e controle.'
+    },
+    {
+        id: 'carregamento-veicular',
+        label: 'Carregamento veicular',
+        shortLabel: 'Wallbox',
+        description: 'Termos para avaliar potência, infraestrutura, segurança e operação de carregadores de veículos elétricos.'
+    }
+];
+
+const references = [
+    {
+        id: 'abnt-catalogo',
+        label: 'Catálogo ABNT',
+        description: 'Consulte a edição e o escopo das normas técnicas aplicáveis ao projeto ou à instalação.',
+        url: 'https://www.abntcatalogo.com.br/'
+    },
+    {
+        id: 'abnt-nbr-5419',
+        label: 'ABNT NBR 5419 — proteção contra descargas atmosféricas',
+        description: 'Referência técnica para os conceitos de SPDA e proteção contra descargas atmosféricas.',
+        url: 'https://www.abntcatalogo.com.br/default.aspx?P=C0N63GK2P5N1'
+    },
+    {
+        id: 'nr-10-mte',
+        label: 'NR-10 — Ministério do Trabalho e Emprego',
+        description: 'Referência oficial sobre segurança em instalações e serviços em eletricidade.',
+        url: 'https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-paritaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10'
+    },
+    {
+        id: 'aneel-geracao-distribuida',
+        label: 'ANEEL — micro e minigeração distribuída',
+        description: 'Informações oficiais sobre geração distribuída e sistema de compensação de energia elétrica.',
+        url: 'https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida'
+    }
+];
+
+const makeTerm = (term, category, definition, practical, importance, options = {}) => ({
+    term,
+    category,
+    definition,
+    practical,
+    importance,
+    ...options
+});
+
+const terms = [
+    // Fundamentos elétricos
+    makeTerm('Corrente elétrica', 'fundamentos-eletricos',
+        'Movimento ordenado de cargas elétricas por um material condutor. É medida em ampères (A) e varia conforme a tensão aplicada e a impedância do circuito.',
+        'A corrente ajuda a dimensionar condutores, dispositivos de proteção e circuitos que alimentam cargas residenciais, comerciais ou industriais.',
+        'Corrente acima da capacidade do circuito pode aquecer condutores e acionar a proteção. O dimensionamento depende da carga, do método de instalação e das condições do local.',
+        { related: ['Tensão elétrica', 'Potência elétrica', 'Disjuntor'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conheça instalações elétricas', path: '/solucoes/eletrica' } }),
+    makeTerm('Tensão elétrica', 'fundamentos-eletricos',
+        'Diferença de potencial elétrico entre dois pontos, medida em volts (V). É a grandeza que impulsiona a corrente através de uma carga.',
+        'A tensão nominal orienta a escolha de equipamentos, cabos, proteções e transformadores. Ela pode aparecer em circuitos de baixa ou média tensão.',
+        'Ligar um equipamento em tensão incompatível pode causar falha, aquecimento ou risco de choque. A avaliação deve considerar a tensão real e o sistema de fornecimento.',
+        { related: ['Corrente elétrica', 'Potência elétrica', 'Queda de tensão'], sourceIds: ['abnt-catalogo'] }),
+    makeTerm('Potência elétrica', 'fundamentos-eletricos',
+        'Taxa com que um equipamento transforma ou utiliza energia elétrica, normalmente expressa em watts (W) ou quilowatts (kW).',
+        'É usada para estimar a demanda de uma instalação, escolher circuitos e analisar a capacidade necessária para sistemas solares, carregadores e máquinas.',
+        'Somar potências sem considerar simultaneidade, partida de motores ou fator de potência pode levar a um projeto subdimensionado ou a uma previsão de consumo pouco realista.',
+        { related: ['Energia elétrica', 'Demanda contratada', 'Fator de potência'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Avaliar um projeto elétrico', path: '/solucoes/engenharia/projeto-eletrico' } }),
+    makeTerm('Energia elétrica', 'fundamentos-eletricos',
+        'Quantidade de trabalho elétrico realizado ao longo do tempo. Nas faturas, costuma ser medida em quilowatt-hora (kWh).',
+        'A energia consumida orienta a leitura da conta, estudos de eficiência, dimensionamento fotovoltaico e comparação entre cenários de operação.',
+        'Consumo, demanda e potência são conceitos diferentes. Separá-los evita interpretar a fatura ou calcular um sistema solar apenas pela potência instalada.',
+        { related: ['Potência elétrica', 'kWh (quilowatt-hora)', 'Eficiência energética'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Conheça energia solar', path: '/energia-solar/' } }),
+    makeTerm('Corrente alternada (CA)', 'fundamentos-eletricos',
+        'Corrente cujo sentido e valor variam periodicamente. É o tipo de corrente normalmente distribuído pela rede elétrica para alimentar instalações e equipamentos.',
+        'A CA está presente nas entradas de energia, quadros, motores, tomadas, inversores e na alimentação de muitos carregadores veiculares.',
+        'Frequência, tensão, número de fases e qualidade da forma de onda influenciam o funcionamento das cargas e o dimensionamento da instalação.',
+        { related: ['Corrente contínua (CC)', 'Inversor solar', 'Recarga AC'], sourceIds: ['abnt-catalogo'] }),
+    makeTerm('Corrente contínua (CC)', 'fundamentos-eletricos',
+        'Corrente que mantém o sentido de circulação, ainda que seu valor possa variar. É comum em baterias, módulos fotovoltaicos e circuitos eletrônicos.',
+        'Em sistemas fotovoltaicos, os módulos geram CC e o inversor converte essa energia para CA quando o sistema é conectado à instalação ou à rede.',
+        'Circuitos em CC têm características próprias de seccionamento, proteção e risco de arco elétrico. Não se deve tratar automaticamente uma parte CC como se fosse um circuito CA.',
+        { related: ['Corrente alternada (CA)', 'String fotovoltaica', 'DPS (Dispositivo de Proteção contra Surtos)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Ver soluções de energia solar', path: '/energia-solar/' } }),
+    makeTerm('Fator de potência', 'fundamentos-eletricos',
+        'Relação entre a potência ativa utilizada e a potência aparente solicitada por uma carga. Em cargas lineares, está associado ao deslocamento entre tensão e corrente.',
+        'É analisado em instalações com motores, transformadores, inversores e outras cargas que podem demandar energia reativa ou distorcer a corrente.',
+        'Um fator de potência baixo pode aumentar a corrente e as perdas. A correção precisa ser estudada para a instalação real, pois compensação inadequada também pode causar problemas.',
+        { related: ['Potência elétrica', 'Harmônicas', 'Eficiência energética'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer correção de fator de potência', path: '/solucoes/engenharia/correcao-fator-potencia' } }),
+    makeTerm('Eficiência energética', 'fundamentos-eletricos',
+        'Uso racional da energia para entregar o resultado necessário com menor desperdício, mantendo os requisitos de segurança, desempenho e conforto.',
+        'Pode envolver ajustes de operação, correção de perdas, automação, melhoria de equipamentos, gestão de demanda e geração fotovoltaica.',
+        'Economizar energia não é apenas trocar um equipamento: é entender perfil de uso, qualidade da instalação, manutenção e resultado esperado antes de escolher uma solução.',
+        { related: ['Energia elétrica', 'Automação residencial', 'Demanda contratada'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Falar sobre eficiência energética', path: '/solucoes/engenharia' } }),
+    makeTerm('Harmônicas', 'fundamentos-eletricos',
+        'Componentes de frequência múltipla da frequência fundamental que deformam a forma de onda de tensão ou corrente. São comuns em cargas eletrônicas e conversores.',
+        'A análise pode ser relevante em indústrias, data centers, condomínios e instalações com muitos inversores, fontes chaveadas, retificadores ou acionamentos.',
+        'Distorções podem elevar aquecimento, perdas, correntes no neutro e interferências. A solução depende da medição e da identificação das cargas que produzem o fenômeno.',
+        { related: ['Fator de potência', 'Termografia elétrica', 'Inversor solar'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar avaliação elétrica', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Demanda contratada', 'fundamentos-eletricos',
+        'Valor de potência que o consumidor do grupo de alta tensão contrata da distribuidora para atender sua operação, conforme as regras de fornecimento aplicáveis.',
+        'A demanda aparece no planejamento de indústrias, comércios de maior porte, sistemas de geração e ampliações de carga.',
+        'A contratação precisa acompanhar o perfil de operação. Decisões sobre aumento, redução ou gerenciamento de demanda dependem de histórico, projeto e regras da distribuidora.',
+        { related: ['Potência elétrica', 'Subestação', 'Geração distribuída'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Consultar engenharia elétrica', path: '/solucoes/engenharia' } }),
+
+    // Instalações e distribuição
+    makeTerm('Aterramento elétrico', 'instalacoes-e-distribuicao',
+        'Conjunto de condutores, eletrodos e conexões que estabelece uma referência elétrica e oferece caminho de baixa impedância para correntes de falta, conforme a função prevista no projeto.',
+        'É utilizado para proteção contra choque, funcionamento de dispositivos de proteção, equipotencialização e desempenho de sistemas elétricos e eletrônicos.',
+        'A existência de uma haste isolada não comprova que o aterramento atende ao sistema. É preciso avaliar topologia, condutores, conexões, equipotencialização e condições do solo.',
+        { related: ['Equipotencialização', 'Malha de aterramento', 'DPS (Dispositivo de Proteção contra Surtos)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Avaliar aterramento e proteção', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Barramento elétrico', 'instalacoes-e-distribuicao',
+        'Condutor ou conjunto de condutores destinado a receber e distribuir energia dentro de um quadro, painel, cabine ou sistema de distribuição.',
+        'Pode ser encontrado em quadros de baixa tensão, painéis, cabines e barramentos blindados (busway) usados em edifícios e ambientes industriais.',
+        'Capacidade de corrente, isolação, suportabilidade a curto-circuito, acessibilidade e identificação precisam ser compatíveis com a instalação.',
+        { related: ['Quadro elétrico', 'Cabine primária', 'Curto-circuito'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Ver serviços de instalações', path: '/solucoes/eletrica' } }),
+    makeTerm('Cabine primária', 'instalacoes-e-distribuicao',
+        'Conjunto de entrada e transformação de energia em média tensão, com equipamentos de manobra, proteção, medição e transformação conforme o projeto.',
+        'É comum em consumidores que precisam receber energia em média tensão, como indústrias, hospitais, condomínios e grandes estabelecimentos.',
+        'A cabine exige projeto, coordenação de proteção, manutenção e procedimentos de segurança compatíveis com o nível de tensão e o padrão da distribuidora.',
+        { related: ['Subestação', 'Demanda contratada', 'Termografia elétrica'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer manutenção de subestações', path: '/solucoes/engenharia/manutencao-subestacao' } }),
+    makeTerm('Circuito dedicado', 'instalacoes-e-distribuicao',
+        'Circuito reservado para alimentar uma carga ou grupo específico, com condutores, proteção e seccionamento dimensionados para aquela finalidade.',
+        'Pode ser necessário para chuveiros, fornos, motores, equipamentos críticos, sistemas de ar-condicionado, wallboxes e outras cargas de maior potência.',
+        'Compartilhar uma carga de alta potência com um circuito inadequado pode provocar aquecimento, disparos e queda de tensão. A necessidade deve ser definida no projeto.',
+        { related: ['Quadro elétrico', 'Queda de tensão', 'Wallbox'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Avaliar instalação para carregador', path: '/solucoes/eletrica/carregador-veicular/' } }),
+    makeTerm('Diagrama unifilar', 'instalacoes-e-distribuicao',
+        'Representação simplificada de uma instalação elétrica que mostra fontes, quadros, circuitos, proteções, cargas e interligações principais.',
+        'É usado no projeto, na operação, na manutenção, na inspeção e na comunicação entre a equipe técnica e o responsável pela instalação.',
+        'Um diagrama desatualizado pode induzir a manobras ou diagnósticos errados. Ele deve refletir o que foi construído e as alterações relevantes realizadas depois.',
+        { related: ['Projeto elétrico', 'Quadro elétrico', 'Laudo de instalações elétricas'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar projeto elétrico', path: '/solucoes/engenharia/projeto-eletrico' } }),
+    makeTerm('Quadro elétrico', 'instalacoes-e-distribuicao',
+        'Painel que concentra dispositivos de proteção, manobra, distribuição e, quando aplicável, medição e controle dos circuitos de uma instalação.',
+        'Quadros podem alimentar residências, áreas comerciais, máquinas, sistemas solares, automação e carregadores veiculares.',
+        'Organização, identificação, espaço interno, ventilação, proteção contra contatos e coordenação dos dispositivos influenciam a segurança e a manutenção.',
+        { related: ['Disjuntor', 'Dispositivo DR', 'DPS (Dispositivo de Proteção contra Surtos)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer serviços elétricos', path: '/solucoes/eletrica' } }),
+    makeTerm('Prumada elétrica', 'instalacoes-e-distribuicao',
+        'Conjunto de caminhos, condutores e componentes que distribui energia verticalmente entre pavimentos de uma edificação.',
+        'Aparece em edifícios residenciais, hotéis, hospitais, escritórios e empreendimentos com vários pontos de consumo por andar.',
+        'Capacidade, queda de tensão, compartimentação, acessibilidade e possibilidade de expansão devem ser consideradas desde o projeto e nas reformas.',
+        { related: ['Quadro elétrico', 'Queda de tensão', 'Projeto elétrico'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Falar sobre projeto elétrico', path: '/solucoes/engenharia/projeto-eletrico' } }),
+    makeTerm('Queda de tensão', 'instalacoes-e-distribuicao',
+        'Redução da tensão ao longo de um circuito causada pela impedância dos condutores e pela corrente da carga.',
+        'É analisada em alimentadores longos, motores, bombas, galpões, sistemas solares, carregadores e instalações com cargas de partida elevada.',
+        'Queda excessiva pode prejudicar o desempenho e a vida útil dos equipamentos. O limite e a solução dependem do circuito, da carga e dos critérios do projeto.',
+        { related: ['Tensão elétrica', 'Circuito dedicado', 'Potência elétrica'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar análise de instalação', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Subestação', 'instalacoes-e-distribuicao',
+        'Instalação que transforma, manobra, protege ou distribui energia elétrica em diferentes níveis de tensão.',
+        'Subestações podem atender unidades industriais, empreendimentos comerciais e outras cargas que exigem entrada em média tensão.',
+        'A confiabilidade da subestação depende de projeto, proteção, limpeza, inspeção, termografia, ensaios e manutenção compatíveis com o equipamento e a operação.',
+        { related: ['Cabine primária', 'Demanda contratada', 'Termografia elétrica'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer manutenção de subestações', path: '/solucoes/engenharia/manutencao-subestacao' } }),
+    makeTerm('Disjuntor', 'instalacoes-e-distribuicao',
+        'Dispositivo de proteção e manobra que interrompe o circuito em condições definidas, como sobrecorrente ou curto-circuito, conforme sua aplicação.',
+        'É instalado em quadros e painéis para proteger condutores e circuitos. A escolha considera corrente, curva, capacidade de interrupção, polos e coordenação.',
+        'Trocar um disjuntor por outro de maior corrente sem revisar os condutores não aumenta a segurança. Proteção e circuito precisam ser analisados em conjunto.',
+        { related: ['Quadro elétrico', 'Circuito dedicado', 'Curto-circuito'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar inspeção elétrica', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Dispositivo DR', 'instalacoes-e-distribuicao',
+        'Dispositivo diferencial-residual que monitora desequilíbrios de corrente e pode desligar o circuito quando identifica uma fuga acima do valor de atuação.',
+        'É aplicado em circuitos e ambientes definidos pelo projeto e pelas regras técnicas, especialmente onde a proteção adicional contra choque é necessária.',
+        'O DR não substitui disjuntor, aterramento ou boas práticas. A seleção, a ligação e os testes precisam considerar o esquema da instalação e as cargas conectadas.',
+        { related: ['Aterramento elétrico', 'Disjuntor', 'Quadro elétrico'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Avaliar conformidade elétrica', path: '/solucoes/engenharia/laudos-eletricos' } }),
+
+    // Engenharia, laudos e normas
+    makeTerm('ART (Anotação de Responsabilidade Técnica)', 'engenharia-laudos-e-normas',
+        'Registro que vincula um profissional habilitado a uma atividade técnica, conforme as regras do sistema profissional aplicável.',
+        'Pode acompanhar projetos, laudos, inspeções e outros serviços de engenharia quando a atividade e o conselho profissional exigirem esse registro.',
+        'A ART não transforma automaticamente qualquer documento em aprovação universal. Ela identifica responsabilidade e escopo; conteúdo, limites e aceite dependem do serviço e do solicitante.',
+        { related: ['Laudo de instalações elétricas', 'Projeto elétrico', 'Inspeção elétrica'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Falar com a engenharia Klyfe', path: '/solucoes/engenharia' } }),
+    makeTerm('Inspeção elétrica', 'engenharia-laudos-e-normas',
+        'Avaliação planejada das condições aparentes, funcionais e documentais de uma instalação, usando critérios definidos para o objetivo da inspeção.',
+        'Pode apoiar manutenção, compra ou ocupação de um imóvel, investigação de falhas, preparação para auditoria ou planejamento de adequações.',
+        'Inspeção não significa que todos os ensaios ou verificações possíveis foram realizados. O relatório deve deixar claro o escopo, os métodos, os achados e as limitações.',
+        { related: ['Laudo de instalações elétricas', 'Termografia elétrica', 'NR-10'], sourceIds: ['nr-10-mte'], serviceLink: { label: 'Conhecer laudos e inspeções', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Laudo de instalações elétricas', 'engenharia-laudos-e-normas',
+        'Documento técnico que registra uma avaliação de uma instalação elétrica, seus critérios, evidências, não conformidades, recomendações e limites.',
+        'O laudo pode ser solicitado por gestão, auditoria, seguradora, locador, comprador, órgão ou equipe de manutenção, conforme o objetivo de cada caso.',
+        'Não existe uma validade universal para todo laudo. Periodicidade, necessidade de atualização e formato devem acompanhar a instalação, o escopo, as alterações e o solicitante.',
+        { related: ['Inspeção elétrica', 'ART (Anotação de Responsabilidade Técnica)', 'Termografia elétrica'], sourceIds: ['nr-10-mte', 'abnt-catalogo'], serviceLink: { label: 'Solicitar laudo elétrico', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Manutenção preventiva', 'engenharia-laudos-e-normas',
+        'Conjunto de ações planejadas para acompanhar o estado de equipamentos e reduzir a probabilidade de falhas, sem prometer que toda ocorrência será evitada.',
+        'Pode incluir inspeção visual, reaperto, limpeza, ensaios, termografia, testes funcionais e substituição programada, quando indicados para o ativo.',
+        'O plano deve levar em conta criticidade, ambiente, fabricante, histórico, regime de operação e riscos. Uma frequência fixa não serve para todos os equipamentos.',
+        { related: ['Inspeção elétrica', 'Termografia elétrica', 'Subestação'], sourceIds: ['nr-10-mte'], serviceLink: { label: 'Conhecer manutenção elétrica', path: '/solucoes/eletrica' } }),
+    makeTerm('NBR 5410', 'engenharia-laudos-e-normas',
+        'Norma técnica brasileira associada às instalações elétricas de baixa tensão. Ela reúne requisitos de projeto, execução, verificação e segurança para as situações abrangidas por seu escopo.',
+        'É uma referência frequente em projetos e avaliações de instalações residenciais, comerciais e outros circuitos de baixa tensão.',
+        'A edição vigente, o escopo e as condições do empreendimento precisam ser conferidos antes de concluir que uma instalação está conforme. Norma técnica não substitui análise do caso concreto.',
+        { related: ['Projeto elétrico', 'Quadro elétrico', 'NR-10'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar projeto elétrico', path: '/solucoes/engenharia/projeto-eletrico' } }),
+    makeTerm('NBR 14039', 'engenharia-laudos-e-normas',
+        'Norma técnica brasileira relacionada a instalações elétricas de média tensão, dentro das condições e limites definidos em seu escopo.',
+        'Pode ser considerada em entradas de energia, cabines, subestações e instalações de consumidores atendidos em média tensão.',
+        'A aplicação depende do nível de tensão, do tipo de instalação, da distribuidora e das demais referências técnicas vigentes. Projetos e manutenções devem ser conduzidos por profissionais habilitados.',
+        { related: ['Cabine primária', 'Subestação', 'Demanda contratada'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Consultar engenharia de média tensão', path: '/solucoes/engenharia' } }),
+    makeTerm('NR-10', 'engenharia-laudos-e-normas',
+        'Norma Regulamentadora que estabelece requisitos e condições de segurança para trabalhadores que interagem com instalações e serviços em eletricidade, conforme seu texto e vigência.',
+        'É considerada em procedimentos, documentação, capacitação, medidas de controle e organização do trabalho em instalações elétricas.',
+        'A NR-10 trata da segurança do trabalho e não substitui normas técnicas de projeto. A redação vigente e as datas de transição devem ser verificadas no órgão oficial.',
+        { related: ['ART (Anotação de Responsabilidade Técnica)', 'Inspeção elétrica', 'Laudo de instalações elétricas'], sourceIds: ['nr-10-mte'], serviceLink: { label: 'Conhecer laudos e adequações', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Projeto elétrico', 'engenharia-laudos-e-normas',
+        'Conjunto de documentos, cálculos, desenhos e especificações que define como uma instalação será concebida, executada, modificada ou documentada.',
+        'Pode incluir cargas, circuitos, quadros, proteção, aterramento, diagramas, listas de materiais, detalhes construtivos e interfaces com outros sistemas.',
+        'Um projeto bem definido reduz improvisos e facilita orçamento, execução, inspeção e manutenção. O conteúdo adequado depende do porte e do objetivo do empreendimento.',
+        { related: ['Diagrama unifilar', 'ART (Anotação de Responsabilidade Técnica)', 'NBR 5410'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer projetos elétricos', path: '/solucoes/engenharia/projeto-eletrico' } }),
+    makeTerm('Termografia elétrica', 'engenharia-laudos-e-normas',
+        'Técnica de inspeção que registra a radiação infravermelha e ajuda a identificar padrões de temperatura em componentes e conexões energizados.',
+        'Pode apoiar a investigação de aquecimentos anormais em quadros, barramentos, disjuntores, cabos, transformadores e conexões, conforme as condições da medição.',
+        'A imagem térmica não explica sozinha a causa do aquecimento. Carga, emissividade, ambiente, acesso e comparação entre pontos precisam ser considerados no diagnóstico.',
+        { related: ['Inspeção elétrica', 'Subestação', 'Harmônicas'], sourceIds: ['nr-10-mte'], serviceLink: { label: 'Solicitar termografia e laudo', path: '/solucoes/engenharia/laudos-eletricos' } }),
+    makeTerm('Comissionamento', 'engenharia-laudos-e-normas',
+        'Processo de verificação e documentação que confirma se sistemas e equipamentos foram instalados, ajustados e testados conforme os critérios definidos para sua entrega.',
+        'Pode envolver inspeções, conferência de documentos, testes, parametrização, treinamento e registro de pendências antes da entrada em operação.',
+        'O comissionamento organiza a passagem entre obra e operação. Seu escopo deve especificar quais testes foram executados e quais responsabilidades permanecem com cada parte.',
+        { related: ['Projeto elétrico', 'Diagrama unifilar', 'Inspeção elétrica'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Consultar projetos e entrega técnica', path: '/solucoes/engenharia' } }),
+
+    // SPDA, aterramento e proteção
+    makeTerm('SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'spda-e-protecao',
+        'Sistema formado por medidas e componentes destinados a reduzir danos físicos e riscos à vida associados a descargas atmosféricas, de acordo com a avaliação e o projeto aplicáveis.',
+        'Pode envolver captação, descidas, aterramento, equipotencialização, proteção contra surtos e documentação de inspeção e manutenção.',
+        'SPDA não impede a ocorrência de raios nem garante risco zero. A necessidade, a configuração e as medidas de proteção dependem da edificação, ocupação, exposição, análise de risco e requisitos aplicáveis.',
+        { related: ['Análise de risco de descargas atmosféricas', 'Captação', 'DPS (Dispositivo de Proteção contra Surtos)', 'Equipotencialização'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Conhecer projeto e laudo de SPDA', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Análise de risco de descargas atmosféricas', 'spda-e-protecao',
+        'Avaliação que considera características da estrutura, ocupação, exposição, linhas conectadas e possíveis consequências para apoiar a decisão sobre medidas de proteção contra descargas atmosféricas.',
+        'É uma etapa de engenharia que pode orientar o projeto ou a adequação de um SPDA e a seleção de medidas complementares.',
+        'Não é seguro concluir que uma edificação precisa ou não precisa de SPDA apenas por altura, uso ou localização. Os critérios devem ser aplicados ao caso concreto.',
+        { related: ['SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'Captação', 'DPS (Dispositivo de Proteção contra Surtos)'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Solicitar avaliação de SPDA', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Captação', 'spda-e-protecao',
+        'Parte do SPDA destinada a interceptar ou receber a descarga atmosférica e conduzi-la para o caminho previsto no sistema.',
+        'Pode utilizar elementos naturais ou componentes específicos, conforme a solução de projeto e o método de proteção adotado.',
+        'A captação não deve ser analisada isoladamente: geometria, cobertura, descidas, distâncias e equipotencialização precisam formar um sistema coerente.',
+        { related: ['SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'Descidas', 'Gaiola de Faraday'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Ver solução de SPDA', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Descidas', 'spda-e-protecao',
+        'Condutores ou elementos do SPDA que conectam o sistema de captação ao sistema de aterramento, conduzindo a corrente da descarga pelo caminho projetado.',
+        'Em uma inspeção, podem ser avaliados traçado, continuidade, fixação, conexões, corrosão, separação e integração com outros elementos da edificação.',
+        'Alterações na fachada, esquadrias, coberturas ou instalações podem interferir no sistema. Por isso, a inspeção precisa considerar o estado real da edificação.',
+        { related: ['Captação', 'Malha de aterramento', 'Equipotencialização'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Solicitar inspeção de SPDA', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Equipotencialização', 'spda-e-protecao',
+        'Interligação planejada de massas, elementos condutivos e sistemas para reduzir diferenças de potencial perigosas durante faltas, surtos ou descargas.',
+        'Pode conectar partes metálicas, aterramentos, estruturas, tubulações e sistemas de proteção conforme a função e o projeto da instalação.',
+        'Equipotencializar não significa ligar tudo de qualquer forma. A conexão deve ser definida com critérios de segurança, continuidade, seção, separação e compatibilidade.',
+        { related: ['Aterramento elétrico', 'SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'DPS (Dispositivo de Proteção contra Surtos)'], sourceIds: ['abnt-nbr-5419', 'abnt-catalogo'], serviceLink: { label: 'Conhecer projeto de SPDA', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Gaiola de Faraday', 'spda-e-protecao',
+        'Configuração de captação e condutores dispostos de modo a formar uma malha de proteção ao redor ou sobre a estrutura, conforme o método de projeto adotado.',
+        'É um dos conceitos associados a sistemas de captação em edificações com geometrias e coberturas que justificam esse arranjo.',
+        'O nome popular não substitui o dimensionamento. A malha, as descidas, as conexões e as distâncias precisam ser compatíveis com o projeto e a referência técnica vigente.',
+        { related: ['Captação', 'Descidas', 'SPDA (Sistema de Proteção contra Descargas Atmosféricas)'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Avaliar SPDA para a edificação', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Malha de aterramento', 'spda-e-protecao',
+        'Arranjo de condutores e eletrodos interligados para formar o sistema de aterramento previsto para uma instalação ou sistema de proteção.',
+        'Pode aparecer em subestações, instalações industriais, edificações e sistemas de SPDA, com configurações definidas pelo projeto e pelo solo.',
+        'Medição de resistência isolada não descreve toda a qualidade da malha. Continuidade, conexões, corrosão, equipotencialização e geometria também importam.',
+        { related: ['Aterramento elétrico', 'Descidas', 'Equipotencialização'], sourceIds: ['abnt-nbr-5419', 'abnt-catalogo'], serviceLink: { label: 'Solicitar laudo e inspeção de SPDA', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Para-raios Franklin', 'spda-e-protecao',
+        'Elemento de captação pontual usado em determinadas configurações de SPDA. Seu uso, posicionamento e integração dependem do método de proteção e do projeto.',
+        'Pode ser considerado em coberturas, torres e estruturas quando a solução técnica indicar esse tipo de captação.',
+        'Instalar uma haste isolada não comprova que a estrutura está protegida. É necessário avaliar captação, descidas, aterramento, equipotencialização e risco.',
+        { related: ['Captação', 'SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'Malha de aterramento'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Conhecer SPDA e para-raios', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('DPS (Dispositivo de Proteção contra Surtos)', 'spda-e-protecao',
+        'Dispositivo destinado a limitar sobretensões transitórias e desviar correntes de surto, dentro das condições de instalação e coordenação previstas.',
+        'Pode ser aplicado em quadros de CA, partes CC de sistemas fotovoltaicos e linhas de sinal, conforme análise do sistema e dos equipamentos protegidos.',
+        'DPS não substitui SPDA, aterramento, disjuntor ou projeto. A seleção depende de tensão, esquema, exposição, capacidade de descarga, coordenação e ligação adequada.',
+        { related: ['Surtos elétricos', 'SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'Equipotencialização'], sourceIds: ['abnt-nbr-5419', 'abnt-catalogo'], serviceLink: { label: 'Avaliar proteção contra surtos', path: '/solucoes/engenharia/spda' } }),
+    makeTerm('Surtos elétricos', 'spda-e-protecao',
+        'Sobretensões transitórias de curta duração que podem surgir por descargas atmosféricas, manobras, falhas ou acoplamentos em redes de energia e sinal.',
+        'Podem afetar equipamentos eletrônicos, automação, inversores, sistemas de segurança e comunicação, mesmo quando não há dano aparente na instalação.',
+        'A proteção exige olhar para caminhos de entrada, aterramento, equipotencialização, cabos de sinal e coordenação de DPS, não apenas para um dispositivo isolado.',
+        { related: ['DPS (Dispositivo de Proteção contra Surtos)', 'SPDA (Sistema de Proteção contra Descargas Atmosféricas)', 'Equipotencialização'], sourceIds: ['abnt-nbr-5419'], serviceLink: { label: 'Conhecer proteção e SPDA', path: '/solucoes/engenharia/spda' } }),
+
+    // Energia solar fotovoltaica
+    makeTerm('Energia solar fotovoltaica', 'energia-solar-fotovoltaica',
+        'Energia elétrica produzida pela conversão direta da luz em eletricidade por células fotovoltaicas reunidas em módulos.',
+        'Pode atender residências, comércios, indústrias e propriedades rurais, conectada à rede ou combinada com armazenamento, conforme o projeto.',
+        'O desempenho depende de irradiação, orientação, sombras, temperatura, equipamentos, perdas, consumo e condições de conexão. Não é definido apenas pela quantidade de placas.',
+        { related: ['Módulo fotovoltaico', 'Inversor solar', 'Geração distribuída'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Conhecer energia solar da Klyfe', path: '/energia-solar/' } }),
+    makeTerm('Módulo fotovoltaico', 'energia-solar-fotovoltaica',
+        'Conjunto de células fotovoltaicas encapsuladas para produzir eletricidade em corrente contínua a partir da luz solar.',
+        'Módulos são combinados em strings e instalados em telhados, solo, coberturas ou estruturas próprias, sempre considerando fixação e condições do local.',
+        'Potência nominal, tecnologia, temperatura, sombreamento, orientação, espaçamento e compatibilidade com o inversor influenciam a geração real.',
+        { related: ['String fotovoltaica', 'MPPT (rastreamento do ponto de máxima potência)', 'Irradiação solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Solicitar projeto fotovoltaico', path: '/energia-solar/' } }),
+    makeTerm('Inversor solar', 'energia-solar-fotovoltaica',
+        'Equipamento que converte a corrente contínua produzida pelos módulos em corrente alternada utilizável pela instalação ou compatível com a conexão prevista.',
+        'Também pode monitorar o sistema, controlar pontos de operação e integrar baterias ou funções de proteção, conforme o modelo e a arquitetura.',
+        'Potência, faixa de tensão, MPPT, eficiência, proteção, comunicação e compatibilidade com a rede devem ser avaliados junto com os módulos e o local.',
+        { related: ['Corrente contínua (CC)', 'MPPT (rastreamento do ponto de máxima potência)', 'Sistema on-grid'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Conhecer projetos solares', path: '/energia-solar/' } }),
+    makeTerm('String fotovoltaica', 'energia-solar-fotovoltaica',
+        'Conjunto de módulos conectados em série para formar um circuito de corrente contínua com tensão e corrente compatíveis com uma entrada MPPT do inversor.',
+        'O arranjo de strings considera quantidade de módulos, faixa de operação, temperatura mínima e máxima, sombreamento e distribuição no telhado.',
+        'Misturar módulos ou orientações sem estudo pode causar perdas e incompatibilidades. Cabos, conectores, proteções CC e identificação também fazem parte da solução.',
+        { related: ['Módulo fotovoltaico', 'MPPT (rastreamento do ponto de máxima potência)', 'DPS (Dispositivo de Proteção contra Surtos)'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Avaliar dimensionamento solar', path: '/energia-solar/' } }),
+    makeTerm('MPPT (rastreamento do ponto de máxima potência)', 'energia-solar-fotovoltaica',
+        'Função do inversor que ajusta o ponto de operação do arranjo fotovoltaico para buscar a maior potência disponível nas condições instantâneas de irradiância e temperatura.',
+        'O número de rastreadores e a distribuição das strings são importantes quando existem orientações, inclinações ou níveis de sombra diferentes.',
+        'Um MPPT não elimina perdas causadas por sombra, sujeira, instalação inadequada ou equipamento incompatível. Ele funciona dentro dos limites especificados pelo fabricante.',
+        { related: ['Inversor solar', 'String fotovoltaica', 'Módulo fotovoltaico'], sourceIds: ['aneel-geracao-distribuida'] }),
+    makeTerm('kWp (quilowatt-pico)', 'energia-solar-fotovoltaica',
+        'Unidade usada para expressar a potência nominal de um conjunto fotovoltaico em condições de referência de ensaio.',
+        'É usada para descrever o tamanho do campo de módulos e comparar a potência instalada de diferentes sistemas.',
+        'kWp não é a mesma coisa que geração mensal em kWh. A produção depende de localização, orientação, clima, perdas, disponibilidade e operação.',
+        { related: ['kWh (quilowatt-hora)', 'Módulo fotovoltaico', 'Irradiação solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Simular um sistema solar', path: '/energia-solar/' } }),
+    makeTerm('kWh (quilowatt-hora)', 'energia-solar-fotovoltaica',
+        'Unidade de energia correspondente ao uso ou à geração de uma potência de um quilowatt durante uma hora.',
+        'É a unidade mais comum para comparar consumo na fatura e energia produzida por um sistema fotovoltaico ao longo do mês.',
+        'Uma estimativa responsável relaciona consumo, geração, sazonalidade, perdas, regras de compensação e perfil de uso, sem prometer economia fixa para todos os casos.',
+        { related: ['kWp (quilowatt-pico)', 'Energia elétrica', 'Geração distribuída'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Conhecer energia solar', path: '/energia-solar/' } }),
+    makeTerm('Irradiação solar', 'energia-solar-fotovoltaica',
+        'Quantidade de energia solar recebida por uma área durante determinado período. É uma das variáveis usadas para estimar o potencial de geração fotovoltaica.',
+        'O estudo considera dados climáticos, orientação, inclinação, sombras, temperatura e características do terreno ou da cobertura.',
+        'Médias regionais ajudam na pré-análise, mas não substituem o levantamento do local e a simulação do sistema específico.',
+        { related: ['Energia solar fotovoltaica', 'kWp (quilowatt-pico)', 'Módulo fotovoltaico'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Solicitar estudo solar', path: '/energia-solar/' } }),
+    makeTerm('Geração distribuída', 'energia-solar-fotovoltaica',
+        'Modelo em que a unidade consumidora produz energia, normalmente a partir de fonte renovável, conectada à rede de distribuição nas condições regulatórias aplicáveis.',
+        'A geração distribuída fotovoltaica pode ser instalada no próprio imóvel ou em outra unidade, conforme a modalidade e os requisitos vigentes.',
+        'Conexão, compensação, potência, titularidade e documentação dependem das regras da ANEEL, da distribuidora e do caso da unidade consumidora.',
+        { related: ['Microgeração distribuída', 'Minigeração distribuída', 'Homologação de energia solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Ver soluções de geração solar', path: '/energia-solar/' } }),
+    makeTerm('Microgeração distribuída', 'energia-solar-fotovoltaica',
+        'Categoria regulatória de central geradora conectada à rede, definida por limite de potência e demais condições previstas na regulamentação aplicável.',
+        'O enquadramento aparece em projetos fotovoltaicos de menor porte e influencia documentos, conexão e tratamento regulatório.',
+        'Limites e regras podem ser atualizados. A classificação deve ser confirmada pela regulamentação vigente e pelas informações do projeto, não por uma regra antiga reproduzida sem contexto.',
+        { related: ['Geração distribuída', 'Minigeração distribuída', 'Sistema de compensação de energia elétrica'], sourceIds: ['aneel-geracao-distribuida'] }),
+    makeTerm('Minigeração distribuída', 'energia-solar-fotovoltaica',
+        'Categoria regulatória de central geradora conectada à rede com potência acima do limite de microgeração e dentro dos limites previstos na regulamentação aplicável.',
+        'É comum em projetos comerciais, industriais e rurais de maior porte, com necessidades específicas de conexão e documentação.',
+        'O enquadramento, os procedimentos e as condições de conexão devem ser verificados na regulamentação atual e junto à distribuidora responsável.',
+        { related: ['Geração distribuída', 'Microgeração distribuída', 'Homologação de energia solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Consultar projeto solar', path: '/energia-solar/' } }),
+    makeTerm('Sistema de compensação de energia elétrica', 'energia-solar-fotovoltaica',
+        'Mecanismo regulatório que permite tratar a energia injetada e a energia consumida conforme a modalidade e as regras aplicáveis à unidade geradora e às unidades beneficiárias.',
+        'É considerado no estudo econômico e no processo de conexão de sistemas de geração distribuída, especialmente fotovoltaicos.',
+        'Compensação não significa eliminar automaticamente toda a fatura. Tarifas, custo de disponibilidade, demanda, regras de transição e modalidade precisam ser analisados.',
+        { related: ['Geração distribuída', 'Autoconsumo remoto', 'Homologação de energia solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Entender projeto e homologação solar', path: '/energia-solar/' } }),
+    makeTerm('Homologação de energia solar', 'energia-solar-fotovoltaica',
+        'Processo de análise e formalização da conexão de uma central geradora à rede da distribuidora, com documentos, projeto e etapas definidos pelas regras aplicáveis.',
+        'Pode envolver solicitação de conexão, análise, adequações, vistoria, troca ou configuração de medição e liberação para operação, conforme o caso.',
+        'Prazos e documentos não são universais: dependem da distribuidora, do tipo de conexão, da potência, da unidade consumidora e das condições encontradas.',
+        { related: ['Geração distribuída', 'Sistema de compensação de energia elétrica', 'Microgeração distribuída'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Conhecer homologação solar', path: '/energia-solar/' } }),
+    makeTerm('Autoconsumo remoto', 'energia-solar-fotovoltaica',
+        'Modalidade em que a energia gerada em uma unidade pode ser compensada em outra unidade consumidora elegível, conforme titularidade, regras e condições regulatórias.',
+        'Pode atender consumidores com pouco espaço no imóvel de consumo ou com geração instalada em outro local autorizado.',
+        'A viabilidade depende de titularidade, enquadramento, distribuidora, distância e regras atuais. É preciso confirmar o cenário antes de estimar economia.',
+        { related: ['Geração distribuída', 'Sistema de compensação de energia elétrica', 'Homologação de energia solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Avaliar geração distribuída', path: '/energia-solar/' } }),
+    makeTerm('Sistema on-grid', 'energia-solar-fotovoltaica',
+        'Sistema fotovoltaico conectado à rede elétrica, normalmente com inversor que sincroniza a geração com a instalação e a rede dentro das condições previstas.',
+        'É uma arquitetura comum em residências e empresas que permanecem conectadas à distribuidora e desejam gerar parte da energia consumida.',
+        'Em geral, a disponibilidade da rede e as regras de conexão fazem parte do funcionamento. A presença de módulos não significa fornecimento independente durante uma falta de rede.',
+        { related: ['Inversor solar', 'Geração distribuída', 'Homologação de energia solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Conhecer sistemas conectados à rede', path: '/energia-solar/' } }),
+    makeTerm('Sistema off-grid', 'energia-solar-fotovoltaica',
+        'Sistema que opera sem conexão permanente à rede pública, usando baterias e equipamentos de controle para atender as cargas dentro da energia disponível.',
+        'Pode ser considerado em locais isolados ou aplicações específicas, desde que o consumo, a autonomia, a fonte auxiliar e a manutenção sejam avaliados.',
+        'O dimensionamento precisa considerar dias de autonomia, sazonalidade, potência de partida, profundidade de descarga e estratégia para períodos de baixa geração.',
+        { related: ['Sistema híbrido', 'Bateria estacionária', 'Energia solar fotovoltaica'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Consultar solução solar', path: '/energia-solar/' } }),
+    makeTerm('Sistema híbrido', 'energia-solar-fotovoltaica',
+        'Arquitetura que combina geração fotovoltaica, armazenamento e uma ou mais fontes de apoio, como rede ou gerador, conforme a estratégia de operação.',
+        'Pode ser estudado para cargas críticas, locais com instabilidade, redução de demanda de pico ou necessidade de maior flexibilidade energética.',
+        'A solução exige compatibilidade entre inversor, baterias, proteções, cargas prioritárias e lógica de transferência. Não é apenas adicionar uma bateria a qualquer sistema.',
+        { related: ['Sistema off-grid', 'Bateria estacionária', 'Inversor solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Falar sobre sistema solar híbrido', path: '/energia-solar/' } }),
+    makeTerm('Bateria estacionária', 'energia-solar-fotovoltaica',
+        'Dispositivo de armazenamento projetado para ciclos de carga e descarga em uma aplicação fixa, podendo compor sistemas de backup ou energia solar.',
+        'A bateria pode armazenar excedente, apoiar cargas prioritárias e reduzir dependência de uma fonte em determinados períodos, conforme o sistema.',
+        'Tecnologia, capacidade útil, temperatura, vida de ciclo, ventilação, proteção e descarte influenciam segurança, custo e desempenho.',
+        { related: ['Sistema híbrido', 'Sistema off-grid', 'Inversor solar'], sourceIds: ['aneel-geracao-distribuida'], serviceLink: { label: 'Avaliar armazenamento de energia', path: '/energia-solar/' } }),
+
+    // Automação e sistemas inteligentes
+    makeTerm('Automação residencial', 'automacao-e-sistemas-inteligentes',
+        'Integração de dispositivos e sistemas para controlar iluminação, climatização, segurança, persianas, áudio, energia e rotinas de uma residência.',
+        'A automação pode ser acionada por aplicativo, voz, sensores, horários ou cenas, com diferentes níveis de centralização e conectividade.',
+        'Uma boa solução começa pelo uso e pela infraestrutura. Compatibilidade, privacidade, continuidade manual e manutenção devem ser consideradas junto com o recurso desejado.',
+        { related: ['Cenas de automação', 'IoT (Internet das Coisas)', 'Sensor de presença'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer automação residencial', path: '/solucoes/automacao' } }),
+    makeTerm('Automação industrial', 'automacao-e-sistemas-inteligentes',
+        'Aplicação de controle, instrumentação, comunicação e supervisão para operar processos industriais com repetibilidade, segurança e dados de operação.',
+        'Pode envolver máquinas, painéis, acionamentos, sensores, CLPs, supervisórios e integração com sistemas de gestão.',
+        'O projeto deve considerar processo, segurança, disponibilidade, manutenção, documentação e operação manual ou de contingência.',
+        { related: ['CLP (Controlador Lógico Programável)', 'Protocolo de comunicação', 'BMS (Building Management System)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Consultar automação e controle', path: '/solucoes/automacao' } }),
+    makeTerm('CLP (Controlador Lógico Programável)', 'automacao-e-sistemas-inteligentes',
+        'Controlador industrial programável que recebe sinais de entradas, executa uma lógica e comanda saídas para controlar máquinas e processos.',
+        'É usado em painéis, linhas de produção, bombas, sistemas de utilidades e processos que precisam de lógica sequencial ou controle.',
+        'O resultado depende de programa, sensores, atuadores, rede, segurança de máquina e documentação. O CLP não substitui a análise completa do processo.',
+        { related: ['Automação industrial', 'Sensor de presença', 'Protocolo de comunicação'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Falar sobre automação industrial', path: '/solucoes/automacao' } }),
+    makeTerm('IoT (Internet das Coisas)', 'automacao-e-sistemas-inteligentes',
+        'Conexão de dispositivos e sensores a redes para coletar dados, trocar informações e executar ações em uma aplicação.',
+        'Em automação, pode apoiar monitoramento remoto, alertas, medição de energia, controle de equipamentos e manutenção baseada em dados.',
+        'Conectividade não é sinônimo de segurança. Rede, autenticação, atualizações, disponibilidade e continuidade local precisam entrar no projeto.',
+        { related: ['Automação residencial', 'Protocolo de comunicação', 'BMS (Building Management System)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer automação inteligente', path: '/solucoes/automacao' } }),
+    makeTerm('BMS (Building Management System)', 'automacao-e-sistemas-inteligentes',
+        'Sistema de supervisão e gestão predial que integra dados e comandos de instalações como climatização, energia, iluminação e utilidades.',
+        'Pode centralizar alarmes, horários, medições e status de equipamentos em edifícios comerciais, hotéis, hospitais e condomínios.',
+        'A integração deve respeitar o escopo de cada sistema, os níveis de acesso e as necessidades de operação. Um painel bonito não substitui automação bem comissionada.',
+        { related: ['Automação residencial', 'Automação industrial', 'Protocolo de comunicação'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Consultar automação predial', path: '/solucoes/automacao' } }),
+    makeTerm('Protocolo de comunicação', 'automacao-e-sistemas-inteligentes',
+        'Conjunto de regras que permite que dispositivos troquem dados, incluindo formato, endereço, meio físico e comportamento da comunicação.',
+        'É escolhido para integrar sensores, controladores, inversores, medidores, sistemas de automação e plataformas de supervisão.',
+        'Compatibilidade entre equipamentos não deve ser presumida apenas porque todos usam rede. Protocolo, versão, topologia, segurança e capacidade precisam ser verificados.',
+        { related: ['CLP (Controlador Lógico Programável)', 'IoT (Internet das Coisas)', 'BMS (Building Management System)'], sourceIds: ['abnt-catalogo'] }),
+    makeTerm('Sensor de presença', 'automacao-e-sistemas-inteligentes',
+        'Dispositivo que identifica presença ou movimento dentro de uma área por meio de tecnologia adequada à aplicação, como infravermelho, micro-ondas ou câmera.',
+        'Pode acionar iluminação, climatização, alarmes ou rotinas de automação, com ajustes de alcance, tempo e sensibilidade.',
+        'O sensor precisa ser posicionado de acordo com o ambiente e o objetivo. Falsos acionamentos ou áreas sem cobertura geralmente são problemas de aplicação, não apenas de equipamento.',
+        { related: ['Automação residencial', 'Cenas de automação', 'IoT (Internet das Coisas)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer automação residencial', path: '/solucoes/automacao' } }),
+    makeTerm('Cenas de automação', 'automacao-e-sistemas-inteligentes',
+        'Rotinas que combinam ações de diferentes dispositivos a partir de um comando, horário, sensor ou condição definida pelo usuário.',
+        'Uma cena pode ajustar iluminação, climatização, persianas, áudio e segurança para situações como chegada, saída, cinema ou economia.',
+        'As regras precisam prever acionamento manual, falhas de comunicação e comportamento seguro. A automação deve simplificar a operação, não criar dependência frágil.',
+        { related: ['Automação residencial', 'Sensor de presença', 'Protocolo de comunicação'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Ver automação Smart Home', path: '/solucoes/automacao' } }),
+
+    // Carregamento veicular
+    makeTerm('Wallbox', 'carregamento-veicular',
+        'Nome usado para carregadores de veículos elétricos instalados em parede, pedestal ou estrutura fixa, normalmente destinados a uma recarga mais controlada que uma tomada comum.',
+        'Pode atender residências, condomínios, empresas, estacionamentos e operações de frota, desde que a instalação seja avaliada.',
+        'A escolha depende do veículo, potência, uso, capacidade do padrão, proteção, comunicação e infraestrutura disponível. O carregador não deve ser tratado como uma carga comum sem estudo.',
+        { related: ['EVSE (Electric Vehicle Supply Equipment)', 'Recarga AC', 'Circuito dedicado para carregador'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer instalação de wallbox', path: '/solucoes/eletrica/carregador-veicular/' } }),
+    makeTerm('EVSE (Electric Vehicle Supply Equipment)', 'carregamento-veicular',
+        'Equipamento de fornecimento para veículo elétrico que controla e disponibiliza energia para a recarga, além de incorporar funções de sinalização e proteção conforme sua arquitetura.',
+        'O EVSE pode aparecer em carregadores residenciais, comerciais e de frota, com diferentes potências, conectores e modos de operação.',
+        'A instalação precisa considerar compatibilidade com o veículo, circuito, aterramento, proteção, ambiente e estratégia de uso.',
+        { related: ['Wallbox', 'Recarga AC', 'Conector Tipo 2'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Avaliar carregador veicular', path: '/solucoes/eletrica/carregador-veicular/' } }),
+    makeTerm('Recarga AC', 'carregamento-veicular',
+        'Recarga em que a energia chega ao veículo em corrente alternada e o carregador interno do próprio veículo realiza a conversão para carregar a bateria.',
+        'É comum em residências, condomínios e empresas, especialmente quando o veículo permanece estacionado por mais tempo.',
+        'Potência, tempo de permanência, circuito, tensão, fases, proteção e compartilhamento da infraestrutura definem a solução adequada.',
+        { related: ['Wallbox', 'Recarga DC', 'Circuito dedicado para carregador'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Conhecer recarga residencial e comercial', path: '/solucoes/eletrica/carregador-veicular/' } }),
+    makeTerm('Recarga DC', 'carregamento-veicular',
+        'Recarga em que o equipamento externo entrega corrente contínua à bateria do veículo, normalmente com maior potência e infraestrutura mais exigente.',
+        'Pode ser aplicada em operações de frota, rodovias, estacionamentos e locais que precisam reduzir o tempo de recarga.',
+        'Potência disponível, demanda, conexão, ventilação, proteção, espaço e impacto na operação precisam ser analisados antes da instalação.',
+        { related: ['Recarga AC', 'EVSE (Electric Vehicle Supply Equipment)', 'Viabilidade elétrica para carregador'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Consultar viabilidade de carregamento', path: '/solucoes/engenharia/viabilidade-carregador-veicular' } }),
+    makeTerm('Conector Tipo 2', 'carregamento-veicular',
+        'Padrão de conector utilizado em diversas aplicações de recarga de veículos elétricos em corrente alternada, conforme a compatibilidade do veículo e do carregador.',
+        'A presença do conector no veículo não define sozinha a potência de recarga: também é necessário considerar o carregador, o cabo e a instalação.',
+        'Compatibilidade mecânica e elétrica, corrente, comunicação e modo de carregamento devem ser confirmados no conjunto completo.',
+        { related: ['Wallbox', 'Recarga AC', 'EVSE (Electric Vehicle Supply Equipment)'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Escolher solução de wallbox', path: '/solucoes/eletrica/carregador-veicular/' } }),
+    makeTerm('Circuito dedicado para carregador', 'carregamento-veicular',
+        'Circuito dimensionado para alimentar um carregador veicular, com condutores, proteção, seccionamento e infraestrutura compatíveis com a potência e o local.',
+        'A avaliação considera distância, método de instalação, tensão, número de fases, queda de tensão, capacidade do padrão e possibilidade de expansão.',
+        'Ligar um carregador de alta potência em tomada ou circuito existente sem verificar essas premissas pode aquecer a instalação e gerar desligamentos.',
+        { related: ['Wallbox', 'Queda de tensão', 'Disjuntor'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar instalação de wallbox', path: '/solucoes/eletrica/carregador-veicular/' } }),
+    makeTerm('Balanceamento de carga', 'carregamento-veicular',
+        'Estratégia que ajusta a potência de uma ou mais cargas para respeitar a capacidade disponível da instalação e reduzir picos de demanda.',
+        'Pode ser usado em condomínios, empresas, frotas e residências com mais de um carregador ou com outras cargas relevantes funcionando ao mesmo tempo.',
+        'O balanceamento depende de medição, comunicação e lógica de controle. Ele complementa o dimensionamento e não corrige uma instalação inadequada.',
+        { related: ['Wallbox', 'Demanda contratada', 'Circuito dedicado para carregador'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Avaliar múltiplos carregadores', path: '/solucoes/engenharia/viabilidade-carregador-veicular' } }),
+    makeTerm('Viabilidade elétrica para carregador', 'carregamento-veicular',
+        'Estudo que verifica se a infraestrutura existente suporta o carregador pretendido e quais adequações, proteções ou ampliações podem ser necessárias.',
+        'Pode incluir levantamento do padrão, quadro, alimentação, demanda, trajeto de cabos, vagas, medição, expansão e operação do condomínio ou da empresa.',
+        'A resposta não deve ser apenas “cabe ou não cabe”. O estudo precisa deixar claras as premissas, as alternativas, o escopo e os próximos passos.',
+        { related: ['Wallbox', 'Circuito dedicado para carregador', 'Balanceamento de carga'], sourceIds: ['abnt-catalogo'], serviceLink: { label: 'Solicitar estudo de viabilidade', path: '/solucoes/engenharia/viabilidade-carregador-veicular' } })
+];
+
+const slugify = value => value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+const normalizedTerms = terms.map(item => ({
+    ...item,
+    slug: item.slug || slugify(item.term),
+    letter: slugify(item.term).charAt(0).toUpperCase(),
+    searchText: [item.term, item.definition, item.practical, item.importance, ...(item.related || [])].join(' ').toLowerCase()
+}));
+
 module.exports = {
-    'A': [
-        {
-            term: 'ART (Anotação de Responsabilidade Técnica)',
-            definition: 'Documento legal que identifica o responsável técnico por uma obra ou serviço de engenharia. É indispensável para garantir a segurança jurídica e técnica de qualquer instalação elétrica.'
-        },
-        {
-            term: 'Automação Residencial',
-            definition: 'Integração de tecnologias para controle de iluminação, climatização, segurança e entretenimento, visando conforto, eficiência energética e praticidade.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Conheça os projetos de <a href="/campina-grande/solucoes/automacao" style="color: var(--accent-primary); font-weight: 600;">Automação Smart em Campina Grande</a> da Klyfe Electric.</p>'
-        }
-    ],
-    'B': [
-        {
-            term: 'Barramento Blindado (Busway)',
-            definition: 'Sistema de distribuição de energia elétrica composto por condutores rígidos isolados, utilizado em edifícios comerciais e industriais para otimizar espaço e segurança.'
-        }
-    ],
-    'C': [
-        {
-            term: 'Cabine Primária',
-            definition: 'Conjunto de equipamentos destinado à entrada de energia em alta tensão, onde ocorre a medição e a transformação para baixa tensão para consumo interno.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Saiba como realizamos a <a href="/campina-grande/solucoes/engenharia/manutencao-subestacao" style="color: var(--accent-primary); font-weight: 600;">Manutenção de Subestações em Campina Grande</a>.</p>'
-        },
-        {
-            term: 'Correção de Fator de Potência',
-            definition: 'Técnica utilizada para otimizar o uso da energia elétrica, eliminando multas por excesso de energia reativa e reduzindo o aquecimento dos condutores.'
-        }
-    ],
-    'E': [
-        {
-            term: 'Eficiência Energética',
-            definition: 'Uso racional da energia para obter o mesmo resultado com menor consumo, reduzindo custos operacionais e impactos ambientais.'
-        },
-        {
-            term: 'Energia Fotovoltaica',
-            definition: 'Energia elétrica gerada a partir da luz solar por meio de células fotovoltaicas, sendo uma fonte limpa, renovável e de alta economia.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Saiba como a Klyfe Electric projeta e instala <a href="/energia-solar/" style="color: var(--accent-primary); font-weight: 600;">Energia Solar no Nordeste</a>.</p>'
-        }
-    ],
-    'L': [
-        {
-            term: 'Laudo de Instalações Elétricas (LIÉ)',
-            definition: 'Documento técnico que atesta as condições de segurança e conformidade das instalações elétricas de uma edificação conforme as normas vigentes.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Saiba mais sobre nosso serviço de <a href="/campina-grande/solucoes/engenharia/laudos-eletricos" style="color: var(--accent-primary); font-weight: 600;">Laudos Elétricos em Campina Grande</a>.</p>'
-        },
-        {
-            term: 'Laudo de Estanqueidade',
-            definition: 'Inspeção realizada para verificar a inexistência de vazamentos em tubulações e tanques, garantindo a segurança contra incêndios e explosões.'
-        }
-    ],
-    'M': [
-        {
-            term: 'Maresia (Corrosão Galvânica)',
-            definition: 'Efeito corrosivo causado por partículas de salitre em regiões litorâneas (como João Pessoa), que exige materiais específicos e manutenção frequente em sistemas elétricos.'
-        }
-    ],
-    'N': [
-        {
-            term: 'NR-10',
-            definition: 'Norma Regulamentadora que estabelece os requisitos e condições mínimas de segurança para trabalhadores que interagem com instalações elétricas e serviços com eletricidade.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Adeque sua empresa com nossos <a href="/campina-grande/solucoes/engenharia/laudos-eletricos" style="color: var(--accent-primary); font-weight: 600;">Laudos Elétricos em Campina Grande</a>.</p>'
-        },
-        {
-            term: 'NBR 5410',
-            definition: 'Principal norma brasileira que estabelece as condições adequadas para o funcionamento seguro e eficaz das instalações elétricas de baixa tensão.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Conheça nossos serviços de <a href="/campina-grande/solucoes/eletrica" style="color: var(--accent-primary); font-weight: 600;">Instalações Elétricas em Campina Grande</a>, executados rigorosamente dentro da norma.</p>'
-        }
-    ],
-    'P': [
-        {
-            term: 'Prumada Elétrica',
-            definition: 'Conjunto de condutores e componentes que transportam a energia elétrica verticalmente através dos pavimentos de um edifício.'
-        }
-    ],
-    'S': [
-        {
-            term: 'SPDA (Para-raios)',
-            definition: 'Sistema de Proteção contra Descargas Atmosféricas. Conjunto de dispositivos instalados para encaminhar a corrente dos raios com segurança para a terra, protegendo pessoas e estruturas.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Veja como aplicamos este conceito em nossos serviços de <a href="/campina-grande/solucoes/engenharia/laudos-eletricos" style="color: var(--accent-primary); font-weight: 600;">Laudos Técnicos e SPDA em Campina Grande</a>.</p>'
-        },
-        {
-            term: 'Subestação',
-            definition: 'Instalação elétrica de alta potência que contém transformadores e equipamentos de proteção, responsável por adaptar os níveis de tensão para o consumo.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Saiba como realizamos a <a href="/campina-grande/solucoes/engenharia/manutencao-subestacao" style="color: var(--accent-primary); font-weight: 600;">Manutenção de Subestações em Campina Grande</a>.</p>'
-        }
-    ],
-    'T': [
-        {
-            term: 'Termografia Elétrica',
-            definition: 'Técnica de inspeção não invasiva que utiliza câmeras infravermelhas para detectar pontos de aquecimento excessivo em quadros e conexões, prevenindo incêndios.',
-            linkHtml: '<p class="glossario-cta" style="margin-top: 10px;">Veja como aplicamos termografia na <a href="/campina-grande/solucoes/engenharia/manutencao-subestacao" style="color: var(--accent-primary); font-weight: 600;">Manutenção de Subestações em Campina Grande</a>.</p>'
-        }
-    ]
+    updatedAt,
+    categories,
+    references,
+    terms: normalizedTerms
 };

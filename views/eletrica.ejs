@@ -15,10 +15,10 @@
     ] }) %>
 
     <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>INSTALAÇÕES & MANUTENÇÃO</span></div>
-    <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos <%= cityData.preposition %><br><span style="color:var(--accent-primary)"><%= cityData.name %> e Região.</span></h1>
-    <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Eletricistas profissionais para residências, condomínios e indústrias <%= cityData.preposition %> <%= cityData.name %>. Manutenção preventiva, reparos urgentes e novas instalações com garantia técnica.</p>
+    <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Serviços Elétricos <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+    <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Serviços elétricos para residências, condomínios e indústrias <%= cityData.preposition %> <%= cityData.name %>. Manutenção, reparos e novas instalações conforme a necessidade e o escopo confirmado.</p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
-        <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+        <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar um orçamento de serviços elétricos.') %>" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
         <a href="#especialidades" class="btn btn-ghost">Ver Especialidades</a>
     </div>
         </div>
@@ -42,18 +42,19 @@
                     <% eleServices.forEach(key => { 
                        const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                        const isGeneric = svc.template === 'eletrica';
+                       const isWallboxGroup = key === 'carregador-veicular' || key.startsWith('wallbox-');
                        const cardUrl = isGeneric 
                          ? `https://wa.me/5583991330972?text=${encodeURIComponent('Olá! Vi o site da Klyfe e gostaria de solicitar um orçamento para o serviço de ' + svc.label + ' em ' + cityData.name + '.')}`
-                         : `${getHomePrefix()}/solucoes/eletrica/${key}`;
-                       const imgPath = `/img/eletrica/${key}.webp`;
+                         : `${getHomePrefix()}/solucoes/eletrica/${key}${isWallboxGroup ? '/' : ''}`;
+                       const imgPath = svc.heroImage || (key === 'carregador-veicular' ? '/img/wallbox/wallbox-residencial.webp' : `/img/eletrica/${key}.webp`);
                     %>
-                    <a href="<%= cardUrl %>" <%= isGeneric ? 'target="_blank" rel="noopener"' : '' %> class="eng-service-card fade-in">
+                    <a href="<%= cardUrl %>" <%= isGeneric ? 'target="_blank" rel="noopener"' : '' %> class="eng-service-card <%= key === 'carregador-veicular' ? 'eng-service-card-featured' : '' %> fade-in" <%= key === 'carregador-veicular' ? 'data-wallbox-event="electrical_hub_card"' : '' %> data-content-category="<%= isWallboxGroup ? 'wallbox' : 'eletrica' %>" data-content-name="<%= key %>">
                         <div class="eng-service-img-wrap">
                             <img src="<%= imgPath %>" alt="<%= svc.label %>" loading="lazy">
                         </div>
                         <div class="eng-service-body">
                             <h3><%= svc.label %> <i class="fas <%= isGeneric ? 'fa-whatsapp' : 'fa-arrow-right' %>"></i></h3>
-                            <p><%= svc.summary || svc.painPoint || 'Serviços elétricos de alto padrão com garantia técnica.' %></p>
+                            <p><%= svc.summary || svc.painPoint || 'Serviços elétricos com escopo definido para cada instalação.' %></p>
                             <span class="eng-service-link">
                                 <%= isGeneric ? 'Orçamento Rápido →' : 'EXPLORAR →' %>
                             </span>
@@ -69,7 +70,7 @@
                 <div class="section-separator" style="justify-content: center;"><%- include('partials/symbol') %> <span>EXPANSÃO EM CURSO</span></div>
                 <h2 style="margin-bottom: 1.5rem;">Serviços Elétricos <%= cityData.preposition %> <%= cityData.name %>.</h2>
                 <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">Nossa equipe técnica está expandindo o atendimento de instalações elétricas e infraestrutura para esta região. Em breve, todos os serviços estarão disponíveis aqui.</p>
-                <a href="/contato" class="btn btn-primary">Fale com nossa Engenharia</a>
+                <a href="<%= getHomePrefix() %>/contato" class="btn btn-primary">Fale com nossa Engenharia</a>
             </div>
         </section>
         <% } %>
@@ -84,13 +85,13 @@
                     <h2 style="margin-bottom: 2rem;">Eletricistas Profissionais <%= cityData.preposition %> <%= cityData.name %>:<br><span style="color:var(--accent-primary)">Foco na Qualidade</span></h2>
                     <div style="color: var(--text-muted); line-height: 1.7; font-size: 1.05rem;">
                         <%- cityData.serviceContext %>
-                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">Atendemos <%= cityData.preposition %> <%= cityData.name %> incluindo <%= cityData.bairros %>.</p>
+                         <p style="margin-top: 1.5rem; font-weight: 600; color: var(--text-main);">A disponibilidade é confirmada conforme a localidade, a logística e o serviço solicitado.</p>
                     </div>
                 </div>
                 <div class="fade-in" style="position: relative;">
                      <div class="bracket-box" style="padding: 2rem; background: var(--bg-primary); border-color: var(--accent-primary);">
                         <h4 style="color: var(--accent-primary); margin-bottom: 1rem; font-family: var(--font-condensed); letter-spacing: 1px;">SUPORTE TÉCNICO</h4>
-                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">Nossa equipe atua em <strong><%= cityData.name %></strong> e <strong><%= cityData.region %></strong> para garantir que problemas elétricos, seja no comércio ou residência, sejam resolvidos com agilidade e total segurança técnica.</p>
+                         <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">A equipe avalia problemas elétricos em <strong><%= cityData.name %></strong> e <strong><%= cityData.region %></strong>, priorizando riscos e definindo o atendimento conforme as condições encontradas.</p>
                      </div>
                 </div>
             </div>
@@ -135,8 +136,8 @@
                 <h2 style="margin-bottom:1.5rem">Segurança em primeiro lugar,<br>disponibilidade sempre.</h2>
                 <p style="color:var(--text-muted);line-height:1.8">Não arrisque seu patrimônio com instalações improvisadas. Nossos eletricistas são capacitados e supervisionados por engenheiros, utilizando sempre materiais de primeira linha e seguindo a NBR 5410 à risca.</p>
                 <div style="margin-top:2rem;display:flex;gap:2rem">
-                    <div><h4 style="color:var(--accent-primary)">24/7</h4><p style="font-size:0.8rem;color:var(--text-muted)">Pronto Atendimento</p></div>
-                    <div><h4 style="color:var(--accent-primary)">100%</h4><p style="font-size:0.8rem;color:var(--text-muted)">Garantia de Serviço</p></div>
+                    <div><h4 style="color:var(--accent-primary)">Escopo</h4><p style="font-size:0.8rem;color:var(--text-muted)">Definido por instalação</p></div>
+                    <div><h4 style="color:var(--accent-primary)">Registro</h4><p style="font-size:0.8rem;color:var(--text-muted)">Conforme o atendimento</p></div>
                 </div>
             </div>
             <div class="bracket-box fade-in" style="padding:3rem">
@@ -153,7 +154,7 @@
 </section>
 
 <!-- ═══ FAQ ═══ -->
-<% if (cityData.faqExtra) { %>
+<% if (serviceData && serviceData.faqExtra) { %>
     <section class="section-padding" style="background: var(--bg-secondary);">
         <div class="container" style="max-width: 800px;">
             <div class="section-separator fade-in" style="justify-content: center;"><%- include('partials/symbol') %> <span>DÚVIDAS FREQUENTES</span></div>
@@ -162,30 +163,17 @@
             <div class="faq-accordion fade-in">
                 <div class="faq-item" style="padding: 1.5rem 0; border-bottom: 1px solid var(--border-color);">
                     <button class="faq-question" style="width: 100%; display: flex; justify-content: space-between; align-items: center; background: none; border: none; color: var(--text-main); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer;">
-                        <%= cityData.faqExtra.question %>
+                        <%= serviceData.faqExtra.question %>
                         <i class="fas fa-plus" style="font-size: 0.8rem; color: var(--accent-primary);"></i>
                     </button>
                     <div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out;">
-                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= cityData.faqExtra.answer %></p>
+                        <p style="padding-top: 1rem; color: var(--text-muted); line-height: 1.6;"><%= serviceData.faqExtra.answer %></p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 <% } %>
-
-<!-- CONCEITOS TÉCNICOS -->
-<section class="section-padding" style="background: var(--bg-primary); border-top: 1px solid var(--border-color);">
-    <div class="container" style="max-width: 900px; text-align: center;">
-        <div class="glossario-links">
-            <h3 style="color:var(--text-main); margin-bottom: 1.5rem; font-size: 1.25rem;">Conceitos técnicos relacionados</h3>
-            <ul style="list-style-type: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
-                <li><a href="/glossario#nbr-5410" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">NBR 5410</a></li>
-                <li><a href="/glossario#prumada-elétrica" style="color:var(--accent-primary); text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border-color); border-radius: 4px; display: inline-block;">Prumada Elétrica</a></li>
-            </ul>
-        </div>
-    </div>
-</section>
 
 <!-- ═══ LINK CRUZADO ENTRE CIDADES ═══ -->
 <section style="padding: 2rem 0; background: var(--bg-primary); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
@@ -208,10 +196,10 @@
 <!-- CTA -->
 <section class="cta-banner">
     <div class="container fade-in" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem">
-        <div><h2>Precisa de um eletricista<br>de confiança?</h2><p>Atendimento rápido e profissional <%= cityData.preposition %> <%= cityData.name %> e região.</p></div>
+        <div><h2>Precisa de um eletricista<br>para sua instalação?</h2><p>Atendimento conforme o escopo e a disponibilidade <%= cityData.preposition %> <%= cityData.name %> e região.</p></div>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <a href="/contato" class="btn-dark">Solicitar Orçamento</a>
-            <% const waHubMsgEl = (typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'; %>
+            <a href="<%= getHomePrefix() %>/contato" class="btn-dark">Solicitar Orçamento</a>
+            <% const waHubMsgEl = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : ((typeof cityData !== 'undefined' && cityData.whatsappMessage) ? cityData.whatsappMessage : 'Olá! Gostaria de solicitar um orçamento.'); %>
             <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waHubMsgEl) %>" target="_blank" rel="noopener" class="btn-dark" style="background:transparent;border:2px solid var(--bg-primary);color:var(--bg-primary)"><i class="fab fa-whatsapp"></i> <%= cityData.cta || '(83) 99133-0972' %></a>
         </div>
     </div>

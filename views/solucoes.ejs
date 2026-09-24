@@ -56,7 +56,7 @@
                 </p>
                 <div class="fade-in hero-actions">
                     <a href="#portal-solucoes" class="btn btn-primary">Explorar soluções</a>
-                    <a href="/contato" class="btn btn-ghost">Falar com especialista</a>
+                    <a href="<%= cityPrefix %>/contato" class="btn btn-ghost">Falar com especialista</a>
                 </div>
             </div>
         </section>
@@ -181,8 +181,8 @@
                                     <% getServicesByCategory('eletrica').forEach(key => { 
                                        const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                                     %>
-                                       <li style="color: var(--text-muted); font-size: 0.85rem;">
-                                           <a href="<%= cityPrefix %>/solucoes/eletrica/<%= key %>" style="color: inherit;">• <%= svc.label %></a>
+                                       <li class="<%= key === 'carregador-veicular' ? 'solutions-wallbox-item' : '' %>" style="color: var(--text-muted); font-size: 0.85rem;">
+                                           <a href="<%= cityPrefix %>/solucoes/eletrica/<%= key %><%= key === 'carregador-veicular' ? '/' : '' %>" style="color: inherit;" <%= key === 'carregador-veicular' ? 'data-wallbox-event="solutions_hub_card"' : '' %>>• <%= key === 'carregador-veicular' ? 'Instalação de Wallbox' : svc.label %></a>
                                        </li>
                                     <% }) %>
                                 </ul>
@@ -202,8 +202,8 @@
                 <h2 style="margin-bottom: 2rem;">Não encontrou o que procurava?</h2>
                 <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 3rem auto;">Nossa equipe de engenheiros está pronta para desenvolver soluções personalizadas para o seu desafio técnico.</p>
                 <div style="display: flex; gap: 1rem; justify-content: center;">
-                    <a href="/contato" class="btn btn-primary">Falar com Consultor Especialista</a>
-                    <a href="https://wa.me/5583991330972" class="btn btn-ghost">Conversar via WhatsApp</a>
+                        <a href="<%= cityPrefix %>/contato" class="btn btn-primary">Falar com Consultor Especialista</a>
+                        <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de falar com um consultor da Klyfe.') %>" class="btn btn-ghost">Conversar via WhatsApp</a>
                 </div>
             </div>
         </section>

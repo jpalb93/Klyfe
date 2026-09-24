@@ -11,9 +11,9 @@
 
         <div class="container breadcrumb-standalone">
             <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Serviços elétricos', href: '/solucoes/eletrica' },
+                { label: 'Home', href: getHomePrefix() + '/' },
+                { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
                 { label: 'Projeto de rede' }
             ], breadcrumbCompact: true }) %>
         </div>
@@ -25,14 +25,13 @@
                 <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
                     <div>
                         <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem; font-weight: 800;">
-                            Projeto de Rede, Telefonia <br>
-                            <span class="text-gradient">e Antena Coletiva.</span>
+                            Projeto de Rede, Telefonia e Antena Coletiva <span class="text-gradient"><%= cityData.preposition %> <%= cityData.name %></span>
                         </h1>
                         <p style="color: var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
-                            Conectividade de alta performance para residências, condomínios e empresas. Projetos de cabeamento estruturado e sistemas de comunicação com certificação e ART.
+                            Conectividade planejada para residências, condomínios e empresas. O projeto organiza cabeamento, equipamentos e documentação conforme o objetivo e as condições do local.
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
+                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar um projeto de rede.') %>" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Orçamento</a>
                             <a href="#detalhes" class="btn btn-ghost">Especificações Técnicas →</a>
                         </div>
                     </div>
@@ -52,12 +51,12 @@
                     <div class="feature-card-simple">
                         <div class="icon-wrap"><i class="fas fa-network-wired"></i></div>
                         <h4>Rede Estruturada</h4>
-                        <p>Organização total de racks, switches e pontos de dados.</p>
+                        <p>Organização de racks, switches e pontos de dados conforme a topologia.</p>
                     </div>
                     <div class="feature-card-simple">
                         <div class="icon-wrap"><i class="fas fa-wifi"></i></div>
                         <h4>Wi-Fi de Alta Performance</h4>
-                        <p>Mapeamento de sinal para eliminar zonas mortas (dead zones).</p>
+                        <p>Mapeamento de sinal para orientar pontos de acesso e cobertura.</p>
                     </div>
                     <div class="feature-card-simple">
                         <div class="icon-wrap"><i class="fas fa-phone-alt"></i></div>
@@ -67,7 +66,7 @@
                     <div class="feature-card-simple">
                         <div class="icon-wrap"><i class="fas fa-satellite-dish"></i></div>
                         <h4>Antena Digital</h4>
-                        <p>Distribuição de sinal de TV com qualidade 4K em todos os pontos.</p>
+                        <p>Distribuição de sinal de TV conforme a infraestrutura e os equipamentos.</p>
                     </div>
                 </div>
             </div>
@@ -87,14 +86,14 @@
                     <div>
                         <h2 style="margin-bottom: 2rem;">Conectividade que não <em class="text-gradient">te deixa na mão.</em></h2>
                         <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7;">
-                            Em um mundo hiperconectado, a rede é o sistema nervoso da sua casa ou empresa. Um projeto técnico evita lentidão em chamadas de vídeo, quedas no streaming e garante que sua automação funcione sem interrupções.
+                            Em uma casa ou empresa, um projeto técnico ajuda a organizar a rede, prever pontos de acesso e reduzir gargalos em chamadas, streaming e automação.
                         </p>
                         <ul class="checklist-modern">
-                            <li>Dimensionamento de Racks e Servidores</li>
-                            <li>Projeto de Wi-Fi Mesh e Access Points</li>
+                            <li>Dimensionamento de racks e pontos de dados</li>
+                            <li>Projeto de Wi-Fi Mesh e access points</li>
                             <li>Interfonia Digital e VoIP para Condomínios</li>
                             <li>Infraestrutura para CFTV e Segurança</li>
-                            <li>Anotação de Responsabilidade Técnica (ART)</li>
+                            <li>Documentação e eventual ART, conforme o escopo</li>
                         </ul>
                     </div>
                 </div>
@@ -111,7 +110,7 @@
                         <div class="faq-question">Qual a diferença entre CAT5e e CAT6? <i class="fas fa-plus"></i></div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                O CAT6 possui maior largura de banda e suporta velocidades de até 10Gbps em distâncias curtas, além de ter menos interferência. É o padrão recomendado para novas instalações que buscam durabilidade tecnológica.
+                                O CAT6 possui maior largura de banda que categorias anteriores e pode suportar velocidades de até 10 Gbps em distâncias curtas, conforme os componentes usados. A escolha deve considerar a aplicação e o ambiente.
                             </div>
                         </div>
                     </div>
@@ -119,7 +118,7 @@
                         <div class="faq-question">Por que o Wi-Fi da minha casa é lento em alguns cômodos? <i class="fas fa-plus"></i></div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Isso ocorre devido a barreiras físicas (paredes) e interferências. Um projeto de rede posiciona estrategicamente Access Points cabeados para garantir sinal estável em 100% da área, sem perdas de velocidade.
+                                Barreiras físicas e interferências podem reduzir a cobertura. Um projeto de rede posiciona access points e cabeamento para melhorar a distribuição do sinal, sem prometer cobertura ou velocidade uniformes em todos os pontos.
                             </div>
                         </div>
                     </div>
@@ -127,7 +126,7 @@
                         <div class="faq-question">Vocês fazem apenas o projeto ou a instalação também? <i class="fas fa-plus"></i></div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Realizamos ambos. Entregamos o projeto técnico detalhado e possuímos equipe própria para a passagem de cabos, montagem de racks e configuração dos equipamentos.
+                                O escopo pode incluir projeto, instalação ou orientação para a execução. A disponibilidade de cada etapa é confirmada conforme a necessidade do local.
                             </div>
                         </div>
                     </div>
@@ -175,7 +174,7 @@
                     <h2 style="color: var(--bg-primary);">Sua rede está pronta para o futuro?</h2>
                     <p style="color: rgba(255,255,255,0.8);">Conectividade total e organizada para sua casa ou empresa.</p>
                 </div>
-                <a href="https://wa.me/5583991330972" class="btn btn-dark">Solicitar Orçamento de Projeto</a>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar um projeto de rede.') %>" class="btn btn-dark">Solicitar Orçamento de Projeto</a>
             </div>
         </section>
 

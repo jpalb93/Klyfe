@@ -4,12 +4,13 @@
 
 ## Principais Soluções
 
-- [Engenharia Elétrica](https://www.klyfeelectric.com.br/solucoes/engenharia): Projetos elétricos industriais, comerciais e residenciais, além de laudos técnicos de SPDA, NR-10 e aterramento.
+- [Engenharia Elétrica](https://www.klyfeelectric.com.br/solucoes/engenharia): Projetos elétricos industriais, comerciais e residenciais; projeto, instalação, adequação, inspeção, documentação e manutenção de SPDA; laudos de NR-10 e aterramento, conforme o escopo contratado.
 - [Energia Solar na Paraíba](https://www.klyfeelectric.com.br/energia-solar/): Projeto, instalação, ART e acompanhamento da homologação de sistemas fotovoltaicos.
 - [Energia Solar em Campina Grande](https://www.klyfeelectric.com.br/energia-solar/campina-grande-pb/): Atendimento pela sede local da Klyfe.
 - [Energia Solar em João Pessoa](https://www.klyfeelectric.com.br/energia-solar/joao-pessoa-pb/): Atendimento técnico na Grande João Pessoa a partir da sede em Campina Grande.
 - [Automação Smart](https://www.klyfeelectric.com.br/solucoes/automacao): Projetos de automação residencial e predial inteligente.
 - [Serviços Elétricos](https://www.klyfeelectric.com.br/solucoes/eletrica): Instalações elétricas industriais e prediais de infraestrutura e cabeamento.
+- [Glossário Técnico](https://www.klyfeelectric.com.br/glossario): Base de conhecimento com termos de engenharia elétrica, energia solar fotovoltaica, SPDA, automação e carregamento veicular.
 
 ## Contato e Localização
 

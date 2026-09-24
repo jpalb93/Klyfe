@@ -2,25 +2,74 @@
   "slug": "nr10-laudo-eletrico-empresa",
   "status": "published",
   "publishAt": "2026-04-28",
-  "title": "NR-10: o que é e por que sua empresa precisa de laudo elétrico",
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "title": "NR-10 na empresa: como organizar documentos e pendências elétricas",
   "category": "eletrica",
   "categoryLabel": "Elétrica",
-  "summary": "Entenda os riscos legais e operacionais de manter instalações comerciais ou industriais fora das normas de segurança elétrica do Ministério do Trabalho.",
-  "readTime": "4 min",
+  "summary": "Entenda quais informações reunir para avaliar a situação elétrica da empresa e acompanhar as recomendações técnicas.",
+  "readTime": "3 min",
   "author": "Klyfe Electric",
   "heroImage": "/img/infraestrutura-predial-eletrica-bim.webp",
-  "contentHtml": "<p>A segurança nas instalações elétricas corporativas é um tema de extrema seriedade fiscalizado pelo Ministério do Trabalho e Emprego (MTE) e exigido pelo Corpo de Bombeiros. A <strong>NR-10</strong> estabelece os requisitos e condições mínimas de segurança que devem ser seguidos por empresas que possuem trabalhadores expostos direta ou indiretamente a riscos elétricos em <strong><%- cityData.name %></strong>.</p>\n            \n            <h2>O que é o Laudo Técnico de NR-10?</h2>\n            <p>O Laudo de NR-10 é um relatório pericial emitido por um Engenheiro Eletricista habilitado após vistoria técnica detalhada das instalações. Esse documento atesta se os painéis, transformadores, cabeamentos e o sistema de aterramento estão em conformidade com as normas vigentes, assegurando a integridade física dos funcionários.</p>\n\n            <h3>Consequências de não possuir o laudo elétrico atualizado:</h3>\n            <ul>\n                <li><strong>Interdição Parcial ou Total:</strong> Fiscais do trabalho podem embargar instalações que apresentem risco iminente de choques ou arcos elétricos.</li>\n                <li><strong>Multas Severas:</strong> As penalidades financeiras variam conforme o número de não-conformidades e o porte da empresa.</li>\n                <li><strong>Recusa de Sinistros de Seguros:</strong> Em caso de incêndio de origem elétrica, as seguradoras recusam o pagamento da indenização caso o laudo de NR-10/SPDA não esteja em dia.</li>\n                <li><strong>Responsabilidade Civil e Criminal:</strong> Diretores e gerentes de manutenção respondem diretamente caso ocorra um acidente elétrico grave com colaboradores.</li>\n            </ul>\n\n            <blockquote style=\"border-left: 4px solid var(--accent-primary); padding-left: 1.5rem; margin: 1.5rem 0; font-style: italic; color: var(--text-muted);\">\n                \"A conformidade técnica com a NBR 5410 e a NR-10 reduz as chances de panes e incêndios nas instalações comerciais e industriais para quase zero.\"\n            </blockquote>\n\n            <p>Não corra riscos de paradas operacionais ou problemas legais com fiscalizações na região de <strong><%- cityData.name %> e <%- cityData.region %></strong>. Solicite seu <a href=\"<%- getHomePrefix() %>/solucoes/engenharia/laudos-eletricos\">Laudo Técnico de Engenharia na Klyfe Electric</a> com ART e validação profissional.</p>",
+  "imageAlt": "Quadro elétrico empresarial durante avaliação técnica de segurança conforme NR-10",
+  "contentHtml": "<p class=\"lead\">A NR-10 trata de segurança em instalações e serviços com eletricidade. Para o gestor da empresa, a tarefa inicial é saber quais instalações existem, quais documentos estão disponíveis e como as pendências são acompanhadas. Um artigo não determina conformidade nem substitui avaliação de profissional habilitado.</p>\n<h2>Comece pelo inventário da instalação</h2><p>Reúna diagramas, identificação de quadros, registros de intervenções, contratos de manutenção e apontamentos de falhas. Se os documentos estiverem desatualizados, registre a lacuna; não trate um desenho antigo como retrato garantido da instalação.</p>\n<p>Indique quem responde pela operação, quem pode acessar áreas elétricas e quais mudanças ocorreram desde a última avaliação.</p>\n<h2>O que distinguir entre documento e condição real?</h2><p>Um relatório pode registrar achados e recomendações; o prontuário reúne documentos exigidos conforme as características da instalação; procedimentos e registros de treinamento têm funções diferentes. O nome informal “laudo NR-10” não define sozinho um escopo suficiente.</p>\n<p>A NR-10 traz exigências específicas, inclusive para o Prontuário de Instalações Elétricas quando aplicável. Peça ao responsável técnico que indique quais itens se aplicam ao estabelecimento.</p>\n<h2>Como acompanhar pendências?</h2><p>Separe cada recomendação por local, prioridade técnica, responsável e situação. Combine como registrar correção e verificação posterior. Uma lista sem dono ou prazo interno tende a perder utilidade quando mudam equipe ou fornecedor.</p>\n<p>Se houver indício de risco imediato, encaminhe à equipe competente; este guia não orienta intervenção em equipamentos energizados.</p>\n<h2>Que perguntas fazer antes de contratar uma avaliação?</h2><p>Peça definição de instalações abrangidas, documentos de entrada, inspeções previstas, entregáveis e limites do trabalho. Verifique como serão tratadas áreas inacessíveis e recomendações que exigirem projeto ou obra separados.</p>\n<h2>Exemplo para comparar situações</h2><p>Uma empresa possui diagramas recentes, porém várias recomendações de inspeção sem comprovação de conclusão. Outra tem manutenção registrada, mas os desenhos deixaram de refletir uma ampliação. O ponto de partida documental muda, e a avaliação deve registrar essas lacunas antes de declarar qualquer situação da instalação.</p>\n<p>Para cada pendência, anote evidência de origem, responsável por decidir, ação prevista e registro de verificação. Isso ajuda o gestor a acompanhar o trabalho contratado.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Diagramas e lista de quadros/equipamentos.</li><li>Histórico de manutenção, reformas e ocorrências.</li><li>Documentos de segurança e responsabilidades disponíveis.</li><li>Pendências conhecidas e áreas de acesso restrito.</li><li>Escopo esperado e entregáveis a discutir com a equipe técnica.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/solucoes/engenharia/laudos-eletricos\">serviço de laudos e avaliações elétricas</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
   "faq": [
     {
-      "question": "Com que frequência a minha empresa deve renovar o laudo de NR-10?",
-      "answer": "A periodicidade recomendada é anual para a vistoria técnica e emissão de laudo das instalações, principalmente em ambientes industriais de regime contínuo ou estabelecimentos comerciais expostos à umidade/salinidade."
+      "question": "Todo documento elétrico é um “laudo NR-10”?",
+      "answer": "Não. Documentos diferentes cumprem funções diferentes; o escopo deve ser definido segundo a instalação e os requisitos aplicáveis."
     },
     {
-      "question": "O que avaliamos no laudo elétrico de NR-10?",
-      "answer": "Analisamos painéis elétricos, aterramentos, diagramas unifilares, equipamentos de proteção individual (EPI) e coletiva (EPC), realizamos termografia infravermelha e emitimos o Prontuário de Instalações Elétricas (PIE)."
+      "question": "A empresa pode declarar conformidade só com este checklist?",
+      "answer": "Não. O checklist ajuda a reunir informações, mas não substitui avaliação técnica."
     }
   ],
-  "keywords": [],
+  "keywords": [
+    "documentos NR-10 empresa"
+  ],
+  "tags": [
+    "NR-10",
+    "Laudos",
+    "PIE",
+    "Segurança do trabalho"
+  ],
   "affiliateProducts": [],
-  "affiliateDisclosure": false
+  "affiliateDisclosure": false,
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "documentos NR-10 empresa",
+  "searchIntent": "informacional",
+  "metaTitle": "NR-10 na empresa: como organizar documentos e pendências elétricas",
+  "metaDescription": "Entenda quais informações reunir para avaliar a situação elétrica da empresa e acompanhar as recomendações técnicas.",
+  "seoTitle": "NR-10 na empresa: como organizar documentos e pendências elétricas",
+  "seoDescription": "Entenda quais informações reunir para avaliar a situação elétrica da empresa e acompanhar as recomendações técnicas.",
+  "heroImageAlt": "Quadro elétrico empresarial durante avaliação técnica de segurança conforme NR-10",
+  "canonicalPath": "/blog/nr10-laudo-eletrico-empresa",
+  "robots": "index, follow",
+  "ogTitle": "NR-10 na empresa: como organizar documentos e pendências elétricas",
+  "ogDescription": "Entenda quais informações reunir para avaliar a situação elétrica da empresa e acompanhar as recomendações técnicas.",
+  "ogImage": "/img/infraestrutura-predial-eletrica-bim.webp",
+  "sources": [
+    {
+      "title": "Norma Regulamentadora nº 10",
+      "publisher": "Ministério do Trabalho e Emprego",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "avaliação de SPDA",
+      "url": "/blog/spda-para-raios-obrigatorio"
+    },
+    {
+      "anchor": "automação e painéis industriais",
+      "url": "/blog/clp-vs-reles-paineis"
+    },
+    {
+      "anchor": "automação industrial no Nordeste",
+      "url": "/blog/automacao-industrial-nordeste"
+    }
+  ],
+  "contentAppendHtml": ""
 }

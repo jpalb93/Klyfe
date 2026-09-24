@@ -12,3 +12,6 @@ dist/
 .vercel
 scratch/
 audits/
+
+.vercel
+.env*

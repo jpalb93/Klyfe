@@ -11,9 +11,9 @@
 
         <div class="container breadcrumb-standalone">
             <%- include('partials/breadcrumb', { breadcrumbItems: [
-                { label: 'Home', href: '/' },
-                { label: 'Soluções', href: '/solucoes' },
-                { label: 'Automação', href: '/solucoes/automacao' },
+                { label: 'Home', href: getHomePrefix() + '/' },
+                { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                { label: 'Automação', href: getHomePrefix() + '/solucoes/automacao' },
                 { label: 'Automação residencial' }
             ], breadcrumbCompact: true }) %>
         </div>
@@ -25,14 +25,13 @@
                 <div class="grid grid-cols-2 hero-grid-2col" style="gap: 4rem; align-items: center;">
                     <div>
                         <h1 style="color:var(--text-main); font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.1; margin-top: 1.5rem; font-weight: 800;">
-                            Automação Residencial <br>
-                            <span class="text-gradient">e Casas Inteligentes.</span>
+                            Automação Residencial e Casas Inteligentes <span class="text-gradient"><%= cityData.preposition %> <%= cityData.name %></span>
                         </h1>
                         <p style="color: var(--text-muted); font-size: 1.15rem; margin: 1.5rem 0; line-height: 1.6;">
-                            Eleve o padrão de conforto da sua casa com tecnologia de ponta. Integramos iluminação, som, segurança e climatização em um sistema único e intuitivo.
+                            Planeje iluminação, som, segurança e climatização em uma experiência integrada. O projeto considera a rotina da casa, a infraestrutura disponível e as preferências dos moradores.
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem;">
-                            <a href="https://wa.me/5583991330972" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Consultoria</a>
+                            <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar uma consultoria de automação residencial.') %>" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Consultoria</a>
                             <a href="#solucoes" class="btn btn-ghost">Ver Diferenciais →</a>
                         </div>
                     </div>
@@ -61,13 +60,13 @@
                     </div>
                     <div class="feature-card-simple">
                         <div class="icon-wrap"><i class="fas fa-eye"></i></div>
-                        <h4>Monitoramento 24h</h4>
-                        <p>Veja e controle sua casa de qualquer lugar do mundo pelo celular.</p>
+                        <h4>Acesso remoto</h4>
+                        <p>Consulte e controle funções compatíveis pelo celular, conforme a solução instalada.</p>
                     </div>
                     <div class="feature-card-simple">
                         <div class="icon-wrap"><i class="fas fa-gem"></i></div>
-                        <h4>Valorização do Imóvel</h4>
-                        <p>Imóveis inteligentes têm maior liquidez e valor de mercado.</p>
+                        <h4>Experiência integrada</h4>
+                        <p>Rotinas centralizadas para tornar o uso da casa mais simples no dia a dia.</p>
                     </div>
                 </div>
             </div>
@@ -80,7 +79,7 @@
                     <div>
                         <h2 style="margin-bottom: 2rem;">Sua casa, suas regras, <em class="text-gradient">na palma da mão.</em></h2>
                         <p style="color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.7;">
-                            A verdadeira automação é aquela que acontece de forma invisível, antecipando suas necessidades. Persinas que se abrem com o sol, luzes que se apagam ao sair de um cômodo e o café pronto ao despertar.
+                            A automação pode criar rotinas para iluminação, persianas, climatização e áudio. O funcionamento depende dos dispositivos escolhidos, da infraestrutura e das regras configuradas no projeto.
                         </p>
                         <ul class="checklist-modern">
                             <li>Iluminação Inteligente e Dimerizável</li>
@@ -170,7 +169,7 @@
                         <div class="faq-question">O sistema é seguro contra hackers? <i class="fas fa-plus"></i></div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
-                                Utilizamos protocolos de criptografia de nível bancário e roteadores seguros. A segurança digital é um pilar fundamental em todos os nossos projetos de smart home.
+                                A segurança digital depende da rede, dos dispositivos e das configurações adotadas. O projeto deve prever atualização de equipamentos, credenciais individuais e boas práticas de acesso.
                             </div>
                         </div>
                     </div>
@@ -195,12 +194,8 @@
                         <h4>Projeto de Rede</h4>
                         <span>Ver solução →</span>
                     </a>
-                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/carregador-veicular" class="related-card">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/carregador-veicular/" class="related-card" data-wallbox-event="related_service_card">
                         <h4>Carregador Veicular</h4>
-                        <span>Ver solução →</span>
-                    </a>
-                    <a href="/energia-solar/" class="related-card">
-                        <h4>Energia Solar</h4>
                         <span>Ver solução →</span>
                     </a>
                     <a href="<%= getHomePrefix() %>/solucoes/engenharia/projeto-eletrico" class="related-card">
@@ -218,7 +213,7 @@
                     <h2 style="color: var(--bg-primary);">Transforme sua casa na melhor <br>experiência de morar.</h2>
                     <p style="color: rgba(255,255,255,0.8);">Tecnologia, conforto e sofisticação para sua família.</p>
                 </div>
-                <a href="https://wa.me/5583991330972" class="btn btn-dark">Solicitar Orçamento de Smart Home</a>
+                <a href="https://wa.me/5583991330972?text=<%= encodeURIComponent(waMsg || cityData.whatsappMessage || 'Olá! Gostaria de solicitar uma consultoria de automação residencial.') %>" class="btn btn-dark">Solicitar Orçamento de Smart Home</a>
             </div>
         </section>
 

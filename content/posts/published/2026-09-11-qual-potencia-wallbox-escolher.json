@@ -1,0 +1,92 @@
+{
+  "status": "published",
+  "slug": "qual-potencia-wallbox-escolher",
+  "title": "7,4 kW, 11 kW ou 22 kW: Qual Potência de Wallbox Escolher para o Seu Carro?",
+  "publishAt": "2026-09-11",
+  "category": "eletrica",
+  "categoryLabel": "Elétrica",
+  "summary": "Entenda como o On-Board Charger (OBC) do seu carro define a potência de recarga, compare tempos de 7,4 kW, 11 kW e 22 kW e evite gastar mais do que o necessário.",
+  "whatsappMessage": "Olá! Vim do artigo sobre potência de Wallbox (7,4 kW, 11 kW ou 22 kW) <%- locationPhrase %> e gostaria de uma recomendação técnica para o meu modelo de veículo.",
+  "readTime": "9 min",
+  "heroImage": "/img/wallbox/wallbox-hero.webp",
+  "keywords": [
+    "qual potência de wallbox escolher",
+    "Wallbox 7,4 kW 11 kW 22 kW",
+    "tempo de recarga",
+    "carregador veicular residencial",
+    "OBC carro elétrico"
+  ],
+  "contentHtml": "\n      <p class=\"lead\">Ao pesquisar carregadores veiculares Wallbox para sua residência ou empresa, você certamente encontrará três opções padrão no mercado de corrente alternada (AC): <strong>7,4 kW, 11 kW e 22 kW</strong>. A reação mais intuitiva do consumidor é pensar: <em>\"vou comprar o de 22 kW, porque é o mais potente e vai carregar meu carro no menor tempo possível\"</em>. No entanto, na engenharia de veículos elétricos, essa lógica quase nunca funciona dessa forma.</p>\n\n      <p>A velocidade máxima de carregamento em sua garagem não depende unicamente do Wallbox, mas sim de dois gargalos cruciais: o <strong>On-Board Charger (OBC)</strong> interno do veículo e a capacidade de fornecimento da sua rede elétrica. Abaixo, explicamos como economizar dinheiro e escolher a potência exata para o seu modelo de carro.</p>\n\n      <h2>O Papel do On-Board Charger (OBC): Quem Define a Velocidade?</h2>\n      <p>Nas estações residenciais (AC), o Wallbox não envia energia diretamente para a bateria de lítio. As baterias operam exclusivamente em Corrente Contínua (DC). Portanto, o Wallbox entrega Corrente Alternada (AC) a um conversor eletrônico instalado de fábrica dentro do motor do próprio veículo, chamado <strong>On-Board Charger (OBC)</strong>.</p>\n      <p>É o OBC que define o limite físico de potência que o automóvel consegue absorver em corrente alternada:</p>\n      <ul>\n        <li>Se o seu carro possui um OBC limitado a <strong>7 kW monofásico</strong> (caso de modelos como BYD Dolphin, Dolphin Mini ou Song Plus), <strong>mesmo que você o conecte a um Wallbox de 22 kW trifásico, o veículo continuará puxando no máximo 7 kW</strong>. A potência restante ficará ociosa;</li>\n        <li>Para aproveitar uma estação de <strong>11 kW</strong>, o carro obrigatoriamente precisa possuir um OBC trifásico de 11 kW (como Volvo EX30, BYD Seal, BMW i4 ou GWM Ora 03 GT);</li>\n        <li>Carregadores de <strong>22 kW AC</strong> só entregam seu potencial máximo em raríssimos modelos de luxo que equipam OBC trifásico de 22 kW (como Porsche Taycan com opcional específico ou Renault Megane E-Tech).</li>\n      </ul>\n\n      <h2>Tabela Comparativa: 7,4 kW vs. 11 kW vs. 22 kW</h2>\n      <p>Compare as especificações técnicas, exigências de rede e tempos médios de recarga de 20% a 80% de bateria:</p>\n\n      <table class=\"blog-table\" style=\"width:100%; border-collapse: collapse; margin: 1.5rem 0;\">\n        <thead>\n          <tr style=\"background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);\">\n            <th style=\"padding: 12px; text-align: left;\">Potência Nominal</th>\n            <th style=\"padding: 12px; text-align: left;\">Tipo de Conexão Elétrica</th>\n            <th style=\"padding: 12px; text-align: left;\">Corrente por Fase</th>\n            <th style=\"padding: 12px; text-align: left;\">Modelos de Carros Atendidos</th>\n            <th style=\"padding: 12px; text-align: left;\">Tempo Médio (20% a 80%)</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">7,4 kW</td>\n            <td style=\"padding: 12px;\">Monofásico 220V ou Bifásico</td>\n            <td style=\"padding: 12px;\">32A</td>\n            <td style=\"padding: 12px;\">BYD Dolphin / Mini, GWM Haval H6, Song Plus, híbridos plug-in em geral.</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">5 a 7 horas</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">11 kW</td>\n            <td style=\"padding: 12px;\">Trifásico 380V / 220V</td>\n            <td style=\"padding: 12px;\">16A (por fase)</td>\n            <td style=\"padding: 12px;\">Volvo EX30 / XC40, BYD Seal, BMW iX1 / i4, GWM Ora 03 GT.</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">3,5 a 5 horas</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">22 kW</td>\n            <td style=\"padding: 12px;\">Trifásico 380V / 220V</td>\n            <td style=\"padding: 12px;\">32A (por fase)</td>\n            <td style=\"padding: 12px;\">Porsche Taycan (com OBC 22 kW), Audi e-tron GT, frotas corporativas.</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">2 a 3 horas</td>\n          </tr>\n        </tbody>\n      </table>\n\n      <h2>Qual Potência Faz Sentido para a Sua Residência?</h2>\n      <p>Na grande maioria das residências e apartamentos na Paraíba (rede Energisa em 220V/380V):</p>\n      <ul>\n        <li><strong>O Wallbox de 7,4 kW é a escolha ideal para 90% dos proprietários:</strong> Ele recarrega completamente a bateria durante a madrugada (em 5 a 6 horas) enquanto você dorme, com custo de instalação acessível e sem exigir transformadores caros;</li>\n        <li><strong>O Wallbox de 11 kW é perfeito se você já possui entrada trifásica:</strong> Sua grande vantagem técnica é exigir apenas 16A por fase. Isso gera menos estresse térmico no quadro elétrico do que puxar 32A em uma única fase;</li>\n        <li><strong>O Wallbox de 22 kW só se justifica comercialmente:</strong> Para residências, ele frequentemente demanda aumento drástico de carga na concessionária, cabos grossos de 16 mm² a 25 mm² e alto custo, sendo que a maioria dos veículos elétricos nem sequer conseguirá absorver essa potência.</li>\n      </ul>\n\n      <div style=\"background: var(--bg-tertiary); padding: 2rem; border-radius: 8px; margin: 2.5rem 0; border-left: 4px solid var(--accent-primary);\">\n        <h3 style=\"margin-top: 0; color: var(--text-main);\">Dimensionamento Técnico sem Erros</h3>\n        <p style=\"color: var(--text-muted);\">Antes de comprar seu carregador na internet ou fechar pacote com a concessionária de carros, consulte a engenharia da Klyfe Electric. Avaliamos o manual do seu veículo e a capacidade real do seu imóvel para indicar a melhor potência com o menor custo.</p>\n        <p><a href=\"/solucoes/eletrica/carregador-veicular/\" style=\"font-weight: bold; color: var(--accent-primary); text-decoration: underline;\">Fale com nossos especialistas em infraestrutura veicular →</a></p>\n      </div>\n    ",
+  "faq": [
+    {
+      "question": "Se eu comprar um Wallbox de 22 kW, ele vai carregar meu BYD Dolphin em 2 horas?",
+      "answer": "Não. O BYD Dolphin possui um carregador interno (OBC) limitado a aproximadamente 6,6 kW a 7 kW em corrente alternada. Conectá-lo a um Wallbox de 22 kW resultará no mesmo tempo de recarga que um Wallbox de 7,4 kW, pois o carro não autoriza a passagem de corrente superior ao seu limite de fábrica."
+    },
+    {
+      "question": "Qual é a diferença entre carregamento AC (Wallbox) e DC (Carregador Rápido)?",
+      "answer": "O Wallbox residencial opera em Corrente Alternada (AC), usando o conversor interno do carro para carregar a bateria de forma lenta e suave, preservando a vida útil das células químicas. Os carregadores ultrarrápidos de rodovias operam em Corrente Contínua (DC com 50 kW a 150 kW+), injetando energia diretamente na bateria sem passar pelo OBC."
+    },
+    {
+      "question": "Minha casa tem energia monofásica 220V. Posso instalar um Wallbox de 11 kW?",
+      "answer": "Não. Carregadores de 11 kW operam obrigatoriamente com alimentação trifásica (3 fases de 220V defasadas a 380V). Em imóveis monofásicos, a potência máxima utilizável em estações AC é o padrão de 7,4 kW (em 32A)."
+    },
+    {
+      "question": "Carregar em 11 kW desgasta mais a bateria do que em 7,4 kW?",
+      "answer": "Não de forma significativa. Tanto 7,4 kW quanto 11 kW são consideradas recargas lentas pelo gerenciador eletrônico da bateria (BMS). O desgaste térmico por degradação acelerada ocorre principalmente com recargas diárias em estações ultrarrápidas DC de alta amperagem."
+    }
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "qual potência de wallbox escolher",
+  "searchIntent": "comercial-investigação",
+  "metaTitle": "Qual Potência de Wallbox Escolher? 7,4, 11 ou 22 kW",
+  "metaDescription": "Compare Wallbox de 7,4 kW, 11 kW e 22 kW pelo carregador interno do carro, fases, tempo, quadro, segurança e custo da instalação.",
+  "seoTitle": "Qual Potência de Wallbox Escolher? 7,4, 11 ou 22 kW",
+  "seoDescription": "Compare Wallbox de 7,4 kW, 11 kW e 22 kW pelo carregador interno do carro, fases, tempo, quadro, segurança e custo da instalação.",
+  "tags": [
+    "Potência",
+    "Wallbox",
+    "Recarga",
+    "OBC"
+  ],
+  "imageAlt": "Comparação de carregadores Wallbox de diferentes potências para veículos elétricos",
+  "heroImageAlt": "Comparação de carregadores Wallbox de diferentes potências para veículos elétricos",
+  "canonicalPath": "/blog/qual-potencia-wallbox-escolher",
+  "robots": "index, follow",
+  "ogTitle": "Qual Potência de Wallbox Escolher? 7,4, 11 ou 22 kW",
+  "ogDescription": "Compare Wallbox de 7,4 kW, 11 kW e 22 kW pelo carregador interno do carro, fases, tempo, quadro, segurança e custo da instalação.",
+  "ogImage": "/img/wallbox/wallbox-hero.webp",
+  "dateModified": "2026-09-16",
+  "dateModifiedIso": "2026-09-16T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "ABNT NBR 17019:2022 — Alimentação de veículos elétricos",
+      "publisher": "ABNT Catálogo",
+      "url": "https://www.abntcatalogo.com.br/default.aspx?P=C0W59PS6VY3A",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Veículos elétricos",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/veiculos-eletricos",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "capacidade da instalação",
+      "url": "/blog/quadro-eletrico-wallbox"
+    },
+    {
+      "anchor": "modo de recarga",
+      "url": "/blog/wallbox-ou-tomada-comum"
+    },
+    {
+      "anchor": "impacto no orçamento",
+      "url": "/blog/quanto-custa-instalar-wallbox"
+    }
+  ],
+  "contentAppendHtml": "\n<section class=\"blog-editorial-expansion\" data-blog-block=\"editorial-expansion-v1\">\n  <h2>A maior potência nem sempre é a melhor escolha</h2>\n  <p><strong>Resposta curta:</strong> A potência útil depende do carregador interno do veículo, da tensão e fases disponíveis, da rotina de uso e da capacidade do imóvel. Um Wallbox maior pode não reduzir o tempo se o carro limitar a entrada.</p>\n  <p>Também existe diferença entre potência nominal e potência efetiva. Temperatura, estado da bateria, curva de carregamento e gerenciamento de carga alteram a velocidade ao longo da sessão.</p>\n\n  <h2>Como avaliar o seu caso</h2>\n  <p>Consulte o manual do veículo e do carregador. Depois compare a energia que precisa repor por dia com a janela de estacionamento e com a capacidade elétrica disponível.</p>\n  <ul><li>confirmar potência AC aceita pelo veículo;</li><li>verificar tensão e fases do imóvel;</li><li>calcular energia diária necessária;</li><li>considerar balanceamento e cargas simultâneas;</li><li>comparar custo da potência extra com o benefício real;</li></ul>\n\n  <h2>O que este guia não promete</h2>\n  <p>7,4, 11 e 22 kW não são níveis intercambiáveis em todos os imóveis. Não aumente a potência sem revisar quadro, condutores, proteção e padrão.</p>\n\n  <h2>Próximo passo recomendado</h2>\n  <p>Defina primeiro a rotina de recarga e, só depois, escolha o equipamento e dimensione a infraestrutura.</p>\n  <aside class=\"blog-content-cta\" data-blog-block=\"related-links-v1\">\n    <h3>Continue a pesquisa</h3>\n    <ul><li><a href=\"/blog/quadro-eletrico-wallbox\">capacidade da instalação</a></li><li><a href=\"/blog/wallbox-ou-tomada-comum\">modo de recarga</a></li><li><a href=\"/blog/quanto-custa-instalar-wallbox\">impacto no orçamento</a></li></ul>\n  </aside>\n</section>\n<section class=\"blog-editorial-deepening\" data-blog-block=\"editorial-expansion-v2\">\n  <h2>Tempo de recarga: uma conta simples, com limites</h2>\n  <p>Uma estimativa inicial pode dividir a energia a repor pela potência média de carregamento. Na prática, a curva do veículo reduz a potência em determinados níveis de bateria, e perdas do carregador e da instalação também entram na conta.</p>\n<p>Se o carro percorre poucos quilômetros por dia e permanece muitas horas estacionado, uma potência menor pode atender a rotina. Se há pouco tempo de parada, uso intenso ou mais de um veículo, a potência e o gerenciamento precisam ser avaliados em conjunto.</p>\n<p>Potência elevada também aumenta exigência de circuito, proteções, fases e eventual obra. A economia de tempo deve ser comparada com o investimento e com a capacidade disponível.</p>\n  <h3>Checklist de aplicação</h3>\n  <ul><li>calcular kWh usados por dia;</li><li>considerar janela de estacionamento;</li><li>usar potência AC aceita pelo veículo;</li><li>incluir perdas e redução no fim da carga;</li><li>comparar obra e benefício;</li></ul>\n  <p><strong>Limite importante:</strong> O equipamento ideal é aquele que atende a rotina com margem de segurança. Comprar a maior potência sem poder aproveitá-la gera custo sem benefício proporcional.</p>\n</section>\n\n\n<section class=\"blog-editorial-second-round\" data-blog-block=\"editorial-expansion-v4\">\n  <h2>Como escolher potência de Wallbox pelo uso real do veículo</h2>\n  <p>A potência correta começa pelo carregador interno AC do veículo. Um Wallbox de 22 kW não fará o carro carregar nessa potência se o veículo aceitar menos. Consulte manual, versão, conector e limites de corrente antes de comprar. A infraestrutura deve atender o equipamento escolhido sem pagar por capacidade que não será usada.</p>\n<p>Calcule a energia que precisa repor por dia e a janela em que o carro fica parado. Se a rotina permite várias horas, uma potência menor pode repor a mesma energia com menor exigência de quadro. Se há uso intenso ou pouco tempo estacionado, a potência maior pode fazer sentido, desde que a rede suporte.</p>\n<p>Compare 7,4, 11 e 22 kW com tensão e fases disponíveis. A potência muda a corrente do circuito, a seção de cabos, a proteção, a demanda e o custo da obra. Em alguns imóveis, a alternativa de gerenciar carga ou usar duas sessões pode ser melhor que aumentar o padrão.</p>\n<p>A curva de carregamento também importa. O veículo pode reduzir corrente quando a bateria aquece, está quase cheia ou o sistema limita a potência. O tempo de recarga real não é simplesmente capacidade da bateria dividida pela potência nominal. Considere perdas e comportamento do equipamento.</p>\n<p>Em condomínios e empresas, potência individual precisa ser combinada com simultaneidade. Vários Wallboxes no mesmo período podem superar padrão, transformador ou alimentação. Balanceamento, prioridade, medição e regras de uso devem ser definidos antes da expansão.</p>\n<p>O orçamento deve separar preço do aparelho e infraestrutura. Potência maior pode exigir quadro, cabos, proteção, rota, adequação de padrão e aumento de demanda. Compare o custo marginal da potência extra com o tempo economizado na rotina, não apenas o preço do equipamento.</p>\n<p>A configuração deve ser documentada. Registre corrente máxima, fases, limites do veículo, modo de operação, proteção e quem pode alterar parâmetros. Aumentar a corrente depois sem revisar a instalação cria risco e pode invalidar a lógica do projeto.</p>\n<p>Reavalie quando mudar o veículo ou a vaga. Um novo carro, outro ponto de estacionamento ou a instalação de geração solar pode mudar a potência útil e o gerenciamento. A escolha atual deve deixar claras as premissas que permitiriam uma futura expansão.</p>\n  <h3>Roteiro de aplicação</h3>\n  <ul><li>consultar carregador interno do veículo;</li><li>calcular energia diária e janela de estacionamento;</li><li>verificar tensão e fases;</li><li>considerar curva e perdas de recarga;</li><li>analisar simultaneidade em múltiplos pontos;</li><li>comparar custo da infraestrutura;</li><li>documentar corrente e parâmetros;</li></ul>\n  <h3>Dúvidas práticas</h3>\n  <p><strong>22 kW sempre carrega mais rápido?</strong> Somente se o veículo, a rede e o circuito aceitarem essa potência. O limite mais baixo define o resultado.</p>\n<p><strong>7,4 kW é suficiente?</strong> Pode ser para uma rotina noturna, mas depende da energia diária, do veículo e da janela disponível.</p>\n<p><strong>Potência maior exige padrão maior?</strong> Pode exigir. A demanda, fases, alimentador, proteções e regras locais devem ser analisados.</p>\n  <p><strong>Síntese:</strong> Escolha a potência pela energia que a rotina exige e pela capacidade real do veículo e da instalação.</p>\n</section>"
+}

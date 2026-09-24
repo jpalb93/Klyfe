@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head') %>
+</head>
+<body class="page-service page-wallbox page-wallbox-empresa">
+    <%- include('partials/navbar') %>
+
+    <style>
+        .page-wallbox .wallbox-brief-form label {
+            color: #E2E8F0 !important;
+        }
+    </style>
+
+    <%
+        const wallboxWaMsg = (typeof waMsg !== 'undefined' && waMsg)
+            ? waMsg
+            : `Olá! Gostaria de solicitar um projeto corporativo de estações de recarga Wallbox para empresa em ${cityData.name}.`;
+        const wallboxWaUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(wallboxWaMsg)}`;
+    %>
+
+    <main class="wallbox-page-content">
+        <% const heroBg = (typeof serviceData !== 'undefined' && serviceData.heroImage) ? serviceData.heroImage : '/img/wallbox/wallbox-empresa.webp'; %>
+        <section class="page-hero bg-blueprint hero-wallbox" style="background: linear-gradient(100deg, rgba(8, 19, 29, 0.95) 0%, rgba(8, 19, 29, 0.80) 54%, rgba(8, 19, 29, 0.42) 100%), url('<%= heroBg %>') center / cover no-repeat !important; padding-top:120px; padding-bottom:4rem">
+            <div class="container fade-in">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [
+                    { label: 'Home', href: getHomePrefix() || '/' },
+                    { label: 'Soluções', href: getHomePrefix() + '/solucoes' },
+                    { label: 'Serviços elétricos', href: getHomePrefix() + '/solucoes/eletrica' },
+                    { label: 'Instalação de Wallbox', href: getHomePrefix() + '/solucoes/eletrica/carregador-veicular/' },
+                    { label: 'Wallbox para Empresas' }
+                ] }) %>
+
+                <div class="section-separator fade-in"><%- include('partials/symbol') %> <span>CORPORATIVO & FROTAS B2B</span></div>
+                <h1 style="color:var(--text-main); font-size: 3.5rem; line-height: 1.1; margin-top: 1.5rem;">Instalação de Wallbox para Empresas <span style="color:var(--accent-primary)"><%= cityData.preposition %> <%= cityData.name %></span></h1>
+                <p style="color:var(--text-muted);font-size:1.15rem;max-width:800px;margin:1.5rem 0">Estações de recarga veicular para empresas, frotas comerciais, hotéis, clínicas e centros comerciais: totens de alta potência, protocolo aberto OCPP, bilhetagem por RFID/App e estudo de demanda na subestação.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap; margin-top: 2rem;">
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-primary" data-wallbox-event="empresa_hero_whatsapp" data-content-category="wallbox" data-content-name="wallbox-empresa-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Solicitar Estudo Corporativo
+                    </a>
+                    <a href="#solucoes-empresa" class="btn btn-ghost">Aplicações Comerciais</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROVA DE VALOR -->
+        <section class="wallbox-proof-strip" aria-label="Vantagens corporativas">
+            <div class="container wallbox-proof-grid">
+                <div><strong>01</strong><span>Até 80% de Economia em Frotas Comerciais</span></div>
+                <div><strong>02</strong><span>Monetização e Cobrança Automatizada</span></div>
+                <div><strong>03</strong><span>Atração de Clientes de Alto Poder Aquisitivo</span></div>
+                <div><strong>04</strong><span>Adequação de Demanda e Subestação com ART</span></div>
+            </div>
+        </section>
+
+        <!-- APLICAÇÕES EMPRESARIAIS -->
+        <section id="solucoes-empresa" class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>SETOR CORPORATIVO</span></div>
+                        <h2>Onde aplicar estações de recarga <span>no seu negócio?</span></h2>
+                    </div>
+                    <p>Desenvolvemos projetos sob medida para diferentes segmentos comerciais, com dimensionamento de potência compatível com a rotina de atendimento.</p>
+                </div>
+
+                <div class="wallbox-specs-grid">
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-truck-fast"></i></div>
+                        <h3>Eletrificação de Frotas Comerciais</h3>
+                        <p>Substitua o combustível fóssil e reduza o custo operacional da frota da sua empresa em até 80%. Pátios de recarga noturna programada com gerenciamento centralizado de energia.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-hotel"></i></div>
+                        <h3>Hotéis, Pousadas e Resorts</h3>
+                        <p>Destaque seu empreendimento no Booking, Google Maps e PlugShare. Hóspedes com veículos elétricos priorizam estabelecimentos que oferecem recarga garantida durante a estadia.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-hospital"></i></div>
+                        <h3>Clínicas, Hospitais e Centros Médicos</h3>
+                        <p>Comodidade premium para médicos, pacientes e visitantes. Estações semirrápidas de 11 kW e 22 kW que entregam excelente autonomia durante o período de consultas ou procedimentos.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <h3>Shoppings, Supermercados e Lojas</h3>
+                        <p>Aumente o tempo de permanência e o tíquete médio dos seus clientes. Vagas eletrificadas exclusivas com possibilidade de cobrança por kWh ou cortesia mediante compras.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-building"></i></div>
+                        <h3>Centros Empresariais & Coworkings</h3>
+                        <p>Infraestrutura moderna para condôminos e diretores corporativos. Controle de acesso por cartão RFID vinculado à matrícula do colaborador ou cobrança individualizada.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-gas-pump"></i></div>
+                        <h3>Eletropostos & Paradas Rodoviárias</h3>
+                        <p>Estações rápidas DC de 30 kW a 60 kW preparadas para recargas expressas de 20 a 40 minutos em rodovias, postos de combustíveis e eixos logísticos da Paraíba.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECURSOS TECNOLÓGICOS E GESTÃO -->
+        <section class="section-padding wallbox-section bg-blueprint">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>TECNOLOGIA ABERTA</span></div>
+                        <h2>Gestão, monetização e controle total <span>da infraestrutura</span></h2>
+                    </div>
+                    <p>Instalamos soluções baseadas em protocolos mundiais abertos para que sua empresa nunca fique presa a um único fornecedor de software ou carregador.</p>
+                </div>
+
+                <div class="wallbox-condo-models-grid">
+                    <article class="wallbox-condo-card fade-in">
+                        <div class="condo-card-badge">INTEROPERABILIDADE</div>
+                        <h3>Protocolo Aberto OCPP 1.6 & 2.0.1</h3>
+                        <p class="condo-card-desc">Conecte seus carregadores a qualquer plataforma de gerenciamento de recarga do mercado (nacional ou internacional) via nuvem, com telemetria em tempo real.</p>
+                        <ul class="condo-card-features">
+                            <li><i class="fas fa-check"></i> Monitoramento de status em tempo real (Disponível, Carregando, Falha)</li>
+                            <li><i class="fas fa-check"></i> Relatórios gerenciais de consumo por estação, data e usuário</li>
+                            <li><i class="fas fa-check"></i> Atualização de firmware remota e diagnósticos automáticos</li>
+                            <li><i class="fas fa-check"></i> Liberdade para trocar de plataforma de software quando quiser</li>
+                        </ul>
+                    </article>
+
+                    <article class="wallbox-condo-card condo-card-featured fade-in">
+                        <div class="condo-card-badge">MONETIZAÇÃO E RECEITA</div>
+                        <h3>Cobrança e Controle de Acesso</h3>
+                        <p class="condo-card-desc">Transforme suas vagas de estacionamento em fontes ativas de faturamento ou fidelização de clientes de alta renda.</p>
+                        <ul class="condo-card-features">
+                            <li><i class="fas fa-check"></i> Início de recarga por QR Code no totem ou aplicativo móvel</li>
+                            <li><i class="fas fa-check"></i> Pagamento instantâneo via PIX ou cartão de crédito</li>
+                            <li><i class="fas fa-check"></i> Liberação por cartões RFID para colaboradores ou clientes VIP</li>
+                            <li><i class="fas fa-check"></i> Definição de tarifas personalizadas por dia e horário</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ENGENHARIA DE SUBESTAÇÃO E CONCESSIONÁRIA -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>ENGENHARIA PESADA</span></div>
+                        <h2>Análise de carga e subestação <span>junto à Energisa PB</span></h2>
+                    </div>
+                    <p>Grandes frotas ou múltiplos carregadores de 22 kW exigem cálculo criterioso de potência para evitar ultrapassagem de demanda contratada e multas da distribuidora.</p>
+                </div>
+
+                <div class="wallbox-specs-grid">
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Estudo de Demanda Contratada</h3>
+                        <p>Analisamos as faturas de energia e o histórico de demanda do seu imóvel para determinar quantos carregadores podem ser ligados sem necessidade de aumentar a conta fixa.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-plug-circle-bolt"></i></div>
+                        <h3>Projeto de Subestação e Transformador</h3>
+                        <p>Caso seja necessária ampliação da subestação abrigada ou aérea, nossa equipe de engenharia elabora o projeto elétrico completo e aprova na Energisa Paraíba.</p>
+                    </article>
+
+                    <article class="wallbox-spec-card fade-in">
+                        <div class="spec-card-icon"><i class="fas fa-chart-pie"></i></div>
+                        <h3>Gestão Dinâmica de Carga (DLB)</h3>
+                        <p>Tecnologia que modula a potência das estações para não competir com máquinas pesadas, compressores ou ar-condicionado central da empresa nos horários de pico.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO DE ORÇAMENTO CORPORATIVO -->
+        <section id="solicitar" class="section-padding wallbox-lead-section bg-blueprint">
+            <div class="container wallbox-lead-grid">
+                <div class="wallbox-lead-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>PROJETO CORPORATIVO</span></div>
+                    <h2>Eletrifique o seu negócio <%= cityData.preposition %> <span><%= cityData.name %></span></h2>
+                    <p>Receba uma avaliação técnica da capacidade elétrica da sua empresa e um planejamento estratégico para implementação de estações de recarga.</p>
+                    <div class="wallbox-lead-points">
+                        <span><i class="fas fa-check-circle"></i> Estudo de viabilidade de carga e subestação</span>
+                        <span><i class="fas fa-shield-alt"></i> Equipamentos homologados Inmetro e Anatel</span>
+                        <span><i class="fas fa-file-contract"></i> Emissão de ART no CREA-PB</span>
+                    </div>
+                </div>
+                <form id="wallbox-brief-form" class="wallbox-brief-form fade-in" data-phone="5583991330972" data-content-category="wallbox" data-content-name="wallbox-empresa-form">
+                    <input type="hidden" name="perfil" value="Empresa">
+                    <div class="wallbox-form-heading"><span>01</span><div><strong>Orçamento Empresarial</strong><small>Atendimento especializado B2B</small></div></div>
+                    <label for="wallbox-company" style="color: #FFFFFF !important;">Nome da Empresa / Razão Social</label>
+                    <input id="wallbox-company" name="empresa" type="text" placeholder="Sua empresa" required>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-name" style="color: #FFFFFF !important;">Responsável</label><input id="wallbox-name" name="nome" type="text" placeholder="Seu nome e cargo" required></div>
+                        <div><label for="wallbox-phone" style="color: #FFFFFF !important;">WhatsApp Corporativo</label><input id="wallbox-phone" name="telefone" type="tel" placeholder="(83) 99999-9999" required></div>
+                    </div>
+                    <div class="wallbox-form-row">
+                        <div><label for="wallbox-chargers-count" style="color: #FFFFFF !important;">Pontos previstos</label>
+                            <select id="wallbox-chargers-count" name="quantidade_carregadores" required>
+                                <option value="">Selecione</option>
+                                <option>1 a 2 pontos</option>
+                                <option>3 a 5 pontos</option>
+                                <option>6 a 10 pontos</option>
+                                <option>Mais de 10 pontos (Frota/Hub)</option>
+                            </select>
+                        </div>
+                        <div><label for="wallbox-city" style="color: #FFFFFF !important;">Cidade / Bairro</label><input id="wallbox-city" name="cidade" type="text" placeholder="Ex: João Pessoa, Campina Grande..." value="<%= cityData.name !== 'Paraíba' ? cityData.name : '' %>" required></div>
+                    </div>
+                    <label for="wallbox-purpose" style="color: #FFFFFF !important;">Principal objetivo da recarga:</label>
+                    <select id="wallbox-purpose" name="objetivo" required>
+                        <option value="">Selecione</option>
+                        <option>Atender clientes e visitantes (comércio/clínica/hotel)</option>
+                        <option>Eletrificação de frota comercial própria</option>
+                        <option>Uso exclusivo de diretores e colaboradores</option>
+                        <option>Eletroposto público com monetização</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary"><i class="fab fa-whatsapp"></i> Solicitar Estudo Corporativo</button>
+                    <small class="wallbox-form-note">Nossa equipe de engenharia entrará em contato para agendar a reunião técnica.</small>
+                </form>
+            </div>
+        </section>
+
+        <!-- ATENDIMENTO REGIONAL -->
+        <section class="section-padding wallbox-section wallbox-area-section">
+            <div class="container wallbox-area-grid">
+                <div class="wallbox-area-copy fade-in">
+                    <div class="section-separator"><%- include('partials/symbol') %> <span>COBERTURA COMERCIAL</span></div>
+                    <h2>Polos empresariais atendidos <span><%= cityData.preposition %> <%= cityData.name %></span></h2>
+                    <p>Atuamos fortemente nos principais eixos comerciais, médicos, industriais e turísticos da Paraíba e estados vizinhos.</p>
+                </div>
+                <div class="wallbox-area-card fade-in">
+                    <span class="wallbox-area-label">Centros Comerciais e Empresariais</span>
+                    <strong><%= cityData.name %> e Região</strong>
+                    <p><%= serviceData.bairros || 'Atendimento corporativo sob consulta.' %></p>
+                    <a href="#solicitar" class="text-link">Solicitar Visita Técnica na Minha Empresa <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="duvidas" class="section-padding wallbox-faq-section bg-blueprint">
+            <div class="container wallbox-faq-container">
+                <div class="section-separator section-separator-centered"><%- include('partials/symbol') %> <span>RESPOSTAS PARA EMPRESAS</span></div>
+                <h2>Perguntas Frequentes sobre <span>Wallbox para Empresas</span></h2>
+                <div class="wallbox-faq-list">
+                    <% (faqList || []).forEach(item => { %>
+                        <div class="wallbox-faq-item">
+                            <button class="wallbox-faq-question" type="button" aria-expanded="false"><%= item.question %><i class="fas fa-plus"></i></button>
+                            <div class="wallbox-faq-answer"><p><%= item.answer %></p></div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+
+        <!-- NAVEGAÇÃO ENTRE MODALIDADES -->
+        <section class="section-padding wallbox-section">
+            <div class="container">
+                <div class="wallbox-section-heading fade-in">
+                    <div>
+                        <div class="section-separator"><%- include('partials/symbol') %> <span>OUTRAS SOLUÇÕES</span></div>
+                        <h2>Conheça outras aplicações de <span>mobilidade elétrica</span></h2>
+                    </div>
+                    <p>Projetos residenciais, para condomínios e integrados com energia solar fotovoltaica.</p>
+                </div>
+                <div class="wallbox-other-solutions-grid">
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-casa.webp" alt="Wallbox residencial" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>RESIDENCIAL</span>
+                            <h3>Wallbox Residencial</h3>
+                            <p>Instalação de carregador veicular em casas com circuito exclusivo e proteções de alto padrão.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-condominio/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-condominio.webp" alt="Wallbox em condomínio" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>CONDOMÍNIOS</span>
+                            <h3>Wallbox em Condomínio</h3>
+                            <p>Projetos para vagas privativas em garagens coletivas com medição individualizada e rateio seguro.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                    <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-energia-solar/" class="wallbox-solution-card">
+                        <img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Wallbox integrado à energia solar" loading="lazy">
+                        <div class="wallbox-solution-card-body">
+                            <span>ENERGIA SOLAR</span>
+                            <h3>Wallbox + Energia Solar</h3>
+                            <p>Planeje a recarga para aproveitar a geração solar disponível no imóvel.</p>
+                            <strong>Conhecer Solução <i class="fas fa-arrow-right"></i></strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="wallbox-final-cta">
+            <div class="container wallbox-final-cta-inner">
+                <div>
+                    <span class="wallbox-eyebrow">INOVAÇÃO E ECONOMIA</span>
+                    <h2>Prepare sua empresa para o futuro da mobilidade elétrica.</h2>
+                    <p>Agende uma consultoria técnica com a engenharia da Klyfe Electric.</p>
+                </div>
+                <div class="wallbox-final-cta-actions">
+                    <a href="#solicitar" class="btn btn-primary" data-wallbox-event="final_primary_cta">Agendar Consultoria</a>
+                    <a href="<%= wallboxWaUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" data-wallbox-event="final_whatsapp_cta" data-content-category="wallbox"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

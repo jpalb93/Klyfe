@@ -1,0 +1,86 @@
+{
+  "status": "published",
+  "slug": "quanto-custa-instalar-wallbox",
+  "title": "Quanto custa instalar wallbox? Itens para comparar no orçamento",
+  "publishAt": "2026-09-11",
+  "category": "eletrica",
+  "categoryLabel": "Elétrica",
+  "summary": "Veja como percurso elétrico, capacidade do quadro, proteções, equipamento e adequações influenciam a proposta de instalação.",
+  "whatsappMessage": "Olá! Vim do artigo sobre quanto custa instalar Wallbox <%- locationPhrase %> e gostaria de solicitar uma avaliação e orçamento para o meu imóvel.",
+  "readTime": "3 min",
+  "heroImage": "/img/wallbox/wallbox-hero.webp",
+  "keywords": [
+    "itens do orçamento de wallbox"
+  ],
+  "contentHtml": "<p class=\"lead\">O preço para instalar um wallbox varia com o imóvel e com o escopo. O mesmo carregador pode exigir percursos de cabo e adequações diferentes em uma casa, garagem coletiva ou empresa. Uma faixa genérica de valores não substitui um levantamento.</p>\n<h2>Quais itens entram na conta?</h2><p>Peça discriminação de equipamento, circuito, materiais, proteções, mão de obra, testes e documentação prevista. Se o wallbox será comprado separadamente, confirme compatibilidade e responsabilidades de garantia.</p>\n<p>Compare também o que foi excluído: reparos civis, adequação do padrão, medição individual ou reforço da infraestrutura podem alterar o custo final.</p>\n<h2>Por que o percurso importa?</h2><p>Distância até o quadro, forma de passagem, obstáculos e áreas comuns influenciam materiais e tempo de instalação. Um trajeto curto em metros pode ser complexo se exigir acesso restrito ou intervenção em acabamento.</p>\n<p>Peça que a proposta descreva o caminho previsto e as condições que podem levar a revisão do preço.</p>\n<h2>O quadro suporta a recarga?</h2><p>A disponibilidade elétrica precisa ser avaliada junto às demais cargas do imóvel. Se houver necessidade de adequação, peça escopo e preço separados para entender o investimento total.</p>\n<p>Não considere a potência máxima anunciada do equipamento como indicação de que o imóvel pode usá-la sem ajustes.</p>\n<h2>Como comparar propostas?</h2><p>Use as mesmas premissas de potência, percurso e entrega. Verifique responsáveis, prazo, testes e suporte. Uma proposta mais barata com escopo incompleto pode resultar em aditivos depois.</p>\n<h2>Exemplo para comparar situações</h2><p>Um ponto de recarga próximo ao quadro não tem necessariamente o mesmo custo de uma garagem distante ou compartilhada. Diferenças de percurso, acesso e capacidade elétrica podem ser decisivas. Um preço anunciado sem vistoria deve ser lido como estimativa condicionada.</p>\n<p>Se houver necessidade de adequar o quadro, peça orçamento separado para essa etapa e confirme quem autoriza a intervenção.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Equipamento incluído ou fornecido pelo cliente.</li><li>Percurso e materiais previstos.</li><li>Capacidade elétrica e adequações.</li><li>Documentos, testes e garantia.</li><li>Exclusões e condições de revisão do preço.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/solucoes/eletrica/carregador-veicular/\">serviço de instalação de carregador veicular</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
+  "faq": [
+    {
+      "question": "Existe preço único por wallbox?",
+      "answer": "Não. O equipamento é apenas parte do custo; a infraestrutura do imóvel altera a instalação."
+    },
+    {
+      "question": "Posso comparar apenas o valor final?",
+      "answer": "Compare escopo, exclusões, testes e responsabilidades para evitar propostas incomparáveis."
+    }
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "itens do orçamento de wallbox",
+  "searchIntent": "informacional",
+  "metaTitle": "Quanto custa instalar wallbox? Itens para comparar no orçamento",
+  "metaDescription": "Veja como percurso elétrico, capacidade do quadro, proteções, equipamento e adequações influenciam a proposta de instalação.",
+  "seoTitle": "Quanto custa instalar wallbox? Itens para comparar no orçamento",
+  "seoDescription": "Veja como percurso elétrico, capacidade do quadro, proteções, equipamento e adequações influenciam a proposta de instalação.",
+  "tags": [
+    "Preço",
+    "Wallbox",
+    "Orçamento",
+    "Infraestrutura"
+  ],
+  "imageAlt": "Vistoria para orçamento de instalação de Wallbox em garagem residencial",
+  "heroImageAlt": "Vistoria para orçamento de instalação de Wallbox em garagem residencial",
+  "canonicalPath": "/blog/quanto-custa-instalar-wallbox",
+  "robots": "index, follow",
+  "ogTitle": "Quanto custa instalar wallbox? Itens para comparar no orçamento",
+  "ogDescription": "Veja como percurso elétrico, capacidade do quadro, proteções, equipamento e adequações influenciam a proposta de instalação.",
+  "ogImage": "/img/wallbox/wallbox-hero.webp",
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "ABNT NBR 17019:2022 — Alimentação de veículos elétricos",
+      "publisher": "ABNT Catálogo",
+      "url": "https://www.abntcatalogo.com.br/default.aspx?P=C0W59PS6VY3A",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Veículos elétricos",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/veiculos-eletricos",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Norma Regulamentadora nº 10",
+      "publisher": "Ministério do Trabalho e Emprego",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "avaliação do quadro",
+      "url": "/blog/quadro-eletrico-wallbox"
+    },
+    {
+      "anchor": "potência do carregador",
+      "url": "/blog/qual-potencia-wallbox-escolher"
+    },
+    {
+      "anchor": "custos em condomínio",
+      "url": "/blog/wallbox-em-condominio"
+    }
+  ],
+  "contentAppendHtml": ""
+}

@@ -1,0 +1,86 @@
+{
+  "status": "published",
+  "slug": "como-escolher-instalador-wallbox",
+  "title": "Como escolher um instalador de wallbox: perguntas para fazer",
+  "publishAt": "2026-09-11",
+  "category": "eletrica",
+  "categoryLabel": "Elétrica",
+  "summary": "Confira o que perguntar sobre vistoria, capacidade elétrica, proteção, escopo e documentação antes de contratar a instalação.",
+  "whatsappMessage": "Olá! Vim do artigo sobre como escolher instalador de Wallbox <%- locationPhrase %> e gostaria de solicitar uma proposta com engenharia especializada e ART.",
+  "readTime": "3 min",
+  "heroImage": "/img/wallbox/wallbox-hero.webp",
+  "keywords": [
+    "como avaliar instalador de wallbox"
+  ],
+  "contentHtml": "<p class=\"lead\">Um orçamento de wallbox precisa considerar a instalação existente e a forma de uso do veículo. A decisão sobre o profissional não deve se apoiar apenas no preço nem em uma lista universal de materiais: peça explicações sobre avaliação, projeto, execução e entrega.</p>\n<h2>O que será vistoriado?</h2><p>Pergunte se a equipe analisará quadro, alimentação, percurso do circuito, capacidade disponível e características do carregador. O escopo do levantamento deve aparecer na proposta, inclusive quando houver limitações de acesso.</p>\n<p>Uma resposta dada só pela potência nominal do wallbox pode deixar de fora adequações da instalação.</p>\n<h2>Quem assume a responsabilidade técnica?</h2><p>Peça identificação da empresa e dos profissionais responsáveis pelas atividades que exigirem habilitação. Confirme quais documentos serão emitidos conforme o escopo e as exigências aplicáveis.</p>\n<p>Evite assumir que um documento específico sempre será necessário ou suficiente em todo imóvel.</p>\n<h2>Como comparar a proposta?</h2><p>Separe equipamento, materiais, mão de obra, adequações, testes e eventuais serviços de terceiros. Peça explicação do que não está incluído e do que muda caso a vistoria revele outra necessidade.</p>\n<p>Confirme orientações de uso, manutenção e canais de suporte após a entrega.</p>\n<h2>E se for condomínio?</h2><p>Além da instalação elétrica, pode haver regras internas, medição e autorização de intervenção em área comum. Trate essas questões antes de fechar o escopo da obra.</p>\n<h2>Exemplo para comparar situações</h2><p>Dois orçamentos para o mesmo carregador podem partir de premissas diferentes: um considera quadro existente e percurso livre; outro inclui novo circuito e passagem em área comum. Antes de concluir que um está caro, confira se os escopos coincidem.</p>\n<p>Peça que os testes e as orientações de entrega sejam descritos. Eles fazem parte da instalação, mesmo quando não aparecem como item separado de material.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Vistoria e limites de acesso.</li><li>Capacidade do quadro e percurso do circuito.</li><li>Responsáveis técnicos e documentos previstos.</li><li>Itens incluídos e excluídos.</li><li>Testes, orientações e suporte.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/solucoes/eletrica/carregador-veicular/\">serviço de instalação de carregador veicular</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
+  "faq": [
+    {
+      "question": "Basta informar o modelo do carregador para ter preço fechado?",
+      "answer": "Geralmente faltam informações sobre a instalação e o percurso elétrico; peça que as premissas do preço sejam explícitas."
+    },
+    {
+      "question": "Todo imóvel precisa da mesma adequação?",
+      "answer": "Não. A necessidade depende da capacidade e das condições verificadas."
+    }
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "como avaliar instalador de wallbox",
+  "searchIntent": "informacional",
+  "metaTitle": "Como escolher um instalador de wallbox: perguntas para fazer",
+  "metaDescription": "Confira o que perguntar sobre vistoria, capacidade elétrica, proteção, escopo e documentação antes de contratar a instalação.",
+  "seoTitle": "Como escolher um instalador de wallbox: perguntas para fazer",
+  "seoDescription": "Confira o que perguntar sobre vistoria, capacidade elétrica, proteção, escopo e documentação antes de contratar a instalação.",
+  "tags": [
+    "Wallbox",
+    "Instalação",
+    "ART",
+    "Segurança"
+  ],
+  "imageAlt": "Instalador avaliando quadro elétrico e rota de cabos para Wallbox",
+  "heroImageAlt": "Instalador avaliando quadro elétrico e rota de cabos para Wallbox",
+  "canonicalPath": "/blog/como-escolher-instalador-wallbox",
+  "robots": "index, follow",
+  "ogTitle": "Como escolher um instalador de wallbox: perguntas para fazer",
+  "ogDescription": "Confira o que perguntar sobre vistoria, capacidade elétrica, proteção, escopo e documentação antes de contratar a instalação.",
+  "ogImage": "/img/wallbox/wallbox-hero.webp",
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "ABNT NBR 17019:2022 — Alimentação de veículos elétricos",
+      "publisher": "ABNT Catálogo",
+      "url": "https://www.abntcatalogo.com.br/default.aspx?P=C0W59PS6VY3A",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Veículos elétricos",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/veiculos-eletricos",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Norma Regulamentadora nº 10",
+      "publisher": "Ministério do Trabalho e Emprego",
+      "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/normas-regulamentadora/normas-regulamentadoras-vigentes/norma-regulamentadora-no-10-nr-10",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "capacidade do quadro",
+      "url": "/blog/quadro-eletrico-wallbox"
+    },
+    {
+      "anchor": "segurança na recarga",
+      "url": "/blog/cuidados-seguranca-carregador-veicular"
+    },
+    {
+      "anchor": "composição do orçamento",
+      "url": "/blog/quanto-custa-instalar-wallbox"
+    }
+  ],
+  "contentAppendHtml": ""
+}

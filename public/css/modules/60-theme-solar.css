@@ -352,22 +352,30 @@
 
 /* FOOTER */
 [data-theme="azure-sky"] .main-footer {
-  background: #0E2433;
-  border-top: 3px solid #3B9DD9;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(255, 107, 43, 0.08), transparent 23rem),
+    linear-gradient(180deg, #0C0D0E 0%, #070809 72%, #050607 100%) !important;
+  border-top: 0;
   color: #C5D9E8;
 }
 [data-theme="azure-sky"] .main-footer a,
 [data-theme="azure-sky"] .footer-col h4,
+[data-theme="azure-sky"] .footer-col h3,
+[data-theme="azure-sky"] .footer-social-block h4,
 [data-theme="azure-sky"] .footer-tagline,
 [data-theme="azure-sky"] .footer-links a,
 [data-theme="azure-sky"] .footer-bottom { color: #A8C4D8; }
 [data-theme="azure-sky"] .footer-col h4,
-[data-theme="azure-sky"] .footer-links a:hover { color: #7EC8F0; }
+[data-theme="azure-sky"] .footer-col h3,
+[data-theme="azure-sky"] .footer-social-block h4,
+[data-theme="azure-sky"] .footer-links a:hover { color: #FF6B2B; }
 [data-theme="azure-sky"] .main-footer .logo-cls-white { fill: #E8F4FC; }
 [data-theme="azure-sky"] .main-footer .logo-cls-yellow,
 [data-theme="azure-sky"] .main-footer .klyfe-symbol path,
 [data-theme="azure-sky"] .main-footer .klyfe-symbol rect { fill: #3B9DD9; }
-[data-theme="azure-sky"] .footer-col h4::after { background: #3B9DD9; }
+[data-theme="azure-sky"] .footer-col h4::after,
+[data-theme="azure-sky"] .footer-col h3::after,
+[data-theme="azure-sky"] .footer-social-block h4::after { background: #FF6B2B; }
 
 @media (max-width: 900px) {
   [data-theme="azure-sky"] .home-diferenciais-grid {

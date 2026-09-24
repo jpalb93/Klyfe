@@ -27,7 +27,7 @@ module.exports = {
             serviceUrl: '<%- getHomePrefix() %>/solucoes/eletrica',
             topics: [
                 'laudo NR-10 obrigatoriedade empresas',
-                'SPDA NBR 5419 quando é obrigatório',
+                'SPDA NBR 5419: como avaliar a necessidade conforme o caso',
                 'aterramento NBR 5410 requisitos',
                 'quadro elétrico industrial dimensionamento',
                 'termografia infravermelha instalações elétricas',
@@ -59,7 +59,7 @@ module.exports = {
                 'subestação aérea projeto requisitos',
                 'projeto elétrico predial NBR 5410',
                 'BIM engenharia elétrica vantagens',
-                'laudo SPDA seguro contra incêndio',
+                'laudo SPDA e documentação exigida pela apólice: o que verificar',
                 'projeto elétrico industrial dimensionamento',
                 'regularização instalação elétrica antiga'
             ]

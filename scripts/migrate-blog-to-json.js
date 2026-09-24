@@ -48,9 +48,16 @@ function migrate() {
             readTime: post.readTime,
             author: post.author,
             heroImage: post.heroImage,
+            imageAlt: post.imageAlt,
+            dateModified: post.dateModified,
+            dateModifiedIso: post.dateModifiedIso,
+            authorRole: post.authorRole,
+            authorBio: post.authorBio,
             contentHtml: post.contentHtml.trim(),
             faq: post.faq,
-            keywords: [],
+            sources: post.sources || [],
+            keywords: post.keywords || [],
+            tags: post.tags || [],
             affiliateProducts: [],
             affiliateDisclosure: false
         };

@@ -13,7 +13,7 @@ A Klyfe Electric combina engenharia de alta performance, conformidade regulatór
 ### 1. Engenharia Elétrica
 - **Projetos Elétricos:** Projetos prediais, residenciais, comerciais e industriais compatibilizados em ambiente BIM 3D.
 - **Laudos Técnicos:** Laudos de aterramento, termografia infravermelha, prontuários de instalações elétricas (PIE) e vistorias técnicas.
-- **SPDA (Para-raios):** Projetos e inspeções de proteção contra descargas atmosféricas conforme NBR 5419.
+- **SPDA (Para-raios):** Levantamento, avaliação de risco, projeto, instalação, adequação, inspeção, documentação técnica e manutenção de sistemas de proteção contra descargas atmosféricas, conforme a ABNT NBR 5419 vigente, as características da edificação e o escopo contratado.
 - **Subestações:** Projetos e manutenção preventiva de subestações de média tensão de até 500kVA.
 - **Homologação:** Trâmite completo de aprovação de projetos elétricos e de medição agrupada perante a Energisa.
 
@@ -23,6 +23,11 @@ A Klyfe Electric combina engenharia de alta performance, conformidade regulatór
 
 ### 3. Automação Smart
 - **Smart Home:** Integração de sistemas de iluminação, climatização, áudio e vídeo, redes Wi-Fi integradas e controle remoto.
+
+### 4. Glossário Técnico
+- **Base de conhecimento:** Definições práticas sobre fundamentos elétricos, instalações, engenharia e laudos, SPDA e proteção contra surtos, energia solar fotovoltaica, automação e carregamento veicular.
+- **URL:** https://www.klyfeelectric.com.br/glossario
+- **Limite editorial:** O conteúdo é educativo e não substitui projeto, inspeção, laudo, manual do fabricante ou orientação de profissional habilitado. Normas e regras devem ser conferidas na edição vigente e conforme o caso.
 
 ## Contato e Canais de Atendimento
 - **Site Oficial:** https://www.klyfeelectric.com.br

@@ -22,5 +22,72 @@
       "question": "A radiação do painel causa danos à saúde?",
       "answer": "Não. Os painéis fotovoltaicos não emitem radiação nociva. A única radiação envolvida é a da luz solar que incide sobre eles. O campo eletromagnético gerado pelos cabos de corrente contínua é extremamente baixo, menor do que o emitido pela sua geladeira ou roteador Wi-Fi, sendo totalmente seguro para instalações residenciais."
     }
-  ]
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "o que é energia solar fotovoltaica",
+  "searchIntent": "informacional",
+  "metaTitle": "O que é Energia Solar Fotovoltaica? Como Funciona",
+  "metaDescription": "Entenda o que é energia solar fotovoltaica, como painéis e inversor transformam luz em eletricidade e o que muda entre consumo e conexão à rede.",
+  "seoTitle": "O que é Energia Solar Fotovoltaica? Como Funciona",
+  "seoDescription": "Entenda o que é energia solar fotovoltaica, como painéis e inversor transformam luz em eletricidade e o que muda entre consumo e conexão à rede.",
+  "keywords": [
+    "o que é energia solar fotovoltaica",
+    "como funciona energia solar",
+    "painel fotovoltaico",
+    "inversor solar",
+    "sistema conectado à rede"
+  ],
+  "tags": [
+    "Energia solar",
+    "Fotovoltaica",
+    "Fundamentos",
+    "Inversor"
+  ],
+  "imageAlt": "Módulos fotovoltaicos e inversor formando um sistema de energia solar conectado à rede",
+  "heroImageAlt": "Módulos fotovoltaicos e inversor formando um sistema de energia solar conectado à rede",
+  "canonicalPath": "/blog/o-que-e-energia-solar-fotovoltaica",
+  "robots": "index, follow",
+  "ogTitle": "O que é Energia Solar Fotovoltaica? Como Funciona",
+  "ogDescription": "Entenda o que é energia solar fotovoltaica, como painéis e inversor transformam luz em eletricidade e o que muda entre consumo e conexão à rede.",
+  "ogImage": "/img/blog/o-que-e-energia-solar-fotovoltaica.webp",
+  "dateModified": "2026-09-16",
+  "dateModifiedIso": "2026-09-16T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "Solar Electricity Basics",
+      "publisher": "National Renewable Energy Laboratory",
+      "url": "https://www.nrel.gov/docs/fy09osti/43844.pdf",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Micro e Minigeração Distribuída",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Atlas Brasileiro de Energia Solar",
+      "publisher": "INPE",
+      "url": "https://www.gov.br/pt-br/servicos/obter-dados-do-atlas-brasileiro-de-energia-solar-atlas-solar?id=12305&origem=servico",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "energia solar em casas",
+      "url": "/blog/como-funciona-a-energia-solar-em-casas"
+    },
+    {
+      "anchor": "função do inversor solar",
+      "url": "/blog/o-que-e-inversor-solar"
+    },
+    {
+      "anchor": "on-grid e off-grid",
+      "url": "/blog/diferenca-entre-energia-solar-conectada-e-isolada"
+    }
+  ],
+  "contentAppendHtml": "\n<section class=\"blog-editorial-expansion\" data-blog-block=\"editorial-expansion-v1\">\n  <h2>Do fóton ao consumo: o que acontece em um sistema fotovoltaico</h2>\n  <p><strong>Resposta curta:</strong> O módulo fotovoltaico converte parte da luz em corrente contínua. O inversor adapta essa energia para o circuito de corrente alternada e, em sistemas conectados, coordena a operação com a rede.</p>\n  <p>A quantidade de energia produzida varia com irradiação, temperatura, orientação, inclinação, sombras, sujeira, perdas elétricas e disponibilidade do equipamento. Por isso, potência nominal do painel não é igual à energia mensal garantida.</p>\n\n  <h2>Como avaliar o seu caso</h2>\n  <p>Separe três perguntas: como a eletricidade é gerada, como ela é consumida no imóvel e como o excedente é tratado pela rede. A resposta muda conforme o sistema é on-grid, híbrido ou isolado.</p>\n  <ul><li>identificar módulos, inversor, proteções e estrutura;</li><li>verificar se o projeto considera sombras e características do telhado;</li><li>entender consumo instantâneo, excedente e créditos;</li><li>consultar regras da distribuidora e do sistema de compensação;</li></ul>\n\n  <h2>O que este guia não promete</h2>\n  <p>Energia solar não significa independência automática da distribuidora nem conta sempre igual a zero. O resultado depende de projeto, consumo, tarifa, regras vigentes e operação do sistema.</p>\n\n  <h2>Próximo passo recomendado</h2>\n  <p>Depois de entender os fundamentos, avance para o artigo sobre energia solar residencial ou para a comparação entre on-grid, off-grid e híbrido.</p>\n  <aside class=\"blog-content-cta\" data-blog-block=\"related-links-v1\">\n    <h3>Continue a pesquisa</h3>\n    <ul><li><a href=\"/blog/como-funciona-a-energia-solar-em-casas\">energia solar em casas</a></li><li><a href=\"/blog/o-que-e-inversor-solar\">função do inversor solar</a></li><li><a href=\"/blog/diferenca-entre-energia-solar-conectada-e-isolada\">on-grid e off-grid</a></li></ul>\n  </aside>\n</section>\n\n\n<section class=\"blog-editorial-second-round\" data-blog-block=\"editorial-expansion-v4\">\n  <h2>Como interpretar a energia fotovoltaica além do painel</h2>\n  <p>O efeito fotovoltaico explica a conversão de luz em corrente contínua, mas a usina é um sistema. Módulos, conectores, cabos, estruturas, proteções, inversor, medição e conexão precisam operar como conjunto. Uma falha ou perda em qualquer etapa reduz a energia entregue, mesmo quando os painéis parecem visualmente em boas condições.</p>\n<p>Potência nominal em kWp não equivale à energia mensal. A produção depende de irradiância, temperatura, orientação, inclinação, sombras, sujeira, perdas elétricas, indisponibilidade e estratégia de operação. Por isso, uma proposta deve mostrar premissas de geração e não transformar o número de placas em promessa de economia.</p>\n<p>No consumo instantâneo, a energia produzida pode atender cargas do imóvel. O excedente segue o procedimento de conexão e compensação aplicável, enquanto a rede atende a demanda quando a geração é insuficiente. A fatura possui componentes que não devem ser resumidos a uma simples subtração entre geração e consumo.</p>\n<p>On-grid, híbrido e off-grid são arquiteturas com objetivos diferentes. O sistema conectado prioriza integração com a rede; o híbrido pode reservar cargas e usar armazenamento; o isolado precisa administrar geração, baterias e demanda sem depender da rede. A escolha deve começar pelo serviço desejado, como economia, autonomia ou continuidade.</p>\n<p>O inversor tem papel central na conversão, controle do ponto de operação, monitoramento e proteção. A seleção precisa considerar faixa de tensão, corrente, strings, ambiente, comunicação, garantia, assistência e compatibilidade com módulos. O melhor equipamento é o que atende ao projeto completo, não o que tem apenas a maior eficiência de catálogo.</p>\n<p>Antes de contratar, separe as três perguntas: quanto o imóvel consome, quanto o sistema pode produzir e como a energia será tratada quando houver excedente ou falta de geração. Essa separação evita comparar uma potência instalada com uma economia financeira sem passar pelo perfil de uso.</p>\n<p>A manutenção inclui inspeção, monitoramento, limpeza quando indicada, reaperto ou termografia quando aplicável, verificação de proteções e atualização de registros. O acompanhamento deve considerar tendência de produção e não apenas um dia isolado. Clima, sombra e indisponibilidade podem explicar variações temporárias.</p>\n<p>Uma boa explicação técnica também declara o que não sabe. Sem faturas, vistoria, dados do telhado e regras da distribuidora, qualquer dimensionamento é preliminar. O leitor deve sair sabendo quais dados reunir e quais perguntas fazer, não apenas com uma promessa genérica de redução da conta.</p>\n  <h3>Roteiro de aplicação</h3>\n  <ul><li>separar potência instalada de energia produzida;</li><li>mapear módulos, inversor, proteções e medição;</li><li>considerar sombra, temperatura e perdas;</li><li>diferenciar on-grid, híbrido e off-grid;</li><li>verificar regras de conexão e compensação;</li><li>comparar garantia, assistência e monitoramento;</li><li>dimensionar com faturas e características do imóvel;</li></ul>\n  <h3>Dúvidas práticas</h3>\n  <p><strong>Painel produz energia à noite?</strong> Não. A geração depende de luz. À noite, o imóvel usa a rede ou o armazenamento, conforme a arquitetura instalada.</p>\n<p><strong>Mais placas sempre significam mais economia?</strong> Não. O sistema precisa respeitar área, inversor, rede, consumo e regras de conexão. Excesso de potência pode não ser aproveitado da mesma forma.</p>\n<p><strong>Energia solar elimina a distribuidora?</strong> Em sistemas conectados, não. A rede continua relevante para atendimento, compensação e condições de conexão.</p>\n  <p><strong>Síntese:</strong> Entender o sistema completo é o primeiro passo para comparar propostas, interpretar a geração e evitar promessas que não cabem no imóvel.</p>\n</section>"
 }

@@ -31,14 +31,14 @@ module.exports = {
       template: 'servicos/laudos-eletricos',
       bairros: 'Catolé, Bodocongó, Alto Branco, Prata e Distrito Industrial',
       serviceContext: `
-        <p>Campina Grande concentra um dos maiores parques industriais do Norte-Nordeste. Instalações com alta densidade de equipamentos exigem laudos rigorosos para conformidade com a NR-10 e renovação de alvarás.</p>
-        <p>O clima semiárido impõe variações térmicas que aceleram a degradação de conexões. A termografia infravermelha identifica pontos de aquecimento anômalo antes que evoluam para falhas críticas.</p>
+        <p>Instalações com muitos equipamentos podem exigir uma vistoria organizada para atender à NR-10 ou a uma solicitação de alvará. O escopo é definido conforme a atividade e o imóvel.</p>
+        <p>Variações de temperatura podem afetar conexões. A termografia pode ser indicada para localizar pontos de aquecimento que merecem investigação.</p>
       `,
       painPoint: 'Conformidade NR-10 para indústrias e renovação de alvarás.',
       cta: 'Solicite seu laudo técnico em Campina Grande.',
       faqExtra: {
         question: 'Laudos elétricos são exigidos para empresas do Distrito Industrial de Campina Grande?',
-        answer: 'Sim. Empresas do Distrito Industrial precisam de laudos elétricos para conformidade com a NR-10, renovação de alvarás e exigências de seguradoras.'
+        answer: 'Algumas empresas podem precisar de laudos para NR-10, alvarás ou seguros. A exigência deve ser conferida com o órgão, a apólice e o responsável técnico.'
       }
     },
     'engenharia': {
@@ -48,13 +48,13 @@ module.exports = {
       bairros: 'Bodocongó, Distrito Industrial, Catolé e Alto Branco',
       serviceContext: `
         <p>O polo industrial e tecnológico de Campina Grande exige uma infraestrutura elétrica robusta e confiável. Nossa engenharia atua desde o projeto de subestações industriais no Distrito Industrial de Campina Grande até a automação de processos complexos.</p>
-        <p>Com profundo conhecimento das normas da Energisa Borborema, garantimos aprovações ágeis e projetos que otimizam o consumo de energia, reduzindo custos operacionais para empresas de todos os portes no Agreste.</p>
+        <p>Com conhecimento das normas da Energisa Borborema, podemos preparar projetos e documentação para análise da concessionária quando essa etapa fizer parte do escopo. O prazo, a aprovação e os ganhos de consumo dependem do caso.</p>
       `,
       painPoint: 'Necessidade de alta disponibilidade energética para processos industriais e tecnológicos no Agreste.',
       cta: 'Consultar nossa engenharia em Campina Grande.',
       faqExtra: {
         question: 'Vocês fazem projetos de subestações para indústrias em Campina Grande?',
-        answer: 'Sim, somos especialistas em projetos de subestações aéreas e abrigadas para o setor industrial e comercial de Campina Grande, cuidando de toda a aprovação junto à Energisa Borborema.'
+        answer: 'Podemos avaliar projetos de subestações aéreas e abrigadas para o setor industrial e comercial de Campina Grande. Documentação, protocolo e acompanhamento junto à Energisa Borborema dependem do escopo contratado.'
       }
     },
     'manutencao-subestacao': {
@@ -63,15 +63,15 @@ module.exports = {
       template: 'servicos/manutencao-subestacao',
       bairros: 'Distrito Industrial, Bodocongó, Catolé e região metropolitana',
       serviceContext: `
-        <p>Campina Grande abriga um dos maiores parques industriais do Nordeste, com indústrias têxteis, alimentícias, de calçados e um setor de tecnologia em expansão. Subestações industriais operando em regime contínuo estão sujeitas a ciclos térmicos repetidos que degradam conexões, isolamentos e contatos de chaves seccionadoras de forma acelerada. Uma falha de subestação nesse contexto significa parada de produção — custo operacional imediato e mensurável.</p>
-        <p>O clima semiárido do Agreste Paraibano intensifica esse processo: a variação térmica entre dia e noite, combinada com a poeira característica da região, favorece o acúmulo de sujeira condutiva nos isoladores e buchas dos transformadores, aumentando o risco de falha dielétrica. A limpeza técnica e a termografia periódica são as principais ferramentas preventivas para esse perfil de ambiente.</p>
-        <p>Para indústrias do Distrito Industrial e empresas com subestações próprias, a manutenção preventiva documentada com relatório técnico e ART é exigência de seguradoras industriais e condição para renovação de alvarás junto ao Corpo de Bombeiros de Campina Grande.</p>
+        <p>Subestações do Distrito Industrial podem operar com cargas contínuas. Ciclos térmicos afetam conexões, isolamentos e contatos ao longo do tempo.</p>
+        <p>Poeira e variação de temperatura favorecem o acúmulo de sujeira em isoladores e buchas. Limpeza e termografia podem ser indicadas após a inspeção.</p>
+        <p>Relatório técnico, laudo e ART são tratados conforme a instalação, a contratação e as exigências do responsável pelo imóvel.</p>
       `,
       painPoint: 'Continuidade operacional de subestações industriais em ambiente semiárido.',
       cta: 'Solicite manutenção de subestação em Campina Grande.',
       faqExtra: {
         question: 'Com que frequência subestações industriais do Distrito Industrial de Campina Grande devem ser mantidas?',
-        answer: 'Para subestações em operação contínua no Distrito Industrial de Campina Grande, recomenda-se manutenção preventiva semestral, dado o regime de carga elevado e as condições do clima semiárido — que favorecem acúmulo de sujeira condutiva nos isoladores e degradação acelerada de conexões por variação térmica. A frequência exata é definida pelo engenheiro responsável conforme o histórico e o risco da instalação.'
+        answer: 'A frequência depende do regime de carga, do ambiente, do histórico e do risco da instalação. O responsável técnico pode propor um intervalo e ajustá-lo conforme os resultados das inspeções.'
       }
     },
     'eletrica': {
@@ -81,13 +81,13 @@ module.exports = {
       bairros: 'Centro, Prata, Catolé, Bodocongó e Liberdade',
       serviceContext: `
         <p>Oferecemos suporte técnico completo para o setor comercial e empresarial de Campina Grande. Desde o cabeamento estruturado para escritórios de tecnologia até instalações elétricas industriais complexas.</p>
-        <p>Nossas soluções de infraestrutura elétrica garantem segurança contra sobrecargas, comuns em edifícios mais antigos da região central, modernizando o sistema elétrico para suportar novas tecnologias e demandas de climatização.</p>
+        <p>Nossas soluções de infraestrutura elétrica podem reduzir riscos de sobrecarga em edifícios mais antigos da região central. A adequação para novas tecnologias e demandas de climatização depende da vistoria e do dimensionamento.</p>
       `,
       painPoint: 'Infraestrutura elétrica robusta para o polo tecnológico e comercial.',
       cta: 'Solicite um eletricista qualificado em Campina Grande.',
       faqExtra: {
         question: 'Vocês atendem emergências elétricas comerciais no Centro de Campina Grande?',
-        answer: 'Sim, nossa equipe realiza manutenções preventivas e corretivas em estabelecimentos comerciais e empresariais de Campina Grande, garantindo o menor tempo de inatividade possível.'
+        answer: 'Podemos avaliar manutenções preventivas e corretivas em estabelecimentos comerciais e empresariais de Campina Grande. A janela de atendimento e o impacto na operação dependem da instalação e do plano aprovado.'
       }
     },
     'instalacoes-industriais': {
@@ -100,15 +100,63 @@ module.exports = {
       cta: 'Solicitar instalação industrial em Campina Grande.'
     },
     'carregador-veicular': {
-      label: 'Carregador Veicular (Wallbox)',
+      label: 'Instalação de Wallbox',
       category: 'eletrica',
       template: 'carregador-veicular',
       icon: 'fa-charging-station',
-      summary: 'Instalação profissional de carregador Wallbox com circuito dedicado e proteção térmica para o clima do Agreste.',
+      summary: 'Instalação de carregador Wallbox com circuito dedicado em Campina Grande.',
       bairros: 'Alto Branco, Catolé, Prata, Mirante e condomínios de Campina Grande',
-      serviceContext: '<p>Instalação profissional de carregadores veiculares de alta potência (Wallbox) em residências e condomínios fechados em Campina Grande, dimensionando o sistema elétrico para total segurança.</p>',
-      painPoint: 'Carga rápida de veículos elétricos com circuito dedicado e homologação.',
+      serviceContext: '<p>Em Campina Grande, avaliamos a infraestrutura existente em residências, condomínios e empresas antes de definir o circuito dedicado e as proteções para o carregador.</p>',
+      painPoint: 'Circuito dedicado e proteção elétrica para recarga em Campina Grande.',
       cta: 'Solicitar instalação de Wallbox em Campina Grande.'
+    },
+    'wallbox-residencial': {
+      label: 'Instalação de Wallbox Residencial',
+      category: 'eletrica',
+      template: 'wallbox-residencial',
+      heroImage: '/img/wallbox/wallbox-casa.webp',
+      icon: 'fa-house-chimney',
+      summary: 'Instalação de Wallbox residencial com circuito dedicado em Campina Grande.',
+      bairros: 'Mirante, Alto Branco, Catolé, Prata, Sandra Cavalcante e condomínios Sierra, Nações, Alphaville Campina Grande',
+      serviceContext: '<p>Instalação de carregadores veiculares residenciais em Campina Grande com projeto de engenharia, adequação de disjuntores e cabeamento antichamas dimensionado para suportar recargas contínuas de 7,4 kW a 22 kW sem riscos à rede da casa.</p>',
+      painPoint: 'Evitar superaquecimento de condutores e desarmes na rede elétrica residencial.',
+      cta: 'Solicitar orçamento de Wallbox residencial em Campina Grande.'
+    },
+    'wallbox-condominio': {
+      label: 'Instalação de Wallbox em Condomínio',
+      category: 'eletrica',
+      template: 'wallbox-condominio',
+      heroImage: '/img/wallbox/wallbox-condominio.webp',
+      icon: 'fa-building',
+      summary: 'Infraestrutura de recarga veicular para edifícios e condomínios em Campina Grande.',
+      bairros: 'Condomínios no Mirante, Catolé, Alto Branco, Centro e Prata',
+      serviceContext: '<p>Projetos técnicos completos para condomínios em Campina Grande: laudo de viabilidade de carga da subestação/quadro geral, instalação de barramentos, medição individual de energia e apresentação técnica para síndicos e conselho.</p>',
+      painPoint: 'Viabilizar a recarga elétrica sem comprometer a capacidade elétrica do edifício e com medição justa.',
+      cta: 'Solicitar projeto para condomínio em Campina Grande.'
+    },
+    'wallbox-empresa': {
+      label: 'Instalação de Wallbox para Empresas',
+      category: 'eletrica',
+      template: 'wallbox-empresa',
+      heroImage: '/img/wallbox/wallbox-empresa.webp',
+      icon: 'fa-briefcase',
+      summary: 'Estações de recarga veicular para empresas, indústrias e comércio em Campina Grande.',
+      bairros: 'Distrito Industrial, Mirante, Catolé, Centro e polo de tecnologia de Bodocongó',
+      serviceContext: '<p>Soluções de recarga elétrica para o setor comercial e industrial de Campina Grande: carregadores rápidos AC e DC, integração com sistemas de bilhetagem e faturamento, controle de frota elétrica e laudos com ART no CREA-PB.</p>',
+      painPoint: 'Eletrificação corporativa com segurança de carga e controle de custos de abastecimento.',
+      cta: 'Solicitar projeto corporativo em Campina Grande.'
+    },
+    'wallbox-energia-solar': {
+      label: 'Wallbox com Energia Solar',
+      category: 'eletrica',
+      template: 'wallbox-energia-solar',
+      heroImage: '/img/wallbox/wallbox-com-energia-solar.webp',
+      icon: 'fa-solar-panel',
+      summary: 'Sistemas integrados de geração solar fotovoltaica e carregamento elétrico veicular em Campina Grande e Agreste.',
+      bairros: 'Campina Grande, Lagoa Seca, Queimadas, Esperança e região da Borborema',
+      serviceContext: '<p>Estude a integração entre geração solar e recarga em Campina Grande com base na rotina do veículo, no consumo do imóvel e na infraestrutura elétrica disponível.</p>',
+      painPoint: 'Relacionar horários de recarga à geração disponível e avaliar as adequações necessárias.',
+      cta: 'Solicitar projeto Solar + Wallbox em Campina Grande.'
     },
     'projeto-rede': {
       label: 'Redes, Telefonia & Antenas',
@@ -156,133 +204,135 @@ module.exports = {
     'projeto-eletrico-multifamiliar': {
       bairros: 'Catolé, Alto Branco, Mirante, Prata e Bodocongó',
       serviceContext: `
-        <p>Campina Grande tem vivenciado uma expansão vertical marcante nos últimos anos, com novos empreendimentos residenciais de alto padrão em bairros como o Catolé, Alto Branco e Mirante. Projetar a rede elétrica desses novos edifícios exige profunda atenção técnica.</p>
-        <p>Na Klyfe Electric, desenvolvemos a modelagem elétrica tridimensional em ambiente BIM (compatibilização com estruturas e hidráulica) 100% em conformidade com as regras de fornecimento coletivo da Energisa Borborema. Isso previne retrabalhos e quebras de paredes desnecessárias no canteiro de obras local.</p>
+        <p>Novos edifícios do Catolé, Alto Branco e Mirante reúnem várias unidades e áreas comuns. O projeto separa essas cargas e compatibiliza prumadas, quadros e caminhos de cabos com a arquitetura.</p>
+        <p>A modelagem em BIM ajuda a revisar interferências antes da obra e a orientar a execução. O atendimento no canteiro, quando necessário, é definido na contratação.</p>
       `,
       painPoint: 'Necessidade de projetos multifamiliares robustos em BIM para construtoras do Agreste.',
       faqExtra: {
         question: 'Vocês dão suporte presencial no canteiro de obras em Campina Grande?',
-        answer: 'Sim. Nossos engenheiros realizam visitas técnicas periódicas de fiscalização em obras no Catolé, Alto Branco e demais bairros de Campina Grande para garantir que a execução siga rigorosamente o projeto elétrico aprovado.'
+        answer: 'Podemos avaliar visitas técnicas quando a fiscalização fizer parte do escopo. A frequência e o conteúdo dependem do cronograma e do contrato.'
       }
     },
     'projeto-eletrico-unifamiliar': {
       bairros: 'Condomínios fechados (Serraville, Alphaville, Monte Ville, Privilege)',
       serviceContext: `
-        <p>Residências de médio e alto padrão nos condomínios fechados de Campina Grande exigem uma infraestrutura elétrica que ofereça extremo conforto, flexibilidade de comandos e segurança absoluta.</p>
-        <p>Nossos projetos elétricos residenciais evitam quedas de tensão comuns em circuitos mal dimensionados e preveem a infraestrutura para futuras automações de iluminação e ar-condicionado. Desenvolvemos plantas ergonômicas de tomadas e circuitos, projetadas de acordo com as necessidades específicas de cada família campinense.</p>
+        <p>Residências em condomínios fechados de Campina Grande precisam de pontos compatíveis com a planta, a rotina da família e os equipamentos previstos. O levantamento orienta tomadas, iluminação, climatização e o quadro de distribuição.</p>
+        <p>O dimensionamento ajuda a reduzir quedas de tensão e organiza circuitos para futuras mudanças. A infraestrutura para automação entra quando estiver prevista no projeto.</p>
       `,
-      painPoint: 'Distribuição ergonômica de tomadas e proteção elétrica para lares de alto padrão em Campina Grande.',
+      painPoint: 'Distribuição de pontos e proteções compatíveis com residências de Campina Grande.',
       faqExtra: {
-        question: 'O projeto elétrico residencial prevê o carregamento de veículos elétricos e energia solar?',
-        answer: 'Sim, todos os novos projetos residenciais unifamiliares desenvolvidos pela Klyfe para os condomínios de Campina Grande já saem preparados com infraestrutura dedicada para futura instalação de telhado solar e estação de recarga veicular (Wallbox).'
+        question: 'O projeto elétrico residencial pode prever infraestrutura para carregador veicular?',
+        answer: 'Podemos prever infraestrutura para carregador veicular, automação, climatização ou outros equipamentos quando isso estiver definido no programa da obra. Cada preparação é dimensionada conforme a carga prevista.'
       }
     },
     'projeto-eletrico-comercial': {
       bairros: 'Centro, Prata, Catolé e complexos empresariais',
       serviceContext: `
-        <p>O comércio de Campina Grande — abrangendo desde clínicas médicas no bairro da Prata até escritórios de tecnologia no Centro e restaurantes no Catolé — depende de um sistema elétrico contínuo e sem interrupções para faturar.</p>
-        <p>Projetamos a adequação e novos sistemas de energia comerciais contemplando layouts flexíveis de tomadas e redes de dados estruturadas, garantindo que o seu negócio consiga expandir mesas de trabalho ou equipamentos sem sofrer com desarmes de disjuntores ou oscilações de energia.</p>
+        <p>Clínicas da Prata, escritórios do Centro e restaurantes do Catolé podem ter equipamentos e layouts diferentes. O projeto organiza circuitos de força, iluminação e infraestrutura de dados conforme o uso do negócio.</p>
+        <p>As cargas futuras e as proteções são avaliadas com os dados disponíveis. Apoio à aprovação na Energisa entra quando essa etapa estiver prevista.</p>
       `,
-      painPoint: 'Instalações comerciais dinâmicas e aprovação ágil na Energisa Borborema.',
+      painPoint: 'Adequar carga e layout para operações comerciais de Campina Grande.',
       faqExtra: {
         question: 'Como é feita a aprovação comercial junto à Energisa Borborema?',
-        answer: 'Nossos engenheiros cuidam de toda a documentação, elaboração de diagramas de cargas e submissão do projeto comercial no portal técnico da Energisa Borborema, monitorando até a liberação final de vistoria.'
+        answer: 'Podemos preparar e acompanhar a documentação quando a aprovação fizer parte do escopo. O canal, a análise e o prazo dependem da Energisa Borborema.'
       }
     },
     'projeto-eletrico-industrial': {
       bairros: 'Distrito Industrial de Campina Grande e Bodocongó',
       serviceContext: `
-        <p>O Distrito Industrial de Campina Grande é um dos principais motores econômicos do interior do Nordeste, concentrando indústrias de calçados, têxteis, plásticos e cerâmicas. O consumo severo e contínuo de energia dessas plantas exige projetos elétricos industriais com alto grau de confiabilidade.</p>
-        <p>Desenvolvemos projetos industriais completos de leitos de cabos, subestações dedicadas, cubículos de média tensão e painéis de força e controle (CCM). Nossas soluções de engenharia industrial garantem conformidade com a NR-10 e reduzem paradas imprevistas causadas por falhas de seletividade ou curtos-circuitos.</p>
+        <p>Indústrias do Distrito Industrial e de Bodocongó precisam relacionar máquinas, motores e expansão de carga ao projeto elétrico. O levantamento orienta leitos de cabos, painéis, centros de controle e aterramento.</p>
+        <p>Estudos de curto-circuito, seletividade e média tensão podem ser incluídos para apoiar a operação. Cada medida depende dos dados da planta e do escopo contratado.</p>
       `,
-      painPoint: 'Alta disponibilidade energética e mitigação de riscos de arcos elétricos em indústrias de Campina Grande.',
+      painPoint: 'Organização de potência e proteção para plantas industriais do Agreste.',
       faqExtra: {
         question: 'Vocês realizam estudos de curto-circuito e seletividade em indústrias no Distrito Industrial de CG?',
-        answer: 'Sim. Elaboramos estudos complexos de curto-circuito e coordenação de disjuntores para plantas industriais no Distrito Industrial, garantindo que falhas em máquinas específicas não causem o blackout geral da linha de produção.'
+        answer: 'Podemos elaborar estudos de curto-circuito e coordenação quando esses itens fizerem parte do escopo. O resultado depende das cargas, dos equipamentos e dos dados fornecidos pela planta.'
       }
     },
     'projeto-eletrico-multiplas-unidades': {
       bairros: 'Centro, Bodocongó, Catolé e áreas residenciais',
       serviceContext: `
-        <p>Projetar centros de medição agrupados (padrão de entrada coletivo) em Campina Grande exige adequação restrita às normas vigentes da Energisa Borborema.</p>
-        <p>A Klyfe Electric desenvolve projetos de caixas de contadores múltiplos para prédios, conjuntos comerciais e vilas residenciais de forma a assegurar que a distribuidora aprove a ligação de energia sem impor restrições na vistoria final. Dimensionamos barramentos e caixas metálicas homologadas para máxima segurança operacional.</p>
+        <p>Prédios, conjuntos comerciais e vilas de Campina Grande podem compartilhar uma entrada de energia com várias medições. O projeto separa unidades e áreas comuns e detalha caixas, barramentos, circuitos e aterramento.</p>
+        <p>Os desenhos são organizados para a análise da Energisa Borborema. Protocolo, vistoria e eventuais ajustes dependem da documentação completa e das regras da ligação.</p>
       `,
-      painPoint: 'Evitar atraso na ligação de energia por inconformidades técnicas na vistoria da Energisa Borborema.',
+      painPoint: 'Organizar medições coletivas e reduzir retrabalho na ligação de energia.',
       faqExtra: {
         question: 'A Energisa Borborema exige projeto para quantas caixas de medição em Campina Grande?',
-        answer: 'Sim, a concessionária exige a submissão de projeto elétrico formal para entradas com mais de 3 caixas de medição individuais ou quando a demanda calculada ultrapassa os limites técnicos estabelecidos pela distribuidora local.'
+        answer: 'A exigência depende do agrupamento de medição, da demanda calculada e dos limites de atendimento definidos pela Energisa Borborema para cada ligação.'
       }
     },
     'projeto-luminotecnico': {
       bairros: 'Centro, Prata, Catolé e polos de escritórios',
       serviceContext: `
-        <p>Campina Grande, conhecida como polo universitário e tecnológico, abriga dezenas de escritórios de TI, startups e salas de aulas que exigem iluminação de alto desempenho. A luz correta impacta diretamente na concentração de alunos e profissionais.</p>
-        <p>Elaboramos projetos luminotécnicos detalhados usando softwares de simulação 3D Dialux, calculando os níveis exatos de lux exigidos pela NBR ISO/CIE 8995-1 para cada tipo de tarefa visual. Especificamos luminárias de LED de alto rendimento e baixo consumo, reduzindo o custo operacional das empresas locais.</p>
+        <p>Escritórios, salas de aula e comércios de Campina Grande precisam equilibrar conforto visual e consumo. O estudo considera a atividade de cada ambiente, a luz natural e a posição das luminárias.</p>
+        <p>Simulações podem comparar iluminância, uniformidade e ofuscamento antes da compra. Medições e especificações finais dependem do escopo contratado.</p>
       `,
-      painPoint: 'Baixa produtividade de equipes e contas altas de energia decorrentes de sistemas de iluminação inadequados.',
+      painPoint: 'Iluminação irregular e consumo elevado em ambientes de Campina Grande.',
       faqExtra: {
         question: 'Como o projeto luminotécnico é validado para empresas em Campina Grande?',
-        answer: 'Realizamos a simulação tridimensional dos ambientes com as curvas fotométricas dos LEDs sugeridos. Após a montagem física, efetuamos medições presenciais com luxímetro calibrado para validar a conformidade com a legislação do trabalho.'
+        answer: 'Podemos simular os ambientes e incluir medições após a montagem quando essa etapa estiver contratada. Os critérios de iluminação são definidos conforme a atividade e o projeto.'
       }
     },
     'spda': {
       bairros: 'Bodocongó, Distrito Industrial, Catolé e Alto Branco',
       serviceContext: `
-        <p>O Agreste Paraibano apresenta variações de tempo severas, com índices significativos de raios durante as transições de estações. Estruturas industriais no Distrito Industrial e edifícios altos no Catolé e Alto Branco necessitam de sistemas de proteção robustos.</p>
-        <p>A Klyfe desenvolve projetos e laudos de SPDA (Para-raios) sob a rigorosa NBR 5419. Realizamos inspeções presenciais com testes de continuidade das armaduras de concreto e medições de resistividade de solo com equipamentos calibrados, garantindo segurança patrimonial contra incêndios e explosões por raios.</p>
+        <p>Em Campina Grande, empreendimentos do Distrito Industrial, galpões e edifícios podem precisar de uma avaliação de SPDA conforme o uso, a ocupação, a exposição, as características da construção e as exigências aplicáveis ao imóvel.</p>
+        <p>A Klyfe pode avaliar, projetar, instalar, adequar e inspecionar SPDA com referência à ABNT NBR 5419 vigente. Os testes de continuidade, aterramento e conexões são definidos conforme a edificação e o escopo técnico.</p>
+        <p>Em plantas do Distrito Industrial, o levantamento pode ser compatibilizado com coberturas metálicas, estruturas de utilidades, linhas de produção e rotas de cabos. A equipe identifica interferências e registra as premissas antes de definir a solução.</p>
+        <p>Para prédios comerciais, residenciais e instalações rurais do Agreste, a inspeção pode observar descidas aparentes, conexões, caixas de inspeção, eletrodos e registros anteriores. Qualquer correção é recomendada somente depois de avaliar o estado encontrado.</p>
       `,
-      painPoint: 'Queima de equipamentos e vistorias de alvarás reprovadas pelo Corpo de Bombeiros em Campina Grande.',
+      painPoint: 'Necessidade de diagnosticar SPDA, documentação e condições de continuidade em edificações de Campina Grande.',
       faqExtra: {
         question: 'Com que frequência as empresas do Distrito Industrial de CG devem inspecionar o SPDA?',
-        answer: 'A NBR 5419 orienta que indústrias realizem a inspeção visual semestral e a vistoria técnica completa com emissão de laudo e ART anualmente, dado o nível de exposição e o risco operacional do canteiro fabril.'
+        answer: 'A periodicidade depende do tipo de edificação, do ambiente, do histórico e das exigências do responsável pelo imóvel. A NBR 5419 e o responsável técnico orientam o plano de inspeção aplicável.'
       }
     },
     'projeto-subestacao': {
       bairros: 'Distrito Industrial de Campina Grande, Bodocongó e Zona Rural',
       serviceContext: `
-        <p>Instalações que ultrapassam 75kW de carga instalada em Campina Grande necessitam obrigatoriamente de subestações de energia próprias para se conectarem à média tensão da Energisa Borborema.</p>
-        <p>Elaboramos projetos de engenharia civil-elétrica para subestações aéreas e abrigadas. Nossos engenheiros calculam a seletividade de proteção e o dimensionamento do transformador de potência ideal para a sua indústria, minimizando as taxas de conexão e assegurando suprimento estável no Agreste.</p>
+        <p>Quando a carga ou a demanda supera o limite de atendimento em baixa tensão, a instalação pode precisar de uma subestação própria. A Energisa Borborema confirma o enquadramento de cada ligação.</p>
+        <p>Elaboramos projetos civis e elétricos para subestações aéreas e abrigadas. A potência, a proteção e os documentos são definidos conforme a demanda, o local e as regras da Energisa Borborema.</p>
       `,
       painPoint: 'Necessidade de expansão de carga para novos maquinários industriais em Campina Grande.',
       faqExtra: {
         question: 'Quais os tipos de subestação mais aprovados pela Energisa Borborema?',
-        answer: 'Para demandas industriais de até 500kVA no canteiro de Campina Grande, a subestação aérea em poste duplo (H) é a mais comum devido ao excelente custo de implantação. Acima desse limite, são empregadas cabines primárias abrigadas.'
+        answer: 'A escolha entre subestação aérea e abrigada depende da demanda, do espaço, da segurança e das regras de atendimento. O limite de 500 kVA é uma referência do serviço, não uma regra para todos os projetos.'
       }
     },
     'pericia-ressarcimento-danos': {
       bairros: 'Todos os bairros e indústrias do Distrito Industrial de Campina Grande',
       serviceContext: `
-        <p>Quedas repentinas de energia e surtos elétricos não são raros na rede de distribuição de Campina Grande e região metropolitana, principalmente durante o período de chuvas e trovoadas no Agreste.</p>
-        <p>Se a sua empresa ou condomínio sofreu a queima de equipamentos sensíveis (como motores, nobreaks, aparelhos médicos ou de TI), a Klyfe Electric fornece perícia elétrica diagnóstica. Elaboramos laudos técnicos minuciosos com nexo causal e ART, contestando com sucesso as recusas de pagamento de ressarcimento por parte da Energisa Borborema.</p>
+        <p>Após uma oscilação ou outro distúrbio, a perícia em Campina Grande reúne registros do evento, do equipamento e da instalação interna. A vistoria pode incluir fotos, identificação das cargas e análise dos documentos disponíveis.</p>
+        <p>O laudo descreve os achados e os limites da análise. Ele pode apoiar um pedido de ressarcimento, cuja decisão depende da Energisa Borborema e das regras aplicáveis.</p>
       `,
-      painPoint: 'Perdas financeiras elevadas por queima de equipamentos sem ressarcimento da Energisa Borborema.',
+      painPoint: 'Danos em equipamentos e necessidade de organizar evidências técnicas.',
       faqExtra: {
         question: 'O que fazer caso a Energisa Borborema recuse o pedido administrativo de ressarcimento?',
-        answer: 'Com o laudo técnico de perícia emitido pela Klyfe contendo evidências do nexo causal e assinado com ART, a sua empresa pode recorrer administrativamente na Ouvidoria da concessionária, na ANEEL ou ingressar na esfera judicial com plenas chances de vitória.'
+        answer: 'O pedido deve seguir os canais, prazos e documentos informados pela Energisa Borborema. Um laudo de terceiro pode organizar os achados quando fizer parte do escopo contratado; questões jurídicas devem ser avaliadas com advogado.'
       }
     },
     'pericia-furto-energia': {
       bairros: 'Centro, Bodocongó, Catolé, Prata e bairros periféricos',
       serviceContext: `
-        <p>Erros e inspeções unilaterais da concessionária de energia em Campina Grande podem gerar acusações indevidas de furto de energia e aplicação arbitrária de Termos de Ocorrência e Inspeção (TOI) com multas pesadas.</p>
-        <p>A Klyfe atua como assistente técnica do cliente em Campina Grande. Realizamos vistorias periciais no padrão de entrada, analisamos o histórico de consumo real de forma científica e elaboramos o laudo de perícia para fundamentar contestações administrativas ou judiciais contra os abusos e desvios de cálculo de consumo da Energisa Borborema.</p>
+        <p>Um TOI registra uma irregularidade apontada pela concessionária durante a inspeção do medidor. Em Campina Grande, a análise independente pode revisar o termo, as fotos, o padrão de entrada e o histórico de consumo.</p>
+        <p>O parecer organiza os dados que podem ser usados em uma contestação. O resultado depende das provas reunidas e da autoridade que analisa o caso.</p>
       `,
-      painPoint: 'Recebimento de multas de TOI astronômicas com ameaça de corte de energia em Campina Grande.',
+      painPoint: 'Cobranças de consumo que precisam de conferência técnica.',
       faqExtra: {
         question: 'A perícia da Klyfe consegue suspender a cobrança do TOI da Energisa Borborema?',
-        answer: 'O laudo técnico assinado por engenheiro eletricista da Klyfe serve como prova pericial para que o seu advogado solicite uma liminar judicial suspendendo a cobrança e o corte de energia até o julgamento final da anomalia de medição.'
+        answer: 'A análise técnica pode ajudar a organizar uma contestação. Cobrança, suspensão e medidas judiciais dependem do caso e devem ser avaliadas com advogado.'
       }
     },
     'viabilidade-carregador-veicular': {
       bairros: 'Condomínios fechados do Catolé, Alto Branco e Mirante',
       serviceContext: `
-        <p>A frota de veículos híbridos e elétricos em Campina Grande está crescendo rapidamente. A demanda de carga nas residências nos condomínios de bairros nobres (Catolé, Mirante, Alto Branco) está gerando debates em assembleias sobre a viabilidade das instalações de carregadores Wallbox individuais.</p>
-        <p>A Klyfe Electric realiza estudos de viabilidade técnica (EVT) em condomínios campinenses. Medimos o pico de carga dos prédios, calculamos a capacidade excedente da infraestrutura comum e elaboramos laudos conclusivos com ART do CREA. Isso permite que síndicos e condôminos decidam a instalação de forma segura e dentro das regras da NBR 5410.</p>
+        <p>Em condomínios do Catolé, Alto Branco e Mirante, a instalação de carregadores precisa considerar vagas, caminhos de cabos e a capacidade da infraestrutura comum. O estudo reúne o perfil de consumo e a potência pretendida.</p>
+        <p>O parecer indica se a rede atende ao uso previsto ou se serão necessárias adequações. A decisão do condomínio e o eventual protocolo seguem o escopo e as regras aplicáveis.</p>
       `,
-      painPoint: 'Condomínios de Campina Grande inseguros quanto à instalação coletiva de tomadas veiculares.',
+      painPoint: 'Dúvidas sobre capacidade e infraestrutura para carregadores em condomínios.',
       faqExtra: {
         question: 'O laudo de viabilidade de carregador evita a necessidade de trocar o transformador do prédio em Campina Grande?',
-        answer: 'Sim, na maioria das vezes. O estudo identifica a capacidade residual exata do prédio e sugere sistemas de controle dinâmico de recarga (load shedding), evitando obras pesadas de troca de transformadores.'
+        answer: 'O estudo compara a demanda atual com a potência dos carregadores e pode avaliar controle de demanda ou adequações. A necessidade de trocar o transformador só pode ser definida após os dados do local.'
       }
     }
   }

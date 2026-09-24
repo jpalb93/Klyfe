@@ -11,29 +11,54 @@
   const isAllEnabled = (typeof cityData !== 'undefined' && cityData.allServices === true);
   const availableServices = (typeof cityData !== 'undefined' && cityData.services) ? Object.keys(cityData.services) : [];
   const isServiceEnabled = (key) => isAllEnabled || availableServices.includes(key);
+
+  const activeGlossaryServiceKey = (typeof serviceKey !== 'undefined' && serviceKey)
+    ? serviceKey
+    : ((typeof glossaryServiceKey !== 'undefined') ? glossaryServiceKey : null);
+  const activeGlossaryCategory = (typeof contentVertical !== 'undefined' && contentVertical)
+    ? contentVertical
+    : ((typeof contentCategory !== 'undefined' && contentCategory) ? contentCategory : null);
+  const glossaryServiceLinks = (typeof getServiceGlossaryLinks === 'function')
+    ? getServiceGlossaryLinks(activeGlossaryServiceKey, activeGlossaryCategory, currentCityKey)
+    : [];
 %>
 
+<%- include('related-glossary', { glossaryServiceLinks }) %>
+
 <footer class="main-footer">
+    <div class="footer-top-slab" aria-hidden="true"></div>
+    <div class="footer-solar-visual" aria-hidden="true"></div>
+    <div class="footer-ambient footer-ambient-top" aria-hidden="true">
+        <span>Tecnologia<br>hoje.<br>Mais vida<br>amanhã.</span>
+    </div>
+    <div class="footer-ambient footer-ambient-bottom" aria-hidden="true">
+        <span>Klyfe Electric<br>Energia em<br>novos horizontes.</span>
+    </div>
+
     <div class="container">
         <div class="footer-grid">
             <!-- Branding Column -->
-            <div class="footer-col branding">
+            <section class="footer-col footer-brand" aria-labelledby="footer-brand-title">
                 <a href="<%= prefix || '/' %>" class="footer-logo" aria-label="Klyfe Electric - Voltar para a Home">
                     <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Klyfe Electric</span>
                     <%- include('logo') %>
                 </a>
-                <p class="footer-tagline">Alta performance em Engenharia Elétrica, Automação e Energia Solar.</p>
-                <div class="google-reviews">
-                    <div class="stars">
-                        <i class="fab fa-google" aria-hidden="true"></i>
-                    </div>
-                    <span><a href="<%= business.mapsUrl %>" target="_blank" rel="noopener">Ver perfil e avaliações no Google</a></span>
+                <h2 id="footer-brand-title" class="footer-brand-title">
+                    <span>Energia que</span>
+                    <span>impulsiona</span>
+                    <strong>o amanhã.</strong>
+                </h2>
+                <span class="footer-brand-rule" aria-hidden="true"></span>
+                <p class="footer-tagline">Alta performance em Engenharia Elétrica, Automação e Energia Solar para um futuro mais inteligente e sustentável.</p>
+                <div class="footer-signature" aria-label="Soluções reais para um mundo em evolução">
+                    <span class="footer-signature-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <span>Soluções reais<br>para um mundo em evolução.</span>
                 </div>
-            </div>
+            </section>
 
             <!-- Quick Links -->
-            <div class="footer-col">
-                <h4>Nossas Soluções</h4>
+            <section class="footer-col" aria-labelledby="footer-solutions-title">
+                <h3 id="footer-solutions-title">Nossas Soluções</h3>
                 <ul class="footer-links">
                     <% if (isServiceEnabled('engenharia')) { %>
                         <li><a href="<%= prefix %>/solucoes/engenharia">Engenharia Elétrica</a></li>
@@ -50,13 +75,15 @@
                     <% if (isServiceEnabled('eletrica')) { %>
                         <li><a href="<%= prefix %>/solucoes/eletrica">Serviços de Eletricista</a></li>
                     <% } %>
+                    <% if (isServiceEnabled('carregador-veicular')) { %>
+                        <li><a href="<%= prefix %>/solucoes/eletrica/carregador-veicular/">Instalação de Wallbox</a></li>
+                    <% } %>
                 </ul>
-
-            </div>
+            </section>
 
             <!-- Institutional -->
-            <div class="footer-col">
-                <h4>Institucional</h4>
+            <section class="footer-col" aria-labelledby="footer-institutional-title">
+                <h3 id="footer-institutional-title">Institucional</h3>
                 <ul class="footer-links">
                     <li><a href="<%= prefix %>/quem-somos">Quem Somos</a></li>
                     <li><a href="<%= prefix %>/projetos">Casos de Sucesso</a></li>
@@ -66,36 +93,46 @@
                     <li><a href="/politica-de-privacidade">Política de Privacidade</a></li>
                     <li><a href="#" data-klyfe-consent="reopen">Preferências de Cookies</a></li>
                 </ul>
-            </div>
+            </section>
 
             <!-- Contact & Local -->
-            <div class="footer-col">
-                <h4>Onde Estamos</h4>
-                <address class="contact-info" style="font-style: normal;">
-                    <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                    <a href="<%= business.mapsUrl %>" target="_blank" rel="noopener"><%= displayAddress %></a>
-                </address>
-                <p class="contact-info"><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:<%= business.telephone %>"><%= displayPhone %></a></p>
-                <p class="contact-info"><i class="fas fa-building" aria-hidden="true"></i> CNPJ: <%= business.taxId %></p>
-                <div class="footer-social">
-                    <a href="https://www.instagram.com/klyfeelectric" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/company/klyfeelectric" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="<%= footerWaUrl %>" target="_blank" rel="noopener" aria-label="WhatsApp" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>"><i class="fab fa-whatsapp"></i></a>
+            <section class="footer-col footer-contact" aria-labelledby="footer-contact-title">
+                <h3 id="footer-contact-title">Fale Conosco</h3>
+                <div class="footer-contact-list">
+                    <address class="contact-info">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <a href="<%= business.mapsUrl %>" target="_blank" rel="noopener"><%= displayAddress %></a>
+                    </address>
+                    <p class="contact-info"><i class="fas fa-phone-alt" aria-hidden="true"></i> <a href="tel:<%= business.telephone %>"><%= displayPhone %></a></p>
+                    <p class="contact-info"><i class="fas fa-building" aria-hidden="true"></i> <span>CNPJ: <%= business.taxId %></span></p>
                 </div>
-            </div>
-
+                <div class="footer-social-block">
+                    <h4>Acompanhe a Klyfe</h4>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/klyfeelectric" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/company/klyfeelectric" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="<%= footerWaUrl %>" target="_blank" rel="noopener" aria-label="WhatsApp" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </section>
         </div>
 
         <div class="footer-bottom">
-            <div class="copyright">
-                <p>&copy; <%= new Date().getFullYear() %> Klyfe Electric. Todos os direitos reservados.</p>
-
+            <div class="footer-bottom-legal">
+                <p class="copyright">&copy; <%= new Date().getFullYear() %> Klyfe Electric. Todos os direitos reservados.</p>
+                <p class="developer">
+                    <span>Desenvolvido por</span>
+                    <a class="developer-brand" href="https://eximusdigital.com.br/" target="_blank" rel="noopener" aria-label="Eximus Digital">
+                        <img src="/img/eximusdigital-logo-branco.webp" alt="Eximus Digital">
+                    </a>
+                </p>
             </div>
-            <div class="developer">
-                <span>Desenvolvido por:</span>
-                <a href="https://eximusdigital.com.br/" target="_blank" rel="noopener" aria-label="Desenvolvido por Eximus Digital - Ir para o site oficial do desenvolvedor">
-                    <img src="/img/logo-eximus-branco.webp" alt="Eximus Digital" loading="lazy" width="120" height="30">
-                </a>
+            <div class="footer-bottom-meta" aria-label="Áreas de atuação da Klyfe">
+                <span class="footer-bottom-rule" aria-hidden="true"></span>
+                <span>Engenharia</span><b>/</b>
+                <span>Automação</span><b>/</b>
+                <span>Energia Solar</span>
+                <span class="footer-bottom-mark" aria-hidden="true"><i></i><i></i><i></i></span>
             </div>
         </div>
     </div>

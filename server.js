@@ -7,6 +7,7 @@ const rateLimit = require('express-rate-limit');
 const locations = require('./config/locations'); // Carregado uma única vez (Eficiência)
 const business = require('./config/business');
 const { resolveTrackingContext } = require('./lib/site-tracking');
+const { createAnalyticsRouter, createPageContext } = require('./lib/site-analytics');
 const { startBlogRemoteSync, ensureBlogRemoteSynced } = require('./lib/blog-remote-sync');
 
 function safeOrigin(value) {
@@ -125,7 +126,7 @@ app.set('views', path.join(process.cwd(), 'views'));
 
 // Servir arquivos estáticos com cache explícito. CSS/JS revalidam diariamente;
 // fontes e imagens, que mudam com menos frequência, ficam em cache por 30 dias.
-app.use(express.static(path.join(process.cwd(), 'public'), {
+const staticFiles = express.static(path.join(process.cwd(), 'public'), {
     etag: true,
     setHeaders: (res, filePath) => {
         if (/\.(?:woff2?|webp|avif|png|jpe?g|svg|ico)$/i.test(filePath)) {
@@ -134,15 +135,20 @@ app.use(express.static(path.join(process.cwd(), 'public'), {
             res.setHeader('Cache-Control', 'public, max-age=86400, stale-while-revalidate=604800');
         }
     }
-}));
+});
+// /robots.txt é gerado pela rota SEO abaixo; impedir que o arquivo legado
+// estático intercepte a requisição mantém uma única política publicada.
+app.use((req, res, next) => req.path === '/robots.txt' ? next() : staticFiles(req, res, next));
 
 // Middleware para processar dados de formulário
+app.use(['/api/telemetry', '/api/site-analytics'], createAnalyticsRouter());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Middleware para globais de visualização
 app.use((req, res, next) => {
     res.locals.cityKey = 'default';
+    res.locals.siteAnalyticsContext = (canonical, robots) => res.statusCode < 400 ? createPageContext(req, canonical, robots) : '';
     res.locals.cityData = locations['default'];
     res.locals.business = business;
     res.locals.page = '';

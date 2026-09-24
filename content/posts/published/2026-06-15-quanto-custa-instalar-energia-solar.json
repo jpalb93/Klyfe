@@ -1,26 +1,33 @@
 {
   "status": "published",
   "slug": "quanto-custa-instalar-energia-solar",
-  "title": "Quanto Custa Instalar Energia Solar em 2026?",
-  "metaTitle": "Preço da Energia Solar <%- cityData.preposition %> <%- cityData.name %> | Klyfe",
-  "metaDescription": "Veja o que define o preço da energia solar <%- cityData.preposition %> <%- cityData.name %>, compare escopos e entenda custos, financiamento e proposta técnica.",
+  "title": "Quanto custa instalar energia solar? Entenda o que compõe o orçamento",
+  "metaTitle": "Quanto custa instalar energia solar? Entenda o que compõe o orçamento",
+  "metaDescription": "Aprenda a comparar equipamentos, projeto, adequações, instalação, conexão e manutenção em um orçamento fotovoltaico.",
   "publishAt": "2026-06-15",
   "category": "custo-economia",
   "categoryLabel": "Custo & Economia",
-  "summary": "Entenda os componentes do preço, as premissas de dimensionamento e os cuidados para comparar propostas de energia solar na Paraíba.",
-  "readTime": "14 min",
+  "summary": "Aprenda a comparar equipamentos, projeto, adequações, instalação, conexão e manutenção em um orçamento fotovoltaico.",
+  "readTime": "3 min",
   "author": "Equipe Técnica Klyfe Electric",
   "authorType": "Organization",
   "authorRole": "Conteúdo técnico institucional",
   "authorBio": "Conteúdo preparado pela Klyfe Electric com base no processo de diagnóstico, projeto, instalação e acompanhamento de sistemas fotovoltaicos. Valores comerciais devem ser confirmados em proposta individual.",
-  "dateModified": "2026-08-27",
-  "dateModifiedIso": "2026-08-27T12:00:00-03:00",
-  "keywords": ["quanto custa energia solar", "preço energia solar 2026", "orçamento solar Paraíba", "placa solar Campina Grande", "energia solar João Pessoa"],
-  "tags": ["energia solar", "preço", "orçamento", "Paraíba", "Campina Grande", "João Pessoa"],
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "keywords": [
+    "fatores do custo de instalar energia solar"
+  ],
+  "tags": [
+    "Preço",
+    "Orçamento",
+    "Financiamento",
+    "Energia solar"
+  ],
   "heroImage": "/img/blog/quanto-custa-instalar-energia-solar.webp",
-  "imageAlt": "Engenheiro eletricista analisando proposta orçamentária de energia solar em tablet digital",
-  "contentHtml": "\n      <p class=\"lead\">Para quem deseja planejar o orçamento familiar ou empresarial, uma das primeiras perguntas é: <strong>quanto custa instalar energia solar em 2026?</strong> Graças à maturidade da cadeia de suprimentos global e ao aumento da eficiência dos painéis solares, o custo de aquisição de usinas fotovoltaicas atingiu o patamar mais acessível da história recente.</p>\n\n      <p>Abaixo, a engenharia da Klyfe Electric detalha a composição de custos de um projeto solar profissional e apresenta uma tabela comparativa com estimativas de investimento e economia mensal.</p>\n\n      <h2>Como é Composto o Preço de um Sistema Fotovoltaico Profissional?</h2>\n      <p>Um orçamento sério de energia solar não cobra apenas pelas \"placas no telhado\". Ele engloba a entrega de um serviço de engenharia Turnkey (chave na mão) composto por 4 pilares essenciais de custos:</p>\n\n      <ol>\n        <li><strong>Equipamentos Principais (cerca de 55% a 60% do valor):</strong> Painéis fotovoltaicos de alta eficiência (módulos Monocristalinos Tier 1) e inversor solar interativo homologado pelo INMETRO.</li>\n        <li><strong>Materiais Elétricos e Estruturais (cerca de 15% do valor):</strong> Trilhos e ganchos em alumínio anodizado/inox, cabeamento solar com proteção UV, conectores MC4 e quadro de proteção String Box CC/CA com DPS.</li>\n        <li><strong>Serviços de Engenharia e Homologação (cerca de 15% do valor):</strong> Elaboração do projeto elétrico em CAD/BIM, simulação de sombras 3D, emissão da ART registrada no CREA e gestão burocrática junto à concessionária de energia.</li>\n        <li><strong>Instalação Física e Comissionamento (cerca de 10% a 15% do valor):</strong> Mão de obra especializada de montadores treinados em segurança do trabalho (NR-10 e NR-35) e acompanhamento de vistoria presencial.</li>\n      </ol>\n\n      <h2>Tabela de Estimativa de Investimento e Economia Mensal em 2026</h2>\n      <table class=\"blog-table\" style=\"width:100%; border-collapse: collapse; margin: 1.5rem 0;\">\n        <thead>\n          <tr style=\"background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);\">\n            <th style=\"padding: 12px; text-align: left;\">Perfil do Cliente / Imóvel</th>\n            <th style=\"padding: 12px; text-align: left;\">Potência Recomendada (kWp)</th>\n            <th style=\"padding: 12px; text-align: left;\">Investimento Médio Estimado</th>\n            <th style=\"padding: 12px; text-align: left;\">Economia Mensal na Fatura</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Casa Pequena (Conta de R$ 300 a R$ 450)</td>\n            <td style=\"padding: 12px;\">2.5 a 3.5 kWp</td>\n            <td style=\"padding: 12px;\">R$ 10.500 a R$ 14.000</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">R$ 280 a R$ 410/mês</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Casa Média (Conta de R$ 600 a R$ 900)</td>\n            <td style=\"padding: 12px;\">5.0 a 7.5 kWp</td>\n            <td style=\"padding: 12px;\">R$ 17.000 a R$ 24.000</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">R$ 550 a R$ 820/mês</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Casa Grande / Sobrado (Conta de R$ 1.200+)</td>\n            <td style=\"padding: 12px;\">10.0 a 14.0 kWp</td>\n            <td style=\"padding: 12px;\">R$ 30.000 a R$ 42.000</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">R$ 1.100 a R$ 1.600/mês</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Comércio / Empresa (Conta de R$ 2.500+)</td>\n            <td style=\"padding: 12px;\">20.0 a 40.0+ kWp</td>\n            <td style=\"padding: 12px;\">R$ 55.000 a R$ 95.000+</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">R$ 2.300 a R$ 4.000+/mês</td>\n          </tr>\n        </tbody>\n      </table>\n\n      <h2>Financiamento Solar: A Parcela trocada pela Conta de Luz</h2>\n      <p>Você não precisa dispor de todo o capital à vista para instalar energia solar. As principais instituições financeiras da região (como Banco do Nordeste com o FNE Sol, Banco do Brasil, Bradesco, Santander e BV) oferecem linhas de financiamento fotovoltaico com carência de até 90 a 120 dias e prazos de 60 a 84 meses.</p>\n      <p>Na prática, o valor da parcela do financiamento costuma ser <strong>igual ou inferior ao valor que você já paga mensalmente na conta de luz</strong>. Ou seja: você substitui um gasto sem retorno para a distribuidora pela aquisição do seu próprio patrimônio gerador.</p>\n\n      <div style=\"background: var(--bg-tertiary); padding: 2rem; border-radius: 8px; margin: 2rem 0; border-left: 4px solid var(--accent-primary);\">\n        <h3 style=\"margin-top: 0;\">Receba um orçamento exato para a sua conta de luz</h3>\n        <p>A Klyfe Electric elabora orçamentos transparentes com simulação de financiamento bancário sem compromisso.</p>\n        <p>Solicite seu estudo em <a href=\"/contato\" style=\"font-weight: bold; text-decoration: underline;\">Solicitar Orçamento Grátis Klyfe</a>.</p>\n      </div>\n    ",
-  "contentAppendHtml": "\n      <h2>Por que duas propostas com a mesma quantidade de placas custam diferente?</h2>\n      <p>Quantidade de módulos não é suficiente para comparar sistemas. Dois kits com a mesma potência nominal podem ter inversores, proteções, estruturas, garantias e premissas de geração diferentes. Também pode haver diferença no que está incluído: vistoria, projeto, ART, homologação, adequação do padrão, monitoramento e suporte pós-venda.</p>\n      <p>Antes de escolher, peça uma proposta que identifique marca e modelo dos equipamentos, potência instalada, geração mensal estimada, perdas consideradas, escopo de instalação e responsabilidades de cada parte. O artigo sobre <a href=\"/blog/como-escolher-uma-empresa-de-energia-solar/\">como escolher uma empresa de energia solar</a> traz um checklist para essa comparação.</p>\n\n      <h2>Quais dados a Klyfe usa para calcular um preço real?</h2>\n      <ul>\n        <li>faturas recentes, consumo em kWh e tipo de ligação;</li>\n        <li>expectativa de aumento de carga, como ar-condicionado, máquinas ou veículo elétrico;</li>\n        <li>orientação, inclinação, material e estado do telhado;</li>\n        <li>área disponível, sombreamento e distância até o quadro;</li>\n        <li>modalidade tarifária e perfil de consumo ao longo do dia;</li>\n        <li>necessidade de adequação do padrão de entrada ou da instalação existente.</li>\n      </ul>\n      <p>Para projetos atendidos pela sede local, veja os critérios de <a href=\"/energia-solar/campina-grande-pb/\">energia solar em Campina Grande</a>. Para imóveis do litoral, consulte a página de <a href=\"/energia-solar/joao-pessoa-pb/\">energia solar em João Pessoa</a>, que explica exposição ambiental e logística. O <a href=\"/energia-solar/\">guia estadual de energia solar na Paraíba</a> organiza as soluções por perfil.</p>\n\n      <h2>Como interpretar as faixas de preço deste guia?</h2>\n      <p>Os valores da tabela são referências editoriais para planejamento, revisadas em agosto de 2026; não formam tabela comercial nem promessa de economia. Potência, frete, adequações, estrutura, distância elétrica, modalidade tarifária e equipamentos podem mudar o orçamento. A proposta individual deve substituir qualquer faixa genérica.</p>\n\n      <h2>A conta de luz desaparece depois da instalação?</h2>\n      <p>Não necessariamente. O sistema pode reduzir a parcela de energia compensável, mas a unidade ainda pode pagar custo de disponibilidade, iluminação pública, demanda contratada, tributos ou outras cobranças aplicáveis. A economia precisa ser apresentada com essas limitações, e não como percentual garantido.</p>\n      <p>O excedente injetado na rede pode gerar créditos conforme as regras da geração distribuída. A validade e a utilização desses créditos obedecem à Lei nº 14.300 e à regulamentação da ANEEL. Entenda também <a href=\"/blog/como-funciona-a-homologacao-da-energia-solar/\">como funciona a homologação do sistema solar</a>.</p>\n\n      <h2>Financiamento solar: compare o custo total, não apenas a parcela</h2>\n      <p>Há instituições que oferecem crédito para sistemas fotovoltaicos, sujeito à análise e às condições vigentes. Compare entrada, prazo, carência, seguros, garantias exigidas e Custo Efetivo Total. A parcela não é automaticamente menor que a redução da fatura.</p>\n      <p>Para avaliar retorno, use a economia líquida estimada e inclua manutenção, degradação, custo de capital e eventuais mudanças tarifárias. Nosso guia de <a href=\"/blog/em-quanto-tempo-a-energia-solar-se-paga/\">payback da energia solar</a> mostra como fazer essa conta sem confundir exemplo com garantia.</p>\n    ",
+  "imageAlt": "Engenheiro analisando orçamento e projeto de instalação de energia solar",
+  "contentHtml": "<p class=\"lead\">O preço de uma instalação solar não cabe em um valor universal por telhado ou por quantidade de painéis. Dois imóveis com consumo parecido podem exigir estruturas, proteções e adequações diferentes. Por isso, o orçamento precisa mostrar o que está incluído.</p>\n<h2>Equipamentos não são o custo inteiro</h2><p>Módulos, inversor, estrutura, cabeamento e proteções são itens visíveis. Projeto, instalação, testes, documentação e conexão também compõem a entrega. Peça que a proposta separe cada grupo e identifique marcas ou especificações relevantes.</p>\n<p>Um preço menor pode refletir escopo menor. Compare o que será entregue, as responsabilidades e as exclusões antes de comparar totais.</p>\n<h2>O imóvel muda o orçamento</h2><p>Estado da cobertura, altura, acesso, distância até o ponto de conexão e condição da instalação elétrica podem alterar materiais e horas de trabalho. Uma visita ou levantamento técnico pode revelar adequações que não aparecem numa estimativa inicial.</p>\n<p>Pergunte como serão tratadas surpresas na obra e quem aprovará mudança de escopo antes de executá-la.</p>\n<h2>Como ler uma estimativa financeira?</h2><p>Confira consumo considerado, geração estimada, parcelas da fatura que continuam existindo e custos de operação. Evite usar uma tabela genérica de preço ou economia como promessa para o seu caso.</p>\n<p>Se houver financiamento, compare custo do crédito e fluxo de caixa separadamente da performance técnica. Parcela semelhante à conta atual não demonstra, sozinha, retorno positivo.</p>\n<h2>O que exigir da proposta?</h2><p>Peça prazo de validade, cronograma, garantias com seus responsáveis, documentação de entrega e critérios para alterações. Uma proposta comparável deixa claras as premissas, não apenas o valor final.</p>\n<h2>Exemplo para comparar situações</h2><p>Uma proposta inclui estrutura, projeto, conexão e testes; outra cita apenas módulos e inversor. O segundo total pode parecer menor porque parte da entrega ainda não foi precificada. Faça uma lista de inclusão e exclusão antes de comparar.</p>\n<p>Também vale pedir que cada empresa informe o que acontece se o levantamento encontrar necessidade de reforço no telhado ou mudança no ponto de conexão.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Consumo e dados do imóvel usados no cálculo.</li><li>Lista de equipamentos e escopo de instalação.</li><li>Adequações incluídas e excluídas.</li><li>Responsáveis por projeto, conexão e entrega.</li><li>Condições de pagamento, garantias e manutenção.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/servicos/instalacao-energia-solar/\">serviço de instalação de energia solar</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
+  "contentAppendHtml": "",
   "contentReplacements": [
     {
       "from": "Para quem deseja planejar o orçamento familiar ou empresarial, uma das primeiras perguntas é: <strong>quanto custa instalar energia solar em 2026?</strong> Graças à maturidade da cadeia de suprimentos global e ao aumento da eficiência dos painéis solares, o custo de aquisição de usinas fotovoltaicas atingiu o patamar mais acessível da história recente.",
@@ -36,14 +43,57 @@
     }
   ],
   "sources": [
-    { "title": "Micro e Minigeração Distribuída", "publisher": "ANEEL", "url": "https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida", "lastVerifiedAt": "2026-08-27" },
-    { "title": "Lei nº 14.300/2022 — Marco Legal da Micro e Minigeração Distribuída", "publisher": "Presidência da República", "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14300.htm", "lastVerifiedAt": "2026-08-27" },
-    { "title": "Geração Distribuída", "publisher": "Energisa", "url": "https://www.energisa.com.br/para-sua-casa/servicos/outros-servicos/geracao-distribuida", "lastVerifiedAt": "2026-08-27" }
+    {
+      "title": "Micro e Minigeração Distribuída",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida",
+      "lastVerifiedAt": "2026-08-27"
+    },
+    {
+      "title": "Lei nº 14.300/2022 — Marco Legal da Micro e Minigeração Distribuída",
+      "publisher": "Presidência da República",
+      "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14300.htm",
+      "lastVerifiedAt": "2026-08-27"
+    },
+    {
+      "title": "Geração Distribuída",
+      "publisher": "Energisa",
+      "url": "https://www.energisa.com.br/para-sua-casa/servicos/outros-servicos/geracao-distribuida",
+      "lastVerifiedAt": "2026-08-27"
+    }
   ],
   "faq": [
     {
-      "question": "Existe cobrança de frete adicional para entregar os equipamentos no interior do Nordeste?",
-      "answer": "Frete e deslocamento dependem do endereço e do escopo. A proposta deve informar claramente se logística, hospedagem, içamento, adequações e visitas estão incluídos, evitando custos inesperados durante a execução."
+      "question": "Existe preço fixo por painel?",
+      "answer": "Um valor isolado por painel não representa projeto, adequações e condições da instalação."
+    },
+    {
+      "question": "Uma tabela de preço substitui a visita?",
+      "answer": "Não quando faltam informações sobre cobertura e infraestrutura elétrica."
+    }
+  ],
+  "primaryKeyword": "fatores do custo de instalar energia solar",
+  "searchIntent": "informacional",
+  "seoTitle": "Quanto custa instalar energia solar? Entenda o que compõe o orçamento",
+  "seoDescription": "Aprenda a comparar equipamentos, projeto, adequações, instalação, conexão e manutenção em um orçamento fotovoltaico.",
+  "heroImageAlt": "Engenheiro analisando orçamento e projeto de instalação de energia solar",
+  "canonicalPath": "/blog/quanto-custa-instalar-energia-solar",
+  "robots": "index, follow",
+  "ogTitle": "Quanto custa instalar energia solar? Entenda o que compõe o orçamento",
+  "ogDescription": "Aprenda a comparar equipamentos, projeto, adequações, instalação, conexão e manutenção em um orçamento fotovoltaico.",
+  "ogImage": "/img/blog/quanto-custa-instalar-energia-solar.webp",
+  "internalLinks": [
+    {
+      "anchor": "payback da energia solar",
+      "url": "/blog/em-quanto-tempo-a-energia-solar-se-paga"
+    },
+    {
+      "anchor": "como comparar integradoras",
+      "url": "/blog/como-escolher-uma-empresa-de-energia-solar"
+    },
+    {
+      "anchor": "documentos do projeto",
+      "url": "/blog/documentos-para-instalar-energia-solar"
     }
   ]
 }

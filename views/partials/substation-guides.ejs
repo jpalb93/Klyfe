@@ -1,0 +1,17 @@
+<% if (locals.substationGuides && substationGuides.length) { %>
+<section id="guia-subestacao" class="section-padding substation-education" aria-labelledby="guia-subestacao-title">
+    <div class="container">
+        <div class="section-separator"><%- include('symbol') %> <span>GUIA SUBESTAÇÃO</span></div>
+        <h2 id="guia-subestacao-title">Da primeira avaliação <span class="text-gradient">à manutenção.</span></h2>
+        <p class="substation-education-intro">Entenda as opções, prepare os documentos e planeje os próximos passos da sua instalação. Escolha o guia que responde à sua dúvida.</p>
+        <div class="substation-education-grid">
+            <% substationGuides.forEach(guide => { %>
+            <a href="/blog/<%= guide.slug %>" class="substation-education-card">
+                <span><%= guide.label %></span><h3><%= guide.title %></h3>
+                <p><%= guide.description %></p><strong>Ler guia <span aria-hidden="true">→</span></strong>
+            </a>
+            <% }) %>
+        </div>
+    </div>
+</section>
+<% } %>

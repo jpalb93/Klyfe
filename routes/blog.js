@@ -80,7 +80,8 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
     }
 
     const homePrefix = cityKey !== 'default' ? '/' + cityKey : '';
-    const canonical = `${baseUrl}${homePrefix}/blog/${postSlug}`;
+    const isCanonicalGuide = require('../config/editorial-guides').isCanonicalGuide(postSlug);
+    const canonical = `${baseUrl}${isCanonicalGuide ? '' : homePrefix}/blog/${postSlug}`;
     
     const alternateCityKey  = cityKey === 'joao-pessoa' ? 'campina-grande' : 'joao-pessoa';
     const alternateCityName = cityKey === 'joao-pessoa' ? 'Campina Grande' : 'João Pessoa';
@@ -116,6 +117,8 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
         ...(evaluatedPost.authorType === 'Organization' ? {} : { "worksFor": { "@type": "Organization", "name": business.name, "url": baseUrl } })
     };
 
+    // FAQs permanecem visíveis no artigo, mas não são marcadas como FAQPage:
+    // o site é comercial e esse rich result não deve ser emitido por padrão.
     let schemaJson = {
         "@context": "https://schema.org",
         "@graph": [
@@ -170,10 +173,23 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
     </script>
     `;
 
-    const solarish = /solar|fotovolta|painel|inversor|homologacao/i.test(postSlug + ' ' + (post.category || '') + ' ' + (post.title || ''));
-    const trackingExtras = solarish
-        ? resolveTrackingContext('/energia-solar/', { contentCategory: 'solar' })
-        : {};
+    const isWallbox = /wallbox|carregador-veicular/i.test(postSlug);
+    let trackingExtras = {};
+
+    if (evaluatedPost.whatsappMessage) {
+        const postCategory = isWallbox ? 'wallbox' : (post.category || 'geral');
+        const postPhone = postCategory === 'solar' ? '5583991430929' : '5583991330972';
+        trackingExtras = resolveTrackingContext(req.path, {
+            contentCategory: postCategory,
+            waPhone: postPhone,
+            waMsg: evaluatedPost.whatsappMessage
+        });
+    } else {
+        const solarish = /solar|fotovolta|painel|inversor|homologacao/i.test(postSlug + ' ' + (post.category || '') + ' ' + (post.title || ''));
+        if (solarish) {
+            trackingExtras = resolveTrackingContext('/energia-solar/', { contentCategory: 'solar' });
+        }
+    }
 
     res.render('blog-post', {
         title: evaluatedPost.metaTitle || `${evaluatedPost.title} | Klyfe Electric`,

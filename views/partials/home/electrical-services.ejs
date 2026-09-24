@@ -60,7 +60,7 @@
                      'quadro-distribuicao',
                      'fiacao-cabeamento',
                      'ar-condicionado',
-                     'carregador-veicular'
+                     'projeto-rede'
                    ];
                    const serviceTagsMap = {
                      'tomadas-interruptores': 'Residencial',
@@ -70,14 +70,14 @@
                      'quadro-distribuicao': 'Upgrade',
                      'fiacao-cabeamento': 'Instalação',
                      'ar-condicionado': 'Residencial',
-                     'carregador-veicular': 'Instalação'
+                     'projeto-rede': 'Telecom'
                    };
                    const activeDailyServices = dailyKeys.filter(key => isServiceEnabled(key));
                    activeDailyServices.forEach(key => {
                      const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                      const badgeTag = serviceTagsMap[key] || 'Elétrica';
                 %>
-                    <a href="<%= homePrefix %>/solucoes/eletrica" class="daily-modern-card">
+                    <a href="<%= homePrefix %>/solucoes/eletrica/<%= key %>" class="daily-modern-card" data-content-category="eletrica" data-content-name="<%= key %>">
                         <div class="daily-card-top">
                             <div class="daily-card-icon">
                                 <i class="fas <%= svc.icon || 'fa-plug' %>"></i>
@@ -86,7 +86,7 @@
                         </div>
                         <h3 class="daily-card-title"><%= svc.label %></h3>
                         <p class="daily-card-desc"><%= svc.summary || svc.painPoint || 'Instalação e manutenção técnica especializada.' %></p>
-                        <i class="fas fa-arrow-right daily-card-arrow"></i>
+                        <span class="daily-card-link">Explorar serviço <i class="fas fa-arrow-right"></i></span>
                     </a>
                 <% }) %>
             </div>

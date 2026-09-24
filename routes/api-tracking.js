@@ -8,6 +8,7 @@ const {
     isLpSolarSource
 } = require('../lib/meta-capi');
 const { forwardLeadToAgentesCRM } = require('../lib/agentes-crm');
+const { validateContactLead, validateWallboxBriefLead } = require('../lib/contact-lead');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 const ALLOWED_CAPI_EVENTS = new Set(['PageView', 'ViewContent', 'Lead', 'Contact']);
@@ -71,17 +72,27 @@ router.post('/api/tracking/event', async (req, res) => {
 // POST Contato (+ CAPI Lead solar com event_id para dedup com Pixel)
 router.post('/contato', async (req, res) => {
     const body = req.body || {};
+    if (body.website_url) return res.status(204).end();
+
+    const isWallboxBrief = String(body.form_type || '') === 'wallbox_brief';
+    const validation = isWallboxBrief ? validateWallboxBriefLead(body) : validateContactLead(body);
+    if (!validation.valid) {
+        return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
+    }
+    Object.assign(body, validation.lead);
+
     const category = categoryFromServico(body.servico);
     const isLpSolar = isLpSolarSource(body.source);
     const isSolarLead = category === 'solar' || isLpSolar;
     const eventId = String(body.event_id || newEventId('lead'));
-    const contentName = resolveLeadContentName(body.source, isSolarLead);
+    const contentName = isWallboxBrief ? 'wallbox-brief-form' : resolveLeadContentName(body.source, isSolarLead);
     const firstName = (body.nome || '').trim().split(/\s+/)[0] || '';
     const lastName = (body.nome || '').trim().split(/\s+/).slice(1).join(' ') || '';
 
     let capi = null;
     const hasConsent = body.marketing_consent === 'granted' || body.marketing_consent === true;
-    if (isSolarLead && hasConsent) {
+    const sendCapiLead = async () => {
+        if (!isSolarLead || !hasConsent) return null;
         const clientIp = req.headers['x-forwarded-for']
             ? String(req.headers['x-forwarded-for']).split(',')[0].trim()
             : (req.ip || '').replace(/^::ffff:/, '');
@@ -96,7 +107,7 @@ router.post('/contato', async (req, res) => {
             ? `${baseUrl}${lpPathMap[body.source] || '/lp/energia-solar-empresas'}`
             : `${baseUrl}/contato`;
 
-        capi = await sendMetaCapiEvent({
+        return sendMetaCapiEvent({
             eventName: 'Lead',
             eventId,
             eventSourceUrl: body.event_source_url || defaultSourceUrl,
@@ -121,7 +132,7 @@ router.post('/contato', async (req, res) => {
             clientIp,
             userAgent: req.get('user-agent') || ''
         });
-    }
+    };
 
     // Encaminhamento automático para o CRM central da Klyfe (Agentes-Klyfe)
     // Inclui gclid/fbclid/UTMs para offline conversions / atribuição de agência
@@ -133,6 +144,18 @@ router.post('/contato', async (req, res) => {
         conversion_time: new Date().toISOString()
     });
 
+    if (!crmResult || !crmResult.ok) {
+        const isConfigurationError = crmResult && crmResult.skipped;
+        return res.status(isConfigurationError ? 503 : 502).json({
+            success: false,
+            message: 'Não foi possível registrar sua solicitação agora. Tente novamente ou fale conosco pelo WhatsApp.',
+            code: isConfigurationError ? 'CRM_UNAVAILABLE' : (crmResult && crmResult.timedOut ? 'CRM_TIMEOUT' : 'CRM_DELIVERY_FAILED')
+        });
+    }
+
+    // Eventos de conversão são emitidos somente após a persistência confirmada no CRM.
+    capi = await sendCapiLead();
+
     res.json({
         success: true,
         message: 'Recebido!',
@@ -140,7 +163,7 @@ router.post('/contato', async (req, res) => {
         content_name: contentName,
         content_category: isSolarLead ? 'solar' : category,
         capi_ok: isSolarLead ? !!(capi && capi.ok) : undefined,
-        crm_ok: !!(crmResult && crmResult.ok)
+        crm_ok: true
     });
 });
 

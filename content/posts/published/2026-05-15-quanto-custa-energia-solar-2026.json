@@ -1,6 +1,6 @@
 {
   "slug": "quanto-custa-energia-solar-2026",
-  "status": "published",
+  "status": "archived",
   "publishAt": "2026-05-15",
   "title": "Quanto custa instalar energia solar em <%- cityData.name %> em 2026?",
   "category": "solar",
@@ -22,5 +22,7 @@
   ],
   "keywords": [],
   "affiliateProducts": [],
-  "affiliateDisclosure": false
+  "affiliateDisclosure": false,
+  "robots": "noindex, follow",
+  "canonicalPath": "/blog/quanto-custa-instalar-energia-solar"
 }

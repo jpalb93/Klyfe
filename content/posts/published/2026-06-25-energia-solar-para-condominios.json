@@ -1,23 +1,85 @@
 {
   "status": "published",
   "slug": "energia-solar-para-condominios",
-  "title": "Energia Solar para Condomínios: Como Zerar a Conta das Áreas Comuns",
+  "title": "Energia solar em condomínio: como preparar a assembleia e os dados",
   "publishAt": "2026-06-25",
   "category": "segmentos",
   "categoryLabel": "Segmentos",
-  "summary": "Guia completo para síndicos e administradoras: reduza a taxa de condomínio com geração solar para elevadores, bombas e iluminação, com aprovação em assembleia.",
-  "readTime": "12 min",
+  "summary": "Organize faturas, áreas comuns, interessados, critérios de rateio e documentos antes de discutir energia solar na assembleia.",
+  "readTime": "4 min",
   "heroImage": "/img/blog/energia-solar-para-condominios.webp",
-  "imageAlt": "Usina solar fotovoltaica instalada no telhado de um moderno condomínio residencial",
-  "contentHtml": "\n      <p class=\"lead\">A taxa de condomínio de edifícios residenciais e comerciais sofre pressões constantes de aumento devido aos custos fixos de eletricidade das áreas comuns: funcionamento ininterrupto de elevadores sociais e de serviço, bombas de recalque de água, bombas de piscina, iluminação de garagens, portaria 24h e saunas. A <strong>energia solar para condomínios</strong> é a solução de gestão financeira mais eficiente para estabilizar a cota condominial e valorizar os imóveis de todos os condôminos.</p>\n\n      <p>Contudo, a implementação de geradores solares em condomínios envolve particularidades de aprovação em assembleia, regras de quórum do Código Civil e normas da ANEEL para rateio de créditos. Abaixo, detalhamos como funciona a aplicação prática e jurídica do projeto.</p>\n\n      <h2>As 3 Modalidades de Energia Solar para Condomínios (Resolução ANEEL 1.000/2021)</h2>\n\n      <h3>1. Geração para a Área Comum (Uso Condominial Padrão)</h3>\n      <p>A usina solar é instalada no telhado ou laje superior do edifício e conectada diretamente ao medidor da Área Comum do condomínio. A energia gerada supre o consumo dos elevadores, bombas d'água, portaria e iluminação. A redução na fatura da área comum chega a até 95%, reduzindo diretamente o valor da taxa de condomínio paga mensalmente por cada morador.</p>\n\n      <h3>2. Empreendimento de Múltiplas Unidades Consumidoras (EMUC)</h3>\n      <p>Nesta modalidade avançada, a usina solar instalada na cobertura do prédio gera energia não apenas para a área comum, mas produz excedentes que são <strong>rateados percentualmente na conta de luz particular de cada apartamento ou sala comercial</strong>. O percentual de créditos destinado a cada morador é definido pela assembleia de condôminos e cadastrado formalmente na distribuidora de energia (Energisa, Neoenergia, etc.).</p>\n\n      <h3>3. Geração Compartilhada (Condomínios Horizontais ou Usina Externa)</h3>\n      <p>Ideal para condomínios fechados de casas ou quando o edifício vertical não possui área de telhado suficiente no topo. O condomínio (ou uma associação de moradores) constrói uma usina solar em um terreno próprio em local ensolarado fora do condomínio, e os créditos de energia são transferidos via rede da concessionária para abater as contas do condomínio e das casas dos moradores.</p>\n\n      <h2>Como Aprovar a Energia Solar na Assembleia de Condôminos</h2>\n      <p>O maior desafio do síndico não é a engenharia, mas a aprovação política na reunião de condomínio. Para garantir a aprovação sem divergências jurídicas, siga os seguintes passos recomendados:</p>\n\n      <ol style=\"line-height: 1.8;\">\n        <li><strong>Definição do Quórum Jurídico:</strong> A instalação de energia solar é enquadrada pelo Código Civil (Art. 1.341) como uma <em>benfeitoria útil</em> (pois reduz as despesas correntes do condomínio). O quórum legal exigido para aprovação é de <strong>maioria simples dos condôminos presentes em assembleia regularmente convocada</strong> (ou 50% + 1 dos votos dos presentes).</li>\n        <li><strong>Apresentação do Estudo de Viabilidade Financeira Klyfe:</strong> Apresentar o estudo comparativo mostrando que o valor da parcela de um financiamento bancário condominial é pago com a própria economia gerada na conta de luz, <strong>sem necessidade de realizar chamada de capa ou aumentar a taxa de condomínio</strong>.</li>\n        <li><strong>Laudo de Carga de Laje e Vistoria de Segurança:</strong> Apresentar a documentação de engenharia atestando que a montagem não trincará a laje e não trará riscos estruturais ao edifício.</li>\n      </ol>\n\n      <h2>Preservação da Impermeabilização da Laje do Prédio</h2>\n      <p>Em edifícios residenciais, uma preocupação comum dos moradores do último andar (cobertura) é o risco de vazamentos de água provocados por perfurações na laje. A Klyfe Electric utiliza sistemas de fixação sem perfuração para lajes planas: os trilhos solares são acoplados a <strong>blocos de contrapeso em concreto pré-moldado</strong> devidamente calculados para suportar ventos de tempestade por gravidade, mantendo a manta de impermeabilização 100% intacta.</p>\n\n      <h2>Tabela Comparativa: Condomínio Vertical vs. Condomínio Horizontal</h2>\n      <table class=\"blog-table\" style=\"width:100%; border-collapse: collapse; margin: 1.5rem 0;\">\n        <thead>\n          <tr style=\"background: var(--bg-secondary); border-bottom: 2px solid var(--border-color);\">\n            <th style=\"padding: 12px; text-align: left;\">Tipo de Condomínio</th>\n            <th style=\"padding: 12px; text-align: left;\">Local de Instalação das Placas</th>\n            <th style=\"padding: 12px; text-align: left;\">Foco Principal da Economia</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Edifício Vertical (Prédio de Apartamentos)</td>\n            <td style=\"padding: 12px;\">Laje técnica superior ou cobertura do edifício.</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">Zerar faturas de elevadores, bombas d'água e portaria.</td>\n          </tr>\n          <tr style=\"border-bottom: 1px solid var(--border-color);\">\n            <td style=\"padding: 12px; font-weight: bold;\">Condomínio Horizontal (Casas Fechadas)</td>\n            <td style=\"padding: 12px;\">Telhado do clube/portaria ou usina de solo no lote comum.</td>\n            <td style=\"padding: 12px; color: #2e7d32; font-weight: bold;\">Iluminação de alamedas, bombas de piscina e portaria.</td>\n          </tr>\n        </tbody>\n      </table>\n\n      <div style=\"background: var(--bg-tertiary); padding: 2rem; border-radius: 8px; margin: 2rem 0; border-left: 4px solid var(--accent-primary);\">\n        <h3 style=\"margin-top: 0;\">Valorize os imóveis do seu condomínio com a Klyfe</h3>\n        <p>Elaboramos apresentações executivas personalizadas para a assembleia do seu condomínio, com material gráfico transparente e simulações de financiamento sem aumento de cota.</p>\n        <p>Saiba mais em <a href=\"/energia-solar/condominios/\" style=\"font-weight: bold; text-decoration: underline;\">Soluções de Energia Solar para Condomínios Klyfe</a> ou fale com um engenheiro em <a href=\"/contato\" style=\"font-weight: bold; text-decoration: underline;\">Atendimento Klyfe Electric</a>.</p>\n      </div>\n    ",
+  "imageAlt": "Sistema fotovoltaico em cobertura de condomínio para atender áreas comuns",
+  "contentHtml": "<p class=\"lead\">Uma proposta de energia solar para condomínio precisa responder primeiro a perguntas administrativas: quem consome, quem participa, como a decisão será tomada e quais áreas podem ser avaliadas. O objetivo deste guia é ajudar síndico e moradores a preparar essa conversa antes de contratar um projeto.</p>\n<h2>Mapeie as unidades consumidoras</h2><p>Separe a fatura das áreas comuns das faturas de apartamentos, lojas ou outras unidades. Anote titularidade, endereço e consumo de cada ponto de interesse. O modelo de participação não deve ser escolhido apenas pelo nome “condomínio”; a configuração de medição e as regras aplicáveis importam.</p>\n<p>A ANEEL descreve modalidades de geração distribuída, inclusive empreendimentos de múltiplas unidades consumidoras e geração compartilhada. A opção viável para o caso concreto exige conferência com a distribuidora e apoio técnico e jurídico quando necessário.</p>\n<h2>Prepare uma pauta útil para a assembleia</h2><p>Apresente o problema que se pretende resolver, as contas consideradas, as áreas a estudar, os custos que ainda não foram definidos e quem poderá conduzir o levantamento. Separe autorização para estudar a solução de aprovação de uma obra e de seu orçamento.</p>\n<p>Consulte convenção, regimento e regras de deliberação aplicáveis ao condomínio. Este artigo não estabelece quórum nem substitui orientação jurídica.</p>\n<h2>Levante as condições do imóvel</h2><p>Reúna plantas, informações de cobertura, histórico de impermeabilização, áreas técnicas e restrições de acesso. O fato de existir espaço livre não confirma capacidade estrutural ou adequação elétrica.</p>\n<p>Defina também quem ficará responsável por receber documentos, responder à equipe de engenharia e comunicar mudanças de escopo aos moradores.</p>\n<h2>Compare propostas sem misturar premissas</h2><p>Peça descrição do modelo de compensação, das unidades contempladas, da geração estimada, das responsabilidades de manutenção e do investimento total. Uma economia prometida para “o prédio” pode se referir apenas às áreas comuns; confirme essa distinção por escrito.</p>\n<h2>Participação e prestação de contas</h2><p>Antes de estimar benefício por apartamento, esclareça quais unidades participariam e como as informações de consumo serão obtidas. Registre quem aprova o modelo, quem acompanha o desempenho e quem presta contas aos moradores. Essas decisões administrativas interferem na forma de apresentar a proposta.</p>\n<p>Se o objetivo for apenas reduzir despesas comuns, informe isso claramente. É diferente de prometer redução individual para cada condômino.</p>\n<h2>Custos após a instalação</h2><p>Inclua na discussão inspeção, limpeza quando necessária, monitoramento, acesso à cobertura e eventual substituição de componentes. Pergunte como esses gastos serão previstos no orçamento do condomínio e quem receberá alertas de desempenho.</p>\n<p>Uma proposta útil deve permitir que futuros síndicos entendam documentos, garantias, contatos e responsabilidades sem depender da memória da gestão que aprovou a obra.</p>\n<h2>Exemplo para comparar situações</h2><p>Imagine um edifício que deseja reduzir a fatura das áreas comuns e outro que pretende incluir também unidades privadas. O primeiro debate pode se concentrar na conta condominial; o segundo exige discutir participantes, medição e modelo de compensação. Ambos precisam de deliberação e documentação compatíveis com seu caso.</p>\n<p>Na assembleia, apresente uma proposta de estudo como etapa distinta da aprovação da obra. Isso permite examinar estrutura, custo e regras antes de assumir um investimento definitivo.</p>\n<h2>Checklist para o próximo passo</h2><ul><li>Faturas das áreas comuns e unidades interessadas.</li><li>Convenção, regimento e processo de deliberação.</li><li>Plantas e histórico da cobertura.</li><li>Lista de perguntas dos moradores sobre participação e custos.</li><li>Responsável pelo contato e documentação.</li></ul>\n<h2>Quando passar do estudo para o serviço?</h2><p>Com os dados organizados, veja a <a href=\"/energia-solar/condominios/\">solução de energia solar para condomínios</a> para entender a solução oferecida e solicitar uma avaliação do seu caso. O escopo técnico e comercial depende das condições verificadas.</p>",
   "faq": [
     {
-      "question": "O condomínio pode contratar financiamento bancário para instalar energia solar?",
-      "answer": "Sim! Instituições bancárias possuem linhas de crédito específicas para condomínios (Pessoa Jurídica/CNPJ). O banco analisa a saúde financeira do condomínio e concede financiamento com prazos de até 60 a 84 meses. Na maioria dos projetos Klyfe, o valor economizado mensalmente na conta de luz da área comum cobre 100% do valor da parcela do financiamento."
+      "question": "A instalação na área comum reduz a conta de todos?",
+      "answer": "Isso depende do modelo adotado, das unidades participantes e das regras de compensação. A proposta deve dizer exatamente quais contas foram consideradas."
     },
     {
-      "question": "Como funciona a garantia do sistema solar instalado no condomínio?",
-      "answer": "Os módulos fotovoltaicos possuem 25 anos de garantia de geração de fábrica, os inversores possuem garantia de 10 a 15 anos e a Klyfe oferece garantia de instalação, ART de execução e contrato de manutenção técnica preventiva periódica."
+      "question": "Qual é o quórum de aprovação?",
+      "answer": "O quórum depende das regras aplicáveis e da natureza da intervenção. Consulte a convenção e orientação jurídica para o caso concreto."
     }
-  ]
+  ],
+  "author": "Equipe Técnica Klyfe Electric",
+  "authorType": "Organization",
+  "authorRole": "Engenharia elétrica, energia solar e mobilidade elétrica",
+  "authorBio": "Conteúdo técnico preparado pela Klyfe Electric a partir de critérios de engenharia, fontes públicas e limites declarados. Escopo, valores e exigências devem ser confirmados para cada imóvel e contratação.",
+  "primaryKeyword": "planejamento de energia solar em condomínio",
+  "searchIntent": "informacional",
+  "metaTitle": "Energia solar em condomínio: como preparar a assembleia e os dados",
+  "metaDescription": "Organize faturas, áreas comuns, interessados, critérios de rateio e documentos antes de discutir energia solar na assembleia.",
+  "seoTitle": "Energia solar em condomínio: como preparar a assembleia e os dados",
+  "seoDescription": "Organize faturas, áreas comuns, interessados, critérios de rateio e documentos antes de discutir energia solar na assembleia.",
+  "keywords": [
+    "planejamento de energia solar em condomínio"
+  ],
+  "tags": [
+    "Condomínios",
+    "Áreas comuns",
+    "Assembleia",
+    "SCEE"
+  ],
+  "heroImageAlt": "Sistema fotovoltaico em cobertura de condomínio para atender áreas comuns",
+  "canonicalPath": "/blog/energia-solar-para-condominios",
+  "robots": "index, follow",
+  "ogTitle": "Energia solar em condomínio: como preparar a assembleia e os dados",
+  "ogDescription": "Organize faturas, áreas comuns, interessados, critérios de rateio e documentos antes de discutir energia solar na assembleia.",
+  "ogImage": "/img/blog/energia-solar-para-condominios.webp",
+  "dateModified": "2026-09-22",
+  "dateModifiedIso": "2026-09-22T12:00:00-03:00",
+  "sources": [
+    {
+      "title": "Micro e Minigeração Distribuída",
+      "publisher": "ANEEL",
+      "url": "https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Lei nº 14.300/2022",
+      "publisher": "Presidência da República",
+      "url": "https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14300.htm",
+      "lastVerifiedAt": "2026-09-16"
+    },
+    {
+      "title": "Geração Distribuída",
+      "publisher": "Energisa",
+      "url": "https://www.energisa.com.br/para-sua-casa/servicos/outros-servicos/geracao-distribuida",
+      "lastVerifiedAt": "2026-09-16"
+    }
+  ],
+  "internalLinks": [
+    {
+      "anchor": "wallbox em condomínio",
+      "url": "/blog/wallbox-em-condominio"
+    },
+    {
+      "anchor": "orçamento solar",
+      "url": "/blog/quanto-custa-instalar-energia-solar"
+    },
+    {
+      "anchor": "conexão à rede",
+      "url": "/blog/como-funciona-a-homologacao-da-energia-solar"
+    }
+  ],
+  "contentAppendHtml": ""
 }
