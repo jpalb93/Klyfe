@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+    <meta name="theme-color" content="#fffaf5">
+    <title><%= title %></title>
+    <meta name="description" content="<%= description %>">
+    <meta name="robots" content="<%= robots %>">
+    <link rel="canonical" href="<%= canonical %>">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Klyfe Electric">
+    <meta property="og:title" content="Mais sol. Menos conta. ☀️ Klyfe">
+    <meta property="og:description" content="Comece pela sua conta de luz e descubra as possibilidades da energia solar com a Klyfe.">
+    <meta property="og:url" content="<%= canonical %>">
+    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/solar-card-share.jpg">
+    <meta property="og:image:width" content="1080">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:alt" content="Klyfe Energia Solar. Mais sol. Menos conta. Descubra o potencial de economia para seu imóvel.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mais sol. Menos conta. | Klyfe">
+    <meta name="twitter:description" content="Descubra as possibilidades da energia solar para seu imóvel com a Klyfe.">
+    <meta name="twitter:image" content="https://www.klyfeelectric.com.br/img/solar-card-share.jpg">
+    <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/fonts/ibm-plex-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/css/solar-card.css?v=20261103-3">
+    <link rel="stylesheet" href="/css/solar-card-mobile.css?v=20261103-3">
+    <%- include('lp/_tracking') %>
+    <script src="/js/solar-card-model.js?v=20261103-2" defer></script>
+    <script src="/js/solar-card.js?v=20261103-mobile-2" defer></script>
+</head>
+<body class="sc-page">
+    <a class="sc-skip" href="#simulacao">Ir para a simulação</a>
+    <svg class="sc-icons" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <symbol id="sc-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+        <symbol id="sc-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+        <symbol id="sc-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+        <symbol id="sc-business" viewBox="0 0 24 24"><path d="M5 21V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v17M3 21h18M9 7h1m4 0h1m-6 4h1m4 0h1m-6 4h1m4 0h1m-4 6v-3h2v3"/></symbol>
+        <symbol id="sc-rural" viewBox="0 0 24 24"><path d="m3 12 9-7 9 7v9H3Zm6 9v-7h6v7M12 5V2m-4 2 4 1 4-1M6 10h12"/></symbol>
+        <symbol id="sc-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+        <symbol id="sc-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.5 8.5 0 0 1-12.7 7.4L3 21l1.6-5.3A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 10h8m-8 4h5"/></symbol>
+        <symbol id="sc-share" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M5 13v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></symbol>
+    </svg>
+
+    <header class="sc-header sc-wrap">
+        <a class="sc-logo" href="/energia-solar/" aria-label="Klyfe Electric, energia solar"><%- include('partials/logo') %></a>
+        <span class="sc-header-label">ENERGIA SOLAR, DO SEU JEITO.</span>
+        <button class="sc-share" type="button" data-share aria-label="Compartilhar cartão solar"><svg><use href="#sc-share"/></svg><span>Compartilhar</span></button>
+    </header>
+
+    <main class="sc-wrap">
+        <div class="sc-experience">
+            <section class="sc-intro" aria-labelledby="sc-title">
+                <span class="sc-eyebrow"><svg><use href="#sc-sun"/></svg> UM NOVO OLHAR PARA SUA ENERGIA</span>
+                <h1 id="sc-title">Mais sol.<br><span>Menos conta.</span></h1>
+                <p class="sc-lead">Energia solar para o seu imóvel. Comece pela sua conta de luz.</p>
+                <figure class="sc-photo">
+                    <img id="sc-profile-image" src="/img/lp/solar-residencial-hero-640.webp" alt="Casa com painéis solares no telhado" width="640" height="640" fetchpriority="high">
+                    <figcaption><span class="sc-photo-mark"><svg><use href="#sc-sun"/></svg></span><span>O sol já faz parte da sua vida.<br><strong>Que tal fazer parte dos seus planos?</strong></span></figcaption>
+                </figure>
+                <div class="sc-reassurance"><span><svg><use href="#sc-check"/></svg> Projeto sob medida</span><span><svg><use href="#sc-check"/></svg> Equipe de engenharia</span></div>
+            </section>
+
+            <section id="simulacao" class="sc-simulator" aria-labelledby="sc-simulation-title" data-solar-phone="<%= solarPhone %>">
+                <div class="sc-card-top"><span class="sc-small-label">SEU PRIMEIRO PASSO</span><span class="sc-free"><span></span> Sem cadastro</span></div>
+                <ol class="sc-progress" aria-label="Etapas da simulação">
+                    <li data-solar-step="1" aria-current="step"><span>1</span> Imóvel</li>
+                    <li data-solar-step="2"><span>2</span> Conta</li>
+                    <li data-solar-step="3"><span>3</span> Resultado</li>
+                </ol>
+                <div id="sc-form-view">
+                    <h2 id="sc-simulation-title" tabindex="-1">Onde você quer gerar energia?</h2>
+                    <p class="sc-card-subtitle" id="sc-step-description">Escolha o perfil do seu imóvel para começar.</p>
+                    <form id="sc-form" novalidate>
+                        <fieldset class="sc-fieldset" id="sc-profile-step">
+                            <legend class="sc-visually-hidden">Perfil do imóvel</legend>
+                            <div class="sc-profiles">
+                                <label class="sc-profile"><input type="radio" name="profile" value="residencial" checked><span><svg><use href="#sc-home"/></svg><strong>Minha casa</strong></span></label>
+                                <label class="sc-profile"><input type="radio" name="profile" value="comercial"><span><svg><use href="#sc-business"/></svg><strong>Minha empresa</strong></span></label>
+                                <label class="sc-profile"><input type="radio" name="profile" value="rural"><span><svg><use href="#sc-rural"/></svg><strong>Área rural</strong></span></label>
+                            </div>
+                        </fieldset>
+                        <div class="sc-bill-group" id="sc-bill-step" hidden>
+                            <label class="sc-field-label sc-visually-hidden" for="sc-bill">Valor médio mensal da conta de energia</label>
+                            <div class="sc-money-input"><span aria-hidden="true">R$</span><input id="sc-bill" name="bill" type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" maxlength="12" value="600" aria-describedby="sc-bill-hint sc-bill-error"><span>/ mês</span></div>
+                            <input id="sc-bill-range" class="sc-range" type="range" min="100" max="5000" step="10" value="600" aria-label="Ajustar valor da conta de energia">
+                            <div class="sc-range-labels"><span>R$ 100</span><span id="sc-range-max">R$ 5.000</span></div>
+                            <div class="sc-presets" aria-label="Valores rápidos da conta"><button type="button" data-bill="300">R$ 300</button><button type="button" data-bill="600" aria-pressed="true">R$ 600</button><button type="button" data-bill="1000">R$ 1.000</button><button type="button" data-bill="2000">R$ 2.000</button></div>
+                            <p id="sc-bill-hint" class="sc-hint">Pode digitar uma média ou ajustar a barra.</p>
+                            <p id="sc-bill-error" class="sc-error" role="alert" hidden>Informe um valor entre R$ 100 e R$ 50.000.</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="sc-result-view" hidden>
+                    <h2 id="sc-result-title" tabindex="-1">Seu dinheiro pode<br>ir mais longe.</h2>
+                    <p class="sc-card-subtitle" id="sc-result-summary"></p>
+                    <div class="sc-results sc-yearly-spend" aria-live="polite" aria-atomic="true">
+                        <span class="sc-small-label">HOJE, SUA CONTA REPRESENTA</span>
+                        <p class="sc-saving"><strong id="sc-yearly-cost"></strong><span>por ano</span></p>
+                        <p class="sc-spend-caption">Pela média mensal que você informou.</p>
+                    </div>
+                    <p class="sc-result-invitation" id="sc-result-invitation"></p>
+                    <p class="sc-result-support">A Klyfe mostra quanto você pode economizar e prepara uma solução para o seu imóvel.</p>
+                </div>
+                <div class="sc-actions" aria-label="Ações da simulação">
+                    <div class="sc-action-buttons">
+                        <button class="sc-previous" type="button" id="sc-previous" aria-label="Voltar para o imóvel" hidden><svg><use href="#sc-arrow"/></svg></button>
+                        <button class="sc-primary" type="submit" form="sc-form" id="sc-continue">Continuar <svg><use href="#sc-arrow"/></svg></button>
+                        <a id="sc-study" class="sc-primary" href="<%= solarContactUrl %>" target="_blank" rel="noopener noreferrer" data-content-category="solar" data-content-name="solar-card-study" hidden><svg><use href="#sc-chat"/></svg> Quero economizar <svg><use href="#sc-arrow"/></svg></a>
+                    </div>
+                    <p class="sc-under-button" id="sc-action-hint">Você vê o resultado antes de falar com a equipe.</p>
+                </div>
+                <noscript><p class="sc-nojs">Ative o JavaScript para ver seu resultado, ou <a href="<%= solarContactUrl %>" target="_blank" rel="noopener noreferrer">fale com a Klyfe pelo WhatsApp</a>.</p></noscript>
+            </section>
+        </div>
+
+        <section class="sc-next" aria-labelledby="sc-next-title">
+            <div><span class="sc-small-label">DO PRIMEIRO CLIQUE À GERAÇÃO</span><h2 id="sc-next-title">Você dá o primeiro passo.<br>A Klyfe cuida do projeto.</h2></div>
+            <ol><li><span>01</span><div><h3>Entendemos seu consumo</h3><p>Análise da fatura e das condições do imóvel.</p></div></li><li><span>02</span><div><h3>Planejamos sua solução</h3><p>Projeto, equipamentos e escopo sob medida.</p></div></li><li><span>03</span><div><h3>Acompanhamos a execução</h3><p>Instalação e processo de homologação.</p></div></li></ol>
+        </section>
+
+        <section class="sc-faq" aria-labelledby="sc-faq-title"><h2 id="sc-faq-title">Antes do próximo passo.</h2><div>
+            <details><summary>Preciso me cadastrar para começar?<span aria-hidden="true">+</span></summary><p>Não. Basta escolher o imóvel e informar a média da sua conta. Se quiser conversar com a Klyfe, o botão abre o WhatsApp com essas informações. Você revisa a mensagem antes de enviar.</p></details>
+            <details><summary>Como descubro quanto posso economizar?<span aria-hidden="true">+</span></summary><p>A equipe da Klyfe analisa sua conta de energia e as condições do imóvel para apresentar uma solução sob medida, com a economia prevista para o seu projeto.</p></details>
+            <details><summary>A Klyfe atende minha cidade?<span aria-hidden="true">+</span></summary><p>A Klyfe tem sede em Campina Grande e atende projetos na Paraíba. Informe sua cidade pelo WhatsApp para a equipe confirmar a disponibilidade e planejar o atendimento.</p></details>
+        </div></section>
+        <div class="sc-contact-line"><span>Prefere conversar primeiro?</span><a href="<%= solarContactUrl %>" target="_blank" rel="noopener noreferrer" data-content-category="solar">Fale com a equipe da Klyfe <svg><use href="#sc-arrow"/></svg></a></div>
+    </main>
+    <footer class="sc-footer sc-wrap"><span>Klyfe Electric · Engenharia & Energia<br><small>Campina Grande, Paraíba · CNPJ <%= business.taxId %></small></span><div><a href="/politica-de-privacidade">Privacidade</a><button type="button" data-klyfe-consent="reopen">Cookies</button><button type="button" data-share>Compartilhar cartão</button></div></footer>
+    <p class="sc-toast" id="sc-share-status" role="status" hidden></p>
+    <%- include('partials/cookie-banner') %>
+</body>
+</html>

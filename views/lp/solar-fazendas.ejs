@@ -11,7 +11,7 @@
     <meta property="og:description" content="<%= description %>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= canonical %>">
-    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-fazendas-hero.png">
+    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-fazendas-hero.webp">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,7 +105,14 @@
             position: absolute; inset: 0;
             background:
                 linear-gradient(105deg, rgba(10,24,16,0.94) 0%, rgba(10,24,16,0.85) 48%, rgba(10,12,16,0.55) 100%),
-                url("/img/lp/solar-fazendas-hero.png") center/cover no-repeat;
+                url("/img/lp/solar-fazendas-hero.webp") center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image:
+                    linear-gradient(105deg, rgba(10,24,16,0.94) 0%, rgba(10,24,16,0.85) 48%, rgba(10,12,16,0.55) 100%),
+                    url("/img/lp/solar-fazendas-hero-640.webp");
+            }
         }
         .hero-grid {
             position: relative; z-index: 1;
@@ -341,6 +348,10 @@
                     <div class="form-group">
                         <label for="f-empresa">Nome da Fazenda / Propriedade / Empresa</label>
                         <input type="text" id="f-empresa" name="empresa" class="form-control" placeholder="Ex: Fazenda Santa Maria" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="f-cidade">Cidade</label>
+                        <input type="text" id="f-cidade" name="cidade" class="form-control" autocomplete="address-level2" required>
                     </div>
                     <div class="form-group">
                         <label for="f-telefone">WhatsApp com DDD</label>
@@ -587,6 +598,7 @@
             const payload = {
                 nome: form.querySelector('#f-nome').value,
                 empresa: form.querySelector('#f-empresa').value,
+                cidade: form.querySelector('#f-cidade').value,
                 telefone: telefone,
                 faixa_conta: form.querySelector('#f-conta').value,
                 servico: 'Energia Solar Fotovoltaica',

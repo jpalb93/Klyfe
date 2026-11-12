@@ -191,6 +191,11 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
         }
     }
 
+    const blogImgBase = evaluatedPost.heroImage ? evaluatedPost.heroImage.replace(/\.webp$/, '') : '';
+    const preloadImagesrcset = evaluatedPost.heroImage
+        ? `${blogImgBase}-480.webp 480w, ${blogImgBase}-720.webp 720w, ${evaluatedPost.heroImage} 1024w`
+        : undefined;
+
     res.render('blog-post', {
         title: evaluatedPost.metaTitle || `${evaluatedPost.title} | Klyfe Electric`,
         description: evaluatedPost.metaDescription || evaluatedPost.summary,
@@ -198,6 +203,9 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
         cityKey,
         cityData: cityBase,
         post: evaluatedPost,
+        preloadImage: evaluatedPost.heroImage,
+        preloadImagesrcset,
+        preloadImagesizes: '(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1200px) 50vw, 560px',
         recommendedPosts: recommended,
         alternateCityName,
         alternateUrl,

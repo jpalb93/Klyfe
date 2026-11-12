@@ -247,7 +247,12 @@
         <!-- SOLAR + WALLBOX -->
         <section id="solar" class="section-padding wallbox-section wallbox-solar-section">
             <div class="container wallbox-solar-grid">
-                <figure class="wallbox-solar-media fade-in"><img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Integração entre energia solar e carregador veicular Wallbox" loading="lazy"></figure>
+                <figure class="wallbox-solar-media fade-in">
+                    <img src="/img/wallbox/wallbox-com-energia-solar.webp"
+                         srcset="/img/wallbox/wallbox-com-energia-solar-480.webp 480w, /img/wallbox/wallbox-com-energia-solar-768.webp 768w, /img/wallbox/wallbox-com-energia-solar.webp 1376w"
+                         sizes="(max-width: 768px) calc(100vw - 2.5rem), 550px"
+                         alt="Integração entre energia solar e carregador veicular Wallbox" loading="lazy" width="600" height="400">
+                </figure>
                 <div class="wallbox-solar-copy fade-in">
                     <div class="section-separator"><%- include('partials/symbol') %> <span>SOLAR + MOBILIDADE</span></div>
                     <h2>O seu Wallbox pode conversar com o projeto de <span>energia solar.</span></h2>
@@ -325,9 +330,24 @@
                     <p>Conheça todas as páginas e especialidades da Klyfe em mobilidade elétrica e engenharia:</p>
                 </div>
                 <div class="wallbox-project-grid">
-                    <figure><img src="/img/wallbox/wallbox-projeto-01.webp" alt="Projeto de infraestrutura para carregador veicular" loading="lazy"></figure>
-                    <figure><img src="/img/wallbox/wallbox-projeto-02.webp" alt="Detalhe de instalação de ponto de recarga Wallbox" loading="lazy"></figure>
-                    <figure><img src="/img/wallbox/wallbox-projeto-03.webp" alt="Ponto de recarga para veículo elétrico" loading="lazy"></figure>
+                    <figure>
+                        <img src="/img/wallbox/wallbox-projeto-01.webp"
+                             srcset="/img/wallbox/wallbox-projeto-01-480.webp 480w, /img/wallbox/wallbox-projeto-01-768.webp 768w, /img/wallbox/wallbox-projeto-01.webp 1448w"
+                             sizes="(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1024px) 50vw, 360px"
+                             alt="Projeto de infraestrutura para carregador veicular" loading="lazy" width="724" height="543">
+                    </figure>
+                    <figure>
+                        <img src="/img/wallbox/wallbox-projeto-02.webp"
+                             srcset="/img/wallbox/wallbox-projeto-02-480.webp 480w, /img/wallbox/wallbox-projeto-02-768.webp 768w, /img/wallbox/wallbox-projeto-02.webp 1448w"
+                             sizes="(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1024px) 50vw, 360px"
+                             alt="Detalhe de instalação de ponto de recarga Wallbox" loading="lazy" width="724" height="543">
+                    </figure>
+                    <figure>
+                        <img src="/img/wallbox/wallbox-projeto-03.webp"
+                             srcset="/img/wallbox/wallbox-projeto-03-480.webp 480w, /img/wallbox/wallbox-projeto-03-768.webp 768w, /img/wallbox/wallbox-projeto-03.webp 1448w"
+                             sizes="(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1024px) 50vw, 360px"
+                             alt="Ponto de recarga para veículo elétrico" loading="lazy" width="724" height="543">
+                    </figure>
                 </div>
                 <div class="wallbox-related-links">
                     <a href="<%= getHomePrefix() %>/solucoes/eletrica/wallbox-residencial/" class="wallbox-related-card">

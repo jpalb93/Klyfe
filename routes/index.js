@@ -15,6 +15,7 @@ const landingPagesRouter = require('./landing-pages');
 const apiTrackingRouter = require('./api-tracking');
 const seoRouter = require('./seo');
 const calculatorRouter = require('./calculator');
+const solarCardRouter = require('./solar-card');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -71,6 +72,7 @@ router.use((req, res, next) => {
 });
 
 // 3. Montagem dos Sub-Routers
+router.use(solarCardRouter);
 router.use(servicesRouter);
 router.use(blogRouter);
 router.use(landingPagesRouter);
@@ -151,6 +153,8 @@ router.get('/:city(campina-grande|joao-pessoa)?', (req, res) => {
         cityData: cityBase,
         homeSeo,
         page: 'home',
+        fireViewContent: true,
+        contentVertical: 'solar',
         posts: evaluatedPosts,
         jsonLd,
         theme: 'solar-warm'
@@ -180,6 +184,19 @@ router.get('/politica-de-privacidade', (req, res) => {
         cityKey: 'default',
         cityData: cityBase,
         page: 'politica-de-privacidade',
+    });
+});
+
+router.get('/parceiros', (req, res) => {
+    res.render('parceiros', {
+        title: 'Klyfe Partners | Indique oportunidades em PE, PB e RN',
+        description: 'Conheça o Klyfe Partners. Indique pessoas interessadas em energia solar, elétrica, automação e engenharia em Pernambuco, Paraíba e Rio Grande do Norte.',
+        canonical: `${baseUrl}/parceiros`,
+        cityKey: 'default',
+        cityData: locations.default,
+        page: 'parceiros',
+        partnersUrl: process.env.PARTNERS_PUBLIC_URL || 'https://parceiros.klyfeelectric.com.br',
+        partnersOpen: process.env.PARTNERS_PUBLIC_ENABLED === '1',
     });
 });
 

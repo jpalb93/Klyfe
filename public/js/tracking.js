@@ -241,10 +241,11 @@
     }
 
     function sendCapi(eventName, eventId, customData, userData) {
-        if (!CFG.capiEnabled) return;
+        if (!CFG.capiEnabled || getConsent() !== 'granted') return;
         var cookies = getMetaCookies();
         var body = {
             event_name: eventName,
+            marketing_consent: 'granted',
             event_id: eventId,
             event_source_url: window.location.href,
             custom_data: Object.assign(trackingContext(), customData || {}),
@@ -252,8 +253,7 @@
         };
         try {
             var payload = JSON.stringify(body);
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon('/api/tracking/event', new Blob([payload], { type: 'application/json' }));
+            if (navigator.sendBeacon && navigator.sendBeacon('/api/tracking/event', new Blob([payload], { type: 'application/json' }))) {
                 return;
             }
             fetch('/api/tracking/event', {
@@ -376,6 +376,7 @@
             var vcId = newEventId('vc');
             var vcParams = Object.assign(trackingContext(), {
                 content_name: CFG.contentName || CFG.contentCategory || 'solar',
+                content_category: 'solar',
                 content_type: 'product'
             });
             window.fbq('track', 'ViewContent', vcParams, { eventID: vcId });
@@ -414,6 +415,10 @@
             return;
         }
         if (!pending || !pending.event_id || pending.browser_fired) return;
+        if (!pending.ts || Date.now() - pending.ts > 30 * 60 * 1000) {
+            sessionStorage.removeItem(LP_LEAD_KEY);
+            return;
+        }
 
         var params = {
             content_name: pending.content_name || CFG.leadContentName || 'lp-solar-empresas',
@@ -455,6 +460,8 @@
             // Limpa PII após disparo
             pending.email = '';
             pending.phone = '';
+            pending.firstName = '';
+            pending.lastName = '';
             sessionStorage.setItem(LP_LEAD_KEY, JSON.stringify(pending));
         } catch (_) { /* ignore */ }
     }
@@ -526,6 +533,7 @@
 
     function acceptConsent() {
         setConsent('granted');
+        if (typeof window.fbq === 'function') window.fbq('consent', 'grant');
         updateConsentMode(true);
         hideBanner();
         loadMarketingTags();
@@ -533,8 +541,10 @@
 
     function denyConsent() {
         setConsent('denied');
+        if (typeof window.fbq === 'function') window.fbq('consent', 'revoke');
         updateConsentMode(false);
         clearMarketingCookies();
+        try { sessionStorage.removeItem(LP_LEAD_KEY); } catch (_) { /* ignore */ }
         hideBanner();
     }
 
@@ -570,6 +580,7 @@
 
     function markLpLeadPending(opts) {
         opts = opts || {};
+        if (getConsent() !== 'granted') return;
         var eventId = opts.eventId || opts.event_id;
         if (!eventId) return;
         var names = splitName(opts.nome || opts.name || '');
@@ -595,14 +606,14 @@
      * Fluxo padrão LP → POST /contato → CAPI server → thank-you (Pixel + Ads).
      * @returns {Promise<{ok:boolean, event_id?:string}>}
      */
+    var pendingSubmissionIds = {};
     function submitLpLead(opts) {
         opts = opts || {};
         var camp = getCampaignParams();
         var cookies = getMetaCookies();
-        var eventId = opts.event_id || newEventId('lead');
         var contentName = opts.content_name || opts.source || 'lp-solar';
-        var names = splitName(opts.nome);
-
+        var eventId = opts.event_id || pendingSubmissionIds[contentName] || newEventId('lead');
+        pendingSubmissionIds[contentName] = eventId;
         var payload = Object.assign({}, opts, {
             event_id: eventId,
             event_source_url: window.location.href,
@@ -622,17 +633,6 @@
             fbc: cookies.fbc
         });
 
-        markLpLeadPending({
-            eventId: eventId,
-            content_name: contentName,
-            content_category: 'solar',
-            email: payload.email || '',
-            phone: payload.telefone || '',
-            nome: payload.nome || '',
-            firstName: names.firstName,
-            lastName: names.lastName
-        });
-
         return fetch('/contato', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -646,7 +646,8 @@
                 if (!json || !json.success) throw new Error('Envio não confirmado');
                 document.dispatchEvent(new CustomEvent('klyfe:form-result', { detail: { status: 'success' } }));
                 var finalId = (json && json.event_id) || eventId;
-                if (finalId !== eventId) {
+                delete pendingSubmissionIds[contentName];
+                if (getConsent() === 'granted') {
                     markLpLeadPending({
                         eventId: finalId,
                         content_name: contentName,
@@ -656,7 +657,8 @@
                         nome: payload.nome || ''
                     });
                 }
-                window.location.href = opts.thankYouUrl || OBRIGADO_PATH;
+                if (opts.redirect !== false) window.location.href = opts.thankYouUrl || OBRIGADO_PATH;
+                else if (getConsent() === 'granted') firePendingLpLead();
                 return { ok: true, event_id: finalId };
             })
             .catch(function (error) {
@@ -672,6 +674,13 @@
         getCampaignParams: getCampaignParams,
         submitLpLead: submitLpLead,
         fireGoogleAdsConversion: fireGoogleAdsConversion,
+        trackCalculatorEvent: function (eventName) {
+            var allowed = ['calculator_value_selected', 'calculator_value_entered', 'calculator_result_viewed', 'calculator_whatsapp_click'];
+            if (getConsent() !== 'granted' || allowed.indexOf(eventName) === -1) return false;
+            ensureDataLayer();
+            window.dataLayer.push({ event: eventName, content_category: 'solar', content_name: 'solar-calculator' });
+            return true;
+        },
         markLpLeadPending: function (eventIdOrOpts, maybeOpts) {
             // Retrocompat: markLpLeadPending(eventId) | markLpLeadPending({eventId, ...})
             if (typeof eventIdOrOpts === 'string') {
@@ -754,7 +763,7 @@
 
             var eventId = newEventId('contact');
             var params = {
-                content_name: CFG.contentName || 'whatsapp-solar',
+                content_name: a.getAttribute('data-content-name') || CFG.contentName || 'whatsapp-solar',
                 content_category: 'solar',
                 content_type: 'product'
             };

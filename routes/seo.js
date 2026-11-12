@@ -29,6 +29,7 @@ router.get('/sitemap.xml', (req, res) => {
 
     // Página legal (sem prefixo de cidade)
     urls.push('/politica-de-privacidade');
+    urls.push('/parceiros');
 
     // 2. Projeto estático (sem prefixo de cidade)
     urls.push('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu');

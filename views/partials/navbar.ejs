@@ -32,6 +32,89 @@
 
 
 
+<% if (currentPage === 'home') { %>
+<nav class="navbar navbar-home-split">
+    <div class="container navbar-split-container">
+        <!-- Links da Esquerda -->
+        <div class="nav-links nav-links-left">
+            <a href="<%= (activeCityKey !== 'default') ? '/' + activeCityKey : '/' %>" class="active">Home</a>
+            <div class="dropdown">
+                <a href="<%= cityPrefix %>/solucoes" class="<%= (currentPage.includes('solucoes') || currentPage.includes('eletrica') || currentPage.includes('engenharia') || currentPage.includes('automacao') || currentPage.includes('solar')) ? 'active' : '' %>">Soluções <i class="fas fa-chevron-down" style="font-size:0.7rem"></i></a>
+                <div class="dropdown-menu">
+                    <% if (isServiceEnabled('engenharia')) { %>
+                        <a href="<%= cityPrefix %>/solucoes/engenharia"><i class="fas fa-hard-hat" style="color:var(--text-muted);margin-right:0.5rem"></i> Engenharia Elétrica</a>
+                    <% } %>
+                    <% if (isServiceEnabled('eletrica')) { %>
+                        <a href="<%= cityPrefix %>/solucoes/eletrica"><i class="fas fa-bolt" style="color:var(--accent-primary);margin-right:0.5rem"></i> Serviços Elétricos</a>
+                        <% if (isServiceEnabled('carregador-veicular')) { %>
+                            <a href="<%= cityPrefix %>/solucoes/eletrica/carregador-veicular/" class="nav-wallbox-link" data-wallbox-event="nav_solution"><i class="fas fa-charging-station" style="color:var(--accent-solar);margin-right:0.5rem"></i> Wallbox / Carregador veicular</a>
+                        <% } %>
+                    <% } %>
+                    <% if (isServiceEnabled('automacao')) { %>
+                        <a href="<%= cityPrefix %>/solucoes/automacao"><i class="fas fa-cog" style="color:var(--accent-secondary);margin-right:0.5rem"></i> Automação</a>
+                    <% } %>
+                    <% if (isServiceEnabled('solar')) { %>
+                        <a href="<%= solarPath %>"><i class="fas fa-sun" style="color:var(--accent-solar);margin-right:0.5rem"></i> Energia Solar</a>
+                    <% } %>
+                </div>
+            </div>
+            <a href="<%= cityPrefix %>/quem-somos" class="<%= currentPage === 'quem-somos' ? 'active' : '' %>">Quem Somos</a>
+            <a href="<%= cityPrefix %>/projetos" class="<%= currentPage === 'projetos' ? 'active' : '' %>">Projetos</a>
+        </div>
+
+        <!-- Logo Centralizada e Aumentada -->
+        <a href="<%= (activeCityKey !== 'default') ? '/' + activeCityKey : '/' %>" class="logo logo-split-center" aria-label="Klyfe Engenharia & Energia - Voltar para a Home">
+            <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Klyfe Engenharia & Energia</span>
+            <img src="/img/Logo%20KLYFE%20Engenharia%20%26%20Energia.png" alt="Logo KLYFE Engenharia & Energia" class="logo-split-img" width="1548" height="619" fetchpriority="high">
+        </a>
+
+        <!-- Links da Direita -->
+        <div class="nav-links nav-links-right">
+            <a href="<%= cityPrefix %>/blog" class="<%= currentPage === 'blog' ? 'active' : '' %>">Blog</a>
+            <a href="/parceiros" class="<%= currentPage === 'parceiros' ? 'active' : '' %>">Partners</a>
+            <a href="<%= cityPrefix %>/contato" class="btn-contact">Contato</a>
+            
+            <div class="dropdown location-selector">
+                <a href="#" class="nav-location" aria-label="Selecionar região de atendimento - Cidade atual: <%= currentCityDisplay %>">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span><%= currentCityDisplay %></span>
+                    <i class="fas fa-chevron-down" style="font-size:0.6rem; margin-left:0.3rem"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <div style="padding: 0.5rem 1.2rem; font-size: 0.7rem; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-color);">Região de Atendimento</div>
+                    <a href="<%= selectorDefaultHref %>">Estado da Paraíba</a>
+                    <a href="<%= selectorCampinaHref %>">Campina Grande</a>
+                    <a href="<%= selectorJoaoPessoaHref %>">João Pessoa</a>
+                </div>
+            </div>
+
+            <a href="/contato" class="btn btn-primary btn-nav-cta">Solicitar Orçamento</a>
+        </div>
+
+        <div class="nav-mobile-actions">
+            <div class="mobile-location-tag" onclick="document.querySelector('.quick-city-selector').classList.toggle('open')">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><%= (activeCityKey === 'default') ? 'PB' : (activeCityKey === 'campina-grande' ? 'CG' : 'JP') %></span>
+            </div>
+            <button class="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+    
+    <!-- Seletor Rápido de Cidade (Mobile) -->
+    <div class="quick-city-selector">
+        <div class="quick-city-header">Selecione sua Região</div>
+        <a href="<%= selectorDefaultHref %>" class="<%= activeCityKey === 'default' ? 'active' : '' %>">
+            <i class="fas fa-map"></i> Paraíba (Geral)
+        </a>
+        <a href="<%= selectorCampinaHref %>" class="<%= activeCityKey === 'campina-grande' ? 'active' : '' %>">
+            <i class="fas fa-map-marker-alt"></i> Campina Grande
+        </a>
+        <a href="<%= selectorJoaoPessoaHref %>" class="<%= activeCityKey === 'joao-pessoa' ? 'active' : '' %>">
+            <i class="fas fa-map-marker-alt"></i> João Pessoa
+        </a>
+    </div>
+</nav>
+<% } else { %>
 <nav class="navbar">
     <div class="container">
         <a href="<%= (activeCityKey !== 'default') ? '/' + activeCityKey : '/' %>" class="logo logo-animated" aria-label="Klyfe Electric - Voltar para a Home">
@@ -66,6 +149,7 @@
             <a href="<%= cityPrefix %>/quem-somos" class="<%= currentPage === 'quem-somos' ? 'active' : '' %>">Quem Somos</a>
             <a href="<%= cityPrefix %>/projetos" class="<%= currentPage === 'projetos' ? 'active' : '' %>">Projetos</a>
             <a href="<%= cityPrefix %>/blog" class="<%= currentPage === 'blog' ? 'active' : '' %>">Blog</a>
+            <a href="/parceiros" class="<%= currentPage === 'parceiros' ? 'active' : '' %>">Partners</a>
 
             <a href="<%= cityPrefix %>/contato" class="btn-contact">Contato</a>
             
@@ -109,13 +193,18 @@
         </a>
     </div>
 </nav>
+<% } %>
 
 <!-- Mobile Nav -->
 <div class="mobile-overlay"></div>
 <div class="mobile-nav">
     <div class="mobile-nav-top-row">
-        <div class="logo-mobile-wrapper">
-            <%- include('logo') %>
+        <div class="logo-mobile-wrapper <%= currentPage === 'home' ? 'logo-mobile-home-official' : '' %>">
+            <% if (currentPage === 'home') { %>
+                <img src="/img/Logo%20KLYFE%20Engenharia%20%26%20Energia.png" alt="Logo KLYFE Engenharia & Energia" class="logo-official-img-mobile" width="1548" height="619">
+            <% } else { %>
+                <%- include('logo') %>
+            <% } %>
         </div>
         <button class="close-btn" aria-label="Fechar menu"><i class="fas fa-times"></i></button>
     </div>
@@ -158,6 +247,7 @@
         <a href="<%= cityPrefix %>/quem-somos" class="nav-item">Quem Somos</a>
         <a href="<%= cityPrefix %>/projetos" class="nav-item">Projetos</a>
         <a href="<%= cityPrefix %>/blog" class="nav-item">Blog</a>
+        <a href="/parceiros" class="nav-item">Partners</a>
         <a href="<%= cityPrefix %>/contato" class="nav-item">Contato</a>
     </nav>
 

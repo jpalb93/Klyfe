@@ -91,7 +91,7 @@
                                     <option value="Instalação de Wallbox" <%= leadService === 'Instalação de Wallbox' ? 'selected' : '' %>>Instalação de Wallbox / Carregador veicular</option>
                                     <option value="Laudos e Termografia">Laudos e Termografia</option>
                                     <option value="Automação Predial/Industrial">Automação Predial/Industrial</option>
-                                    <option value="Energia Solar Fotovoltaica">Energia Solar Fotovoltaica</option>
+                                    <option value="Energia Solar Fotovoltaica" <%= leadService === 'Energia Solar Fotovoltaica' ? 'selected' : '' %>>Energia Solar Fotovoltaica</option>
                                     <option value="Outro">Outro</option>
                                 </select>
                                 <i class="fas fa-chevron-down" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; font-size: 0.8rem;"></i>
@@ -209,6 +209,6 @@
 
     <%- include('partials/whatsapp') %>
     <%- include('partials/footer') %>
-<script src="/js/main.js" defer></script>
+<script src="/js/main.js?v=20261105-traffic2" defer></script>
 </body>
 </html>

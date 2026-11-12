@@ -170,6 +170,10 @@ Object.keys(locations.default.services).forEach(serviceKey => {
             .join('\n');
 
         const pageHeroImage = citySvc.heroImage || (isWallboxGroup ? '/img/wallbox/wallbox-hero-dusk.webp' : defaultSvc.heroImage);
+        const heroImgBase = pageHeroImage ? pageHeroImage.replace(/\.webp$/, '') : '';
+        const preloadImagesrcset = pageHeroImage
+            ? `${heroImgBase}-480.webp 480w, ${heroImgBase}-768.webp 768w, ${heroImgBase}-1200.webp 1200w, ${pageHeroImage} 1400w`
+            : undefined;
 
         res.render(defaultSvc.template, {
             title: `${citySvc.label} ${locationLabel} | Klyfe Electric`,
@@ -178,6 +182,8 @@ Object.keys(locations.default.services).forEach(serviceKey => {
             metaDesc: metaDescription,
             image: isWallboxGroup ? (citySvc.heroImage || '/img/wallbox/wallbox-og.webp') : citySvc.heroImage,
             preloadImage: pageHeroImage,
+            preloadImagesrcset,
+            preloadImagesizes: '(max-width: 768px) calc(100vw - 2.5rem), (max-width: 1200px) 50vw, 580px',
             canonical,
             robots: 'index, follow',
             page: citySvc.category,

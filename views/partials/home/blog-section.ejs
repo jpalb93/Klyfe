@@ -25,9 +25,16 @@
             const supportingPosts = posts.slice(1, 5);
         %>
             <!-- ═══ POST DE DESTAQUE (CARD HERO HORIZONTAL) ═══ -->
+            <% 
+                const featImg = featuredPost.heroImage || '/img/engenharia/projeto-subestacao.webp';
+                const featBase = featImg.replace(/\.webp$/, '');
+            %>
             <div class="home-blog-featured-card" data-topic="<%= featuredPost.homeTopic %>">
                 <div class="blog-featured-img-wrap">
-                    <img src="<%= featuredPost.heroImage || '/img/engenharia/projeto-subestacao.webp' %>" alt="<%= featuredPost.imageAlt || featuredPost.title %>" class="blog-featured-img" loading="lazy" width="1024" height="1024">
+                    <img src="<%= featImg %>"
+                         srcset="<%= featBase %>-480.webp 480w, <%= featBase %>-768.webp 768w, <%= featImg %> 1024w"
+                         sizes="(max-width: 768px) calc(100vw - 2.5rem), 540px"
+                         alt="<%= featuredPost.imageAlt || featuredPost.title %>" class="blog-featured-img" loading="lazy" width="1024" height="1024">
                 </div>
                 <div class="blog-featured-content">
                     <span class="blog-featured-eyebrow">EM DESTAQUE <span aria-hidden="true">—</span> ENGENHARIA NA PRÁTICA</span>
@@ -50,10 +57,16 @@
 
             <!-- ═══ OUTRAS FRENTES DE CONHECIMENTO ═══ -->
             <div class="home-blog-cards-grid">
-                <% supportingPosts.forEach((post) => { %>
+                <% supportingPosts.forEach((post) => { 
+                    const suppImg = post.heroImage || '/img/engenharia/projeto-subestacao.webp';
+                    const suppBase = suppImg.replace(/\.webp$/, '');
+                %>
                     <div class="home-blog-card" data-topic="<%= post.homeTopic %>">
                         <div class="blog-card-img-wrap">
-                            <img src="<%= post.heroImage || '/img/engenharia/projeto-subestacao.webp' %>" alt="<%= post.imageAlt || post.title %>" class="blog-card-img" loading="lazy" width="1024" height="1024">
+                            <img src="<%= suppImg %>"
+                                 srcset="<%= suppBase %>-480.webp 480w, <%= suppBase %>-768.webp 768w, <%= suppImg %> 1024w"
+                                 sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) 50vw, 320px"
+                                 alt="<%= post.imageAlt || post.title %>" class="blog-card-img" loading="lazy" width="1024" height="1024">
                             <div class="blog-floating-icon">
                                 <i class="fas <%= post.homeIcon %>" aria-hidden="true"></i>
                             </div>

@@ -1,9 +1,43 @@
-<% 
+<%
    const phoneFloat = (typeof waPhone !== 'undefined' && waPhone) ? waPhone : '5583991330972';
    const waMsgFloat = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento para minha região.';
    const waUrlFloat = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/${phoneFloat}?text=${encodeURIComponent(waMsgFloat)}`;
+   const showServicePicker = locals.page === 'home' || locals.page === 'index';
 %>
+<% if (showServicePicker) {
+   const pickerLocation = typeof cityData !== 'undefined' && cityData.name && cityData.name !== 'Paraíba' ? 'em ' + cityData.name : 'na Paraíba';
+   const pickerServices = [
+       { label: 'Energia solar', category: 'solar', icon: 'fa-solar-panel', phone: '5583991430929' },
+       { label: 'Serviços de elétrica', category: 'eletrica', icon: 'fa-bolt', phone: '5583991330972' },
+       { label: 'Wallbox', category: 'wallbox', icon: 'fa-charging-station', phone: '5583991330972' },
+       { label: 'Automação', category: 'automacao', icon: 'fa-house-signal', phone: '5583991330972' }
+   ];
+%>
+<details class="whatsapp-picker whatsapp-float-wrapper">
+    <summary class="whatsapp-float" aria-label="Escolher serviço para falar no WhatsApp" aria-controls="whatsapp-services">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    </summary>
+    <div class="whatsapp-picker__panel" id="whatsapp-services">
+        <p class="whatsapp-picker__title">Como podemos ajudar?</p>
+        <p class="whatsapp-picker__intro">Escolha o serviço para conversar pelo WhatsApp.</p>
+        <ul class="whatsapp-picker__services" aria-label="Serviços disponíveis">
+            <% pickerServices.forEach(service => {
+                const message = 'Olá! Vim da página inicial da Klyfe e gostaria de falar sobre ' + service.label.toLowerCase() + ' ' + pickerLocation + '.';
+            %>
+            <li>
+                <a href="https://wa.me/<%= service.phone %>?text=<%= encodeURIComponent(message) %>" target="_blank" rel="noopener noreferrer" data-content-category="<%= service.category %>">
+                    <i class="fas <%= service.icon %>" aria-hidden="true"></i>
+                    <span><%= service.label %></span>
+                    <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                </a>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+</details>
+<% } else { %>
 <a href="<%= waUrlFloat %>" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp" data-content-category="<%= typeof contentCategory !== 'undefined' ? contentCategory : 'geral' %>">
     <span class="sr-only" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;">Falar no WhatsApp</span>
     <i class="fab fa-whatsapp"></i>
 </a>
+<% } %>

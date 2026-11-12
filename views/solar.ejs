@@ -1,115 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="<%= locals.theme || 'azure-sky' %>">
 <head>
-    <link rel="preload" as="image" href="/img/hero-solar-condominios.webp" fetchpriority="high">
-    <%- include('partials/head') %>
+    <%- include('partials/head', {
+        preloadImage: '/img/hero-solar-condominios.webp',
+        preloadImagesrcset: '/img/hero-solar-condominios-640.webp 640w, /img/hero-solar-condominios.webp 1200w',
+        preloadImagesizes: '100vw'
+    }) %>
+    <link rel="stylesheet" href="/css/solar-preview.css?v=20261107-8">
     <style>
-        /* ═══ CALCULADORA SOLAR 2.0 MODERN STYLES ═══ */
-        .solar-calc-wrapper {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: clamp(1.75rem, 3vw, 2.75rem);
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        .solar-calc-profile-tabs {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        .solar-calc-tab-btn {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            padding: 0.65rem 1.25rem;
-            border-radius: 50px;
-            font-family: var(--font-heading);
-            font-size: 0.95rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.25s ease;
-        }
-        .solar-calc-tab-btn:hover {
-            border-color: #3B9DD9;
-            color: var(--text-main);
-        }
-        .solar-calc-tab-btn.active {
-            background: #3B9DD9;
-            border-color: #3B9DD9;
-            color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(59, 157, 217, 0.35);
-        }
-        .solar-calc-presets {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-        .solar-preset-chip {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .solar-preset-chip:hover, .solar-preset-chip.active {
-            border-color: #3B9DD9;
-            color: #3B9DD9;
-            background: rgba(59, 157, 217, 0.08);
-        }
-        .calc-metric-card-modern {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 1.4rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        .calc-metric-card-modern::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: #3B9DD9;
-        }
-        .calc-metric-card-modern:hover {
-            border-color: rgba(59, 157, 217, 0.4);
-            transform: translateY(-2px);
-        }
-        .calc-metric-val {
-            font-family: var(--font-heading, sans-serif);
-            font-size: 1.85rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-top: 0.4rem;
-            color: var(--text-main);
-        }
-        .calc-metric-lbl {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-family: var(--font-mono);
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
         /* ═══ TIMELINE WORKFLOW ═══ */
         .solar-process-grid {
             display: grid;
@@ -155,6 +53,11 @@
                 grid-template-columns: 1fr;
             }
         }
+        @media (max-width: 768px) {
+            .hero-solar-bg {
+                background-image: linear-gradient(180deg, rgba(8, 12, 24, 0.70) 0%, rgba(10, 15, 29, 0.88) 100%), url('/img/hero-solar-condominios-640.webp');
+            }
+        }
     </style>
 </head>
 <body>
@@ -163,7 +66,7 @@
 
 <!-- ═══ BREADCRUMB ═══ -->
 <section style="padding-top: 110px; padding-bottom: 0.5rem; background: var(--bg-primary);">
-    <div class="container fade-in">
+    <div class="container">
         <%- include('partials/breadcrumb', { breadcrumbItems: [
             { label: 'Home', href: getHomePrefix() || '/' },
             { label: 'Energia solar' }
@@ -172,135 +75,117 @@
 </section>
 
 <!-- ═══ HERO FLAGSHIP COM FOTO DE FUNDO E GRADIENTE ═══ -->
-<section class="hero-solar-bg">
-    <div class="container fade-in">
+<section class="hero-solar-bg solar-campaign-hero">
+    <div class="container">
         <div class="solar-flagship-badge">
-            <i class="fas fa-bolt"></i> KLYFE SOLAR POWER • ENGENHARIA ELETRICISTA CREA
+            <i class="fas fa-bolt" aria-hidden="true"></i> KLYFE SOLAR POWER • ENGENHARIA ELETRICISTA CREA
         </div>
 
         <h1 class="hero-internal-title" style="font-size: clamp(2.3rem, 4.2vw, 3.6rem); line-height: 1.15; margin-bottom: 1.5rem; color: #ffffff; text-shadow: 0 2px 10px rgba(0,0,0,0.7); max-width: 900px;">
             Energia Solar na Paraíba:<br>
-            <span style="color: #f59e0b;">Projeto, Instalação e Homologação.</span>
+            <span style="color: #f59e0b;">Chega de gastar tanto com energia.</span>
         </h1>
 
         <p class="hero-internal-desc" style="max-width: 840px; font-size: 1.15rem; line-height: 1.7; color: #e5e7eb; text-shadow: 0 2px 8px rgba(0,0,0,0.7);">
-            A Klyfe dimensiona sistemas fotovoltaicos para residências, empresas, condomínios e propriedades rurais. O serviço inclui análise da fatura, vistoria, projeto elétrico com ART, instalação e acompanhamento da conexão na <strong style="color:#ffffff;">Energisa Paraíba</strong>, com atendimento prioritário em Campina Grande e João Pessoa.
+            Todo mês, uma parte do seu dinheiro vai para a conta de luz. Veja quanto isso representa em um ano e dê o primeiro passo para reduzir esse gasto com um projeto solar da Klyfe, para sua casa, empresa ou propriedade rural.
         </p>
 
         <div style="display:flex; gap:1.25rem; flex-wrap:wrap; margin-top: 2.5rem;">
-            <a href="#calculadora" class="btn btn-primary" style="background: #f59e0b; border-color: #f59e0b; color: #000; font-weight: 700; padding: 0.9rem 2rem;">
-                <i class="fas fa-calculator" style="margin-right: 8px;"></i> Simular Minha Economia Solar
+            <a href="#calculadora" class="btn btn-primary" style="background: #f59e0b; border-color: #f59e0b; color: #fff; font-weight: 700; padding: 0.9rem 2rem; text-shadow: -0.8px -0.8px 0 rgba(0,0,0,0.85), 0.8px -0.8px 0 rgba(0,0,0,0.85), -0.8px 0.8px 0 rgba(0,0,0,0.85), 0.8px 0.8px 0 rgba(0,0,0,0.85);">
+                <i class="fas fa-calculator" style="margin-right: 8px;" aria-hidden="true"></i> Veja Quanto Você Gasta por Ano
             </a>
             <% const waHeroMsg = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : 'Olá! Vi o site da Klyfe e gostaria de um orçamento de ENERGIA SOLAR.'; %>
             <% const waHeroUrl = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991430929?text=${encodeURIComponent(waHeroMsg)}`; %>
             <a href="<%= waHeroUrl %>" target="_blank" rel="noopener" class="btn btn-ghost" style="padding: 0.9rem 2rem; color: #ffffff; border-color: rgba(255,255,255,0.3);">
-                <i class="fab fa-whatsapp" style="margin-right: 8px; color: #25d366;"></i> Falar com Engenheiro Eletricista
+                <i class="fab fa-whatsapp" style="margin-right: 8px; color: #25d366;" aria-hidden="true"></i> Pedir Análise pelo WhatsApp
             </a>
         </div>
     </div>
 </section>
 
-<!-- ═══ TRUST & PERFORMANCE COUNTER BAR ═══ -->
-<section class="trust-counter-bar">
+<!-- Calculadora de gasto anual e triagem comercial -->
+<section id="calculadora" class="section-padding solar-preview-section" aria-labelledby="solar-preview-heading">
     <div class="container">
-        <div class="grid grid-cols-4" style="gap: 1.5rem;">
-            <div class="trust-counter-item fade-in">
-                <div class="trust-counter-number">Projeto + ART</div>
-                <div class="trust-counter-label">Responsabilidade Técnica CREA-PB</div>
+        <div class="section-separator"><span>ENERGIA SOLAR PARA O SEU IMÓVEL</span></div>
+        <h2 id="solar-preview-heading">Sua conta de luz pesa no bolso? <span class="text-solar-orange">Vamos reduzir esse gasto.</span></h2>
+        <p class="solar-preview-intro">Veja quanto sua conta soma em um ano e descubra como a energia solar pode ajudar você a pagar menos.</p>
+        <div id="solar-preview" class="solar-preview">
+            <div class="solar-preview-inputs">
+                <label class="solar-field-label" for="solar-bill">Valor médio da conta de energia</label>
+                <div class="solar-money-field"><span aria-hidden="true">R$</span><input id="solar-bill" type="text" inputmode="decimal" enterkeyhint="done" placeholder="Ex.: 850,00" maxlength="18" autocomplete="off" aria-describedby="solar-bill-help solar-calc-error"><span aria-hidden="true">/mês</span></div>
+                <p class="solar-field-help" id="solar-bill-help">Digite o valor ou toque em uma opção:</p>
+                <p id="solar-calc-error" class="solar-calc-error" role="status" aria-live="polite"></p>
+                <div id="solar-preview-next" class="solar-preview-next" hidden>
+                    <button id="solar-preview-open" type="button" class="btn solar-preview-open" aria-haspopup="dialog" aria-controls="solar-preview-summary" aria-describedby="solar-preview-next-help"><i class="fab fa-whatsapp" aria-hidden="true"></i> Quero reduzir minha conta</button>
+                    <p id="solar-preview-next-help">Confira o valor e peça uma análise pelo WhatsApp.</p>
+                </div>
+                <div class="solar-bill-presets" role="group" aria-label="Valores sugeridos de conta mensal">
+                    <% [300, 500, 1000, 1500, 3000, 5000].forEach(amount => { %><button type="button" data-value="<%= amount %>" aria-pressed="false">R$ <%= amount.toLocaleString('pt-BR') %></button><% }); %>
+                </div>
+                <figure id="solar-cost-comparison" class="solar-cost-comparison" hidden aria-hidden="true">
+                    <figcaption>O peso da conta ao longo do tempo</figcaption>
+                    <% [{label: '1 ano', key: 'yearlyCost', width: '20%'}, {label: '3 anos', key: 'threeYearCost', width: '60%'}, {label: '5 anos', key: 'fiveYearCost', width: '100%'}].forEach(period => { %>
+                    <div class="solar-cost-comparison-row">
+                        <div><span><%= period.label %></span><span data-result="<%= period.key %>">—</span></div>
+                        <div class="solar-cost-track"><span style="width: <%= period.width %>"></span></div>
+                    </div>
+                    <% }); %>
+                </figure>
             </div>
-            <div class="trust-counter-item fade-in">
-                <div class="trust-counter-number">Energisa PB</div>
-                <div class="trust-counter-label">Protocolo e Homologação Concessionária</div>
+            <div class="solar-preview-results" aria-label="Gastos projetados com energia">
+                <div class="solar-annual-result"><span id="solar-yearly-label">Só em um ano, sua conta soma:</span><output id="result-yearly" data-result="yearlyCost" for="solar-bill" aria-labelledby="solar-yearly-label" tabindex="-1">—</output><span class="solar-result-context">Gasto projetado com energia</span></div>
+                <div class="solar-long-term-results">
+                    <div class="solar-period-card solar-three-year-card"><span id="solar-three-year-label">Em 3 anos,<small>mantendo essa média:</small></span><output id="result-three-years" data-result="threeYearCost" for="solar-bill" aria-labelledby="solar-three-year-label" aria-live="off">—</output></div>
+                    <div class="solar-period-card solar-five-year-card"><span id="solar-five-year-label">Em 5 anos:</span><output id="result-five-years" data-result="fiveYearCost" for="solar-bill" aria-labelledby="solar-five-year-label" aria-live="off">—</output></div>
+                </div>
+                <p id="solar-result-help" class="solar-projection-note">Informe sua média mensal para ver os gastos projetados.</p>
             </div>
-            <div class="trust-counter-item fade-in">
-                <div class="trust-counter-number">Paraíba</div>
-                <div class="trust-counter-label">Atendimento Avaliado Conforme o Projeto</div>
-            </div>
-            <div class="trust-counter-item fade-in">
-                <div class="trust-counter-number">Sob Medida</div>
-                <div class="trust-counter-label">Estimativa Baseada no Consumo e no Imóvel</div>
-            </div>
+            <dialog id="solar-preview-summary" class="solar-preview-summary" aria-labelledby="solar-preview-summary-title">
+                <form method="dialog" class="solar-preview-close-form">
+                    <button type="submit" class="solar-preview-close" aria-label="Fechar resumo da simulação">×</button>
+                </form>
+                <span class="solar-preview-summary-kicker">ENERGIA SOLAR KLYFE</span>
+                <h3 id="solar-preview-summary-title">Confirme o valor da sua conta</h3>
+                <div class="solar-preview-summary-amounts">
+                    <div class="solar-preview-summary-account">
+                        <p><strong data-result="bill">—</strong> por mês</p>
+                        <button type="button" id="solar-preview-edit" class="solar-preview-edit">Editar valor</button>
+                    </div>
+                    <strong class="solar-preview-summary-year" data-result="yearlyCost">—</strong>
+                    <p>Gasto projetado em 12 meses.</p>
+                </div>
+                <div id="solar-preview-review" class="solar-preview-review" hidden>
+                    <p id="solar-preview-growth-question"><strong>Pretende instalar algo que aumente seu consumo?</strong> <small class="solar-preview-growth-optional">Opcional</small></p>
+                    <p id="solar-preview-growth-help" class="solar-preview-growth-help">Você pode marcar mais de uma opção.</p>
+                    <div class="solar-preview-review-options" role="group" aria-labelledby="solar-preview-growth-question" aria-describedby="solar-preview-growth-help">
+                        <% for (const [key, label] of [['air-conditioning', 'Ar-condicionado'], ['electric-shower', 'Chuveiro elétrico'], ['electric-car', 'Carro elétrico'], ['other', 'Outro']]) { %>
+                        <div class="solar-preview-growth-item">
+                            <label class="solar-preview-growth-option"><input type="checkbox" name="solar-growth" value="<%= key %>"><span><%= label %></span></label>
+                            <% if (key === 'air-conditioning' || key === 'electric-shower') { %>
+                            <fieldset class="solar-preview-growth-quantity" data-solar-quantity="<%= key %>" aria-label="Quantidade de <%= label.toLowerCase() %>" hidden disabled>
+                                <legend>Quantidade</legend>
+                                <div class="solar-preview-quantity-options">
+                                    <% for (const amount of [1, 2, 3]) { %>
+                                    <label>
+                                        <input type="radio" name="solar-quantity-<%= key %>" value="<%= amount %>"<% if (amount === 1) { %> checked<% } %>>
+                                        <span><%= amount %></span>
+                                    </label>
+                                    <% } %>
+                                </div>
+                            </fieldset>
+                            <% } %>
+                        </div>
+                        <% } %>
+                        <label id="solar-preview-no-growth-choice" class="solar-preview-growth-option solar-preview-no-growth-choice" hidden><input type="checkbox" name="solar-growth" value="none"><span>Não, por enquanto</span></label>
+                    </div>
+                    <button type="button" id="solar-preview-no-growth" class="solar-preview-no-growth" hidden>Não, por enquanto</button>
+                </div>
+                <div class="solar-preview-conversion">
+                    <a id="btn-calc-pdf" class="btn solar-preview-whatsapp" data-whatsapp-url="<%= waHeroUrl %>" target="_blank" rel="noopener" aria-disabled="true" data-content-category="solar" data-content-name="solar-calculator-study"><i class="fab fa-whatsapp" aria-hidden="true"></i> Confirmar e abrir WhatsApp</a>
+                </div>
+            </dialog>
         </div>
-    </div>
-</section>
-
-<!-- ═══ CALCULADORA SOLAR KLYFE 2.0 (SIMULADOR MODERNO) ═══ -->
-<section id="calculadora" class="section-padding" style="background: var(--bg-primary);">
-    <div class="container">
-        <div class="section-separator fade-in"><span>— SIMULADOR TÉCNICO DE VIABILIDADE —</span></div>
-        <h2 class="fade-in" style="margin-bottom: 1rem;">Calcule o Potencial de Economia<br><span style="color: #f59e0b;">do Seu Imóvel na Paraíba</span></h2>
-        <p class="fade-in" style="color: var(--text-muted); max-width: 720px; margin-bottom: 3rem;">Selecione o perfil do seu imóvel e arraste o slider para calcular uma estimativa preliminar de geração, número de módulos e tempo de retorno do investimento.</p>
-        
-        <div class="solar-calc-wrapper fade-in">
-            <!-- Profile Switcher Tabs -->
-            <div class="solar-calc-profile-tabs">
-                <button type="button" class="solar-calc-tab-btn active" data-profile="residencial" data-tarifa="0.95" data-cost-panel="85">
-                    <i class="fas fa-home"></i> Residencial
-                </button>
-                <button type="button" class="solar-calc-tab-btn" data-profile="comercial" data-tarifa="1.05" data-cost-panel="90">
-                    <i class="fas fa-building"></i> Comercial & Empresas
-                </button>
-                <button type="button" class="solar-calc-tab-btn" data-profile="agro" data-tarifa="0.88" data-cost-panel="80">
-                    <i class="fas fa-tractor"></i> Agro & Irrigação
-                </button>
-            </div>
-
-            <div class="grid grid-cols-2" style="gap: 3rem; align-items: center;">
-                <!-- Coluna Input -->
-                <div>
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1.25rem;">
-                        <span style="font-family:var(--font-mono); font-size:0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Valor Médio da Fatura Mensal:</span>
-                        <span id="bill-value" style="color: #f59e0b; font-weight: 800; font-size: 1.85rem; font-family: var(--font-mono);">R$ 1.500</span>
-                    </div>
-                    
-                    <input type="range" id="bill-range" min="200" max="25000" step="100" value="1500" style="width:100%; height:10px; border-radius:5px; background: var(--bg-primary); cursor:pointer; accent-color: #f59e0b;">
-                    
-                    <div class="solar-calc-presets">
-                        <span class="solar-preset-chip" data-value="500">R$ 500</span>
-                        <span class="solar-preset-chip active" data-value="1500">R$ 1.500</span>
-                        <span class="solar-preset-chip" data-value="3000">R$ 3.000</span>
-                        <span class="solar-preset-chip" data-value="5000">R$ 5.000</span>
-                        <span class="solar-preset-chip" data-value="10000">R$ 10.000</span>
-                        <span class="solar-preset-chip" data-value="20000">R$ 20.000+</span>
-                    </div>
-
-                    <div style="margin-top: 2rem; padding: 1rem 1.25rem; background: var(--bg-primary); border-left: 3px solid #f59e0b; border-radius: 4px; font-size: 0.82rem; color: var(--text-muted); font-family:var(--font-mono); line-height: 1.5;">
-                        <i class="fas fa-info-circle" style="color: #f59e0b; margin-right: 4px;"></i> Estimativa preliminar calculada com base na irradiação solar média da Paraíba (~5,4 kWh/m²/dia).
-                    </div>
-                </div>
-
-                <!-- Coluna Resultados -->
-                <div class="grid grid-cols-2" style="gap: 1.15rem;">
-                    <div class="calc-metric-card-modern">
-                        <div class="calc-metric-lbl"><i class="fas fa-arrow-down" style="color:#22c55e"></i> Economia Mensal</div>
-                        <div id="result-monthly" class="calc-metric-val" style="color: #22c55e;">R$ 1.425</div>
-                    </div>
-                    <div class="calc-metric-card-modern">
-                        <div class="calc-metric-lbl"><i class="fas fa-calendar-alt" style="color:#f59e0b"></i> Economia Anual</div>
-                        <div id="result-yearly" class="calc-metric-val" style="color: #f59e0b;">R$ 17.100</div>
-                    </div>
-                    <div class="calc-metric-card-modern">
-                        <div class="calc-metric-lbl"><i class="fas fa-solar-panel" style="color:#38bdf8"></i> Painéis Estimados</div>
-                        <div id="result-panels" class="calc-metric-val" style="color: var(--text-main);">18 placas</div>
-                    </div>
-                    <div class="calc-metric-card-modern">
-                        <div class="calc-metric-lbl"><i class="fas fa-chart-line" style="color:#a855f7"></i> Retorno (Payback)</div>
-                        <div id="result-roi" class="calc-metric-val" style="color: var(--text-main);">2.7 anos</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Rodapé da Calculadora com CTA Direto -->
-            <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
-                <div>
-                    <h4 style="margin-bottom: 0.35rem; font-size: 1.15rem; color: var(--text-main);">Receba o Estudo Técnico Completo com Orçamento</h4>
-                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">Enviaremos o dimensionamento detalhado com simulação de financiamento e gráfico de geração.</p>
-                </div>
-                <a id="btn-calc-pdf" href="https://wa.me/5583991430929?text=Ol%C3%A1!%20Fiz%20uma%20simula%C3%A7%C3%A3o%20de%20energia%20solar%20com%20fatura%20de%20R%24%201.500%20para%20meu%20im%C3%B3vel%20Residencial%20e%20gostaria%20de%20receber%20o%20estudo%20t%C3%A9cnico." target="_blank" rel="noopener" class="btn btn-primary" style="background: #25d366; border-color: #25d366; color: #fff; font-weight: 700; white-space: nowrap; padding: 0.95rem 1.85rem; font-size: 0.95rem;">
-                    <i class="fab fa-whatsapp" style="margin-right: 8px; font-size: 1.15rem;"></i> Solicitar Estudo pelo WhatsApp
-                </a>
-            </div>
-        </div>
+        <noscript><p>Para usar a calculadora, ative o JavaScript ou <a href="<%= waHeroUrl %>" data-content-category="solar">converse com a equipe pelo WhatsApp</a>.</p></noscript>
     </div>
 </section>
 
@@ -331,7 +216,7 @@
 
         <!-- UX Interaction Hint -->
         <div class="home-solar-ux-hint fade-in">
-            <span class="ux-hint-pulse"><i class="fas fa-mouse-pointer"></i></span>
+            <span class="ux-hint-pulse"><i class="fas fa-mouse-pointer" aria-hidden="true"></i></span>
             <span class="ux-hint-text"><strong>Explore as soluções:</strong> Passe o mouse sobre qualquer setor para expandir os diferenciais e dados técnicos</span>
         </div>
 
@@ -358,17 +243,17 @@
                             Projetos para residências com uso de ar-condicionado, chuveiro, piscina ou outras cargas relevantes, sempre dimensionados a partir dos dados do imóvel.
                         </p>
                         <ul class="solar-showcase-features">
-                            <li><i class="fas fa-bolt text-solar-orange"></i> <span><strong>Faturas recentes</strong> na análise do consumo</span></li>
-                            <li><i class="fas fa-chart-line text-solar-orange"></i> <span><strong>Geração e retorno</strong> apresentados por cenários</span></li>
-                            <li><i class="fas fa-file-signature text-solar-orange"></i> <span><strong>Projeto e ART</strong> conforme o escopo contratado</span></li>
-                            <li><i class="fas fa-shield-alt text-solar-orange"></i> <span><strong>Garantias identificadas</strong> por equipamento e fornecedor</span></li>
+                            <li><i class="fas fa-bolt text-solar-orange" aria-hidden="true"></i> <span><strong>Faturas recentes</strong> na análise do consumo</span></li>
+                            <li><i class="fas fa-chart-line text-solar-orange" aria-hidden="true"></i> <span><strong>Geração e retorno</strong> apresentados por cenários</span></li>
+                            <li><i class="fas fa-file-signature text-solar-orange" aria-hidden="true"></i> <span><strong>Projeto e ART</strong> conforme o escopo contratado</span></li>
+                            <li><i class="fas fa-shield-alt text-solar-orange" aria-hidden="true"></i> <span><strong>Garantias identificadas</strong> por equipamento e fornecedor</span></li>
                         </ul>
                     </div>
 
                     <div class="solar-showcase-link">
                         <span class="link-text-default">VER SOLUÇÃO</span>
                         <span class="link-text-hover">CONHECER RESIDENCIAL</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </a>
@@ -394,17 +279,17 @@
                             Usinas B2B dimensionadas para a curva de carga da empresa, a área disponível e as unidades consumidoras elegíveis ao projeto.
                         </p>
                         <ul class="solar-showcase-features">
-                            <li><i class="fas fa-chart-pie text-solar-orange"></i> <span><strong>Curva de carga</strong> e autoconsumo avaliados</span></li>
-                            <li><i class="fas fa-chart-line text-solar-orange"></i> <span><strong>Payback estimado</strong> com premissas declaradas</span></li>
-                            <li><i class="fas fa-file-invoice-dollar text-solar-orange"></i> <span><strong>Cenários financeiros</strong> para apoiar a decisão</span></li>
-                            <li><i class="fas fa-building text-solar-orange"></i> <span><strong>Outras unidades</strong> avaliadas conforme as regras aplicáveis</span></li>
+                            <li><i class="fas fa-chart-pie text-solar-orange" aria-hidden="true"></i> <span><strong>Curva de carga</strong> e autoconsumo avaliados</span></li>
+                            <li><i class="fas fa-chart-line text-solar-orange" aria-hidden="true"></i> <span><strong>Payback estimado</strong> com premissas declaradas</span></li>
+                            <li><i class="fas fa-file-invoice-dollar text-solar-orange" aria-hidden="true"></i> <span><strong>Cenários financeiros</strong> para apoiar a decisão</span></li>
+                            <li><i class="fas fa-building text-solar-orange" aria-hidden="true"></i> <span><strong>Outras unidades</strong> avaliadas conforme as regras aplicáveis</span></li>
                         </ul>
                     </div>
 
                     <div class="solar-showcase-link">
                         <span class="link-text-default">VER SOLUÇÃO</span>
                         <span class="link-text-hover">CONHECER COMERCIAL</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </a>
@@ -430,17 +315,17 @@
                             Soluções dimensionadas para o consumo e a cobertura disponível, sem presumir que a geração solar substitui sistemas de emergência.
                         </p>
                         <ul class="solar-showcase-features">
-                            <li><i class="fas fa-snowflake text-solar-orange"></i> <span><strong>Refrigeração</strong> incluída no levantamento de cargas</span></li>
-                            <li><i class="fas fa-chart-line text-solar-orange"></i> <span><strong>Retorno calculado</strong> para a operação analisada</span></li>
-                            <li><i class="fas fa-tools text-solar-orange"></i> <span><strong>Cronograma de instalação</strong> combinado com a loja</span></li>
-                            <li><i class="fas fa-network-wired text-solar-orange"></i> <span><strong>Unidades da rede</strong> avaliadas conforme elegibilidade</span></li>
+                            <li><i class="fas fa-snowflake text-solar-orange" aria-hidden="true"></i> <span><strong>Refrigeração</strong> incluída no levantamento de cargas</span></li>
+                            <li><i class="fas fa-chart-line text-solar-orange" aria-hidden="true"></i> <span><strong>Retorno calculado</strong> para a operação analisada</span></li>
+                            <li><i class="fas fa-tools text-solar-orange" aria-hidden="true"></i> <span><strong>Cronograma de instalação</strong> combinado com a loja</span></li>
+                            <li><i class="fas fa-network-wired text-solar-orange" aria-hidden="true"></i> <span><strong>Unidades da rede</strong> avaliadas conforme elegibilidade</span></li>
                         </ul>
                     </div>
 
                     <div class="solar-showcase-link">
                         <span class="link-text-default">VER SOLUÇÃO</span>
                         <span class="link-text-hover">CONHECER SUPERMERCADOS</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </a>
@@ -466,17 +351,17 @@
                             O sistema solar on-grid reduz consumo da rede, mas não substitui geradores, nobreaks ou os sistemas responsáveis pelas cargas de emergência.
                         </p>
                         <ul class="solar-showcase-features">
-                            <li><i class="fas fa-hospital-symbol text-solar-orange"></i> <span><strong>Interface elétrica</strong> avaliada no projeto</span></li>
-                            <li><i class="fas fa-temperature-low text-solar-orange"></i> <span><strong>Climatização e cargas</strong> consideradas no consumo</span></li>
-                            <li><i class="fas fa-shield-alt text-solar-orange"></i> <span><strong>Projeto com ART</strong> e escopo definido</span></li>
-                            <li><i class="fas fa-chart-line text-solar-orange"></i> <span><strong>Retorno por cenários</strong>, não por prazo universal</span></li>
+                            <li><i class="fas fa-hospital-symbol text-solar-orange" aria-hidden="true"></i> <span><strong>Interface elétrica</strong> avaliada no projeto</span></li>
+                            <li><i class="fas fa-temperature-low text-solar-orange" aria-hidden="true"></i> <span><strong>Climatização e cargas</strong> consideradas no consumo</span></li>
+                            <li><i class="fas fa-shield-alt text-solar-orange" aria-hidden="true"></i> <span><strong>Projeto com ART</strong> e escopo definido</span></li>
+                            <li><i class="fas fa-chart-line text-solar-orange" aria-hidden="true"></i> <span><strong>Retorno por cenários</strong>, não por prazo universal</span></li>
                         </ul>
                     </div>
 
                     <div class="solar-showcase-link">
                         <span class="link-text-default">VER SOLUÇÃO</span>
                         <span class="link-text-hover">CONHECER SAÚDE & CLÍNICAS</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </a>
@@ -502,17 +387,17 @@
                             O sistema pode compensar parte do consumo de elevadores, bombas, iluminação e portaria, conforme demanda, área e geração estimada.
                         </p>
                         <ul class="solar-showcase-features">
-                            <li><i class="fas fa-city text-solar-orange"></i> <span><strong>Áreas comuns</strong> dimensionadas pelas faturas</span></li>
-                            <li><i class="fas fa-users text-solar-orange"></i> <span><strong>Material de apoio</strong> para assembleias</span></li>
-                            <li><i class="fas fa-layer-group text-solar-orange"></i> <span><strong>Fixação definida</strong> após vistoria da cobertura</span></li>
-                            <li><i class="fas fa-handshake text-solar-orange"></i> <span><strong>Rateio de créditos</strong> avaliado conforme as regras</span></li>
+                            <li><i class="fas fa-city text-solar-orange" aria-hidden="true"></i> <span><strong>Áreas comuns</strong> dimensionadas pelas faturas</span></li>
+                            <li><i class="fas fa-users text-solar-orange" aria-hidden="true"></i> <span><strong>Material de apoio</strong> para assembleias</span></li>
+                            <li><i class="fas fa-layer-group text-solar-orange" aria-hidden="true"></i> <span><strong>Fixação definida</strong> após vistoria da cobertura</span></li>
+                            <li><i class="fas fa-handshake text-solar-orange" aria-hidden="true"></i> <span><strong>Rateio de créditos</strong> avaliado conforme as regras</span></li>
                         </ul>
                     </div>
 
                     <div class="solar-showcase-link">
                         <span class="link-text-default">VER SOLUÇÃO</span>
                         <span class="link-text-hover">CONHECER CONDOMÍNIOS</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </a>
@@ -538,17 +423,17 @@
                             Usinas no solo ou em galpões rurais dimensionadas para bombas, ordenha, aviários e demais cargas informadas no levantamento.
                         </p>
                         <ul class="solar-showcase-features">
-                            <li><i class="fas fa-tint text-solar-orange"></i> <span><strong>Bombas e irrigação</strong> avaliadas tecnicamente</span></li>
-                            <li><i class="fas fa-chart-line text-solar-orange"></i> <span><strong>Retorno calculado</strong> conforme operação e investimento</span></li>
-                            <li><i class="fas fa-sun text-solar-orange"></i> <span><strong>Sistemas on-grid, off-grid</strong> e híbridos</span></li>
-                            <li><i class="fas fa-tractor text-solar-orange"></i> <span><strong>Crédito rural</strong> sujeito às condições da instituição</span></li>
+                            <li><i class="fas fa-tint text-solar-orange" aria-hidden="true"></i> <span><strong>Bombas e irrigação</strong> avaliadas tecnicamente</span></li>
+                            <li><i class="fas fa-chart-line text-solar-orange" aria-hidden="true"></i> <span><strong>Retorno calculado</strong> conforme operação e investimento</span></li>
+                            <li><i class="fas fa-sun text-solar-orange" aria-hidden="true"></i> <span><strong>Sistemas on-grid, off-grid</strong> e híbridos</span></li>
+                            <li><i class="fas fa-tractor text-solar-orange" aria-hidden="true"></i> <span><strong>Crédito rural</strong> sujeito às condições da instituição</span></li>
                         </ul>
                     </div>
 
                     <div class="solar-showcase-link">
                         <span class="link-text-default">VER SOLUÇÃO</span>
                         <span class="link-text-hover">CONHECER AGRO & IRRIGAÇÃO</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     </div>
                 </div>
             </a>
@@ -561,7 +446,7 @@
     <div class="container fade-in">
         <div class="solar-workflow-header">
             <div class="solar-workflow-eyebrow">
-                <i class="fas fa-network-wired"></i>
+                <i class="fas fa-network-wired" aria-hidden="true"></i>
                 <span>METODOLOGIA DE EXECUÇÃO</span>
             </div>
             <h2 class="solar-workflow-title">
@@ -586,7 +471,7 @@
                     <div class="solar-step-card">
                         <div class="solar-step-dash"></div>
                         <h4>Diagnóstico & Viabilidade</h4>
-                        <p>Estudo fotométrico da curvatura e sombreamento do telhado, analisando o histórico real de consumo.</p>
+                        <p>Análise do histórico de consumo, da área disponível, da orientação e do sombreamento do telhado.</p>
                     </div>
                 </div>
 
@@ -624,7 +509,7 @@
 
         <!-- Ícone de Raio Inferior -->
         <div class="solar-workflow-bottom-icon">
-            <i class="fas fa-bolt"></i>
+            <i class="fas fa-bolt" aria-hidden="true"></i>
         </div>
     </div>
 </section>
@@ -679,7 +564,7 @@
             <!-- Header Centralizado -->
             <div class="solar-region-header">
                 <div class="solar-region-badge">
-                    <i class="far fa-lightbulb" style="color: #3B9DD9;"></i>
+                    <i class="far fa-lightbulb" style="color: #3B9DD9;" aria-hidden="true"></i>
                     <span>ENERGIA SOLAR NA PARAÍBA</span>
                 </div>
                 <h2 class="solar-region-title">ESCOLHA A PÁGINA DA SUA REGIÃO</h2>
@@ -696,7 +581,7 @@
                     <div class="solar-region-card-left">
                         <div>
                             <div class="solar-region-tag">
-                                <i class="fas fa-map-marker-alt"></i> SEDE
+                                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> SEDE
                             </div>
                             <h3>ENERGIA SOLAR EM<br>CAMPINA GRANDE</h3>
                             <p>Atendimento local com equipe própria e suporte técnico especializado.</p>
@@ -704,12 +589,15 @@
                         <div>
                             <div class="solar-region-short-line"></div>
                             <div class="solar-region-btn">
-                                ACESSAR PÁGINA <i class="fas fa-arrow-right"></i>
+                                ACESSAR PÁGINA <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                     <div class="solar-region-card-img-wrap">
-                        <img src="/img/cidades/campina-grande.webp" alt="Energia Solar em Campina Grande PB" class="solar-region-card-img" onerror="this.src='/img/cidades/campina-grande.jpg'" loading="lazy" width="600" height="400">
+                        <img src="/img/cidades/campina-grande.webp"
+                             srcset="/img/cidades/campina-grande-600.webp 600w, /img/cidades/campina-grande.webp 1280w"
+                             sizes="(max-width: 768px) calc(100vw - 2.5rem), 320px"
+                             alt="Energia Solar em Campina Grande PB" class="solar-region-card-img" loading="lazy" width="600" height="400">
                     </div>
                 </a>
 
@@ -718,7 +606,7 @@
                     <div class="solar-region-card-left">
                         <div>
                             <div class="solar-region-tag">
-                                <i class="fas fa-city"></i> REGIÃO METROPOLITANA
+                                <i class="fas fa-city" aria-hidden="true"></i> REGIÃO METROPOLITANA
                             </div>
                             <h3>ENERGIA SOLAR EM<br>JOÃO PESSOA</h3>
                             <p>Atendimento na Grande João Pessoa com logística programada.</p>
@@ -726,12 +614,15 @@
                         <div>
                             <div class="solar-region-short-line"></div>
                             <div class="solar-region-btn">
-                                ACESSAR PÁGINA <i class="fas fa-arrow-right"></i>
+                                ACESSAR PÁGINA <i class="fas fa-arrow-right" aria-hidden="true"></i>
                             </div>
                         </div>
                     </div>
                     <div class="solar-region-card-img-wrap">
-                        <img src="/img/cidades/joao-pessoa.webp" alt="Energia Solar em João Pessoa PB" class="solar-region-card-img" onerror="this.src='/img/cidades/joao-pessoa.jpg'" loading="lazy" width="600" height="400">
+                        <img src="/img/cidades/joao-pessoa.webp"
+                             srcset="/img/cidades/joao-pessoa-600.webp 600w, /img/cidades/joao-pessoa.webp 1351w"
+                             sizes="(max-width: 768px) calc(100vw - 2.5rem), 320px"
+                             alt="Energia Solar em João Pessoa PB" class="solar-region-card-img" loading="lazy" width="600" height="400">
                     </div>
                 </a>
             </div>
@@ -739,7 +630,7 @@
         <!-- Barra de Outras Áreas sob Análise Logística -->
         <div class="solar-region-other-areas">
             <div class="other-areas-label">
-                <i class="fas fa-map-marker-alt"></i> Outras áreas sob análise logística:
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i> Outras áreas sob análise logística:
             </div>
             <div class="other-areas-links">
                 <a href="/energia-solar/recife-pe/">Recife/PE</a>
@@ -757,7 +648,7 @@
             <div class="solar-region-pillars-grid">
                 <div class="solar-pillar-item">
                     <div class="solar-pillar-icon">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-users" aria-hidden="true"></i>
                     </div>
                     <div class="solar-pillar-text">
                         <strong>ATENDIMENTO LOCAL</strong>
@@ -766,7 +657,7 @@
                 </div>
                 <div class="solar-pillar-item">
                     <div class="solar-pillar-icon">
-                        <i class="far fa-calendar-alt"></i>
+                        <i class="far fa-calendar-alt" aria-hidden="true"></i>
                     </div>
                     <div class="solar-pillar-text">
                         <strong>LOGÍSTICA PROGRAMADA</strong>
@@ -775,7 +666,7 @@
                 </div>
                 <div class="solar-pillar-item">
                     <div class="solar-pillar-icon">
-                        <i class="fas fa-map-marked-alt"></i>
+                        <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                     </div>
                     <div class="solar-pillar-text">
                         <strong>COBERTURA REGIONAL</strong>
@@ -797,7 +688,7 @@
         <!-- Header Centralizado -->
         <div class="home-faq-header">
             <div class="faq-badge-pill">
-                <i class="fas fa-bolt text-solar-orange"></i>
+                <i class="fas fa-bolt text-solar-orange" aria-hidden="true"></i>
                 <span>DÚVIDAS FREQUENTES</span>
             </div>
             <h2 class="home-faq-title">PERGUNTAS SOBRE ENERGIA SOLAR</h2>
@@ -813,9 +704,9 @@
                 <!-- FAQ Item 1 (Aberto por padrão) -->
                 <div class="faq-item active">
                     <button type="button" class="faq-question" aria-expanded="true">
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
                         <span class="faq-question-text">O que acontece se eu produzir mais energia do que consumo?</span>
-                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down"></i></span>
+                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
@@ -827,9 +718,9 @@
                 <!-- FAQ Item 2 -->
                 <div class="faq-item">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
                         <span class="faq-question-text">O sistema solar funciona em dias nublados ou chuvosos?</span>
-                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down"></i></span>
+                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
@@ -841,13 +732,13 @@
                 <!-- FAQ Item 3 -->
                 <div class="faq-item">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
                         <span class="faq-question-text">Como funciona o financiamento solar e carência?</span>
-                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down"></i></span>
+                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p>Trabalhamos com as principais linhas de crédito solar (BV, Santander, Banco do Nordeste, Solfácil) com carência de até 120 dias. Na grande maioria dos projetos, a parcela do financiamento é paga com a própria economia gerada na fatura de energia.</p>
+                            <p>As condições de financiamento, entrada e carência dependem da instituição e da análise de crédito. A proposta deve comparar parcelas, juros, custo total e economia estimada para que você avalie o investimento.</p>
                         </div>
                     </div>
                 </div>
@@ -855,9 +746,9 @@
                 <!-- FAQ Item 4 -->
                 <div class="faq-item">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
                         <span class="faq-question-text">Qual a manutenção necessária nas placas solares?</span>
-                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down"></i></span>
+                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
@@ -869,13 +760,13 @@
                 <!-- FAQ Item 5 -->
                 <div class="faq-item">
                     <button type="button" class="faq-question" aria-expanded="false">
-                        <span class="faq-toggle-icon"><i class="fas fa-plus"></i></span>
+                        <span class="faq-toggle-icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
                         <span class="faq-question-text">A energia solar realmente compensa no Nordeste com a Lei 14.300?</span>
-                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down"></i></span>
+                        <span class="faq-chevron-icon"><i class="fas fa-chevron-down" aria-hidden="true"></i></span>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-inner">
-                            <p>Sim, com folga! O Nordeste possui o maior índice de irradiação solar do país e uma das tarifas de energia mais altas. Mesmo com as regras de transição do Fio B, a economia na fatura fica entre 85% e 95%, com payback médio entre 2,5 e 3,5 anos.</p>
+                            <p>A viabilidade depende do consumo, da tarifa, do investimento e das condições do imóvel. O estudo precisa considerar as regras de compensação e os valores que permanecem na fatura. Por isso, economia e prazo de retorno são apresentados por projeto, com as premissas de cálculo.</p>
                         </div>
                     </div>
                 </div>
@@ -885,32 +776,32 @@
             <div class="home-faq-sidebar-card">
                 <div class="faq-sidebar-top">
                     <div class="faq-sidebar-icon">
-                        <i class="fas fa-headset"></i>
+                        <i class="fas fa-headset" aria-hidden="true"></i>
                     </div>
                     <h3 class="faq-sidebar-title">Dúvidas sobre seu projeto solar?</h3>
                 </div>
                 <div class="faq-sidebar-divider"></div>
                 <p class="faq-sidebar-desc">
-                    Nossa equipe de engenharia está pronta para analisar a sua fatura de energia e calcular a viabilidade.
+                    Converse com nossa equipe sobre o seu imóvel e descubra os próximos passos para reduzir sua conta de energia.
                 </p>
 
                 <ul class="faq-sidebar-features">
                     <li>
-                        <div class="sidebar-feature-icon"><i class="far fa-user"></i></div>
+                        <div class="sidebar-feature-icon"><i class="far fa-user" aria-hidden="true"></i></div>
                         <div>
                             <strong>Engenharia Consultiva</strong>
                             <span>Dimensionamento técnico sem compromisso</span>
                         </div>
                     </li>
                     <li>
-                        <div class="sidebar-feature-icon"><i class="far fa-check-circle"></i></div>
+                        <div class="sidebar-feature-icon"><i class="far fa-check-circle" aria-hidden="true"></i></div>
                         <div>
                             <strong>Homologação Energisa PB</strong>
                             <span>Acompanhamos a documentação e as etapas da homologação</span>
                         </div>
                     </li>
                     <li>
-                        <div class="sidebar-feature-icon"><i class="fas fa-award"></i></div>
+                        <div class="sidebar-feature-icon"><i class="fas fa-award" aria-hidden="true"></i></div>
                         <div>
                             <strong>Garantias Identificadas</strong>
                             <span>Prazos e responsáveis informados na proposta</span>
@@ -920,15 +811,15 @@
 
                 <div class="faq-sidebar-actions">
                     <a href="#calculadora" class="btn-faq-budget">
-                        <i class="fas fa-calculator"></i> Simular Minha Economia
+                        <i class="fas fa-calculator" aria-hidden="true"></i> Analisar Minha Conta
                     </a>
                     <a href="https://wa.me/5583991430929?text=Ol%C3%A1!%20Gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20energia%20solar%20com%20um%20engenheiro%20da%20Klyfe." target="_blank" rel="noopener noreferrer" class="btn-faq-whatsapp">
-                        <i class="fab fa-whatsapp"></i> Fale no WhatsApp
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Fale no WhatsApp
                     </a>
                 </div>
 
                 <div class="faq-sidebar-lock">
-                    <i class="fas fa-lock"></i> <span>Atendimento rápido e seguro</span>
+                    <i class="fas fa-lock" aria-hidden="true"></i> <span>Atendimento rápido e seguro</span>
                 </div>
             </div>
         </div>
@@ -940,14 +831,14 @@
     <div class="home-solar-bottom-cta">
         <div class="solar-cta-content">
             <h4 class="solar-cta-title">VAMOS CALCULAR O POTENCIAL DE <span class="text-solar-orange">ECONOMIA</span> DO SEU PROJETO?</h4>
-            <p class="solar-cta-desc">Use nosso simulador online ou fale com um engenheiro eletricista e receba um estudo personalizado, sem compromisso.</p>
+            <p class="solar-cta-desc">Comece pela sua conta de luz ou fale com a equipe para receber uma análise personalizada do seu imóvel.</p>
         </div>
         <div class="solar-cta-actions">
             <a href="#calculadora" class="btn-solar-cta-main">
                 SIMULAR ECONOMIA AGORA
             </a>
             <a href="https://wa.me/5583991430929?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20especialista%20em%20energia%20solar%20da%20Klyfe%20Electric%20para%20avaliar%20meu%20projeto." target="_blank" rel="noopener noreferrer" class="btn-solar-cta-ghost">
-                <i class="fab fa-whatsapp"></i> FALAR COM ESPECIALISTA
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> FALAR COM ESPECIALISTA
             </a>
         </div>
     </div>
@@ -957,82 +848,8 @@
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
 
-<script src="/js/main.js" defer></script>
-<script>
-    // ═══ CALCULADORA SOLAR 2.0 SCRIPT ═══
-    document.addEventListener('DOMContentLoaded', function() {
-        const billRange = document.getElementById('bill-range');
-        const billValue = document.getElementById('bill-value');
-        const resultMonthly = document.getElementById('result-monthly');
-        const resultYearly = document.getElementById('result-yearly');
-        const resultPanels = document.getElementById('result-panels');
-        const resultRoi = document.getElementById('result-roi');
-        const btnCalcPdf = document.getElementById('btn-calc-pdf');
-        const tabBtns = document.querySelectorAll('.solar-calc-tab-btn');
-        const presetChips = document.querySelectorAll('.solar-preset-chip');
-
-        let activeProfile = 'Residencial';
-        let activeTarifa = 0.95;
-        let activeCostPerPanel = 85;
-
-        function updateCalculator() {
-            if (!billRange) return;
-            const val = parseFloat(billRange.value);
-            billValue.textContent = 'R$ ' + val.toLocaleString('pt-BR');
-
-            // Atualiza chips ativos
-            presetChips.forEach(chip => {
-                const chipVal = parseFloat(chip.dataset.value);
-                if (chipVal === val) chip.classList.add('active');
-                else chip.classList.remove('active');
-            });
-
-            // Cálculos dinâmicos
-            const monthlySavings = Math.round(val * 0.95);
-            const yearlySavings = monthlySavings * 12;
-            const panelCount = Math.max(2, Math.round(val / activeCostPerPanel));
-            const roiYears = (val > 3000) ? '2.4' : (val > 1000) ? '2.7' : '3.1';
-
-            if (resultMonthly) resultMonthly.textContent = 'R$ ' + monthlySavings.toLocaleString('pt-BR');
-            if (resultYearly) resultYearly.textContent = 'R$ ' + yearlySavings.toLocaleString('pt-BR');
-            if (resultPanels) resultPanels.textContent = panelCount + ' placas';
-            if (resultRoi) resultRoi.textContent = roiYears + ' anos';
-
-            if (btnCalcPdf) {
-                const msg = encodeURIComponent(`Olá! Fiz uma simulação de energia solar com fatura de R$ ${val.toLocaleString('pt-BR')} para meu imóvel ${activeProfile} e gostaria de receber o estudo técnico completo em PDF.`);
-                btnCalcPdf.href = `https://wa.me/5583991430929?text=${msg}`;
-            }
-        }
-
-        if (billRange) {
-            billRange.addEventListener('input', updateCalculator);
-        }
-
-        // Presets click
-        presetChips.forEach(chip => {
-            chip.addEventListener('click', function() {
-                const val = parseFloat(this.dataset.value);
-                if (billRange) {
-                    billRange.value = val;
-                    updateCalculator();
-                }
-            });
-        });
-
-        // Profile switch tabs
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                tabBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                activeProfile = this.textContent.trim();
-                activeTarifa = parseFloat(this.dataset.tarifa || 0.95);
-                activeCostPerPanel = parseFloat(this.dataset.costPanel || 85);
-                updateCalculator();
-            });
-        });
-
-        updateCalculator();
-    });
-</script>
+<script src="/js/main.js?v=20261105-traffic2" defer></script>
+<script src="/js/solar-preview-model.js?v=20261107-7" defer></script>
+<script src="/js/solar-preview.js?v=20261107-8" defer></script>
 </body>
 </html>

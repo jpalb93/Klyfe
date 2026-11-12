@@ -42,8 +42,19 @@
         <% const cityPrefix = getHomePrefix(); %>
 
 
+        <style>
+            .hero-solucoes-bg {
+                background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;
+            }
+            @media (max-width: 768px) {
+                .hero-solucoes-bg {
+                    background-image: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe-640.webp');
+                }
+            }
+        </style>
+
         <!-- ═══ HERO ═══ -->
-        <section class="hero-internal" style="background: linear-gradient(rgba(10,13,16,0.9), rgba(10,13,16,0.9)), url('/img/hero-klyfe.webp') center/cover;">
+        <section class="hero-internal hero-solucoes-bg">
             <div class="container">
                 <%- include('partials/breadcrumb', { breadcrumbItems: [
                     { label: 'Home', href: getHomePrefix() || '/' },

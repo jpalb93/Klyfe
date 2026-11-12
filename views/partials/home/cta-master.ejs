@@ -46,14 +46,14 @@
 
                 <!-- Ações / Botões de Alta Conversão -->
                 <div class="cta-actions-row">
-                    <a href="/contato" class="btn-cta-primary">
+                    <a href="/contato?servico=Energia%20Solar%20Fotovoltaica" class="btn-cta-primary">
                         <span>SOLICITAR ESTUDO SOLAR</span>
                         <i class="fas fa-arrow-right"></i>
                     </a>
 
-                    <% const waMsgMaster = (typeof waMsg !== 'undefined' && waMsg) ? waMsg : `Olá! Estive no site da Klyfe e gostaria de um orçamento técnico para ${cityData.name}.`; %>
-                    <% const waUrlMaster = (typeof waUrl !== 'undefined' && waUrl) ? waUrl : `https://wa.me/5583991330972?text=${encodeURIComponent(waMsgMaster)}`; %>
-                    <a href="<%= waUrlMaster %>" target="_blank" rel="noopener" class="btn-cta-whatsapp">
+                    <% const waMsgMaster = `Olá! Vim da página inicial da Klyfe e gostaria de um estudo de energia solar para ${cityData.name}.`; %>
+                    <% const waUrlMaster = `https://wa.me/5583991430929?text=${encodeURIComponent(waMsgMaster)}`; %>
+                    <a href="<%= waUrlMaster %>" target="_blank" rel="noopener" class="btn-cta-whatsapp" data-content-category="solar" data-content-name="home-solar-team">
                         <i class="fab fa-whatsapp"></i>
                         <span>FALAR COM A EQUIPE SOLAR</span>
                     </a>

@@ -40,10 +40,14 @@
                engServices.forEach(key => { 
                  const svc = { ...locations.default.services[key], ...(cityData.services && cityData.services[key] || {}) };
                  const imgPath = `/img/engenharia/${key}.webp`;
+                 const imgBase = `/img/engenharia/${key}`;
             %>
             <a href="<%= cityPrefix %>/solucoes/engenharia/<%= key %>" class="eng-service-card fade-in">
                 <div class="eng-service-img-wrap">
-                    <img src="<%= imgPath %>" alt="<%= svc.label %>" loading="lazy">
+                    <img src="<%= imgPath %>"
+                         srcset="<%= imgBase %>-480.webp 480w, <%= imgBase %>-768.webp 768w, <%= imgBase %>-1200.webp 1200w, <%= imgPath %> 1400w"
+                         sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) 50vw, 360px"
+                         alt="<%= svc.label %>" loading="lazy" width="600" height="338">
                 </div>
                 <div class="eng-service-body">
                     <h3><%= svc.label %> <i class="fas fa-arrow-right"></i></h3>

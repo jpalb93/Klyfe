@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <%- include('partials/head', {
+        partnersBrand: true,
+        preloadImage: '/img/partners-cover.webp'
+    }) %>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Preciso ter CNPJ para ser parceiro ou posso cadastrar como Pessoa Física?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Você pode participar como pessoa física ou jurídica. CPF da pessoa física e chave Pix podem ser completados após o cadastro, antes do primeiro pagamento. Para PJ, o CNPJ é exigido no cadastro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como e quando a comissão de 3% é paga?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A comissão prevista nos termos do programa é calculada em 3% sobre o valor líquido dos itens contratados elegíveis e atribuídos à sua indicação, paga via Pix após quitação e conciliação integral."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "E se outro parceiro já tiver indicado o mesmo cliente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O sistema utiliza a regra de Primeiro Registro Válido (First Claim) com análise de vínculos e do atendimento existente para definir a atribuição."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Em quais cidades e estados a Klyfe atende pelo programa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O Klyfe Partners atende em todas as cidades da Paraíba (PB), Pernambuco (PE) e Rio Grande do Norte (RN)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso fazer a venda técnica ou fechar o contrato com o cliente?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Seu papel é apenas apresentar a oportunidade. Toda a visita técnica, levantamento de carga, elaboração de projeto executivo, negociação comercial e emissão de ART é realizada pela equipe de engenharia da Klyfe."
+          }
+        }
+      ]
+    }
+    </script>
+    <style>
+        /* ==========================================================================
+           KLYFE PARTNERS - LIGHT THEME SYSTEM
+           ========================================================================== */
+        :root {
+            --kp-gold: #D97706;
+            --kp-gold-vibrant: #F59E0B;
+            --kp-gold-glow: rgba(245, 158, 11, 0.20);
+            --kp-gold-light: #FFFBEB;
+            --kp-gold-border: #FDE68A;
+            --kp-mint: #059669;
+            --kp-mint-light: #ECFDF5;
+            --kp-mint-border: #A7F3D0;
+            --kp-slate-dark: #0F172A;
+            --kp-slate-heading: #1E293B;
+            --kp-slate-muted: #526071;
+            --kp-border: #E2E8F0;
+            --kp-bg-card: #FFFFFF;
+            --kp-bg-soft: #F8FAFC;
+            --kp-bg-subtle: #F1F5F9;
+        }
+
+        .page-partners {
+            background-color: var(--kp-bg-soft);
+            color: var(--kp-slate-dark);
+            --bg-primary: #F8FAFC;
+            --bg-secondary: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #526071;
+            --border-color: #E2E8F0;
+            --nav-bg: rgba(255, 255, 255, 0.96);
+            overflow-x: hidden;
+        }
+
+        /* Navbar Light Foundation */
+        .page-partners .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #E2E8F0;
+        }
+        .page-partners .navbar.navbar-pill {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.07);
+        }
+        .page-partners .navbar .nav-links a {
+            color: #0F172A;
+        }
+        .page-partners .navbar .nav-links a:hover,
+        .page-partners .navbar .nav-links a.active {
+            color: var(--kp-gold);
+        }
+        .page-partners .navbar .logo-cls-white {
+            fill: #0F172A;
+        }
+
+        /* 1. Hero Section */
+        .partners-hero {
+            padding: 7.5rem 0 4.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--kp-border);
+            background: radial-gradient(circle at 12% 20%, rgba(245, 158, 11, 0.07) 0%, transparent 40%),
+                        radial-gradient(circle at 88% 70%, rgba(14, 165, 233, 0.05) 0%, transparent 45%),
+                        #FFFFFF;
+        }
+        .partners-hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .partners-hero-text h1 {
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            margin: 1.2rem 0;
+            color: var(--kp-slate-dark);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+        .partners-hero-text h1 .text-highlight {
+            color: var(--kp-gold);
+        }
+        .partners-hero-lead {
+            font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+            line-height: 1.6;
+            color: var(--kp-slate-muted);
+            max-width: 620px;
+            margin-bottom: 2rem;
+        }
+        .partners-badge-group {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.45rem 1rem;
+            background: var(--kp-gold-light);
+            border: 1px solid var(--kp-gold-border);
+            border-radius: 999px;
+            color: #92400E;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .partners-hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+            margin-bottom: 2.2rem;
+        }
+        .partners-hero-ctas .btn {
+            padding: 0.85rem 1.6rem;
+            font-weight: 700;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+        .btn-gold {
+            background: var(--kp-gold-vibrant);
+            color: #0F172A;
+            border: 1px solid #F59E0B;
+            box-shadow: 0 4px 18px rgba(245, 158, 11, 0.28);
+        }
+        .btn-gold:hover {
+            background: #EAB308;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(245, 158, 11, 0.38);
+            color: #0F172A;
+        }
+        .btn-light-outline {
+            background: #FFFFFF;
+            color: #0F172A;
+            border: 1.5px solid var(--kp-border);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .btn-light-outline:hover {
+            border-color: #0F172A;
+            transform: translateY(-2px);
+            background: #F8FAFC;
+        }
+        .btn-light-ghost {
+            background: transparent;
+            color: #475569;
+            border: none;
+        }
+        .btn-light-ghost:hover {
+            color: var(--kp-gold);
+        }
+        .partners-quick-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            border-top: 1px solid var(--kp-border);
+            padding-top: 1.5rem;
+        }
+        .quick-tag-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--kp-slate-muted);
+        }
+        .quick-tag-item i {
+            color: var(--kp-gold);
+            font-size: 0.95rem;
+        }
+
+        /* Hero Visual Showcase */
+        .partners-hero-visual {
+            position: relative;
+        }
+        .visual-frame {
+            position: relative;
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 20px;
+            padding: 10px;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0,0,0,0.04);
+            overflow: hidden;
+        }
+        .visual-frame img {
+            width: 100%;
+            height: auto;
+            border-radius: 14px;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .visual-frame:hover img {
+            transform: scale(1.015);
+        }
+        .floating-pill {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--kp-border);
+            padding: 0.65rem 1rem;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--kp-slate-dark);
+            z-index: 2;
+            animation: floatSlow 4s ease-in-out infinite alternate;
+        }
+        .floating-pill.pill-top {
+            top: 20px;
+            right: -15px;
+            border-color: var(--kp-mint-border);
+        }
+        .floating-pill.pill-bottom {
+            bottom: 25px;
+            left: -15px;
+            border-color: var(--kp-gold-border);
+            animation-delay: -2s;
+        }
+        .floating-pill .pill-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        .pill-top .pill-dot { background: var(--kp-mint); box-shadow: 0 0 8px rgba(5, 150, 105, 0.4); }
+        .pill-bottom .pill-dot { background: var(--kp-gold); box-shadow: 0 0 8px rgba(217, 119, 6, 0.4); }
+
+        @keyframes floatSlow {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-8px); }
+        }
+
+        /* Metric Strip */
+        .partners-metric-strip {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--kp-border);
+            padding: 2rem 0;
+        }
+        .metric-strip-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .metric-strip-item strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 2.3rem;
+            color: var(--kp-gold);
+            line-height: 1;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.02em;
+        }
+        .metric-strip-item span {
+            font-size: 0.88rem;
+            color: var(--kp-slate-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-family: var(--font-mono);
+            font-weight: 600;
+        }
+
+        /* Sections General */
+        .kp-section {
+            padding: 5.5rem 0;
+            position: relative;
+        }
+        .kp-section-light {
+            background: #FFFFFF;
+        }
+        .kp-section-soft {
+            background: var(--kp-bg-soft);
+        }
+        .kp-section-header {
+            text-align: center;
+            max-width: 780px;
+            margin: 0 auto 3.5rem;
+        }
+        .kp-section-header .badge-mono {
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            background: var(--kp-gold-light);
+            color: #92400E;
+            border: 1px solid var(--kp-gold-border);
+        }
+        .kp-section-header h2 {
+            font-size: clamp(2rem, 3.5vw, 2.9rem);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            line-height: 1.15;
+            text-transform: uppercase;
+            color: var(--kp-slate-dark);
+            margin-bottom: 1rem;
+        }
+        .kp-section-header p {
+            color: var(--kp-slate-muted);
+            font-size: 1.08rem;
+            line-height: 1.6;
+        }
+
+        /* 2. Personas */
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .persona-card {
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 18px;
+            padding: 2rem 1.8rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+        .persona-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--kp-gold);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .persona-card:hover {
+            transform: translateY(-4px);
+            border-color: #FCD34D;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.07);
+        }
+        .persona-card:hover::before {
+            opacity: 1;
+        }
+        .persona-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: var(--kp-gold-light);
+            border: 1px solid var(--kp-gold-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--kp-gold);
+            font-size: 1.4rem;
+            margin-bottom: 1.4rem;
+        }
+        .persona-card h3 {
+            font-size: 1.35rem;
+            font-family: var(--font-heading);
+            margin-bottom: 0.8rem;
+            color: #0F172A;
+        }
+        .persona-card p {
+            color: var(--kp-slate-muted);
+            font-size: 0.93rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
+        }
+        .persona-gain {
+            background: var(--kp-mint-light);
+            border: 1px solid var(--kp-mint-border);
+            border-radius: 10px;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.82rem;
+            color: #047857;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 3. 4 Families / 36 Services */
+        .catalog-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .catalog-tab-btn {
+            background: #FFFFFF;
+            border: 1.5px solid var(--kp-border);
+            color: var(--kp-slate-muted);
+            padding: 0.8rem 1.4rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .catalog-tab-btn i {
+            color: var(--kp-gold);
+        }
+        .catalog-tab-btn.active, .catalog-tab-btn:hover {
+            color: #0F172A;
+            background: #FFFFFF;
+            border-color: var(--kp-gold);
+        }
+        .catalog-tab-btn.active {
+            box-shadow: 0 4px 16px rgba(217, 119, 6, 0.15);
+        }
+        .catalog-panel {
+            display: none;
+            animation: fadeInTab 0.3s ease forwards;
+        }
+        .catalog-panel.active {
+            display: block;
+        }
+        @keyframes fadeInTab {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .catalog-items-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+        }
+        .service-pill-card {
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 14px;
+            padding: 1.3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+        .service-pill-card:hover {
+            border-color: #FCD34D;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        .service-pill-card h4 {
+            font-size: 1.05rem;
+            font-family: var(--font-heading);
+            color: #0F172A;
+            margin-bottom: 0.4rem;
+        }
+        .service-pill-card p {
+            color: var(--kp-slate-muted);
+            font-size: 0.82rem;
+            line-height: 1.45;
+            margin-bottom: 0.8rem;
+        }
+        .service-pill-card .service-cat-tag {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--kp-gold);
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Concessionárias Banner */
+        .utility-banner {
+            margin-top: 3rem;
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 16px;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+        .utility-banner-text strong {
+            display: block;
+            font-size: 1.1rem;
+            color: #0F172A;
+            margin-bottom: 0.2rem;
+        }
+        .utility-banner-text span {
+            color: var(--kp-slate-muted);
+            font-size: 0.9rem;
+        }
+        .utility-logos {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .utility-badge {
+            background: var(--kp-bg-soft);
+            border: 1px solid var(--kp-border);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: #1E293B;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .utility-badge i {
+            color: var(--kp-gold);
+        }
+
+        /* 4. Tech Ecosystem / Portal Features */
+        .tech-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        .tech-feature-card {
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 18px;
+            padding: 2.2rem 1.8rem;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+        .tech-feature-card:hover {
+            transform: translateY(-4px);
+            border-color: #FCD34D;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+        }
+        .tech-feature-card strong {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--kp-gold);
+            display: block;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .tech-feature-card h3 {
+            font-size: 1.4rem;
+            font-family: var(--font-heading);
+            color: #0F172A;
+            margin-bottom: 0.8rem;
+        }
+        .tech-feature-card p {
+            color: var(--kp-slate-muted);
+            font-size: 0.93rem;
+            line-height: 1.6;
+        }
+
+        /* 5. Steps */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            position: relative;
+        }
+        .step-box {
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 18px;
+            padding: 2.2rem 1.8rem;
+            position: relative;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+        }
+        .step-num {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: rgba(217, 119, 6, 0.22);
+            line-height: 1;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .step-box h3 {
+            font-size: 1.28rem;
+            font-family: var(--font-heading);
+            color: #0F172A;
+            margin-bottom: 0.7rem;
+        }
+        .step-box p {
+            color: var(--kp-slate-muted);
+            font-size: 0.9rem;
+            line-height: 1.55;
+        }
+
+        /* 6. Security Box */
+        .security-container-box {
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 24px;
+            padding: clamp(2rem, 4vw, 3.5rem);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 7. FAQ Accordion (Isolado e com Animação Suave) */
+        .kp-faq-accordion {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .kp-faq-item {
+            background: #FFFFFF;
+            border: 1px solid var(--kp-border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .kp-faq-item.active {
+            border-color: var(--kp-gold-vibrant);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.09);
+        }
+        .kp-faq-question {
+            width: 100%;
+            padding: 1.35rem 1.6rem;
+            background: none;
+            border: none;
+            color: #0F172A;
+            text-align: left;
+            font-size: 1.05rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            user-select: none;
+        }
+        .kp-faq-question * {
+            pointer-events: none;
+        }
+        .kp-faq-question i {
+            color: var(--kp-gold);
+            font-size: 0.95rem;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .kp-faq-item.active .kp-faq-question i {
+            transform: rotate(180deg);
+        }
+        .kp-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+            padding: 0 1.6rem;
+            color: var(--kp-slate-muted);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+        .kp-faq-item.active .kp-faq-answer {
+            max-height: 600px;
+            padding: 0 1.6rem 1.4rem;
+        }
+        .kp-faq-answer p {
+            margin: 0;
+        }
+
+        /* 8. Final CTA */
+        .partners-cta-section {
+            background: linear-gradient(180deg, #F8FAFC 0%, #FEFCE8 100%);
+            border-top: 1px solid var(--kp-gold-border);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .cta-content-box {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .cta-content-box h2 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            color: #0F172A;
+        }
+        .cta-content-box p {
+            color: var(--kp-slate-muted);
+            font-size: 1.15rem;
+            margin-bottom: 2.4rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .partners-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .personas-grid { grid-template-columns: repeat(2, 1fr); }
+            .catalog-items-grid { grid-template-columns: repeat(2, 1fr); }
+            .tech-features-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-container { grid-template-columns: repeat(2, 1fr); }
+            .metric-strip-grid { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
+            .security-container-box { grid-template-columns: 1fr; gap: 2rem; }
+        }
+        @media (max-width: 640px) {
+            .partners-hero { padding-top: 5.5rem; }
+            .personas-grid { grid-template-columns: 1fr; }
+            .catalog-items-grid { grid-template-columns: 1fr; }
+            .tech-features-grid { grid-template-columns: 1fr; }
+            .steps-container { grid-template-columns: 1fr; }
+            .floating-pill { display: none; }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/partners-presentation.css?v=20261005">
+</head>
+<body class="page-partners">
+    <%- include('partials/navbar') %>
+
+    <%
+        const portalUrl = (typeof partnersUrl !== 'undefined' && partnersUrl) ? partnersUrl : 'https://parceiros.klyfeelectric.com.br';
+        const partnersWaMsg = "Olá! Tenho interesse em ser parceiro Klyfe Partners para indicar projetos de engenharia elétrica e energia solar. Gostaria de mais detalhes sobre o cadastro e comissões.";
+        const partnersWaUrl = `https://wa.me/5583991330972?text=${encodeURIComponent(partnersWaMsg)}`;
+    %>
+
+    <main>
+        <!-- ==========================================================================
+             1. HERO SECTION (CLARO COM ACENTOS SUTIS)
+             ========================================================================== -->
+        <section class="partners-hero">
+            <div class="container">
+                <%- include('partials/breadcrumb', { breadcrumbItems: [{ label: 'Home', href: '/' }, { label: 'Partners' }] }) %>
+                
+                <div class="partners-hero-grid">
+                    <div class="partners-hero-text">
+                        <img src="/img/partners-brand/horizontal.webp" alt="Klyfe Partners" width="420" height="140" style="display:block;max-width:100%;height:auto;object-fit:contain;background:transparent;padding:0;border-radius:0;margin-bottom:24px;box-sizing:border-box">
+                        <div class="partners-badge-group">
+                            <i class="fas fa-handshake"></i>
+                            <span>PROGRAMA OFICIAL DE PARCERIAS & INDICAÇÕES</span>
+                        </div>
+                        
+                        <h1>Sua conexão abre <span class="text-highlight">novas oportunidades.</span></h1>
+                        
+                        <p class="partners-hero-lead">
+                            Indique quem precisa de energia solar, elétrica, automação ou engenharia. Acompanhe o atendimento no Partners e receba <strong>3% sobre os itens elegíveis atribuídos à sua indicação</strong>, após quitação integral e conciliação, conforme os termos do programa.
+                        </p>
+                        
+                        <div class="partners-hero-ctas">
+                            <a class="btn btn-gold" href="<%= portalUrl %>" target="_blank" rel="noopener">
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i> Quero ser parceiro
+                            </a>
+                            <a class="btn btn-light-outline" href="#como-funciona"><i class="fas fa-play" aria-hidden="true"></i> Como funciona</a>
+                            <a class="kp-login-link" href="<%= portalUrl %>">Já sou parceiro · Entrar</a>
+                        </div>
+
+                        <div class="partners-quick-tags">
+                            <div class="quick-tag-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>3% no Pix por negócio quitado</span>
+                            </div>
+                            <div class="quick-tag-item">
+                                <i class="fas fa-file-signature"></i>
+                                <span>Equipe Klyfe no atendimento</span>
+                            </div>
+                            <div class="quick-tag-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Atuação em PB, PE e RN</span>
+                            </div>
+                            <div class="quick-tag-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Indicações com autorização para contato</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="partners-hero-visual">
+                        <figure class="kp-phone-preview">
+                            <div class="kp-phone-shell"><img src="/img/partners-home-preview.webp?v=20261005" alt="Prévia do Início do Partners, com ações de indicação e resumo da conta. Dados ilustrativos." width="397" height="915" fetchpriority="high"></div>
+                            <figcaption>Interface atual · Dados ilustrativos</figcaption>
+                        </figure>
+                        <div class="kp-cover-note"><i class="fas fa-comments" aria-hidden="true"></i><span>Você indica.<strong>A Klyfe cuida do atendimento.</strong></span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             MÉTRICAS & VALOR (FUNDO CLARO)
+             ========================================================================== -->
+        <section class="partners-metric-strip">
+            <div class="container">
+                <div class="metric-strip-grid">
+                    <div class="metric-strip-item">
+                        <strong>3%</strong>
+                        <span>Sobre itens elegíveis, conforme os termos</span>
+                    </div>
+                    <div class="metric-strip-item">
+                        <strong>36</strong>
+                        <span>Serviços Elegíveis no Catálogo</span>
+                    </div>
+                    <div class="metric-strip-item">
+                        <strong>Um só lugar</strong>
+                        <span>Indicações, conversa e recebimentos</span>
+                    </div>
+                    <div class="metric-strip-item">
+                        <strong>3 Estados</strong>
+                        <span>Paraíba, Pernambuco e Rio Grande do Norte</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             2. PARA QUEM É O KLYFE PARTNERS? (FUNDO BRANCO)
+             ========================================================================== -->
+        <section class="kp-section kp-section-light">
+            <div class="container">
+                <div class="kp-section-header">
+                    <span class="badge-mono"><i class="fas fa-users"></i> PERFIS DE PARCEIROS</span>
+                    <h2>Feito para Profissionais que Estão em Campo</h2>
+                    <p>Se você tem contato com clientes que constroem, reformam ou precisam de soluções elétricas e energéticas de alto valor, o Klyfe Partners é o seu parceiro técnico.</p>
+                </div>
+
+                <div class="personas-grid">
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Eletricistas & Instaladores</h3>
+                        <p>Apareceu um aumento de carga com projeto, uma subestação ou energia solar que você não faz? Indique à Klyfe e ganhe sua comissão sem perder o cliente para concorrentes.</p>
+                        <div class="persona-gain"><i class="fas fa-arrow-trend-up"></i> Retenha seus clientes com suporte de engenharia</div>
+                    </div>
+
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-drafting-compass"></i></div>
+                        <h3>Arquitetos & Designers</h3>
+                        <p>Planeje casas e empreendimentos com energia solar integrada à arquitetura, automação residencial e pontos para recarga veicular (Wallbox) com projeto executivo seguro.</p>
+                        <div class="persona-gain"><i class="fas fa-arrow-trend-up"></i> Projetos elétricos com compatibilização BIM</div>
+                    </div>
+
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-hard-hat"></i></div>
+                        <h3>Engenheiros Civis & Construtores</h3>
+                        <p>Terceirize o projeto elétrico completo, laudos de SPDA (para-raios) e a aprovação de cabines primárias com emissão de ART com engenheiros especialistas em alta tensão.</p>
+                        <div class="persona-gain"><i class="fas fa-arrow-trend-up"></i> Apoio técnico para projetos e documentação</div>
+                    </div>
+
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-building"></i></div>
+                        <h3>Síndicos & Administradoras</h3>
+                        <p>Atenda às exigências de seguro predial com laudos técnicos elétricos, adéque a entrada de energia para recarga veicular de condôminos e economize energia na área comum.</p>
+                        <div class="persona-gain"><i class="fas fa-arrow-trend-up"></i> Laudos normativos NBR 5410 e segurança coletiva</div>
+                    </div>
+
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-city"></i></div>
+                        <h3>Corretores & Imobiliárias</h3>
+                        <p>Ao intermediar a venda ou locação de galpões, áreas comerciais e fazendas que necessitam de subestação ou estudo de viabilidade solar, conecte à Klyfe e monetize.</p>
+                        <div class="persona-gain"><i class="fas fa-arrow-trend-up"></i> Conecte demandas comerciais e industriais</div>
+                    </div>
+
+                    <div class="persona-card">
+                        <div class="persona-icon"><i class="fas fa-snowflake"></i></div>
+                        <h3>Técnicos de Climatização (AC)</h3>
+                        <p>Instalações de ar-condicionado que exigem novos circuitos dedicados, aumento de disjuntor geral ou reforço no padrão de entrada da distribuidora.</p>
+                        <div class="persona-gain"><i class="fas fa-arrow-trend-up"></i> Transforme limitações de padrão em comissões</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             3. AS 4 FAMÍLIAS & CATÁLOGO DE 36 SOLUÇÕES (FUNDO SUAVE)
+             ========================================================================== -->
+        <section class="kp-section kp-section-soft" id="catalogo-servicos">
+            <div class="container">
+                <div class="kp-section-header">
+                    <span class="badge-mono"><i class="fas fa-list-check"></i> CATÁLOGO OFICIAL</span>
+                    <h2>36 Soluções Elegíveis para Indicação</h2>
+                    <p>Explore os serviços em Pernambuco, Paraíba e Rio Grande do Norte. A disponibilidade e o escopo de cada atendimento são confirmados pela equipe Klyfe.</p>
+                </div>
+
+                <div class="catalog-tabs">
+                    <button type="button" class="catalog-tab-btn active" data-tab="solar">
+                        <i class="fas fa-sun"></i> Energia Solar
+                    </button>
+                    <button type="button" class="catalog-tab-btn" data-tab="subestacao">
+                        <i class="fas fa-tower-broadcast"></i> Subestações & Engenharia
+                    </button>
+                    <button type="button" class="catalog-tab-btn" data-tab="wallbox">
+                        <i class="fas fa-charging-station"></i> Mobilidade & Wallbox
+                    </button>
+                    <button type="button" class="catalog-tab-btn" data-tab="instalacoes">
+                        <i class="fas fa-network-wired"></i> Instalações & Automação
+                    </button>
+                </div>
+
+                <!-- Aba Solar -->
+                <div class="catalog-panel active" id="tab-solar">
+                    <div class="catalog-items-grid">
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Usinas Solares Comerciais</h4>
+                                <p>Estudo de geração própria para empresas, comércios e galpões, conforme consumo, área disponível e proposta.</p>
+                            </div>
+                            <span class="service-cat-tag">Família Solar • Alta Margem</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Usinas Solares Industriais</h4>
+                                <p>Projetos conectados em média tensão com cabine primária e estudo tarifário de demanda contratada.</p>
+                            </div>
+                            <span class="service-cat-tag">Família Solar • Grande Porte</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Solar Residencial & Condomínios</h4>
+                                <p>Instalações fotovoltaicas residenciais unifamiliares e geração compartilhada em condomínios.</p>
+                            </div>
+                            <span class="service-cat-tag">Família Solar • Residencial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Usinas de Solo & Fazendas</h4>
+                                <p>Geração remota e usinas de investimento para propriedades rurais e agronegócio no Nordeste.</p>
+                            </div>
+                            <span class="service-cat-tag">Família Solar • Rural</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba Subestação & Engenharia -->
+                <div class="catalog-panel" id="tab-subestacao">
+                    <div class="catalog-items-grid">
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Subestação Aérea & Cabine</h4>
+                                <p>Projeto, montagem e homologação de subestações de 75kVA a 2.500kVA junto às concessionárias.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Ticket Alto</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Aprovação em Concessionárias</h4>
+                                <p>Homologação técnica de projetos elétricos na Energisa PB, Neoenergia PE e Cosern RN com ART.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Regulatório</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Laudos de SPDA (Para-raios)</h4>
+                                <p>Inspeção com instrumentos calibrados, medição de aterramento e emissão de laudo para o Corpo de Bombeiros.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Laudos</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Perícias & Contestação de TOI</h4>
+                                <p>Laudos para ressarcimento de queima de equipamentos e perícia técnica em autuações de TOI.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Pericial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Projeto Elétrico Industrial</h4>
+                                <p>Dimensionamento de quadros de força, barramentos blindados e estudos de coordenação de proteções.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Industrial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Correção do Fator de Potência</h4>
+                                <p>Eliminação de multas de energia reativa excedente na conta de luz através de bancos de capacitores.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Eficiência</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Projetos Multifamiliares</h4>
+                                <p>Projetos elétricos completos para edifícios e condomínios com prumada elétrica e medição agrupada.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Predial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Manutenção de Subestações</h4>
+                                <p>Termografia infravermelha, ensaios de óleo isolante e manutenção preventiva em média tensão.</p>
+                            </div>
+                            <span class="service-cat-tag">Engenharia • Preventiva</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba Wallbox -->
+                <div class="catalog-panel" id="tab-wallbox">
+                    <div class="catalog-items-grid">
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Wallbox Residencial Seguro</h4>
+                                <p>Instalação de carregadores veiculares de 7.4kW a 22kW com circuito exclusivo e proteção contra fuga DC.</p>
+                            </div>
+                            <span class="service-cat-tag">Wallbox • Residencial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Recarga em Condomínios</h4>
+                                <p>Estudo de viabilidade de carga, barramento blindado e medição individualizada para vagas de garagem.</p>
+                            </div>
+                            <span class="service-cat-tag">Wallbox • Condominial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Estações para Empresas & Frotas</h4>
+                                <p>Eletropostos corporativos com gerenciamento de acesso por RFID e rateio de consumo de energia.</p>
+                            </div>
+                            <span class="service-cat-tag">Wallbox • Frotas</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Estudo de Viabilidade Elétrica</h4>
+                                <p>Análise da capacidade do transformador e do padrão de entrada antes da compra de veículos elétricos.</p>
+                            </div>
+                            <span class="service-cat-tag">Wallbox • Consultoria</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aba Instalações & Automação -->
+                <div class="catalog-panel" id="tab-instalacoes">
+                    <div class="catalog-items-grid">
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Instalações Elétricas Industriais</h4>
+                                <p>Eletrocalhas, perfilados, alimentação de máquinas e montagem de infraestrutura pesada.</p>
+                            </div>
+                            <span class="service-cat-tag">Instalações • Industrial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Quadros de Distribuição (QGBT)</h4>
+                                <p>Montagem, organização e adequação de quadros elétricos conforme normas de segurança NR-10.</p>
+                            </div>
+                            <span class="service-cat-tag">Instalações • Quadros</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Automação Residencial Smart</h4>
+                                <p>Sistemas integrados de iluminação inteligente, climatização, áudio e controle por voz/app.</p>
+                            </div>
+                            <span class="service-cat-tag">Automação • Residencial</span>
+                        </div>
+                        <div class="service-pill-card">
+                            <div>
+                                <h4>Projetos Luminotécnicos</h4>
+                                <p>Cálculo luminotécnico para eficiência energética, conforto visual e conformidade NBR 8995-1.</p>
+                            </div>
+                            <span class="service-cat-tag">Automação • Iluminação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Concessionárias Banner -->
+                <div class="utility-banner">
+                    <div class="utility-banner-text">
+                        <strong>Homologação Técnica nas Principais Concessionárias</strong>
+                        <span>A equipe prepara e acompanha a documentação aplicável. A análise e os prazos dependem da distribuidora e do projeto.</span>
+                    </div>
+                    <div class="utility-logos">
+                        <div class="utility-badge"><i class="fas fa-plug"></i> Energisa Paraíba</div>
+                        <div class="utility-badge"><i class="fas fa-bolt"></i> Neoenergia Pernambuco</div>
+                        <div class="utility-badge"><i class="fas fa-tower-cell"></i> Neoenergia Cosern (RN)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             4. O ECOSSISTEMA DO PORTAL (FUNDO BRANCO)
+             ========================================================================== -->
+        <section class="kp-section kp-section-light">
+            <div class="container">
+                <div class="kp-section-header">
+                    <span class="badge-mono"><i class="fas fa-laptop-code"></i> TECNOLOGIA DE PONTA</span>
+                    <h2>O Que Você Ganha no Portal Klyfe Partners</h2>
+                    <p>Uma plataforma desenhada para quem trabalha em campo ou no escritório, com total controle das suas indicações e pagamentos.</p>
+                </div>
+
+                <div class="tech-features-grid">
+                    <div class="tech-feature-card">
+                        <strong>PWA INSTALÁVEL</strong>
+                        <h3>App no Celular & Modo Offline</h3>
+                        <p>Adicione o Partners à tela inicial do celular. Consulte o histórico já armazenado quando estiver sem conexão; novos envios e atualizações precisam de internet.</p>
+                    </div>
+
+                    <div class="tech-feature-card">
+                        <strong>PROSPECÇÃO AUTOMÁTICA</strong>
+                        <h3>Link & QR Code Exclusivos</h3>
+                        <p>Cada parceiro tem seu link e QR Code exclusivos. Compartilhe no WhatsApp ou cartões: o cliente preenche e cai direto vinculado à sua conta.</p>
+                    </div>
+
+                    <div class="tech-feature-card">
+                        <strong>TRANSPARÊNCIA TOTAL</strong>
+                        <h3>Funil de Vendas em Tempo Real</h3>
+                        <p>Acompanhe cada etapa da negociação: <em>Recebida, Em Análise, Proposta Comercial, Contrato Fechado e Pix Conciliado</em> sem ter que ficar cobrando status.</p>
+                    </div>
+
+                    <div class="tech-feature-card">
+                        <strong>CONVERSA DIRETA</strong>
+                        <h3>Chat com a equipe Klyfe</h3>
+                        <p>Converse em tempo real, acompanhe respostas e compartilhe informações em um canal próprio do Partners, com o histórico da conversa.</p>
+                    </div>
+
+                    <div class="tech-feature-card">
+                        <strong>COMUNIDADE & CONTEÚDO</strong>
+                        <h3>Uma rede para ir além</h3>
+                        <p>Acompanhe publicações, participe das conversas e encontre conteúdos de apoio. Progressão e benefícios seguem as ofertas e regras disponibilizadas no programa.</p>
+                    </div>
+
+                    <div class="tech-feature-card">
+                        <strong>CAMPANHAS & MISSÕES</strong>
+                        <h3>Missões Especiais com Bônus Pix</h3>
+                        <p>Quando houver campanhas publicadas, consulte objetivos, prazo e condições no Partners. Bônus financeiros só se aplicam às ofertas e regras expressamente disponíveis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             5. COMO FUNCIONA (4 PASSOS - FUNDO SUAVE)
+             ========================================================================== -->
+        <section class="kp-section kp-section-soft" id="como-funciona">
+            <div class="container">
+                <div class="kp-section-header">
+                    <span class="badge-mono"><i class="fas fa-shoe-prints"></i> PASSO A PASSO</span>
+                    <h2>Como Funciona na Prática</h2>
+                    <p>Da indicação ao Pix na sua conta bancária em quatro etapas simples e transparentes.</p>
+                </div>
+
+                <div class="steps-container">
+                    <div class="step-box">
+                        <span class="step-num">01</span>
+                        <h3>Cadastre-se no Portal</h3>
+                        <p>Crie sua conta como pessoa física ou jurídica. CPF da pessoa física e chave Pix podem ser completados na conta antes do primeiro pagamento; para PJ, informe o CNPJ.</p>
+                    </div>
+
+                    <div class="step-box">
+                        <span class="step-num">02</span>
+                        <h3>Indique a Oportunidade</h3>
+                        <p>Envie o contato do interessado pelo painel ou compartilhe seu QR Code/Link exclusivo para ele preencher o pedido de orçamento.</p>
+                    </div>
+
+                    <div class="step-box">
+                        <span class="step-num">03</span>
+                        <h3>A Engenharia Klyfe Atende</h3>
+                        <p>A equipe qualifica a necessidade, define as etapas técnicas e apresenta a proposta. Visitas, projeto e documentação dependem do serviço e do escopo contratado.</p>
+                    </div>
+
+                    <div class="step-box">
+                        <span class="step-num">04</span>
+                        <h3>Receba 3% Direto no Pix</h3>
+                        <p>Após a quitação integral e conciliação, o financeiro valida os dados e processa a comissão elegível por Pix. Você acompanha os registros no portal.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             6. SEGURANÇA JURÍDICA E TÉCNICA (FUNDO BRANCO)
+             ========================================================================== -->
+        <section class="kp-section kp-section-light">
+            <div class="container">
+                <div class="security-container-box">
+                    <div>
+                        <span class="badge-mono"><i class="fas fa-lock"></i> SEGURANÇA & CONFIANÇA</span>
+                        <h2 style="font-size: clamp(2rem, 3vw, 2.7rem); font-family: var(--font-heading); margin: 0.8rem 0 1.2rem; text-transform: uppercase; color: #0F172A;">
+                            Parceria Séria com Ética e Respeito à sua Carteira
+                        </h2>
+                        <p style="color: var(--kp-slate-muted); line-height: 1.65; margin-bottom: 1.5rem;">
+                            Sabemos o quanto seus relacionamentos com clientes são valiosos. Por isso, o Klyfe Partners opera sob regras de conduta estritas estabelecidas no nosso código de governança.
+                        </p>
+                        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.9rem; color: #1E293B; font-size: 0.95rem;">
+                            <li style="display:flex; align-items:center; gap:0.7rem;"><i class="fas fa-check-circle" style="color:var(--kp-mint);"></i> <strong>Respeito ao Parceiro:</strong> O cliente é seu; não realizamos contatos invasivos fora do escopo indicado.</li>
+                            <li style="display:flex; align-items:center; gap:0.7rem;"><i class="fas fa-check-circle" style="color:var(--kp-mint);"></i> <strong>Atribuição transparente:</strong> A atribuição considera o primeiro registro válido e a análise dos vínculos e do atendimento existente.</li>
+                            <li style="display:flex; align-items:center; gap:0.7rem;"><i class="fas fa-check-circle" style="color:var(--kp-mint);"></i> <strong>Atendimento técnico pela Klyfe:</strong> A equipe define o escopo e a documentação técnica aplicável. O parceiro apresenta a oportunidade com autorização para contato.</li>
+                            <li style="display:flex; align-items:center; gap:0.7rem;"><i class="fas fa-check-circle" style="color:var(--kp-mint);"></i> <strong>Privacidade e transparência:</strong> Armazenamento seguro de dados pessoais e fiscais com termos de uso transparentes.</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div style="background: #F8FAFC; border: 1px solid var(--kp-border); border-radius: 18px; padding: 2rem; position: relative;">
+                            <h3 style="font-size: 1.25rem; font-family: var(--font-heading); color: #B45309; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                                <i class="fas fa-shield-halved"></i> Compromisso Klyfe Electric
+                            </h3>
+                            <blockquote style="margin: 0; font-size: 0.95rem; font-style: italic; color: #475569; line-height: 1.7; border-left: 3px solid var(--kp-gold); padding-left: 1rem;">
+                                "Cada contato deve reduzir incerteza, aumentar confiança e conduzir um próximo passo com clareza técnica e transparência, preservando o valor e a reputação do nosso parceiro perante o cliente final."
+                            </blockquote>
+                            <div style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--kp-border); padding-top: 1.2rem;">
+                                <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--kp-gold-vibrant); color: #0F172A; display: grid; place-items: center; font-weight: 900; font-family: var(--font-heading); font-size: 1.2rem;">K</div>
+                                <div>
+                                    <strong style="display:block; color: #0F172A; font-size: 0.95rem;">Diretoria de Engenharia & Parcerias</strong>
+                                    <span style="color: #64748B; font-size: 0.8rem;">Klyfe Electric • João Pessoa - PB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             7. PERGUNTAS FREQUENTES (FAQ - FUNDO SUAVE)
+             ========================================================================== -->
+        <section class="kp-section kp-section-soft" id="faq">
+            <div class="container">
+                <div class="kp-section-header">
+                    <span class="badge-mono"><i class="fas fa-circle-question"></i> DÚVIDAS COMUNS</span>
+                    <h2>Perguntas Frequentes sobre o Partners</h2>
+                    <p>Tire suas dúvidas sobre o funcionamento, regras de comissão, formas de pagamento e cobertura do programa.</p>
+                </div>
+
+                <div class="kp-faq-accordion">
+                    <div class="kp-faq-item active">
+                        <button type="button" class="kp-faq-question" aria-expanded="true">
+                            <span>1. Preciso ter CNPJ para ser parceiro ou posso cadastrar como Pessoa Física?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>Você pode participar como <strong>pessoa física ou jurídica</strong>. CPF da pessoa física e chave Pix podem ser completados na conta após o cadastro, antes do primeiro pagamento. Para PJ, o CNPJ é exigido no cadastro. Além disso, no portal PJ você pode convidar operadores da sua equipe e responsáveis financeiros.</p>
+                        </div>
+                    </div>
+
+                    <div class="kp-faq-item">
+                        <button type="button" class="kp-faq-question" aria-expanded="false">
+                            <span>2. Como e quando a comissão de 3% é paga?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>A comissão prevista nos termos do programa é calculada em 3% sobre o valor líquido dos itens contratados elegíveis e atribuídos à sua indicação. O pagamento é liberado via <strong>Pix</strong> assim que o contrato for integralmente quitado e conciliado pelo nosso departamento financeiro.</p>
+                        </div>
+                    </div>
+
+                    <div class="kp-faq-item">
+                        <button type="button" class="kp-faq-question" aria-expanded="false">
+                            <span>3. E se outro parceiro já tiver indicado o mesmo cliente?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>O sistema utiliza a regra de <em>Primeiro Registro Válido (First Claim)</em> com análise dos registros e do atendimento existente. Se o cliente já estiver em atendimento ativo pela equipe comercial ou tiver sido indicado anteriormente por outro parceiro com consentimento confirmado, a esteira sinaliza com total transparência o motivo da não-atribuição.</p>
+                        </div>
+                    </div>
+
+                    <div class="kp-faq-item">
+                        <button type="button" class="kp-faq-question" aria-expanded="false">
+                            <span>4. Em quais cidades e estados a Klyfe atende pelo programa?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>O Klyfe Partners atende em todas as cidades da <strong>Paraíba (PB)</strong>, <strong>Pernambuco (PE)</strong> e <strong>Rio Grande do Norte (RN)</strong>. Serviços de grande porte (como usinas de solo e subestações industriais) podem ser avaliados em outros estados do Nordeste sob consulta com a engenharia.</p>
+                        </div>
+                    </div>
+
+                    <div class="kp-faq-item">
+                        <button type="button" class="kp-faq-question" aria-expanded="false">
+                            <span>5. Preciso fazer a venda técnica ou fechar o contrato com o cliente?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>Não. O seu papel como parceiro é apenas apresentar a oportunidade ou gerar o contato qualificado com autorização do cliente. Toda a visita técnica, levantamento de carga, elaboração de projeto executivo, negociação comercial, contratação e emissão de ART é realizada pela equipe de engenharia da Klyfe.</p>
+                        </div>
+                    </div>
+
+                    <div class="kp-faq-item">
+                        <button type="button" class="kp-faq-question" aria-expanded="false">
+                            <span>6. Como funcionam os Pontos de Progressão e os Créditos de Resgate?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>O portal possui dois saldos separados: <strong>Pontos de Progressão</strong> e <strong>Créditos</strong> são consultados separadamente. Regras de nível e resgate seguem a configuração do programa. Benefícios só podem ser resgatados quando publicados e disponíveis, conforme o regulamento de cada oferta.</p>
+                        </div>
+                    </div>
+
+                    <div class="kp-faq-item">
+                        <button type="button" class="kp-faq-question" aria-expanded="false">
+                            <span>7. Como acesso o aplicativo no meu celular?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="kp-faq-answer">
+                            <p>O portal é um PWA (Progressive Web App). Ao acessar o link <code><%= portalUrl %></code> no navegador do seu smartphone (Chrome no Android ou Safari no iPhone), clique no menu de opções e selecione "Adicionar à Tela de Início". O acesso fica disponível pela tela inicial, conforme o suporte do navegador. Consultas offline dependem do histórico já armazenado; envios e atualizações precisam de conexão.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             8. FINAL CTA SECTION (FUNDO CLARO COM DEGRADÊ OURO SUTIL)
+             ========================================================================== -->
+        <section class="partners-cta-section">
+            <div class="container">
+                <div class="cta-content-box">
+                    <span class="badge-mono"><i class="fas fa-rocket"></i> COMECE HOJE MESMO</span>
+                    <h2>Sua próxima indicação começa aqui.</h2>
+                    <p>Faça parte de uma rede que conecta pessoas, necessidades e soluções. Você apresenta a oportunidade; nossa equipe conduz o atendimento.</p>
+                    
+                    <div style="display:flex; justify-content:center; gap:1.2rem; flex-wrap:wrap;">
+                        <a class="btn btn-gold" href="<%= portalUrl %>" target="_blank" rel="noopener" style="font-size:1.05rem; padding: 1rem 2.2rem;">
+                            <i class="fas fa-user-plus"></i> Acessar Portal do Parceiro
+                        </a>
+                        <a class="btn btn-light-outline" href="<%= partnersWaUrl %>" target="_blank" rel="noopener" style="font-size:1.05rem; padding: 1rem 2.2rem;">
+                            <i class="fab fa-whatsapp"></i> Falar com Gestor de Parcerias
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/whatsapp') %>
+    <%- include('partials/footer') %>
+
+    <!-- ==========================================================================
+         JAVASCRIPT DO CATÁLOGO E ACCORDION (100% VANILLA)
+         ========================================================================== -->
+    <script src="/js/partners-presentation.js?v=20261005" defer></script>
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

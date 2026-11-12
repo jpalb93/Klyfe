@@ -8,7 +8,8 @@ const locations = require('./config/locations'); // Carregado uma única vez (Ef
 const business = require('./config/business');
 const { resolveTrackingContext } = require('./lib/site-tracking');
 const { createAnalyticsRouter, createPageContext } = require('./lib/site-analytics');
-const { startBlogRemoteSync, ensureBlogRemoteSynced } = require('./lib/blog-remote-sync');
+const { ensureBlogRemoteSynced, scheduleBlogRemoteRefresh } = require('./lib/blog-remote-sync');
+const { waitUntil: vercelWaitUntil } = require('@vercel/functions');
 
 function safeOrigin(value) {
     try { return new URL(value).origin; } catch { return null; }
@@ -17,7 +18,6 @@ const centralOrigin = safeOrigin(process.env.CENTRAL_APP_ORIGIN || 'http://local
 const blogCmsOrigin = safeOrigin(process.env.BLOG_CMS_URL || '');
 
 const app = express();
-startBlogRemoteSync();
 
 // ═══ SEGURANÇA (Helmet) ═══
 // Configuração básica para proteger headers e mitigar ataques comuns
@@ -93,12 +93,23 @@ app.use((req, res, next) => {
     next();
 });
 
-// Em uma instância serverless recém-iniciada, garante que blog/home/sitemap
-// aguardem a primeira leitura da Central antes de renderizar o acervo.
-app.use(async (req, _res, next) => {
-    if (req.path === '/' || req.path === '/sitemap.xml' || (req.path.includes('/blog') && req.path !== '/api/blog-events')) {
-        await ensureBlogRemoteSynced().catch(() => undefined);
+// A home usa imediatamente o último acervo em memória ou os JSONs locais.
+// No Vercel, waitUntil mantém a atualização dentro do ciclo da requisição sem
+// atrasar a resposta; blog e sitemap aguardam uma atualização quando o cache expira.
+app.use((req, _res, next) => {
+    const pathname = req.path.replace(/\/+$/, '') || '/';
+    const isHome = pathname === '/' || pathname === '/campina-grande' || pathname === '/joao-pessoa';
+    const isBlogOrSitemap = pathname === '/sitemap.xml' || /(?:^|\/)blog(?:\/|$)/.test(pathname);
+
+    if (isHome) {
+        scheduleBlogRemoteRefresh(vercelWaitUntil);
+        return next();
     }
+
+    if (isBlogOrSitemap) {
+        return ensureBlogRemoteSynced().then(() => next(), next);
+    }
+
     next();
 });
 

@@ -8,11 +8,18 @@
 <meta name="google-site-verification" content="VN7ObKFVGeA9nxcdp6P2VYnHDmbp5iKerV289RTjdrc" />
 <meta name="facebook-domain-verification" content="3dbbt143zk65i7poco79e4hr6pg4g4" />
 
+<% if (locals.partnersBrand) { %>
+<link rel="apple-touch-icon" sizes="180x180" href="/img/partners-brand/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/partners-brand/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/partners-brand/favicon-16.png">
+<% } else { %>
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="shortcut icon" href="/favicon.ico">
+
+<% } %>
 
 <!-- Open Graph -->
 <meta property="og:title" content="<%= locals.ogTitle || title %>">
@@ -51,8 +58,16 @@
 <link rel="preload" href="/fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 769px)">
 <link rel="preload" href="/fonts/ibm-plex-mono-700.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 769px)">
 
-<!-- Preload Hero LCP Image -->
-<link rel="preload" href="<%= locals.preloadImage || '/img/hero-klyfe.webp' %>" as="image" type="image/webp" fetchpriority="high">
+<!-- Preload Hero LCP Image (strictly targeted to the active page) -->
+<% if (locals.preloadImage) { %>
+    <% if (locals.preloadImagesrcset) { %>
+<link rel="preload" href="<%= locals.preloadImage %>" imagesrcset="<%= locals.preloadImagesrcset %>" imagesizes="<%= locals.preloadImagesizes || '100vw' %>" as="image" type="image/webp" fetchpriority="high">
+    <% } else { %>
+<link rel="preload" href="<%= locals.preloadImage %>" as="image" type="image/webp" fetchpriority="high">
+    <% } %>
+<% } else if (locals.page === 'home' || locals.page === 'index') { %>
+<link rel="preload" href="/img/hero-klyfe.webp" imagesrcset="/img/hero-klyfe-640.webp 640w, /img/hero-klyfe.webp 1200w" imagesizes="100vw" as="image" type="image/webp" fetchpriority="high">
+<% } %>
 
 <!-- Font Awesome (Non-blocking) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">

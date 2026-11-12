@@ -47,10 +47,14 @@
                          ? `https://wa.me/5583991330972?text=${encodeURIComponent('Olá! Vi o site da Klyfe e gostaria de solicitar um orçamento para o serviço de ' + svc.label + ' em ' + cityData.name + '.')}`
                          : `${getHomePrefix()}/solucoes/eletrica/${key}${isWallboxGroup ? '/' : ''}`;
                        const imgPath = svc.heroImage || (key === 'carregador-veicular' ? '/img/wallbox/wallbox-residencial.webp' : `/img/eletrica/${key}.webp`);
+                       const imgBase = imgPath.replace(/\.webp$/, '');
                     %>
                     <a href="<%= cardUrl %>" <%= isGeneric ? 'target="_blank" rel="noopener"' : '' %> class="eng-service-card <%= key === 'carregador-veicular' ? 'eng-service-card-featured' : '' %> fade-in" <%= key === 'carregador-veicular' ? 'data-wallbox-event="electrical_hub_card"' : '' %> data-content-category="<%= isWallboxGroup ? 'wallbox' : 'eletrica' %>" data-content-name="<%= key %>">
                         <div class="eng-service-img-wrap">
-                            <img src="<%= imgPath %>" alt="<%= svc.label %>" loading="lazy">
+                            <img src="<%= imgPath %>"
+                                 srcset="<%= imgBase %>-480.webp 480w, <%= imgBase %>-768.webp 768w, <%= imgBase %>-1200.webp 1200w, <%= imgPath %> 1400w"
+                                 sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) 50vw, 360px"
+                                 alt="<%= svc.label %>" loading="lazy" width="600" height="338">
                         </div>
                         <div class="eng-service-body">
                             <h3><%= svc.label %> <i class="fas <%= isGeneric ? 'fa-whatsapp' : 'fa-arrow-right' %>"></i></h3>

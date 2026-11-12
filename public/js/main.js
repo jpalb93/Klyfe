@@ -225,26 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ═══ Solar Calculator (Slider) ═══
-    const billRange = document.getElementById('bill-range');
-    const billValue = document.getElementById('bill-value');
-    if (billRange) {
-        billRange.addEventListener('input', (e) => {
-            const val = parseInt(e.target.value);
-            billValue.textContent = `R$ ${val.toLocaleString('pt-BR')}`;
-            
-            const econMensal = val * 0.95;
-            const econAnual = econMensal * 12;
-            const numPanels = Math.ceil(val / 85);
-            const roi = (3.2 - (val / 10000)).toFixed(1);
-
-            document.getElementById('result-monthly').textContent = `R$ ${econMensal.toFixed(0)}`;
-            document.getElementById('result-yearly').textContent = `R$ ${econAnual.toFixed(0)}`;
-            document.getElementById('result-panels').textContent = numPanels;
-            document.getElementById('result-roi').textContent = roi;
-        });
-    }
-
     // ═══ Contact Form ═══
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -291,6 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             contactForm.dataset.eventId = eventId;
             data.event_id = eventId;
             data.event_source_url = window.location.href;
+            data.marketing_consent = window.KlyfeConsent ? window.KlyfeConsent.get() : 'unknown';
             if (window.KlyfeTracking && window.KlyfeTracking.getMetaCookies) {
                 Object.assign(data, window.KlyfeTracking.getMetaCookies());
             }

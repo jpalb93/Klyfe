@@ -168,10 +168,15 @@ ul { list-style: none; }
 /* ═══ LOGO ANIMADA (SVG) ═══ */
 .logo-animated { height: 50px; width: 145px; display: flex; align-items: center; flex-shrink: 0; }
 .logo-animated svg { height: 50px; width: 145px; display: block; }
+.logo-animated.logo-home-official { width: auto; max-width: 175px; }
+.logo-official-img { height: 48px; width: auto; max-height: 48px; max-width: 100%; object-fit: contain; display: block; }
+.logo-animated.logo-home-official:hover img { opacity: 0.88; }
 .logo-animated-footer { height: 40px; width: 116px; display: flex; align-items: center; flex-shrink: 0; }
 .logo-animated-footer svg { height: 40px; width: 116px; display: block; }
 .logo-mobile-wrapper { height: 45px; margin-bottom: 2rem; display: flex; justify-content: center; }
 .logo-mobile-wrapper svg { height: 100%; width: auto; }
+.logo-mobile-wrapper.logo-mobile-home-official { height: 68px; margin-bottom: 1.5rem; display: flex; justify-content: center; }
+.logo-official-img-mobile { height: 68px; max-height: 68px; width: auto; object-fit: contain; display: block; }
 
 /* Efeito de Pulsação Elétrica */
 .logo-symbol-energy {
@@ -282,6 +287,275 @@ ul { list-style: none; }
   border: 1px solid rgba(184, 134, 11, 0.25);
   background: rgba(184, 134, 11, 0.04);
   color: #0E1217;
+}
+
+/* ═══ NAVBAR HOME SPLIT (LOGO CENTRALIZADA ENTRE AS OPÇÕES DO MENU) ═══ */
+.navbar.navbar-home-split {
+  height: 88px;
+  min-height: 88px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar.navbar-home-split .container.navbar-split-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  padding: 0 clamp(1.25rem, 2.5vw, 2.5rem);
+  gap: 1.25rem;
+}
+
+.navbar.navbar-home-split .nav-links-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(1.2rem, 1.8vw, 2rem);
+}
+
+.navbar.navbar-home-split .nav-links-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: clamp(0.9rem, 1.3vw, 1.5rem);
+}
+
+/* Logo centralizada entre os links */
+.navbar.navbar-home-split .logo-split-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+  transition: transform 0.3s ease;
+}
+
+.navbar.navbar-home-split .logo-split-img {
+  height: 64px;
+  width: auto;
+  max-height: 68px;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.navbar.navbar-home-split .logo-split-center:hover .logo-split-img {
+  transform: scale(1.04);
+  opacity: 0.95;
+}
+
+/* ═══ CTA "SOLICITAR ORÇAMENTO" REFINADO E PREMIUM (SEMPRE EM 1 LINHA) ═══ */
+.btn-nav-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 42px !important;
+  padding: 0 1.5rem !important;
+  font-family: var(--font-heading) !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.75px !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  flex-shrink: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #E35A1B 0%, #D44810 100%) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 4px 14px rgba(227, 90, 27, 0.28) !important;
+  transition: all 0.25s ease !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+}
+
+.btn-nav-cta:hover {
+  background: linear-gradient(135deg, #EB6625 0%, #C43F0A 100%) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 20px rgba(227, 90, 27, 0.42) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Modo Pill no scroll (Home) */
+.navbar.navbar-home-split.navbar-pill {
+  top: 14px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(1360px, calc(100% - 2.5rem));
+  height: 74px;
+  min-height: 74px;
+  border-radius: 999px;
+  border: 1px solid rgba(184, 134, 11, 0.22);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.09), 0 4px 12px rgba(184, 134, 11, 0.06);
+  background: rgba(251, 248, 242, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 1025px) {
+  .navbar.navbar-home-split.navbar-pill .container.navbar-split-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 0;
+    gap: 0.8rem;
+  }
+
+  .navbar.navbar-home-split.navbar-pill .nav-links-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.15rem;
+  }
+
+  .navbar.navbar-home-split.navbar-pill .nav-links-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.95rem;
+  }
+
+  .navbar.navbar-home-split.navbar-pill .logo-split-center {
+    padding: 0 0.85rem;
+  }
+
+  .navbar.navbar-home-split.navbar-pill .logo-split-img {
+    height: 56px;
+    max-height: 56px;
+    max-width: 165px;
+    transform: scale(0.96);
+  }
+
+  .navbar.navbar-home-split.navbar-pill .btn-nav-cta {
+    height: 40px !important;
+    padding: 0 1.35rem !important;
+    font-size: 0.84rem !important;
+    border-radius: 999px !important;
+  }
+
+  .navbar.navbar-home-split.navbar-pill .location-selector .nav-location {
+    height: 40px;
+    padding: 0 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+  }
+}
+
+/* Responsivo para notebooks / telas médias */
+@media (max-width: 1280px) and (min-width: 1025px) {
+  .navbar.navbar-home-split .nav-links-left {
+    gap: 1rem;
+    justify-content: flex-end;
+  }
+  .navbar.navbar-home-split .nav-links-right {
+    gap: 0.8rem;
+    justify-content: flex-start;
+  }
+  .navbar.navbar-home-split .nav-links a {
+    font-size: 0.88rem;
+  }
+  .navbar.navbar-home-split .logo-split-center {
+    padding: 0 0.5rem;
+  }
+  .navbar.navbar-home-split .logo-split-img {
+    height: 58px;
+    max-height: 60px;
+    max-width: 170px;
+  }
+  .navbar.navbar-home-split .btn-nav-cta {
+    padding: 0 1.15rem !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* Mobile (<= 1024px): oculta links desktop, centraliza logo, exibe hambúrguer */
+@media (max-width: 1024px) {
+  .navbar.navbar-home-split .nav-links-left,
+  .navbar.navbar-home-split .nav-links-right,
+  .navbar.navbar-home-split.navbar-pill .nav-links-left,
+  .navbar.navbar-home-split.navbar-pill .nav-links-right {
+    display: none !important;
+  }
+
+  .navbar.navbar-home-split {
+    height: 74px !important;
+    min-height: 74px !important;
+    padding: 0 !important;
+  }
+
+  .navbar.navbar-home-split .container.navbar-split-container,
+  .navbar.navbar-home-split.navbar-pill .container.navbar-split-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    position: relative !important;
+    padding: 0 0.85rem !important;
+    gap: 0 !important;
+  }
+
+  .navbar.navbar-home-split .logo-split-center,
+  .navbar.navbar-home-split.navbar-pill .logo-split-center {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1 !important;
+  }
+
+  .navbar.navbar-home-split .logo-split-img {
+    height: 48px !important;
+    max-height: 50px !important;
+    max-width: 140px !important;
+  }
+
+  /* Pill Mode Mobile */
+  .navbar.navbar-home-split.navbar-pill {
+    top: 8px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 1.2rem) !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    padding: 0 0.65rem !important;
+    border-radius: 999px !important;
+  }
+
+  .navbar.navbar-home-split.navbar-pill .logo-split-img {
+    height: 46px !important;
+    max-height: 46px !important;
+    max-width: 135px !important;
+    transform: none !important;
+  }
+
+  .navbar.navbar-home-split .nav-mobile-actions,
+  .navbar.navbar-home-split.navbar-pill .nav-mobile-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.65rem !important;
+    margin-left: auto !important;
+    z-index: 2 !important;
+  }
+
+  .navbar.navbar-home-split .mobile-location-tag,
+  .navbar.navbar-home-split.navbar-pill .mobile-location-tag {
+    display: flex !important;
+    padding: 0.35rem 0.65rem !important;
+    font-size: 0.75rem !important;
+  }
 }
 
 .navbar.navbar-pill .dropdown-menu {
@@ -488,6 +762,13 @@ ul { list-style: none; }
   animation: lightning 5s infinite;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    background-image: linear-gradient(to right, var(--hero-overlay-start) 30%, var(--hero-overlay-end) 100%), url('../img/hero-klyfe-640.webp');
+    background-attachment: scroll;
+  }
+}
+
 .hero .container {
   width: 100%;
   position: relative;
@@ -542,6 +823,7 @@ ul { list-style: none; }
 }
 @media (max-width: 768px) {
   .hero-solar-bg {
+    background-image: linear-gradient(180deg, rgba(8, 12, 24, 0.70) 0%, rgba(10, 15, 29, 0.88) 100%), url('/img/hero-solar-condominios-640.webp');
     padding: 3.5rem 0 4.5rem 0;
   }
 }

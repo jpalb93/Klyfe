@@ -24,14 +24,19 @@ router.post('/api/tracking/event', async (req, res) => {
     if (!ALLOWED_CAPI_EVENTS.has(eventName)) {
         return res.status(400).json({ success: false, message: 'event_name inválido' });
     }
-    const eventId = String(body.event_id || newEventId('capi'));
+    if (body.marketing_consent !== 'granted' && body.marketing_consent !== true) {
+        return res.json({ success: true, capi_skipped: true, reason: 'consent_required' });
+    }
+    // Leads are emitted only after /contato confirms persistence in the CRM.
+    if (eventName === 'Lead') {
+        return res.status(400).json({ success: false, message: 'Lead deve ser registrado pelo formulário.' });
+    }
+    const eventId = String(body.event_id || '');
+    if (!/^[a-zA-Z0-9_-]{1,128}$/.test(eventId)) {
+        return res.status(400).json({ success: false, message: 'event_id inválido' });
+    }
     const user = body.user_data || {};
     const customData = body.custom_data || {};
-
-    // Lead padrão Meta só no funil Solar
-    if (eventName === 'Lead' && customData.content_category && customData.content_category !== 'solar') {
-        return res.status(400).json({ success: false, message: 'Lead padrão restrito a solar' });
-    }
 
     const sourceUrl =
         body.event_source_url ||
@@ -73,16 +78,19 @@ router.post('/api/tracking/event', async (req, res) => {
 router.post('/contato', async (req, res) => {
     const body = req.body || {};
     if (body.website_url) return res.status(204).end();
+    if (body.event_id && !/^[a-zA-Z0-9_-]{1,120}$/.test(String(body.event_id))) {
+        return res.status(400).json({ success: false, message: 'event_id inválido' });
+    }
 
     const isWallboxBrief = String(body.form_type || '') === 'wallbox_brief';
-    const validation = isWallboxBrief ? validateWallboxBriefLead(body) : validateContactLead(body);
+    const isLpSolar = isLpSolarSource(body.source);
+    const validation = isWallboxBrief ? validateWallboxBriefLead(body) : validateContactLead(body, { emailOptional: isLpSolar });
     if (!validation.valid) {
         return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
     }
     Object.assign(body, validation.lead);
 
     const category = categoryFromServico(body.servico);
-    const isLpSolar = isLpSolarSource(body.source);
     const isSolarLead = category === 'solar' || isLpSolar;
     const eventId = String(body.event_id || newEventId('lead'));
     const contentName = isWallboxBrief ? 'wallbox-brief-form' : resolveLeadContentName(body.source, isSolarLead);
@@ -101,7 +109,8 @@ router.post('/contato', async (req, res) => {
             'lp-solar-empresas': '/lp/energia-solar-empresas',
             'lp-solar-fazendas': '/lp/energia-solar-fazendas',
             'lp-solar-supermercados-clinicas': '/lp/energia-solar-supermercados-clinicas',
-            'lp-solar-residencial': '/lp/energia-solar-residencial'
+            'lp-solar-residencial': '/lp/energia-solar-residencial',
+            'lp-solar-alta-conversao': '/lp/energia-solar'
         };
         const defaultSourceUrl = isLpSolar
             ? `${baseUrl}${lpPathMap[body.source] || '/lp/energia-solar-empresas'}`

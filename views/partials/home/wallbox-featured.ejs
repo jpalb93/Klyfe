@@ -55,7 +55,10 @@
 
             <!-- Right Column: Cinematic Hero Image -->
             <div class="home-wallbox-media">
-                <img src="/img/wallbox/wallbox-hero-dusk.webp" alt="Instalação de Wallbox com engenharia elétrica para carregamento veicular" loading="lazy" class="home-wallbox-media-img" width="1376" height="768">
+                <img src="/img/wallbox/wallbox-hero-dusk.webp"
+                     srcset="/img/wallbox/wallbox-hero-dusk-480.webp 480w, /img/wallbox/wallbox-hero-dusk-768.webp 768w, /img/wallbox/wallbox-hero-dusk-1200.webp 1200w, /img/wallbox/wallbox-hero-dusk.webp 1376w"
+                     sizes="(max-width: 900px) calc(100vw - 2.5rem), (max-width: 1200px) 50vw, 560px"
+                     alt="Instalação de Wallbox com engenharia elétrica para carregamento veicular" loading="lazy" class="home-wallbox-media-img" width="1376" height="768">
             </div>
         </div>
 
@@ -63,25 +66,37 @@
         <div class="home-wallbox-gallery" aria-label="Aplicações de Wallbox">
             <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-residencial/" class="home-wallbox-card" data-wallbox-event="home_scenario_residencial">
                 <div class="home-wallbox-card-media">
-                    <img src="/img/wallbox/wallbox-casa.webp" alt="Wallbox residencial instalado em garagem de casa" loading="lazy">
+                    <img src="/img/wallbox/wallbox-casa.webp"
+                         srcset="/img/wallbox/wallbox-casa-480.webp 480w, /img/wallbox/wallbox-casa-768.webp 768w, /img/wallbox/wallbox-casa.webp 1376w"
+                         sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) calc(50vw - 2rem), 280px"
+                         alt="Wallbox residencial instalado em garagem de casa" loading="lazy" width="600" height="400">
                 </div>
                 <div class="home-wallbox-card-pill">CASA</div>
             </a>
             <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-condominio/" class="home-wallbox-card" data-wallbox-event="home_scenario_condominio">
                 <div class="home-wallbox-card-media">
-                    <img src="/img/wallbox/wallbox-condominio.webp" alt="Wallbox instalado em garagem de condomínio" loading="lazy">
+                    <img src="/img/wallbox/wallbox-condominio.webp"
+                         srcset="/img/wallbox/wallbox-condominio-480.webp 480w, /img/wallbox/wallbox-condominio-768.webp 768w, /img/wallbox/wallbox-condominio.webp 1536w"
+                         sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) calc(50vw - 2rem), 280px"
+                         alt="Wallbox instalado em garagem de condomínio" loading="lazy" width="600" height="400">
                 </div>
                 <div class="home-wallbox-card-pill">CONDOMÍNIO</div>
             </a>
             <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-empresa/" class="home-wallbox-card" data-wallbox-event="home_scenario_empresa">
                 <div class="home-wallbox-card-media">
-                    <img src="/img/wallbox/wallbox-empresa.webp" alt="Wallbox para recarga de veículos em estacionamento de empresa" loading="lazy">
+                    <img src="/img/wallbox/wallbox-empresa.webp"
+                         srcset="/img/wallbox/wallbox-empresa-480.webp 480w, /img/wallbox/wallbox-empresa-768.webp 768w, /img/wallbox/wallbox-empresa.webp 1376w"
+                         sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) calc(50vw - 2rem), 280px"
+                         alt="Wallbox para recarga de veículos em estacionamento de empresa" loading="lazy" width="600" height="400">
                 </div>
                 <div class="home-wallbox-card-pill">EMPRESA</div>
             </a>
             <a href="<%= homePrefix %>/solucoes/eletrica/wallbox-energia-solar/" class="home-wallbox-card" data-wallbox-event="home_scenario_solar">
                 <div class="home-wallbox-card-media">
-                    <img src="/img/wallbox/wallbox-com-energia-solar.webp" alt="Wallbox integrado à energia solar residencial" loading="lazy">
+                    <img src="/img/wallbox/wallbox-com-energia-solar.webp"
+                         srcset="/img/wallbox/wallbox-com-energia-solar-480.webp 480w, /img/wallbox/wallbox-com-energia-solar-768.webp 768w, /img/wallbox/wallbox-com-energia-solar.webp 1376w"
+                         sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) calc(50vw - 2rem), 280px"
+                         alt="Wallbox integrado à energia solar residencial" loading="lazy" width="600" height="400">
                 </div>
                 <div class="home-wallbox-card-pill">WALLBOX + ENERGIA SOLAR</div>
             </a>

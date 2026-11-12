@@ -11,7 +11,7 @@
     <meta property="og:description" content="<%= description %>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= canonical %>">
-    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-industrial-hero.png">
+    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-industrial-hero.webp">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -104,7 +104,14 @@
             position: absolute; inset: 0;
             background:
                 linear-gradient(105deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.78) 48%, rgba(10,12,16,0.45) 100%),
-                url("/img/lp/solar-industrial-hero.png") center/cover no-repeat;
+                url("/img/lp/solar-industrial-hero.webp") center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image:
+                    linear-gradient(105deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.78) 48%, rgba(10,12,16,0.45) 100%),
+                    url("/img/lp/solar-industrial-hero-640.webp");
+            }
         }
         .hero-grid {
             position: relative; z-index: 1;
@@ -231,8 +238,13 @@
         .pain-photo {
             border-radius: var(--radius); overflow: hidden;
             min-height: 280px;
-            background: #ddd url("/img/lp/solar-warehouse.jpg") center/cover no-repeat;
+            background: #ddd url("/img/lp/solar-warehouse.webp") center/cover no-repeat;
             box-shadow: var(--shadow);
+        }
+        @media (max-width: 768px) {
+            .pain-photo {
+                background-image: url("/img/lp/solar-warehouse-640.webp") !important;
+            }
         }
         .pain-list { display: grid; gap: 0.9rem; }
         .pain-item {
@@ -443,6 +455,10 @@
                     <div class="form-group">
                         <label for="empresa">Empresa *</label>
                         <input class="form-control" type="text" id="empresa" name="empresa" placeholder="Nome da empresa" required autocomplete="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input class="form-control" type="text" id="cidade" name="cidade" required autocomplete="address-level2">
                     </div>
                     <div class="form-group">
                         <label for="telefone">WhatsApp *</label>
@@ -671,7 +687,7 @@
     <a class="btn btn-solar" href="#estudo">Pedir estudo</a>
 </div>
 
-<script src="/js/main.js" defer></script>
+<script src="/js/main.js?v=20261105-traffic2" defer></script>
 <script>
     document.querySelectorAll('.faq-item .faq-question').forEach((btn) => {
         btn.addEventListener('click', () => {

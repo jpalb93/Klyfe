@@ -13,7 +13,7 @@
     <meta property="og:description" content="<%= description %>">
     <meta property="og:type" content="website">
     <meta property="og:url" content="<%= canonical %>">
-    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-residencial-hero.png">
+    <meta property="og:image" content="https://www.klyfeelectric.com.br/img/lp/solar-residencial-hero.webp">
     
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     
@@ -117,7 +117,14 @@
             position: absolute; inset: 0;
             background:
                 linear-gradient(105deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.78) 48%, rgba(10,12,16,0.45) 100%),
-                url("/img/lp/solar-residencial-hero.png") center/cover no-repeat;
+                url("/img/lp/solar-residencial-hero.webp") center/cover no-repeat;
+        }
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-image:
+                    linear-gradient(105deg, rgba(10,12,16,0.92) 0%, rgba(10,12,16,0.78) 48%, rgba(10,12,16,0.45) 100%),
+                    url("/img/lp/solar-residencial-hero-640.webp");
+            }
         }
         .hero-grid {
             position: relative; z-index: 1;
@@ -551,7 +558,7 @@
     <header class="topbar">
         <div class="wrap topbar-inner">
             <a href="/" title="Klyfe Electric — Home">
-                <img src="/img/Assinatura Completa - AmareloB - Klyfe.webp" alt="Klyfe Electric Logo" class="topbar-logo" height="44">
+                <img src="/img/Assinatura%20Completa%20-%20AmareloB%20-%20Klyfe.webp" alt="Klyfe Electric Logo" class="topbar-logo" width="128" height="44">
             </a>
             
             <div class="topbar-right">
@@ -1019,6 +1026,7 @@
                     var campaign = window.KlyfeTracking ? window.KlyfeTracking.getCampaignParams() : {};
                     var payload = {
                         nome: nome,
+                        redirect: false,
                         telefone: telefone,
                         cidade: cidade,
                         faixa_conta: faixa,
@@ -1035,7 +1043,7 @@
                     var finalWaUrl = buildWaUrlWithMsg(leadWaMsg);
 
                     var openWa = function() {
-                        window.open(finalWaUrl, '_blank');
+                        window.location.href = finalWaUrl;
                         if (btnSubmit) {
                             btnSubmit.disabled = false;
                             btnSubmit.innerHTML = '<i class="fab fa-whatsapp"></i> Receber Estudo no WhatsApp';
@@ -1044,8 +1052,9 @@
 
                     if (window.KlyfeTracking && typeof window.KlyfeTracking.submitLpLead === 'function') {
                         window.KlyfeTracking.submitLpLead(payload).then(openWa).catch(function(err) {
-                            console.error('Erro no rastreamento do lead:', err);
-                            openWa();
+                            console.error('Erro no registro do lead:', err);
+                            alert('Não foi possível registrar sua solicitação. Tente novamente ou use o botão de WhatsApp direto.');
+                            if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.innerHTML = 'Receber Estudo no WhatsApp'; }
                         });
                     } else {
                         openWa();

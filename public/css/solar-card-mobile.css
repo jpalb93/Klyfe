@@ -1,0 +1,213 @@
+/* The same three-step journey works on phones, tablets and desktop. */
+.sc-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.sc-progress {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 28px;
+  gap: 8px;
+}
+.sc-progress li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #767970;
+  font-size: 12px;
+}
+.sc-progress li > span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f2f0eb;
+  flex-shrink: 0;
+}
+.sc-progress [aria-current="step"] {
+  color: var(--sc-orange);
+  font-weight: 600;
+}
+.sc-progress [aria-current="step"] > span {
+  background: var(--sc-orange);
+  color: white;
+}
+.sc-progress .is-complete > span {
+  color: #365c3e;
+  background: #eaf1e6;
+}
+.sc-simulator h2 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  letter-spacing: -0.7px;
+  line-height: 1.15;
+}
+.sc-card-subtitle {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.sc-profile > span {
+  min-height: 112px;
+  padding: 12px 6px;
+  gap: 12px;
+}
+.sc-profile strong {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.sc-profile svg { width: 26px; height: 26px; }
+.sc-bill-group { margin-top: 0; }
+.sc-money-input input {
+  font-size: clamp(36px, 9vw, 46px);
+  min-height: 60px;
+  letter-spacing: -1px;
+}
+.sc-money-input > span:last-child { font-size: 14px; }
+.sc-range { height: 48px; margin-top: 8px; }
+.sc-range::-webkit-slider-thumb { width: 26px; height: 26px; margin-top: -10px; }
+.sc-range::-moz-range-thumb { width: 20px; height: 20px; }
+.sc-range-labels { font-size: 12px; }
+.sc-presets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.sc-presets button { min-height: 48px; font-size: 14px; }
+.sc-hint, .sc-error { font-size: 13px; line-height: 1.6; margin-bottom: 0; }
+.sc-scenarios legend { font-size: 14px; line-height: 1.5; }
+.sc-scenarios label span { min-height: 48px; font-size: 16px; }
+.sc-results { padding: 22px 18px; }
+.sc-results > .sc-small-label { font-size: 11px; letter-spacing: 1px; }
+.sc-saving strong { font-size: clamp(32px, 8.5vw, 42px); }
+.sc-saving > span { font-size: 14px; }
+.sc-result-details { gap: 12px; }
+.sc-result-details p { font-size: 12px; line-height: 1.5; }
+.sc-result-details strong { font-size: clamp(15px, 4vw, 19px); }
+.sc-estimate-note { font-size: 12px; line-height: 1.7; margin-bottom: 0; }
+.sc-yearly-spend { margin-top: 0; }
+.sc-yearly-spend .sc-saving { margin-bottom: 14px; }
+.sc-spend-caption { font-size: 12px; line-height: 1.6; color: #66755f; margin: 0; }
+.sc-result-invitation { margin: 24px 0 10px; font-size: 20px; line-height: 1.4; font-weight: 500; letter-spacing: -0.3px; }
+.sc-result-support { margin: 0; font-size: 14px; line-height: 1.7; color: var(--sc-muted); }
+.sc-actions { margin-top: 26px; }
+.sc-action-buttons { display: flex; gap: 10px; align-items: stretch; }
+.sc-action-buttons .sc-primary { flex: 1; min-width: 0; width: auto; font-size: 15px; min-height: 54px; }
+.sc-previous {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  min-width: 54px;
+  min-height: 54px;
+  border: 1px solid #dbd8cd;
+  background: white;
+  border-radius: 8px;
+}
+.sc-previous svg { transform: rotate(180deg); }
+.sc-under-button { font-size: 12px; line-height: 1.5; }
+.sc-simulator [tabindex="-1"]:focus { outline: none; }
+.sc-footer a, .sc-footer button { min-width: 44px; }
+
+@media (max-width: 900px) {
+  html { scroll-padding-bottom: 120px; }
+  body.sc-page { padding-bottom: calc(116px + env(safe-area-inset-bottom, 0px)); }
+  .sc-wrap { width: calc(100% - 32px); max-width: 520px; }
+  .sc-header { min-height: 68px; gap: 12px; }
+  .sc-header-label { display: none; }
+  .sc-logo { width: 116px; min-height: 44px; display: flex; align-items: center; }
+  .sc-share { height: 44px; min-width: 44px; font-size: 13px; gap: 7px; padding: 0 13px; }
+  .sc-share svg { width: 18px; height: 18px; }
+  .sc-experience { display: flex; flex-direction: column; padding: 20px 0 28px; gap: 22px; }
+  .sc-intro { display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) 76px; gap: 0 12px; }
+  .sc-eyebrow { grid-column: 1 / -1; font-size: 10px; letter-spacing: 0.8px; gap: 7px; line-height: 1.5; }
+  .sc-eyebrow svg { width: 16px; height: 16px; }
+  .sc-intro h1 { grid-column: 1; grid-row: 2; font-size: clamp(42px, 12vw, 62px); line-height: 0.94; margin: 13px 0 0; align-self: center; }
+  .sc-intro h1 span { white-space: nowrap; }
+  .sc-photo { grid-column: 2; grid-row: 2; height: 82px; margin-top: 13px; border-radius: 10px; align-self: center; }
+  .sc-photo img { object-position: center; }
+  .sc-photo figcaption { display: none; }
+  .sc-lead { grid-column: 1 / -1; grid-row: 3; max-width: none; font-size: 14px; line-height: 1.55; margin: 13px 0 0; }
+  .sc-reassurance { display: none; }
+  .sc-simulator { width: 100%; padding: 22px 20px; border-radius: 14px; scroll-margin-top: 16px; }
+  .sc-card-top .sc-small-label { font-size: 10px; letter-spacing: 1px; }
+  .sc-free { font-size: 12px; }
+  .sc-progress { margin: 20px 0 24px; gap: 6px; }
+  .sc-progress li { font-size: 12px; gap: 6px; }
+  .sc-simulator h2 { font-size: 26px; margin: 0 0 12px; }
+  .sc-card-subtitle { font-size: 14px; margin-bottom: 22px; }
+  .sc-profiles { gap: 8px; }
+  .sc-profile > span { min-height: 110px; }
+  .sc-profile strong { font-size: 14px; min-height: 40px; display: flex; align-items: center; }
+  .sc-actions {
+    position: fixed;
+    z-index: 40;
+    bottom: var(--sc-keyboard-inset, 0px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+    background: #fffdf9;
+    border-top: 1px solid var(--sc-border);
+    box-shadow: 0 -8px 28px #3b2a1809;
+  }
+  .sc-action-buttons, .sc-actions .sc-under-button { width: 100%; max-width: 520px; margin-inline: auto; }
+  .sc-actions .sc-under-button { margin-top: 8px; font-size: 12px; }
+  .sc-action-buttons .sc-primary { font-size: 15px; }
+  .sc-action-buttons .sc-primary > svg:last-child { width: 20px; height: 20px; }
+  .sc-saving strong { font-size: clamp(32px, 8.5vw, 42px); }
+  .sc-result-details strong { font-size: clamp(15px, 4vw, 19px); }
+  .sc-next { display: grid; grid-template-columns: 1fr; gap: 24px; padding: 28px 0; }
+  .sc-next .sc-small-label { font-size: 10px; }
+  .sc-next h2 { font-size: 24px; }
+  .sc-next ol { gap: 22px; }
+  .sc-next li > span { font-size: 13px; }
+  .sc-next h3 { font-size: 15px; line-height: 1.5; }
+  .sc-next li p { font-size: 14px; line-height: 1.6; }
+  .sc-faq { display: grid; grid-template-columns: 1fr; gap: 14px; padding: 28px 0 20px; }
+  .sc-faq h2 { font-size: 23px; }
+  .sc-faq summary { min-height: 60px; font-size: 15px; line-height: 1.5; padding: 12px 0; }
+  .sc-faq summary > span { min-width: 24px; text-align: center; }
+  .sc-faq details p { font-size: 14px; line-height: 1.75; }
+  .sc-contact-line { flex-direction: column; font-size: 14px; gap: 4px; text-align: center; }
+  .sc-contact-line a { min-height: 48px; line-height: 1.5; justify-content: center; }
+  .sc-footer { flex-direction: column; align-items: flex-start; gap: 10px; font-size: 12px; }
+  .sc-footer small { font-size: 12px; }
+  .sc-footer > div { width: 100%; gap: 12px 24px; }
+  .sc-footer a, .sc-footer button { min-width: 44px; min-height: 44px; font-size: 13px; }
+  .sc-toast { bottom: calc(124px + env(safe-area-inset-bottom, 0px)); font-size: 14px; text-align: center; line-height: 1.5; }
+  .sc-page #klyfe-cookie-banner { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .sc-page .klyfe-cookie-panel { max-height: 70vh; max-height: 70dvh; overflow-y: auto; padding: 18px; font-size: 14px; line-height: 1.55; gap: 16px; }
+  .sc-page .klyfe-cookie-panel p { flex: 1 1 100%; min-width: 0; }
+  .sc-page .klyfe-cookie-actions { width: 100%; }
+  .sc-page .klyfe-cookie-actions button { flex: 1; font-size: 14px; min-height: 48px; }
+}
+
+@media (max-width: 350px) {
+  .sc-wrap { width: calc(100% - 24px); }
+  .sc-intro { grid-template-columns: minmax(0, 1fr) 64px; gap: 0 8px; }
+  .sc-intro h1 { font-size: 42px; }
+  .sc-photo { height: 76px; }
+  .sc-eyebrow { font-size: 9px; letter-spacing: 0.5px; }
+  .sc-simulator { padding: 20px 16px; }
+  .sc-simulator h2 { font-size: 24px; }
+  .sc-profile > span { padding-inline: 4px; }
+  .sc-progress li { font-size: 11px; }
+  .sc-result-details { grid-template-columns: 1fr; gap: 14px; }
+  .sc-result-details p { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+  .sc-result-details strong { font-size: 18px; margin-top: 0; }
+  .sc-action-buttons .sc-primary { font-size: 14px; }
+}
+
+@media (max-height: 500px) and (max-width: 900px) {
+  .sc-header { min-height: 60px; }
+  .sc-experience { padding-top: 16px; }
+  .sc-actions .sc-under-button { display: none; }
+  body.sc-page { padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px)); }
+}
