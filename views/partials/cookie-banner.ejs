@@ -5,7 +5,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 1rem;
+    padding: 0 1rem 0.9rem;
     pointer-events: none;
     contain: layout style;
   }
@@ -15,45 +15,112 @@
   }
   .klyfe-cookie-panel {
     pointer-events: auto;
-    max-width: 720px;
+    max-width: 680px;
     margin: 0 auto;
-    background: #101318;
+    background: rgba(14, 19, 26, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: #f5f6f8;
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 14px;
-    box-shadow: 0 16px 48px rgba(0,0,0,0.35);
-    padding: 1.1rem 1.25rem;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.34);
+    padding: 0.8rem 1.05rem;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem 1.25rem;
+    flex-wrap: nowrap;
+    gap: 0.75rem 1.1rem;
     align-items: center;
     justify-content: space-between;
     font-family: "IBM Plex Sans", system-ui, sans-serif;
-    font-size: 0.92rem;
-    line-height: 1.45;
+    font-size: 0.84rem;
+    line-height: 1.4;
   }
-  .klyfe-cookie-panel p { margin: 0; flex: 1 1 280px; color: #d7dbe2; }
-  .klyfe-cookie-panel a { color: #f5c518; text-decoration: underline; }
-  .klyfe-cookie-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .klyfe-cookie-panel p {
+    margin: 0;
+    flex: 1 1 auto;
+    color: #dbe3ec;
+  }
+  .klyfe-cookie-panel a {
+    color: #ffb838;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .klyfe-cookie-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
   .klyfe-cookie-actions button {
     appearance: none;
+    min-height: 40px;
     border: 0;
-    border-radius: 8px;
-    padding: 0.65rem 1rem;
+    border-radius: 9px;
+    padding: 0.5rem 0.95rem;
+    font-family: inherit;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1;
+    white-space: nowrap;
     cursor: pointer;
+    touch-action: manipulation;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
   }
-  .klyfe-cookie-accept { background: #f5c518; color: #101318; }
-  .klyfe-cookie-deny { background: transparent; color: #f5f6f8; border: 1px solid rgba(255,255,255,0.25) !important; }
+  .klyfe-cookie-actions button:focus-visible,
+  .klyfe-cookie-panel a:focus-visible {
+    outline: 2px solid #ffb838;
+    outline-offset: 2px;
+  }
+  .klyfe-cookie-accept {
+    background: #f59e0b;
+    color: #0e1722;
+  }
+  .klyfe-cookie-accept:hover {
+    background: #ffb020;
+  }
+  .klyfe-cookie-deny {
+    background: rgba(255, 255, 255, 0.06);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  }
+  .klyfe-cookie-deny:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+  @media (max-width: 640px) {
+    #klyfe-cookie-banner {
+      padding: 0;
+    }
+    .klyfe-cookie-panel {
+      max-width: none;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.6rem;
+      border-radius: 16px 16px 0 0;
+      border-left: 0;
+      border-right: 0;
+      border-bottom: 0;
+      padding: 0.75rem 1rem calc(0.8rem + env(safe-area-inset-bottom));
+      font-size: 0.81rem;
+      line-height: 1.38;
+    }
+    .klyfe-cookie-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      width: 100%;
+    }
+    .klyfe-cookie-actions button {
+      min-height: 44px;
+      width: 100%;
+      font-size: 0.84rem;
+    }
+  }
 </style>
-<div id="klyfe-cookie-banner" class="is-hidden" role="dialog" aria-live="polite" aria-label="Consentimento de cookies" hidden>
+<div id="klyfe-cookie-banner" class="is-hidden" role="region" aria-live="polite" aria-label="Preferências de cookies" hidden>
   <div class="klyfe-cookie-panel">
     <p>
-      Com seu aceite, medimos a navegação de forma agregada e usamos cookies de marketing
-      (Meta Pixel, Google Ads/GTM) para medir e otimizar campanhas.
-      Essenciais do site continuam funcionando sem isso.
-      Veja a <a href="/politica-de-privacidade">Política de Privacidade</a>.
+      Usamos cookies para melhorar sua navegação e medir nossos anúncios.
+      <a href="/politica-de-privacidade">Política de Privacidade</a>
     </p>
     <div class="klyfe-cookie-actions">
       <button type="button" class="klyfe-cookie-deny" data-klyfe-consent="deny">Recusar</button>

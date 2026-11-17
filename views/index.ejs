@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="<%= locals.theme || 'solar-warm' %>">
-<head><%- include('partials/head') %><link rel="stylesheet" href="/css/whatsapp-picker.css?v=20261105"></head>
+<head>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/whatsapp-picker.css?v=20261105">
+    <% if (cityKey === 'default') { %><link rel="stylesheet" href="/css/usinas-solares.css?v=1"><% } %>
+</head>
 <body>
 <%- include('partials/navbar') %>
 
@@ -26,6 +30,9 @@
     <%- include('partials/home/hero') %>
     <%- include('partials/home/trust-counter') %>
     <%- include('partials/home/solar-profiles') %>
+    <% if (cityKey === 'default') { %>
+        <%- include('partials/usinas-destaque', { placement: 'home' }) %>
+    <% } %>
     <%- include('partials/home/engineering-automation') %>
     <%- include('partials/home/wallbox-featured') %>
     <%- include('partials/home/electrical-services') %>
@@ -42,7 +49,7 @@
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
 
-<script src="/js/main.js?v=20261105-traffic2" defer></script>
+<script src="/js/main.js?v=20261117-wa-fallback" defer></script>
 <script src="/js/whatsapp-picker.js?v=20261105" defer></script>
 </body>
 </html>

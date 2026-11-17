@@ -35,7 +35,7 @@ router.get('/sitemap.xml', (req, res) => {
     urls.push('/projetos/avaliacao-qualidade-instalacoes-eletricas-hu');
 
     // 2b. Hub Solar + segmentos + cidades + serviços comerciais
-    urls.push('/energia-solar/');
+    urls.push('/energia-solar/', '/usinas-solares/');
     Object.values(solarCapture.segments).forEach(s => urls.push(s.urlPath));
     Object.values(solarCapture.cities).forEach(c => urls.push(c.urlPath));
     Object.values(solarServices).forEach(s => urls.push(s.urlPath));

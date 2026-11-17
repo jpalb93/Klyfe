@@ -1,0 +1,8 @@
+<figure class="usinas-media <%= eager ? 'usinas-media--hero' : '' %>">
+    <img src="<%= src %>"
+         srcset="<%= srcset %>"
+         sizes="<%= sizes %>"
+         width="<%= width %>" height="<%= height %>"
+         alt="<%= alt %>" decoding="async"<% if (eager) { %> fetchpriority="high"<% } else { %> loading="lazy"<% } %>>
+    <figcaption><%= typeof caption !== 'undefined' && caption ? caption : 'Imagem ilustrativa' %></figcaption>
+</figure>

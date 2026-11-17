@@ -11,6 +11,11 @@ router.use((req, res, next) => {
     let path = rawPath.toLowerCase().replace(/\/$/, '');
     if (path === '') path = '/';
 
+    if (path === '/usinas-solares' && rawPath !== '/usinas-solares/') {
+        const query = req.url.slice(rawPath.length);
+        return res.redirect(301, `/usinas-solares/${query}`);
+    }
+
     // Wallbox é uma página comercial prioritária: concentra aliases, cidades
     // e a versão canônica com barra final em um único destino indexável.
     const wallboxAliasMatch = path.match(/^\/(?:(campina-grande|joao-pessoa)\/)?(?:(?:solucoes\/)?(?:eletrica\/)?)?(?:wallbox|carregador-veicular|carregador-ev|carregador-de-carro-eletrico)$/);

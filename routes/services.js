@@ -6,6 +6,7 @@ const solarServices = require('../config/solar-services');
 const business = require('../config/business');
 const { buildServiceContentRecord } = require('../lib/content-governance');
 const { getRelatedServiceLinks } = require('../config/internal-links');
+const { buildWaUrl, resolveTrackingContext } = require('../lib/site-tracking');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -318,6 +319,60 @@ router.get('/energia-solar', (req, res) => {
         solarSegments: solarCapture.getSegmentList(),
         solarCities: solarCapture.getCityList(),
         theme: 'azure-sky'
+    });
+});
+
+router.get('/usinas-solares', (req, res) => {
+    const canonical = `${baseUrl}/usinas-solares/`;
+    const title = 'Usinas Solares para Investimento | Klyfe Electric';
+    const description = 'Projetos e construção de usinas solares com engenharia elétrica especializada. Avalie a viabilidade do seu investimento com a Klyfe Electric.';
+    const tracking = resolveTrackingContext(req.path, {
+        contentCategory: 'solar',
+        waMsg: 'Olá! Estou interessado em construir uma usina solar para investimento e gostaria de conversar com a equipe da Klyfe sobre a viabilidade do projeto.'
+    });
+    const breadcrumbItems = [
+        { label: 'Home', href: '/' },
+        { label: 'Energia Solar', href: '/energia-solar/' },
+        { label: 'Usinas Solares', href: '/usinas-solares/' }
+    ];
+    const jsonLd = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Service',
+                '@id': `${canonical}#service`,
+                name: 'Engenharia para usinas solares fotovoltaicas',
+                description,
+                url: canonical,
+                provider: { '@id': `${business.url}/#localbusiness` },
+                areaServed: { '@type': 'State', name: 'Paraíba' }
+            },
+            {
+                '@type': 'BreadcrumbList',
+                itemListElement: breadcrumbItems.map(({ label, href }, index) => ({
+                    '@type': 'ListItem',
+                    position: index + 1,
+                    name: label,
+                    item: `${baseUrl}${href}`
+                }))
+            }
+        ]
+    };
+
+    res.render('usinas-solares', {
+        title,
+        description,
+        canonical,
+        image: '/img/usinas-solares/usina-solar-og.webp',
+        page: 'usinas-solares',
+        contentName: 'usinas-solares',
+        contentVertical: 'usinas-solares',
+        serviceKey: 'usinas-solares',
+        breadcrumbItems,
+        jsonLd: `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`,
+        ...tracking,
+        waLandUrl: buildWaUrl(tracking.waPhone, 'Olá! Tenho um terreno e gostaria de avaliar a possibilidade de construir uma usina solar com a Klyfe.'),
+        waQuestionsUrl: buildWaUrl(tracking.waPhone, 'Olá! Gostaria de conversar com a equipe da Klyfe sobre projetos de usinas solares para investimento.')
     });
 });
 

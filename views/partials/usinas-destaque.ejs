@@ -1,0 +1,29 @@
+<%
+const isHome = placement === 'home';
+const title = isHome ? 'Energia solar também pode ser um investimento.' : 'Seu próximo investimento pode gerar muito mais do que energia.';
+const highlights = isHome
+    ? ['Projetos de usinas no solo', 'Análise técnica e econômica', 'Engenharia do planejamento à implantação']
+    : ['Potencial de exploração econômica', 'Infraestrutura de geração de longo prazo', 'Engenharia e análise de viabilidade'];
+%>
+<section class="usinas usinas-section usinas-dark usinas-feature usinas-feature--<%= placement %>" aria-labelledby="usinas-destaque-title">
+    <div class="container usinas-split">
+        <div>
+            <p class="usinas-eyebrow"><%= isHome ? 'Nova frente de soluções / Usinas Solares' : 'Usinas Solares para Investimento' %></p>
+            <h2 id="usinas-destaque-title"><%= title %></h2>
+            <p class="usinas-lead"><%= isHome
+                ? 'Conheça as possibilidades de construir uma usina fotovoltaica e investir em infraestrutura de geração de energia. A Klyfe Electric oferece engenharia especializada para avaliar e executar projetos solares.'
+                : 'A Klyfe Electric também desenvolve projetos de usinas fotovoltaicas para investidores que desejam construir ativos de geração de energia. Conheça as possibilidades, os critérios de viabilidade e como nossa engenharia pode ajudar a estruturar seu empreendimento.' %></p>
+            <ul class="usinas-checklist">
+                <% highlights.forEach(text => { %><li><%= text %></li><% }); %>
+            </ul>
+            <a class="btn usinas-btn" href="/usinas-solares/" data-site-cta><%= isHome ? 'Conhecer usinas solares' : 'Conhecer soluções para investidores' %><span aria-hidden="true">→</span></a>
+        </div>
+        <%- include('usinas-imagem', {
+            src: '/img/usinas-solares/usina-solar-768.webp',
+            srcset: '/img/usinas-solares/usina-solar-480.webp 480w, /img/usinas-solares/usina-solar-768.webp 768w, /img/usinas-solares/usina-solar-1024.webp 1024w',
+            sizes: '(min-width: 1440px) 740px, (min-width: 900px) 53vw, 94vw',
+            width: 1024, height: 768, eager: false,
+            alt: 'Vista aérea de fileiras de painéis fotovoltaicos instalados no solo'
+        }) %>
+    </div>
+</section>

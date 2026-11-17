@@ -710,7 +710,8 @@ ul { list-style: none; }
   transform: translateY(10px); transition: all 0.3s; border-radius: 6px;
   padding: 0.5rem 0;
 }
-.dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.dropdown:hover .dropdown-menu,
+.nav-solutions:focus-within > .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
 .dropdown-menu a { display: block; padding: 0.8rem 1.2rem; border-bottom: 1px solid var(--border-color); font-size: 0.95rem; }
 .dropdown-menu a:last-child { border-bottom: none; }
 .dropdown-menu a:hover { background: var(--bg-primary); padding-left: 1.5rem; color: var(--accent-primary); }

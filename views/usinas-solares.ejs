@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<%
+const aerial = {
+    src: '/img/usinas-solares/usina-solar-hero-dusk.webp',
+    srcset: '/img/usinas-solares/usina-solar-hero-dusk-768.webp 768w, /img/usinas-solares/usina-solar-hero-dusk.webp 1280w',
+    sizes: '100vw'
+};
+const heroFacts = [
+    ['01', 'Engenharia elétrica especializada'],
+    ['02', 'Usinas fotovoltaicas de solo'],
+    ['03', 'Estudo de viabilidade e rede'],
+    ['04', 'Do projeto à homologação']
+];
+const benefits = [
+    ['Potencial de receitas periódicas', 'Uma usina pode integrar modelos de exploração econômica com remuneração contratual ou compensação energética, conforme a estrutura jurídica e regulatória do empreendimento.', 'M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6'],
+    ['Patrimônio produtivo', 'Construa um ativo físico de infraestrutura energética, projetado para operar em horizonte de longo prazo com planejamento de conservação e reposição de componentes.', 'M3 21h18M5 21V7l8-4v18M19 21V11l-6-4'],
+    ['Aproveitamento de terrenos', 'Transforme terrenos rurais ou áreas ociosas em projetos fotovoltaicos de solo mediante análise técnica de topografia, sombreamento e capacidade da rede elétrica.', 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zM12 7a3 3 0 1 0 0 6 3 3 0 0 0 0-6z'],
+    ['Diversificação patrimonial', 'Amplie suas alternativas de alocação com infraestrutura real de geração elétrica, avaliando liquidez, risco operacional, prazo e cenário regulatório.', 'M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'],
+    ['Operação planejável', 'Estruture rotinas de monitoramento remoto, inspeções elétricas e manutenção preventiva (OPEX) para preservar disponibilidade e desempenho ao longo dos anos.', 'M12 20V10M18 20V4M6 20v-4'],
+    ['Decisão orientada por dados', 'Compare CAPEX, OPEX, geração estimada, Payback descontado, VPL e TIR antes de contratar equipamentos ou comprometer capital no projeto.', 'M3 3v18h18M7 14l4-4 4 4 5-5']
+];
+const pillars = [
+    ['Localização e terreno', 'Avaliação de área útil, topografia, estabilidade geotécnica, sombreamento, acessos e documentação da propriedade (matrícula, CAR/CCIR quando aplicável).'],
+    ['Conexão elétrica', 'Distância até a rede, nível de tensão, capacidade dos alimentadores, transformadores e eventuais obras de adequação exigidas pela distribuidora.'],
+    ['Dimensionamento técnico', 'Potência nominal em kWp dos módulos e em kW dos inversores, arquitetura elétrica, proteções, subestação (quando necessária) e estimativa realista de geração em kWh.'],
+    ['Viabilidade econômica', 'Análise integrada de investimento inicial (CAPEX), despesas operacionais (OPEX), tributos, degradação e cenários de VPL, TIR e payback sem promessas irreais.']
+];
+const modalities = [
+    ['Autoconsumo remoto', 'Unidades consumidoras sob a mesma titularidade e atendidas pela mesma distribuidora compensam créditos gerados pela usina, seguindo as regras do SCEE e da Lei nº 14.300/2022.'],
+    ['Geração compartilhada', 'Reúne múltiplos consumidores por meio de consórcio, cooperativa ou estrutura admitida pela legislação na mesma área de concessão, exigindo modelagem contratual e jurídica adequada.'],
+    ['Exploração comercial', 'Empreendimentos voltados à comercialização de energia seguem regras próprias de mercado, enquadramento regulatório e contratos específicos, distintos da simples compensação de créditos.']
+];
+const stages = [
+    ['Diagnóstico inicial', 'Levantamento de localização ou coordenadas, objetivo do investimento, características da área e situação da rede elétrica próxima.'],
+    ['Análise de viabilidade', 'Estudo preliminar de dimensionamento, requisitos de conexão na distribuidora, infraestrutura necessária e condicionantes técnicas.'],
+    ['Engenharia e orçamento', 'Projeto executivo, especificação de módulos, inversores, estruturas de solo, proteções, subestação (se aplicável) e escopo completo de custos.'],
+    ['Implantação e conexão', 'Montagem eletromecânica, obras civis previstas, comissionamento, testes e procedimentos de regularização e conexão aplicáveis.']
+];
+const guides = [
+    {
+        slug: 'vale-a-pena-investir-em-usina-solar',
+        tag: 'Viabilidade & Retorno · 6 min',
+        title: 'Vale a pena investir em uma usina solar? Benefícios, riscos e retorno',
+        summary: 'Entenda os modelos econômicos, como avaliar VPL, TIR e payback além da média simples e os riscos regulatórios e de conexão antes de investir.',
+        img: '/img/blog/vale-a-pena-investir-em-usina-solar-720.webp',
+        srcset: '/img/blog/vale-a-pena-investir-em-usina-solar-480.webp 480w, /img/blog/vale-a-pena-investir-em-usina-solar-720.webp 720w, /img/blog/vale-a-pena-investir-em-usina-solar.webp 1024w',
+        alt: 'Usina solar fotovoltaica de solo no Nordeste com fileiras de módulos monocristalinos e infraestrutura elétrica'
+    },
+    {
+        slug: 'construir-usina-solar-no-terreno',
+        tag: 'Terreno & Conexão · 7 min',
+        title: 'Posso construir uma usina solar no meu terreno? Veja os requisitos',
+        summary: 'Saiba o que avaliar em sítios, fazendas e terrenos: área necessária, distância até a rede, capacidade do poste e documentação exigida.',
+        img: '/img/blog/construir-usina-solar-no-terreno-720.webp',
+        srcset: '/img/blog/construir-usina-solar-no-terreno-480.webp 480w, /img/blog/construir-usina-solar-no-terreno-720.webp 720w, /img/blog/construir-usina-solar-no-terreno.webp 1024w',
+        alt: 'Terreno rural no Nordeste com usina solar fotovoltaica de solo e rede elétrica de distribuição próxima'
+    },
+    {
+        slug: 'quanto-custa-construir-usina-solar',
+        tag: 'Custos & Orçamento · 9 min',
+        title: 'Quanto custa construir uma usina solar? Entenda o investimento',
+        summary: 'Veja a diferença entre kW, kWp e kWh, parâmetros referenciais de investimento (MME/EPE), papel da subestação e diferença entre CAPEX e OPEX.',
+        img: '/img/blog/quanto-custa-construir-usina-solar-720.webp',
+        srcset: '/img/blog/quanto-custa-construir-usina-solar-480.webp 480w, /img/blog/quanto-custa-construir-usina-solar-720.webp 720w, /img/blog/quanto-custa-construir-usina-solar.webp 1024w',
+        alt: 'Usina solar fotovoltaica de solo de médio porte com módulos, estruturas metálicas e subestação de conexão'
+    }
+];
+const faq = [
+    ['Como funciona uma usina solar para investimento?', 'Uma usina é uma infraestrutura que transforma luz solar em energia elétrica. Seu uso econômico depende da modalidade de geração, dos contratos e das regras aplicáveis. Na geração distribuída, o autoconsumo remoto permite compensar o consumo em unidades do mesmo titular. A geração compartilhada reúne consumidores em uma estrutura admitida pela legislação. Em ambos os casos, as unidades participantes devem ser atendidas pela mesma distribuidora. Usinas enquadradas em outras modalidades seguem regras próprias.'],
+    ['É possível gerar receita com uma usina solar?', 'Há potencial de remuneração quando a modalidade, as condições comerciais e a estrutura contratual permitem. No Sistema de Compensação de Energia Elétrica (SCEE), os créditos servem à compensação do consumo e não podem ser tratados como mercadoria livre. Qualquer comercialização de energia depende das hipóteses legais e da regulamentação aplicável.'],
+    ['Preciso ter um terreno?', 'Você pode iniciar o planejamento com uma área própria ou ainda estar buscando opções. A disponibilidade, a documentação e a adequação elétrica do local são avaliadas antes de definir a implantação.'],
+    ['Quanto custa construir uma usina solar?', 'O custo depende da potência, dos equipamentos, da estrutura de solo, da preparação do terreno, das obras civis e da infraestrutura de conexão (incluindo eventual necessidade de subestação). Um orçamento confiável exige avaliação das condições específicas do projeto.'],
+    ['Em quanto tempo o investimento se paga?', 'Não existe prazo universal. O retorno é estimado caso a caso com base no investimento inicial (CAPEX), nas despesas operacionais (OPEX), na geração projetada, nos riscos e no modelo econômico adotado, avaliando indicadores como Payback, VPL e TIR.'],
+    ['A Klyfe cuida do projeto e da instalação?', 'A Klyfe atua no planejamento, na engenharia elétrica e na implantação. As etapas, os serviços incluídos e as responsabilidades de cada parte são detalhados no escopo de cada contratação.'],
+    ['Posso instalar uma usina em área rural?', 'Sim, quando as condições técnicas, documentais (como matrícula, CAR e CCIR quando pertinentes), ambientais e de conexão permitirem. A avaliação considera tanto as características da área quanto a capacidade da rede elétrica local.']
+];
+%>
+<head>
+    <%- include('partials/head', { preloadImage: aerial.src, preloadImagesrcset: aerial.srcset, preloadImagesizes: aerial.sizes }) %>
+    <link rel="stylesheet" href="/css/usinas-solares.css?v=6">
+</head>
+<body class="page-service page-usinas-solares">
+<%- include('partials/navbar') %>
+<main class="usinas">
+    <div class="usinas-hero-fold">
+        <section class="page-hero bg-blueprint usinas-hero" aria-labelledby="usinas-title">
+            <div class="container">
+                <%- include('partials/breadcrumb', { breadcrumbItems }) %>
+                <div class="section-separator"><%- include('partials/symbol') %> <span>ENGENHARIA &amp; INVESTIMENTO • PARAÍBA E NORDESTE</span></div>
+                <h1 id="usinas-title">Transforme seu investimento em uma <span>usina solar.</span></h1>
+                <p>Construa um ativo de geração fotovoltaica com estudo de viabilidade, projeto elétrico e implantação de solo estruturados para longo prazo — da análise de terreno e conexão à entrega técnica.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="<%= waUrl %>" target="_blank" rel="noopener noreferrer" data-content-name="usinas-investimento-hero"><i class="fab fa-whatsapp" aria-hidden="true"></i> Quero analisar meu investimento</a>
+                    <a class="btn btn-ghost" href="<%= waLandUrl %>" target="_blank" rel="noopener noreferrer" data-content-name="usinas-terreno-hero">Já tenho um terreno <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="usinas-proof-strip" aria-label="O que a Klyfe avalia em usinas solares">
+            <div class="container">
+                <ul class="usinas-proof-grid">
+                    <% heroFacts.forEach(([num, label]) => { %>
+                    <li><strong><%= num %></strong><span><%= label %></span></li>
+                    <% }); %>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <section class="usinas-section usinas-light" aria-labelledby="usinas-valor">
+        <div class="container usinas-split usinas-split--balanced">
+            <div>
+                <p class="usinas-eyebrow">Energia como investimento</p>
+                <h2 id="usinas-valor">Mais do que produzir energia. Uma oportunidade para seu patrimônio.</h2>
+                <p class="usinas-lead">Uma usina fotovoltaica pode representar uma alternativa sólida de alocação em infraestrutura energética. Com planejamento adequado, é possível estruturar modelos de utilização econômica alinhados ao enquadramento regulatório e à realidade elétrica do local.</p>
+                <p class="usinas-note">Construir uma usina não significa comercializar energia automaticamente: cada modelo (autoconsumo remoto, geração compartilhada ou comercialização) possui regras próprias na legislação brasileira.</p>
+            </div>
+            <div class="usinas-comparison">
+                <div class="usinas-comp-card">
+                    <span class="usinas-comp-tag">Perfil Consumidor</span>
+                    <h3>Energia solar para consumo</h3>
+                    <p>O sistema é dimensionado a partir da conta de luz para reduzir despesas energéticas do próprio imóvel.</p>
+                    <ul class="usinas-comp-points">
+                        <li><strong>Foco:</strong> Consumo mensal em kWh</li>
+                        <li><strong>Instalação típica:</strong> Cobertura residencial ou comercial</li>
+                        <li><strong>Decisão:</strong> Economia direta na fatura</li>
+                    </ul>
+                </div>
+                <div class="usinas-comp-card usinas-comp-card--featured">
+                    <span class="usinas-comp-tag">Foco do Investimento</span>
+                    <h3>Usina como investimento</h3>
+                    <p>O projeto avalia capital aplicado, infraestrutura elétrica, riscos operacionais, modelo contratual e retorno de longo prazo.</p>
+                    <ul class="usinas-comp-points">
+                        <li><strong>Foco:</strong> Viabilidade (CAPEX, OPEX, VPL e TIR)</li>
+                        <li><strong>Instalação típica:</strong> Projetos fotovoltaicos de solo</li>
+                        <li><strong>Decisão:</strong> Rede elétrica, terreno e regulação</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-light usinas-benefits" aria-labelledby="usinas-beneficios">
+        <div class="container">
+            <div class="usinas-section-header">
+                <p class="usinas-eyebrow">Por que investir em uma usina solar?</p>
+                <h2 id="usinas-beneficios">Um investimento que vai além da geração de energia.</h2>
+            </div>
+            <ol class="usinas-benefit-list">
+                <% benefits.forEach(([title, text, iconPath], index) => { %>
+                <li class="usinas-benefit-card <%= index === 0 ? 'usinas-benefit-card--featured' : '' %>">
+                    <div class="usinas-card-top">
+                        <span class="usinas-number" aria-hidden="true">BENEFÍCIO <%= String(index + 1).padStart(2, '0') %></span>
+                        <span class="usinas-card-icon" aria-hidden="true">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="<%= iconPath %>"/></svg>
+                        </span>
+                    </div>
+                    <h3><%= title %></h3>
+                    <p><%= text %></p>
+                </li>
+                <% }); %>
+            </ol>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-dark" aria-labelledby="usinas-viabilidade">
+        <div class="container">
+            <div class="usinas-split usinas-split--balanced">
+                <div>
+                    <p class="usinas-eyebrow">Antes de investir</p>
+                    <h2 id="usinas-viabilidade">Uma usina rentável começa com um projeto viável.</h2>
+                    <p class="usinas-lead">Construir uma usina solar exige decisões que vão muito além da escolha dos módulos fotovoltaicos. A localização, as condições do terreno, a capacidade de escoamento da rede elétrica e a arquitetura do sistema determinam a viabilidade real do empreendimento.</p>
+                    <p class="usinas-note">A conexão depende de avaliação técnica e das condições da rede da distribuidora — ter um poste próximo ao terreno não garante capacidade para receber a energia gerada.</p>
+                </div>
+                <ul class="usinas-pillar-list">
+                    <% pillars.forEach(([title, text], index) => { %>
+                    <li class="usinas-pillar-card">
+                        <span class="usinas-number" aria-hidden="true">PILAR <%= String(index + 1).padStart(2, '0') %></span>
+                        <h3><%= title %></h3>
+                        <p><%= text %></p>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+
+            <div class="usinas-modalities">
+                <div class="usinas-modalities-head">
+                    <div>
+                        <p class="usinas-eyebrow">Enquadramento no Brasil</p>
+                        <h3>Principais modelos de utilização econômica</h3>
+                    </div>
+                </div>
+                <ul class="usinas-modalities-grid">
+                    <% modalities.forEach(([title, text]) => { %>
+                    <li class="usinas-modality-card">
+                        <h4><%= title %></h4>
+                        <p><%= text %></p>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-light" aria-labelledby="usinas-etapas">
+        <div class="container">
+            <p class="usinas-eyebrow">Do planejamento à implantação</p>
+            <h2 id="usinas-etapas">Seu projeto em boas mãos, desde o primeiro estudo.</h2>
+            <ol class="usinas-timeline">
+                <% stages.forEach(([title, text], index) => { %>
+                <li>
+                    <span class="usinas-number" aria-hidden="true">ETAPA <%= String(index + 1).padStart(2, '0') %></span>
+                    <h3><%= title %></h3>
+                    <p><%= text %></p>
+                </li>
+                <% }); %>
+            </ol>
+            <p class="usinas-note">O escopo contratado define quais etapas e serviços serão executados pela Klyfe Electric e as responsabilidades de cada parte.</p>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-dark usinas-feature" aria-labelledby="usinas-terreno">
+        <div class="container usinas-split">
+            <div>
+                <p class="usinas-eyebrow">Você já possui uma área?</p>
+                <h2 id="usinas-terreno">Seu terreno pode ter um novo potencial de utilização.</h2>
+                <p class="usinas-lead">Áreas rurais, fazendas e terrenos disponíveis na Paraíba e no Nordeste podem receber usinas solares de solo. Antes de adquirir equipamentos, nossa engenharia avalia a viabilidade física e elétrica do local.</p>
+                <ul class="usinas-checklist">
+                    <li>Área útil, topografia, acessos e sombreamento do terreno</li>
+                    <li>Distância até a rede, nível de tensão e capacidade de conexão</li>
+                    <li>Documentação do imóvel e requisitos ambientais aplicáveis</li>
+                </ul>
+                <a class="btn usinas-btn" href="<%= waLandUrl %>" target="_blank" rel="noopener noreferrer" data-content-name="usinas-terreno-secao">Quero avaliar meu terreno <span aria-hidden="true">↗</span></a>
+            </div>
+            <%- include('partials/usinas-imagem', {
+                src: '/img/blog/construir-usina-solar-no-terreno-720.webp',
+                srcset: '/img/blog/construir-usina-solar-no-terreno-480.webp 480w, /img/blog/construir-usina-solar-no-terreno-720.webp 720w, /img/blog/construir-usina-solar-no-terreno.webp 1024w',
+                sizes: '(min-width: 1440px) 740px, (min-width: 900px) 53vw, 94vw', width: 1024, height: 576, eager: false,
+                caption: 'Implantação em terreno · Rede de distribuição próxima',
+                alt: 'Terreno rural no Nordeste com usina solar fotovoltaica de solo e rede elétrica de distribuição próxima'
+            }) %>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-light usinas-guides" aria-labelledby="usinas-guias">
+        <div class="container">
+            <p class="usinas-eyebrow">Conteúdo técnico para investidores</p>
+            <h2 id="usinas-guias">Aprofunde sua análise antes de construir.</h2>
+            <p class="usinas-lead">Preparamos três guias completos no blog da Klyfe Electric para ajudar você a avaliar viabilidade financeira, requisitos de terreno e composição real de custos.</p>
+            <ul class="usinas-guides-grid">
+                <% guides.forEach((guide) => { %>
+                <li class="usinas-guide-card">
+                    <a class="usinas-guide-thumb" href="/blog/<%= guide.slug %>" aria-hidden="true" tabindex="-1">
+                        <img src="<%= guide.img %>"
+                             srcset="<%= guide.srcset %>"
+                             sizes="(min-width: 900px) 31vw, 94vw"
+                             width="720" height="405" loading="lazy" decoding="async"
+                             alt="<%= guide.alt %>">
+                    </a>
+                    <div class="usinas-guide-body">
+                        <span class="usinas-guide-meta"><%= guide.tag %></span>
+                        <h3><%= guide.title %></h3>
+                        <p><%= guide.summary %></p>
+                        <a class="usinas-guide-link" href="/blog/<%= guide.slug %>">Ler guia completo <span aria-hidden="true">→</span></a>
+                    </div>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-light usinas-engineering" aria-labelledby="usinas-klyfe">
+        <div class="container usinas-split usinas-split--balanced">
+            <div>
+                <p class="usinas-eyebrow">Klyfe Electric / Engenharia &amp; Energia</p>
+                <h2 id="usinas-klyfe">Engenharia para quem leva seu investimento a sério.</h2>
+                <p class="usinas-lead">Uma usina solar exige integração entre infraestrutura elétrica, obras civis, sistemas de proteção e regras da distribuidora. A Klyfe Electric é sediada em Campina Grande (PB), com atuação regional no Nordeste.</p>
+                <p>Desenvolvemos soluções fotovoltaicas com atenção ao dimensionamento técnico, à conformidade normativa e às condições reais de operação e manutenção do empreendimento.</p>
+            </div>
+            <div>
+                <ul class="usinas-checklist">
+                    <li>Engenharia elétrica como atividade central do projeto</li>
+                    <li>Responsabilidade técnica e documentação conforme o escopo</li>
+                    <li>Dimensionamento individualizado (kWp, kW e estimativa em kWh)</li>
+                    <li>Infraestrutura de proteção, subestação (se necessária) e integração à rede</li>
+                    <li>Presença regional na Paraíba e atendimento técnico consultivo</li>
+                </ul>
+                <div class="usinas-related">
+                    <a href="/solucoes/engenharia">Engenharia Elétrica <span aria-hidden="true">→</span></a>
+                    <a href="/energia-solar/">Energia Solar <span aria-hidden="true">→</span></a>
+                    <a href="/blog">Blog Técnico <span aria-hidden="true">→</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-light usinas-faq" aria-labelledby="usinas-perguntas">
+        <div class="container usinas-split">
+            <div>
+                <p class="usinas-eyebrow">Dúvidas frequentes</p>
+                <h2 id="usinas-perguntas">Perguntas frequentes sobre usinas solares</h2>
+                <p class="usinas-sources">Referências oficiais: <a href="https://www.planalto.gov.br/ccivil_03/_ato2019-2022/2022/lei/l14300.htm" target="_blank" rel="noopener noreferrer">Lei nº 14.300/2022</a>, <a href="https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida" target="_blank" rel="noopener noreferrer">orientações da ANEEL</a> e <a href="https://www.gov.br/mme/pt-br/assuntos/noticias/2023-2026/mme-e-epe-divulgam-caderno-com-referencias-atualizadas-de-custos-das-tecnologias-de-geracao-e-transmissao" target="_blank" rel="noopener noreferrer">Caderno de Custos MME/EPE</a>.</p>
+            </div>
+            <div class="usinas-faq-list">
+                <% faq.forEach(([question, answer]) => { %>
+                <details>
+                    <summary><%= question %></summary>
+                    <p><%= answer %></p>
+                </details>
+                <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <section class="usinas-section usinas-dark usinas-closing" aria-labelledby="usinas-contato">
+        <div class="container">
+            <p class="usinas-eyebrow">Seu próximo projeto começa aqui</p>
+            <h2 id="usinas-contato">Vamos avaliar o potencial da sua futura usina?</h2>
+            <p class="usinas-lead">Se você pretende investir em geração solar ou já possui um terreno disponível, converse com a equipe de engenharia da Klyfe Electric. O primeiro passo é validar a viabilidade antes de qualquer compra de equipamento.</p>
+            <div class="usinas-actions">
+                <a class="btn usinas-btn" href="<%= waUrl %>" target="_blank" rel="noopener noreferrer" data-content-name="usinas-investimento-final">Solicitar análise da minha usina <span aria-hidden="true">↗</span></a>
+                <a class="btn usinas-btn usinas-btn--outline" href="<%= waQuestionsUrl %>" target="_blank" rel="noopener noreferrer" data-content-name="usinas-atendimento-final">Conversar com a Klyfe</a>
+            </div>
+            <p class="usinas-note">A viabilidade técnica e econômica depende das condições específicas do projeto, do enquadramento regulatório e da estrutura contratual. Projeções não constituem garantia de rentabilidade.</p>
+        </div>
+    </section>
+</main>
+<%- include('partials/whatsapp') %>
+<%- include('partials/footer') %>
+<script src="/js/main.js?v=20261117-wa-fallback" defer></script>
+</body>
+</html>
