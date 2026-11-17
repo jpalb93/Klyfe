@@ -584,10 +584,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 throw new Error('Tracking indisponível');
             } catch (err) {
-                alert('⚠️ Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');
+                // Nunca travar o cliente: segue para o WhatsApp solar com os dados digitados.
                 console.error('Erro LP solar form:', err);
-                btn.innerHTML = originalText;
-                btn.disabled = false;
+                btn.innerHTML = '<i class="fab fa-whatsapp"></i> Abrindo o WhatsApp...';
+                const solarPhone = '5583991430929';
+                window.location.href = window.KlyfeTracking && window.KlyfeTracking.buildLeadWhatsAppUrl
+                    ? window.KlyfeTracking.buildLeadWhatsAppUrl(solarPhone, data)
+                    : 'https://wa.me/' + solarPhone + '?text=' + encodeURIComponent('Olá! Quero um orçamento de energia solar para minha empresa.');
             }
         });
     }

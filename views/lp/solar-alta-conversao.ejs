@@ -1052,9 +1052,9 @@
 
                     if (window.KlyfeTracking && typeof window.KlyfeTracking.submitLpLead === 'function') {
                         window.KlyfeTracking.submitLpLead(payload).then(openWa).catch(function(err) {
+                            // Nunca travar o cliente: sem registro no site, segue pelo WhatsApp com os mesmos dados.
                             console.error('Erro no registro do lead:', err);
-                            alert('Não foi possível registrar sua solicitação. Tente novamente ou use o botão de WhatsApp direto.');
-                            if (btnSubmit) { btnSubmit.disabled = false; btnSubmit.innerHTML = 'Receber Estudo no WhatsApp'; }
+                            openWa();
                         });
                     } else {
                         openWa();

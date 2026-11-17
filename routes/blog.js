@@ -5,7 +5,7 @@ const locations = require('../config/locations');
 const business = require('../config/business');
 const { getPublishedPosts, getPostBySlug, getBlogRedirectBySlug } = require('../lib/blog-loader');
 const { evaluatePosts, evaluatePost, buildLocals } = require('../lib/blog-evaluator');
-const { resolveTrackingContext } = require('../lib/site-tracking');
+const { PHONE_DEFAULT, PHONE_SOLAR, resolveTrackingContext } = require('../lib/site-tracking');
 
 const baseUrl = 'https://www.klyfeelectric.com.br';
 
@@ -178,7 +178,7 @@ router.get('/:city(campina-grande|joao-pessoa)?/blog/:postSlug', (req, res, next
 
     if (evaluatedPost.whatsappMessage) {
         const postCategory = isWallbox ? 'wallbox' : (post.category || 'geral');
-        const postPhone = postCategory === 'solar' ? '5583991430929' : '5583991330972';
+        const postPhone = postCategory === 'solar' ? PHONE_SOLAR : PHONE_DEFAULT;
         trackingExtras = resolveTrackingContext(req.path, {
             contentCategory: postCategory,
             waPhone: postPhone,

@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const crypto = require('node:crypto');
 const source = fs.readFileSync(require.resolve('../public/js/tracking.js'), 'utf8');
 
-function browser({ consent = 'granted', category = 'solar', beaconAccepted = true, failForm = false, pending, thankYou = false } = {}) {
+function browser({ consent = 'granted', category = 'solar', beaconAccepted = true, failForm = false, pending, thankYou = false, cfg = {} } = {}) {
     const store = new Map(), session = new Map(), cookies = new Map(), clicks = [], requests = [], beacons = [];
     if (consent) store.set('klyfe_cookie_consent', consent);
     if (pending) session.set('klyfe_lp_solar_lead', JSON.stringify(pending));
@@ -27,7 +27,7 @@ function browser({ consent = 'granted', category = 'solar', beaconAccepted = tru
             if (url === '/contato' && failForm) { failForm = false; throw new Error('network error'); }
             return { ok: true, json: async () => ({ success: true, event_id: JSON.parse(opts.body).event_id }) };
         },
-        __KLYFE_TRACKING__: { metaPixelId: 'test-pixel', capiEnabled: true, contentCategory: category, fireViewContent: category === 'solar' && !thankYou, expectLpLead: thankYou },
+        __KLYFE_TRACKING__: { metaPixelId: 'test-pixel', capiEnabled: true, contentCategory: category, fireViewContent: category === 'solar' && !thankYou, expectLpLead: thankYou, ...cfg },
     };
     ctx.window = ctx; vm.runInNewContext(source, ctx);
     return { ctx, store, session, requests, cookies,
@@ -148,4 +148,68 @@ test('actual contact handler sends consent, attribution and shared ID', async ()
     vm.runInNewContext(section,{document:{getElementById:()=>form,dispatchEvent(){}},FormData:class{get(k){return data[k]}entries(){return Object.entries(data)}},window:{location:{href:'https://example.invalid/contato'},KlyfeConsent:{get:()=> 'granted'},KlyfeTracking:{newEventId:()=> 'lead_contact',getCampaignParams:()=>({utm_campaign:'solar'}),trackLeadSolar:(p,id)=>assert.equal(id,'lead_contact')}},CustomEvent:class{},alert(){},console,fetch:async(url,opts)=>{sent=JSON.parse(opts.body);return {ok:true,json:async()=>({success:true,event_id:sent.event_id})}}});
     await submit({preventDefault(){}});
     assert.equal(sent.marketing_consent,'granted');assert.equal(sent.utm_campaign,'solar');assert.equal(sent.event_id,'lead_contact');
+});
+
+test('PageView duplicado do GTM (sem eventID) é descartado; o resto do GTM passa', () => {
+    const b = browser({ consent: 'granted' });
+    const fbq = b.ctx.fbq;
+    // Tag do Pixel do GTM antes do fbevents.js carregar: entra pela fila.
+    fbq('init', 'test-pixel');
+    fbq('trackSingle', 'test-pixel', 'PageView');
+    fbq('track', 'PageView', {});
+    fbq('trackSingleCustom', 'test-pixel', 'clique_whatsapp');
+    const queued = Array.from(fbq.queue);
+    const pageViews = queued.filter(e => e[1] === 'PageView' || e[2] === 'PageView');
+    assert.equal(pageViews.length, 1, 'só o PageView do site');
+    assert.ok(pageViews[0][3].eventID, 'o PageView mantido é o casado com a API de Conversões');
+    assert.ok(queued.some(e => e[0] === 'trackSingleCustom' && e[2] === 'clique_whatsapp'), 'eventos personalizados do GTM passam');
+    assert.ok(queued.some(e => e[0] === 'init' && e[1] === 'test-pixel'));
+
+    // Depois que o fbevents.js carrega, ele define callMethod; a trava continua valendo.
+    const calls = [];
+    fbq.callMethod = function () { calls.push(Array.from(arguments)); };
+    fbq('trackSingle', 'test-pixel', 'PageView');
+    fbq('trackSingle', 'test-pixel', 'PageView', {}, { eventID: 'pv_ok' });
+    fbq('track', 'Lead', { content_category: 'solar' }, { eventID: 'lead_1' });
+    fbq('track', 'Contact', {});
+    assert.deepEqual(calls.map(c => c[0] + ':' + (c[0] === 'trackSingle' ? c[2] : c[1])), ['trackSingle:PageView', 'track:Lead', 'track:Contact']);
+    assert.equal(calls[0][4].eventID, 'pv_ok');
+});
+
+test('com o Pixel só no GTM (META_PIXEL_VIA_GTM), o site não instala trava nem Pixel próprio', () => {
+    const b = browser({ consent: 'granted', cfg: { pixelViaGtm: true } });
+    assert.equal(typeof b.ctx.fbq, 'undefined');
+});
+
+test('plano B: link de WhatsApp com os dados do formulário, no formato da recepção', () => {
+    const b = browser();
+    const url = new URL(b.ctx.KlyfeTracking.buildLeadWhatsAppUrl('5583991430929', {
+        nome: 'Maria Souza', cidade: 'Queimadas.', faixa_conta: 'R$ 300 a R$ 600',
+    }));
+    assert.equal(url.pathname, '/5583991430929');
+    assert.equal(url.searchParams.get('text'),
+        'Olá! Quero um orçamento de energia solar.\nCidade da instalação: Queimadas.\nMinha conta de luz: R$ 300 a R$ 600.\nMeu nome é Maria Souza.');
+    const triage = new URL(b.ctx.KlyfeTracking.buildLeadWhatsAppUrl('', {
+        nome: 'Ana', cidade: 'João Pessoa', mensagem: 'Olá! Vi a calculadora.\nNão pretendo aumentar meu consumo por enquanto.',
+    }));
+    assert.equal(triage.pathname, '/5583991430929', 'sem número, usa o solar');
+    assert.equal(triage.searchParams.get('text'),
+        'Olá! Vi a calculadora.\nNão pretendo aumentar meu consumo por enquanto.\nCidade da instalação: João Pessoa.\nMeu nome é Ana.');
+});
+
+test('envio do formulário tem limite de tempo e não deixa o cliente esperando', async () => {
+    const b = browser();
+    let aborted = false;
+    b.ctx.AbortController = class { constructor() { this.signal = { aborted: false }; } abort() { aborted = true; } };
+    const timers = [];
+    b.ctx.setTimeout = (fn, ms) => { timers.push({ fn, ms }); return timers.length; };
+    b.ctx.clearTimeout = () => {};
+    let rejectFetch;
+    b.ctx.fetch = () => new Promise((_, reject) => { rejectFetch = reject; });
+    const pending = b.ctx.KlyfeTracking.submitLpLead({ nome: 'Maria', telefone: '83999991234', cidade: 'Queimadas', source: 'site-solar-triage', redirect: false });
+    const timeout = timers.find(t => t.ms === 12000);
+    assert.ok(timeout, 'limite de 12 s');
+    timeout.fn(); assert.ok(aborted);
+    rejectFetch(new Error('aborted'));
+    await assert.rejects(pending);
 });

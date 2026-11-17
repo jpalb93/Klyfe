@@ -604,9 +604,12 @@
                 : Promise.reject(new Error('Tracking indisponível'));
 
             run.catch(() => {
-                alert('⚠️ Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.');
-                btn.disabled = false;
-                btn.innerHTML = original;
+                // Nunca travar o cliente: segue para o WhatsApp com os dados digitados.
+                btn.innerHTML = '<i class="fab fa-whatsapp"></i> Abrindo o WhatsApp...';
+                const waPhone = '<%= locals.waPhone || "5583991430929" %>';
+                window.location.href = window.KlyfeTracking && window.KlyfeTracking.buildLeadWhatsAppUrl
+                    ? window.KlyfeTracking.buildLeadWhatsAppUrl(waPhone, payload)
+                    : 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent('Olá! Quero um orçamento de energia solar. Meu nome é ' + payload.nome + '.');
             });
         });
     }

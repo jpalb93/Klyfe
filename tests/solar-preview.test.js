@@ -222,3 +222,18 @@ test('summary waits for the continue action and shows the right next step', () =
     assert.equal(summary.open,false);
     assert.equal(next.hidden,true);
 });
+test('mensagem do site para o WhatsApp: curta, em linhas com rótulo que a Central reconhece', () => {
+    const nb = s => s.replace(/\u00a0/g, ' ');
+    const full = nb(model.siteLeadMessage({ result: model.calculate(1000), name: '  Maria   Souza ', city: 'Campina Grande.',
+        growth: [{ type: 'air-conditioning', quantity: 2 }, { type: 'electric-shower', quantity: 1 }, { type: 'electric-car', quantity: 1 }] }));
+    assert.equal(full, [
+        'Olá! Fiz a simulação no site da Klyfe e quero um orçamento de energia solar.', '',
+        'Nome: Maria Souza', 'Cidade da instalação: Campina Grande', 'Conta de luz: R$ 1.000,00 por mês',
+        'Novos aparelhos: 2 aparelhos de ar-condicionado, 1 chuveiro elétrico e 1 carro elétrico',
+    ].join('\n'));
+    assert.match(nb(model.siteLeadMessage({ result: model.calculate(500), growth: 'none' })), /Novos aparelhos: não pretendo instalar por enquanto$/);
+    const review = nb(model.siteLeadMessage({ result: model.calculate(250), review: true, growth: [{ type: 'other', detail: ' bomba de piscina. ' }] }));
+    assert.match(review, /^Olá! Fiz a simulação no site da Klyfe e quero avaliar um projeto de energia solar com novos aparelhos\./);
+    assert.match(review, /Novos aparelhos: bomba de piscina$/);
+    assert.doesNotMatch(full, /por ano|Gostaria de saber|Meu nome é/);
+});

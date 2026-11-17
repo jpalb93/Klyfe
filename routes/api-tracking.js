@@ -110,7 +110,8 @@ router.post('/contato', async (req, res) => {
             'lp-solar-fazendas': '/lp/energia-solar-fazendas',
             'lp-solar-supermercados-clinicas': '/lp/energia-solar-supermercados-clinicas',
             'lp-solar-residencial': '/lp/energia-solar-residencial',
-            'lp-solar-alta-conversao': '/lp/energia-solar'
+            'lp-solar-alta-conversao': '/lp/energia-solar',
+            'site-solar-triage': '/energia-solar/'
         };
         const defaultSourceUrl = isLpSolar
             ? `${baseUrl}${lpPathMap[body.source] || '/lp/energia-solar-empresas'}`

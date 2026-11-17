@@ -36,6 +36,9 @@ app.use(helmet({
                 "https://googleads.g.doubleclick.net",
                 "https://connect.facebook.net",
                 "https://*.facebook.net",
+                // Microsoft Clarity (tag no GTM): mapas de calor e gravações do funil.
+                "https://www.clarity.ms",
+                "https://*.clarity.ms",
             ],
             // Helmet default é 'none' e bloqueia onclick= inline do banner de cookies
             scriptSrcAttr: ["'unsafe-inline'", "'unsafe-hashes'"],
@@ -54,6 +57,11 @@ app.use(helmet({
                 "https://www.googletagmanager.com",
                 "https://googleads.g.doubleclick.net",
                 "https://www.google.com",
+                // Remarketing/públicos do Google via GTM e pixel do Clarity.
+                "https://www.google.com.br",
+                "https://ad.doubleclick.net",
+                "https://*.clarity.ms",
+                "https://c.bing.com",
                 "https://*.public.blob.vercel-storage.com",
                 ...(blogCmsOrigin ? [blogCmsOrigin] : []),
             ],
@@ -68,6 +76,8 @@ app.use(helmet({
                 "https://*.facebook.net",
                 "https://*.fbcdn.net",
                 "https://googleads.g.doubleclick.net",
+                "https://ad.doubleclick.net",
+                "https://*.clarity.ms",
             ],
             frameSrc: [
                 "'self'",

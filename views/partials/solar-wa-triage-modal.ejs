@@ -1,0 +1,221 @@
+<%
+const triageWaUrl = (typeof waHeroUrl !== 'undefined' && waHeroUrl)
+    ? waHeroUrl
+    : 'https://wa.me/5583991430929?text=' + encodeURIComponent('Olá! Vi o site da Klyfe e gostaria de um orçamento de ENERGIA SOLAR.');
+const triageGrowthItems = [
+    ['air-conditioning', 'Ar-condicionado', true, 'fa-snowflake'],
+    ['electric-shower', 'Chuveiro elétrico', true, 'fa-shower'],
+    ['electric-car', 'Carro elétrico', false, 'fa-charging-station'],
+    ['other', 'Outro', false, 'fa-circle-plus']
+];
+%>
+<dialog id="solar-wa-triage-modal" class="solar-triage-modal" aria-labelledby="solar-triage-title" data-step="1">
+    <div class="solar-triage-sheet">
+        <div class="solar-triage-header">
+            <div class="solar-triage-header-row solar-triage-stage">
+                <div class="solar-triage-progress-meta">
+                    <span id="solar-triage-step-badge" class="solar-triage-step-badge">Etapa 1 de 3 · Leva menos de 1 minuto</span>
+                    <div class="solar-triage-progress-track" aria-hidden="true">
+                        <span class="solar-triage-progress-fill"></span>
+                    </div>
+                </div>
+                <button type="button" id="solar-triage-close" class="solar-triage-close" aria-label="Voltar para a página">×</button>
+            </div>
+        </div>
+
+        <div id="solar-triage-step-1" class="solar-triage-panel">
+            <div class="solar-triage-body">
+                <div class="solar-triage-stage solar-triage-stage--center">
+                    <h3 id="solar-triage-title" class="solar-triage-title">Qual é o valor médio da sua conta de luz?</h3>
+                    <p class="solar-triage-precision-note">
+                        Digite o valor mais próximo possível da sua fatura mensal para nossa engenharia estimar seu projeto com precisão.
+                    </p>
+
+                    <label class="solar-triage-label" for="solar-triage-bill">Valor aproximado da conta mensal</label>
+                    <div class="solar-triage-money-field">
+                        <span class="solar-triage-prefix" aria-hidden="true">R$</span>
+                        <input id="solar-triage-bill" type="text" inputmode="decimal" enterkeyhint="next" placeholder="Ex.: 780,00" maxlength="18" autocomplete="off" aria-describedby="solar-triage-bill-help solar-triage-error">
+                        <span class="solar-triage-suffix" aria-hidden="true">/mês</span>
+                    </div>
+                    <p id="solar-triage-error" class="solar-triage-error" role="status" aria-live="polite"></p>
+
+                    <p id="solar-triage-bill-help" class="solar-triage-presets-label">Se não lembrar o valor exato agora, toque em uma referência:</p>
+                    <div class="solar-triage-presets" role="group" aria-label="Referências rápidas de conta mensal">
+                        <% [300, 500, 1000, 1500, 3000, 5000].forEach(amount => { %>
+                        <button type="button" class="solar-triage-preset-btn" data-triage-value="<%= amount %>" aria-pressed="false">R$ <%= amount.toLocaleString('pt-BR') %></button>
+                        <% }); %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solar-triage-footer">
+                <div class="solar-triage-stage solar-triage-footer-inner">
+                    <button type="button" id="solar-triage-next" class="btn solar-triage-next-btn">
+                        Continuar <span aria-hidden="true">→</span>
+                    </button>
+                    <a id="solar-triage-skip" class="solar-triage-skip-link" href="<%= triageWaUrl %>" target="_blank" rel="noopener noreferrer" data-content-category="solar" data-content-name="solar-hero-wa-skip">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Prefiro ir direto ao WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="solar-triage-step-2" class="solar-triage-panel" hidden>
+            <div class="solar-triage-body">
+                <div class="solar-triage-stage solar-triage-stage--center">
+                    <div class="solar-triage-summary-strip" role="region" aria-label="Alerta de gasto projetado em 3 anos">
+                        <div class="solar-triage-summary-top-row">
+                            <div class="solar-triage-alert-badge">
+                                <span class="solar-triage-pulse-dot" aria-hidden="true"></span>
+                                <i class="fas fa-triangle-exclamation solar-triage-alert-icon" aria-hidden="true"></i>
+                                <span>Alerta de gasto</span>
+                            </div>
+                            <div class="solar-triage-summary-bill">
+                                <span><strong data-triage-result="bill">—</strong>/mês</span>
+                                <button type="button" id="solar-triage-edit" class="solar-triage-edit-btn">Alterar</button>
+                            </div>
+                        </div>
+                        <p class="solar-triage-alert-headline">
+                            Você gastará <strong class="solar-triage-alert-amount" data-triage-result="threeYearCost">—</strong> em 3 anos com energia.
+                        </p>
+                    </div>
+
+                    <div id="solar-triage-growth-wrap" class="solar-triage-growth">
+                        <p id="solar-triage-growth-title" class="solar-triage-growth-title">
+                            <strong>Pretende instalar algo que aumente seu consumo?</strong>
+                            <small id="solar-triage-optional-tag" class="solar-triage-optional-tag" hidden>Opcional</small>
+                        </p>
+                        <p id="solar-triage-growth-help" class="solar-triage-growth-help">Pode marcar mais de uma opção. Se não, toque em “Não, por enquanto”.</p>
+                        <p id="solar-triage-choice-hint" class="solar-triage-review-hint" hidden>Escolha uma opção para continuar.</p>
+                        <p id="solar-triage-review-hint" class="solar-triage-review-hint" hidden>Para contas abaixo de R$ 300, marque ao menos um equipamento planejado abaixo ou altere o valor da conta.</p>
+
+                        <div class="solar-triage-growth-grid" role="group" aria-labelledby="solar-triage-growth-title" aria-describedby="solar-triage-growth-help">
+                            <% triageGrowthItems.forEach(([key, label, hasQuantity, iconClass]) => { %>
+                            <% const isOther = key === 'other'; %>
+                            <div class="solar-triage-growth-item<%= hasQuantity ? ' solar-triage-growth-item--qty' : '' %><%= isOther ? ' solar-triage-growth-item--other' : '' %>" data-triage-growth-item="<%= key %>">
+                                <div class="solar-triage-growth-card">
+                                    <label class="solar-triage-growth-option">
+                                        <input type="checkbox" name="solar-triage-growth" value="<%= key %>">
+                                        <span class="solar-triage-item-icon" aria-hidden="true"><i class="fas <%= iconClass %>"></i></span>
+                                        <span class="solar-triage-growth-name"><%= label %></span>
+                                    </label>
+                                    <% if (hasQuantity) { %>
+                                    <button type="button" class="solar-triage-qty-badge" data-triage-qty-edit="<%= key %>" aria-label="Alterar quantidade de <%= label.toLowerCase() %>" hidden>
+                                        <span data-triage-qty-value>1 unid.</span>
+                                        <i class="fas fa-pen solar-triage-qty-badge-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <% } else if (isOther) { %>
+                                    <button type="button" id="solar-triage-other-badge" class="solar-triage-qty-badge solar-triage-other-badge" aria-label="Alterar equipamento especificado" hidden>
+                                        <span id="solar-triage-other-badge-text"></span>
+                                        <i class="fas fa-pen solar-triage-qty-badge-icon" aria-hidden="true"></i>
+                                    </button>
+                                    <% } %>
+                                </div>
+                                <% if (hasQuantity) { %>
+                                <fieldset class="solar-triage-qty" data-triage-quantity="<%= key %>" aria-label="Quantidade de <%= label.toLowerCase() %>" hidden disabled>
+                                    <legend>Quantas unidades?</legend>
+                                    <div class="solar-triage-qty-options">
+                                        <% [1, 2, 3].forEach(amount => { %>
+                                        <label>
+                                            <input type="radio" name="solar-triage-qty-<%= key %>" value="<%= amount %>"<%= amount === 1 ? ' checked' : '' %>>
+                                            <span><%= amount %></span>
+                                        </label>
+                                        <% }); %>
+                                    </div>
+                                </fieldset>
+                                <% } %>
+                            </div>
+                            <% }); %>
+                            <label id="solar-triage-none-choice" class="solar-triage-growth-option solar-triage-growth-none">
+                                <input type="checkbox" name="solar-triage-growth" value="none">
+                                <span>Não, por enquanto</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="solar-triage-footer">
+                <div class="solar-triage-stage solar-triage-footer-inner">
+                    <button type="button" id="solar-triage-submit" class="btn solar-triage-next-btn" data-whatsapp-url="<%= triageWaUrl %>" aria-disabled="true">
+                        Continuar <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="solar-triage-step-3" class="solar-triage-panel" hidden>
+            <form id="solar-triage-contact-form" class="solar-triage-contact-form" novalidate>
+                <div class="solar-triage-body">
+                    <div class="solar-triage-stage solar-triage-stage--center">
+                        <h3 id="solar-triage-contact-title" class="solar-triage-title">Para quem enviamos a análise?</h3>
+                        <p class="solar-triage-precision-note">
+                            Nossa equipe confere sua conta de <strong data-triage-result="bill">—</strong>/mês e responde pelo WhatsApp.
+                        </p>
+
+                        <div class="solar-triage-contact-field">
+                            <label class="solar-triage-label" for="solar-triage-name">Seu nome</label>
+                            <input id="solar-triage-name" name="nome" class="solar-triage-text-input" type="text" autocomplete="name" autocapitalize="words" enterkeyhint="next" maxlength="160" placeholder="Ex.: Maria Silva" required>
+                        </div>
+
+                        <div class="solar-triage-contact-field">
+                            <label class="solar-triage-label" for="solar-triage-phone">WhatsApp com DDD</label>
+                            <input id="solar-triage-phone" name="telefone" class="solar-triage-text-input" type="tel" inputmode="tel" autocomplete="tel-national" enterkeyhint="next" maxlength="16" placeholder="(83) 99999-9999" required>
+                        </div>
+
+                        <div class="solar-triage-contact-field">
+                            <label class="solar-triage-label" for="solar-triage-city">Cidade do imóvel</label>
+                            <select id="solar-triage-city" name="cidade" class="solar-triage-text-input" required>
+                                <option value="" selected disabled>Selecione</option>
+                                <option>Campina Grande</option>
+                                <option>João Pessoa</option>
+                                <option value="__other">Outra cidade</option>
+                            </select>
+                        </div>
+
+                        <div id="solar-triage-city-other-wrap" class="solar-triage-contact-field" hidden>
+                            <label class="solar-triage-label" for="solar-triage-city-other">Qual cidade?</label>
+                            <input id="solar-triage-city-other" name="cidade_outra" class="solar-triage-text-input" type="text" autocomplete="address-level2" autocapitalize="words" enterkeyhint="done" maxlength="80" placeholder="Ex.: Queimadas" disabled>
+                        </div>
+
+                        <input type="text" name="website_url" class="solar-triage-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+                        <p id="solar-triage-contact-error" class="solar-triage-error" role="alert" aria-live="assertive"></p>
+                        <a id="solar-triage-contact-fallback" class="solar-triage-contact-fallback" href="<%= triageWaUrl %>" target="_blank" rel="noopener noreferrer" data-content-category="solar" data-content-name="solar-triage-fallback" hidden>
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Se o WhatsApp não abrir, toque aqui
+                        </a>
+                    </div>
+                </div>
+
+                <div class="solar-triage-footer">
+                    <div class="solar-triage-stage solar-triage-footer-inner">
+                        <button type="submit" id="solar-triage-contact-submit" class="btn solar-triage-whatsapp-btn">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> <span data-label>Receber análise no WhatsApp</span>
+                        </button>
+                        <p class="solar-triage-privacy-note">
+                            <i class="fas fa-lock" aria-hidden="true"></i> Usamos seus dados só para responder sobre o projeto. <a href="/politica-de-privacidade" target="_blank" rel="noopener">Privacidade</a>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div id="solar-triage-other-panel" class="solar-triage-panel" hidden>
+            <div class="solar-triage-body">
+                <div class="solar-triage-stage solar-triage-stage--center solar-triage-other-stage">
+                    <button type="button" id="solar-triage-other-cancel" class="solar-triage-other-back">
+                        <i class="fas fa-arrow-left" aria-hidden="true"></i> Voltar para as opções
+                    </button>
+                    <label class="solar-triage-other-heading" for="solar-triage-other-input">Qual equipamento ou mudança você planeja?</label>
+                    <p class="solar-triage-other-sub">Ex.: freezer, bomba de piscina, fogão de indução, ampliação...</p>
+                    <div class="solar-triage-other-field-wrap">
+                        <input id="solar-triage-other-input" class="solar-triage-other-input" type="text" maxlength="100" enterkeyhint="done" placeholder="Digite aqui..." autocomplete="off" disabled>
+                    </div>
+                    <p id="solar-triage-other-hint" class="solar-triage-other-hint" hidden>Escreva o equipamento antes de confirmar.</p>
+                    <button type="button" id="solar-triage-other-done" class="btn solar-triage-next-btn solar-triage-other-confirm">
+                        Confirmar equipamento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>

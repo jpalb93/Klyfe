@@ -342,6 +342,55 @@
         });
     }
 
+    /**
+     * PageView sem eventID = PageView de outra origem (ex.: tag do Pixel no GTM do time de
+     * tráfego). Este arquivo já envia o PageView com eventID, casado com a API de Conversões.
+     */
+    function isUnmatchedPageView(args) {
+        var command = args[0];
+        var eventName = command === 'track' ? args[1] : command === 'trackSingle' ? args[2] : null;
+        if (eventName !== 'PageView') return false;
+        var options = command === 'track' ? args[3] : args[4];
+        return !(options && options.eventID);
+    }
+
+    /**
+     * Quando o Pixel é carregado por este arquivo, descarta PageViews duplicados sem eventID.
+     * Filtra na fila (chamadas antes do fbevents.js carregar) e em callMethod (depois dele).
+     * Só PageView: Lead, Contact, eventos personalizados e o resto do GTM passam normalmente.
+     */
+    function guardDuplicatePageView(fbq) {
+        if (typeof fbq !== 'function' || fbq.__klyfePageViewGuard) return;
+        fbq.__klyfePageViewGuard = true;
+        if (Array.isArray(fbq.queue)) {
+            for (var i = fbq.queue.length - 1; i >= 0; i--) {
+                if (isUnmatchedPageView(fbq.queue[i])) fbq.queue.splice(i, 1);
+            }
+            var push = fbq.queue.push;
+            fbq.queue.push = function () {
+                var kept = Array.prototype.filter.call(arguments, function (args) { return !isUnmatchedPageView(args); });
+                return kept.length ? push.apply(this, kept) : this.length;
+            };
+        }
+        var callMethod = guardCallMethod(fbq.callMethod);
+        try {
+            Object.defineProperty(fbq, 'callMethod', {
+                configurable: true,
+                enumerable: true,
+                get: function () { return callMethod; },
+                set: function (fn) { callMethod = guardCallMethod(fn); }
+            });
+        } catch (_) { /* sem a trava, o Pixel segue funcionando normalmente */ }
+    }
+
+    function guardCallMethod(fn) {
+        if (typeof fn !== 'function') return fn;
+        return function () {
+            if (isUnmatchedPageView(arguments)) return undefined;
+            return fn.apply(this, arguments);
+        };
+    }
+
     function loadMetaPixel() {
         if (!CFG.metaPixelId || CFG.pixelViaGtm) return;
 
@@ -361,6 +410,7 @@
             s = b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t, s);
         })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        guardDuplicatePageView(window.fbq);
 
         // Automatic Advanced Matching (Events Manager) + init limpo
         window.fbq('init', CFG.metaPixelId);
@@ -606,6 +656,23 @@
      * Fluxo padrão LP → POST /contato → CAPI server → thank-you (Pixel + Ads).
      * @returns {Promise<{ok:boolean, event_id?:string}>}
      */
+    var LEAD_SUBMIT_TIMEOUT_MS = 12000;
+
+    /**
+     * Plano B dos formulários: se o registro falhar, o cliente segue para o WhatsApp com os
+     * dados que digitou, no formato que a recepção da Central reconhece (cidade rotulada).
+     */
+    function buildLeadWhatsAppUrl(phone, lead) {
+        lead = lead || {};
+        var clean = function (value) { return String(value || '').replace(/\s+/g, ' ').trim(); };
+        var lines = [lead.mensagem ? String(lead.mensagem).trim() : 'Olá! Quero um orçamento de energia solar.'];
+        if (clean(lead.cidade)) lines.push('Cidade da instalação: ' + clean(lead.cidade).replace(/[.!?;]+$/, '') + '.');
+        if (!lead.mensagem && clean(lead.faixa_conta)) lines.push('Minha conta de luz: ' + clean(lead.faixa_conta) + '.');
+        if (clean(lead.nome)) lines.push('Meu nome é ' + clean(lead.nome) + '.');
+        var digits = String(phone || '').replace(/\D/g, '') || '5583991430929';
+        return 'https://wa.me/' + digits + '?text=' + encodeURIComponent(lines.join('\n'));
+    }
+
     var pendingSubmissionIds = {};
     function submitLpLead(opts) {
         opts = opts || {};
@@ -633,11 +700,17 @@
             fbc: cookies.fbc
         });
 
+        // Nunca deixar o cliente esperando indefinidamente: depois do limite, a página
+        // segue para o WhatsApp (o envio pode até concluir no servidor; o event_id evita duplicar).
+        var controller = typeof AbortController === 'function' ? new AbortController() : null;
+        var timer = controller ? setTimeout(function () { controller.abort(); }, LEAD_SUBMIT_TIMEOUT_MS) : null;
         return fetch('/contato', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(payload),
+            signal: controller ? controller.signal : undefined
         })
+            .finally(function () { if (timer) clearTimeout(timer); })
             .then(function (res) {
                 if (!res.ok) throw new Error('Falha no servidor');
                 return res.json();
@@ -673,6 +746,7 @@
         getMetaCookies: getMetaCookies,
         getCampaignParams: getCampaignParams,
         submitLpLead: submitLpLead,
+        buildLeadWhatsAppUrl: buildLeadWhatsAppUrl,
         fireGoogleAdsConversion: fireGoogleAdsConversion,
         trackCalculatorEvent: function (eventName) {
             var allowed = ['calculator_value_selected', 'calculator_value_entered', 'calculator_result_viewed', 'calculator_whatsapp_click'];
