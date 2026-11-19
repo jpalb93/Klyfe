@@ -2,19 +2,19 @@
 <section class="hero bg-blueprint" id="hero">
     <div class="container">
         <div class="hero-content">
-            <div style="font-family:var(--font-mono);color:var(--text-muted);font-size:0.85rem;margin-bottom:1.5rem"><%= homeSeo.eyebrow %></div>
-            <h1 style="font-size:clamp(2.6rem, 5.5vw, 4.5rem);line-height:1.05"><%= homeSeo.h1Lead %><br>
-                <span style="font-family:var(--font-heading);font-weight:400;font-style:italic;font-size:clamp(2.2rem, 5vw, 4rem)"><%= homeSeo.h1Middle %></span><br>
-                <span style="color:var(--accent-primary);font-size:clamp(3rem, 6.8vw, 5.5rem)"><%= homeSeo.h1Location %>.</span>
+            <div class="hero-eyebrow"><%= homeSeo.eyebrow %></div>
+            <h1 class="hero-title"><%= homeSeo.h1Lead %><br>
+                <span class="hero-title-middle"><%= homeSeo.h1Middle %></span><br>
+                <span class="hero-title-location"><%= homeSeo.h1Location %>.</span>
             </h1>
 
             <p class="hero-subtitle"><%= homeSeo.heroText %></p>
 
             <% const heroSolarMessage = 'Olá! Vi o site da Klyfe Electric e gostaria de solicitar um estudo solar ' + cityData.preposition + ' ' + cityData.name + '. Posso enviar minha conta de energia e algumas informações do imóvel para uma avaliação técnica?'; %>
             <% const heroSolarWaUrl = 'https://wa.me/5583991430929?text=' + encodeURIComponent(heroSolarMessage); %>
-            <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <div class="hero-actions">
                 <a href="<%= heroSolarWaUrl %>" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-content-category="solar" data-content-name="home-hero-solar-study">Solicitar Estudo Solar</a>
-                <a href="/energia-solar/#calculadora" class="btn btn-outline"><i class="fas fa-calculator" style="margin-right: 6px;"></i> Simular Economia Solar</a>
+                <a href="/energia-solar/#calculadora" class="btn btn-outline"><i class="fas fa-calculator" aria-hidden="true"></i> Simular Economia Solar</a>
             </div>
 
             <nav class="hero-service-links" aria-label="Outras áreas de atuação da Klyfe">

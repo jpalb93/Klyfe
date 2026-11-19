@@ -3,25 +3,24 @@
 <head>
     <%- include('partials/head') %>
     <link rel="stylesheet" href="/css/whatsapp-picker.css?v=20261105">
-    <% if (cityKey === 'default') { %><link rel="stylesheet" href="/css/usinas-solares.css?v=1"><% } %>
+    <% if (cityKey === 'default') { %><link rel="stylesheet" href="/css/usinas-solares.css?v=1" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/css/usinas-solares.css?v=1"></noscript><% } %>
 </head>
 <body>
 <%- include('partials/navbar') %>
 
 <!-- Scroll Spy Nav (lateral) -->
-<nav class="scroll-nav">
-    <div class="dot active" data-target="#hero" data-label="Início"></div>
-    <div class="dot" data-target="#solucoes" data-label="Energia Solar"></div>
-    <div class="dot" data-target="#engenharia-automacao" data-label="Engenharia & Automação"></div>
-    <div class="dot" data-target="#wallbox-destaque" data-label="Mobilidade Elétrica"></div>
-    <div class="dot" data-target="#servicos-eletricos" data-label="Serviços Elétricos"></div>
-    <div class="dot" data-target="#empresa" data-label="A Empresa"></div>
-    <div class="dot" data-target="#diferenciais" data-label="Diferenciais"></div>
-    <div class="dot" data-target="#depoimentos" data-label="Depoimentos"></div>
-    <div class="dot" data-target="#projetos" data-label="Projetos"></div>
-    <div class="dot" data-target="#blog" data-label="Blog"></div>
-    <div class="dot" data-target="#social-hub" data-label="Redes Sociais"></div>
-    <div class="dot" data-target="#faq" data-label="FAQ"></div>
+<nav class="scroll-nav" aria-label="Seções da página">
+    <button type="button" class="dot active" data-target="#hero" data-label="Início" aria-label="Ir para Início"></button>
+    <button type="button" class="dot" data-target="#solucoes" data-label="Energia Solar" aria-label="Ir para Energia Solar"></button>
+    <button type="button" class="dot" data-target="#depoimentos" data-label="Depoimentos" aria-label="Ir para Depoimentos"></button>
+    <button type="button" class="dot" data-target="#wallbox-destaque" data-label="Mobilidade Elétrica" aria-label="Ir para Mobilidade Elétrica"></button>
+    <button type="button" class="dot" data-target="#engenharia-automacao" data-label="Engenharia & Automação" aria-label="Ir para Engenharia & Automação"></button>
+    <button type="button" class="dot" data-target="#servicos-eletricos" data-label="Serviços Elétricos" aria-label="Ir para Serviços Elétricos"></button>
+    <button type="button" class="dot" data-target="#empresa" data-label="A Empresa" aria-label="Ir para A Empresa"></button>
+    <button type="button" class="dot" data-target="#projetos" data-label="Projetos" aria-label="Ir para Projetos"></button>
+    <button type="button" class="dot" data-target="#blog" data-label="Blog" aria-label="Ir para Blog"></button>
+    <button type="button" class="dot" data-target="#social-hub" data-label="Redes Sociais" aria-label="Ir para Redes Sociais"></button>
+    <button type="button" class="dot" data-target="#faq" data-label="FAQ" aria-label="Ir para FAQ"></button>
 </nav>
 
 <main>
@@ -30,15 +29,16 @@
     <%- include('partials/home/hero') %>
     <%- include('partials/home/trust-counter') %>
     <%- include('partials/home/solar-profiles') %>
+    <%- include('partials/home/testimonials') %>
     <% if (cityKey === 'default') { %>
         <%- include('partials/usinas-destaque', { placement: 'home' }) %>
     <% } %>
-    <%- include('partials/home/engineering-automation') %>
     <%- include('partials/home/wallbox-featured') %>
+    <%- include('partials/home/engineering-automation') %>
     <%- include('partials/home/electrical-services') %>
     <%- include('partials/home/about-company') %>
     <%- include('partials/home/differentials') %>
-    <%- include('partials/home/testimonials') %>
+    <%- include('partials/home/sede') %>
     <%- include('partials/home/recent-projects') %>
     <%- include('partials/home/blog-section') %>
     <%- include('partials/home/social-hub') %>
@@ -49,7 +49,7 @@
 <%- include('partials/whatsapp') %>
 <%- include('partials/footer') %>
 
-<script src="/js/main.js?v=20261117-wa-fallback" defer></script>
+<script src="/js/main.js?v=20261118-home-ux22" defer></script>
 <script src="/js/whatsapp-picker.js?v=20261105" defer></script>
 </body>
 </html>

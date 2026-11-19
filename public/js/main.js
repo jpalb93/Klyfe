@@ -27,11 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ═══ Intersection Observer (Fade-in) ═══
+    // Revela um pouco antes de o elemento entrar na tela, para que rolagens
+    // rápidas e saltos por âncora não encontrem áreas ainda transparentes.
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
         });
-    }, { threshold: 0.1 });
+    }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
     // ═══ Scroll Spy Nav ═══
@@ -47,15 +52,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (t) t.scrollIntoView({ behavior: 'smooth' });
             });
         });
+        // Faixa estreita no meio da viewport: funciona para seções de qualquer
+        // altura (um threshold proporcional nunca dispara em seções muito altas).
         const spyObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    dots.forEach(d => d.classList.remove('active'));
+                    dots.forEach(d => {
+                        d.classList.remove('active');
+                        d.removeAttribute('aria-current');
+                    });
                     const match = sections.find(s => s.target === entry.target);
-                    if (match) match.dot.classList.add('active');
+                    if (match) {
+                        match.dot.classList.add('active');
+                        match.dot.setAttribute('aria-current', 'true');
+                    }
                 }
             });
-        }, { threshold: 0.3 });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
         sections.forEach(s => spyObserver.observe(s.target));
     }
 
@@ -65,17 +78,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileOverlay = document.querySelector('.mobile-overlay');
     const closeBtn = document.querySelector('.mobile-nav .close-btn');
 
+    const setMobileNavOpen = (open) => {
+        if (!mobileNav) return;
+        mobileNav.classList.toggle('open', open);
+        if (mobileOverlay) mobileOverlay.classList.toggle('open', open);
+        if (hamburger) hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (open) {
+            if (closeBtn) closeBtn.focus();
+        } else if (hamburger && mobileNav.contains(document.activeElement)) {
+            hamburger.focus();
+        }
+    };
+
     if (hamburger) {
-        hamburger.addEventListener('click', () => {
-            mobileNav.classList.add('open');
-            mobileOverlay.classList.add('open');
-        });
+        hamburger.addEventListener('click', () => setMobileNavOpen(true));
     }
     [closeBtn, mobileOverlay].forEach(el => {
-        if (el) el.addEventListener('click', () => {
-            mobileNav.classList.remove('open');
-            mobileOverlay.classList.remove('open');
-        });
+        if (el) el.addEventListener('click', () => setMobileNavOpen(false));
+    });
+    document.addEventListener('keydown', (e) => {
+        if (!mobileNav || !mobileNav.classList.contains('open')) return;
+        if (e.key === 'Escape') {
+            setMobileNavOpen(false);
+            return;
+        }
+        // Mantém o foco dentro do menu aberto
+        if (e.key === 'Tab') {
+            const focusables = [...mobileNav.querySelectorAll('a[href], button:not([disabled])')]
+                .filter((el) => el.offsetParent !== null);
+            if (!focusables.length) return;
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
     });
 
     // Fechar seletor rápido de cidade ao clicar fora
@@ -696,5 +737,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             document.body.removeChild(temp);
         }
+    }
+    // ═══ Mapa da sede: carrega o Google Maps só quando pedido ═══
+    document.querySelectorAll('.empresa-map-facade').forEach((facade) => {
+        facade.addEventListener('click', () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = facade.dataset.mapSrc;
+            iframe.title = facade.dataset.mapTitle || 'Mapa';
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.style.border = '0';
+            iframe.allowFullscreen = true;
+            iframe.referrerPolicy = 'no-referrer-when-downgrade';
+            facade.replaceWith(iframe);
+            iframe.focus();
+        }, { once: true });
+    });
+
+    // ═══ Botão flutuante do WhatsApp: some quando cobriria outras ações ═══
+    // No celular, o botão fixo cobre CTAs e botões no canto inferior direito.
+    // Enquanto uma dessas áreas estiver na faixa inferior da tela, ele se recolhe.
+    const waFloat = document.querySelector('.whatsapp-float-wrapper');
+    const fabAvoidZones = document.querySelectorAll('.sede-address-box, .sede-route-actions, #orcamento .cta-actions-row, .faq-sidebar-actions, .main-footer');
+    if (waFloat && fabAvoidZones.length && 'IntersectionObserver' in window) {
+        const visibleZones = new Set();
+        const fabObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) visibleZones.add(entry.target);
+                else visibleZones.delete(entry.target);
+            });
+            const shouldHide = visibleZones.size > 0 && !waFloat.open;
+            waFloat.classList.toggle('is-suppressed', shouldHide);
+        }, { rootMargin: '-78% 0px 0px 0px', threshold: 0 }); // só a faixa inferior da tela, onde o botão fica
+        const mq = window.matchMedia('(max-width: 768px)');
+        const syncFabObserver = () => {
+            fabObserver.disconnect();
+            visibleZones.clear();
+            waFloat.classList.remove('is-suppressed');
+            if (mq.matches) fabAvoidZones.forEach((zone) => fabObserver.observe(zone));
+        };
+        syncFabObserver();
+        if (mq.addEventListener) mq.addEventListener('change', syncFabObserver);
     }
 });

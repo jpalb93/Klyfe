@@ -49,12 +49,12 @@
 <meta name="twitter:creator" content="@klyfeelectric">
 
 <!-- Critical self-hosted fonts -->
-<link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/fonts/barlow-condensed-italic-400.woff2" as="font" type="font/woff2" crossorigin>
+<% if (locals.theme !== 'solar-warm') { %><link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin><% } %>
+<% if (locals.theme === 'solar-warm') { %><link rel="preload" href="/fonts/barlow-condensed-italic-700.woff2" as="font" type="font/woff2" crossorigin><% } else { %><link rel="preload" href="/fonts/barlow-condensed-italic-400.woff2" as="font" type="font/woff2" crossorigin><% } %>
 <link rel="preload" href="/fonts/ibm-plex-sans-400-700.woff2" as="font" type="font/woff2" crossorigin>
 <!-- Desktop CLS: these weights are visible in the hero/navbar before CSS font discovery. -->
 <link rel="preload" href="/fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 769px)">
-<link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 769px)">
+<link rel="preload" href="/fonts/barlow-condensed-900.woff2" as="font" type="font/woff2" crossorigin<% if (locals.theme !== 'solar-warm') { %> media="(min-width: 769px)"<% } %>>
 <link rel="preload" href="/fonts/ibm-plex-mono-400.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 769px)">
 <link rel="preload" href="/fonts/ibm-plex-mono-700.woff2" as="font" type="font/woff2" crossorigin media="(min-width: 769px)">
 
@@ -66,7 +66,9 @@
 <link rel="preload" href="<%= locals.preloadImage %>" as="image" type="image/webp" fetchpriority="high">
     <% } %>
 <% } else if (locals.page === 'home' || locals.page === 'index') { %>
-<link rel="preload" href="/img/hero-klyfe.webp" imagesrcset="/img/hero-klyfe-640.webp 640w, /img/hero-klyfe.webp 1200w" imagesizes="100vw" as="image" type="image/webp" fetchpriority="high">
+<!-- Mesmo corte do CSS (.hero em ≤768px usa a versão 640): evita baixar as duas -->
+<link rel="preload" href="/img/hero-klyfe-640.webp" as="image" type="image/webp" fetchpriority="high" media="(max-width: 768px)">
+<link rel="preload" href="/img/hero-klyfe.webp" as="image" type="image/webp" fetchpriority="high" media="(min-width: 769px)">
 <% } %>
 
 <!-- Font Awesome (Non-blocking) -->
@@ -75,14 +77,37 @@
 
 <!-- CSS Global -->
 <% if (locals.theme === 'solar-warm') { %>
-<link rel="stylesheet" href="/css/home.css?v=20260913-footer8">
+<%# Primeira tela com CSS inline; o bundle completo carrega sem bloquear a renderização. %>
+<script>document.documentElement.classList.add('home-css-pending');</script>
+<%- include('generated/home-critical-css') %>
+<link id="home-css" rel="preload" href="/css/home.css?v=20261118-home-ux22" as="style" onload="if(this.rel==='preload'){this.rel='stylesheet'}else{this.onload=null;window.klyfeHomeCssReady()}" onerror="window.klyfeHomeCssReady()">
+<script>
+window.klyfeHomeCssReady = function () {
+  var root = document.documentElement;
+  if (root.classList.contains('home-css-ready')) return;
+  root.classList.add('home-css-ready');
+  root.classList.remove('home-css-pending');
+  // Quem chegou por âncora (/#faq) volta ao alvo depois que as alturas reais existem.
+  if (location.hash.length > 1) {
+    var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (target) requestAnimationFrame(function () { target.scrollIntoView(); });
+  }
+};
+// Navegador sem suporte a preload: vira folha comum e o onload acima libera a página.
+// Não revela nada antes do CSS chegar (conteúdo sem estilo alargaria a tela).
+setTimeout(function () {
+  var link = document.getElementById('home-css');
+  if (link && link.rel === 'preload') link.rel = 'stylesheet';
+}, 3000);
+</script>
+<noscript><link rel="stylesheet" href="/css/home.css?v=20261118-home-ux22"></noscript>
 <% } else if (locals.theme === 'azure-sky') { %>
-<link rel="stylesheet" href="/css/solar.css?v=20260913-footer8">
+<link rel="stylesheet" href="/css/solar.css?v=20261118-home-ux22">
 <% } else { %>
-<link rel="stylesheet" href="/css/style.css?v=20260913-footer8">
+<link rel="stylesheet" href="/css/style.css?v=20261118-home-ux22">
 <% } %>
 <% if (locals.theme !== 'solar-warm') { %>
-<link rel="stylesheet" href="/css/site-v2.css?v=20260913-footer8">
+<link rel="stylesheet" href="/css/site-v2.css?v=20261118-home-ux22">
 <% } %>
 
 <!-- Schema.org JSON-LD -->

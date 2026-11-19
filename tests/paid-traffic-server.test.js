@@ -30,6 +30,13 @@ test('invalid optional email and missing city rejected; ordinary contact still r
     }
     assert.equal(calls.length, 0);
 });
+test('solar simulator forwards the equipment field on its own line', async () => {
+    const mensagem = 'Olá! Quero um orçamento de energia solar.\r\nConta de luz: R$ 300,00 por mês\r\nNovos aparelhos: 2 aparelhos de ar-condicionado';
+    const result = await post('/contato', { ...lead, source: 'site-solar-triage', mensagem });
+    assert.equal(result.status, 200);
+    assert.equal(calls[0][0], 'crm');
+    assert.equal(calls[0][1].mensagem, mensagem.replace(/\r\n/g, '\n'));
+});
 test('failed persistence cannot emit conversion', async () => {
     failCRM = true;
     assert.equal((await post('/contato', {...lead, source:'lp-solar-residencial'})).status, 502);

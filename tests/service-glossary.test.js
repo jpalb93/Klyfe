@@ -45,7 +45,12 @@ assert.equal(inferServiceGlossaryKey('/contato'), null);
 const footer = read('views/partials/footer.ejs');
 const bridge = read('views/partials/related-glossary.ejs');
 const modalScript = read('public/js/glossary-modal.js');
-const css = read('public/css/modules/70-service-pages.css');
+const css = read('public/css/modules/46-shared-glossary.css');
+// O rodapé de todas as páginas (inclusive a Home) inclui a ponte do glossário,
+// então o estilo precisa estar em todos os bundles principais.
+for (const bundle of ['home.css', 'style.css', 'solar.css']) {
+    assert.match(read(`public/css/${bundle}`), /\.service-glossary-bridge \{/, `${bundle} sem estilos do glossário`);
+}
 assert.match(footer, /related-glossary/);
 assert.match(footer, /getServiceGlossaryLinks\(activeGlossaryServiceKey, activeGlossaryCategory, currentCityKey\)/);
 assert.match(bridge, /service-glossary-bridge/);

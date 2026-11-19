@@ -1,0 +1,259 @@
+/* Ponte editorial entre páginas de serviço e o Glossário Técnico */
+.service-glossary-bridge {
+  padding: clamp(3.5rem, 7vw, 6.5rem) 0;
+  border-top: 1px solid var(--border-color);
+  background:
+    radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--accent-primary) 10%, transparent), transparent 34%),
+    var(--bg-secondary);
+}
+
+.service-glossary-bridge__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.service-glossary-bridge__intro .section-separator {
+  margin-bottom: 1.25rem;
+}
+
+.service-glossary-bridge__intro h2 {
+  max-width: 27rem;
+  margin: 0 0 1rem;
+  color: var(--text-main);
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  line-height: 1.08;
+}
+
+.service-glossary-bridge__intro p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+
+.service-glossary-bridge__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.service-glossary-bridge__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.75rem;
+  padding: 0.95rem 1.1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--bg-primary) 84%, transparent);
+  color: var(--text-main);
+  font-size: 0.92rem;
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.service-glossary-bridge__link:hover,
+.service-glossary-bridge__link:focus-visible {
+  border-color: var(--accent-primary);
+  background: var(--bg-primary);
+  color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.service-glossary-bridge__link i {
+  flex: 0 0 auto;
+  color: var(--accent-primary);
+  font-size: 0.75rem;
+}
+
+.service-glossary-bridge__link[aria-expanded="true"] {
+  border-color: var(--accent-primary);
+  background: var(--bg-primary);
+  color: var(--accent-primary);
+}
+
+body.glossary-modal-open {
+  overflow: hidden;
+}
+
+.service-glossary-modal[hidden] {
+  display: none;
+}
+
+.service-glossary-modal {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.service-glossary-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 8, 10, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.service-glossary-modal__dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 42rem);
+  max-height: min(86vh, 48rem);
+  overflow-y: auto;
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 1px solid color-mix(in srgb, var(--accent-primary) 42%, var(--border-color));
+  border-radius: 0.65rem;
+  background: var(--bg-primary);
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.42);
+  outline: none;
+}
+
+.service-glossary-modal__close {
+  position: absolute;
+  top: 0.85rem;
+  right: 0.85rem;
+  display: inline-grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+.service-glossary-modal__close:hover,
+.service-glossary-modal__close:focus-visible {
+  border-color: var(--accent-primary);
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+}
+
+.service-glossary-modal__content {
+  padding-right: 2rem;
+}
+
+.service-glossary-modal__eyebrow,
+.service-glossary-modal__label {
+  display: block;
+  color: var(--accent-primary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.service-glossary-modal__eyebrow {
+  margin-bottom: 0.8rem;
+}
+
+.service-glossary-modal h3 {
+  max-width: 32rem;
+  margin: 0 0 1rem;
+  color: var(--text-main);
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.service-glossary-modal__definition,
+.service-glossary-modal__details p {
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+.service-glossary-modal__definition {
+  margin: 0 0 1.5rem;
+  font-size: 1.05rem;
+}
+
+.service-glossary-modal__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.service-glossary-modal__details > div {
+  padding: 1rem;
+  border-left: 2px solid var(--accent-primary);
+  background: var(--bg-secondary);
+}
+
+.service-glossary-modal__details p {
+  margin: 0.5rem 0 0;
+  font-size: 0.92rem;
+}
+
+.service-glossary-modal__related {
+  margin-bottom: 1.5rem;
+}
+
+.service-glossary-modal__related > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.service-glossary-modal__related a {
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.3rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.service-glossary-modal__related a:hover,
+.service-glossary-modal__related a:focus-visible {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.service-glossary-modal__full-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--accent-primary);
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.service-glossary-modal__full-link:hover,
+.service-glossary-modal__full-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+@media (max-width: 800px) {
+  .service-glossary-bridge__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .service-glossary-bridge__links {
+    grid-template-columns: 1fr;
+  }
+
+  .service-glossary-modal__details {
+    grid-template-columns: 1fr;
+  }
+
+  .service-glossary-modal__content {
+    padding-right: 0;
+  }
+}

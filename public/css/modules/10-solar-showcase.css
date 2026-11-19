@@ -199,7 +199,7 @@
 }
 
 @media (min-width: 901px) {
-  .solar-showcase-card:hover {
+  .solar-showcase-card:is(:hover, :focus-visible) {
     transform: translateY(-6px);
     border-color: rgba(227, 90, 27, 0.85);
     background: #121720;
@@ -223,7 +223,7 @@
   transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   display: block;
 }
-.solar-showcase-card:hover .solar-showcase-img {
+.solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-img {
   transform: scale(1.08);
 }
 .solar-showcase-badge-floating {
@@ -245,7 +245,7 @@
   transform: translateY(-4px);
   transition: opacity 0.4s ease 0.05s, transform 0.4s ease 0.05s;
 }
-.solar-showcase-card:hover .solar-showcase-badge-floating {
+.solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-badge-floating {
   opacity: 1;
   transform: translateY(0);
 }
@@ -283,7 +283,7 @@
   opacity: 0;
   transition: opacity 0.4s ease 0.05s;
 }
-.solar-showcase-card:hover .solar-showcase-tag-pill {
+.solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-tag-pill {
   opacity: 1;
 }
 
@@ -363,12 +363,12 @@
 }
 
 @media (min-width: 901px) {
-  .solar-showcase-card:hover .solar-showcase-text {
+  .solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-text {
     max-height: 0;
     opacity: 0;
     margin-bottom: 0;
   }
-  .solar-showcase-card:hover .solar-showcase-expanded {
+  .solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-expanded {
     max-height: 450px;
     opacity: 1;
     transform: translateY(0);
@@ -397,7 +397,7 @@
 .link-text-default {
   display: inline;
 }
-.solar-showcase-card:hover .solar-showcase-link {
+.solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-link {
   gap: 0.7rem;
   color: #FF7A3D;
 }
@@ -405,18 +405,18 @@
   font-size: 0.75rem;
   transition: transform 0.35s ease;
 }
-.solar-showcase-card:hover .solar-showcase-link i {
+.solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-link i {
   transform: translateX(3px);
 }
 
 @media (min-width: 901px) {
-  .solar-showcase-card:hover .link-text-default {
+  .solar-showcase-card:is(:hover, :focus-visible) .link-text-default {
     display: none;
   }
-  .solar-showcase-card:hover .link-text-hover {
+  .solar-showcase-card:is(:hover, :focus-visible) .link-text-hover {
     display: inline;
   }
-  .solar-showcase-card:hover .solar-showcase-link {
+  .solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-link {
     background: linear-gradient(135deg, #E35A1B 0%, #FF6F2E 100%);
     color: #FFFFFF;
     padding: 0.55rem 1.1rem;
@@ -424,7 +424,7 @@
     box-shadow: 0 4px 14px rgba(227, 90, 27, 0.4);
     gap: 0.6rem;
   }
-  .solar-showcase-card:hover .solar-showcase-link i {
+  .solar-showcase-card:is(:hover, :focus-visible) .solar-showcase-link i {
     color: #FFFFFF;
     transform: translateX(4px);
   }

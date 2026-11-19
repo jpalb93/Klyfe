@@ -1,0 +1,87 @@
+<!-- ═══ SEDE (fecha o bloco A Empresa + Diferenciais) ═══ -->
+<section class="section-padding home-sec home-sec-sede" aria-label="Sede da Klyfe Electric">
+    <div class="container">
+        <div class="home-empresa-sede-card fade-in" id="sede-klyfe">
+            <!-- Lado Esquerdo: Mapa Interativo do Google Maps -->
+            <div class="empresa-sede-map-col">
+                <div class="empresa-map-container">
+                    <!-- Fachada: o Google Maps só é carregado quando o visitante pede -->
+                    <button type="button" class="empresa-map-facade" data-map-src="<%= business.mapEmbedUrl %>" data-map-title="Localização da Sede da Klyfe Electric em Campina Grande - PB">
+                        <span class="empresa-map-facade-pin" aria-hidden="true"><i class="fas fa-map-location-dot"></i></span>
+                        <span class="empresa-map-facade-label">Ver mapa interativo</span>
+                    </button>
+                    <div class="empresa-map-badge">
+                        <span class="empresa-map-pin-pulse"></span>
+                        <span><i class="fas fa-map-marker-alt"></i> Sede Klyfe &bull; Mirante</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lado Direito: Informações e Ações de Rota Instantânea -->
+            <div class="empresa-sede-info-col">
+                <div class="sede-badge-tag">
+                    <i class="fas fa-building"></i>
+                    <span>SEDE FÍSICA &bull; CAMPINA GRANDE</span>
+                </div>
+
+                <h3 class="sede-info-title">
+                    ENGENHARIA DE PERTO.<br>
+                    <span class="text-solar-orange">VENHA NOS CONHECER.</span>
+                </h3>
+
+                <p class="sede-info-desc">
+                    Nossa sede concentra engenheiros, projetistas e suporte técnico. Agende uma visita ou venha tomar um café conosco para planejar seu projeto elétrico ou solar.
+                </p>
+
+                <!-- Endereço com botão de cópia -->
+                <div class="sede-address-box">
+                    <div class="sede-address-icon">
+                        <i class="fas fa-map-pin"></i>
+                    </div>
+                    <div class="sede-address-text">
+                        <span class="sede-address-label">Endereço da Sede</span>
+                        <span class="sede-address-val"><%= business.formattedAddress %></span>
+                    </div>
+                    <button type="button" class="btn-copy-address" id="btn-copy-sede-addr" data-address="<%= business.formattedAddress %>" title="Copiar endereço completo" aria-label="Copiar endereço completo da sede">
+                        <i class="far fa-copy"></i>
+                        <span class="copy-tooltip">Copiar</span>
+                    </button>
+                </div>
+
+                <!-- Horário de Atendimento -->
+                <div class="sede-schedule-row">
+                    <div class="sede-schedule-item">
+                        <i class="far fa-clock"></i>
+                        <span><strong>Seg a Sex:</strong> 08h às 18h</span>
+                    </div>
+                    <div class="sede-schedule-divider"></div>
+                    <div class="sede-schedule-item">
+                        <i class="far fa-calendar-check"></i>
+                        <span><strong>Sábado:</strong> 08h às 12h</span>
+                    </div>
+                </div>
+
+                <!-- Botões de Navegação Direta (1 Clique) -->
+                <div class="sede-route-actions">
+                    <a href="<%= business.directionsUrl %>" target="_blank" rel="noopener" class="btn-route-primary" id="btn-rota-google">
+                        <i class="fas fa-location-arrow"></i>
+                        <span>GERAR ROTA (GOOGLE MAPS)</span>
+                    </a>
+
+                    <a href="<%= business.wazeUrl %>" target="_blank" rel="noopener" class="btn-route-waze" id="btn-rota-waze">
+                        <i class="fab fa-waze"></i>
+                        <span>ABRIR NO WAZE</span>
+                    </a>
+                </div>
+
+                <!-- Rodapé de Prova Local -->
+                <div class="sede-proof-link">
+                    <a href="<%= business.mapsUrl %>" target="_blank" rel="noopener">
+                        <i class="fab fa-google"></i>
+                        <span>Ver avaliações, fotos e perfil verificado no Google &rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

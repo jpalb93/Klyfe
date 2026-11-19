@@ -2,7 +2,7 @@
 <section class="section-padding home-sec home-sec-blog" id="blog">
     <div class="container fade-in">
         <div class="home-blog-header-block">
-            <span class="home-blog-tag-badge"><i class="fas fa-book-open" aria-hidden="true"></i> 08 CONHECIMENTO KLYFE</span>
+            <span class="home-blog-tag-badge">09 CONHECIMENTO KLYFE</span>
             <div class="home-blog-title-row">
                 <div>
                     <h2 class="home-blog-sec-title">CONHECIMENTO QUE <span class="text-solar-orange">MOVE PROJETOS.</span></h2>
@@ -22,7 +22,7 @@
 
         <% if (typeof posts !== 'undefined' && posts.length > 0) { 
             const featuredPost = posts[0];
-            const supportingPosts = posts.slice(1, 5);
+            const supportingPosts = posts.slice(1, 4);
         %>
             <!-- ═══ POST DE DESTAQUE (CARD HERO HORIZONTAL) ═══ -->
             <% 
@@ -76,9 +76,9 @@
                                 <span class="blog-meta-badge"><%= post.homeTopicLabel %></span>
                                 <span class="blog-read-time">• <%= post.readTime || '8 min de leitura' %></span>
                             </div>
-                            <h4 class="blog-card-title">
+                            <h3 class="blog-card-title">
                                 <a href="<%= homePrefix %>/blog/<%= post.slug %>"><%= post.title %></a>
-                            </h4>
+                            </h3>
                             <p class="blog-card-desc"><%= post.summary || 'Entenda os detalhes técnicos e práticos para a melhor tomada de decisão.' %></p>
                             <a href="<%= homePrefix %>/blog/<%= post.slug %>" class="blog-read-action">
                                 <span>Ler artigo</span>

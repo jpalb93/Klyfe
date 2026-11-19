@@ -14,18 +14,21 @@ const modules = {
     sharedTail: '30-shared-components.css',
     homeThemeMain: '40-theme-home.css',
     sharedFaq: '45-shared-faq.css',
+    sharedGlossary: '46-shared-glossary.css',
     homeThemeFooter: '47-theme-home-footer.css',
     homeSolarResponsive: '48-home-solar-responsive.css',
     retiredThemes: '50-retired-theme-previews.css',
     solarTheme: '60-theme-solar.css',
     services: '70-service-pages.css',
-    homeReviews: '80-home-reviews.css'
+    homeReviews: '80-home-reviews.css',
+    homeAuditFixes: '90-home-ui-fixes.css'
 };
 
 const bundles = {
     'style.css': [
         modules.foundation,
         modules.sharedTail,
+        modules.sharedGlossary,
         modules.services
     ],
     'home.css': [
@@ -37,7 +40,9 @@ const bundles = {
         modules.sharedFaq,
         modules.homeThemeFooter,
         modules.homeSolarResponsive,
-        modules.homeReviews
+        modules.homeReviews,
+        modules.sharedGlossary,
+        modules.homeAuditFixes
     ],
     'solar.css': [
         modules.foundation,
@@ -46,6 +51,7 @@ const bundles = {
         modules.sharedFaq,
         modules.homeSolarResponsive,
         modules.solarTheme,
+        modules.sharedGlossary,
         modules.services
     ]
 };
@@ -68,6 +74,9 @@ function buildBundles() {
 }
 
 buildBundles();
+
+const criticalBytes = require('./build-critical-css').writeCritical(cssDir);
+console.log(`home-critical (inline): ${criticalBytes} bytes`);
 
 for (const [bundleName, moduleFiles] of Object.entries(bundles)) {
     const bytes = fs.statSync(path.join(cssDir, bundleName)).size;

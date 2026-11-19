@@ -84,7 +84,10 @@ router.post('/contato', async (req, res) => {
 
     const isWallboxBrief = String(body.form_type || '') === 'wallbox_brief';
     const isLpSolar = isLpSolarSource(body.source);
-    const validation = isWallboxBrief ? validateWallboxBriefLead(body) : validateContactLead(body, { emailOptional: isLpSolar });
+    const validation = isWallboxBrief ? validateWallboxBriefLead(body) : validateContactLead(body, {
+        emailOptional: isLpSolar,
+        preserveMessageLines: body.source === 'site-solar-triage'
+    });
     if (!validation.valid) {
         return res.status(400).json({ success: false, message: validation.errors[0], errors: validation.errors });
     }

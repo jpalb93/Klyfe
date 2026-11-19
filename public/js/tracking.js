@@ -577,8 +577,20 @@
     function showBanner() {
         var el = document.getElementById('klyfe-cookie-banner');
         if (!el) return;
-        el.removeAttribute('hidden');
-        el.classList.remove('is-hidden');
+        var reveal = function () {
+            el.removeAttribute('hidden');
+            el.classList.remove('is-hidden');
+        };
+        // Mostrar só com as fontes prontas: se a fonte chega depois, o banner
+        // muda de altura e gera layout shift (CLS). Teto de 1,5 s por segurança.
+        if (document.fonts && document.fonts.ready && typeof document.fonts.ready.then === 'function') {
+            var done = false;
+            var once = function () { if (!done) { done = true; reveal(); } };
+            document.fonts.ready.then(once, once);
+            setTimeout(once, 1500);
+        } else {
+            reveal();
+        }
     }
 
     function acceptConsent() {
